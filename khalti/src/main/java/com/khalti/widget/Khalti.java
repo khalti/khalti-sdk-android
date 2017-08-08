@@ -15,7 +15,6 @@ public class Khalti extends FrameLayout {
     private AttributeSet attrs;
     private LayoutInflater inflater;
 
-
     public Khalti(@NonNull Context context) {
         super(context);
         this.context = context;

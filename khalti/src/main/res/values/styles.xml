@@ -6,9 +6,9 @@
     </style>
 
     <style name="AppTheme.Base" parent="carbonX_Theme.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/khaltiPrimary</item>
+        <item name="colorPrimaryDark">@color/khaltiPrimaryDark</item>
+        <item name="colorAccent">@color/khaltiAccent</item>
     </style>
 
     <style name="carbonX_Theme.Light" parent="Theme.AppCompat.Light">

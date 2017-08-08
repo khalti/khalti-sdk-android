@@ -11,7 +11,7 @@
         android:layout_height="56dp"
         android:background="@color/white"
         app:elevation="0dp"
-        app:tabIndicatorColor="@color/colorPrimary" />
+        app:tabIndicatorColor="@color/khaltiPrimary" />
 
     <FrameLayout
         android:id="@+id/flContainer"

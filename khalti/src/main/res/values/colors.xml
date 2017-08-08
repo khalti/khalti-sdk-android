@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6b2d83</color>
-    <color name="colorPrimaryDark">#5a2b71</color>
-    <color name="colorPrimaryExtraDark">#452650</color>
-    <color name="colorAccent">#673ab7</color>
-    <color name="colorAccentAlt">#f79321</color>
-    <color name="colorPrimaryLight">#EAE7EC</color>
+    <color name="khaltiPrimary">#6b2d83</color>
+    <color name="khaltiPrimaryDark">#5a2b71</color>
+    <color name="khaltiPrimaryExtraDark">#452650</color>
+    <color name="khaltiAccent">#673ab7</color>
+    <color name="khaltiAccentAlt">#f79321</color>
+    <color name="khaltiPrimaryLight">#EAE7EC</color>
     <color name="primaryLight">#206b2d83</color>
 
     <color name="white">#ffffff</color>
