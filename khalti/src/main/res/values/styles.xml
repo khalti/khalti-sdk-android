@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.Base" parent="carbonX_Theme.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="carbonX_Theme.Light" parent="Theme.AppCompat.Light">
+        <item name="carbonX_colorError">#ffF44336</item>
+        <item name="carbonX_debugMode">false</item>
+
+        <item name="android:buttonStyle">@style/carbonX_Button</item>
+        <item name="carbonX_textAppearanceButton">@style/carbonX_TextAppearance.Button.Light</item>
+        <item name="carbonX_textAppearanceButtonInverse">@style/carbonX_TextAppearance.Button.Dark
+        </item>
+        <item name="android:progressBarStyle">@style/carbonX_ProgressBar</item>
+        <item name="carbonX_frameLayoutStyle">@style/carbonX_FrameLayout</item>
+    </style>
+
+    <style name="carbonX_Theme.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="carbonX_ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="carbonX_progressStyle">bar_indeterminate</item>
+        <item name="carbonX_tint">?attr/colorPrimary</item>
+        <item name="carbonX_barWidth">3dp</item>
+        <item name="carbonX_inAnimation">progressWidth</item>
+        <item name="carbonX_outAnimation">progressWidth</item>
+    </style>
+
+    <style name="carbonX_Button" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">@dimen/carbonX_paddingHalf</item>
+        <item name="android:paddingRight">@dimen/carbonX_paddingHalf</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="carbonX_elevation">@dimen/carbonX_elevationButton</item>
+        <item name="carbonX_touchMarginTop">6dp</item>
+        <item name="carbonX_touchMarginBottom">6dp</item>
+        <item name="carbonX_cornerRadius">2dp</item>
+        <item name="android:textColor">@null</item>
+        <!--<item name="android:textAppearance">?attr/carbonX_textAppearanceButtonInverse</item>-->
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/carbonx_buttonbackground</item>
+        <item name="carbonX_animateColorChanges">true</item>
+        <item name="carbonX_tint">#00000000</item>
+        <item name="carbonX_backgroundTint">#00000000</item>
+    </style>
+
+    <style name="carbonX_TextAppearance" parent="@android:style/TextAppearance" />
+
+    <style name="carbonX_TextAppearance.Button">
+        <item name="android:textSize">@dimen/carbonX_textSizeButton</item>
+        <item name="carbonX_fontFamily">"sans-serif-medium"</item>
+        <item name="carbonX_textAllCaps">true</item>
+    </style>
+
+    <style name="carbonX_TextAppearance.Button.Dark">
+        <item name="android:textColor">@color/carbonX_text_button_dark</item>
+    </style>
+
+    <style name="carbonX_TextAppearance.Button.Light">
+        <item name="android:textColor">@color/carbonX_text_button_light</item>
+    </style>
+
+    <style name="carbonX_FrameLayout">
+        <item name="carbonX_rippleColor">@null</item>
+    </style>
+</resources>

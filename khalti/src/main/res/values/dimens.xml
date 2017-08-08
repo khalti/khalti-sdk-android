@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="globalPadding">16dp</dimen>
+    <dimen name="toolbarHeight">56dp</dimen>
+
+    <dimen name="carbonX_elevationLow">4dp</dimen>
+    <dimen name="carbonX_1dip">1dp</dimen>
+    <dimen name="carbonX_paddingHalf">8dp</dimen>
+    <dimen name="carbonX_elevationButton">2dp</dimen>
+    <dimen name="carbonX_buttonWidth">150dp</dimen>
+    <dimen name="carbonX_buttonHeight">50dp</dimen>
+    <dimen name="carbonX_textSizeButton">14sp</dimen>
+</resources>
