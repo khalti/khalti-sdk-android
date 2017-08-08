@@ -1,2 +1,2 @@
-# khalti-sdk
-SDK for Khalti
+# khalti-android
+SDK for Khalti Android App
