@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Khalti-Android.iml" filepath="$PROJECT_DIR$/Khalti-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/khalti-android.iml" filepath="$PROJECT_DIR$/khalti-android.iml" />
     </modules>
   </component>
 </project>
