@@ -4,12 +4,16 @@ interface CheckOutContract {
     interface View {
         void setupViewPager();
 
-        void attachListenerToTabLayout();
+        void setUpTabLayout();
+
+        void toggleTab(int position, boolean selected);
 
         void setListener(Listener listener);
     }
 
     interface Listener {
         void setUpLayout();
+
+        void toggleTab(int position, boolean selected);
     }
 }

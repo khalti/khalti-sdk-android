@@ -16,6 +16,11 @@ class CheckOutPresenter implements CheckOutContract.Listener {
     @Override
     public void setUpLayout() {
         mCheckOutView.setupViewPager();
-        mCheckOutView.attachListenerToTabLayout();
+        mCheckOutView.setUpTabLayout();
+    }
+
+    @Override
+    public void toggleTab(int position, boolean selected) {
+        mCheckOutView.toggleTab(position, selected);
     }
 }

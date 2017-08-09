@@ -9,7 +9,7 @@
 
     <!--CheckOut Activity-->
     <string name="eBanking">E-Banking</string>
-    <string name="wallet">Khalti Wallet</string>
+    <string name="wallet">Wallet</string>
 
     <!--Form-->
     <string name="mobile_hint"><font size="8">Mobile Number</font></string>
