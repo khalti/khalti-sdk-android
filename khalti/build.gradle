@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.targetSdk
@@ -51,13 +52,6 @@ dependencies {
     compile "com.android.support:design:${rootProject.ext.supportVersion}"
     compile "com.android.support:transition:${rootProject.ext.supportVersion}"
 
-    /*RxPermission*/
-    compile "com.tbruyelle.rxpermissions:rxpermissions:${rootProject.ext.rxPermissionVersion}"
-
-    /*Material Dialog*/
-    /*compile "com.github.afollestad.material-dialogs:core:${rootProject.ext.materialDialogVersion}"
-    compile "me.zhanghai.android.materialprogressbar:library:${rootProject.ext.materialProgressVersion}"*/
-
     /*Android Animations*/
     compile "com.nineoldandroids:library:${rootProject.ext.nineDroidVersion}"
 
@@ -86,4 +80,5 @@ dependencies {
     compile "io.reactivex:rxandroid:${rootProject.ext.rxVersion}"
 
     compile project(':fontana')
+    compile project(':utila')
 }

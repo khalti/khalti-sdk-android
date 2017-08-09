@@ -9,6 +9,10 @@
         android:supportsRtl="true"
         tools:replace="android:label">
 
+        <activity
+            android:name=".form.CheckOutActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
-
 </manifest>

@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Khalti</string>
 
+    <!--Font Icons-->
+    <string name="account_box"></string>
+
     <!--Component Button-->
     <string name="pay">PAY</string>
+
+    <!--CheckOut Activity-->
+    <string name="eBanking">E-Banking</string>
+    <string name="wallet">Khalti Wallet</string>
+
+    <!--Form-->
+    <string name="mobile_hint"><font size="8">Mobile Number</font></string>
+    <string name="mobile_hint2"><small><small><small>Mobile Number</small></small></small></string>
 </resources>

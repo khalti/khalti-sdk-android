@@ -289,4 +289,12 @@
         <attr name="carbonX_anchor" />
         <attr name="carbonX_anchorGravity" />
     </declare-styleable>
+
+    <declare-styleable name="khalti">
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="TextInputLayout">
+        <attr name="mainHintTextSize" format="dimension" />
+    </declare-styleable>
 </resources>
