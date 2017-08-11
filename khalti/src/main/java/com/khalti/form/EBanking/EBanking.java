@@ -3,18 +3,22 @@ package com.khalti.form.EBanking;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.khalti.R;
+import com.khalti.carbonX.widget.Button;
 import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.carbonX.widget.ProgressBar;
+import com.khalti.carbonX.widget.TextInputLayout;
 import com.khalti.form.EBanking.chooseBank.BankChooserActivity;
 import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
@@ -34,11 +38,15 @@ public class EBanking extends Fragment implements EBankingContract.View {
     private Spinner spBank;
     private FrameLayout flBank;
     private RobotoTextView tvBank, tvBankId;
+    private TextInputEditText etMobile;
+    private TextInputLayout tilMobile;
+    private Button btnPay;
 
     private FragmentActivity fragmentActivity;
     private EBankingContract.Listener listener;
 
     private List<String> bankIds = new ArrayList<>();
+    private String bankId;
 
     @Override
 
@@ -53,9 +61,13 @@ public class EBanking extends Fragment implements EBankingContract.View {
         flBank = mainView.findViewById(R.id.flBank);
         tvBank = mainView.findViewById(R.id.tvBank);
         tvBankId = mainView.findViewById(R.id.tvBankId);
+        etMobile = mainView.findViewById(R.id.etMobile);
+        tilMobile = mainView.findViewById(R.id.tilMobile);
+        btnPay = mainView.findViewById(R.id.btnPay);
 
         listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
+        btnPay.setOnClickListener(view -> listener.continuePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString(), bankId));
         return mainView;
     }
 
@@ -68,7 +80,6 @@ public class EBanking extends Fragment implements EBankingContract.View {
     public void onResume() {
         super.onResume();
     }
-
 
     @Override
     public void toggleProgressBar(boolean show) {
@@ -94,6 +105,19 @@ public class EBanking extends Fragment implements EBankingContract.View {
         bankAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 
         spBank.setAdapter(bankAdapter);
+        bankId = ((List<String>) bankIds).get(spBank.getSelectedItemPosition());
+
+        spBank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bankId = ((List<String>) bankIds).get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
@@ -103,7 +127,13 @@ public class EBanking extends Fragment implements EBankingContract.View {
         tvBank.setText(bankName);
         tvBankId.setText(bankId);
 
+        this.bankId = bankId;
         flBank.setOnClickListener(view -> listener.openBankList());
+    }
+
+    @Override
+    public void setMobileError(String error) {
+        tilMobile.setError(error);
     }
 
     @Override

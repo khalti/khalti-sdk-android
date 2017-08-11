@@ -12,6 +12,8 @@ interface EBankingContract {
 
         void setUpBankItem(String bankName, String bankId);
 
+        void setMobileError(String error);
+
         void openBankList(HashMap<String, Object> dataMap);
 
         void setListener(Listener listener);
@@ -23,5 +25,7 @@ interface EBankingContract {
         void openBankList();
 
         void updateBankItem(String bankName, String bankId);
+
+        void continuePayment(boolean isNetwork, String mobile, String bankId);
     }
 }

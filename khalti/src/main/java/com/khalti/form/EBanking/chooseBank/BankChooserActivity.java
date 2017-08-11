@@ -24,6 +24,7 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
     private Toolbar toolbar;
 
     private BankChooserContract.Listener listener;
+    private BankChooserAdapter bankChooserAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                bankChooserAdapter.setFilter(newText);
                 return false;
             }
         });
@@ -110,7 +112,7 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
 
     @Override
     public void setUpList(List<BankPojo> bankList) {
-        BankChooserAdapter bankChooserAdapter = new BankChooserAdapter(this, bankList, this);
+        bankChooserAdapter = new BankChooserAdapter(this, bankList, this);
         rvList.setAdapter(bankChooserAdapter);
         rvList.setHasFixedSize(false);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

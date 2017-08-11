@@ -3,7 +3,9 @@ package com.khalti.form.EBanking;
 import android.support.annotation.NonNull;
 
 import com.khalti.form.EBanking.chooseBank.BankPojo;
+import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
+import com.utila.RegexUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,5 +59,18 @@ class EBankingPresenter implements EBankingContract.Listener {
     @Override
     public void updateBankItem(String bankName, String bankId) {
         mEBankingView.setUpBankItem(bankName, bankId);
+    }
+
+    @Override
+    public void continuePayment(boolean isNetwork, String mobile, String bankId) {
+        if (EmptyUtil.isNotEmpty(mobile) && RegexUtil.isMobileNumberValid(mobile)) {
+
+        } else {
+            if (EmptyUtil.isEmpty(mobile)) {
+                mEBankingView.setMobileError("This field is required");
+            } else {
+                mEBankingView.setMobileError("Invalid mobile number");
+            }
+        }
     }
 }

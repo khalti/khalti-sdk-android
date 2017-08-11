@@ -11,4 +11,11 @@ public class RegexUtil {
 
         return matcher.find();
     }
+
+    public static boolean isMobileNumberValid(String phoneNumber) {
+        Pattern pattern = Pattern.compile("([9][678][0-9]{8})");
+        Matcher matcher = pattern.matcher(phoneNumber);
+
+        return matcher.find();
+    }
 }

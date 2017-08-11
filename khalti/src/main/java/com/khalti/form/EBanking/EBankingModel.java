@@ -44,7 +44,7 @@ public class EBankingModel {
                                @Override
                                public void onCompleted() {
                                    if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
-                                       if (bankList.size() > 1) {
+                                       if (bankList.size() > 5) {
                                            bankAction.onCompleted(bankList);
                                        } else {
                                            bankAction.onCompleted(getSimpleBankList(bankList));
