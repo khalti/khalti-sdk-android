@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.khalti.R;
+import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.form.EBanking.EBanking;
 import com.khalti.form.Wallet.Wallet;
 import com.khalti.utils.ViewPagerAdapter;
@@ -35,9 +36,11 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
         tlTitle = (TabLayout) findViewById(R.id.tlTitle);
         vpContent = (ViewPager) findViewById(R.id.vpContent);
+        FrameLayout flClose = (FrameLayout) findViewById(R.id.flClose);
 
         listener = new CheckOutPresenter(this);
         listener.setUpLayout();
+        flClose.setOnClickListener(view -> listener.closeForm());
     }
 
     @Override
@@ -117,6 +120,11 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
                 ivIcon.setAlpha(0.6f);
             }
         }
+    }
+
+    @Override
+    public void closeForm() {
+        finish();
     }
 
     @Override

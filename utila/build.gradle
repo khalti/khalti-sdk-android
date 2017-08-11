@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion rootProject.ext.targetSdk
+    buildToolsVersion rootProject.ext.buildToolVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
         versionCode 1
         versionName "1.0"
 
@@ -43,10 +43,6 @@ dependencies {
 
     /*RxPermission*/
     compile "com.tbruyelle.rxpermissions:rxpermissions:${rootProject.ext.rxPermissionVersion}"
-
-    /*Material Dialog*/
-    compile "com.afollestad.material-dialogs:core:${rootProject.ext.materialDialogVersion}"
-    compile "me.zhanghai.android.materialprogressbar:library:${rootProject.ext.materialProgressVersion}"
 
     /*GSON*/
     compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"

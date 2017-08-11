@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">Khalti</string>
 
+    <string name="empty">…</string>
+    <string name="blank"> </string>
+    <string name="action_search">Search</string>
+
     <!--Font Icons-->
     <string name="account_box"></string>
+    <string name="close"></string>
+    <string name="caret_down"></string>
+    <string name="building"></string>
 
     <!--Component Button-->
     <string name="pay">PAY</string>
@@ -12,6 +19,6 @@
     <string name="wallet">Wallet</string>
 
     <!--Form-->
-    <string name="mobile_hint"><font size="8">Mobile Number</font></string>
-    <string name="mobile_hint2"><small><small><small>Mobile Number</small></small></small></string>
+    <string name="mobile_hint">Mobile Number</string>
+    <string name="select_bank">Select Bank</string>
 </resources>

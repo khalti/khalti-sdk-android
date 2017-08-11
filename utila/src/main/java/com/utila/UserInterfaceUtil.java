@@ -1,23 +1,7 @@
 package com.utila;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.Build;
-import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.widget.Toast;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-
-
 public class UserInterfaceUtil {
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    /*@RequiresApi(api = Build.VERSION_CODES.M)
     static void showPermissionInfo(Context context, String title, String body, final Activity activity, final String permission) {
         new MaterialDialog.Builder(context)
                 .title(title)
@@ -112,7 +96,7 @@ public class UserInterfaceUtil {
         context.startActivity(intent);
     }
 
-    /*Interfaces*/
+    *//*Interfaces*//*
     public interface MyDialogAction {
         void onOk(MaterialDialog materialDialog);
 
@@ -121,5 +105,5 @@ public class UserInterfaceUtil {
 
     public interface SnackBarAction {
         void action();
-    }
+    }*/
 }

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.khalti.R;
 
-import butterknife.ButterKnife;
 
 public class Wallet extends Fragment implements WalletContract.View {
     private FragmentActivity fragmentActivity;
@@ -20,7 +19,6 @@ public class Wallet extends Fragment implements WalletContract.View {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.payment_form, container, false);
-        ButterKnife.bind(this, mainView);
         fragmentActivity = getActivity();
         listener = new WalletPresenter(this);
 

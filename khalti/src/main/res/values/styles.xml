@@ -11,6 +11,10 @@
         <item name="colorAccent">@color/khaltiAccent</item>
     </style>
 
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorAccent">@color/khaltiPrimary</item>
+    </style>
+
     <style name="EditTextTheme" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/secondaryText</item>

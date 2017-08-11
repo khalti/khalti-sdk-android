@@ -53,7 +53,7 @@ public class Pay extends FrameLayout {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mainView = inflater.inflate(R.layout.component_button, this, true);
 
-        btnPay = (Button) mainView.findViewById(R.id.btnPay);
+        btnPay = mainView.findViewById(R.id.btnPay);
         listener.setButtonText(buttonText);
 
         btnPay.setOnClickListener(v -> listener.openForm());

@@ -1,14 +1,7 @@
 package com.utila;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-
-import com.tbruyelle.rxpermissions.RxPermissions;
-
 public class AppPermissionUtil {
-    public static boolean checkAndroidPermission(Context context, String permission) {
+    /*public static boolean checkAndroidPermission(Context context, String permission) {
         int res = context.checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
     }
@@ -31,5 +24,5 @@ public class AppPermissionUtil {
 
     public interface MyPermission {
         void onPermission();
-    }
+    }*/
 }

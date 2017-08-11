@@ -19,13 +19,6 @@ public class StringUtil {
         return String.format("%.2f", number);
     }
 
-    public static String getFormattedHint(String hint) {
-        return "<small><small>" + hint + "</small></small>";
-    }
-
-    public static String replaceInUrl(String fullUrl, String text) {
-        return fullUrl.replaceAll(":.*?/", text + "/");
-    }
 
     public static String addCommas(String digits) {
 

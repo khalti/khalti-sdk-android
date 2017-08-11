@@ -1,11 +1,9 @@
 package com.utila;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.IntentCompat;
 
 import java.util.HashMap;
 
@@ -37,12 +35,5 @@ public class ActivityUtil {
         }
 
         activity.startActivityForResult(intent, requestId);
-    }
-
-    public static void clearOpenActivity(Activity activity, Class classname) {
-        intent = new Intent(activity, classname);
-        ComponentName cn = intent.getComponent();
-        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-        activity.startActivity(mainIntent);
     }
 }

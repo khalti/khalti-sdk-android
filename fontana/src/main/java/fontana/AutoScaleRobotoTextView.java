@@ -14,7 +14,7 @@ import android.util.SparseIntArray;
 import android.util.TypedValue;
 import android.widget.TextView;
 
-public class AutoScaleRobotoTextView extends TextView {
+public class AutoScaleRobotoTextView extends android.support.v7.widget.AppCompatTextView {
 
     private interface SizeTester {
         /**
