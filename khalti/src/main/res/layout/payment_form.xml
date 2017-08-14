@@ -16,10 +16,12 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/llMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/doubleBottomMargin"
+                android:layout_marginBottom="@dimen/singleBottomMargin"
                 android:layout_marginTop="@dimen/globalPadding"
+                android:animateLayoutChanges="true"
                 android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -40,6 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:animateLayoutChanges="true"
                     android:hint="@string/mobile_hint"
                     android:theme="@style/EditTextTheme"
                     app:mainHintTextSize="16sp">
@@ -48,6 +51,7 @@
                         android:id="@+id/etMobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
                         android:ems="10"
                         android:inputType="number"
                         android:maxLength="10"
@@ -135,6 +139,99 @@
                     </com.khalti.carbonX.widget.FrameLayout>
                 </LinearLayout>
             </LinearLayout>
+
+            <com.khalti.carbonX.widget.ExpandableLayout
+                android:id="@+id/elConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:canExpand="true">
+
+                    <LinearLayout
+                        android:id="@+id/llCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/singleBottomMargin"
+                        android:baselineAligned="false"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/globalPadding"
+                        android:paddingRight="@dimen/globalPadding">
+
+                        <fontana.MaterialIconTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:gravity="center"
+                            android:text="@string/lock"
+                            android:textColor="@color/primaryText"
+                            android:textSize="@dimen/title" />
+
+                        <com.khalti.carbonX.widget.TextInputLayout
+                            android:id="@+id/tilCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/code_hint"
+                            android:theme="@style/EditTextTheme"
+                            app:mainHintTextSize="16sp">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:maxLength="6"
+                                android:textColor="@color/black" />
+                        </com.khalti.carbonX.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llPIN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/doubleBottomMargin"
+                        android:baselineAligned="false"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/globalPadding"
+                        android:paddingRight="@dimen/globalPadding">
+
+                        <fontana.MaterialIconTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:gravity="center"
+                            android:text="@string/lock"
+                            android:textColor="@color/primaryText"
+                            android:textSize="@dimen/title" />
+
+                        <com.khalti.carbonX.widget.TextInputLayout
+                            android:id="@+id/tilPIN"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/pin_hint"
+                            android:theme="@style/EditTextTheme"
+                            app:mainHintTextSize="16sp">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etPIN"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="textPassword"
+                                android:maxLength="4"
+                                android:textColor="@color/black" />
+                        </com.khalti.carbonX.widget.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.khalti.carbonX.widget.ExpandableLayout>
 
             <com.khalti.carbonX.widget.FrameLayout
                 android:layout_width="wrap_content"

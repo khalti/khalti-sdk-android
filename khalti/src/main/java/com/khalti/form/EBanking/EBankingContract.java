@@ -12,6 +12,10 @@ interface EBankingContract {
 
         void setUpBankItem(String bankName, String bankId);
 
+        void toggleEditTextListener(boolean set);
+
+        void setErrorAnimation();
+
         void setMobileError(String error);
 
         void openBankList(HashMap<String, Object> dataMap);
@@ -21,6 +25,10 @@ interface EBankingContract {
 
     interface Listener {
         void setUpLayout(boolean hasNetwork);
+
+        void toggleEditTextListener(boolean set);
+
+        void setErrorAnimation();
 
         void openBankList();
 

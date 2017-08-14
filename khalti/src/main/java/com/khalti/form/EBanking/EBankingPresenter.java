@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.khalti.form.EBanking.chooseBank.BankPojo;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
+import com.utila.LogUtil;
 import com.utila.RegexUtil;
 
 import java.util.HashMap;
@@ -50,6 +51,16 @@ class EBankingPresenter implements EBankingContract.Listener {
     }
 
     @Override
+    public void toggleEditTextListener(boolean set) {
+        mEBankingView.toggleEditTextListener(set);
+    }
+
+    @Override
+    public void setErrorAnimation() {
+        mEBankingView.setErrorAnimation();
+    }
+
+    @Override
     public void openBankList() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("banks", bankLists);
@@ -66,6 +77,7 @@ class EBankingPresenter implements EBankingContract.Listener {
         if (EmptyUtil.isNotEmpty(mobile) && RegexUtil.isMobileNumberValid(mobile)) {
 
         } else {
+            LogUtil.log("mobile", mobile);
             if (EmptyUtil.isEmpty(mobile)) {
                 mEBankingView.setMobileError("This field is required");
             } else {

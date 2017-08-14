@@ -4,11 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.transition.ChangeBounds;
+import android.support.transition.Transition;
+import android.support.transition.TransitionManager;
+import android.support.transition.TransitionSet;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -34,7 +41,7 @@ import static android.app.Activity.RESULT_OK;
 public class EBanking extends Fragment implements EBankingContract.View {
 
     private ProgressBar pdLoad;
-    private LinearLayout llBank;
+    private LinearLayout llBank, llMobile;
     private Spinner spBank;
     private FrameLayout flBank;
     private RobotoTextView tvBank, tvBankId;
@@ -57,6 +64,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
         pdLoad = mainView.findViewById(R.id.pdLoad);
         llBank = mainView.findViewById(R.id.llBank);
+        llMobile = mainView.findViewById(R.id.llMobile);
         spBank = mainView.findViewById(R.id.spBank);
         flBank = mainView.findViewById(R.id.flBank);
         tvBank = mainView.findViewById(R.id.tvBank);
@@ -74,11 +82,13 @@ public class EBanking extends Fragment implements EBankingContract.View {
     @Override
     public void onPause() {
         super.onPause();
+        listener.toggleEditTextListener(false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        listener.toggleEditTextListener(true);
     }
 
     @Override
@@ -132,7 +142,47 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
+    public void toggleEditTextListener(boolean set) {
+        if (set) {
+            etMobile.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    tilMobile.setErrorEnabled(false);
+                    listener.setErrorAnimation();
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+        } else {
+            etMobile.addTextChangedListener(null);
+        }
+    }
+
+    @Override
+    public void setErrorAnimation() {
+        TransitionSet transitionSet = new TransitionSet();
+
+        Transition errorTransition = new ChangeBounds();
+        errorTransition.setInterpolator(new AccelerateDecelerateInterpolator());
+        errorTransition.setDuration(400);
+        errorTransition.addTarget(tilMobile);
+
+        transitionSet.addTransition(errorTransition);
+
+        TransitionManager.beginDelayedTransition(llMobile, transitionSet);
+    }
+
+    @Override
     public void setMobileError(String error) {
+        listener.setErrorAnimation();
         tilMobile.setError(error);
     }
 

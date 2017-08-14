@@ -7,6 +7,7 @@
 
     <!--Font Icons-->
     <string name="account_box"></string>
+    <string name="lock"></string>
     <string name="close"></string>
     <string name="caret_down"></string>
     <string name="building"></string>
@@ -20,5 +21,8 @@
 
     <!--Form-->
     <string name="mobile_hint">Mobile Number</string>
+    <string name="code_hint">Confirmation Code</string>
+    <string name="pin_hint">PIN</string>
     <string name="select_bank">Select Bank</string>
+    <string name="confirm_payment">Confirm Payment</string>
 </resources>
