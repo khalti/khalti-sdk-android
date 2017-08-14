@@ -9,6 +9,7 @@ import com.utila.GuavaUtil;
 import com.utila.LogUtil;
 import com.utila.NumberUtil;
 import com.utila.RegexUtil;
+import com.utila.StringUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +29,7 @@ class EBankingPresenter implements EBankingContract.Listener {
     @Override
     public void setUpLayout(boolean hasNetwork) {
         mEBankingView.showBankField();
-        mEBankingView.setButtonText("Pay Rs " + NumberUtil.convertToRupees(DataHolder.getConfig().getAmount()));
+        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(DataHolder.getConfig().getAmount())));
         if (hasNetwork) {
             mEBankingView.toggleProgressBar(true);
             eBankingModel.fetchBankList(new EBankingModel.BankAction() {

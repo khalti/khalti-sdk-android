@@ -13,7 +13,8 @@ public class NumberUtil {
 
     public static Double convertToRupees(Long amount) {
         Double paisa = Double.parseDouble(amount.toString());
-        return (paisa / 100);
+        LogUtil.log("paisa", paisa / 100);
+        return round((paisa / 100), 3);
     }
 
     public static Integer addNumber(Object number1, Object number2) {

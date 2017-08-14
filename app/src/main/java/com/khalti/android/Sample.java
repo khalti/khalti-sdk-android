@@ -20,7 +20,7 @@ public class Sample extends AppCompatActivity {
         setContentView(R.layout.sample);
         ButterKnife.bind(this);
 
-        kpPay.setConfig(new Config("", "", "", "", "", 20000L, ""));
+        kpPay.setConfig(new Config("", "", "", "", "", 20033L, ""));
     }
 
     @Override

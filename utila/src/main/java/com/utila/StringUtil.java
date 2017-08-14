@@ -16,7 +16,13 @@ public class StringUtil {
     }
 
     public static String formatNumber(Double number) {
-        return String.format("%.2f", number);
+        LogUtil.log("number", number);
+        String[] s = number.toString().split("\\.");
+        if (Integer.parseInt(s[1]) > 0) {
+            return number.toString();
+        } else {
+            return s[0];
+        }
     }
 
 

@@ -7,6 +7,7 @@ import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
 import com.utila.NumberUtil;
 import com.utila.RegexUtil;
+import com.utila.StringUtil;
 
 class WalletPresenter implements WalletContract.Listener {
     @NonNull
@@ -19,7 +20,7 @@ class WalletPresenter implements WalletContract.Listener {
 
     @Override
     public void setUpLayout() {
-        mWalletView.setButtonText("Pay Rs " + NumberUtil.convertToRupees(DataHolder.getConfig().getAmount()));
+        mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(DataHolder.getConfig().getAmount())));
         mWalletView.setButtonClickListener();
     }
 
