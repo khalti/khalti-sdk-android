@@ -1,6 +1,7 @@
 package com.khalti.form;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     private TabLayout tlTitle;
     private ViewPager vpContent;
 
+    public CoordinatorLayout cdlMain;
+
     private CheckOutContract.Listener listener;
     private List<TabLayout.Tab> tabs = new ArrayList<>();
 
@@ -37,6 +40,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         tlTitle = (TabLayout) findViewById(R.id.tlTitle);
         vpContent = (ViewPager) findViewById(R.id.vpContent);
         FrameLayout flClose = (FrameLayout) findViewById(R.id.flClose);
+        cdlMain = (CoordinatorLayout) findViewById(R.id.cdlMain);
 
         listener = new CheckOutPresenter(this);
         listener.setUpLayout();

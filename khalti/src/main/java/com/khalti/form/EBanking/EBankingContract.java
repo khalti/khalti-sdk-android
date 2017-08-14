@@ -6,19 +6,25 @@ interface EBankingContract {
     interface View {
         void toggleProgressBar(boolean show);
 
+        void toggleEditTextListener(boolean set);
+
         void showBankField();
 
         void setUpSpinner(Object banks, Object bankIds);
 
         void setUpBankItem(String bankName, String bankId);
 
-        void toggleEditTextListener(boolean set);
-
         void setButtonText(String text);
 
         void setErrorAnimation();
 
         void setMobileError(String error);
+
+        void showNetworkError();
+
+        void showDataFetchError();
+
+        void showMessageDialog(String title, String message);
 
         void openBankList(HashMap<String, Object> dataMap);
 

@@ -15,6 +15,16 @@
     <!--Component Button-->
     <string name="pay">PAY</string>
 
+    <!--Network Error-->
+    <string name="network_error_body">No Internet detected. Please check your internet connection</string>
+
+    <!--Data fetch error-->
+    <string name="fetch_error">Some information could not be fetched. Please try again.</string>
+    <string name="try_again">Try Again</string>
+
+    <!--Info Dialog-->
+    <string name="got_it">Got It</string>
+
     <!--CheckOut Activity-->
     <string name="eBanking">E-Banking</string>
     <string name="wallet">Wallet</string>

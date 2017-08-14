@@ -8,8 +8,8 @@ import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
 import com.utila.LogUtil;
 import com.utila.NumberUtil;
-import com.utila.RegexUtil;
 import com.utila.StringUtil;
+import com.utila.ValidationUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,8 +49,11 @@ class EBankingPresenter implements EBankingContract.Listener {
                 @Override
                 public void onError(String message) {
                     mEBankingView.toggleProgressBar(false);
+                    mEBankingView.showDataFetchError();
                 }
             });
+        } else {
+            mEBankingView.showNetworkError();
         }
     }
 
@@ -78,8 +81,12 @@ class EBankingPresenter implements EBankingContract.Listener {
 
     @Override
     public void continuePayment(boolean isNetwork, String mobile, String bankId) {
-        if (EmptyUtil.isNotEmpty(mobile) && RegexUtil.isMobileNumberValid(mobile)) {
-
+        if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
+            if (isNetwork) {
+                mEBankingView.showMessageDialog("Success", "Something");
+            } else {
+                mEBankingView.showNetworkError();
+            }
         } else {
             LogUtil.log("mobile", mobile);
             if (EmptyUtil.isEmpty(mobile)) {

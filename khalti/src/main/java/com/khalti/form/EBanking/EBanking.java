@@ -1,8 +1,10 @@
 package com.khalti.form.EBanking;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.transition.ChangeBounds;
 import android.support.transition.Transition;
@@ -26,14 +28,18 @@ import com.khalti.carbonX.widget.Button;
 import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.carbonX.widget.ProgressBar;
 import com.khalti.carbonX.widget.TextInputLayout;
+import com.khalti.form.CheckOutActivity;
 import com.khalti.form.EBanking.chooseBank.BankChooserActivity;
 import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
+import com.utila.ResourceUtil;
+import com.utila.UserInterfaceUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import fontana.RobotoMediumTextView;
 import fontana.RobotoTextView;
 
 import static android.app.Activity.RESULT_OK;
@@ -189,6 +195,38 @@ public class EBanking extends Fragment implements EBankingContract.View {
     public void setMobileError(String error) {
         listener.setErrorAnimation();
         tilMobile.setError(error);
+    }
+
+    @Override
+    public void showNetworkError() {
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.network_error_body),
+                false, "", 0, 0, null);
+    }
+
+    @Override
+    public void showDataFetchError() {
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.fetch_error),
+                true, ResourceUtil.getString(fragmentActivity, R.string.try_again), Snackbar.LENGTH_INDEFINITE, ResourceUtil.getColor(fragmentActivity, R.color.khaltiAccent), () ->
+                        listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity)));
+    }
+
+    @Override
+    public void showMessageDialog(String title, String message) {
+        FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+        RobotoMediumTextView tvButton = flButton.findViewById(R.id.tvButton);
+        tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
+
+        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {
+            @Override
+            public void onPositiveAction(Dialog dialog) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onNegativeAction(Dialog dialog) {
+
+            }
+        });
     }
 
     @Override

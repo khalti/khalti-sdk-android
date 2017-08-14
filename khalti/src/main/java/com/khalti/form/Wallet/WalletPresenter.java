@@ -6,7 +6,7 @@ import com.khalti.utils.DataHolder;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
 import com.utila.NumberUtil;
-import com.utila.RegexUtil;
+import com.utila.ValidationUtil;
 import com.utila.StringUtil;
 
 class WalletPresenter implements WalletContract.Listener {
@@ -36,7 +36,7 @@ class WalletPresenter implements WalletContract.Listener {
 
     @Override
     public void continuePayment(boolean isNetwork, String mobile) {
-        if (EmptyUtil.isNotEmpty(mobile) && RegexUtil.isMobileNumberValid(mobile)) {
+        if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
             mWalletView.toggleConfirmationLayout(true);
         } else {
             if (EmptyUtil.isEmpty(mobile)) {

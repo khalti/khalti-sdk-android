@@ -20,7 +20,7 @@ public class Sample extends AppCompatActivity {
         setContentView(R.layout.sample);
         ButterKnife.bind(this);
 
-        kpPay.setConfig(new Config("", "", "", "", "", 20033L, ""));
+        kpPay.setConfig(new Config("test_public_key_036dc7d983bf4865b388ee5f131962d2", "123", "Gaida Churot", "", 2000L));
     }
 
     @Override

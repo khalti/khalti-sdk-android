@@ -41,9 +41,5 @@ dependencies {
     compile "io.reactivex:rxjava:${rootProject.ext.rxVersion}"
     compile "io.reactivex:rxandroid:${rootProject.ext.rxVersion}"
 
-    /*RxPermission*/
-    compile "com.tbruyelle.rxpermissions:rxpermissions:${rootProject.ext.rxPermissionVersion}"
-
-    /*GSON*/
-    compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+    compile project(':fontana')
 }
