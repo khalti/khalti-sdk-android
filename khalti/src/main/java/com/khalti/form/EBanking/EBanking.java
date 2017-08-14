@@ -167,6 +167,11 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
+    public void setButtonText(String text) {
+        btnPay.setText(text);
+    }
+
+    @Override
     public void setErrorAnimation() {
         TransitionSet transitionSet = new TransitionSet();
 

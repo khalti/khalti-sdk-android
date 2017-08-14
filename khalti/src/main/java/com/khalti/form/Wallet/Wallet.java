@@ -15,7 +15,9 @@ import com.khalti.R;
 import com.khalti.carbonX.widget.Button;
 import com.khalti.carbonX.widget.ExpandableLayout;
 import com.khalti.carbonX.widget.TextInputLayout;
+import com.khalti.utils.DataHolder;
 import com.utila.NetworkUtil;
+import com.utila.NumberUtil;
 import com.utila.ResourceUtil;
 
 
@@ -45,7 +47,7 @@ public class Wallet extends Fragment implements WalletContract.View {
         btnPay = mainView.findViewById(R.id.btnPay);
         elConfirmation = mainView.findViewById(R.id.elConfirmation);
 
-        listener.setButtonClickListener();
+        listener.setUpLayout();
 
         return mainView;
     }
@@ -141,6 +143,11 @@ public class Wallet extends Fragment implements WalletContract.View {
     }
 
     @Override
+    public void setButtonText(String text) {
+        btnPay.setText(text);
+    }
+
+    @Override
     public void setButtonClickListener() {
         btnPay.setOnClickListener(view -> {
             if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
@@ -153,7 +160,7 @@ public class Wallet extends Fragment implements WalletContract.View {
 
     @Override
     public void toggleConfirmationLayout(boolean show) {
-        String buttonText = show ? ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) : ResourceUtil.getString(fragmentActivity, R.string.pay);
+        String buttonText = show ? ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) : "Pay Rs " + NumberUtil.convertToRupees(DataHolder.getConfig().getAmount());
         btnPay.setText(buttonText);
         etCode.setText("");
         etPIN.setText("");

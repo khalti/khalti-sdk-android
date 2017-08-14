@@ -2,14 +2,13 @@ package com.khalti.widget.basic;
 
 import android.support.annotation.NonNull;
 
+import com.khalti.form.api.Config;
+import com.khalti.utils.DataHolder;
 import com.utila.GuavaUtil;
-import com.utila.NumberUtil;
 
 class PayPresenter implements PayContract.Listener {
     @NonNull
     private final PayContract.View mPayView;
-
-    private Long amount = 0L;
 
     PayPresenter(@NonNull PayContract.View mPayView) {
         this.mPayView = GuavaUtil.checkNotNull(mPayView);
@@ -22,8 +21,8 @@ class PayPresenter implements PayContract.Listener {
     }
 
     @Override
-    public void setAmount(Double value) {
-        amount = NumberUtil.convertToPaisa(value);
+    public void setConfig(Config config) {
+        DataHolder.setConfig(config);
     }
 
     @Override

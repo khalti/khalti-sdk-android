@@ -2,8 +2,10 @@ package com.khalti.form.Wallet;
 
 import android.support.annotation.NonNull;
 
+import com.khalti.utils.DataHolder;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
+import com.utila.NumberUtil;
 import com.utila.RegexUtil;
 
 class WalletPresenter implements WalletContract.Listener {
@@ -16,7 +18,8 @@ class WalletPresenter implements WalletContract.Listener {
     }
 
     @Override
-    public void setButtonClickListener() {
+    public void setUpLayout() {
+        mWalletView.setButtonText("Pay Rs " + NumberUtil.convertToRupees(DataHolder.getConfig().getAmount()));
         mWalletView.setButtonClickListener();
     }
 

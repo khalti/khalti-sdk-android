@@ -9,6 +9,8 @@ interface WalletContract {
 
         void setEditTextError(String view, String error);
 
+        void setButtonText(String text);
+
         void setButtonClickListener();
 
         void setListener(Listener listener);
@@ -16,7 +18,7 @@ interface WalletContract {
 
     interface Listener {
 
-        void setButtonClickListener();
+        void setUpLayout();
 
         void toggleEditTextListener(boolean set);
 

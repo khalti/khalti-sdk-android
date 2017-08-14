@@ -14,6 +14,8 @@ interface EBankingContract {
 
         void toggleEditTextListener(boolean set);
 
+        void setButtonText(String text);
+
         void setErrorAnimation();
 
         void setMobileError(String error);

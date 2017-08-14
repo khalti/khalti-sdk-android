@@ -12,7 +12,10 @@ import com.khalti.R;
 import com.khalti.carbonX.widget.Button;
 import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.form.CheckOutActivity;
+import com.khalti.form.api.Config;
+import com.khalti.utils.DataHolder;
 import com.utila.ActivityUtil;
+import com.utila.EmptyUtil;
 
 public class Pay extends FrameLayout {
     private Context context;
@@ -41,8 +44,8 @@ public class Pay extends FrameLayout {
         listener.setButtonText(text);
     }
 
-    public void setAmount(Double amount) {
-        listener.setAmount(amount);
+    public void setConfig(Config config) {
+        listener.setConfig(config);
     }
 
     private void init() {
@@ -73,6 +76,9 @@ public class Pay extends FrameLayout {
 
         @Override
         public void openForm() {
+            if (EmptyUtil.isNull(DataHolder.getConfig())) {
+                throw new IllegalArgumentException("Config not set");
+            }
             ActivityUtil.openActivity(CheckOutActivity.class, context, false, null, true);
         }
 

@@ -11,6 +11,11 @@ public class NumberUtil {
         return (double) tmp / factor;
     }
 
+    public static Double convertToRupees(Long amount) {
+        Double paisa = Double.parseDouble(amount.toString());
+        return (paisa / 100);
+    }
+
     public static Integer addNumber(Object number1, Object number2) {
         Integer num = 0;
         if (number1.toString().length() > 0) {

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion rootProject.ext.targetSdk
@@ -24,6 +25,10 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+
+    /*ButterKnife*/
+    compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
+    apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
 
     compile project(':fontana')
     compile project(':khalti')

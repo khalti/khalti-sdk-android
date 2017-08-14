@@ -3,9 +3,11 @@ package com.khalti.form.EBanking;
 import android.support.annotation.NonNull;
 
 import com.khalti.form.EBanking.chooseBank.BankPojo;
+import com.khalti.utils.DataHolder;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
 import com.utila.LogUtil;
+import com.utila.NumberUtil;
 import com.utila.RegexUtil;
 
 import java.util.HashMap;
@@ -26,6 +28,7 @@ class EBankingPresenter implements EBankingContract.Listener {
     @Override
     public void setUpLayout(boolean hasNetwork) {
         mEBankingView.showBankField();
+        mEBankingView.setButtonText("Pay Rs " + NumberUtil.convertToRupees(DataHolder.getConfig().getAmount()));
         if (hasNetwork) {
             mEBankingView.toggleProgressBar(true);
             eBankingModel.fetchBankList(new EBankingModel.BankAction() {
