@@ -4,32 +4,32 @@ package com.khalti.form.Wallet;
 import com.khalti.form.ApiHelper;
 import com.khalti.form.api.Config;
 import com.khalti.form.api.KhaltiApi;
+import com.utila.ApiUtil;
 import com.utila.EmptyUtil;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import retrofit2.Response;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 class WalletModel {
     private KhaltiApi khaltiService;
-    private CompositeSubscription compositeSubscription;
     private int HTTP_STATUS_CODE;
     private String HTTP_ERROR;
 
     WalletModel() {
-        compositeSubscription = new CompositeSubscription();
         khaltiService = ApiHelper.apiBuilder();
     }
 
     WalletModel(KhaltiApi mockedKhaltiService) {
-        compositeSubscription = new CompositeSubscription();
         khaltiService = mockedKhaltiService;
     }
 
-    void initiatePayment(String mobile, Config config) {
+    Subscription initiatePayment(String mobile, Config config, WalletAction walletAction) {
         HashMap<String, Object> dataMap = new HashMap<>();
         dataMap.put("public_key", config.getPublicKey());
         dataMap.put("return_url", "http://a.khalti.com/client/spec/widget/verify.html");
@@ -40,27 +40,43 @@ class WalletModel {
         dataMap.put("mobile", mobile);
         dataMap.putAll(EmptyUtil.isNotNull(config.getAdditionalData()) ? config.getAdditionalData() : new HashMap<>());
 
-        String url = "/api/payment/initiate";
+        String url = "/api/payment/initiate/";
 
-        compositeSubscription.add(khaltiService.initiatePayment(url, dataMap)
+        return khaltiService.initiatePayment(url, dataMap)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new Subscriber<Response<Object>>() {
                     @Override
                     public void onCompleted() {
-
+                        if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
+                            walletAction.onCompleted();
+                        } else {
+                            walletAction.onError(HTTP_ERROR);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
+                        if (EmptyUtil.isNotNull(e)) {
+                            e.printStackTrace();
+                        }
+                        walletAction.onError(EmptyUtil.isNotNull(e) ? e.getMessage() : "");
                     }
 
                     @Override
-                    public void onNext(Object o) {
+                    public void onNext(Response<Object> response) {
+                        HTTP_STATUS_CODE = response.code();
+                        if (response.isSuccessful()) {
 
+                        } else {
+                            try {
+                                HTTP_ERROR = new String(response.errorBody().bytes());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
-                }));
+                });
     }
 
 

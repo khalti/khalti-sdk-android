@@ -4,6 +4,7 @@
     <string name="empty">…</string>
     <string name="blank"> </string>
     <string name="action_search">Search</string>
+    <string name="please_wait">Please wait</string>
 
     <!--Font Icons-->
     <string name="account_box"></string>
@@ -25,6 +26,10 @@
     <!--Info Dialog-->
     <string name="got_it">Got It</string>
 
+    <!--Interactive Dialog-->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
     <!--CheckOut Activity-->
     <string name="eBanking">E-Banking</string>
     <string name="wallet">Wallet</string>
@@ -35,4 +40,10 @@
     <string name="pin_hint">PIN</string>
     <string name="select_bank">Select Bank</string>
     <string name="confirm_payment">Confirm Payment</string>
+
+    <!--Wallet-->
+    <string name="init_payment">Initiating payment</string>
+    <string name="confirming_payment">Confirming payment</string>
+    <string name="pin_not_set">You have not enabled your transaction PIN.\n\nWould you like to enable it?</string>
+    <string name="khalti_not_found">Khalti is not installed in your device</string>
 </resources>

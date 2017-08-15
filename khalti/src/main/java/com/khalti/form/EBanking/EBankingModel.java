@@ -5,6 +5,7 @@ import com.khalti.form.ApiHelper;
 import com.khalti.form.EBanking.chooseBank.BankPojo;
 import com.khalti.form.api.KhaltiApi;
 import com.utila.ApiUtil;
+import com.utila.EmptyUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,8 +57,10 @@ public class EBankingModel {
 
                                @Override
                                public void onError(Throwable e) {
-                                   e.printStackTrace();
-                                   bankAction.onError(e.getMessage());
+                                   if (EmptyUtil.isNotNull(e)) {
+                                       e.printStackTrace();
+                                   }
+                                   bankAction.onError(EmptyUtil.isNotNull(e) ? e.getMessage() : "");
                                }
 
                                @Override

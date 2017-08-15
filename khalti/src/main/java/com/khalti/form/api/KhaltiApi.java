@@ -20,5 +20,5 @@ public interface KhaltiApi {
 
     @POST
     @FormUrlEncoded
-    Observable<Object> initiatePayment(@Url String url, @FieldMap HashMap<String, Object> dataMap);
+    Observable<Response<Object>> initiatePayment(@Url String url, @FieldMap HashMap<String, Object> dataMap);
 }

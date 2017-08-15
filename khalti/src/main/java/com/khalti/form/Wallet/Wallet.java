@@ -1,5 +1,8 @@
 package com.khalti.form.Wallet;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -14,11 +17,17 @@ import android.view.ViewGroup;
 import com.khalti.R;
 import com.khalti.carbonX.widget.Button;
 import com.khalti.carbonX.widget.ExpandableLayout;
+import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.carbonX.widget.TextInputLayout;
+import com.khalti.form.CheckOutActivity;
 import com.khalti.utils.DataHolder;
+import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
 import com.utila.NumberUtil;
 import com.utila.ResourceUtil;
+import com.utila.UserInterfaceUtil;
+
+import fontana.RobotoMediumTextView;
 
 
 public class Wallet extends Fragment implements WalletContract.View {
@@ -27,6 +36,7 @@ public class Wallet extends Fragment implements WalletContract.View {
     private TextInputLayout tilMobile, tilCode, tilPIN;
     private ExpandableLayout elConfirmation;
     private Button btnPay;
+    private Dialog progressDialog;
 
     private FragmentActivity fragmentActivity;
     private WalletContract.Listener listener;
@@ -128,6 +138,30 @@ public class Wallet extends Fragment implements WalletContract.View {
     }
 
     @Override
+    public void toggleProgressDialog(String action, boolean show) {
+        FrameLayout flCircularProgress = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_circular_progress, null);
+        String message = "";
+        switch (action) {
+            case "init":
+                message = ResourceUtil.getString(fragmentActivity, R.string.init_payment);
+                break;
+            case "confirm":
+                message = ResourceUtil.getString(fragmentActivity, R.string.confirming_payment);
+                break;
+        }
+
+        if (show) {
+            progressDialog = UserInterfaceUtil.runProgressDialog(fragmentActivity, message, ResourceUtil.getString(fragmentActivity, R.string.please_wait), flCircularProgress, () -> {
+                listener.unSubscribe();
+            });
+        } else {
+            if (EmptyUtil.isNotNull(progressDialog)) {
+                progressDialog.dismiss();
+            }
+        }
+    }
+
+    @Override
     public void setEditTextError(String view, String error) {
         switch (view) {
             case "mobile":
@@ -153,9 +187,78 @@ public class Wallet extends Fragment implements WalletContract.View {
             if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
 
             } else {
-                listener.continuePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
+                listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
             }
         });
+    }
+
+    @Override
+    public void showNetworkError() {
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.network_error_body),
+                false, "", 0, 0, null);
+    }
+
+    @Override
+    public void showMessageDialog(String title, String message) {
+        FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+        RobotoMediumTextView tvButton = flButton.findViewById(R.id.tvButton);
+        tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
+
+        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {
+            @Override
+            public void onPositiveAction(Dialog dialog) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onNegativeAction(Dialog dialog) {
+
+            }
+        });
+    }
+
+    @Override
+    public void showInteractiveMessageDialog(String title, String message) {
+        FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+        RobotoMediumTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+        tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.ok));
+
+        FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+        RobotoMediumTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+        tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.cancel));
+
+        UserInterfaceUtil.showInteractiveInfoDialog(fragmentActivity, title, message, true, true, flPositive, flNegative, new UserInterfaceUtil.DialogAction() {
+            @Override
+            public void onPositiveAction(Dialog dialog) {
+                dialog.dismiss();
+                listener.openKhaltiSettings();
+            }
+
+            @Override
+            public void onNegativeAction(Dialog dialog) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public String getStringFromResource(int id) {
+        return ResourceUtil.getString(fragmentActivity, id);
+    }
+
+    @Override
+    public void openKhaltiSettings() {
+        Intent i;
+        PackageManager manager = fragmentActivity.getPackageManager();
+        try {
+            i = manager.getLaunchIntentForPackage("com.khalti.red");
+            if (i == null)
+                throw new PackageManager.NameNotFoundException();
+            i.addCategory(Intent.CATEGORY_LAUNCHER);
+            startActivity(i);
+        } catch (PackageManager.NameNotFoundException e) {
+            listener.showMessageDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found));
+        }
     }
 
     @Override

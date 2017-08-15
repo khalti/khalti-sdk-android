@@ -6,7 +6,6 @@ import com.khalti.form.EBanking.chooseBank.BankPojo;
 import com.khalti.utils.DataHolder;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
-import com.utila.LogUtil;
 import com.utila.NumberUtil;
 import com.utila.StringUtil;
 import com.utila.ValidationUtil;
@@ -88,7 +87,6 @@ class EBankingPresenter implements EBankingContract.Listener {
                 mEBankingView.showNetworkError();
             }
         } else {
-            LogUtil.log("mobile", mobile);
             if (EmptyUtil.isEmpty(mobile)) {
                 mEBankingView.setMobileError("This field is required");
             } else {

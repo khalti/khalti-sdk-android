@@ -5,6 +5,8 @@ interface WalletContract {
 
         void toggleEditTextListener(boolean set);
 
+        void toggleProgressDialog(String action, boolean show);
+
         void toggleConfirmationLayout(boolean show);
 
         void setEditTextError(String view, String error);
@@ -12,6 +14,16 @@ interface WalletContract {
         void setButtonText(String text);
 
         void setButtonClickListener();
+
+        void showNetworkError();
+
+        void showMessageDialog(String title, String message);
+
+        void showInteractiveMessageDialog(String title, String message);
+
+        String getStringFromResource(int id);
+
+        void openKhaltiSettings();
 
         void setListener(Listener listener);
     }
@@ -24,6 +36,12 @@ interface WalletContract {
 
         void toggleConfirmationLayout(boolean show);
 
-        void continuePayment(boolean isNetwork, String mobile);
+        void openKhaltiSettings();
+
+        void showMessageDialog(String title, String message);
+
+        void initiatePayment(boolean isNetwork, String mobile);
+
+        void unSubscribe();
     }
 }
