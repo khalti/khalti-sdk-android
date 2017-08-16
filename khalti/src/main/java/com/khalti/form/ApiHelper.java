@@ -15,7 +15,8 @@ public class ApiHelper {
     private static final int TIME_OUT = 30;
 
     public static KhaltiApi apiBuilder() {
-        String url = "http://a.khalti.com/";
+//        String url = "http://a.khalti.com/";
+        String url = "http://192.168.1.103:8000/";
         /*Logging*/
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

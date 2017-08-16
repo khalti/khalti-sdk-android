@@ -20,6 +20,7 @@ class WalletModel {
     private KhaltiApi khaltiService;
     private int HTTP_STATUS_CODE;
     private String HTTP_ERROR;
+    private WalletInitPojo walletInitPojo;
 
     WalletModel() {
         khaltiService = ApiHelper.apiBuilder();
@@ -45,11 +46,11 @@ class WalletModel {
         return khaltiService.initiatePayment(url, dataMap)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Response<Object>>() {
+                .subscribe(new Subscriber<Response<WalletInitPojo>>() {
                     @Override
                     public void onCompleted() {
                         if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
-                            walletAction.onCompleted();
+                            walletAction.onCompleted(walletInitPojo);
                         } else {
                             walletAction.onError(HTTP_ERROR);
                         }
@@ -64,10 +65,10 @@ class WalletModel {
                     }
 
                     @Override
-                    public void onNext(Response<Object> response) {
+                    public void onNext(Response<WalletInitPojo> response) {
                         HTTP_STATUS_CODE = response.code();
                         if (response.isSuccessful()) {
-
+                            walletInitPojo = response.body();
                         } else {
                             try {
                                 HTTP_ERROR = new String(response.errorBody().bytes());
@@ -79,9 +80,12 @@ class WalletModel {
                 });
     }
 
+    Subscription confirmPayment(String token, String confirmationCode, String transactionPIN, String pubKey, WalletAction walletAction) {
+        return null;
+    }
 
     interface WalletAction {
-        void onCompleted();
+        void onCompleted(WalletInitPojo walletInitPojo);
 
         void onError(String message);
     }

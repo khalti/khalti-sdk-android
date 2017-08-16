@@ -18,6 +18,7 @@ class WalletPresenter implements WalletContract.Listener {
     private final WalletContract.View mWalletView;
     private WalletModel walletModel;
     private CompositeSubscription compositeSubscription;
+    private WalletInitPojo initPojo;
 
     WalletPresenter(@NonNull WalletContract.View mWalletView) {
         this.mWalletView = GuavaUtil.checkNotNull(mWalletView);
@@ -59,7 +60,8 @@ class WalletPresenter implements WalletContract.Listener {
                 compositeSubscription = new CompositeSubscription();
                 compositeSubscription.add(walletModel.initiatePayment(mobile, DataHolder.getConfig(), new WalletModel.WalletAction() {
                     @Override
-                    public void onCompleted() {
+                    public void onCompleted(WalletInitPojo walletInitPojo) {
+                        initPojo = walletInitPojo;
                         mWalletView.toggleProgressDialog("init", false);
                         mWalletView.toggleConfirmationLayout(true);
                     }
