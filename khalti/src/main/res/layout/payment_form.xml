@@ -21,7 +21,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/singleBottomMargin"
                 android:layout_marginTop="@dimen/globalPadding"
-                android:animateLayoutChanges="true"
                 android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -42,7 +41,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:animateLayoutChanges="true"
                     android:hint="@string/mobile_hint"
                     android:theme="@style/EditTextTheme"
                     app:mainHintTextSize="16sp">
@@ -51,7 +49,6 @@
                         android:id="@+id/etMobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:animateLayoutChanges="true"
                         android:ems="10"
                         android:inputType="number"
                         android:maxLength="10"
@@ -143,11 +140,12 @@
             <com.khalti.carbonX.widget.ExpandableLayout
                 android:id="@+id/elConfirmation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/doubleBottomMargin">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="190dp"
                     android:orientation="vertical"
                     app:canExpand="true">
 
@@ -160,7 +158,8 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingLeft="@dimen/globalPadding"
-                        android:paddingRight="@dimen/globalPadding">
+                        android:paddingRight="@dimen/globalPadding"
+                        android:visibility="visible">
 
                         <fontana.MaterialIconTextView
                             android:layout_width="match_parent"
@@ -195,7 +194,7 @@
                         android:id="@+id/llPIN"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/doubleBottomMargin"
+                        android:layout_marginBottom="@dimen/singleBottomMargin"
                         android:baselineAligned="false"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"

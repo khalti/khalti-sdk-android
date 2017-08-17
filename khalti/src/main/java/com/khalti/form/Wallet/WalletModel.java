@@ -4,6 +4,7 @@ package com.khalti.form.Wallet;
 import com.khalti.form.ApiHelper;
 import com.khalti.form.api.Config;
 import com.khalti.form.api.KhaltiApi;
+import com.khalti.utils.DataHolder;
 import com.utila.ApiUtil;
 import com.utila.EmptyUtil;
 
@@ -50,7 +51,7 @@ class WalletModel {
                     @Override
                     public void onCompleted() {
                         if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
-                            walletAction.onCompleted(walletInitPojo);
+                            walletAction.onCompleted();
                         } else {
                             walletAction.onError(HTTP_ERROR);
                         }
@@ -80,12 +81,52 @@ class WalletModel {
                 });
     }
 
-    Subscription confirmPayment(String token, String confirmationCode, String transactionPIN, String pubKey, WalletAction walletAction) {
-        return null;
+    Subscription confirmPayment(String confirmationCode, String transactionPIN, WalletAction walletAction) {
+        HashMap<String, Object> dataMap = new HashMap<>();
+        dataMap.put("token", walletInitPojo.getToken());
+        dataMap.put("confirmation_code", confirmationCode);
+        dataMap.put("transaction_pin", transactionPIN);
+        dataMap.put("public_key", DataHolder.getConfig().getPublicKey());
+
+        String url = "api/payment/confirm/";
+
+        return khaltiService.confirmPayment(url, dataMap)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<WalletConfirmPojo>>() {
+                    @Override
+                    public void onCompleted() {
+                        if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
+                            walletAction.onCompleted();
+                        } else {
+                            walletAction.onError(HTTP_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (EmptyUtil.isNotNull(e)) {
+                            e.printStackTrace();
+                        }
+                        walletAction.onError(EmptyUtil.isNotNull(e) ? e.getMessage() : "");
+                    }
+
+                    @Override
+                    public void onNext(Response<WalletConfirmPojo> response) {
+                        HTTP_STATUS_CODE = response.code();
+                        if (!response.isSuccessful()) {
+                            try {
+                                HTTP_ERROR = new String(response.errorBody().bytes());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
     }
 
     interface WalletAction {
-        void onCompleted(WalletInitPojo walletInitPojo);
+        void onCompleted();
 
         void onError(String message);
     }

@@ -185,7 +185,7 @@ public class Wallet extends Fragment implements WalletContract.View {
     public void setButtonClickListener() {
         btnPay.setOnClickListener(view -> {
             if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
-
+                listener.confirmPayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etCode.getText().toString(), etPIN.getText().toString());
             } else {
                 listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
             }
@@ -259,6 +259,11 @@ public class Wallet extends Fragment implements WalletContract.View {
         } catch (PackageManager.NameNotFoundException e) {
             listener.showMessageDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found));
         }
+    }
+
+    @Override
+    public void closeWidget() {
+        fragmentActivity.finish();
     }
 
     @Override

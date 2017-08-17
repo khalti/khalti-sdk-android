@@ -20,7 +20,6 @@ import com.utila.EmptyUtil;
 public class Pay extends FrameLayout {
     private Context context;
     private AttributeSet attrs;
-    private LayoutInflater inflater;
 
     private PayContract.Listener listener;
     private Button btnPay;
@@ -48,12 +47,16 @@ public class Pay extends FrameLayout {
         listener.setConfig(config);
     }
 
+    public void setOnSuccessListener(OnSuccessListener onSuccessListener) {
+        DataHolder.setOnSuccessListener(onSuccessListener);
+    }
+
     private void init() {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.khalti, 0, 0);
         String buttonText = a.getString(R.styleable.khalti_text);
         a.recycle();
 
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mainView = inflater.inflate(R.layout.component_button, this, true);
 
         btnPay = mainView.findViewById(R.id.btnPay);
@@ -79,6 +82,9 @@ public class Pay extends FrameLayout {
             if (EmptyUtil.isNull(DataHolder.getConfig())) {
                 throw new IllegalArgumentException("Config not set");
             }
+            if (EmptyUtil.isNull(DataHolder.getOnSuccessListener())) {
+                throw new IllegalArgumentException("OnSuccessListener not set");
+            }
             ActivityUtil.openActivity(CheckOutActivity.class, context, false, null, true);
         }
 
@@ -90,5 +96,9 @@ public class Pay extends FrameLayout {
         PayContract.Listener getListener() {
             return listener;
         }
+    }
+
+    public interface OnSuccessListener {
+        void onSuccess();
     }
 }

@@ -25,6 +25,8 @@ interface WalletContract {
 
         void openKhaltiSettings();
 
+        void closeWidget();
+
         void setListener(Listener listener);
     }
 
@@ -41,6 +43,8 @@ interface WalletContract {
         void showMessageDialog(String title, String message);
 
         void initiatePayment(boolean isNetwork, String mobile);
+
+        void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin);
 
         void unSubscribe();
     }

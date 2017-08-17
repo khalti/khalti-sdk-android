@@ -2,6 +2,7 @@ package com.khalti.form.api;
 
 
 import com.khalti.form.EBanking.BaseListPojo;
+import com.khalti.form.Wallet.WalletConfirmPojo;
 import com.khalti.form.Wallet.WalletInitPojo;
 
 import java.util.HashMap;
@@ -25,5 +26,5 @@ public interface KhaltiApi {
 
     @POST
     @FormUrlEncoded
-    Observable<Response<Object>> confirmPayment(@Url String url, @FieldMap HashMap<String, Object> dataMap);
+    Observable<Response<WalletConfirmPojo>> confirmPayment(@Url String url, @FieldMap HashMap<String, Object> dataMap);
 }

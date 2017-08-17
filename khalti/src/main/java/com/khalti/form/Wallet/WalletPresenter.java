@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.khalti.R;
 import com.khalti.utils.DataHolder;
+import com.khalti.widget.basic.Pay;
 import com.utila.EmptyUtil;
 import com.utila.ErrorUtil;
 import com.utila.GuavaUtil;
@@ -18,7 +19,6 @@ class WalletPresenter implements WalletContract.Listener {
     private final WalletContract.View mWalletView;
     private WalletModel walletModel;
     private CompositeSubscription compositeSubscription;
-    private WalletInitPojo initPojo;
 
     WalletPresenter(@NonNull WalletContract.View mWalletView) {
         this.mWalletView = GuavaUtil.checkNotNull(mWalletView);
@@ -60,8 +60,7 @@ class WalletPresenter implements WalletContract.Listener {
                 compositeSubscription = new CompositeSubscription();
                 compositeSubscription.add(walletModel.initiatePayment(mobile, DataHolder.getConfig(), new WalletModel.WalletAction() {
                     @Override
-                    public void onCompleted(WalletInitPojo walletInitPojo) {
-                        initPojo = walletInitPojo;
+                    public void onCompleted() {
                         mWalletView.toggleProgressDialog("init", false);
                         mWalletView.toggleConfirmationLayout(true);
                     }
@@ -82,6 +81,43 @@ class WalletPresenter implements WalletContract.Listener {
                     mWalletView.setEditTextError("mobile", "This field is required");
                 } else {
                     mWalletView.setEditTextError("mobile", "Invalid mobile number");
+                }
+            }
+        } else {
+            mWalletView.showNetworkError();
+        }
+    }
+
+    @Override
+    public void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin) {
+        if (isNetwork) {
+            if (EmptyUtil.isNotEmpty(confirmationCode) && EmptyUtil.isNotEmpty(transactionPin)) {
+                mWalletView.toggleProgressDialog("confirm", true);
+                compositeSubscription = new CompositeSubscription();
+
+                compositeSubscription.add(walletModel.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
+                    @Override
+                    public void onCompleted() {
+                        mWalletView.toggleProgressDialog("confirm", false);
+                        Pay.OnSuccessListener onSuccessListener = DataHolder.getOnSuccessListener();
+                        onSuccessListener.onSuccess();
+                        mWalletView.closeWidget();
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        mWalletView.toggleProgressDialog("confirm", false);
+                        mWalletView.showMessageDialog("Error", ErrorUtil.parseError(message));
+                    }
+                }));
+            } else {
+                if (EmptyUtil.isEmpty(confirmationCode) && EmptyUtil.isEmpty(transactionPin)) {
+                    mWalletView.setEditTextError("code", "This field is required");
+                    mWalletView.setEditTextError("pin", "This field is required");
+                } else if (EmptyUtil.isEmpty(confirmationCode)) {
+                    mWalletView.setEditTextError("code", "This field is required");
+                } else {
+                    mWalletView.setEditTextError("pin", "This field is required");
                 }
             }
         } else {
