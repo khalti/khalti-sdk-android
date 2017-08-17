@@ -224,7 +224,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
-                                android:inputType="textPassword"
+                                android:inputType="numberPassword"
                                 android:maxLength="4"
                                 android:textColor="@color/black" />
                         </com.khalti.carbonX.widget.TextInputLayout>

@@ -41,5 +41,8 @@ dependencies {
     compile "io.reactivex:rxjava:${rootProject.ext.rxVersion}"
     compile "io.reactivex:rxandroid:${rootProject.ext.rxVersion}"
 
+    /*RxPermission*/
+    compile "com.tbruyelle.rxpermissions:rxpermissions:${rootProject.ext.rxPermissionVersion}"
+
     compile project(':fontana')
 }

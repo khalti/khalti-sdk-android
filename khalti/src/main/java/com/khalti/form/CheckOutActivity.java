@@ -70,20 +70,20 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void setUpTabLayout() {
         LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        RobotoMediumTextView tvETitle = (RobotoMediumTextView) eBankingTab.findViewById(R.id.tvTitle);
-        ImageView ivEIcon = (ImageView) eBankingTab.findViewById(R.id.ivIcon);
+        RobotoMediumTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
+        ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
 
         tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
-        ivEIcon.setImageDrawable(ResourceUtil.getDrawable(this, R.drawable.ic_account_balance_black_48px));
+        ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
         tlTitle.getTabAt(0).setCustomView(eBankingTab);
 
         LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        RobotoMediumTextView tvWTitle = (RobotoMediumTextView) walletTab.findViewById(R.id.tvTitle);
-        ImageView ivWIcon = (ImageView) walletTab.findViewById(R.id.ivIcon);
+        RobotoMediumTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
+        ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
 
         tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
         tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.primaryText));
-        ivWIcon.setImageDrawable(ResourceUtil.getDrawable(this, R.drawable.ic_account_balance_wallet_black_48px));
+        ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
         ivWIcon.setAlpha(0.6f);
         tlTitle.getTabAt(1).setCustomView(walletTab);
 

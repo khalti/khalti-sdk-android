@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.khalti.R;
 import com.khalti.utils.DataHolder;
+import com.khalti.utils.Event;
 import com.khalti.widget.basic.Pay;
 import com.utila.EmptyUtil;
 import com.utila.ErrorUtil;
@@ -19,6 +20,7 @@ class WalletPresenter implements WalletContract.Listener {
     private final WalletContract.View mWalletView;
     private WalletModel walletModel;
     private CompositeSubscription compositeSubscription;
+    private boolean smsListenerInitialized = false;
 
     WalletPresenter(@NonNull WalletContract.View mWalletView) {
         this.mWalletView = GuavaUtil.checkNotNull(mWalletView);
@@ -28,18 +30,25 @@ class WalletPresenter implements WalletContract.Listener {
 
     @Override
     public void setUpLayout() {
+        mWalletView.setEditTextListener();
         mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(DataHolder.getConfig().getAmount())));
         mWalletView.setButtonClickListener();
     }
 
     @Override
-    public void toggleEditTextListener(boolean set) {
-        mWalletView.toggleEditTextListener(set);
+    public void setConfirmationCode(Event event) {
+        mWalletView.setConfirmationCode(event.getEvent().toString().replaceAll("\\D+", ""));
     }
 
     @Override
     public void toggleConfirmationLayout(boolean show) {
         mWalletView.toggleConfirmationLayout(show);
+    }
+
+    @Override
+    public void toggleSmsListener(boolean listen) {
+        mWalletView.toggleSmsListener(listen);
+        smsListenerInitialized = false;
     }
 
     @Override
@@ -61,6 +70,8 @@ class WalletPresenter implements WalletContract.Listener {
                 compositeSubscription.add(walletModel.initiatePayment(mobile, DataHolder.getConfig(), new WalletModel.WalletAction() {
                     @Override
                     public void onCompleted() {
+                        mWalletView.toggleSmsListener(!smsListenerInitialized);
+                        smsListenerInitialized = true;
                         mWalletView.toggleProgressDialog("init", false);
                         mWalletView.toggleConfirmationLayout(true);
                     }

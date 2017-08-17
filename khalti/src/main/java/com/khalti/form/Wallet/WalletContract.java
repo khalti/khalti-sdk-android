@@ -1,13 +1,17 @@
 package com.khalti.form.Wallet;
 
+import com.khalti.utils.Event;
+
 interface WalletContract {
     interface View {
-
-        void toggleEditTextListener(boolean set);
 
         void toggleProgressDialog(String action, boolean show);
 
         void toggleConfirmationLayout(boolean show);
+
+        void toggleSmsListener(boolean listen);
+
+        void setEditTextListener();
 
         void setEditTextError(String view, String error);
 
@@ -15,17 +19,19 @@ interface WalletContract {
 
         void setButtonClickListener();
 
+        void setConfirmationCode(String code);
+
         void showNetworkError();
 
         void showMessageDialog(String title, String message);
 
         void showInteractiveMessageDialog(String title, String message);
 
-        String getStringFromResource(int id);
-
         void openKhaltiSettings();
 
         void closeWidget();
+
+        String getStringFromResource(int id);
 
         void setListener(Listener listener);
     }
@@ -34,9 +40,11 @@ interface WalletContract {
 
         void setUpLayout();
 
-        void toggleEditTextListener(boolean set);
+        void setConfirmationCode(Event event);
 
         void toggleConfirmationLayout(boolean show);
+
+        void toggleSmsListener(boolean listen);
 
         void openKhaltiSettings();
 

@@ -1,7 +1,9 @@
 package com.khalti.form.Wallet;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,12 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.khalti.R;
+import com.khalti.SmsListener;
 import com.khalti.carbonX.widget.Button;
 import com.khalti.carbonX.widget.ExpandableLayout;
 import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.carbonX.widget.TextInputLayout;
 import com.khalti.form.CheckOutActivity;
 import com.khalti.utils.DataHolder;
+import com.khalti.utils.Event;
+import com.khalti.utils.RxBus;
+import com.utila.AppPermissionUtil;
 import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
 import com.utila.NumberUtil;
@@ -28,6 +34,7 @@ import com.utila.ResourceUtil;
 import com.utila.UserInterfaceUtil;
 
 import fontana.RobotoMediumTextView;
+import rx.subscriptions.CompositeSubscription;
 
 
 public class Wallet extends Fragment implements WalletContract.View {
@@ -40,9 +47,11 @@ public class Wallet extends Fragment implements WalletContract.View {
 
     private FragmentActivity fragmentActivity;
     private WalletContract.Listener listener;
+    private CompositeSubscription compositeSubscription;
+    private SmsListener smsListener;
+
 
     @Override
-
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.payment_form, container, false);
         fragmentActivity = getActivity();
@@ -59,24 +68,38 @@ public class Wallet extends Fragment implements WalletContract.View {
 
         listener.setUpLayout();
 
+        compositeSubscription = new CompositeSubscription();
+        compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
+            if (event.getTag().equals("wallet_code")) {
+                listener.setConfirmationCode(event);
+            }
+        }));
+
         return mainView;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        listener.toggleEditTextListener(false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        listener.toggleEditTextListener(true);
     }
 
     @Override
-    public void toggleEditTextListener(boolean set) {
-        if (set) {
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (EmptyUtil.isNotNull(compositeSubscription) && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
+        listener.toggleSmsListener(false);
+    }
+
+    @Override
+    public void setEditTextListener() {
+        if (EmptyUtil.isNotNull(etMobile)) {
             etMobile.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -96,7 +119,9 @@ public class Wallet extends Fragment implements WalletContract.View {
 
                 }
             });
+        }
 
+        if (EmptyUtil.isNotNull(etCode)) {
             etCode.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -113,7 +138,9 @@ public class Wallet extends Fragment implements WalletContract.View {
 
                 }
             });
+        }
 
+        if (EmptyUtil.isNotNull(etPIN)) {
             etPIN.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -130,10 +157,6 @@ public class Wallet extends Fragment implements WalletContract.View {
 
                 }
             });
-        } else {
-            etMobile.addTextChangedListener(null);
-            etCode.addTextChangedListener(null);
-            etPIN.addTextChangedListener(null);
         }
     }
 
@@ -187,9 +210,28 @@ public class Wallet extends Fragment implements WalletContract.View {
             if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
                 listener.confirmPayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etCode.getText().toString(), etPIN.getText().toString());
             } else {
-                listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
+                if (AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS)) {
+                    listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
+                } else {
+                    FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+                    RobotoMediumTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+                    tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.allow));
+
+                    FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+                    RobotoMediumTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+                    tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.deny));
+
+                    AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", flPositive, flNegative, () ->
+                            listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString()));
+                }
             }
         });
+    }
+
+    @Override
+    public void setConfirmationCode(String code) {
+        etCode.setText(code);
+        etPIN.requestFocus();
     }
 
     @Override
@@ -273,6 +315,19 @@ public class Wallet extends Fragment implements WalletContract.View {
         etCode.setText("");
         etPIN.setText("");
         elConfirmation.toggleExpansion();
+    }
+
+    @Override
+    public void toggleSmsListener(boolean listen) {
+        if (listen) {
+            IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+            smsListener = new SmsListener();
+            fragmentActivity.registerReceiver(smsListener, intentFilter);
+        } else {
+            if (EmptyUtil.isNotNull(smsListener)) {
+                fragmentActivity.unregisterReceiver(smsListener);
+            }
+        }
     }
 
     @Override

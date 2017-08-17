@@ -46,4 +46,6 @@
     <string name="confirming_payment">Confirming payment</string>
     <string name="pin_not_set">You have not enabled your transaction PIN.\n\nWould you like to enable it?</string>
     <string name="khalti_not_found">Khalti is not installed in your device</string>
+    <string name="allow">Allow</string>
+    <string name="deny">Deny</string>
 </resources>

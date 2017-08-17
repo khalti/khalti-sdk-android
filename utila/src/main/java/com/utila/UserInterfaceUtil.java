@@ -1,7 +1,14 @@
 package com.utila;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -94,6 +101,46 @@ public class UserInterfaceUtil {
 
         positiveButton.setOnClickListener(view -> dialogAction.onPositiveAction(infoDialog));
         negativeButton.setOnClickListener(view -> dialogAction.onNegativeAction(infoDialog));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    static void showPermissionInfo(Context context, String title, String body, final Activity activity, View positiveButton, View negativeButton, final String permission) {
+        showInteractiveInfoDialog(context, title, body, false, false, positiveButton, negativeButton, new DialogAction() {
+            @Override
+            public void onPositiveAction(Dialog dialog) {
+                SharedPreferences.Editor editor = PreferenceUtil.getPreferenceEditor(context);
+                if (PreferenceUtil.getSharedPreference(context).contains("PERMISSION")) {
+                    String permissionString = PreferenceUtil.getSharedPreference(context).getString("PERMISSION", "");
+                    if (permissionString.contains(permission)) {
+                        dialog.dismiss();
+                        openAppSettings(context);
+                    } else {
+                        editor.putString("PERMISSION", permissionString + "," + permission);
+                        editor.apply();
+                        dialog.dismiss();
+                        activity.requestPermissions(new String[]{permission}, 123);
+                    }
+                } else {
+                    editor.putString("PERMISSION", permission);
+                    editor.apply();
+                    dialog.dismiss();
+                    activity.requestPermissions(new String[]{permission}, 123);
+                }
+            }
+
+            @Override
+            public void onNegativeAction(Dialog dialog) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private static void openAppSettings(Context context) {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+        intent.setData(uri);
+        context.startActivity(intent);
     }
 
     public interface DialogAction {
