@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion rootProject.ext.targetSdk
+    buildToolsVersion rootProject.ext.buildToolVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+        versionCode rootProject.ext.appVersionCode
+        versionName rootProject.ext.appVersionName
+        renderscriptTargetApi rootProject.ext.renderScriptTarget
+        renderscriptSupportModeEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true;
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            debuggable false
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.fabric.io/public' }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    /*----Support Library----*/
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+    compile "com.android.support:support-v4:${rootProject.ext.supportVersion}"
+    compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
+    compile "com.android.support:design:${rootProject.ext.supportVersion}"
+    compile "com.android.support:transition:${rootProject.ext.supportVersion}"
+
+    /*Android Animations*/
+    compile "com.nineoldandroids:library:${rootProject.ext.nineDroidVersion}"
+
+    /*ButterKnife*/
+    compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
+    apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
+
+    /*GSON*/
+    compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+
+    /*Retrofit*/
+    compile "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitConverterVersion}"
+    compile "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${rootProject.ext.retrofitVersion}"
+
+    /*OkHTTP*/
+    compile "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingInterceptorVersion}"
+    compile "com.squareup.okhttp:okhttp-urlconnection:${rootProject.ext.okhttpUrlConnectionVersion}"
+    compile "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}"
+
+    /*Http Client*/
+    compile "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${rootProject.ext.httpClientVersion}"
+
+    /*ReactiveX*/
+    compile "io.reactivex:rxjava:${rootProject.ext.rxVersion}"
+    compile "io.reactivex:rxandroid:${rootProject.ext.rxVersion}"
+
+    compile project(':fontana')
+    compile project(':utila')
+}

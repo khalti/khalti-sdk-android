@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="carbonX_inAnimation" format="enum">
+        <enum name="none" value="0" />
+        <enum name="fade" value="1" />
+        <enum name="pop" value="2" />
+        <enum name="fly" value="3" />
+        <enum name="brightnessSaturationFade" value="4" />
+        <enum name="progressWidth" value="5" />
+    </attr>
+    <attr name="carbonX_outAnimation" format="enum">
+        <enum name="none" value="0" />
+        <enum name="fade" value="1" />
+        <enum name="pop" value="2" />
+        <enum name="fly" value="3" />
+        <enum name="brightnessSaturationFade" value="4" />
+        <enum name="progressWidth" value="5" />
+    </attr>
+    <attr name="carbonX_elevation" format="dimension" />
+    <attr name="carbonX_tint" format="color|reference" />
+    <attr name="carbonX_tintMode" format="enum">
+        <enum name="src_over" value="0" />
+        <enum name="src_in" value="1" />
+        <enum name="src_atop" value="2" />
+        <enum name="multiply" value="3" />
+        <enum name="screen" value="4" />
+        <enum name="add" value="5" />
+    </attr>
+    <attr name="carbonX_debugMode" format="boolean" />
+    <attr name="carbonX_backgroundTintMode" format="enum">
+        <enum name="src_over" value="0" />
+        <enum name="src_in" value="1" />
+        <enum name="src_atop" value="2" />
+        <enum name="multiply" value="3" />
+        <enum name="screen" value="4" />
+        <enum name="add" value="5" />
+    </attr>
+    <attr name="carbonX_fontPath" format="string" />
+    <attr name="carbonX_maxWidth" format="dimension" />
+    <attr name="carbonX_maxHeight" format="dimension" />
+    <attr name="carbonX_rippleHotspot" format="boolean" />
+    <attr name="carbonX_rippleStyle" format="enum">
+        <enum name="over" value="0" />
+        <enum name="background" value="1" />
+        <enum name="borderless" value="2" />
+    </attr>
+    <attr name="carbonX_rippleRadius" format="dimension" />
+    <attr name="carbonX_rippleColor" format="color|reference" />
+    <attr name="carbonX_theme" format="reference" />
+    <attr name="carbonX_touchMarginBottom" format="dimension" />
+    <attr name="carbonX_touchMarginTop" format="dimension" />
+    <attr name="carbonX_touchMarginLeft" format="dimension" />
+    <attr name="carbonX_touchMargin" format="dimension" />
+    <attr name="carbonX_touchMarginRight" format="dimension" />
+    <attr name="carbonX_fontFamily" format="string" />
+    <attr name="carbonX_textAllCaps" format="boolean" />
+
+    <attr name="carbonX_inset" format="dimension" />
+    <attr name="carbonX_insetLeft" format="dimension" />
+    <attr name="carbonX_insetTop" format="dimension" />
+    <attr name="carbonX_insetRight" format="dimension" />
+    <attr name="carbonX_insetBottom" format="dimension" />
+    <attr name="carbonX_insetColor" format="color" />
+    <attr name="carbonX_anchor" format="reference" />
+    <attr name="carbonX_anchorGravity" format="enum">
+        <enum name="top" value="0x00000030" />
+        <enum name="bottom" value="0x00000050" />
+        <enum name="left" value="0x00000003" />
+        <enum name="right" value="0x00000005" />
+        <enum name="start" value="0x00800003" />
+        <enum name="end" value="0x00800005" />
+        <enum name="center" value="0x00000011" />
+        <enum name="center_horizontal" value="0x00000001" />
+        <enum name="center_vertical" value="0x00000010" />
+    </attr>
+
+    <declare-styleable name="ButtonX">
+        <attr name="carbonX_theme" />
+
+        <attr name="carbonX_rippleColor" />
+        <attr name="carbonX_rippleHotspot" />
+        <attr name="carbonX_rippleStyle" />
+        <attr name="carbonX_rippleRadius" />
+
+        <attr name="carbonX_elevation" />
+
+        <attr name="carbonX_touchMargin" />
+        <attr name="carbonX_touchMarginLeft" />
+        <attr name="carbonX_touchMarginTop" />
+        <attr name="carbonX_touchMarginRight" />
+        <attr name="carbonX_touchMarginBottom" />
+
+        <attr name="carbonX_inAnimation" />
+        <attr name="carbonX_outAnimation" />
+
+        <attr name="carbonX_maxWidth" />
+        <attr name="carbonX_maxHeight" />
+
+        <attr name="carbonX_tint" />
+        <attr name="carbonX_tintMode" />
+        <attr name="carbonX_backgroundTint" />
+        <attr name="carbonX_backgroundTintMode" />
+        <attr name="carbonX_animateColorChanges" />
+
+        <attr name="carbonX_fontFamily" />
+        <attr name="android:textStyle" />
+        <attr name="carbonX_fontPath" />
+        <attr name="carbonX_textAllCaps" />
+        <attr name="android:textAppearance" />
+        <attr name="carbonX_cornerRadius" />
+        <attr name="android:background" />
+    </declare-styleable>
+
+    <declare-styleable name="CarbonX">
+        <attr name="carbonX_colorError" format="reference|color" />
+        <attr name="carbonX_colorDisabled" format="reference|color" />
+        <attr name="carbonX_animateColorChanges" format="boolean" />
+        <attr name="carbonX_backgroundTint" format="color|reference" />
+        <attr name="carbonX_cornerRadius" format="dimension" />
+
+        <attr name="carbonX_widthPercent" format="fraction|reference" />
+        <attr name="carbonX_heightPercent" format="fraction|reference" />
+        <attr name="carbonX_marginPercent" format="fraction|reference" />
+        <attr name="carbonX_marginLeftPercent" format="fraction|reference" />
+        <attr name="carbonX_marginTopPercent" format="fraction|reference" />
+        <attr name="carbonX_marginRightPercent" format="fraction|reference" />
+        <attr name="carbonX_marginBottomPercent" format="fraction|reference" />
+        <attr name="carbonX_marginStartPercent" format="fraction|reference" />
+        <attr name="carbonX_marginEndPercent" format="fraction|reference" />
+        <attr name="carbonX_aspectRatio" format="fraction|reference" />
+        <attr name="carbonX_textAppearanceButton" format="reference" />
+        <attr name="carbonX_textAppearanceButtonInverse" format="reference" />
+
+
+        <!--<attr name="carbonX_colorBackground" format="reference|color" />
+        <attr name="carbonX_colorBackgroundInverse" format="reference|color" />
+
+        <attr name="carbonX_dividerColor" format="reference|color" />
+
+        &lt;!&ndash; {@deprecated Use carbon_tint instead.} &ndash;&gt;
+        <attr name="carbonX_edgeEffectColor" format="color|reference" />
+
+        <attr name="carbonX_colorRipple" format="reference|color" />
+        <attr name="carbonX_colorRippleInverse" format="reference|color" />
+
+        &lt;!&ndash; {@deprecated Use carbon_colorRipple instead.} &ndash;&gt;
+        <attr name="carbonX_rippleColor" />
+        &lt;!&ndash; {@deprecated Use carbon_colorRippleInverse instead.} &ndash;&gt;
+        <attr name="carbonX_rippleColorInverse" format="reference|color" />
+
+        <attr name="carbonX_iconColor" format="reference|color" />
+        <attr name="carbonX_iconColorInverse" format="reference|color" />
+
+        &lt;!&ndash; {@deprecated Use DebugLayout instead.} &ndash;&gt;
+        <attr name="carbonX_debugMode" format="boolean" />
+
+
+
+        <attr name="carbonX_textAppearanceHeadline" format="reference" />
+        <attr name="carbonX_textAppearanceTitle" format="reference" />
+        <attr name="carbonX_textAppearanceSubhead" format="reference" />
+        <attr name="carbonX_textAppearanceBody2" format="reference" />
+        <attr name="carbonX_textAppearanceBody1" format="reference" />
+        <attr name="carbonX_textAppearanceCaption" format="reference" />
+
+        <attr name="carbonX_textAppearanceHeadlineInverse" format="reference" />
+        <attr name="carbonX_textAppearanceTitleInverse" format="reference" />
+        <attr name="carbonX_textAppearanceSubheadInverse" format="reference" />
+        <attr name="carbonX_textAppearanceBody2Inverse" format="reference" />
+        <attr name="carbonX_textAppearanceBody1Inverse" format="reference" />-->
+
+
+    </declare-styleable>
+
+    <declare-styleable name="ProgressBarX">
+        <attr name="carbonX_theme" />
+
+        <attr name="carbonX_tint" />
+        <attr name="carbonX_tintMode" />
+        <attr name="carbonX_backgroundTint" />
+        <attr name="carbonX_backgroundTintMode" />
+        <attr name="carbonX_animateColorChanges" />
+
+        <attr name="carbonX_inAnimation" />
+        <attr name="carbonX_outAnimation" />
+
+        <attr name="carbonX_progressStyle" format="enum">
+            <enum name="bar_determinate" value="0" />
+            <enum name="bar_indeterminate" value="1" />
+            <enum name="bar_query" value="2" />
+            <enum name="circular_determinate" value="3" />
+            <enum name="circular_indeterminate" value="4" />
+        </attr>
+        <attr name="carbonX_barWidth" format="dimension" />
+    </declare-styleable>
+
+    <attr name="carbonX_state_invalid" format="boolean" />
+
+    <declare-styleable name="TextAppearance">
+        <attr name="carbonX_fontFamily" />
+        <attr name="android:textStyle" />
+        <attr name="carbonX_fontPath" />
+        <attr name="carbonX_textAllCaps" />
+    </declare-styleable>
+
+    <!-- Drawable used to show animated touch feedback. -->
+    <declare-styleable name="RippleDrawableX">
+        <!-- The color to use for ripple effects. This attribute is required. -->
+        <attr name="android:color" />
+        <attr name="android:radius" />
+    </declare-styleable>
+
+    <declare-styleable name="LayerDrawable">
+        <!-- Indicates whether the drawable should be initially visible. -->
+        <attr name="android:visible" />
+        <!-- Indicates the opacity of the layer. This can be useful to allow the
+              system to enable drawing optimizations. The default value is
+              translucent. -->
+        <attr name="android:opacity" />
+        <!-- Indicates if the drawable needs to be mirrored when its layout direction is
+             RTL (right-to-left). -->
+        <attr name="android:autoMirrored" />
+        <!-- Indicates how layer padding should affect the bounds of subsequent layers.
+             The default padding mode value is nest. -->
+        <attr name="android:paddingMode" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingBottom" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingStart" />
+        <attr name="android:paddingEnd" />
+    </declare-styleable>
+
+    <!-- Describes an item (or child) of a LayerDrawable. -->
+    <declare-styleable name="LayerDrawableItem">
+        <!-- Left coordinate of the layer. -->
+        <attr name="android:left" />
+        <!-- Top coordinate of the layer. -->
+        <attr name="android:top" />
+        <!-- Right coordinate of the layer. -->
+        <attr name="android:right" />
+        <!-- Bottom coordinate of the layer. -->
+        <attr name="android:bottom" />
+        <!-- Drawable used to render the layer. -->
+        <attr name="android:drawable" />
+        <!-- Identifier of the layer. This can be used to retrieve the layer
+             from a drawable container. -->
+        <attr name="android:id" />
+        <attr name="android:width" />
+        <attr name="android:height" />
+        <attr name="android:start" />
+        <attr name="android:end" />
+        <attr name="android:gravity" />
+    </declare-styleable>
+
+    <attr name="carbonX_frameLayoutStyle" format="reference" />
+    <declare-styleable name="FrameLayoutX">
+        <attr name="carbonX_theme" />
+
+        <attr name="carbonX_rippleColor" />
+        <attr name="carbonX_rippleHotspot" />
+        <attr name="carbonX_rippleStyle" />
+        <attr name="carbonX_rippleRadius" />
+
+        <attr name="carbonX_inAnimation" />
+        <attr name="carbonX_outAnimation" />
+
+        <attr name="carbonX_touchMargin" />
+        <attr name="carbonX_touchMarginLeft" />
+        <attr name="carbonX_touchMarginTop" />
+        <attr name="carbonX_touchMarginRight" />
+        <attr name="carbonX_touchMarginBottom" />
+
+        <attr name="carbonX_inset" />
+        <attr name="carbonX_insetLeft" />
+        <attr name="carbonX_insetTop" />
+        <attr name="carbonX_insetRight" />
+        <attr name="carbonX_insetBottom" />
+        <attr name="carbonX_insetColor" />
+
+        <attr name="carbonX_maxWidth" />
+        <attr name="carbonX_maxHeight" />
+
+        <attr name="carbonX_elevation" />
+        <attr name="carbonX_cornerRadius" />
+    </declare-styleable>
+
+    <declare-styleable name="FrameLayoutX_Layout">
+        <attr name="carbonX_anchor" />
+        <attr name="carbonX_anchorGravity" />
+    </declare-styleable>
+
+    <declare-styleable name="khalti">
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="TextInputLayout">
+        <attr name="mainHintTextSize" format="dimension" />
+    </declare-styleable>
+</resources>
