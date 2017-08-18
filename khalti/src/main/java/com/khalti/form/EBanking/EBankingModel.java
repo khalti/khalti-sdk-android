@@ -82,6 +82,10 @@ public class EBankingModel {
         compositeSubscription.add(subscription);
     }
 
+    void initiatePayment() {
+
+    }
+
     public interface BankAction {
         void onCompleted(Object bankList);
 

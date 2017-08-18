@@ -8,6 +8,7 @@ public class Config {
     private String productName;
     private String productUrl;
     private Long amount;
+    private String bankId;
     private HashMap<String, Object> additionalData;
 
     public Config(String publicKey, String productId, String productName, String productUrl, Long amount) {

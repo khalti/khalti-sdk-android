@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import retrofit2.Response;
+import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -44,7 +45,7 @@ class WalletModel {
 
         String url = "/api/payment/initiate/";
 
-        return khaltiService.initiatePayment(url, dataMap)
+        /*return khaltiService.initiatePayment("", dataMap)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<WalletInitPojo>>() {
@@ -78,7 +79,24 @@ class WalletModel {
                             }
                         }
                     }
-                });
+                });*/
+
+        return new ApiHelper().callApi(khaltiService.initiatePayment(url, dataMap), new ApiHelper.ApiCallback() {
+            @Override
+            public void onComplete() {
+                walletAction.onCompleted();
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                walletAction.onError(errorMessage);
+            }
+
+            @Override
+            public void onNext(Object o) {
+                walletInitPojo = (WalletInitPojo) o;
+            }
+        });
     }
 
     Subscription confirmPayment(String confirmationCode, String transactionPIN, WalletAction walletAction) {
