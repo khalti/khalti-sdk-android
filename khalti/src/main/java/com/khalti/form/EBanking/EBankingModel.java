@@ -4,19 +4,12 @@ package com.khalti.form.EBanking;
 import com.khalti.form.ApiHelper;
 import com.khalti.form.EBanking.chooseBank.BankPojo;
 import com.khalti.form.api.KhaltiApi;
-import com.utila.ApiUtil;
-import com.utila.EmptyUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import retrofit2.Response;
-import rx.Subscriber;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 public class EBankingModel {
@@ -38,48 +31,30 @@ public class EBankingModel {
     }
 
     void fetchBankList(BankAction bankAction) {
-        Subscription subscription = khaltiService.getBanks("api/bank/", 1, 100, true)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Response<BaseListPojo>>() {
-                               @Override
-                               public void onCompleted() {
-                                   if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
-                                       if (bankList.size() > 5) {
-                                           bankAction.onCompleted(bankList);
-                                       } else {
-                                           bankAction.onCompleted(getSimpleBankList(bankList));
-                                       }
-                                   } else {
-                                       bankAction.onError(HTTP_ERROR);
-                                   }
-                               }
+        String url = "api/bank/";
+        Subscription subscription = new ApiHelper().callApi(khaltiService.getBanks(url, 1, 100, true), new ApiHelper.ApiCallback() {
+            @Override
+            public void onComplete() {
+                if (bankList.size() > 5) {
+                    bankAction.onCompleted(bankList);
+                } else {
+                    bankAction.onCompleted(getSimpleBankList(bankList));
+                }
+            }
 
-                               @Override
-                               public void onError(Throwable e) {
-                                   if (EmptyUtil.isNotNull(e)) {
-                                       e.printStackTrace();
-                                   }
-                                   bankAction.onError(EmptyUtil.isNotNull(e) ? e.getMessage() : "");
-                               }
+            @Override
+            public void onError(String errorMessage) {
+                bankAction.onError(errorMessage);
+            }
 
-                               @Override
-                               public void onNext(Response<BaseListPojo> response) {
-                                   HTTP_STATUS_CODE = response.code();
-                                   if (response.isSuccessful()) {
-                                       bankList = response.body().getRecords();
-                                   } else {
-                                       try {
-                                           HTTP_ERROR = new String(response.errorBody().bytes());
-                                       } catch (IOException e) {
-                                           e.printStackTrace();
-                                       }
-                                   }
-                               }
-                           }
-                );
+            @Override
+            public void onNext(Object o) {
+                bankList = ((BaseListPojo) o).getRecords();
+            }
+        });
 
         compositeSubscription.add(subscription);
+
     }
 
     void initiatePayment() {

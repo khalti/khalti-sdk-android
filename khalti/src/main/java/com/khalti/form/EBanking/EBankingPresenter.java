@@ -48,7 +48,7 @@ class EBankingPresenter implements EBankingContract.Listener {
                 @Override
                 public void onError(String message) {
                     mEBankingView.toggleProgressBar(false);
-                    mEBankingView.showDataFetchError();
+                    mEBankingView.showError(message);
                 }
             });
         } else {

@@ -204,9 +204,9 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
-    public void showDataFetchError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.fetch_error),
-                true, ResourceUtil.getString(fragmentActivity, R.string.try_again), Snackbar.LENGTH_INDEFINITE, ResourceUtil.getColor(fragmentActivity, R.color.khaltiAccent), () ->
+    public void showError(String message) {
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, message,
+                true, ResourceUtil.getString(fragmentActivity, R.string.try_again), Snackbar.LENGTH_INDEFINITE, R.color.khaltiAccent, () ->
                         listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity)));
     }
 

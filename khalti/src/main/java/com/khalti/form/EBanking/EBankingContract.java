@@ -22,7 +22,7 @@ interface EBankingContract {
 
         void showNetworkError();
 
-        void showDataFetchError();
+        void showError(String message);
 
         void showMessageDialog(String title, String message);
 

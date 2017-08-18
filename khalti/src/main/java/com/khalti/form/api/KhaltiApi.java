@@ -26,5 +26,5 @@ public interface KhaltiApi {
 
     @POST
     @FormUrlEncoded
-    Observable<Response<WalletConfirmPojo>> confirmPayment(@Url String url, @FieldMap HashMap<String, Object> dataMap);
+    Observable<Response<WalletConfirmPojo>> confirmPayment(@Url  String url, @FieldMap HashMap<String, Object> dataMap);
 }
