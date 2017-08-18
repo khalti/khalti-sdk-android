@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'android-apt'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.targetSdk
@@ -54,10 +52,6 @@ dependencies {
 
     /*Android Animations*/
     compile "com.nineoldandroids:library:${rootProject.ext.nineDroidVersion}"
-
-    /*ButterKnife*/
-    compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
-    apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
 
     /*GSON*/
     compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"

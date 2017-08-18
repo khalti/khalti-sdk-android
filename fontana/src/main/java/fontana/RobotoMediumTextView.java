@@ -3,12 +3,8 @@ package fontana;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
-/**
- * Created by User on 9/4/2015.
- */
-public class RobotoMediumTextView extends TextView {
+public class RobotoMediumTextView extends android.support.v7.widget.AppCompatTextView {
     public RobotoMediumTextView(Context context, AttributeSet attributeSet, int defStyle) {
         super(context, attributeSet, defStyle);
         init();

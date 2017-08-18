@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.view.View;
 
 import com.tbruyelle.rxpermissions.RxPermissions;
 
@@ -13,13 +14,13 @@ public class AppPermissionUtil {
         return (res == PackageManager.PERMISSION_GRANTED);
     }
 
-    public static void askPermission(Activity activity, String permission, String messageBody, MyPermission myPermission) {
+    public static void askPermission(Activity activity, String permission, String messageBody, View positiveButton, View negativeButton, MyPermission myPermission) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             RxPermissions rxPermissions = new RxPermissions(activity);
             rxPermissions.requestEach(permission)
                     .subscribe(permission1 -> {
                         if (permission1.shouldShowRequestPermissionRationale) {
-                            UserInterfaceUtil.showPermissionInfo(activity, "Grant permission", messageBody, activity, permission);
+                            UserInterfaceUtil.showPermissionInfo(activity, "Grant permission", messageBody, activity, positiveButton, negativeButton, permission);
                         } else if (permission1.granted) {
                             myPermission.onPermission();
                         }

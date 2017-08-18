@@ -23,4 +23,9 @@ class CheckOutPresenter implements CheckOutContract.Listener {
     public void toggleTab(int position, boolean selected) {
         mCheckOutView.toggleTab(position, selected);
     }
+
+    @Override
+    public void closeForm() {
+        mCheckOutView.closeForm();
+    }
 }

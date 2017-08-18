@@ -5,10 +5,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-/**
- * Created by User on 9/4/2015.
- */
-public class MaterialIconTextView extends TextView {
+public class MaterialIconTextView extends android.support.v7.widget.AppCompatTextView {
     public MaterialIconTextView(Context context, AttributeSet attributeSet, int defstyle) {
         super(context, attributeSet, defstyle);
         init();

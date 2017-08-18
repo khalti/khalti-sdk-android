@@ -297,4 +297,8 @@
     <declare-styleable name="TextInputLayout">
         <attr name="mainHintTextSize" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="ExpandableLayout">
+        <attr name="canExpand" format="boolean" />
+    </declare-styleable>
 </resources>

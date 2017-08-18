@@ -12,12 +12,14 @@ import com.khalti.R;
 import com.khalti.carbonX.widget.Button;
 import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.form.CheckOutActivity;
+import com.khalti.form.api.Config;
+import com.khalti.utils.DataHolder;
 import com.utila.ActivityUtil;
+import com.utila.EmptyUtil;
 
 public class Pay extends FrameLayout {
     private Context context;
     private AttributeSet attrs;
-    private LayoutInflater inflater;
 
     private PayContract.Listener listener;
     private Button btnPay;
@@ -41,8 +43,12 @@ public class Pay extends FrameLayout {
         listener.setButtonText(text);
     }
 
-    public void setAmount(Double amount) {
-        listener.setAmount(amount);
+    public void setConfig(Config config) {
+        listener.setConfig(config);
+    }
+
+    public void setOnSuccessListener(OnSuccessListener onSuccessListener) {
+        DataHolder.setOnSuccessListener(onSuccessListener);
     }
 
     private void init() {
@@ -50,10 +56,10 @@ public class Pay extends FrameLayout {
         String buttonText = a.getString(R.styleable.khalti_text);
         a.recycle();
 
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mainView = inflater.inflate(R.layout.component_button, this, true);
 
-        btnPay = (Button) mainView.findViewById(R.id.btnPay);
+        btnPay = mainView.findViewById(R.id.btnPay);
         listener.setButtonText(buttonText);
 
         btnPay.setOnClickListener(v -> listener.openForm());
@@ -73,6 +79,12 @@ public class Pay extends FrameLayout {
 
         @Override
         public void openForm() {
+            if (EmptyUtil.isNull(DataHolder.getConfig())) {
+                throw new IllegalArgumentException("Config not set");
+            }
+            if (EmptyUtil.isNull(DataHolder.getOnSuccessListener())) {
+                throw new IllegalArgumentException("OnSuccessListener not set");
+            }
             ActivityUtil.openActivity(CheckOutActivity.class, context, false, null, true);
         }
 
@@ -84,5 +96,9 @@ public class Pay extends FrameLayout {
         PayContract.Listener getListener() {
             return listener;
         }
+    }
+
+    public interface OnSuccessListener {
+        void onSuccess();
     }
 }

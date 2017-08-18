@@ -1,6 +1,7 @@
 package com.khalti.form;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.khalti.R;
+import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.form.EBanking.EBanking;
 import com.khalti.form.Wallet.Wallet;
 import com.khalti.utils.ViewPagerAdapter;
@@ -25,6 +27,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     private TabLayout tlTitle;
     private ViewPager vpContent;
 
+    public CoordinatorLayout cdlMain;
+
     private CheckOutContract.Listener listener;
     private List<TabLayout.Tab> tabs = new ArrayList<>();
 
@@ -35,9 +39,12 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
         tlTitle = (TabLayout) findViewById(R.id.tlTitle);
         vpContent = (ViewPager) findViewById(R.id.vpContent);
+        FrameLayout flClose = (FrameLayout) findViewById(R.id.flClose);
+        cdlMain = (CoordinatorLayout) findViewById(R.id.cdlMain);
 
         listener = new CheckOutPresenter(this);
         listener.setUpLayout();
+        flClose.setOnClickListener(view -> listener.closeForm());
     }
 
     @Override
@@ -63,20 +70,20 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void setUpTabLayout() {
         LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        RobotoMediumTextView tvETitle = (RobotoMediumTextView) eBankingTab.findViewById(R.id.tvTitle);
-        ImageView ivEIcon = (ImageView) eBankingTab.findViewById(R.id.ivIcon);
+        RobotoMediumTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
+        ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
 
         tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
-        ivEIcon.setImageDrawable(ResourceUtil.getDrawable(this, R.drawable.ic_account_balance_black_48px));
+        ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
         tlTitle.getTabAt(0).setCustomView(eBankingTab);
 
         LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        RobotoMediumTextView tvWTitle = (RobotoMediumTextView) walletTab.findViewById(R.id.tvTitle);
-        ImageView ivWIcon = (ImageView) walletTab.findViewById(R.id.ivIcon);
+        RobotoMediumTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
+        ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
 
         tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
         tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.primaryText));
-        ivWIcon.setImageDrawable(ResourceUtil.getDrawable(this, R.drawable.ic_account_balance_wallet_black_48px));
+        ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
         ivWIcon.setAlpha(0.6f);
         tlTitle.getTabAt(1).setCustomView(walletTab);
 
@@ -117,6 +124,11 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
                 ivIcon.setAlpha(0.6f);
             }
         }
+    }
+
+    @Override
+    public void closeForm() {
+        finish();
     }
 
     @Override

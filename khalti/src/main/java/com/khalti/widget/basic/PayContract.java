@@ -1,6 +1,8 @@
 package com.khalti.widget.basic;
 
 
+import com.khalti.form.api.Config;
+
 interface PayContract {
     interface View {
         void setButtonText(String text);
@@ -13,7 +15,7 @@ interface PayContract {
     interface Listener {
         void setButtonText(String text);
 
-        void setAmount(Double value);
+        void setConfig(Config config);
 
         void openForm();
     }
