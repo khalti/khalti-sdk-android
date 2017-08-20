@@ -60,8 +60,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void setupViewPager() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
         viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
+        viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
         vpContent.setAdapter(viewPagerAdapter);
 
         tlTitle.setupWithViewPager(vpContent);
@@ -69,23 +69,23 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
     @Override
     public void setUpTabLayout() {
-        LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        RobotoMediumTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
-        ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
-
-        tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
-        ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
-        tlTitle.getTabAt(0).setCustomView(eBankingTab);
-
         LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
         RobotoMediumTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
         ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
 
         tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
-        tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.primaryText));
         ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
-        ivWIcon.setAlpha(0.6f);
-        tlTitle.getTabAt(1).setCustomView(walletTab);
+        tlTitle.getTabAt(0).setCustomView(walletTab);
+
+        LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
+        RobotoMediumTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
+        ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
+
+        tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
+        tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.primaryText));
+        ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
+        ivEIcon.setAlpha(0.6f);
+        tlTitle.getTabAt(1).setCustomView(eBankingTab);
 
         tabs.add(tlTitle.getTabAt(0));
         tabs.add(tlTitle.getTabAt(1));

@@ -6,13 +6,9 @@ import com.khalti.form.api.KhaltiApi;
 import com.utila.ApiUtil;
 import com.utila.EmptyUtil;
 import com.utila.ErrorUtil;
-import com.utila.LogUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -30,15 +26,13 @@ public class ApiHelper {
     private static final int TIME_OUT = 30;
     private int HTTP_STATUS_CODE;
     private String HTTP_ERROR;
-    private static boolean isValid = true;
 
     public static KhaltiApi apiBuilder() {
-//        String url = "http://a.khalti.com/";
-        String url = "https://khalti.com/";
+        String url = "http://a.khalti.com/";
+//        String url = "https://khalti.com/";
 //        String url = "http://192.168.1.103:8000/";
 //        String url = "https://kumarjewelersinc.com/";
 
-        HostnameVerifier hostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
         /*Logging*/
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -46,13 +40,7 @@ public class ApiHelper {
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
-                .hostnameVerifier((s, sslSession) -> {
-                    isValid = hostnameVerifier.verify(url, sslSession);
-                    LogUtil.log("isValid", isValid);
-                    return isValid;
-                })
                 .build();
-
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
@@ -65,42 +53,43 @@ public class ApiHelper {
     }
 
     public <T> Subscription callApi(Observable<Response<T>> observable, ApiCallback callback) {
-        if (isValid) {
-            return observable
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<Response<T>>() {
-                        @Override
-                        public void onCompleted() {
-                            if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
-                                callback.onComplete();
-                            } else {
-                                callback.onError(ErrorUtil.parseError(HTTP_ERROR));
-                            }
+        return observable
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<T>>() {
+                    @Override
+                    public void onCompleted() {
+                        if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
+                            callback.onComplete();
+                        } else {
+                            callback.onError(ErrorUtil.parseError(HTTP_ERROR));
                         }
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            if (EmptyUtil.isNotNull(e)) {
+                    @Override
+                    public void onError(Throwable e) {
+                        if (EmptyUtil.isNotNull(e)) {
+                            e.printStackTrace();
+                        }
+                        callback.onError(EmptyUtil.isNotNull(e) ? e.getMessage() : ErrorUtil.parseError(""));
+                    }
+
+                    @Override
+                    public void onNext(Response<T> response) {
+                        HTTP_STATUS_CODE = response.code();
+                        if (response.isSuccessful()) {
+                            callback.onNext(response.body());
+                        } else {
+                            try {
+                                HTTP_ERROR = new String(response.errorBody().bytes());
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            callback.onError(EmptyUtil.isNotNull(e) ? e.getMessage() : ErrorUtil.parseError(""));
                         }
+                    }
+                });
+        /*if (isValid) {
 
-                        @Override
-                        public void onNext(Response<T> response) {
-                            HTTP_STATUS_CODE = response.code();
-                            if (response.isSuccessful()) {
-                                callback.onNext(response.body());
-                            } else {
-                                try {
-                                    HTTP_ERROR = new String(response.errorBody().bytes());
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    });
         } else {
             return Observable.just("SSL Certificate Error Occurred")
                     .subscribeOn(Schedulers.newThread())
@@ -121,7 +110,7 @@ public class ApiHelper {
                             callback.onError(s);
                         }
                     });
-        }
+        }*/
     }
 
     public interface ApiCallback {
