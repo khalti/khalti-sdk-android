@@ -120,6 +120,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
         spBank.setAdapter(bankAdapter);
         bankId = ((List<String>) bankIds).get(spBank.getSelectedItemPosition());
+        bankName = ((List<String>) banks).get(spBank.getSelectedItemPosition());
 
         spBank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -143,6 +144,8 @@ public class EBanking extends Fragment implements EBankingContract.View {
         tvBankId.setText(bankId);
 
         this.bankId = bankId;
+        this.bankName = bankName;
+
         flBank.setOnClickListener(view -> listener.openBankList());
     }
 

@@ -1,16 +1,14 @@
 package com.khalti.form.EBanking.loadBank;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -24,8 +22,6 @@ import com.utila.EmptyUtil;
 import com.utila.LogUtil;
 import com.utila.NetworkUtil;
 import com.utila.ResourceUtil;
-
-import org.apache.http.util.EncodingUtils;
 
 import java.util.HashMap;
 
@@ -87,41 +83,31 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
     @Override
     public void setupWebView(String url, String postData) {
         listener.toggleIndentedProgress(true);
-
+        svIndented.setVisibility(View.GONE);
+        wvBank.setVisibility(View.VISIBLE);
         wvBank.getSettings().setUseWideViewPort(true);
         wvBank.getSettings().setLoadWithOverviewMode(true);
         wvBank.getSettings().setSupportZoom(true);
         wvBank.getSettings().setBuiltInZoomControls(true);
         wvBank.getSettings().setDisplayZoomControls(false);
         wvBank.getSettings().setJavaScriptEnabled(true);
-
         wvBank.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-
-            @TargetApi(Build.VERSION_CODES.N)
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest request) {
-                Uri uri = request.getUrl();
-                return shouldOverrideUrlLoading(uri.toString());
-            }
-
-            private boolean shouldOverrideUrlLoading(final String url) {
                 return true;
             }
 
             public void onPageFinished(WebView view, String url) {
-                LogUtil.log("finished url", url);
                 listener.toggleIndentedProgress(false);
                 svIndented.setVisibility(View.GONE);
                 wvBank.setVisibility(View.VISIBLE);
+                LogUtil.log("url", url);
+                if (url.contains("khalti.com")) {
+                    view.loadUrl("javascript:console.log('MAGIC'+document.getElementsByTagName('html')[0].innerHTML);");
+                }
             }
 
-            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                LogUtil.log("Error", error.getDescription());
                 super.onReceivedError(view, request, error);
                 if (NetworkUtil.isNetworkAvailable(getApplicationContext())) {
                     listener.showIndentedError(ResourceUtil.getString(getApplicationContext(), R.string.generic_error));
@@ -129,8 +115,127 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
                     listener.showIndentedNetworkError();
                 }
             }
+
         });
-        wvBank.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
+        wvBank.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                if (consoleMessage.message().startsWith("MAGIC")) {
+                    String msg = consoleMessage.message().substring(5); // strip off prefix
+                    String message = "<html>\n" +
+                            "    <head></head>\n" +
+                            "    <body>\n" +
+                            "        <div>\n" +
+                            "            <script\n" +
+                            "                src = \"http://192.168.1.103:8000/static/khalti-widget.js\"\n" +
+                            "                data-public_key = \"test_public_key_1104ef89f30b433db0c4d153389c70d1\"\n" +
+                            "                data-amount=\"10000\"\n" +
+                            "                data-return_url = \"http://192.168.1.103:8080/client/spec/widget/verify.html\"\n" +
+                            "                data-button_type = \"mini\"\n" +
+                            "                data-product_identity = \"23\"\n" +
+                            "                data-product_name = \"An awesome product.\"\n" +
+                            "                data-product_url = \"http://localhost:8080/product.html\"\n" +
+                            "                data-merchant_stuff1 = \"1\"\n" +
+                            "                data-merchant_stuff2 = \"2\">\n" +
+                            "            </script>\n" +
+                            "        </div>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "        <br>\n" +
+                            "    </body>\n" +
+                            "</html>";
+
+                    LogUtil.log("data", msg);
+                     /* process HTML */
+                    return true;
+                }
+
+                return false;
+            }
+        });
+//        wvBank.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
+        wvBank.loadUrl(url);
+
     }
 
     @Override

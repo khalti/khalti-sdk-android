@@ -41,10 +41,9 @@ class BankPresenter implements BankContract.Listener {
     public void setupLayout(boolean isNetwork) {
         if (isNetwork) {
             map = mBankView.receiveArguments();
-            mBankView.setUpToolbar(EmptyUtil.isNotNull(map) ? map.get("bankName").toString() : "");
+            mBankView.setUpToolbar(EmptyUtil.isNotNull(map) ? map.get("bankName") + "" : "");
             Config config = DataHolder.getConfig();
             String data = "public_key=" + config.getPublicKey() + "&" +
-                    "return_url=" + "http://192.168.1.103:8080/client/spec/widget/verify.html" + "&" +
                     "product_identity=" + config.getProductId() + "&" +
                     "product_name=" + config.getProductName() + "&" +
                     "product_url=" + config.getProductUrl() + "&" +
@@ -53,7 +52,8 @@ class BankPresenter implements BankContract.Listener {
                     "bank=" + map.get("bankId") +
                     ApiUtil.getPostData(config.getAdditionalData());
 
-            mBankView.setupWebView(ApiHelper.getUrl() + "ebanking/initiate/", data);
+            String url = ApiHelper.getUrl() + "ebanking/initiate/";
+            mBankView.setupWebView("https://khalti.com/", data);
         } else {
             mBankView.showIndentedNetworkError();
         }
