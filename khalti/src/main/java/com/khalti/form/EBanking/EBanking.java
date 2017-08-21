@@ -30,12 +30,13 @@ import com.khalti.carbonX.widget.ProgressBar;
 import com.khalti.carbonX.widget.TextInputLayout;
 import com.khalti.form.CheckOutActivity;
 import com.khalti.form.EBanking.chooseBank.BankChooserActivity;
+import com.khalti.form.EBanking.loadBank.BankingActivity;
+import com.utila.ActivityUtil;
 import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
 import com.utila.ResourceUtil;
 import com.utila.UserInterfaceUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,8 +59,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     private FragmentActivity fragmentActivity;
     private EBankingContract.Listener listener;
 
-    private List<String> bankIds = new ArrayList<>();
-    private String bankId;
+    private String bankId, bankName;
 
     @Override
 
@@ -78,10 +78,9 @@ public class EBanking extends Fragment implements EBankingContract.View {
         etMobile = mainView.findViewById(R.id.etMobile);
         tilMobile = mainView.findViewById(R.id.tilMobile);
         btnPay = mainView.findViewById(R.id.btnPay);
-
         listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
-        btnPay.setOnClickListener(view -> listener.continuePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString(), bankId));
+        btnPay.setOnClickListener(view -> listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString(), bankId, bankName));
         return mainView;
     }
 
@@ -116,7 +115,6 @@ public class EBanking extends Fragment implements EBankingContract.View {
         spBank.setVisibility(View.VISIBLE);
         flBank.setVisibility(View.GONE);
         ArrayAdapter<String> bankAdapter = new ArrayAdapter<>(fragmentActivity, android.R.layout.simple_list_item_1, (List<String>) banks);
-        this.bankIds = (List<String>) bankIds;
 
         bankAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 
@@ -127,6 +125,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 bankId = ((List<String>) bankIds).get(i);
+                bankName = ((List<String>) banks).get(i);
             }
 
             @Override
@@ -170,6 +169,11 @@ public class EBanking extends Fragment implements EBankingContract.View {
         } else {
             etMobile.addTextChangedListener(null);
         }
+    }
+
+    @Override
+    public void toggleButton(boolean enabled) {
+        btnPay.setEnabled(enabled);
     }
 
     @Override
@@ -236,6 +240,11 @@ public class EBanking extends Fragment implements EBankingContract.View {
         bundle.putSerializable("map", dataMap);
         intent.putExtras(bundle);
         startActivityForResult(intent, 1007);
+    }
+
+    @Override
+    public void openEBanking(HashMap<String, Object> dataMap) {
+        ActivityUtil.openActivity(BankingActivity.class, fragmentActivity, true, dataMap, true);
     }
 
     @Override

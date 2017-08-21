@@ -27,12 +27,12 @@ public class ApiHelper {
     private int HTTP_STATUS_CODE;
     private String HTTP_ERROR;
 
-    public static KhaltiApi apiBuilder() {
-        String url = "http://a.khalti.com/";
-//        String url = "https://khalti.com/";
-//        String url = "http://192.168.1.103:8000/";
-//        String url = "https://kumarjewelersinc.com/";
+//    private static String url = "http://a.khalti.com/";
+//    private static String url = "https://khalti.com/";
+    private static String url = "http://192.168.1.103:8000/";
+//    private static String url = "https://kumarjewelersinc.com/";
 
+    public static KhaltiApi apiBuilder() {
         /*Logging*/
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -119,5 +119,9 @@ public class ApiHelper {
         void onError(String errorMessage);
 
         void onNext(Object o);
+    }
+
+    public static String getUrl() {
+        return url;
     }
 }

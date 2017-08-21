@@ -27,6 +27,7 @@ class EBankingPresenter implements EBankingContract.Listener {
 
     @Override
     public void setUpLayout(boolean hasNetwork) {
+        mEBankingView.toggleButton(false);
         mEBankingView.showBankField();
         mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(DataHolder.getConfig().getAmount())));
         if (hasNetwork) {
@@ -34,6 +35,7 @@ class EBankingPresenter implements EBankingContract.Listener {
             eBankingModel.fetchBankList(new EBankingModel.BankAction() {
                 @Override
                 public void onCompleted(Object bankList) {
+                    mEBankingView.toggleButton(true);
                     mEBankingView.toggleProgressBar(false);
                     if (bankList instanceof HashMap) {
                         HashMap<?, ?> map = (HashMap<?, ?>) bankList;
@@ -79,10 +81,15 @@ class EBankingPresenter implements EBankingContract.Listener {
     }
 
     @Override
-    public void continuePayment(boolean isNetwork, String mobile, String bankId) {
+    public void initiatePayment(boolean isNetwork, String mobile, String bankId, String bankName) {
         if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
             if (isNetwork) {
-                mEBankingView.showMessageDialog("Success", "Something");
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("mobile", mobile);
+                map.put("bankId", bankId);
+                map.put("bankName", bankName);
+
+                mEBankingView.openEBanking(map);
             } else {
                 mEBankingView.showNetworkError();
             }

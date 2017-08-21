@@ -21,5 +21,10 @@
             android:name=".form.EBanking.chooseBank.BankChooserActivity"
             android:label="@string/blank"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".form.EBanking.loadBank.BankingActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

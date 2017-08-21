@@ -17,7 +17,8 @@ public class ActivityUtil {
 
         if (hasData) {
             Bundle bundle = new Bundle();
-            intent.putExtra("map", data);
+            bundle.putSerializable("map", data);
+            intent.putExtra("bundle", bundle);
         }
 
         context.startActivity(intent);

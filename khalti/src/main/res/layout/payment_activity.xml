@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cdlMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,29 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbarHeight"
         android:background="@color/white"
         android:orientation="vertical">
-
-        <com.khalti.carbonX.widget.FrameLayout
-            android:id="@+id/flClose"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="@dimen/carbonX_paddingHalf"
-            android:layout_marginRight="@dimen/carbonX_paddingHalf"
-            android:layout_marginTop="@dimen/carbonX_paddingHalf"
-            khalti:carbonX_cornerRadius="18dp"
-            khalti:carbonX_rippleColor="@color/defaultRipple"
-            khalti:carbonX_rippleStyle="over">
-
-            <fontana.MaterialIconTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/close"
-                android:textColor="@color/primaryText"
-                android:textSize="@dimen/title" />
-        </com.khalti.carbonX.widget.FrameLayout>
 
         <ImageView
             android:id="@+id/ivIcon"
@@ -64,4 +42,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight"
+        android:background="@color/white"
+        app:elevation="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 </android.support.design.widget.CoordinatorLayout>

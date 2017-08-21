@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/svIndented"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbarHeight"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/llIndented"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/globalPadding">
+
+            <ImageView
+                android:id="@+id/ivMessage"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/cardPadding"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:src="@mipmap/khalti_logo" />
+
+            <fontana.RobotoTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/singleBottomMargin"
+                android:text="@string/app_name"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/head" />
+
+            <com.khalti.carbonX.widget.ProgressBar
+                android:id="@+id/pdLoad"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="42dp"
+                android:background="@color/disabled"
+                app:carbonX_progressStyle="bar_indeterminate"
+                app:carbonX_tint="@color/colorAccent" />
+        </LinearLayout>
+    </ScrollView>
+
+    <WebView
+        android:id="@+id/wvBank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbarHeight"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight"
+        android:background="@color/white"
+        app:elevation="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+</FrameLayout>

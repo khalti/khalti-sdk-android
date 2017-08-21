@@ -9,6 +9,7 @@ import java.util.Iterator;
 
 public class ErrorUtil {
     public static String parseError(String json) {
+        LogUtil.log("Error", json);
         String defaultError = "Something went wrong.";
         if (EmptyUtil.isNull(json)) {
             return defaultError;

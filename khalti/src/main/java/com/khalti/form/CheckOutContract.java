@@ -6,9 +6,9 @@ interface CheckOutContract {
 
         void setUpTabLayout();
 
-        void toggleTab(int position, boolean selected);
+        void setUpToolbar();
 
-        void closeForm();
+        void toggleTab(int position, boolean selected);
 
         void setListener(Listener listener);
     }
@@ -17,7 +17,5 @@ interface CheckOutContract {
         void setUpLayout();
 
         void toggleTab(int position, boolean selected);
-
-        void closeForm();
     }
 }

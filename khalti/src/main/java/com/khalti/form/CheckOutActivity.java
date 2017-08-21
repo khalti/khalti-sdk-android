@@ -5,12 +5,13 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.khalti.R;
-import com.khalti.carbonX.widget.FrameLayout;
 import com.khalti.form.EBanking.EBanking;
 import com.khalti.form.Wallet.Wallet;
 import com.khalti.utils.ViewPagerAdapter;
@@ -26,8 +27,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
     private TabLayout tlTitle;
     private ViewPager vpContent;
-
     public CoordinatorLayout cdlMain;
+    public Toolbar toolbar;
 
     private CheckOutContract.Listener listener;
     private List<TabLayout.Tab> tabs = new ArrayList<>();
@@ -39,12 +40,10 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
         tlTitle = (TabLayout) findViewById(R.id.tlTitle);
         vpContent = (ViewPager) findViewById(R.id.vpContent);
-        FrameLayout flClose = (FrameLayout) findViewById(R.id.flClose);
         cdlMain = (CoordinatorLayout) findViewById(R.id.cdlMain);
 
         listener = new CheckOutPresenter(this);
         listener.setUpLayout();
-        flClose.setOnClickListener(view -> listener.closeForm());
     }
 
     @Override
@@ -110,6 +109,18 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
+    public void setUpToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24px);
+        }
+    }
+
+    @Override
     public void toggleTab(int position, boolean selected) {
         LinearLayout ll = (LinearLayout) tabs.get(position).getCustomView();
         if (EmptyUtil.isNotNull(ll)) {
@@ -127,12 +138,18 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void closeForm() {
-        finish();
+    public void setListener(CheckOutContract.Listener listener) {
+        this.listener = listener;
     }
 
     @Override
-    public void setListener(CheckOutContract.Listener listener) {
-        this.listener = listener;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
