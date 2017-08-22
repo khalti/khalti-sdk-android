@@ -19,6 +19,8 @@ interface BankContract {
 
         void showIndentedNetworkError();
 
+        void updateToolbarTitle(String title);
+
         void close();
 
         void setListener(BankContract.Listener listener);
@@ -34,6 +36,8 @@ interface BankContract {
         void showIndentedNetworkError();
 
         void setupLayout(boolean isNetwork);
+
+        void updateToolbarTitle(String title);
 
         void confirmPayment(String htmlMessage);
     }

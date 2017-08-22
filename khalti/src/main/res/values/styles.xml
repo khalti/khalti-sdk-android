@@ -15,6 +15,10 @@
         <item name="colorAccent">@color/khaltiPrimary</item>
     </style>
 
+    <style name="ToolbarTextStyle" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="EditTextTheme" parent="Theme.AppCompat">
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/secondaryText</item>

@@ -67,5 +67,6 @@
         android:layout_height="@dimen/toolbarHeight"
         android:background="@color/white"
         app:elevation="0dp"
+        app:titleTextAppearance="@style/ToolbarTextStyle"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 </FrameLayout>

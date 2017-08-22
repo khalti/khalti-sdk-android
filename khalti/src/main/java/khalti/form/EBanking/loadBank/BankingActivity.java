@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.khalti.R;
-import khalti.carbonX.widget.ProgressBar;
 import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
 import com.utila.ResourceUtil;
@@ -27,6 +26,7 @@ import org.apache.http.util.EncodingUtils;
 import java.util.HashMap;
 
 import fontana.RobotoTextView;
+import khalti.carbonX.widget.ProgressBar;
 
 public class BankingActivity extends AppCompatActivity implements BankContract.View {
     private BankContract.Listener listener;
@@ -97,8 +97,7 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
 
             public void onPageFinished(WebView view, String url) {
                 listener.toggleIndentedProgress(url.contains("ebanking/confirm"), ResourceUtil.getString(BankingActivity.this, R.string.confirming_payment));
-
-//                LogUtil.log("url", url);
+                listener.updateToolbarTitle(url);
                 if (url.contains("ebanking/confirm") && !url.toLowerCase().contains("none")) {
                     view.loadUrl("javascript:console.log('KHALTI'+document.getElementsByTagName('html')[0].innerHTML);");
                 } else {
@@ -161,6 +160,11 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
         pdLoad.setVisibility(View.GONE);
         svIndented.setVisibility(View.VISIBLE);
         tvMessage.setText(ResourceUtil.getString(this, R.string.network_error_body));
+    }
+
+    @Override
+    public void updateToolbarTitle(String title) {
+        toolbar.setTitle(title);
     }
 
     @Override

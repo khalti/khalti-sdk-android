@@ -2,15 +2,16 @@ package khalti.form.EBanking.loadBank;
 
 import android.support.annotation.NonNull;
 
-import khalti.form.ApiHelper;
-import khalti.form.api.Config;
-import khalti.utils.DataHolder;
 import com.utila.ApiUtil;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
 import com.utila.HtmlUtil;
 
 import java.util.HashMap;
+
+import khalti.form.ApiHelper;
+import khalti.form.api.Config;
+import khalti.utils.DataHolder;
 
 class BankPresenter implements BankContract.Listener {
 
@@ -58,6 +59,11 @@ class BankPresenter implements BankContract.Listener {
         } else {
             mBankView.showIndentedError("Something went wsrong");
         }
+    }
+
+    @Override
+    public void updateToolbarTitle(String title) {
+        mBankView.updateToolbarTitle(title);
     }
 
     @Override
