@@ -41,7 +41,7 @@
                 android:textColor="@color/primaryText"
                 android:textSize="@dimen/head" />
 
-            <com.khalti.carbonX.widget.ProgressBar
+            <khalti.carbonX.widget.ProgressBar
                 android:id="@+id/pdLoad"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"

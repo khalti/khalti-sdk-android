@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.khalti.carbonX.widget.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<khalti.carbonX.widget.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,4 +19,4 @@
         android:textAllCaps="true"
         android:textColor="@color/khaltiAccent"
         android:textSize="@dimen/body" />
-</com.khalti.carbonX.widget.FrameLayout>
+</khalti.carbonX.widget.FrameLayout>
