@@ -17,12 +17,16 @@ import com.khalti.utils.DataHolder;
 import com.utila.ActivityUtil;
 import com.utila.EmptyUtil;
 
+import java.util.HashMap;
+
 public class Pay extends FrameLayout {
     private Context context;
     private AttributeSet attrs;
 
     private PayContract.Listener listener;
+    private android.widget.FrameLayout flContainer;
     private Button btnPay;
+    private View customView;
 
     public Pay(@NonNull Context context) {
         super(context);
@@ -51,6 +55,12 @@ public class Pay extends FrameLayout {
         DataHolder.setOnSuccessListener(onSuccessListener);
     }
 
+    public void setCustomView(View view) {
+        this.customView = view;
+        listener.setCustomButtonView();
+        listener.setButtonClick();
+    }
+
     private void init() {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.khalti, 0, 0);
         String buttonText = a.getString(R.styleable.khalti_text);
@@ -60,9 +70,10 @@ public class Pay extends FrameLayout {
         View mainView = inflater.inflate(R.layout.component_button, this, true);
 
         btnPay = mainView.findViewById(R.id.btnPay);
+        flContainer = mainView.findViewById(R.id.flContainer);
         listener.setButtonText(buttonText);
 
-        btnPay.setOnClickListener(v -> listener.openForm());
+        listener.setButtonClick();
     }
 
     private class BasicPay implements PayContract.View {
@@ -73,8 +84,23 @@ public class Pay extends FrameLayout {
         }
 
         @Override
+        public void setCustomButtonView() {
+            btnPay.setVisibility(View.GONE);
+            flContainer.addView(customView);
+        }
+
+        @Override
         public void setButtonText(String text) {
             btnPay.setText(text);
+        }
+
+        @Override
+        public void setButtonClick() {
+            if (EmptyUtil.isNotNull(customView)) {
+                flContainer.getChildAt(0).setOnClickListener(view -> listener.openForm());
+            } else {
+                btnPay.setOnClickListener(view -> listener.openForm());
+            }
         }
 
         @Override
@@ -99,6 +125,6 @@ public class Pay extends FrameLayout {
     }
 
     public interface OnSuccessListener {
-        void onSuccess();
+        void onSuccess(HashMap<String, Object> data);
     }
 }

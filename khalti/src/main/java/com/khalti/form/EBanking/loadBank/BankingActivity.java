@@ -1,8 +1,8 @@
 package com.khalti.form.EBanking.loadBank;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -19,9 +19,10 @@ import android.widget.ScrollView;
 import com.khalti.R;
 import com.khalti.carbonX.widget.ProgressBar;
 import com.utila.EmptyUtil;
-import com.utila.LogUtil;
 import com.utila.NetworkUtil;
 import com.utila.ResourceUtil;
+
+import org.apache.http.util.EncodingUtils;
 
 import java.util.HashMap;
 
@@ -48,7 +49,7 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
         tvMessage = (RobotoTextView) findViewById(R.id.tvMessage);
         svIndented = (ScrollView) findViewById(R.id.svIndented);
 
-        new Handler().postDelayed(() -> listener.setupLayout(NetworkUtil.isNetworkAvailable(this)), 100);
+        listener.setupLayout(NetworkUtil.isNetworkAvailable(this));
     }
 
     @Override
@@ -82,9 +83,7 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void setupWebView(String url, String postData) {
-        listener.toggleIndentedProgress(true);
-        svIndented.setVisibility(View.GONE);
-        wvBank.setVisibility(View.VISIBLE);
+        listener.toggleIndentedProgress(true, ResourceUtil.getString(this, R.string.loading_bank));
         wvBank.getSettings().setUseWideViewPort(true);
         wvBank.getSettings().setLoadWithOverviewMode(true);
         wvBank.getSettings().setSupportZoom(true);
@@ -93,16 +92,18 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
         wvBank.getSettings().setJavaScriptEnabled(true);
         wvBank.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return true;
+                return false;
             }
 
             public void onPageFinished(WebView view, String url) {
-                listener.toggleIndentedProgress(false);
-                svIndented.setVisibility(View.GONE);
-                wvBank.setVisibility(View.VISIBLE);
-                LogUtil.log("url", url);
-                if (url.contains("khalti.com")) {
-                    view.loadUrl("javascript:console.log('MAGIC'+document.getElementsByTagName('html')[0].innerHTML);");
+                listener.toggleIndentedProgress(url.contains("ebanking/confirm"), ResourceUtil.getString(BankingActivity.this, R.string.confirming_payment));
+
+//                LogUtil.log("url", url);
+                if (url.contains("ebanking/confirm") && !url.toLowerCase().contains("none")) {
+                    view.loadUrl("javascript:console.log('KHALTI'+document.getElementsByTagName('html')[0].innerHTML);");
+                } else {
+                    svIndented.setVisibility(View.GONE);
+                    wvBank.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -120,131 +121,24 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
         wvBank.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-                if (consoleMessage.message().startsWith("MAGIC")) {
-                    String msg = consoleMessage.message().substring(5); // strip off prefix
-                    String message = "<html>\n" +
-                            "    <head></head>\n" +
-                            "    <body>\n" +
-                            "        <div>\n" +
-                            "            <script\n" +
-                            "                src = \"http://192.168.1.103:8000/static/khalti-widget.js\"\n" +
-                            "                data-public_key = \"test_public_key_1104ef89f30b433db0c4d153389c70d1\"\n" +
-                            "                data-amount=\"10000\"\n" +
-                            "                data-return_url = \"http://192.168.1.103:8080/client/spec/widget/verify.html\"\n" +
-                            "                data-button_type = \"mini\"\n" +
-                            "                data-product_identity = \"23\"\n" +
-                            "                data-product_name = \"An awesome product.\"\n" +
-                            "                data-product_url = \"http://localhost:8080/product.html\"\n" +
-                            "                data-merchant_stuff1 = \"1\"\n" +
-                            "                data-merchant_stuff2 = \"2\">\n" +
-                            "            </script>\n" +
-                            "        </div>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "        <br>\n" +
-                            "    </body>\n" +
-                            "</html>";
-
-                    LogUtil.log("data", msg);
-                     /* process HTML */
+                if (consoleMessage.message().startsWith("KHALTI")) {
+                    listener.confirmPayment(consoleMessage.message().substring(6));
                     return true;
                 }
 
                 return false;
             }
         });
-//        wvBank.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
-        wvBank.loadUrl(url);
-
+        wvBank.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
     }
 
     @Override
-    public void toggleIndentedProgress(boolean show) {
+    public void toggleIndentedProgress(boolean show, String message) {
         if (show) {
             svIndented.setVisibility(View.VISIBLE);
             pdLoad.setBackgroundColor(ResourceUtil.getColor(this, R.color.disabled));
             pdLoad.setVisibility(View.VISIBLE);
-            tvMessage.setText(ResourceUtil.getString(this, R.string.loading_bank));
+            tvMessage.setText(message);
         } else {
             svIndented.setVisibility(View.GONE);
             pdLoad.setBackgroundColor(ResourceUtil.getColor(this, R.color.white));
@@ -256,6 +150,7 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
     public void showIndentedError(String message) {
         wvBank.setVisibility(View.GONE);
         svIndented.setVisibility(View.VISIBLE);
+        pdLoad.setVisibility(View.GONE);
         tvMessage.setText(message);
     }
 
@@ -266,6 +161,13 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
         pdLoad.setVisibility(View.GONE);
         svIndented.setVisibility(View.VISIBLE);
         tvMessage.setText(ResourceUtil.getString(this, R.string.network_error_body));
+    }
+
+    @Override
+    public void close() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override

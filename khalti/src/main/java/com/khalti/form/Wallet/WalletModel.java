@@ -15,6 +15,7 @@ class WalletModel {
     private KhaltiApi khaltiService;
     private ApiHelper apiHelper;
     private WalletInitPojo walletInitPojo;
+    private WalletConfirmPojo walletConfirmPojo;
 
     WalletModel() {
         khaltiService = ApiHelper.apiBuilder();
@@ -40,7 +41,7 @@ class WalletModel {
         return new ApiHelper().callApi(khaltiService.initiatePayment(url, dataMap), new ApiHelper.ApiCallback() {
             @Override
             public void onComplete() {
-                walletAction.onCompleted();
+                walletAction.onCompleted(null);
             }
 
             @Override
@@ -67,7 +68,7 @@ class WalletModel {
         return apiHelper.callApi(khaltiService.confirmPayment(url, dataMap), new ApiHelper.ApiCallback() {
             @Override
             public void onComplete() {
-                walletAction.onCompleted();
+                walletAction.onCompleted(walletInitPojo);
             }
 
             @Override
@@ -77,13 +78,12 @@ class WalletModel {
 
             @Override
             public void onNext(Object o) {
-
             }
         });
     }
 
     interface WalletAction {
-        void onCompleted();
+        void onCompleted(Object o);
 
         void onError(String message);
     }

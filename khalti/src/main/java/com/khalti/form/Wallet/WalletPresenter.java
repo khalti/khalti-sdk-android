@@ -3,15 +3,17 @@ package com.khalti.form.Wallet;
 import android.support.annotation.NonNull;
 
 import com.khalti.R;
+import com.khalti.form.api.Config;
 import com.khalti.utils.DataHolder;
 import com.khalti.utils.Event;
 import com.khalti.widget.basic.Pay;
 import com.utila.EmptyUtil;
-import com.utila.ErrorUtil;
 import com.utila.GuavaUtil;
 import com.utila.NumberUtil;
 import com.utila.StringUtil;
 import com.utila.ValidationUtil;
+
+import java.util.HashMap;
 
 import rx.subscriptions.CompositeSubscription;
 
@@ -69,7 +71,7 @@ class WalletPresenter implements WalletContract.Listener {
                 compositeSubscription = new CompositeSubscription();
                 compositeSubscription.add(walletModel.initiatePayment(mobile, DataHolder.getConfig(), new WalletModel.WalletAction() {
                     @Override
-                    public void onCompleted() {
+                    public void onCompleted(Object o) {
                         mWalletView.toggleSmsListener(!smsListenerInitialized);
                         smsListenerInitialized = true;
                         mWalletView.toggleProgressDialog("init", false);
@@ -79,11 +81,10 @@ class WalletPresenter implements WalletContract.Listener {
                     @Override
                     public void onError(String message) {
                         mWalletView.toggleProgressDialog("init", false);
-                        String error = ErrorUtil.parseError(message);
-                        if (error.contains("</a>")) {
+                        if (message.contains("</a>")) {
                             mWalletView.showInteractiveMessageDialog("Error", mWalletView.getStringFromResource(R.string.pin_not_set));
                         } else {
-                            mWalletView.showMessageDialog("Error", error);
+                            mWalletView.showMessageDialog("Error", message);
                         }
                     }
                 }));
@@ -108,17 +109,27 @@ class WalletPresenter implements WalletContract.Listener {
 
                 compositeSubscription.add(walletModel.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
                     @Override
-                    public void onCompleted() {
+                    public void onCompleted(Object o) {
+                        WalletInitPojo walletInitPojo = (WalletInitPojo) o;
                         mWalletView.toggleProgressDialog("confirm", false);
                         Pay.OnSuccessListener onSuccessListener = DataHolder.getOnSuccessListener();
-                        onSuccessListener.onSuccess();
+                        HashMap<String, Object> data = new HashMap<>();
+                        Config config = DataHolder.getConfig();
+                        data.putAll(EmptyUtil.isNotNull(config.getAdditionalData()) ? config.getAdditionalData() : new HashMap<>());
+                        data.put("amount", config.getAmount());
+                        data.put("product_url", config.getProductUrl());
+                        data.put("token", walletInitPojo.getToken());
+                        data.put("product_name", config.getProductName());
+                        data.put("product_identity", config.getProductId());
+
+                        onSuccessListener.onSuccess(data);
                         mWalletView.closeWidget();
                     }
 
                     @Override
                     public void onError(String message) {
                         mWalletView.toggleProgressDialog("confirm", false);
-                        mWalletView.showMessageDialog("Error", ErrorUtil.parseError(message));
+                        mWalletView.showMessageDialog("Error", message);
                     }
                 }));
             } else {

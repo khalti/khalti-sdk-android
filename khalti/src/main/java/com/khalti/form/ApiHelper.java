@@ -27,9 +27,9 @@ public class ApiHelper {
     private int HTTP_STATUS_CODE;
     private String HTTP_ERROR;
 
-    private static String url = "http://a.khalti.com/";
+    //    private static String url = "http://a.khalti.com/";
 //    private static String url = "https://khalti.com/";
-//    private static String url = "http://192.168.1.103:8000/";
+    private static String url = "http://192.168.1.103:8000/";
 //    private static String url = "https://kumarjewelersinc.com/";
 
     public static KhaltiApi apiBuilder() {
@@ -88,29 +88,6 @@ public class ApiHelper {
                         }
                     }
                 });
-        /*if (isValid) {
-
-        } else {
-            return Observable.just("SSL Certificate Error Occurred")
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<String>() {
-                        @Override
-                        public void onCompleted() {
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            callback.onError(e.getMessage());
-                        }
-
-                        @Override
-                        public void onNext(String s) {
-                            callback.onError(s);
-                        }
-                    });
-        }*/
     }
 
     public interface ApiCallback {

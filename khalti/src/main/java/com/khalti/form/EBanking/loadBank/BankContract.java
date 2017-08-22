@@ -13,11 +13,13 @@ interface BankContract {
 
         void setupWebView(String url, String postData);
 
-        void toggleIndentedProgress(boolean show);
+        void toggleIndentedProgress(boolean show, String message);
 
         void showIndentedError(String message);
 
         void showIndentedNetworkError();
+
+        void close();
 
         void setListener(BankContract.Listener listener);
     }
@@ -25,12 +27,14 @@ interface BankContract {
 
     interface Listener {
 
-        void toggleIndentedProgress(boolean show);
+        void toggleIndentedProgress(boolean show, String message);
 
         void showIndentedError(String message);
 
         void showIndentedNetworkError();
 
         void setupLayout(boolean isNetwork);
+
+        void confirmPayment(String htmlMessage);
     }
 }

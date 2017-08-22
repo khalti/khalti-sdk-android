@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
@@ -15,6 +14,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.khalti.R;
 import com.khalti.SmsListener;
@@ -39,7 +39,7 @@ import rx.subscriptions.CompositeSubscription;
 
 public class Wallet extends Fragment implements WalletContract.View {
 
-    private TextInputEditText etMobile, etCode, etPIN;
+    private EditText etMobile, etCode, etPIN;
     private TextInputLayout tilMobile, tilCode, tilPIN;
     private ExpandableLayout elConfirmation;
     private Button btnPay;
@@ -99,66 +99,60 @@ public class Wallet extends Fragment implements WalletContract.View {
 
     @Override
     public void setEditTextListener() {
-        if (EmptyUtil.isNotNull(etMobile)) {
-            etMobile.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        etMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tilMobile.setErrorEnabled(false);
+                if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
+                    listener.toggleConfirmationLayout(false);
                 }
+            }
 
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    tilMobile.setErrorEnabled(false);
-                    if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
-                        listener.toggleConfirmationLayout(false);
-                    }
-                }
+            @Override
+            public void afterTextChanged(Editable editable) {
 
-                @Override
-                public void afterTextChanged(Editable editable) {
+            }
+        });
 
-                }
-            });
+        etCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tilCode.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        etPIN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tilPIN.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         }
-
-        if (EmptyUtil.isNotNull(etCode)) {
-            etCode.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    tilCode.setErrorEnabled(false);
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-
-                }
-            });
-        }
-
-        if (EmptyUtil.isNotNull(etPIN)) {
-            etPIN.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    tilPIN.setErrorEnabled(false);
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-
-                }
-            });
-        }
-    }
 
     @Override
     public void toggleProgressDialog(String action, boolean show) {

@@ -8,6 +8,7 @@ import com.khalti.utils.DataHolder;
 import com.utila.ApiUtil;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
+import com.utila.HtmlUtil;
 
 import java.util.HashMap;
 
@@ -15,7 +16,6 @@ class BankPresenter implements BankContract.Listener {
 
     @NonNull
     private final BankContract.View mBankView;
-    private HashMap<?, ?> map;
 
     BankPresenter(@NonNull BankContract.View mBankView) {
         this.mBankView = GuavaUtil.checkNotNull(mBankView);
@@ -23,8 +23,8 @@ class BankPresenter implements BankContract.Listener {
     }
 
     @Override
-    public void toggleIndentedProgress(boolean show) {
-        mBankView.toggleIndentedProgress(show);
+    public void toggleIndentedProgress(boolean show, String message) {
+        mBankView.toggleIndentedProgress(show, message);
     }
 
     @Override
@@ -39,23 +39,30 @@ class BankPresenter implements BankContract.Listener {
 
     @Override
     public void setupLayout(boolean isNetwork) {
-        if (isNetwork) {
-            map = mBankView.receiveArguments();
-            mBankView.setUpToolbar(EmptyUtil.isNotNull(map) ? map.get("bankName") + "" : "");
+        HashMap<?, ?> map = mBankView.receiveArguments();
+        if (EmptyUtil.isNotNull(map)) {
+            mBankView.setUpToolbar(map.get("bankName").toString());
             Config config = DataHolder.getConfig();
             String data = "public_key=" + config.getPublicKey() + "&" +
                     "product_identity=" + config.getProductId() + "&" +
                     "product_name=" + config.getProductName() + "&" +
-                    "product_url=" + config.getProductUrl() + "&" +
                     "amount=" + config.getAmount() + "&" +
                     "mobile=" + map.get("mobile") + "&" +
-                    "bank=" + map.get("bankId") +
+                    "bank=" + map.get("bankId") + "&" +
+                    "via_mobile=" + true + "&" +
+                    "product_url=" + config.getProductUrl() +
                     ApiUtil.getPostData(config.getAdditionalData());
 
             String url = ApiHelper.getUrl() + "ebanking/initiate/";
-            mBankView.setupWebView("https://khalti.com/", data);
+            mBankView.setupWebView(url, data);
         } else {
-            mBankView.showIndentedNetworkError();
+            mBankView.showIndentedError("Something went wsrong");
         }
+    }
+
+    @Override
+    public void confirmPayment(String htmlMessage) {
+        DataHolder.getOnSuccessListener().onSuccess(HtmlUtil.getData(htmlMessage));
+        mBankView.close();
     }
 }

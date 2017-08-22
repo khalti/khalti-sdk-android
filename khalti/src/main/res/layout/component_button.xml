@@ -20,4 +20,10 @@
         app:carbonX_elevation="2dp"
         app:carbonX_rippleColor="@color/defaultRipple"
         app:carbonX_textAllCaps="true" />
+
+    <FrameLayout
+        android:id="@+id/flContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 </com.khalti.carbonX.widget.FrameLayout>

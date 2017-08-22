@@ -45,7 +45,7 @@
                     android:theme="@style/EditTextTheme"
                     app:mainHintTextSize="16sp">
 
-                    <android.support.design.widget.TextInputEditText
+                    <EditText
                         android:id="@+id/etMobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
                             android:theme="@style/EditTextTheme"
                             app:mainHintTextSize="16sp">
 
-                            <android.support.design.widget.TextInputEditText
+                            <EditText
                                 android:id="@+id/etCode"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
                             android:theme="@style/EditTextTheme"
                             app:mainHintTextSize="16sp">
 
-                            <android.support.design.widget.TextInputEditText
+                            <EditText
                                 android:id="@+id/etPIN"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

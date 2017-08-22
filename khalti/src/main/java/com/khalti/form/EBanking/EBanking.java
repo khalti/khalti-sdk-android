@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
 import android.support.transition.ChangeBounds;
 import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
@@ -20,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -31,7 +31,6 @@ import com.khalti.carbonX.widget.TextInputLayout;
 import com.khalti.form.CheckOutActivity;
 import com.khalti.form.EBanking.chooseBank.BankChooserActivity;
 import com.khalti.form.EBanking.loadBank.BankingActivity;
-import com.utila.ActivityUtil;
 import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
 import com.utila.ResourceUtil;
@@ -52,7 +51,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     private Spinner spBank;
     private FrameLayout flBank;
     private RobotoTextView tvBank, tvBankId;
-    private TextInputEditText etMobile;
+    private EditText etMobile;
     private TextInputLayout tilMobile;
     private Button btnPay;
 
@@ -151,27 +150,23 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void toggleEditTextListener(boolean set) {
-        if (set) {
-            etMobile.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        etMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                }
+            }
 
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    tilMobile.setErrorEnabled(false);
-                    listener.setErrorAnimation();
-                }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tilMobile.setErrorEnabled(false);
+                listener.setErrorAnimation();
+            }
 
-                @Override
-                public void afterTextChanged(Editable editable) {
+            @Override
+            public void afterTextChanged(Editable editable) {
 
-                }
-            });
-        } else {
-            etMobile.addTextChangedListener(null);
-        }
+            }
+        });
     }
 
     @Override
@@ -247,7 +242,11 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void openEBanking(HashMap<String, Object> dataMap) {
-        ActivityUtil.openActivity(BankingActivity.class, fragmentActivity, true, dataMap, true);
+        Intent intent = new Intent(fragmentActivity, BankingActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("map", dataMap);
+        intent.putExtra("bundle", bundle);
+        startActivityForResult(intent, 2007);
     }
 
     @Override
@@ -262,6 +261,11 @@ public class EBanking extends Fragment implements EBankingContract.View {
             case 1007:
                 if (resultCode == RESULT_OK && EmptyUtil.isNotNull(data)) {
                     listener.updateBankItem(data.getStringExtra("name"), data.getStringExtra("id"));
+                }
+                break;
+            case 2007:
+                if (resultCode == RESULT_OK) {
+                    fragmentActivity.finish();
                 }
                 break;
         }

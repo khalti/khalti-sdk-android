@@ -16,8 +16,18 @@ class PayPresenter implements PayContract.Listener {
     }
 
     @Override
+    public void setCustomButtonView() {
+        mPayView.setCustomButtonView();
+    }
+
+    @Override
     public void setButtonText(String text) {
         mPayView.setButtonText(text);
+    }
+
+    @Override
+    public void setButtonClick() {
+        mPayView.setButtonClick();
     }
 
     @Override

@@ -7,6 +7,8 @@ import com.khalti.form.api.Config;
 import com.khalti.widget.basic.Pay;
 import com.utila.LogUtil;
 
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,10 +28,11 @@ public class Sample extends AppCompatActivity {
         kpPay.setConfig(new Config(pub, "123", "Gaida Churot", "http://churot.com/gaida", 1000L));
         kpPay.setOnSuccessListener(new Pay.OnSuccessListener() {
             @Override
-            public void onSuccess() {
-                LogUtil.checkpoint("Payment confirmed");
+            public void onSuccess(HashMap<String, Object> data) {
+                LogUtil.log("Payment confirmed", data);
             }
         });
+        kpPay.setCustomView(getLayoutInflater().inflate(R.layout.component_image_button, null));
     }
 
     @Override
