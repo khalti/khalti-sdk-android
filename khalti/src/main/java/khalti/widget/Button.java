@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.khalti.R;
 import com.utila.ActivityUtil;
@@ -24,9 +25,12 @@ public class Button extends FrameLayout {
     private AttributeSet attrs;
 
     private ButtonContract.Listener listener;
-    private android.widget.FrameLayout flContainer;
+    private android.widget.FrameLayout flCustomView;
+    private FrameLayout flStyle;
+    private ImageView ivButtoStyle;
     private khalti.carbonX.widget.Button btnPay;
     private View customView;
+    private int buttonStyle;
 
     public Button(@NonNull Context context) {
         super(context);
@@ -61,18 +65,27 @@ public class Button extends FrameLayout {
         listener.setButtonClick();
     }
 
+    public void setButtonStyle(ButtonStyle buttonStyle) {
+        this.buttonStyle = buttonStyle.getId();
+        listener.setButtonStyle(this.buttonStyle);
+        listener.setButtonClick();
+    }
+
     private void init() {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.khalti, 0, 0);
         String buttonText = a.getString(R.styleable.khalti_text);
+        buttonStyle = a.getInt(R.styleable.khalti_button_style, -1);
         a.recycle();
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mainView = inflater.inflate(R.layout.component_button, this, true);
 
         btnPay = mainView.findViewById(R.id.btnPay);
-        flContainer = mainView.findViewById(R.id.flContainer);
-        listener.setButtonText(buttonText);
+        flCustomView = mainView.findViewById(R.id.flCustomView);
+        flStyle = mainView.findViewById(R.id.flStyle);
 
+        listener.setButtonText(buttonText);
+        listener.setButtonStyle(buttonStyle);
         listener.setButtonClick();
     }
 
@@ -90,7 +103,21 @@ public class Button extends FrameLayout {
         @Override
         public void setCustomButtonView() {
             btnPay.setVisibility(View.GONE);
-            flContainer.addView(customView);
+            flCustomView.addView(customView);
+        }
+
+        @Override
+        public void setButtonStyle(int id) {
+            int imageId = -1;
+            switch (id) {
+                case 0:
+                    imageId = R.mipmap.full_button;
+            }
+            if (imageId != -1) {
+                btnPay.setVisibility(GONE);
+                flCustomView.setVisibility(View.GONE);
+                flStyle.setBackgroundResource(imageId);
+            }
         }
 
         @Override
@@ -101,7 +128,9 @@ public class Button extends FrameLayout {
         @Override
         public void setButtonClick() {
             if (EmptyUtil.isNotNull(customView)) {
-                flContainer.getChildAt(0).setOnClickListener(view -> listener.openForm());
+                flCustomView.getChildAt(0).setOnClickListener(view -> listener.openForm());
+            } else if (buttonStyle != -1) {
+                flStyle.setOnClickListener(view -> listener.openForm());
             } else {
                 btnPay.setOnClickListener(view -> listener.openForm());
             }

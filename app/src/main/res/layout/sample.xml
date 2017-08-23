@@ -8,8 +8,9 @@
 
     <khalti.widget.Button
         android:id="@+id/kpPay"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        khalti:button_style="full_button"
         khalti:text="Pay Rs 200" />
 </LinearLayout>

@@ -8,6 +8,8 @@ interface ButtonContract {
 
         void setCustomButtonView();
 
+        void setButtonStyle(int id);
+
         void setButtonText(String text);
 
         void setButtonClick();
@@ -20,6 +22,8 @@ interface ButtonContract {
     interface Listener {
 
         void setCustomButtonView();
+
+        void setButtonStyle(int id);
 
         void setButtonText(String text);
 

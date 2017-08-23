@@ -292,6 +292,9 @@
 
     <declare-styleable name="khalti">
         <attr name="text" format="string" />
+        <attr name="button_style" format="enum">
+            <enum name="full_button" value="0" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="TextInputLayout">

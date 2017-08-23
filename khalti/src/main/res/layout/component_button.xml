@@ -22,8 +22,17 @@
         app:carbonX_textAllCaps="true" />
 
     <FrameLayout
-        android:id="@+id/flContainer"
+        android:id="@+id/flCustomView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
+
+    <khalti.carbonX.widget.FrameLayout
+        android:id="@+id/flStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:carbonX_cornerRadius="5dp"
+        app:carbonX_rippleColor="@color/defaultRipple"
+        app:carbonX_rippleStyle="over" />
 </khalti.carbonX.widget.FrameLayout>

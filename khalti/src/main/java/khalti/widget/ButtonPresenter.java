@@ -22,6 +22,11 @@ class ButtonPresenter implements ButtonContract.Listener {
     }
 
     @Override
+    public void setButtonStyle(int id) {
+        mPayView.setButtonStyle(id);
+    }
+
+    @Override
     public void setButtonText(String text) {
         mPayView.setButtonText(text);
     }
