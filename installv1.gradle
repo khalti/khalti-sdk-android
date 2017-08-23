@@ -25,7 +25,7 @@ install {
                 }
                 developers {
                     developer {
-                        id 'khalti'
+                        id 'khalti-official'
                         name 'Khalti Official'
                         email 'info@khalti.com'
                     }

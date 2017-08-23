@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 
 ext {
-    bintrayRepo = 'maven'
+    bintrayRepo = 'khalti'
     bintrayName = 'khalti-checkout'
 
     publishedGroupId = 'com.khalti'
@@ -16,7 +16,7 @@ ext {
 
     libraryVersion = rootProject.ext.appVersionCode
 
-    developerId = 'khalti'
+    developerId = 'khalti-official'
     developerName = 'Khalti Official'
     developerEmail = 'info@khalti.com'
 
@@ -62,6 +62,16 @@ android {
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
+    }
 }
 
 dependencies {
@@ -102,5 +112,5 @@ dependencies {
 }
 
 
-apply from: 'https://github.com/janakitech/khalti-android/blob/develop/installv1.gradle'
-apply from: 'https://github.com/janakitech/khalti-android/blob/develop/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/janakitech/khalti-android/develop/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/janakitech/khalti-android/develop/bintrayv1.gradle'

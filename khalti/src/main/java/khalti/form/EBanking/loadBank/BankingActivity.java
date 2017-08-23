@@ -18,6 +18,7 @@ import android.widget.ScrollView;
 
 import com.khalti.R;
 import com.utila.EmptyUtil;
+import com.utila.LogUtil;
 import com.utila.NetworkUtil;
 import com.utila.ResourceUtil;
 
@@ -104,6 +105,7 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
                     svIndented.setVisibility(View.GONE);
                     wvBank.setVisibility(View.VISIBLE);
                 }
+
             }
 
             @Override
@@ -121,7 +123,8 @@ public class BankingActivity extends AppCompatActivity implements BankContract.V
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 if (consoleMessage.message().startsWith("KHALTI")) {
-                    listener.confirmPayment(consoleMessage.message().substring(6));
+                    LogUtil.log("message", consoleMessage.message());
+//                    listener.confirmPayment(consoleMessage.message().substring(6));
                     return true;
                 }
 

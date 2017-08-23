@@ -46,7 +46,7 @@ bintray {
         vcsUrl = gitUrl
         licenses = allLicenses
         publish = true
-        publicDownloadNumbers = true
+        publicDownloadNumbers = false
         version {
             desc = libraryDescription
             gpg {
