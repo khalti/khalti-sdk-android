@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/janakitech/khalti-android'
     gitUrl = 'https://github.com/janakitech/khalti-android.git'
 
-    libraryVersion = rootProject.ext.appVersionCode
+    libraryVersion = rootProject.ext.appVersionName
 
     developerId = 'khalti-official'
     developerName = 'Khalti Official'

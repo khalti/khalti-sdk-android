@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = rootProject.ext.appVersionCode
+version = rootProject.ext.appVersionName
 
 if (project.hasProperty("android")) { // Android libraries
     task sourcesJar(type: Jar) {
