@@ -1,6 +1,30 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'khalti-checkout'
+
+    publishedGroupId = 'com.khalti'
+    libraryName = 'KhaltiCheckout'
+    artifact = 'khalti-checkout'
+
+    libraryDescription = 'A Khalti payment widget for android'
+
+    siteUrl = 'https://github.com/janakitech/khalti-android'
+    gitUrl = 'https://github.com/janakitech/khalti-android.git'
+
+    libraryVersion = rootProject.ext.appVersionCode
+
+    developerId = 'khalti'
+    developerName = 'Khalti Official'
+    developerEmail = 'info@khalti.com'
+
+    licenseName = 'The MIT License'
+    licenseUrl = 'https://opensource.org/licenses/mit-license.php'
+    allLicenses = ["MIT"]
+}
+
 android {
     compileSdkVersion rootProject.ext.targetSdk
     buildToolsVersion rootProject.ext.buildToolVersion
@@ -76,3 +100,7 @@ dependencies {
     compile project(':fontana')
     compile project(':utila')
 }
+
+
+apply from: 'https://github.com/janakitech/khalti-android/blob/develop/installv1.gradle'
+apply from: 'https://github.com/janakitech/khalti-android/blob/develop/bintrayv1.gradle'

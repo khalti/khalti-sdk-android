@@ -1,0 +1,42 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.khalti'
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.khalti'
+                artifactId 'khalti-checkout'
+
+                // Add your description here
+                name 'khaltiCheckout'
+                description libraryDescription
+                url 'https://github.com/janakitech/khalti-android'
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://opensource.org/licenses/mit-license.php'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'khalti'
+                        name 'Khalti Official'
+                        email 'info@khalti.com'
+                    }
+                }
+                scm {
+                    connection 'https://github.com/janakitech/khalti-android'
+                    developerConnection 'https://github.com/janakitech/khalti-android'
+                    url 'https://github.com/janakitech/khalti-android'
+
+                }
+            }
+        }
+    }
+}
