@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/fontana" />
             <option value="$PROJECT_DIR$/khalti" />
+            <option value="$PROJECT_DIR$/rxBus" />
             <option value="$PROJECT_DIR$/utila" />
           </set>
         </option>

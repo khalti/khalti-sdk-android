@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
 
-import khalti.utils.RxBus;
+import com.rxbus.RxBus;
 import com.utila.LogUtil;
 
 import java.util.ArrayList;

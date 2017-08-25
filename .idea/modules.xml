@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/fontana/fontana.iml" filepath="$PROJECT_DIR$/fontana/fontana.iml" />
       <module fileurl="file://$PROJECT_DIR$/khalti/khalti.iml" filepath="$PROJECT_DIR$/khalti/khalti.iml" />
       <module fileurl="file://$PROJECT_DIR$/khalti-android.iml" filepath="$PROJECT_DIR$/khalti-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxBus/rxBus.iml" filepath="$PROJECT_DIR$/rxBus/rxBus.iml" />
       <module fileurl="file://$PROJECT_DIR$/utila/utila.iml" filepath="$PROJECT_DIR$/utila/utila.iml" />
     </modules>
   </component>

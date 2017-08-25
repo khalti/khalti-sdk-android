@@ -13,17 +13,17 @@
         tools:replace="android:label">
 
         <activity
-            android:name="khalti.form.CheckOutActivity"
+            android:name="khalti.checkOut.CheckOutActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="khalti.form.EBanking.chooseBank.BankChooserActivity"
+            android:name="khalti.checkOut.EBanking.chooseBank.BankChooserActivity"
             android:label="@string/blank"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="khalti.form.EBanking.loadBank.BankingActivity"
+            android:name="khalti.checkOut.EBanking.loadBank.BankingActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
     </application>

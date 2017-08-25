@@ -1,8 +1,6 @@
 package khalti.widget;
 
 
-import khalti.form.api.Config;
-
 interface ButtonContract {
     interface View {
 
@@ -15,6 +13,8 @@ interface ButtonContract {
         void setButtonClick();
 
         void openForm();
+
+        void destroyCheckOut();
 
         void setListener(Listener listener);
     }
@@ -29,8 +29,8 @@ interface ButtonContract {
 
         void setButtonClick();
 
-        void setConfig(Config config);
-
         void openForm();
+
+        void destroyCheckOut();
     }
 }

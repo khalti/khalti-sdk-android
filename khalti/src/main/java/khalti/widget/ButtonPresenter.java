@@ -4,9 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.utila.GuavaUtil;
 
-import khalti.form.api.Config;
-import khalti.utils.DataHolder;
-
 class ButtonPresenter implements ButtonContract.Listener {
     @NonNull
     private final ButtonContract.View mPayView;
@@ -37,12 +34,12 @@ class ButtonPresenter implements ButtonContract.Listener {
     }
 
     @Override
-    public void setConfig(Config config) {
-        DataHolder.setConfig(config);
+    public void openForm() {
+        mPayView.openForm();
     }
 
     @Override
-    public void openForm() {
-        mPayView.openForm();
+    public void destroyCheckOut() {
+        mPayView.destroyCheckOut();
     }
 }

@@ -8,14 +8,14 @@ import java.util.HashMap;
 
 public class ActivityUtil {
 
-    public static void openActivity(Class className, Context context, boolean hasData, HashMap<String, ?> data, boolean animate) {
+    public static void openActivity(Class className, Context context, HashMap<String, ?> data, boolean animate) {
         Intent intent = new Intent(context, className);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (animate) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         }
 
-        if (hasData) {
+        if (EmptyUtil.isNotNull(data) && EmptyUtil.isNotEmpty(data)) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("map", data);
             intent.putExtra("bundle", bundle);

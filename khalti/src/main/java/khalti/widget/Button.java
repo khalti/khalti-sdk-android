@@ -7,27 +7,23 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.khalti.R;
-import com.utila.ActivityUtil;
 import com.utila.EmptyUtil;
 
-import java.util.HashMap;
-
 import khalti.carbonX.widget.FrameLayout;
-import khalti.form.CheckOutActivity;
-import khalti.form.api.Config;
-import khalti.utils.DataHolder;
+import khalti.checkOut.KhaltiCheckOut;
+import khalti.checkOut.api.Config;
 
-public class Button extends FrameLayout {
+public class Button extends FrameLayout implements ButtonInterface {
     private Context context;
     private AttributeSet attrs;
+
+    private Config config;
 
     private ButtonContract.Listener listener;
     private android.widget.FrameLayout flCustomView;
     private FrameLayout flStyle;
-    private ImageView ivButtoStyle;
     private khalti.carbonX.widget.Button btnPay;
     private View customView;
     private int buttonStyle;
@@ -47,28 +43,33 @@ public class Button extends FrameLayout {
         init();
     }
 
+    @Override
     public void setText(String text) {
         listener.setButtonText(text);
     }
 
-    public void setConfig(Config config) {
-        listener.setConfig(config);
+    @Override
+    public void setCheckOutConfig(Config config) {
+        this.config = config;
     }
 
-    public void setOnSuccessListener(OnSuccessListener onSuccessListener) {
-        DataHolder.setOnSuccessListener(onSuccessListener);
-    }
-
+    @Override
     public void setCustomView(View view) {
         this.customView = view;
         listener.setCustomButtonView();
         listener.setButtonClick();
     }
 
+    @Override
     public void setButtonStyle(ButtonStyle buttonStyle) {
         this.buttonStyle = buttonStyle.getId();
         listener.setButtonStyle(this.buttonStyle);
         listener.setButtonClick();
+    }
+
+    @Override
+    public void destroyCheckOut() {
+        listener.destroyCheckOut();
     }
 
     private void init() {
@@ -89,12 +90,9 @@ public class Button extends FrameLayout {
         listener.setButtonClick();
     }
 
-    public interface OnSuccessListener {
-        void onSuccess(HashMap<String, Object> data);
-    }
-
     private class BasicPay implements ButtonContract.View {
         private ButtonContract.Listener listener;
+        private KhaltiCheckOut khaltiCheckOut;
 
         BasicPay() {
             listener = new ButtonPresenter(this);
@@ -111,7 +109,17 @@ public class Button extends FrameLayout {
             int imageId = -1;
             switch (id) {
                 case 0:
-                    imageId = R.mipmap.full_button;
+                    imageId = R.mipmap.ebanking_dark;
+                    break;
+                case 1:
+                    imageId = R.mipmap.ebanking_light;
+                    break;
+                case 2:
+                    imageId = R.mipmap.khalti_dark;
+                    break;
+                case 3:
+                    imageId = R.mipmap.khalti_light;
+                    break;
             }
             if (imageId != -1) {
                 btnPay.setVisibility(GONE);
@@ -138,13 +146,16 @@ public class Button extends FrameLayout {
 
         @Override
         public void openForm() {
-            if (EmptyUtil.isNull(DataHolder.getConfig())) {
-                throw new IllegalArgumentException("Config not set");
+            khaltiCheckOut = new KhaltiCheckOut(context, config);
+            khaltiCheckOut.show();
+        }
+
+        @Override
+        public void destroyCheckOut() {
+            if (EmptyUtil.isNull(khaltiCheckOut)) {
+                throw new IllegalArgumentException("CheckOut cannot be destroyed before it is shown.");
             }
-            if (EmptyUtil.isNull(DataHolder.getOnSuccessListener())) {
-                throw new IllegalArgumentException("OnSuccessListener not set");
-            }
-            ActivityUtil.openActivity(CheckOutActivity.class, context, false, null, true);
+            khaltiCheckOut.destroy();
         }
 
         ButtonContract.Listener getListener() {

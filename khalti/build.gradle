@@ -109,8 +109,9 @@ dependencies {
 
     compile project(':fontana')
     compile project(':utila')
+    compile project(':rxBus')
 }
 
 
-apply from: 'https://raw.githubusercontent.com/janakitech/khalti-android/develop/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/janakitech/khalti-android/develop/bintrayv1.gradle'
+apply from: 'installv1.gradle'
+apply from: 'bintrayv1.gradle'
