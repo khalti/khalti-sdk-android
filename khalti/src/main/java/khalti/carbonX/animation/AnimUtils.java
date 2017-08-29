@@ -8,13 +8,14 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
-import com.khalti.R;
-import khalti.carbonX.shadow.ShadowView;
-import khalti.carbonX.widget.ProgressBar;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
+
+import khalti.R;
+import khalti.carbonX.shadow.ShadowView;
+import khalti.carbonX.widget.ProgressBar;
 
 public class AnimUtils {
     private AnimUtils() {

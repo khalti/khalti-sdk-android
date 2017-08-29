@@ -1,8 +1,9 @@
 package khalti.checkOut.api;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Config {
+public class Config implements Serializable {
     private String publicKey;
     private String productId;
     private String productName;

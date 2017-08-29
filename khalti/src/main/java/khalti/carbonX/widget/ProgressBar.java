@@ -14,7 +14,11 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.khalti.R;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.animation.ValueAnimator;
+
+import khalti.R;
 import khalti.carbonX.CarbonX;
 import khalti.carbonX.animation.AnimUtils;
 import khalti.carbonX.animation.AnimatedColorStateList;
@@ -23,9 +27,6 @@ import khalti.carbonX.drawable.CircularProgressDrawable;
 import khalti.carbonX.drawable.DefaultPrimaryColorStateList;
 import khalti.carbonX.drawable.ProgressBarDrawable;
 import khalti.carbonX.drawable.ProgressDrawable;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorListenerAdapter;
-import com.nineoldandroids.animation.ValueAnimator;
 
 import static com.nineoldandroids.view.animation.AnimatorProxy.NEEDS_PROXY;
 import static com.nineoldandroids.view.animation.AnimatorProxy.wrap;

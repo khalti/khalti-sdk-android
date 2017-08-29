@@ -1,17 +1,20 @@
 package khalti.checkOut;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.khalti.R;
 import com.rxbus.Event;
 import com.rxbus.RxBus;
 import com.utila.EmptyUtil;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fontana.RobotoMediumTextView;
+import khalti.R;
 import khalti.checkOut.EBanking.EBanking;
 import khalti.checkOut.Wallet.Wallet;
 import khalti.utils.ViewPagerAdapter;
@@ -95,7 +99,9 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
 
         tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
+        tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
         ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
+        DrawableCompat.setTint(ivWIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
         tlTitle.getTabAt(0).setCustomView(walletTab);
 
         LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
@@ -103,9 +109,9 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
 
         tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
-        tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.primaryText));
+        tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
         ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
-        ivEIcon.setAlpha(0.6f);
+        DrawableCompat.setTint(ivEIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
         tlTitle.getTabAt(1).setCustomView(eBankingTab);
 
         tabs.add(tlTitle.getTabAt(0));
@@ -146,15 +152,30 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     public void toggleTab(int position, boolean selected) {
         LinearLayout ll = (LinearLayout) tabs.get(position).getCustomView();
         if (EmptyUtil.isNotNull(ll)) {
-            RobotoMediumTextView tvTitle = (RobotoMediumTextView) ll.findViewById(R.id.tvTitle);
-            ImageView ivIcon = (ImageView) ll.findViewById(R.id.ivIcon);
+            RobotoMediumTextView tvTitle = ll.findViewById(R.id.tvTitle);
+            ImageView ivIcon = ll.findViewById(R.id.ivIcon);
 
             if (selected) {
-                tvTitle.setTextColor(ResourceUtil.getColor(this, R.color.black));
-                ivIcon.setAlpha(1f);
+                tvTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
+                DrawableCompat.setTint(ivIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
             } else {
-                tvTitle.setTextColor(ResourceUtil.getColor(this, R.color.primaryText));
-                ivIcon.setAlpha(0.6f);
+                tvTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
+                DrawableCompat.setTint(ivIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
+            }
+        }
+    }
+
+    @Override
+    public void setStatusBarColor() {
+        Window window = getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int flags = window.getDecorView().getSystemUiVisibility();
+            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            window.getDecorView().setSystemUiVisibility(flags);
+            window.setStatusBarColor(ResourceUtil.getColor(this, R.color.bg));
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && Build.VERSION.SDK_INT < 23) {
+                window.setStatusBarColor(ResourceUtil.getColor(this, R.color.khaltiPrimaryDark));
             }
         }
     }

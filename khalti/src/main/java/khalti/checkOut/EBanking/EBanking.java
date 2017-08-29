@@ -2,6 +2,7 @@ package khalti.checkOut.EBanking;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -23,10 +24,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.khalti.R;
 import com.utila.EmptyUtil;
 import com.utila.NetworkUtil;
 import com.utila.ResourceUtil;
+import com.utila.StorageUtil;
 import com.utila.UserInterfaceUtil;
 
 import java.util.HashMap;
@@ -34,13 +35,14 @@ import java.util.List;
 
 import fontana.RobotoMediumTextView;
 import fontana.RobotoTextView;
+import khalti.R;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
 import khalti.carbonX.widget.ProgressBar;
 import khalti.carbonX.widget.TextInputLayout;
 import khalti.checkOut.CheckOutActivity;
 import khalti.checkOut.EBanking.chooseBank.BankChooserActivity;
-import khalti.checkOut.EBanking.loadBank.BankingActivity;
+import khalti.checkOut.api.Config;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -80,6 +82,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
         listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
         btnPay.setOnClickListener(view -> listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString(), bankId, bankName));
+
         return mainView;
     }
 
@@ -241,12 +244,14 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
-    public void openEBanking(HashMap<String, Object> dataMap) {
-        Intent intent = new Intent(fragmentActivity, BankingActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("map", dataMap);
-        intent.putExtra("bundle", bundle);
-        startActivityForResult(intent, 2007);
+    public void openEBanking(String url) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
+    }
+
+    @Override
+    public void saveConfigInFile(String fileName, Config config) {
+        StorageUtil.writeIntoFile(fragmentActivity, fileName, config);
     }
 
     @Override

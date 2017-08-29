@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.khalti.R;
 import com.rxbus.Event;
 import com.rxbus.RxBus;
 import com.utila.AppPermissionUtil;
@@ -26,13 +25,11 @@ import com.utila.NumberUtil;
 import com.utila.ResourceUtil;
 import com.utila.UserInterfaceUtil;
 
-import java.util.List;
-
 import fontana.RobotoMediumTextView;
+import khalti.R;
 import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.utils.DataHolder;
 import rx.subscriptions.CompositeSubscription;
 
 

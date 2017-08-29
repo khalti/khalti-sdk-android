@@ -2,6 +2,7 @@ package khalti.checkOut.EBanking;
 
 import android.support.annotation.NonNull;
 
+import com.utila.ApiUtil;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
 import com.utila.NumberUtil;
@@ -12,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.checkOut.EBanking.chooseBank.BankPojo;
+import khalti.checkOut.api.ApiHelper;
+import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.utils.DataHolder;
@@ -96,7 +99,19 @@ class EBankingPresenter implements EBankingContract.Listener {
                 map.put("bankId", bankId);
                 map.put("bankName", bankName);
 
-                mEBankingView.openEBanking(map);
+                Config config = DataHolder.getConfig();
+                String data = "public_key=" + config.getPublicKey() + "&" +
+                        "product_identity=" + config.getProductId() + "&" +
+                        "product_name=" + config.getProductName() + "&" +
+                        "amount=" + config.getAmount() + "&" +
+                        "mobile=" + map.get("mobile") + "&" +
+                        "bank=" + map.get("bankId") + "&" +
+                        "source=android" + "&" +
+                        "product_url=" + config.getProductUrl() +
+                        ApiUtil.getPostData(config.getAdditionalData());
+
+                mEBankingView.saveConfigInFile("khalti_config", config);
+                mEBankingView.openEBanking(ApiHelper.getUrl() + "ebanking/initiate/?" + data);
             } else {
                 mEBankingView.showNetworkError();
             }

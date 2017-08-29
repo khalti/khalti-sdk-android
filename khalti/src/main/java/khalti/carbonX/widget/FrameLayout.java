@@ -24,7 +24,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 
-import com.khalti.R;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.animation.ValueAnimator;
+import com.nineoldandroids.view.ViewHelper;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import khalti.R;
 import khalti.carbonX.CarbonX;
 import khalti.carbonX.animation.AnimUtils;
 import khalti.carbonX.animation.AnimatedView;
@@ -38,14 +47,6 @@ import khalti.carbonX.shadow.Shadow;
 import khalti.carbonX.shadow.ShadowGenerator;
 import khalti.carbonX.shadow.ShadowShape;
 import khalti.carbonX.shadow.ShadowView;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorListenerAdapter;
-import com.nineoldandroids.animation.ValueAnimator;
-import com.nineoldandroids.view.ViewHelper;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static com.nineoldandroids.view.animation.AnimatorProxy.NEEDS_PROXY;
 import static com.nineoldandroids.view.animation.AnimatorProxy.wrap;

@@ -21,12 +21,12 @@ import android.util.LayoutDirection;
 import android.view.Gravity;
 import android.view.View;
 
-import com.khalti.R;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+
+import khalti.R;
 
 /**
  * A Drawable that manages an array of other Drawables. These are drawn in array

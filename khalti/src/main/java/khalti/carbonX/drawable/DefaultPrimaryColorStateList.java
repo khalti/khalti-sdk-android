@@ -3,7 +3,7 @@ package khalti.carbonX.drawable;
 import android.content.Context;
 import android.content.res.ColorStateList;
 
-import com.khalti.R;
+import khalti.R;
 import khalti.carbonX.CarbonX;
 
 public class DefaultPrimaryColorStateList extends ColorStateList {

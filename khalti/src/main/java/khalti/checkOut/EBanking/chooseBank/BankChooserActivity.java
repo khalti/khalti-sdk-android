@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.khalti.R;
 import com.rxbus.Event;
 import com.rxbus.RxBus;
 import com.utila.EmptyUtil;
@@ -20,6 +19,7 @@ import com.utila.EmptyUtil;
 import java.util.HashMap;
 import java.util.List;
 
+import khalti.R;
 import rx.subscriptions.CompositeSubscription;
 
 public class BankChooserActivity extends AppCompatActivity implements BankChooserContract.View, BankChooserAdapter.BankControls {

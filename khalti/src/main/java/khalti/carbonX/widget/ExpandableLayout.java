@@ -16,7 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.khalti.R;
+import khalti.R;
+
 
 public class ExpandableLayout extends LinearLayout {
     private int mWidthMeasureSpec;

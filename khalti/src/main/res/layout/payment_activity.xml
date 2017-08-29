@@ -15,15 +15,30 @@
 
         <ImageView
             android:id="@+id/ivIcon"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="180dp"
+            android:layout_height="90dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="4dp"
             android:layout_marginLeft="@dimen/globalPadding"
             android:layout_marginRight="@dimen/globalPadding"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
-            android:src="@mipmap/khalti_logo" />
+            app:srcCompat="@drawable/khalti_full_logo" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:layout_marginTop="@dimen/singleBottomMargin"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp">
+
+            <fontana.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/check_out_title"
+                android:textColor="@color/primaryText" />
+        </FrameLayout>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tlTitle"

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="khaltiPrimary">#6b2d83</color>
-    <color name="khaltiPrimaryDark">#5a2b71</color>
-    <color name="khaltiPrimaryExtraDark">#452650</color>
+    <color name="khaltiPrimary">#4C276D</color>
+    <color name="khaltiPrimaryDark">#330E54</color>
+    <color name="khaltiPrimaryExtraDark">#260147</color>
     <color name="khaltiAccent">#673ab7</color>
-    <color name="khaltiAccentAlt">#f79321</color>
+    <color name="khaltiAccentAlt">#F79320</color>
     <color name="khaltiPrimaryLight">#EAE7EC</color>
     <color name="primaryLight">#206b2d83</color>
 

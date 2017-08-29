@@ -15,6 +15,7 @@ class CheckOutPresenter implements CheckOutContract.Listener {
 
     @Override
     public void setUpLayout() {
+        mCheckOutView.setStatusBarColor();
         mCheckOutView.setUpToolbar();
         mCheckOutView.setupViewPager();
         mCheckOutView.setUpTabLayout();

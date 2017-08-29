@@ -32,6 +32,7 @@
     <string name="cancel">Cancel</string>
 
     <!--CheckOut Activity-->
+    <string name="check_out_title">Awesome App</string>
     <string name="eBanking">E-Banking</string>
     <string name="wallet">Wallet</string>
 

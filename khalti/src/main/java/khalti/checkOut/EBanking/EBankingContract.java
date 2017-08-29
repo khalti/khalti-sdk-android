@@ -2,8 +2,11 @@ package khalti.checkOut.EBanking;
 
 import java.util.HashMap;
 
+import khalti.checkOut.api.Config;
+
 interface EBankingContract {
     interface View {
+
         void toggleProgressBar(boolean show);
 
         void toggleEditTextListener(boolean set);
@@ -30,12 +33,15 @@ interface EBankingContract {
 
         void openBankList(HashMap<String, Object> dataMap);
 
-        void openEBanking(HashMap<String, Object> dataMap);
+        void openEBanking(String url);
+
+        void saveConfigInFile(String fileName, Config config);
 
         void setListener(Listener listener);
     }
 
     interface Listener {
+
         void setUpLayout(boolean hasNetwork);
 
         void toggleEditTextListener(boolean set);

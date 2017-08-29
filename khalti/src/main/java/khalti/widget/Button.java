@@ -8,9 +8,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.khalti.R;
 import com.utila.EmptyUtil;
 
+import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
 import khalti.checkOut.KhaltiCheckOut;
 import khalti.checkOut.api.Config;

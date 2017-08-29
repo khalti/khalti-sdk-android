@@ -2,7 +2,6 @@ package khalti.checkOut.Wallet;
 
 import android.support.annotation.NonNull;
 
-import com.khalti.R;
 import com.rxbus.Event;
 import com.utila.EmptyUtil;
 import com.utila.GuavaUtil;
@@ -12,6 +11,7 @@ import com.utila.ValidationUtil;
 
 import java.util.HashMap;
 
+import khalti.R;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;

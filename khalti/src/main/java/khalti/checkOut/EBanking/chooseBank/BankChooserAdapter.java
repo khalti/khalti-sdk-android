@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.khalti.R;
-import khalti.carbonX.widget.FrameLayout;
 import com.utila.StringUtil;
 
 import java.util.ArrayList;
@@ -15,6 +13,8 @@ import java.util.List;
 
 import fontana.RobotoBoldTextView;
 import fontana.RobotoTextView;
+import khalti.R;
+import khalti.carbonX.widget.FrameLayout;
 
 public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.MyViewHolder> {
 

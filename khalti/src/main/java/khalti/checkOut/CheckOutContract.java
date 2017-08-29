@@ -10,6 +10,8 @@ interface CheckOutContract {
 
         void toggleTab(int position, boolean selected);
 
+        void setStatusBarColor();
+
         void dismissAllDialogs();
 
         void setListener(Listener listener);

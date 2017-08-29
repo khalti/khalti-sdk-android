@@ -25,13 +25,13 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 
-import com.khalti.R;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.Arrays;
+
+import khalti.R;
 
 /**
  * Drawable that shows a ripple effect in response to state changes. The
