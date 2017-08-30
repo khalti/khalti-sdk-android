@@ -25,6 +25,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://maven.google.com" }
+    }
 }
 
 dependencies {

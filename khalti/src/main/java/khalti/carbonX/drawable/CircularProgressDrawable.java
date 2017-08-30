@@ -14,10 +14,8 @@ import khalti.carbonX.widget.ProgressBar;
 public class CircularProgressDrawable extends ProgressDrawable {
     private static final long DEFAULT_SWEEP_DURATION = 3000;
     private static final long DEFAULT_ANGLE_DURATION = 1000;
-    private long sweepDuration = DEFAULT_SWEEP_DURATION;
-    private long angleDuration = DEFAULT_ANGLE_DURATION;
-    Interpolator interpolator2 = new DecelerateInterpolator();
-    Interpolator interpolator = new AccelerateDecelerateInterpolator();
+    private Interpolator interpolator2 = new DecelerateInterpolator();
+    private Interpolator interpolator = new AccelerateDecelerateInterpolator();
 
     public CircularProgressDrawable() {
         forePaint.setStyle(Paint.Style.STROKE);
@@ -31,9 +29,11 @@ public class CircularProgressDrawable extends ProgressDrawable {
         RectF boundsF = new RectF(bounds);
         boundsF.inset(width / 2 + barPadding + 0.1f, width / 2 + barPadding + 0.1f);
 
+        long angleDuration = DEFAULT_ANGLE_DURATION;
         if (style != ProgressBar.Style.CircularDeterminate) {
             long time = System.currentTimeMillis() - startTime;
             float t = (float) (time % angleDuration) / angleDuration;
+            long sweepDuration = DEFAULT_SWEEP_DURATION;
             float t2 = (float) (time % sweepDuration) / sweepDuration;
             float bar = Math.min((t - t2 + 1) % 1, (t2 - t + 1) % 1);
             bar = interpolator.getInterpolation(bar) * 2 * 300 + 30;

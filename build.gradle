@@ -35,7 +35,7 @@ ext {
     targetSdk = 26
     renderScriptTarget = 20
 
-    supportVersion = '25.3.1'
+    supportVersion = '26.0.1'
     rxPermissionVersion = '0.9.3@aar'
     materialDialogVersion = '0.9.4.5'
     materialProgressVersion = '1.1.4'

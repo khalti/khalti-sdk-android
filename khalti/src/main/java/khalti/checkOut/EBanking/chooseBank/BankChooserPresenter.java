@@ -19,6 +19,7 @@ class BankChooserPresenter implements BankChooserContract.Listener {
 
     @Override
     public void setUpLayout() {
+        mBankChooserView.setStatusBarColor();
         HashMap<?, ?> map = mBankChooserView.receiveArgument();
         mBankChooserView.setUpToolbar();
         if (EmptyUtil.isNotNull(map)) {

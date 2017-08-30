@@ -12,10 +12,8 @@ import khalti.carbonX.widget.ProgressBar;
 public class ProgressBarDrawable extends ProgressDrawable {
     private static final long DEFAULT_SWEEP_DURATION = 800;
     private static final long DEFAULT_SWEEP_OFFSET = 500;
-    private long sweepDuration = DEFAULT_SWEEP_DURATION;
-    private long sweepDelay = DEFAULT_SWEEP_OFFSET;
 
-    Interpolator interpolator = new AccelerateDecelerateInterpolator();
+    private Interpolator interpolator = new AccelerateDecelerateInterpolator();
 
     public ProgressBarDrawable() {
         forePaint.setStyle(Paint.Style.FILL);
@@ -26,6 +24,8 @@ public class ProgressBarDrawable extends ProgressDrawable {
     public void draw(Canvas canvas) {
         Rect bounds = getBounds();
 
+        long sweepDuration = DEFAULT_SWEEP_DURATION;
+        long sweepDelay = DEFAULT_SWEEP_OFFSET;
         if (style == ProgressBar.Style.BarIndeterminate) {
             long time = (System.currentTimeMillis() - startTime) % (sweepDuration + sweepDelay);
             float t = (float) (time) / (sweepDuration);

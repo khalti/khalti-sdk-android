@@ -1,6 +1,7 @@
 package khalti.checkOut.EBanking.chooseBank;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +11,14 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 
 import com.rxbus.Event;
 import com.rxbus.RxBus;
 import com.utila.EmptyUtil;
+import com.utila.ResourceUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -137,6 +141,21 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
         rvList.setHasFixedSize(false);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvList.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void setStatusBarColor() {
+        Window window = getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int flags = window.getDecorView().getSystemUiVisibility();
+            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            window.getDecorView().setSystemUiVisibility(flags);
+            window.setStatusBarColor(ResourceUtil.getColor(this, R.color.bg));
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && Build.VERSION.SDK_INT < 23) {
+                window.setStatusBarColor(ResourceUtil.getColor(this, R.color.khaltiPrimaryDark));
+            }
+        }
     }
 
     @Override

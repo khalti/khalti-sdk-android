@@ -14,7 +14,6 @@
 
         <activity
             android:name=".checkOut.CheckOutActivity"
-            android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 

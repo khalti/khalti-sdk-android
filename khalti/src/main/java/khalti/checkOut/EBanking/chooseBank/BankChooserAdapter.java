@@ -19,14 +19,12 @@ import khalti.carbonX.widget.FrameLayout;
 public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.MyViewHolder> {
 
     private LayoutInflater inflater;
-    private Context ct;
     private List<BankPojo> banks;
     private List<BankPojo> banksBackUp = new ArrayList<>();
 
     private BankControls bankControls;
 
     BankChooserAdapter(Context context, List<BankPojo> banks, BankControls bankControls) {
-        this.ct = context;
         this.banks = banks;
         banksBackUp.addAll(banks);
         this.bankControls = bankControls;

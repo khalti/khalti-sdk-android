@@ -61,6 +61,7 @@ android {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://maven.google.com" }
     }
 
     lintOptions {
@@ -82,7 +83,6 @@ dependencies {
     compile "com.android.support:support-v4:${rootProject.ext.supportVersion}"
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
     compile "com.android.support:design:${rootProject.ext.supportVersion}"
-    compile "com.android.support:transition:${rootProject.ext.supportVersion}"
 
     /*Android Animations*/
     compile "com.nineoldandroids:library:${rootProject.ext.nineDroidVersion}"

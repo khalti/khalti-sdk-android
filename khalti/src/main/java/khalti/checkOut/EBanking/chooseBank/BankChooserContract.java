@@ -12,6 +12,8 @@ interface BankChooserContract {
 
         void setUpList(List<BankPojo> bankList);
 
+        void setStatusBarColor();
+
         void setListener(BankChooserContract.Listener listener);
     }
 
