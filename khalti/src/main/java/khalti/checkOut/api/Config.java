@@ -1,8 +1,11 @@
 package khalti.checkOut.api;
 
+import android.support.annotation.Keep;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
+@Keep
 public class Config implements Serializable {
     private String publicKey;
     private String productId;

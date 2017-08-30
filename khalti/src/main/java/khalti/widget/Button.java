@@ -2,6 +2,7 @@ package khalti.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -15,6 +16,7 @@ import khalti.carbonX.widget.FrameLayout;
 import khalti.checkOut.KhaltiCheckOut;
 import khalti.checkOut.api.Config;
 
+@Keep
 public class Button extends FrameLayout implements ButtonInterface {
     private Context context;
     private AttributeSet attrs;

@@ -1,6 +1,9 @@
 package khalti.widget;
 
 
+import android.support.annotation.Keep;
+
+@Keep
 public enum ButtonStyle {
     BASIC(-1),
     EBANKING_DARK(0),

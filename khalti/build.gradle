@@ -2,23 +2,23 @@ apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 
 ext {
-    bintrayRepo = 'khalti'
-    bintrayName = 'khalti-checkout'
+    bintrayRepo = 'repo-name'
+    bintrayName = 'name'
 
-    publishedGroupId = 'com.khalti'
-    libraryName = 'KhaltiCheckout'
-    artifact = 'khalti-checkout'
+    publishedGroupId = 'group-id'
+    libraryName = 'library-name'
+    artifact = 'artifact'
 
-    libraryDescription = 'A Khalti payment widget for android'
+    libraryDescription = 'description'
 
-    siteUrl = 'https://github.com/janakitech/khalti-android'
-    gitUrl = 'https://github.com/janakitech/khalti-android.git'
+    siteUrl = 'url'
+    gitUrl = 'url'
 
     libraryVersion = rootProject.ext.appVersionName
 
-    developerId = 'khalti-official'
-    developerName = 'Khalti Official'
-    developerEmail = 'info@khalti.com'
+    developerId = 'id'
+    developerName = 'name'
+    developerEmail = 'email'
 
     licenseName = 'The MIT License'
     licenseUrl = 'https://opensource.org/licenses/mit-license.php'
@@ -39,11 +39,12 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true;
+        consumerProguardFiles 'proguard-rules.pro'
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             debuggable false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -60,7 +61,6 @@ android {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven.fabric.io/public' }
         maven { url "https://maven.google.com" }
     }
 
@@ -84,7 +84,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
     compile "com.android.support:design:${rootProject.ext.supportVersion}"
 
-    /*Android Animations*/
+/*Android Animations*/
     compile "com.nineoldandroids:library:${rootProject.ext.nineDroidVersion}"
 
     /*GSON*/

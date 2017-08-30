@@ -24,3 +24,87 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+#Support
+-dontwarn android.support.v7.**
+-keep class android.support.v7.** { *; }
+-keep interface android.support.v7.** { *; }
+
+#Design library
+-dontwarn android.support.design.**
+-keep class android.support.design.** { *; }
+-keep interface android.support.design.** { *; }
+-keep public class android.support.design.R$* { *; }
+
+#Carbon Material Design
+-keep class khalti.carbonX.widget.** { *; }
+-dontwarn khalti.carbonX.widget.**
+-keepclasseswithmembernames class * {
+   native <methods>;
+}
+-keep class android.support.v8.renderscript.** { *; }
+
+#Animations
+-keep class com.nineoldandroids.animation.** { *; }
+-keep interface com.nineoldandroids.animation.** { *; }
+-keep class com.nineoldandroids.view.** { *; }
+-keep interface com.nineoldandroids.view.** { *; }
+
+# Gson
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+#-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+ -keep class com.google.code.gson**{ *; }
+
+ # Retrofit 2.X
+ -dontwarn retrofit2.**
+ -keep class retrofit2.** { *; }
+ -keepattributes Signature
+ -keepattributes Exceptions
+
+ -keepclasseswithmembers class * {
+     @retrofit2.http.* <methods>;
+ }
+
+ -keep class com.squareup.okhttp.** { *; }
+ -keep interface com.squareup.okhttp.** { *; }
+
+ -dontwarn com.squareup.okhttp.**
+ -dontwarn okio.**
+ -dontwarn retrofit.**
+ -dontwarn rx.**
+
+ # If in your rest service interface you use methods with Callback argument.
+ -keepattributes Exceptions
+
+ # If your rest service methods throw custom exceptions, because you've defined an ErrorHandler.
+ -keepattributes Signature
+
+ # Rxjava
+ -keep class rx.schedulers.Schedulers {
+     public static <methods>;
+ }
+ -keep class rx.schedulers.ImmediateScheduler {
+     public <methods>;
+ }
+ -keep class rx.schedulers.TestScheduler {
+     public <methods>;
+ }
+ -keep class rx.schedulers.Schedulers {
+     public static ** test();
+ }
+ -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+     long producerIndex;
+     long consumerIndex;
+ }
+ -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+     long producerNode;
+     long consumerNode;
+ }
+
+ #Retrolambda
+ -dontwarn java.lang.invoke.*
+
+ #Apache
+ -dontwarn org.apache.**

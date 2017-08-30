@@ -1,6 +1,7 @@
 package khalti.checkOut;
 
 import android.content.Context;
+import android.support.annotation.Keep;
 
 import com.rxbus.RxBus;
 import com.utila.ActivityUtil;
@@ -9,6 +10,7 @@ import com.utila.EmptyUtil;
 import khalti.checkOut.api.Config;
 import khalti.utils.DataHolder;
 
+@Keep
 public class KhaltiCheckOut implements KhaltiCheckOutInterface {
     private Context context;
 
