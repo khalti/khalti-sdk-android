@@ -13,3 +13,5 @@
 /khalti/build
 /utila/build
 key.jks
+/khalti/installv1.gradle
+/khalti/bintrayv1.gradle
