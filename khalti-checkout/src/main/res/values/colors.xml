@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="khaltiPrimary">#4C276D</color>
+    <color name="khaltiPrimaryDark">#421D63</color>
+    <color name="khaltiAccent">#673ab7</color>
+    <color name="khaltiAccentAlt">#F79320</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="defaultRipple">#54000000</color>
+
+    <color name="pink500">#e91e63</color>
+
+    <color name="primaryText">#87000000</color>
+    <color name="disabled">#38000000</color>
+    <color name="secondaryText">#54000000</color>
+
+    <color name="carbonX_text_button_dark">#deffffff</color>
+    <color name="carbonX_text_button_light">#de000000</color>
+</resources>

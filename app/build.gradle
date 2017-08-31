@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.targetSdk
+    buildToolsVersion rootProject.ext.buildToolVersion
+    defaultConfig {
+        applicationId "com.khalti.android"
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+        versionCode rootProject.ext.appVersionCode
+        versionName rootProject.ext.appVersionName
+        renderscriptTargetApi rootProject.ext.renderScriptTarget
+        renderscriptSupportModeEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://maven.google.com" }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+
+    /*ButterKnife*/
+    compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
+    apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
+
+    compile project(':khalti-checkout')
+}
