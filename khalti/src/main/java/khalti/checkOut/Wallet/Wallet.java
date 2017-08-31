@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -25,7 +26,6 @@ import com.utila.NumberUtil;
 import com.utila.ResourceUtil;
 import com.utila.UserInterfaceUtil;
 
-import fontana.RobotoMediumTextView;
 import khalti.R;
 import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
@@ -203,11 +203,11 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                     listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
                 } else {
                     FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-                    RobotoMediumTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+                    AppCompatTextView tvPositive = flPositive.findViewById(R.id.tvButton);
                     tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.allow));
 
                     FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-                    RobotoMediumTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+                    AppCompatTextView tvNegative = flNegative.findViewById(R.id.tvButton);
                     tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.deny));
 
                     AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", flPositive, flNegative, () ->
@@ -232,7 +232,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     @Override
     public void showMessageDialog(String title, String message) {
         FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvButton = flButton.findViewById(R.id.tvButton);
+        AppCompatTextView tvButton = flButton.findViewById(R.id.tvButton);
         tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
 
         UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {
@@ -251,11 +251,11 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     @Override
     public void showInteractiveMessageDialog(String title, String message) {
         FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+        AppCompatTextView tvPositive = flPositive.findViewById(R.id.tvButton);
         tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.ok));
 
         FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+        AppCompatTextView tvNegative = flNegative.findViewById(R.id.tvButton);
         tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.cancel));
 
         UserInterfaceUtil.showInteractiveInfoDialog(fragmentActivity, title, message, true, true, flPositive, flNegative, new UserInterfaceUtil.DialogAction() {

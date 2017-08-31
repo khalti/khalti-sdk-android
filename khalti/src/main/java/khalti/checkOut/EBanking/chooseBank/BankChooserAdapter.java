@@ -1,6 +1,7 @@
 package khalti.checkOut.EBanking.chooseBank;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,6 @@ import com.utila.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import fontana.RobotoBoldTextView;
-import fontana.RobotoTextView;
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
 
@@ -50,8 +49,7 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        RobotoBoldTextView tvBankIcon;
-        RobotoTextView tvBankName, tvBankId;
+        AppCompatTextView tvBankName, tvBankId, tvBankIcon;
         FrameLayout flContainer;
 
         MyViewHolder(View itemView) {
@@ -62,8 +60,8 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
             tvBankId = itemView.findViewById(R.id.tvBankId);
             flContainer = itemView.findViewById(R.id.flContainer);
 
-            flContainer.setOnClickListener(view -> bankControls.chooseBank(((RobotoTextView) view.findViewById(R.id.tvBankName)).getText() + "",
-                    ((RobotoTextView) view.findViewById(R.id.tvBankId)).getText() + ""));
+            flContainer.setOnClickListener(view -> bankControls.chooseBank(((AppCompatTextView) view.findViewById(R.id.tvBankName)).getText() + "",
+                    ((AppCompatTextView) view.findViewById(R.id.tvBankId)).getText() + ""));
         }
     }
 

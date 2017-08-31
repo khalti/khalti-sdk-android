@@ -1,30 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 
-ext {
-    bintrayRepo = 'repo-name'
-    bintrayName = 'name'
-
-    publishedGroupId = 'group-id'
-    libraryName = 'library-name'
-    artifact = 'artifact'
-
-    libraryDescription = 'description'
-
-    siteUrl = 'url'
-    gitUrl = 'url'
-
-    libraryVersion = rootProject.ext.appVersionName
-
-    developerId = 'id'
-    developerName = 'name'
-    developerEmail = 'email'
-
-    licenseName = 'The MIT License'
-    licenseUrl = 'https://opensource.org/licenses/mit-license.php'
-    allLicenses = ["MIT"]
-}
-
 android {
     compileSdkVersion rootProject.ext.targetSdk
     buildToolsVersion rootProject.ext.buildToolVersion
@@ -80,11 +56,10 @@ dependencies {
 
     /*----Support Library----*/
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
-    compile "com.android.support:support-v4:${rootProject.ext.supportVersion}"
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
     compile "com.android.support:design:${rootProject.ext.supportVersion}"
 
-/*Android Animations*/
+    /*Android Animations*/
     compile "com.nineoldandroids:library:${rootProject.ext.nineDroidVersion}"
 
     /*GSON*/
@@ -105,13 +80,12 @@ dependencies {
 
     /*ReactiveX*/
     compile "io.reactivex:rxjava:${rootProject.ext.rxVersion}"
-    compile "io.reactivex:rxandroid:${rootProject.ext.rxVersion}"
+    compile "io.reactivex:rxandroid:${rootProject.ext.rxAndroidVersion}"
 
-    compile project(':fontana')
     compile project(':utila')
     compile project(':rxBus')
 }
 
 
-apply from: 'installv1.gradle'
-apply from: 'bintrayv1.gradle'
+apply from: 'kInstall.gradle'
+apply from: 'kBintray.gradle'

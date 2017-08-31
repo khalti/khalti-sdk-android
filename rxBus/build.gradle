@@ -41,6 +41,6 @@ dependencies {
     /*ReactiveX*/
     /*ReactiveX*/
     compile "io.reactivex:rxjava:${rootProject.ext.rxVersion}"
-    compile "io.reactivex:rxandroid:${rootProject.ext.rxVersion}"
+    compile "io.reactivex:rxandroid:${rootProject.ext.rxAndroidVersion}"
     testCompile 'junit:junit:4.12'
 }

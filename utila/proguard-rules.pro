@@ -28,15 +28,15 @@
  -keep class com.utila.** { *; }
 
  #Support
- -dontwarn android.support.v7.**
- -keep class android.support.v7.** { *; }
- -keep interface android.support.v7.** { *; }
+ #-dontwarn android.support.v7.**
+ #-keep class android.support.v7.** { *; }
+ #-keep interface android.support.v7.** { *; }
 
  #Design library
- -dontwarn android.support.design.**
- -keep class android.support.design.** { *; }
- -keep interface android.support.design.** { *; }
- -keep public class android.support.design.R$* { *; }
+ #-dontwarn android.support.design.**
+ #-keep class android.support.design.** { *; }
+ #-keep interface android.support.design.** { *; }
+ #-keep public class android.support.design.R$* { *; }
 
  # Rxjava
   -keep class rx.schedulers.Schedulers {

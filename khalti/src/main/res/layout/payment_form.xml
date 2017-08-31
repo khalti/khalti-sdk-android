@@ -27,20 +27,21 @@
                 android:paddingLeft="@dimen/globalPadding"
                 android:paddingRight="@dimen/globalPadding">
 
-                <fontana.MaterialIconTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:gravity="center"
-                    android:text="@string/account_box"
-                    android:textColor="@color/primaryText"
-                    android:textSize="@dimen/title" />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/globalPadding"
+                    android:layout_marginRight="@dimen/globalPadding"
+                    android:adjustViewBounds="true"
+                    android:alpha="0.58"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/ic_user_account_box" />
 
                 <khalti.carbonX.widget.TextInputLayout
                     android:id="@+id/tilMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:hint="@string/mobile_hint"
                     android:theme="@style/EditTextTheme"
                     app:mainHintTextSize="16sp">
@@ -66,27 +67,29 @@
                 android:paddingRight="@dimen/globalPadding"
                 android:visibility="gone">
 
-                <fontana.MaterialIconTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:gravity="center"
-                    android:text="@string/building"
-                    android:textColor="@color/primaryText"
-                    android:textSize="@dimen/title" />
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/globalPadding"
+                    android:layout_marginRight="@dimen/globalPadding"
+                    android:adjustViewBounds="true"
+                    android:alpha="0.58"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/ic_bank_black_48px" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <fontana.RobotoTextView
+                    <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/select_bank"
                         android:textColor="@color/primaryText"
-                        android:textSize="@dimen/label2" />
+                        android:textSize="@dimen/label2"
+                        app:fontFamily="@font/roboto"  />
 
                     <Spinner
                         android:id="@+id/spBank"
@@ -107,31 +110,33 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <fontana.RobotoTextView
+                            <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tvBank"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:text="@string/empty"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/head" />
+                                android:textSize="@dimen/head"
+                                app:fontFamily="@font/roboto"  />
 
-                            <fontana.RobotoTextView
+                            <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tvBankId"
                                 android:layout_width="0dp"
-                                android:layout_height="0dp" />
+                                android:layout_height="0dp"
+                                app:fontFamily="@font/roboto" />
 
-                            <fontana.MaterialIconTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="26dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="12"
-                                android:gravity="center"
-                                android:includeFontPadding="false"
-                                android:text="@string/caret_down"
-                                android:textColor="@color/primaryText"
-                                android:textSize="@dimen/title1" />
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/cardPadding"
+                                android:layout_marginStart="@dimen/cardPadding"
+                                android:adjustViewBounds="true"
+                                android:alpha="0.58"
+                                android:contentDescription="@null"
+                                app:srcCompat="@drawable/ic_arrow_drop_down_black_24px" />
                         </LinearLayout>
                     </khalti.carbonX.widget.FrameLayout>
                 </LinearLayout>
@@ -161,20 +166,21 @@
                         android:paddingRight="@dimen/globalPadding"
                         android:visibility="visible">
 
-                        <fontana.MaterialIconTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="8"
-                            android:gravity="center"
-                            android:text="@string/lock"
-                            android:textColor="@color/primaryText"
-                            android:textSize="@dimen/title" />
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/globalPadding"
+                            android:layout_marginRight="@dimen/globalPadding"
+                            android:adjustViewBounds="true"
+                            android:alpha="0.58"
+                            android:contentDescription="@null"
+                            app:srcCompat="@drawable/ic_lock_black_24px" />
 
                         <khalti.carbonX.widget.TextInputLayout
                             android:id="@+id/tilCode"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:hint="@string/code_hint"
                             android:theme="@style/EditTextTheme"
                             app:mainHintTextSize="16sp">
@@ -201,20 +207,21 @@
                         android:paddingLeft="@dimen/globalPadding"
                         android:paddingRight="@dimen/globalPadding">
 
-                        <fontana.MaterialIconTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="8"
-                            android:gravity="center"
-                            android:text="@string/lock"
-                            android:textColor="@color/primaryText"
-                            android:textSize="@dimen/title" />
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/globalPadding"
+                            android:layout_marginRight="@dimen/globalPadding"
+                            android:adjustViewBounds="true"
+                            android:alpha="0.58"
+                            android:contentDescription="@null"
+                            app:srcCompat="@drawable/ic_lock_outline_black_24px" />
 
                         <khalti.carbonX.widget.TextInputLayout
                             android:id="@+id/tilPIN"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:hint="@string/pin_hint"
                             android:theme="@style/EditTextTheme"
                             app:mainHintTextSize="16sp">

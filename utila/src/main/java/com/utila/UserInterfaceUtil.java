@@ -11,12 +11,10 @@ import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
-
-import fontana.RobotoMediumTextView;
-import fontana.RobotoTextView;
 
 public class UserInterfaceUtil {
     private static Dialog progressDialog;
@@ -44,8 +42,8 @@ public class UserInterfaceUtil {
         progressDialog.setCancelable(true);
         progressDialog.show();
 
-        RobotoMediumTextView tvTitle = progressDialog.findViewById(R.id.tvTitle);
-        RobotoTextView tvBody = progressDialog.findViewById(R.id.tvBody);
+        AppCompatTextView tvTitle = progressDialog.findViewById(R.id.tvTitle);
+        AppCompatTextView tvBody = progressDialog.findViewById(R.id.tvBody);
         FrameLayout flProgress = progressDialog.findViewById(R.id.flProgress);
 
         flProgress.addView(progressCircle);
@@ -69,8 +67,8 @@ public class UserInterfaceUtil {
         infoDialog.setCancelable(cancelable);
         infoDialog.show();
 
-        RobotoMediumTextView tvTitle = infoDialog.findViewById(R.id.tvTitle);
-        RobotoTextView tvBody = infoDialog.findViewById(R.id.tvBody);
+        AppCompatTextView tvTitle = infoDialog.findViewById(R.id.tvTitle);
+        AppCompatTextView tvBody = infoDialog.findViewById(R.id.tvBody);
         FrameLayout flNegativeAction = infoDialog.findViewById(R.id.flNegativeAction);
         FrameLayout flPositiveAction = infoDialog.findViewById(R.id.flPositiveAction);
 
@@ -93,8 +91,8 @@ public class UserInterfaceUtil {
         interactiveDialog.setCancelable(cancelable);
         interactiveDialog.show();
 
-        RobotoMediumTextView tvTitle = interactiveDialog.findViewById(R.id.tvTitle);
-        RobotoTextView tvBody = interactiveDialog.findViewById(R.id.tvBody);
+        AppCompatTextView tvTitle = interactiveDialog.findViewById(R.id.tvTitle);
+        AppCompatTextView tvBody = interactiveDialog.findViewById(R.id.tvBody);
         FrameLayout flNegativeAction = interactiveDialog.findViewById(R.id.flNegativeAction);
         FrameLayout flPositiveAction = interactiveDialog.findViewById(R.id.flPositiveAction);
 

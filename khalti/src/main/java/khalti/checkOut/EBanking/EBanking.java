@@ -12,6 +12,7 @@ import android.support.transition.TransitionManager;
 import android.support.transition.TransitionSet;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -33,8 +34,6 @@ import com.utila.UserInterfaceUtil;
 import java.util.HashMap;
 import java.util.List;
 
-import fontana.RobotoMediumTextView;
-import fontana.RobotoTextView;
 import khalti.R;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
@@ -52,7 +51,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     private LinearLayout llBank, llMobile;
     private Spinner spBank;
     private FrameLayout flBank;
-    private RobotoTextView tvBank, tvBankId;
+    private AppCompatTextView tvBank, tvBankId;
     private EditText etMobile;
     private TextInputLayout tilMobile;
     private Button btnPay;
@@ -218,7 +217,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     @Override
     public void showMessageDialog(String title, String message) {
         FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvButton = flButton.findViewById(R.id.tvButton);
+        AppCompatTextView tvButton = flButton.findViewById(R.id.tvButton);
         tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
 
         UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {

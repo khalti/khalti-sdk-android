@@ -25,23 +25,23 @@
 #-renamesourcefileattribute SourceFile
 
 #Support
--dontwarn android.support.v7.**
--keep class android.support.v7.** { *; }
--keep interface android.support.v7.** { *; }
+#-dontwarn android.support.v7.**
+#-keep class android.support.v7.** { *; }
+#-keep interface android.support.v7.** { *; }
 
 #Design library
--dontwarn android.support.design.**
--keep class android.support.design.** { *; }
--keep interface android.support.design.** { *; }
--keep public class android.support.design.R$* { *; }
+#-dontwarn android.support.design.**
+#-keep class android.support.design.** { *; }
+#-keep interface android.support.design.** { *; }
+#-keep public class android.support.design.R$* { *; }
 
 #Carbon Material Design
--keep class khalti.carbonX.widget.** { *; }
--dontwarn khalti.carbonX.widget.**
--keepclasseswithmembernames class * {
-   native <methods>;
-}
--keep class android.support.v8.renderscript.** { *; }
+#-keep class khalti.carbonX.widget.** { *; }
+#-dontwarn khalti.carbonX.widget.**
+#-keepclasseswithmembernames class * {
+ #  native <methods>;
+#}
+#-keep class android.support.v8.renderscript.** { *; }
 
 #Animations
 -keep class com.nineoldandroids.animation.** { *; }

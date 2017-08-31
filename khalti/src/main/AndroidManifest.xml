@@ -54,5 +54,9 @@
             android:name="khalti.checkOut.EBanking.chooseBank.BankChooserActivity"
             android:label="@string/blank"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 </manifest>

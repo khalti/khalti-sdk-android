@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <khalti.carbonX.widget.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:id="@+id/flContainer"
     android:layout_width="match_parent"
@@ -21,17 +22,18 @@
             android:padding="2dp"
             khalti:carbonX_cornerRadius="24dp">
 
-            <fontana.RobotoBoldTextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvBankIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/app_name"
                 android:textColor="@color/white"
-                android:textSize="@dimen/head" />
+                android:textSize="@dimen/head"
+                app:fontFamily="@font/roboto_bold" />
         </khalti.carbonX.widget.FrameLayout>
 
-        <fontana.RobotoTextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvBankName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,9 +42,10 @@
             android:layout_marginRight="@dimen/globalPadding"
             android:text="@string/empty"
             android:textColor="@color/black"
-            android:textSize="@dimen/head" />
+            android:textSize="@dimen/head"
+            app:fontFamily="@font/roboto" />
 
-        <fontana.RobotoTextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvBankId"
             android:layout_width="0dp"
             android:layout_height="0dp" />

@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,7 +26,6 @@ import com.utila.UserInterfaceUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import fontana.RobotoMediumTextView;
 import khalti.R;
 import khalti.checkOut.EBanking.EBanking;
 import khalti.checkOut.Wallet.Wallet;
@@ -95,7 +95,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void setUpTabLayout() {
         LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        RobotoMediumTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
+        AppCompatTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
         ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
 
         tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
@@ -105,7 +105,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         tlTitle.getTabAt(0).setCustomView(walletTab);
 
         LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        RobotoMediumTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
+        AppCompatTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
         ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
 
         tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
@@ -152,7 +152,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     public void toggleTab(int position, boolean selected) {
         LinearLayout ll = (LinearLayout) tabs.get(position).getCustomView();
         if (EmptyUtil.isNotNull(ll)) {
-            RobotoMediumTextView tvTitle = ll.findViewById(R.id.tvTitle);
+            AppCompatTextView tvTitle = ll.findViewById(R.id.tvTitle);
             ImageView ivIcon = ll.findViewById(R.id.ivIcon);
 
             if (selected) {

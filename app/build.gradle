@@ -8,8 +8,8 @@ android {
         applicationId "com.khalti.android"
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
-        versionCode 1
-        versionName "1.0"
+        versionCode 10000
+        versionName "1.0.0"
         renderscriptTargetApi rootProject.ext.renderScriptTarget
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,6 +17,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -41,6 +42,5 @@ dependencies {
     compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
     apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
 
-    compile project(':fontana')
     compile project(':khalti')
 }
