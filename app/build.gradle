@@ -8,8 +8,8 @@ android {
         applicationId "com.khalti.android"
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
-        versionCode 10000
-        versionName "1.0.0"
+        versionCode rootProject.ext.appVersionCode
+        versionName rootProject.ext.appVersionName
         renderscriptTargetApi rootProject.ext.renderScriptTarget
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -42,5 +42,5 @@ dependencies {
     compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
     apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
 
-    compile project(':khalti')
+    compile project(':khalti-checkout')
 }

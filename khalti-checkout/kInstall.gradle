@@ -1,9 +1,9 @@
 apply plugin: 'com.github.dcendents.android-maven'
 
-group = 'com.khalti'
-
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+group = properties.getProperty("publisher.groupId")
 
 install {
     repositories.mavenInstaller {
@@ -11,11 +11,11 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId 'com.khalti'
-                artifactId 'khalti-checkout'
+                groupId properties.getProperty("publisher.groupId")
+                artifactId properties.getProperty("artifact")
 
                 // Add your description here
-                name 'khaltiCheckout'
+                name properties.getProperty("library.name")
                 description properties.getProperty("library.description")
                 url 'https://github.com/janakitech/khalti-android'
 
@@ -28,9 +28,9 @@ install {
                 }
                 developers {
                     developer {
-                        id 'khalti-official'
-                        name 'Khalti Official'
-                        email 'info@khalti.com'
+                        id properties.getProperty("developer.id")
+                        name properties.getProperty("developer.name")
+                        email properties.getProperty("developer.email")
                     }
                 }
                 scm {

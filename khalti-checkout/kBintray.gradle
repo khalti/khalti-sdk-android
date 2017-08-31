@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = rootProject.ext.appVersionName
+version = rootProject.ext.khaltiVersionName
 
 if (project.hasProperty("android")) { // Android libraries
     task sourcesJar(type: Jar) {
@@ -39,6 +39,7 @@ bintray {
 
     configurations = ['archives']
     pkg {
+        userOrg = properties.getProperty("bintray.org")
         repo = properties.getProperty("bintray.repo")
         name = properties.getProperty("bintray.name")
         desc = properties.getProperty("library.description")

@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
-        versionCode rootProject.ext.appVersionCode
-        versionName rootProject.ext.appVersionName
+        versionCode rootProject.ext.khaltiVersionCode
+        versionName rootProject.ext.khaltiVersionName
         renderscriptTargetApi rootProject.ext.renderScriptTarget
         renderscriptSupportModeEnabled true
 
