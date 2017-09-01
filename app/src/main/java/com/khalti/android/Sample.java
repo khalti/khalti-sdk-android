@@ -1,9 +1,8 @@
 package com.khalti.android;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import com.utila.LogUtil;
 
 import java.util.HashMap;
 
@@ -11,10 +10,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.OnCheckOutListener;
+import khalti.utils.LogUtil;
 import khalti.widget.Button;
 
 public class Sample extends AppCompatActivity {
 
+    @BindView(R.id.kpPay0)
+    Button kpButton0;
     @BindView(R.id.kpPay)
     Button kpButton;
     @BindView(R.id.kpPay1)
@@ -45,6 +47,7 @@ public class Sample extends AppCompatActivity {
             }
         });
 
+        kpButton0.setCheckOutConfig(config);
         kpButton.setCheckOutConfig(config);
         kpButton1.setCheckOutConfig(config);
         kpButton2.setCheckOutConfig(config);

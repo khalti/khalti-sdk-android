@@ -3,14 +3,13 @@ package khalti.checkOut.EBanking.deepLinkReceiver;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.utila.EmptyUtil;
-import com.utila.JsonUtil;
-import com.utila.StorageUtil;
-
 import java.util.HashMap;
 
 import khalti.R;
 import khalti.checkOut.api.Config;
+import khalti.utils.EmptyUtil;
+import khalti.utils.JsonUtil;
+import khalti.utils.StorageUtil;
 
 public class DeepLink extends AppCompatActivity implements DeepLinkContract.View {
 

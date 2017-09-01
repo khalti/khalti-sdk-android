@@ -1,14 +1,6 @@
 package khalti.checkOut.EBanking;
 
 import android.support.annotation.NonNull;
-
-import com.utila.ApiUtil;
-import com.utila.EmptyUtil;
-import com.utila.GuavaUtil;
-import com.utila.NumberUtil;
-import com.utila.StringUtil;
-import com.utila.ValidationUtil;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,7 +9,13 @@ import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
+import khalti.utils.ApiUtil;
 import khalti.utils.DataHolder;
+import khalti.utils.EmptyUtil;
+import khalti.utils.GuavaUtil;
+import khalti.utils.NumberUtil;
+import khalti.utils.StringUtil;
+import khalti.utils.ValidationUtil;
 
 class EBankingPresenter implements EBankingContract.Listener {
     @NonNull

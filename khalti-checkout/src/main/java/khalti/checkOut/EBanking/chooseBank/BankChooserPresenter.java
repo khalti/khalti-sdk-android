@@ -2,11 +2,11 @@ package khalti.checkOut.EBanking.chooseBank;
 
 import android.support.annotation.NonNull;
 
-import com.utila.EmptyUtil;
-import com.utila.GuavaUtil;
-
 import java.util.HashMap;
 import java.util.List;
+
+import khalti.utils.EmptyUtil;
+import khalti.utils.GuavaUtil;
 
 class BankChooserPresenter implements BankChooserContract.Listener {
     @NonNull

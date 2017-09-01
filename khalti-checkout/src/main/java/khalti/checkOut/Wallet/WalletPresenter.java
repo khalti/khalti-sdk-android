@@ -2,20 +2,19 @@ package khalti.checkOut.Wallet;
 
 import android.support.annotation.NonNull;
 
-import com.rxbus.Event;
-import com.utila.EmptyUtil;
-import com.utila.GuavaUtil;
-import com.utila.NumberUtil;
-import com.utila.StringUtil;
-import com.utila.ValidationUtil;
-
 import java.util.HashMap;
 
 import khalti.R;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
+import khalti.rxBus.Event;
 import khalti.utils.DataHolder;
+import khalti.utils.EmptyUtil;
+import khalti.utils.GuavaUtil;
+import khalti.utils.NumberUtil;
+import khalti.utils.StringUtil;
+import khalti.utils.ValidationUtil;
 import rx.subscriptions.CompositeSubscription;
 
 class WalletPresenter implements WalletContract.Listener {

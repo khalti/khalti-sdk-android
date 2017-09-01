@@ -1,14 +1,13 @@
 package khalti.checkOut.Wallet;
 
 
+import java.util.HashMap;
+
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.KhaltiApi;
 import khalti.utils.DataHolder;
-import com.utila.EmptyUtil;
-
-import java.util.HashMap;
-
+import khalti.utils.EmptyUtil;
 import rx.Subscription;
 
 class WalletModel {

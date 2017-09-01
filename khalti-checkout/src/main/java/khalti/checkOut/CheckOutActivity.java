@@ -16,19 +16,18 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.rxbus.Event;
-import com.rxbus.RxBus;
-import com.utila.EmptyUtil;
-import com.utila.LogUtil;
-import com.utila.ResourceUtil;
-import com.utila.UserInterfaceUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import khalti.R;
 import khalti.checkOut.EBanking.EBanking;
 import khalti.checkOut.Wallet.Wallet;
+import khalti.rxBus.Event;
+import khalti.rxBus.RxBus;
+import khalti.utils.EmptyUtil;
+import khalti.utils.LogUtil;
+import khalti.utils.ResourceUtil;
+import khalti.utils.UserInterfaceUtil;
 import khalti.utils.ViewPagerAdapter;
 import rx.subscriptions.CompositeSubscription;
 

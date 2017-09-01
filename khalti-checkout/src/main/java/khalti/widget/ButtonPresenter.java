@@ -2,7 +2,8 @@ package khalti.widget;
 
 import android.support.annotation.NonNull;
 
-import com.utila.GuavaUtil;
+import khalti.utils.GuavaUtil;
+
 
 class ButtonPresenter implements ButtonContract.Listener {
     @NonNull

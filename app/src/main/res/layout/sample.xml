@@ -11,6 +11,14 @@
         android:orientation="vertical">
 
         <khalti.widget.Button
+            android:id="@+id/kpPay0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/singleBottomMargin"
+            khalti:text="Pay Rs 200" />
+
+        <khalti.widget.Button
             android:id="@+id/kpPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

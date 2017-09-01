@@ -1,6 +1,7 @@
 package khalti.checkOut.Wallet;
 
-import com.rxbus.Event;
+
+import khalti.rxBus.Event;
 
 interface WalletContract {
     interface View {

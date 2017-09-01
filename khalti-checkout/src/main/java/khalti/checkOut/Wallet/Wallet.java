@@ -17,19 +17,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.rxbus.Event;
-import com.rxbus.RxBus;
-import com.utila.AppPermissionUtil;
-import com.utila.EmptyUtil;
-import com.utila.NetworkUtil;
-import com.utila.NumberUtil;
-import com.utila.ResourceUtil;
-import com.utila.UserInterfaceUtil;
-
 import khalti.R;
 import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
+import khalti.rxBus.Event;
+import khalti.rxBus.RxBus;
+import khalti.utils.AppPermissionUtil;
+import khalti.utils.EmptyUtil;
+import khalti.utils.NetworkUtil;
+import khalti.utils.NumberUtil;
+import khalti.utils.ResourceUtil;
+import khalti.utils.UserInterfaceUtil;
 import rx.subscriptions.CompositeSubscription;
 
 

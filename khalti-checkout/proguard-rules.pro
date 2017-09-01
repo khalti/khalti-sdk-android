@@ -108,3 +108,9 @@
 
  #Apache
  -dontwarn org.apache.**
+
+ #utils
+ -keep class khalti.utils.** { *; }
+
+ #rxBus
+ -keep class khalti.rxBus.** { *; }

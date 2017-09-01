@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/khalti-android.iml" filepath="$PROJECT_DIR$/khalti-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/khalti-checkout/khalti.iml" filepath="$PROJECT_DIR$/khalti-checkout/khalti.iml" />
+      <module fileurl="file://$PROJECT_DIR$/khalti-android.iml" filepath="$PROJECT_DIR$/khalti-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/khalti-checkout/khalti-checkout.iml" filepath="$PROJECT_DIR$/khalti-checkout/khalti-checkout.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxBus/rxBus.iml" filepath="$PROJECT_DIR$/rxBus/rxBus.iml" />
       <module fileurl="file://$PROJECT_DIR$/utila/utila.iml" filepath="$PROJECT_DIR$/utila/utila.iml" />
     </modules>

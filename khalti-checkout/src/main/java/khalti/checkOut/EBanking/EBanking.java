@@ -24,13 +24,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-
-import com.utila.EmptyUtil;
-import com.utila.NetworkUtil;
-import com.utila.ResourceUtil;
-import com.utila.StorageUtil;
-import com.utila.UserInterfaceUtil;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +35,11 @@ import khalti.carbonX.widget.TextInputLayout;
 import khalti.checkOut.CheckOutActivity;
 import khalti.checkOut.EBanking.chooseBank.BankChooserActivity;
 import khalti.checkOut.api.Config;
+import khalti.utils.EmptyUtil;
+import khalti.utils.NetworkUtil;
+import khalti.utils.ResourceUtil;
+import khalti.utils.StorageUtil;
+import khalti.utils.UserInterfaceUtil;
 
 import static android.app.Activity.RESULT_OK;
 
