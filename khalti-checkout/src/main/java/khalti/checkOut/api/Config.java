@@ -1,6 +1,7 @@
 package khalti.checkOut.api;
 
 import android.support.annotation.Keep;
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -15,7 +16,8 @@ public class Config implements Serializable {
     private HashMap<String, Object> additionalData;
     private OnCheckOutListener onCheckOutListener;
 
-    public Config(String publicKey, String productId, String productName, String productUrl, Long amount, OnCheckOutListener onCheckOutListener) {
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, @NonNull String productUrl, @NonNull Long amount,
+                  @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
         this.productId = productId;
         this.productName = productName;
@@ -24,7 +26,8 @@ public class Config implements Serializable {
         this.onCheckOutListener = onCheckOutListener;
     }
 
-    public Config(String publicKey, String productId, String productName, String productUrl, OnCheckOutListener onCheckOutListener, Long amount, HashMap<String, Object> additionalData) {
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, @NonNull String productUrl, @NonNull Long amount,
+                  @NonNull OnCheckOutListener onCheckOutListener, @NonNull HashMap<String, Object> additionalData) {
         this.publicKey = publicKey;
         this.productId = productId;
         this.productName = productName;

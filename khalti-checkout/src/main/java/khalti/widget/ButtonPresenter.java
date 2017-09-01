@@ -2,8 +2,8 @@ package khalti.widget;
 
 import android.support.annotation.NonNull;
 
+import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
-
 
 class ButtonPresenter implements ButtonContract.Listener {
     @NonNull
@@ -26,6 +26,7 @@ class ButtonPresenter implements ButtonContract.Listener {
 
     @Override
     public void setButtonText(String text) {
+        text = (EmptyUtil.isNotNull(text) && EmptyUtil.isNotEmpty(text)) ? text : "PAY";
         mPayView.setButtonText(text);
     }
 
