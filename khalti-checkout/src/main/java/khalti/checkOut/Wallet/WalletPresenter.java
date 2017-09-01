@@ -120,7 +120,7 @@ class WalletPresenter implements WalletContract.Listener {
                         OnCheckOutListener onCheckOutListener = DataHolder.getConfig().getOnCheckOutListener();
                         HashMap<String, Object> data = new HashMap<>();
                         Config config = DataHolder.getConfig();
-                        data.putAll(EmptyUtil.isNotNull(config.getAdditionalData()) ? config.getAdditionalData() : new HashMap<>());
+                        data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
                         data.put("amount", config.getAmount());
                         data.put("product_url", config.getProductUrl());
                         data.put("token", walletInitPojo.getToken());

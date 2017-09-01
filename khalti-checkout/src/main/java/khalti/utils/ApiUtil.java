@@ -11,7 +11,7 @@ public class ApiUtil {
 
     public static String getPostData(HashMap<String, Object> map) {
         String postData = "";
-        if (EmptyUtil.isNotNull(map)) {
+        if (EmptyUtil.isNotNull(map) && EmptyUtil.isNotEmpty(map)) {
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 postData = "&" + entry.getKey() + entry.getValue();
             }

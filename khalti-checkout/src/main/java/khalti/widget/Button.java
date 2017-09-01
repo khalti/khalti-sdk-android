@@ -52,6 +52,10 @@ public class Button extends FrameLayout implements ButtonInterface {
     @Override
     public void setCheckOutConfig(Config config) {
         this.config = config;
+        String message = listener.checkConfig(config);
+        if (EmptyUtil.isNotNull(message)) {
+            throw new IllegalArgumentException(message);
+        }
     }
 
     @Override

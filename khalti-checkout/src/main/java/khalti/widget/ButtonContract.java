@@ -1,6 +1,8 @@
 package khalti.widget;
 
 
+import khalti.checkOut.api.Config;
+
 interface ButtonContract {
     interface View {
 
@@ -20,6 +22,8 @@ interface ButtonContract {
     }
 
     interface Listener {
+
+        String checkConfig(Config config);
 
         void setCustomButtonView();
 

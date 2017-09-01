@@ -34,7 +34,7 @@ class WalletModel {
         dataMap.put("product_url", config.getProductUrl());
         dataMap.put("amount", config.getAmount());
         dataMap.put("mobile", mobile);
-        dataMap.putAll(EmptyUtil.isNotNull(config.getAdditionalData()) ? config.getAdditionalData() : new HashMap<>());
+        dataMap.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
 
         String url = "/api/payment/initiate/";
         return new ApiHelper().callApi(khaltiService.initiatePayment(url, dataMap), new ApiHelper.ApiCallback() {
