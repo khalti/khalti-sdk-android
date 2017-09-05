@@ -17,13 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import java.util.HashMap;
-
 import khalti.R;
 import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.checkOut.api.Config;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.AppPermissionUtil;
@@ -31,6 +28,7 @@ import khalti.utils.EmptyUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.NumberUtil;
 import khalti.utils.ResourceUtil;
+import khalti.utils.Store;
 import khalti.utils.UserInterfaceUtil;
 import rx.subscriptions.CompositeSubscription;
 
@@ -92,16 +90,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
             compositeSubscription.unsubscribe();
         }
         listener.toggleSmsListener(false);
-    }
-
-    @Override
-    public Config getConfig() {
-        HashMap<?, ?> map = (HashMap<?, ?>) getArguments().getSerializable("map");
-        if (EmptyUtil.isNotNull(map)) {
-            return (Config) map.get("config");
-        }
-
-        throw new IllegalArgumentException("Config not set");
     }
 
     @Override
@@ -318,7 +306,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     @Override
     public void toggleConfirmationLayout(boolean show) {
-        String buttonText = show ? ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) : "Pay Rs " + NumberUtil.convertToRupees(khalti.utils.DataHolder.getConfig().getAmount());
+        String buttonText = show ? ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) : "Pay Rs " + NumberUtil.convertToRupees(Store.getConfig().getAmount());
         btnPay.setText(buttonText);
         etCode.setText("");
         etPIN.setText("");

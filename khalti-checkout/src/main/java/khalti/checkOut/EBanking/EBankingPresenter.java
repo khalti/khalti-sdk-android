@@ -13,6 +13,7 @@ import khalti.utils.ApiUtil;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.NumberUtil;
+import khalti.utils.Store;
 import khalti.utils.StringUtil;
 import khalti.utils.ValidationUtil;
 
@@ -31,7 +32,7 @@ class EBankingPresenter implements EBankingContract.Listener {
 
     @Override
     public void setUpLayout(boolean hasNetwork) {
-        this.config = mEBankingView.getConfig();
+        this.config = Store.getConfig();
         mEBankingView.toggleButton(false);
         mEBankingView.showBankField();
         mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));

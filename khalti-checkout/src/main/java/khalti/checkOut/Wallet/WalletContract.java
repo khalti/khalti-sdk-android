@@ -1,13 +1,10 @@
 package khalti.checkOut.Wallet;
 
 
-import khalti.checkOut.api.Config;
 import khalti.rxBus.Event;
 
 public interface WalletContract {
     interface View {
-
-        Config getConfig();
 
         void toggleProgressDialog(String action, boolean show);
 

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.KhaltiApi;
-import khalti.utils.DataHolder;
+import khalti.utils.Store;
 import khalti.utils.EmptyUtil;
 import rx.Subscription;
 
@@ -60,7 +60,7 @@ public class WalletModel {
         dataMap.put("token", walletInitPojo.getToken());
         dataMap.put("confirmation_code", confirmationCode);
         dataMap.put("transaction_pin", transactionPIN);
-        dataMap.put("public_key", DataHolder.getConfig().getPublicKey());
+        dataMap.put("public_key", Store.getConfig().getPublicKey());
 
         String url = "api/payment/confirm/";
 

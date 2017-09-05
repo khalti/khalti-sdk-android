@@ -8,10 +8,10 @@ import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.Event;
-import khalti.utils.DataHolder;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.NumberUtil;
+import khalti.utils.Store;
 import khalti.utils.StringUtil;
 import khalti.utils.ValidationUtil;
 import rx.subscriptions.CompositeSubscription;
@@ -32,7 +32,7 @@ public class WalletPresenter implements WalletContract.Listener {
 
     @Override
     public void setUpLayout() {
-        config = mWalletView.getConfig();
+        config = Store.getConfig();
         mWalletView.setEditTextListener();
         mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         mWalletView.setButtonClickListener();
@@ -116,7 +116,7 @@ public class WalletPresenter implements WalletContract.Listener {
                     public void onCompleted(Object o) {
                         WalletInitPojo walletInitPojo = (WalletInitPojo) o;
                         mWalletView.toggleProgressDialog("confirm", false);
-                        OnCheckOutListener onCheckOutListener = DataHolder.getConfig().getOnCheckOutListener();
+                        OnCheckOutListener onCheckOutListener = Store.getConfig().getOnCheckOutListener();
                         HashMap<String, Object> data = new HashMap<>();
                         data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
                         data.put("amount", config.getAmount());

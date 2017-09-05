@@ -5,7 +5,7 @@ import android.support.annotation.Keep;
 import khalti.checkOut.api.Config;
 
 @Keep
-public class DataHolder {
+public class Store {
     private static Config config;
 
     public static Config getConfig() {
@@ -13,7 +13,7 @@ public class DataHolder {
     }
 
     public static void setConfig(Config config) {
-        DataHolder.config = config;
+        Store.config = config;
     }
 
 }

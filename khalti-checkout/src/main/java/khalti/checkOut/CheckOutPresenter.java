@@ -2,9 +2,6 @@ package khalti.checkOut;
 
 import android.support.annotation.NonNull;
 
-import java.util.HashMap;
-
-import khalti.checkOut.api.Config;
 import khalti.utils.GuavaUtil;
 
 
@@ -21,9 +18,7 @@ class CheckOutPresenter implements CheckOutContract.Listener {
     public void setUpLayout() {
         mCheckOutView.setStatusBarColor();
         mCheckOutView.setUpToolbar();
-        HashMap<String, Config> map = new HashMap<>();
-        map.put("config", mCheckOutView.getConfig());
-        mCheckOutView.setupViewPager(map);
+        mCheckOutView.setupViewPager();
         mCheckOutView.setUpTabLayout();
     }
 

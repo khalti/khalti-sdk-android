@@ -1,15 +1,9 @@
 package khalti.checkOut;
 
-import java.util.HashMap;
-
-import khalti.checkOut.api.Config;
-
 interface CheckOutContract {
     interface View {
 
-        Config getConfig();
-
-        void setupViewPager(HashMap<String, Config> data);
+        void setupViewPager();
 
         void setUpTabLayout();
 
