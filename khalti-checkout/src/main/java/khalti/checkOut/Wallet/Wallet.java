@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -25,6 +26,7 @@ import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.AppPermissionUtil;
 import khalti.utils.EmptyUtil;
+import khalti.utils.ExpandableLayout;
 import khalti.utils.NetworkUtil;
 import khalti.utils.NumberUtil;
 import khalti.utils.ResourceUtil;
@@ -37,7 +39,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     private EditText etMobile, etCode, etPIN;
     private khalti.carbonX.widget.TextInputLayout tilMobile, tilCode, tilPIN;
-    private khalti.carbonX.widget.ExpandableLayout elConfirmation;
+    private ExpandableLayout elConfirmation;
     private Button btnPay;
     private Dialog progressDialog;
 

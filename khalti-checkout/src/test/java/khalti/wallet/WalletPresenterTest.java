@@ -19,6 +19,7 @@ import khalti.checkOut.Wallet.WalletPresenter;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
+import khalti.utils.Store;
 import rx.Subscription;
 
 import static org.mockito.Matchers.any;
@@ -27,7 +28,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(WalletPresenter.class)
+@PrepareForTest({WalletPresenter.class, Store.class})
 public class WalletPresenterTest {
     private WalletPresenter walletPresenter;
 
@@ -55,11 +56,12 @@ public class WalletPresenterTest {
         MockitoAnnotations.initMocks(this);
 
         PowerMockito.whenNew(WalletModel.class).withNoArguments().thenReturn(walletModel);
+        PowerMockito.mockStatic(Store.class);
 
         walletPresenter = new WalletPresenter(mWalletView);
         config = new Config("public_key", "product_id", "product_name", "product_url", 1L, onCheckOutListener);
 
-        Mockito.when(mWalletView.getConfig()).thenReturn(config);
+        PowerMockito.when(Store.getConfig()).thenReturn(config);
         Mockito.when(walletModel.initiatePayment(eq(mobile), eq(config), walletArgument.capture())).thenReturn(subscription);
         Mockito.when(walletModel.confirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture())).thenReturn(subscription);
 
@@ -70,7 +72,6 @@ public class WalletPresenterTest {
     @Test
     public void setUpLayout() {
         walletPresenter.setUpLayout();
-        verify(mWalletView).getConfig();
         verify(mWalletView).setEditTextListener();
         verify(mWalletView).setButtonText(Mockito.anyString());
         verify(mWalletView).setButtonClickListener();

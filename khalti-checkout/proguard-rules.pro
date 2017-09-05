@@ -78,6 +78,7 @@
  # If in your rest service interface you use methods with Callback argument.
  -keepattributes Exceptions
 
+
  # If your rest service methods throw custom exceptions, because you've defined an ErrorHandler.
  -keepattributes Signature
 

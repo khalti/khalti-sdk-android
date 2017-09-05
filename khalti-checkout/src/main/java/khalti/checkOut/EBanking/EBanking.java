@@ -38,7 +38,7 @@ import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
-import khalti.utils.StorageUtil;
+import khalti.utils.FileStorageUtil;
 import khalti.utils.UserInterfaceUtil;
 
 import static android.app.Activity.RESULT_OK;
@@ -248,7 +248,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void saveConfigInFile(String fileName, Config config) {
-        StorageUtil.writeIntoFile(fragmentActivity, fileName, config);
+        FileStorageUtil.writeIntoFile(fragmentActivity, fileName, config);
     }
 
     @Override

@@ -15,5 +15,4 @@ public class Store {
     public static void setConfig(Config config) {
         Store.config = config;
     }
-
 }

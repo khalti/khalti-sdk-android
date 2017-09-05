@@ -1,4 +1,4 @@
-package khalti.carbonX.widget;
+package khalti.utils;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
@@ -18,7 +19,7 @@ import android.widget.LinearLayout;
 
 import khalti.R;
 
-
+@Keep
 public class ExpandableLayout extends LinearLayout {
     private int mWidthMeasureSpec;
     private int mHeightMeasureSpec;

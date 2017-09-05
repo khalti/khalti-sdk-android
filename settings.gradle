@@ -1,1 +1,1 @@
-include ':app', ':khalti-checkout', ':utila', ':rxBus'
+include ':app', ':khalti-checkout'

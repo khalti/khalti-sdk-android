@@ -9,7 +9,7 @@ import khalti.R;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 import khalti.utils.JsonUtil;
-import khalti.utils.StorageUtil;
+import khalti.utils.FileStorageUtil;
 
 public class DeepLink extends AppCompatActivity implements DeepLinkContract.View {
 
@@ -35,7 +35,7 @@ public class DeepLink extends AppCompatActivity implements DeepLinkContract.View
 
     @Override
     public Config getConfigFromFile() {
-        return (Config) StorageUtil.readFromFile(this, "khalti_config");
+        return (Config) FileStorageUtil.readFromFile(this, "khalti_config");
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class StorageUtil {
+public class FileStorageUtil {
 
     public static void writeIntoFile(Context context, String fileName, Object data) {
         try {

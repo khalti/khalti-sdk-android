@@ -33,7 +33,6 @@ public class WalletPresenter implements WalletContract.Listener {
     @Override
     public void setUpLayout() {
         config = Store.getConfig();
-        mWalletView.setEditTextListener();
         mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         mWalletView.setButtonClickListener();
     }
@@ -73,6 +72,7 @@ public class WalletPresenter implements WalletContract.Listener {
                 compositeSubscription.add(walletModel.initiatePayment(mobile, config, new WalletModel.WalletAction() {
                     @Override
                     public void onCompleted(Object o) {
+                        mWalletView.setEditTextListener();
                         mWalletView.toggleSmsListener(!smsListenerInitialized);
                         smsListenerInitialized = true;
                         mWalletView.toggleProgressDialog("init", false);
