@@ -116,7 +116,7 @@ public class WalletPresenter implements WalletContract.Listener {
                     public void onCompleted(Object o) {
                         WalletConfirmPojo walletConfirmPojo = (WalletConfirmPojo) o;
                         mWalletView.toggleProgressDialog("confirm", false);
-                        OnCheckOutListener onCheckOutListener = Store.getConfig().getOnCheckOutListener();
+                        OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
                         HashMap<String, Object> data = new HashMap<>();
                         data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
                         data.put("amount", walletConfirmPojo.getAmount());

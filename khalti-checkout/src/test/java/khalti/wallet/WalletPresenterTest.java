@@ -12,8 +12,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import khalti.checkOut.Wallet.WalletConfirmPojo;
 import khalti.checkOut.Wallet.WalletContract;
-import khalti.checkOut.Wallet.WalletInitPojo;
 import khalti.checkOut.Wallet.WalletModel;
 import khalti.checkOut.Wallet.WalletPresenter;
 import khalti.checkOut.api.Config;
@@ -45,7 +45,7 @@ public class WalletPresenterTest {
     @Mock
     private Subscription subscription;
     @Mock
-    private WalletInitPojo walletInitPojo;
+    private WalletConfirmPojo walletConfirmPojo;
 
     private String mobile = "9800000000";
     private String confirmationCode = "123";
@@ -72,7 +72,6 @@ public class WalletPresenterTest {
     @Test
     public void setUpLayout() {
         walletPresenter.setUpLayout();
-        verify(mWalletView).setEditTextListener();
         verify(mWalletView).setButtonText(Mockito.anyString());
         verify(mWalletView).setButtonClickListener();
     }
@@ -100,7 +99,8 @@ public class WalletPresenterTest {
         walletPresenter.initiatePayment(true, mobile);
         verify(mWalletView).toggleProgressDialog("init", true);
         verify(walletModel).initiatePayment(eq(mobile), eq(config), walletArgument.capture());
-        walletArgument.getValue().onCompleted(any(Object.class));
+        walletArgument.getValue().onCompleted(null);
+        verify(mWalletView).setEditTextListener();
         verify(mWalletView).toggleSmsListener(true);
         verify(mWalletView).toggleProgressDialog("init", false);
         verify(mWalletView).toggleConfirmationLayout(true);
@@ -167,7 +167,9 @@ public class WalletPresenterTest {
         walletPresenter.confirmPayment(true, confirmationCode, pin);
         verify(mWalletView).toggleProgressDialog("confirm", true);
         verify(walletModel).confirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture());
-        walletArgument.getValue().onCompleted(eq(any(Object.class)));
+        walletArgument.getValue().onCompleted(walletConfirmPojo);
         verify(mWalletView).toggleProgressDialog("confirm", false);
+        verify(onCheckOutListener).onSuccess(any());
+        verify(mWalletView).closeWidget();
     }
 }
