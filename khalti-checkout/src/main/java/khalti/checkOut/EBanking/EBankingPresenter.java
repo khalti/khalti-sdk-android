@@ -1,6 +1,7 @@
 package khalti.checkOut.EBanking;
 
 import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,9 +9,7 @@ import khalti.checkOut.EBanking.chooseBank.BankPojo;
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
-import khalti.checkOut.api.OnCheckOutListener;
 import khalti.utils.ApiUtil;
-import khalti.utils.DataHolder;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.NumberUtil;
@@ -22,20 +21,20 @@ class EBankingPresenter implements EBankingContract.Listener {
     private final EBankingContract.View mEBankingView;
     private EBankingModel eBankingModel;
     private List<BankPojo> bankLists;
-    private OnCheckOutListener onCheckOutListener;
+    private Config config;
 
     EBankingPresenter(@NonNull EBankingContract.View mEBankingView) {
         this.mEBankingView = GuavaUtil.checkNotNull(mEBankingView);
         mEBankingView.setListener(this);
         eBankingModel = new EBankingModel();
-        onCheckOutListener = DataHolder.getConfig().getOnCheckOutListener();
     }
 
     @Override
     public void setUpLayout(boolean hasNetwork) {
+        this.config = mEBankingView.getConfig();
         mEBankingView.toggleButton(false);
         mEBankingView.showBankField();
-        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(DataHolder.getConfig().getAmount())));
+        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         if (hasNetwork) {
             mEBankingView.toggleProgressBar(true);
             eBankingModel.fetchBankList(new EBankingModel.BankAction() {
@@ -58,7 +57,7 @@ class EBankingPresenter implements EBankingContract.Listener {
                 public void onError(String message) {
                     mEBankingView.toggleProgressBar(false);
                     mEBankingView.showError(message);
-                    onCheckOutListener.onError(ErrorAction.FETCH_BANK_LIST.getAction(), message);
+                    config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), message);
                 }
             });
         } else {
@@ -97,7 +96,6 @@ class EBankingPresenter implements EBankingContract.Listener {
                 map.put("bankId", bankId);
                 map.put("bankName", bankName);
 
-                Config config = DataHolder.getConfig();
                 String data = "public_key=" + config.getPublicKey() + "&" +
                         "product_identity=" + config.getProductId() + "&" +
                         "product_name=" + config.getProductName() + "&" +

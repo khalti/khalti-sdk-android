@@ -17,10 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.util.HashMap;
+
 import khalti.R;
 import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
+import khalti.checkOut.api.Config;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.AppPermissionUtil;
@@ -49,7 +52,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.payment_form, container, false);
         fragmentActivity = getActivity();
-        listener = new khalti.checkOut.Wallet.WalletPresenter(this);
+        listener = new WalletPresenter(this);
 
         etMobile = mainView.findViewById(R.id.etMobile);
         etCode = mainView.findViewById(R.id.etCode);
@@ -89,6 +92,16 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
             compositeSubscription.unsubscribe();
         }
         listener.toggleSmsListener(false);
+    }
+
+    @Override
+    public Config getConfig() {
+        HashMap<?, ?> map = (HashMap<?, ?>) getArguments().getSerializable("map");
+        if (EmptyUtil.isNotNull(map)) {
+            return (Config) map.get("config");
+        }
+
+        throw new IllegalArgumentException("Config not set");
     }
 
     @Override
@@ -272,11 +285,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public String getStringFromResource(int id) {
-        return ResourceUtil.getString(fragmentActivity, id);
-    }
-
-    @Override
     public void openKhaltiSettings() {
         Intent i;
         PackageManager manager = fragmentActivity.getPackageManager();
@@ -294,6 +302,18 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     @Override
     public void closeWidget() {
         fragmentActivity.finish();
+    }
+
+    @Override
+    public String getMessage(String action) {
+        switch (action) {
+            case "pin_not_set":
+                return ResourceUtil.getString(fragmentActivity, R.string.pin_not_set);
+            case "pin_not_set_continue":
+                return ResourceUtil.getString(fragmentActivity, R.string.pin_not_set_continue);
+            default:
+                return "";
+        }
     }
 
     @Override

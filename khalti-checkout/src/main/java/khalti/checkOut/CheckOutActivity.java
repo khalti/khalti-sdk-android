@@ -17,11 +17,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
 import khalti.checkOut.EBanking.EBanking;
 import khalti.checkOut.Wallet.Wallet;
+import khalti.checkOut.api.Config;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.EmptyUtil;
@@ -82,10 +84,16 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setupViewPager() {
+    public Config getConfig() {
+        HashMap<?, ?> map = (HashMap<?, ?>) getIntent().getSerializableExtra("map");
+        return (Config) map.get("config");
+    }
+
+    @Override
+    public void setupViewPager(HashMap<String, Config> data) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
-        viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
+        viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet), data);
+        viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking), data);
         vpContent.setAdapter(viewPagerAdapter);
 
         tlTitle.setupWithViewPager(vpContent);

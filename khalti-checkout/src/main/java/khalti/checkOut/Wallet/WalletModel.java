@@ -10,7 +10,7 @@ import khalti.utils.DataHolder;
 import khalti.utils.EmptyUtil;
 import rx.Subscription;
 
-class WalletModel {
+public class WalletModel {
     private KhaltiApi khaltiService;
     private ApiHelper apiHelper;
     private WalletInitPojo walletInitPojo;
@@ -25,7 +25,7 @@ class WalletModel {
         khaltiService = mockedKhaltiService;
     }
 
-    Subscription initiatePayment(String mobile, Config config, WalletAction walletAction) {
+    public Subscription initiatePayment(String mobile, Config config, WalletAction walletAction) {
         HashMap<String, Object> dataMap = new HashMap<>();
         dataMap.put("public_key", config.getPublicKey());
         dataMap.put("return_url", "http://a.khalti.com/client/spec/widget/verify.html");
@@ -55,7 +55,7 @@ class WalletModel {
         });
     }
 
-    Subscription confirmPayment(String confirmationCode, String transactionPIN, WalletAction walletAction) {
+    public Subscription confirmPayment(String confirmationCode, String transactionPIN, WalletAction walletAction) {
         HashMap<String, Object> dataMap = new HashMap<>();
         dataMap.put("token", walletInitPojo.getToken());
         dataMap.put("confirmation_code", confirmationCode);
@@ -81,7 +81,7 @@ class WalletModel {
         });
     }
 
-    interface WalletAction {
+   public interface WalletAction {
         void onCompleted(Object o);
 
         void onError(String message);

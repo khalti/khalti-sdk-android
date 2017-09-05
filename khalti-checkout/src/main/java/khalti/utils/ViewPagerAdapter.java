@@ -1,10 +1,12 @@
 package khalti.utils;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -26,7 +28,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return pendingFragments.size();
     }
 
-    public void addFrag(Fragment fragment, String title) {
+    public void addFrag(Fragment fragment, String title, HashMap<String, ?> data) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("map", data);
+        fragment.setArguments(bundle);
         pendingFragments.add(fragment);
         pendingTitles.add(title);
     }

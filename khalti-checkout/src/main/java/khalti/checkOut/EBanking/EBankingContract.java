@@ -7,6 +7,8 @@ import khalti.checkOut.api.Config;
 interface EBankingContract {
     interface View {
 
+        Config getConfig();
+
         void toggleProgressBar(boolean show);
 
         void toggleEditTextListener(boolean set);

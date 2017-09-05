@@ -96,6 +96,16 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
+    public Config getConfig() {
+        HashMap<?, ?> map = (HashMap<?, ?>) getArguments().getSerializable("map");
+        if (EmptyUtil.isNotNull(map)) {
+            return (Config) map.get("config");
+        }
+
+        throw new IllegalArgumentException("Config not set");
+    }
+
+    @Override
     public void toggleProgressBar(boolean show) {
         if (show) {
             pdLoad.setVisibility(View.VISIBLE);

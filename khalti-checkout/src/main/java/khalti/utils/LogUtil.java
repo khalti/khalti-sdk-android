@@ -18,6 +18,6 @@ public class LogUtil {
     }
 
     public static void sysOut(Object message) {
-        System.out.print(message.toString());
+        System.out.println(message + "");
     }
 }

@@ -3,40 +3,48 @@ package khalti.checkOut;
 import android.content.Context;
 import android.support.annotation.Keep;
 
+import java.util.HashMap;
+
 import khalti.checkOut.api.Config;
 import khalti.rxBus.RxBus;
 import khalti.utils.ActivityUtil;
-import khalti.utils.DataHolder;
 import khalti.utils.EmptyUtil;
+import khalti.utils.LogUtil;
 
 @Keep
 public class KhaltiCheckOut implements KhaltiCheckOutInterface {
     private Context context;
+    private Config config;
 
     public KhaltiCheckOut(Context context) {
         this.context = context;
     }
 
     public KhaltiCheckOut(Context context, Config config) {
-        DataHolder.setConfig(config);
+        this.config = config;
         this.context = context;
     }
 
     @Override
     public void show() {
-        if (EmptyUtil.isNull(DataHolder.getConfig())) {
+        LogUtil.checkpoint("show");
+        if (EmptyUtil.isNull(config)) {
             throw new IllegalArgumentException("Config not set");
         }
-        ActivityUtil.openActivity(CheckOutActivity.class, context, null, true);
+        HashMap<String, Config> map = new HashMap<>();
+        map.put("config", config);
+        ActivityUtil.openActivity(CheckOutActivity.class, context, map, true);
     }
 
     @Override
     public void show(Config config) {
-        DataHolder.setConfig(config);
-        if (EmptyUtil.isNull(DataHolder.getConfig())) {
+        this.config = config;
+        if (EmptyUtil.isNull(config)) {
             throw new IllegalArgumentException("Config not set");
         }
-        ActivityUtil.openActivity(CheckOutActivity.class, context, null, true);
+        HashMap<String, Config> map = new HashMap<>();
+        map.put("config", config);
+        ActivityUtil.openActivity(CheckOutActivity.class, context, map, true);
     }
 
     @Override

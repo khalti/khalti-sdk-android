@@ -1,8 +1,15 @@
 package khalti.checkOut;
 
+import java.util.HashMap;
+
+import khalti.checkOut.api.Config;
+
 interface CheckOutContract {
     interface View {
-        void setupViewPager();
+
+        Config getConfig();
+
+        void setupViewPager(HashMap<String, Config> data);
 
         void setUpTabLayout();
 
@@ -18,6 +25,7 @@ interface CheckOutContract {
     }
 
     interface Listener {
+
         void setUpLayout();
 
         void toggleTab(int position, boolean selected);
