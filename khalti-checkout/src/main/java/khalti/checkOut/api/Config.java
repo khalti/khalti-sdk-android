@@ -28,7 +28,7 @@ public class Config implements Parcelable {
     }
 
     public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, @NonNull String productUrl, @NonNull Long amount,
-                  @NonNull OnCheckOutListener onCheckOutListener, @NonNull HashMap<String, Object> additionalData) {
+                  @NonNull HashMap<String, Object> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
         this.productId = productId;
         this.productName = productName;

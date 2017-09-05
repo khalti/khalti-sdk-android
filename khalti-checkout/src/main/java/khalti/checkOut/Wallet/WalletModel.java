@@ -67,7 +67,7 @@ public class WalletModel {
         return apiHelper.callApi(khaltiService.confirmPayment(url, dataMap), new ApiHelper.ApiCallback() {
             @Override
             public void onComplete() {
-                walletAction.onCompleted(walletInitPojo);
+                walletAction.onCompleted(walletConfirmPojo);
             }
 
             @Override
@@ -77,6 +77,7 @@ public class WalletModel {
 
             @Override
             public void onNext(Object o) {
+                walletConfirmPojo = (WalletConfirmPojo) o;
             }
         });
     }

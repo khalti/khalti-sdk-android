@@ -114,16 +114,16 @@ public class WalletPresenter implements WalletContract.Listener {
                 compositeSubscription.add(walletModel.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
                     @Override
                     public void onCompleted(Object o) {
-                        WalletInitPojo walletInitPojo = (WalletInitPojo) o;
+                        WalletConfirmPojo walletConfirmPojo = (WalletConfirmPojo) o;
                         mWalletView.toggleProgressDialog("confirm", false);
                         OnCheckOutListener onCheckOutListener = Store.getConfig().getOnCheckOutListener();
                         HashMap<String, Object> data = new HashMap<>();
                         data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
-                        data.put("amount", config.getAmount());
-                        data.put("product_url", config.getProductUrl());
-                        data.put("token", walletInitPojo.getToken());
-                        data.put("product_name", config.getProductName());
-                        data.put("product_identity", config.getProductId());
+                        data.put("amount", walletConfirmPojo.getAmount());
+                        data.put("product_url", walletConfirmPojo.getProductUrl());
+                        data.put("token", walletConfirmPojo.getToken());
+                        data.put("product_name", walletConfirmPojo.getProductName());
+                        data.put("product_identity", walletConfirmPojo.getProductIdentity());
 
                         onCheckOutListener.onSuccess(data);
                         mWalletView.closeWidget();

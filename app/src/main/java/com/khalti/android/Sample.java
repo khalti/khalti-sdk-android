@@ -31,10 +31,12 @@ public class Sample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sample);
         ButterKnife.bind(this);
-        
+
         String pub = "test_public_key_5c9e36656c90496aaab9c92aa56de430"; //http://192.168.1.103:8000/
 //        String pub = "test_public_key_036dc7d983bf4865b388ee5f131962d2"; //http://a.khalti.com/
-        Config config = new Config(pub, "123", "Gaida Churot", "http://churot.com/gaida", 1000L, new OnCheckOutListener() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("extra", "this is gaida churot");
+        Config config = new Config(pub, "123", "Gaida Churot", "http://churot.com/gaida", 1000L, map, new OnCheckOutListener() {
             @Override
             public int describeContents() {
                 return 0;
