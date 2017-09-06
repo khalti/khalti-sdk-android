@@ -5,11 +5,11 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -205,7 +205,15 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                 if (AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS)) {
                     listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
                 } else {
-                    AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () ->
+                    FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+                    AppCompatTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+                    tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.allow));
+
+                    FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+                    AppCompatTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+                    tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.deny));
+
+                    AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", flPositive, flNegative, () ->
                             listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString()));
                 }
             }
@@ -226,52 +234,45 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     @Override
     public void showMessageDialog(String title, String message) {
-        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, ResourceUtil.getString(fragmentActivity, R.string.got_it), null,
-                new UserInterfaceUtil.DialogAction() {
-                    @Override
-                    public void onPositiveAction(Dialog dialog) {
-                        dialog.dismiss();
-                    }
+        FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+        AppCompatTextView tvButton = flButton.findViewById(R.id.tvButton);
+        tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
 
-                    @Override
-                    public void onNegativeAction(Dialog dialog) {
+        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {
+            @Override
+            public void onPositiveAction(Dialog dialog) {
+                dialog.dismiss();
+            }
 
-                    }
-                });
+            @Override
+            public void onNegativeAction(Dialog dialog) {
+
+            }
+        });
     }
 
     @Override
-    public void showPINDialog(String title, String message) {
-        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, ResourceUtil.getString(fragmentActivity, R.string.ok),
-                ResourceUtil.getString(fragmentActivity, R.string.cancel), new UserInterfaceUtil.DialogAction() {
-                    @Override
-                    public void onPositiveAction(Dialog dialog) {
-                        dialog.dismiss();
-                        listener.openKhaltiSettings();
-                    }
+    public void showInteractiveMessageDialog(String title, String message) {
+        FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+        AppCompatTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+        tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.ok));
 
-                    @Override
-                    public void onNegativeAction(Dialog dialog) {
-                        dialog.dismiss();
-                    }
-                });
-    }
+        FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
+        AppCompatTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+        tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.cancel));
 
-    @Override
-    public void showPINInBrowserDialog(String title, String message) {
-        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, ResourceUtil.getString(fragmentActivity, R.string.ok),
-                ResourceUtil.getString(fragmentActivity, R.string.cancel), new UserInterfaceUtil.DialogAction() {
-                    @Override
-                    public void onPositiveAction(Dialog dialog) {
-                        dialog.dismiss();
-                        listener.openLinkInBrowser();
-                    }
+        UserInterfaceUtil.showInteractiveInfoDialog(fragmentActivity, title, message, true, true, flPositive, flNegative, new UserInterfaceUtil.DialogAction() {
+            @Override
+            public void onPositiveAction(Dialog dialog) {
+                dialog.dismiss();
+                listener.openKhaltiSettings();
+            }
 
-                    @Override
-                    public void onNegativeAction(Dialog dialog) {
-                        dialog.dismiss();
-                    }
-                });
+            @Override
+            public void onNegativeAction(Dialog dialog) {
+                dialog.dismiss();
+            }
+        });
     }
 
     @Override
@@ -287,20 +288,13 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
             i.addCategory(Intent.CATEGORY_LAUNCHER);
 
             HashMap<String, String> map = new HashMap<>();
-            map.put("pin_settings", "pin_settings");
+            map.put("position", "pin_settings");
             i.putExtra("map", map);
 
             startActivity(i);
         } catch (PackageManager.NameNotFoundException e) {
-            listener.showPINInBrowserDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found) + "\n\n" +
-                    ResourceUtil.getString(fragmentActivity, R.string.set_pin_in_browser));
+            listener.showMessageDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found));
         }
-    }
-
-    @Override
-    public void openLinkInBrowser(String link) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-        startActivity(browserIntent);
     }
 
     @Override

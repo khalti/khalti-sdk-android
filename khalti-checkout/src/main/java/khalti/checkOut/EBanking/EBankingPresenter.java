@@ -16,15 +16,17 @@ import khalti.utils.NumberUtil;
 import khalti.utils.Store;
 import khalti.utils.StringUtil;
 import khalti.utils.ValidationUtil;
+import rx.subscriptions.CompositeSubscription;
 
-class EBankingPresenter implements EBankingContract.Listener {
+public class EBankingPresenter implements EBankingContract.Listener {
     @NonNull
     private final EBankingContract.View mEBankingView;
     private EBankingModel eBankingModel;
     private List<BankPojo> bankLists;
     private Config config;
+    private CompositeSubscription compositeSubscription;
 
-    EBankingPresenter(@NonNull EBankingContract.View mEBankingView) {
+    public EBankingPresenter(@NonNull EBankingContract.View mEBankingView) {
         this.mEBankingView = GuavaUtil.checkNotNull(mEBankingView);
         mEBankingView.setListener(this);
         eBankingModel = new EBankingModel();
@@ -38,7 +40,8 @@ class EBankingPresenter implements EBankingContract.Listener {
         mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         if (hasNetwork) {
             mEBankingView.toggleProgressBar(true);
-            eBankingModel.fetchBankList(new EBankingModel.BankAction() {
+            compositeSubscription = new CompositeSubscription();
+            compositeSubscription.add(eBankingModel.fetchBankList(new EBankingModel.BankAction() {
                 @Override
 
                 public void onCompleted(Object bankList) {
@@ -60,7 +63,7 @@ class EBankingPresenter implements EBankingContract.Listener {
                     mEBankingView.showError(message);
                     config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), message);
                 }
-            });
+            }));
         } else {
             mEBankingView.showNetworkError();
         }
@@ -119,5 +122,20 @@ class EBankingPresenter implements EBankingContract.Listener {
                 mEBankingView.setMobileError("Invalid mobile number");
             }
         }
+    }
+
+    @Override
+    public void unSubscribe() {
+        if (compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
+    }
+
+    public void injectModel(EBankingModel eBankingModel) {
+        this.eBankingModel = eBankingModel;
+    }
+
+    public void injectConfig(Config config) {
+        this.config = config;
     }
 }

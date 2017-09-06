@@ -26,9 +26,13 @@ public interface WalletContract {
 
         void showMessageDialog(String title, String message);
 
-        void showInteractiveMessageDialog(String title, String message);
+        void showPINDialog(String title, String message);
+
+        void showPINInBrowserDialog(String title, String message);
 
         void openKhaltiSettings();
+
+        void openLinkInBrowser(String link);
 
         void closeWidget();
 
@@ -49,7 +53,9 @@ public interface WalletContract {
 
         void openKhaltiSettings();
 
-        void showMessageDialog(String title, String message);
+        void openLinkInBrowser();
+
+        void showPINInBrowserDialog(String title, String message);
 
         void initiatePayment(boolean isNetwork, String mobile);
 

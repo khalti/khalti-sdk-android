@@ -112,7 +112,7 @@ public class WalletPresenterTest {
         verify(mWalletView).toggleProgressDialog("init", true);
         verify(walletModel).initiatePayment(eq(mobile), eq(config), walletArgument.capture());
         walletArgument.getValue().onError("</a>");
-        verify(mWalletView).showInteractiveMessageDialog(anyString(), anyString());
+        verify(mWalletView).showPINDialog(anyString(), anyString());
         verify(config.getOnCheckOutListener()).onError(anyString(), anyString());
     }
 

@@ -21,7 +21,6 @@ import khalti.R;
 public class UserInterfaceUtil {
     private static Dialog progressDialog;
     private static Dialog infoDialog;
-    private static Dialog interactiveDialog;
 
     public static void showSnackBar(Context context, CoordinatorLayout coordinatorLayout, String message, boolean action, String buttonText,
                                     int snackBarLength, int actionColor, SnackBarAction snackBarAction) {
@@ -58,7 +57,7 @@ public class UserInterfaceUtil {
         return progressDialog;
     }
 
-    public static void showInfoDialog(Context context, String title, String body, boolean autoDismiss, boolean cancelable, View positiveButton, DialogAction dialogAction) {
+    public static void showInfoDialog(Context context, String title, String body, boolean autoDismiss, boolean cancelable, String positiveText, String negativeText, DialogAction dialogAction) {
         infoDialog = new Dialog(context);
         infoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         infoDialog.setContentView(R.layout.info_dialog);
@@ -71,45 +70,30 @@ public class UserInterfaceUtil {
 
         AppCompatTextView tvTitle = infoDialog.findViewById(R.id.tvTitle);
         AppCompatTextView tvBody = infoDialog.findViewById(R.id.tvBody);
+        AppCompatTextView tvPositive = infoDialog.findViewById(R.id.tvPositive);
+        AppCompatTextView tvNegative = infoDialog.findViewById(R.id.tvNegative);
         FrameLayout flNegativeAction = infoDialog.findViewById(R.id.flNegativeAction);
         FrameLayout flPositiveAction = infoDialog.findViewById(R.id.flPositiveAction);
 
-        flNegativeAction.setVisibility(View.GONE);
-        flPositiveAction.addView(positiveButton);
-        tvTitle.setText(title);
-        tvBody.setText(body);
-
-        positiveButton.setOnClickListener(view -> dialogAction.onPositiveAction(infoDialog));
-    }
-
-    public static void showInteractiveInfoDialog(Context context, String title, String body, boolean autoDismiss, boolean cancelable, View positiveButton, View negativeButton, DialogAction dialogAction) {
-        interactiveDialog = new Dialog(context);
-        interactiveDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        interactiveDialog.setContentView(R.layout.info_dialog);
-        if (EmptyUtil.isNotNull(interactiveDialog.getWindow())) {
-            interactiveDialog.getWindow().setLayout(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT);
+        if (EmptyUtil.isNotNull(negativeText) && EmptyUtil.isNotEmpty(negativeText)) {
+            flNegativeAction.setVisibility(View.VISIBLE);
+            tvNegative.setText(negativeText);
         }
-        interactiveDialog.setCanceledOnTouchOutside(autoDismiss);
-        interactiveDialog.setCancelable(cancelable);
-        interactiveDialog.show();
 
-        AppCompatTextView tvTitle = interactiveDialog.findViewById(R.id.tvTitle);
-        AppCompatTextView tvBody = interactiveDialog.findViewById(R.id.tvBody);
-        FrameLayout flNegativeAction = interactiveDialog.findViewById(R.id.flNegativeAction);
-        FrameLayout flPositiveAction = interactiveDialog.findViewById(R.id.flPositiveAction);
+        if (EmptyUtil.isNotNull(positiveText) && EmptyUtil.isNotEmpty(positiveText)) {
+            tvPositive.setText(positiveText);
+        }
 
-        flPositiveAction.addView(positiveButton);
-        flNegativeAction.addView(negativeButton);
         tvTitle.setText(title);
         tvBody.setText(body);
 
-        positiveButton.setOnClickListener(view -> dialogAction.onPositiveAction(interactiveDialog));
-        negativeButton.setOnClickListener(view -> dialogAction.onNegativeAction(interactiveDialog));
+        flPositiveAction.setOnClickListener(view -> dialogAction.onPositiveAction(infoDialog));
+        flNegativeAction.setOnClickListener(view -> dialogAction.onNegativeAction(infoDialog));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    static void showPermissionInfo(Context context, String title, String body, final Activity activity, View positiveButton, View negativeButton, final String permission) {
-        showInteractiveInfoDialog(context, title, body, false, false, positiveButton, negativeButton, new DialogAction() {
+    static void showPermissionInfo(Context context, String title, String body, final Activity activity, final String permission) {
+        showInfoDialog(context, title, body, false, false, ResourceUtil.getString(context, R.string.allow), ResourceUtil.getString(context, R.string.deny), new DialogAction() {
             @Override
             public void onPositiveAction(Dialog dialog) {
                 SharedPreferences.Editor editor = PreferenceUtil.getPreferenceEditor(context);
@@ -146,10 +130,6 @@ public class UserInterfaceUtil {
 
         if (EmptyUtil.isNotNull(infoDialog)) {
             infoDialog.dismiss();
-        }
-
-        if (EmptyUtil.isNotNull(interactiveDialog)) {
-            interactiveDialog.dismiss();
         }
     }
 

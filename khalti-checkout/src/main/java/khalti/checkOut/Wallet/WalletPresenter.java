@@ -4,12 +4,14 @@ import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 
+import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.Event;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
+import khalti.utils.HtmlUtil;
 import khalti.utils.NumberUtil;
 import khalti.utils.Store;
 import khalti.utils.StringUtil;
@@ -23,6 +25,7 @@ public class WalletPresenter implements WalletContract.Listener {
     private CompositeSubscription compositeSubscription;
     private boolean smsListenerInitialized = false;
     private Config config;
+    private String pinWebLink;
 
     public WalletPresenter(@NonNull WalletContract.View mWalletView) {
         this.mWalletView = GuavaUtil.checkNotNull(mWalletView);
@@ -59,8 +62,13 @@ public class WalletPresenter implements WalletContract.Listener {
     }
 
     @Override
-    public void showMessageDialog(String title, String message) {
-        mWalletView.showMessageDialog(title, message);
+    public void openLinkInBrowser() {
+        mWalletView.openLinkInBrowser(ApiHelper.getUrl() + pinWebLink.substring(1));
+    }
+
+    @Override
+    public void showPINInBrowserDialog(String title, String message) {
+        mWalletView.showPINInBrowserDialog(title, message);
     }
 
     @Override
@@ -83,7 +91,8 @@ public class WalletPresenter implements WalletContract.Listener {
                     public void onError(String message) {
                         mWalletView.toggleProgressDialog("init", false);
                         if (message.contains("</a>")) {
-                            mWalletView.showInteractiveMessageDialog("Error", mWalletView.getMessage("pin_not_set") + "\n\n" +
+                            pinWebLink = HtmlUtil.getHrefLink(message);
+                            mWalletView.showPINDialog("Error", mWalletView.getMessage("pin_not_set") + "\n\n" +
                                     mWalletView.getMessage("pin_not_set_continue"));
                             config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), mWalletView.getMessage("pin_not_set"));
                         } else {
