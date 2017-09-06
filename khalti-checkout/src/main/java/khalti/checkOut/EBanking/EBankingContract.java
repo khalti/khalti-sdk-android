@@ -37,6 +37,8 @@ public interface EBankingContract {
 
         void saveConfigInFile(String fileName, Config config);
 
+        String getPackageName();
+
         void setListener(Listener listener);
     }
 

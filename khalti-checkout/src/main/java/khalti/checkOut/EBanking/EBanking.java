@@ -255,6 +255,11 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
+    public String getPackageName() {
+        return fragmentActivity.getPackageName();
+    }
+
+    @Override
     public void setListener(EBankingContract.Listener listener) {
         this.listener = listener;
     }

@@ -107,6 +107,7 @@ public class EBankingPresenter implements EBankingContract.Listener {
                         "mobile=" + map.get("mobile") + "&" +
                         "bank=" + map.get("bankId") + "&" +
                         "source=android" + "&" +
+                        "return_url=" + mEBankingView.getPackageName() + "&" +
                         "product_url=" + config.getProductUrl() +
                         ApiUtil.getPostData(config.getAdditionalData());
 

@@ -25,9 +25,9 @@ public class ApiHelper {
     private int HTTP_STATUS_CODE;
     private String HTTP_ERROR;
 
-        private static String url = "http://a.khalti.com/";
+    //        private static String url = "http://a.khalti.com/";
 //    private static String url = "https://khalti.com/";
-//    private static String url = "http://192.168.1.103:8000/";
+    private static String url = "http://192.168.1.103:8000/";
 
     public static KhaltiApi apiBuilder() {
         /*Logging*/

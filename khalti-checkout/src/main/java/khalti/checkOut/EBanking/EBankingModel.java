@@ -27,7 +27,7 @@ public class EBankingModel {
         return new ApiHelper().callApi(khaltiService.getBanks(url, 1, 100, true), new ApiHelper.ApiCallback() {
             @Override
             public void onComplete() {
-                if (bankList.size() > 2) {
+                if (bankList.size() > 5) {
                     bankAction.onCompleted(bankList);
                 } else {
                     bankAction.onCompleted(getSimpleBankList(bankList));
