@@ -57,14 +57,14 @@ public class Wallet extends Fragment implements WalletContract.View {
         fragmentActivity = getActivity();
         listener = new WalletPresenter(this);
 
-        etMobile = mainView.findViewById(R.id.etMobile);
-        etCode = mainView.findViewById(R.id.etCode);
-        etPIN = mainView.findViewById(R.id.etPIN);
-        tilMobile = mainView.findViewById(R.id.tilMobile);
-        tilCode = mainView.findViewById(R.id.tilCode);
-        tilPIN = mainView.findViewById(R.id.tilPIN);
-        btnPay = mainView.findViewById(R.id.btnPay);
-        elConfirmation = mainView.findViewById(R.id.elConfirmation);
+        etMobile = (TextInputEditText) mainView.findViewById(R.id.etMobile);
+        etCode = (TextInputEditText) mainView.findViewById(R.id.etCode);
+        etPIN = (TextInputEditText) mainView.findViewById(R.id.etPIN);
+        tilMobile = (TextInputLayout) mainView.findViewById(R.id.tilMobile);
+        tilCode = (TextInputLayout) mainView.findViewById(R.id.tilCode);
+        tilPIN = (TextInputLayout) mainView.findViewById(R.id.tilPIN);
+        btnPay = (Button) mainView.findViewById(R.id.btnPay);
+        elConfirmation = (ExpandableLayout) mainView.findViewById(R.id.elConfirmation);
 
         listener.setUpLayout();
 
@@ -214,11 +214,11 @@ public class Wallet extends Fragment implements WalletContract.View {
                     listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
                 } else {
                     FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-                    RobotoMediumTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+                    RobotoMediumTextView tvPositive = (RobotoMediumTextView) flPositive.findViewById(R.id.tvButton);
                     tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.allow));
 
                     FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-                    RobotoMediumTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+                    RobotoMediumTextView tvNegative = (RobotoMediumTextView) flNegative.findViewById(R.id.tvButton);
                     tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.deny));
 
                     AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", flPositive, flNegative, () ->
@@ -243,7 +243,7 @@ public class Wallet extends Fragment implements WalletContract.View {
     @Override
     public void showMessageDialog(String title, String message) {
         FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvButton = flButton.findViewById(R.id.tvButton);
+        RobotoMediumTextView tvButton = (RobotoMediumTextView) flButton.findViewById(R.id.tvButton);
         tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
 
         UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {
@@ -262,11 +262,11 @@ public class Wallet extends Fragment implements WalletContract.View {
     @Override
     public void showInteractiveMessageDialog(String title, String message) {
         FrameLayout flPositive = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvPositive = flPositive.findViewById(R.id.tvButton);
+        RobotoMediumTextView tvPositive = (RobotoMediumTextView) flPositive.findViewById(R.id.tvButton);
         tvPositive.setText(ResourceUtil.getString(fragmentActivity, R.string.ok));
 
         FrameLayout flNegative = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvNegative = flNegative.findViewById(R.id.tvButton);
+        RobotoMediumTextView tvNegative = (RobotoMediumTextView) flNegative.findViewById(R.id.tvButton);
         tvNegative.setText(ResourceUtil.getString(fragmentActivity, R.string.cancel));
 
         UserInterfaceUtil.showInteractiveInfoDialog(fragmentActivity, title, message, true, true, flPositive, flNegative, new UserInterfaceUtil.DialogAction() {

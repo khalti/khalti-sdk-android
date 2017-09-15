@@ -27,10 +27,10 @@ ext {
     appVersionCode = 10000
     appVersionName = "1.0.0"
 
-    compileSdk = 26
-    buildToolVersion = '26.0.1'
+    compileSdk = 25
+    buildToolVersion = '25.0.3'
     minSdk = 14
-    targetSdk = 26
+    targetSdk = 25
     renderScriptTarget = 20
 
     supportVersion = '25.3.1'

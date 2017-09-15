@@ -47,11 +47,11 @@ public class ApiHelper {
         return retrofit.create(KhaltiApi.class);
     }
 
-    public Subscription callApi(Observable<Response<?>> observable, ApiCallback callback) {
+    public <T> Subscription callApi(Observable<Response<T>> observable, ApiCallback callback) {
         try {
-            return observable.subscribeOn(Schedulers.newThread())
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<Response<?>>() {
+            return observable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<Response<T>>() {
                         @Override
                         public void onCompleted() {
                             if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
@@ -70,7 +70,7 @@ public class ApiHelper {
                         }
 
                         @Override
-                        public void onNext(Response<?> response) {
+                        public void onNext(Response<T> response) {
                             HTTP_STATUS_CODE = response.code();
                             if (response.isSuccessful()) {
                                 callback.onNext(response.body());

@@ -68,16 +68,16 @@ public class EBanking extends Fragment implements EBankingContract.View {
         fragmentActivity = getActivity();
         listener = new EBankingPresenter(this);
 
-        pdLoad = mainView.findViewById(R.id.pdLoad);
-        llBank = mainView.findViewById(R.id.llBank);
-        llMobile = mainView.findViewById(R.id.llMobile);
-        spBank = mainView.findViewById(R.id.spBank);
-        flBank = mainView.findViewById(R.id.flBank);
-        tvBank = mainView.findViewById(R.id.tvBank);
-        tvBankId = mainView.findViewById(R.id.tvBankId);
-        etMobile = mainView.findViewById(R.id.etMobile);
-        tilMobile = mainView.findViewById(R.id.tilMobile);
-        btnPay = mainView.findViewById(R.id.btnPay);
+        pdLoad = (ProgressBar) mainView.findViewById(R.id.pdLoad);
+        llBank = (LinearLayout) mainView.findViewById(R.id.llBank);
+        llMobile = (LinearLayout) mainView.findViewById(R.id.llMobile);
+        spBank = (Spinner) mainView.findViewById(R.id.spBank);
+        flBank = (FrameLayout) mainView.findViewById(R.id.flBank);
+        tvBank = (RobotoTextView) mainView.findViewById(R.id.tvBank);
+        tvBankId = (RobotoTextView) mainView.findViewById(R.id.tvBankId);
+        etMobile = (TextInputEditText) mainView.findViewById(R.id.etMobile);
+        tilMobile = (TextInputLayout) mainView.findViewById(R.id.tilMobile);
+        btnPay = (Button) mainView.findViewById(R.id.btnPay);
 
         listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
@@ -213,7 +213,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     @Override
     public void showMessageDialog(String title, String message) {
         FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        RobotoMediumTextView tvButton = flButton.findViewById(R.id.tvButton);
+        RobotoMediumTextView tvButton = (RobotoMediumTextView) flButton.findViewById(R.id.tvButton);
         tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
 
         UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {

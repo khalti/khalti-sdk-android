@@ -40,9 +40,9 @@ public class UserInterfaceUtil {
         progressDialog.setCancelable(true);
         progressDialog.show();
 
-        RobotoMediumTextView tvTitle = progressDialog.findViewById(R.id.tvTitle);
-        RobotoTextView tvBody = progressDialog.findViewById(R.id.tvBody);
-        FrameLayout flProgress = progressDialog.findViewById(R.id.flProgress);
+        RobotoMediumTextView tvTitle = (RobotoMediumTextView) progressDialog.findViewById(R.id.tvTitle);
+        RobotoTextView tvBody = (RobotoTextView) progressDialog.findViewById(R.id.tvBody);
+        FrameLayout flProgress = (FrameLayout) progressDialog.findViewById(R.id.flProgress);
 
         flProgress.addView(progressCircle);
         tvTitle.setText(title);
@@ -64,10 +64,10 @@ public class UserInterfaceUtil {
         infoDialog.setCancelable(cancelable);
         infoDialog.show();
 
-        RobotoMediumTextView tvTitle = infoDialog.findViewById(R.id.tvTitle);
-        RobotoTextView tvBody = infoDialog.findViewById(R.id.tvBody);
-        FrameLayout flNegativeAction = infoDialog.findViewById(R.id.flNegativeAction);
-        FrameLayout flPositiveAction = infoDialog.findViewById(R.id.flPositiveAction);
+        RobotoMediumTextView tvTitle = (RobotoMediumTextView) infoDialog.findViewById(R.id.tvTitle);
+        RobotoTextView tvBody = (RobotoTextView) infoDialog.findViewById(R.id.tvBody);
+        FrameLayout flNegativeAction = (FrameLayout) infoDialog.findViewById(R.id.flNegativeAction);
+        FrameLayout flPositiveAction = (FrameLayout) infoDialog.findViewById(R.id.flPositiveAction);
 
         flNegativeAction.setVisibility(View.GONE);
         flPositiveAction.addView(positiveButton);
@@ -89,10 +89,10 @@ public class UserInterfaceUtil {
         infoDialog.setCancelable(cancelable);
         infoDialog.show();
 
-        RobotoMediumTextView tvTitle = infoDialog.findViewById(R.id.tvTitle);
-        RobotoTextView tvBody = infoDialog.findViewById(R.id.tvBody);
-        FrameLayout flNegativeAction = infoDialog.findViewById(R.id.flNegativeAction);
-        FrameLayout flPositiveAction = infoDialog.findViewById(R.id.flPositiveAction);
+        RobotoMediumTextView tvTitle = (RobotoMediumTextView) infoDialog.findViewById(R.id.tvTitle);
+        RobotoTextView tvBody = (RobotoTextView) infoDialog.findViewById(R.id.tvBody);
+        FrameLayout flNegativeAction = (FrameLayout) infoDialog.findViewById(R.id.flNegativeAction);
+        FrameLayout flPositiveAction = (FrameLayout) infoDialog.findViewById(R.id.flPositiveAction);
 
         flPositiveAction.addView(positiveButton);
         flNegativeAction.addView(negativeButton);

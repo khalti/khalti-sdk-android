@@ -59,10 +59,10 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
         MyViewHolder(View itemView) {
             super(itemView);
 
-            tvBankIcon = itemView.findViewById(R.id.tvBankIcon);
-            tvBankName = itemView.findViewById(R.id.tvBankName);
-            tvBankId = itemView.findViewById(R.id.tvBankId);
-            flContainer = itemView.findViewById(R.id.flContainer);
+            tvBankIcon = (RobotoBoldTextView) itemView.findViewById(R.id.tvBankIcon);
+            tvBankName = (RobotoTextView) itemView.findViewById(R.id.tvBankName);
+            tvBankId = (RobotoTextView) itemView.findViewById(R.id.tvBankId);
+            flContainer = (FrameLayout) itemView.findViewById(R.id.flContainer);
 
             flContainer.setOnClickListener(view -> bankControls.chooseBank(((RobotoTextView) view.findViewById(R.id.tvBankName)).getText() + "",
                     ((RobotoTextView) view.findViewById(R.id.tvBankId)).getText() + ""));
