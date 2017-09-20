@@ -4,11 +4,11 @@ import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 
-import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.Event;
+import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.HtmlUtil;
@@ -63,7 +63,7 @@ public class WalletPresenter implements WalletContract.Listener {
 
     @Override
     public void openLinkInBrowser() {
-        mWalletView.openLinkInBrowser(ApiHelper.getUrl() + pinWebLink.substring(1));
+        mWalletView.openLinkInBrowser(Constant.url + pinWebLink.substring(1));
     }
 
     @Override

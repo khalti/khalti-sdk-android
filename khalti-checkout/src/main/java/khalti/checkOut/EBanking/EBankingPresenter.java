@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.checkOut.EBanking.chooseBank.BankPojo;
-import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.utils.ApiUtil;
+import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.NumberUtil;
@@ -112,7 +112,7 @@ public class EBankingPresenter implements EBankingContract.Listener {
                         ApiUtil.getPostData(config.getAdditionalData());
 
                 mEBankingView.saveConfigInFile("khalti_config", config);
-                mEBankingView.openEBanking(ApiHelper.getUrl() + "ebanking/initiate/?" + data);
+                mEBankingView.openEBanking(Constant.url + "ebanking/initiate/?" + data);
             } else {
                 mEBankingView.showNetworkError();
             }

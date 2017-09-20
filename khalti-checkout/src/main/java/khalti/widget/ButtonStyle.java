@@ -7,9 +7,7 @@ import android.support.annotation.Keep;
 public enum ButtonStyle {
     BASIC(-1),
     EBANKING_DARK(0),
-    EBANKING_LIGHT(1),
-    KHALTI_DARK(2),
-    KHALTI_LIGHT(3);
+    EBANKING_LIGHT(1);
 
     private final int id;
 
