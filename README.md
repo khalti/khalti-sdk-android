@@ -17,6 +17,15 @@ buildToolsVersion '26.0.1'
 
 compile 'com.android.support:appcompat-v7:26.0.1'
 ```
+In order to add support library 26, add the Google's maven url in `build.gradle`
+
+```
+repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+    }
+```
 
 ## Setup
 Add these lines to the default config section in `build.gradle` file
@@ -96,4 +105,3 @@ Finally set your config in your KhaltiButton.
 ```java;
 khaltiButton.setConfig(config);
 ```
-## Sample App
