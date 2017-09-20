@@ -3,12 +3,11 @@ package khalti.checkOut;
 import android.content.Context;
 import android.support.annotation.Keep;
 
-import com.rxbus.RxBus;
-import com.utila.ActivityUtil;
-import com.utila.EmptyUtil;
-
 import khalti.checkOut.api.Config;
-import khalti.utils.DataHolder;
+import khalti.rxBus.RxBus;
+import khalti.utils.ActivityUtil;
+import khalti.utils.EmptyUtil;
+import khalti.utils.Store;
 
 @Keep
 public class KhaltiCheckOut implements KhaltiCheckOutInterface {
@@ -19,13 +18,13 @@ public class KhaltiCheckOut implements KhaltiCheckOutInterface {
     }
 
     public KhaltiCheckOut(Context context, Config config) {
-        DataHolder.setConfig(config);
+        Store.setConfig(config);
         this.context = context;
     }
 
     @Override
     public void show() {
-        if (EmptyUtil.isNull(DataHolder.getConfig())) {
+        if (EmptyUtil.isNull(Store.getConfig())) {
             throw new IllegalArgumentException("Config not set");
         }
         ActivityUtil.openActivity(CheckOutActivity.class, context, null, true);
@@ -33,8 +32,8 @@ public class KhaltiCheckOut implements KhaltiCheckOutInterface {
 
     @Override
     public void show(Config config) {
-        DataHolder.setConfig(config);
-        if (EmptyUtil.isNull(DataHolder.getConfig())) {
+        Store.setConfig(config);
+        if (EmptyUtil.isNull(Store.getConfig())) {
             throw new IllegalArgumentException("Config not set");
         }
         ActivityUtil.openActivity(CheckOutActivity.class, context, null, true);

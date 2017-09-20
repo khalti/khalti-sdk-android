@@ -2,7 +2,8 @@ package khalti.checkOut;
 
 import android.support.annotation.NonNull;
 
-import com.utila.GuavaUtil;
+import khalti.utils.GuavaUtil;
+
 
 class CheckOutPresenter implements CheckOutContract.Listener {
     @NonNull

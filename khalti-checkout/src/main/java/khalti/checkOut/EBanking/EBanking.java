@@ -25,12 +25,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.utila.EmptyUtil;
-import com.utila.NetworkUtil;
-import com.utila.ResourceUtil;
-import com.utila.StorageUtil;
-import com.utila.UserInterfaceUtil;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +36,11 @@ import khalti.carbonX.widget.TextInputLayout;
 import khalti.checkOut.CheckOutActivity;
 import khalti.checkOut.EBanking.chooseBank.BankChooserActivity;
 import khalti.checkOut.api.Config;
+import khalti.utils.EmptyUtil;
+import khalti.utils.FileStorageUtil;
+import khalti.utils.NetworkUtil;
+import khalti.utils.ResourceUtil;
+import khalti.utils.UserInterfaceUtil;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -89,6 +88,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     public void onPause() {
         super.onPause();
         listener.toggleEditTextListener(false);
+        listener.unSubscribe();
     }
 
     @Override
@@ -220,17 +220,18 @@ public class EBanking extends Fragment implements EBankingContract.View {
         AppCompatTextView tvButton = flButton.findViewById(R.id.tvButton);
         tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
 
-        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, flButton, new UserInterfaceUtil.DialogAction() {
-            @Override
-            public void onPositiveAction(Dialog dialog) {
-                dialog.dismiss();
-            }
+        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, ResourceUtil.getString(fragmentActivity, R.string.got_it), null,
+                new UserInterfaceUtil.DialogAction() {
+                    @Override
+                    public void onPositiveAction(Dialog dialog) {
+                        dialog.dismiss();
+                    }
 
-            @Override
-            public void onNegativeAction(Dialog dialog) {
+                    @Override
+                    public void onNegativeAction(Dialog dialog) {
 
-            }
-        });
+                    }
+                });
     }
 
     @Override
@@ -250,7 +251,12 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void saveConfigInFile(String fileName, Config config) {
-        StorageUtil.writeIntoFile(fragmentActivity, fileName, config);
+        FileStorageUtil.writeIntoFile(fragmentActivity, fileName, config);
+    }
+
+    @Override
+    public String getPackageName() {
+        return fragmentActivity.getPackageName();
     }
 
     @Override

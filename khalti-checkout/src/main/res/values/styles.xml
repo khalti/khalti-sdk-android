@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Parent">
+    <style name="AppTheme" parent="AppTheme.khalti">
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AppTheme.Parent" parent="carbonX_Theme.Light.NoActionBar">
+    <style name="AppTheme.khalti" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/khaltiPrimary</item>
         <item name="colorPrimaryDark">@color/khaltiPrimaryDark</item>
         <item name="colorAccent">@color/khaltiAccent</item>
+
+        <item name="carbonX_colorError">#ffF44336</item>
+        <item name="carbonX_debugMode">false</item>
+
+        <item name="android:buttonStyle">@style/carbonX_Button</item>
+        <item name="carbonX_textAppearanceButton">@style/carbonX_TextAppearance.Button.Light</item>
+        <item name="carbonX_textAppearanceButtonInverse">@style/carbonX_TextAppearance.Button.Dark
+        </item>
+        <item name="android:progressBarStyle">@style/carbonX_ProgressBar</item>
+        <item name="carbonX_frameLayoutStyle">@style/carbonX_FrameLayout</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
@@ -33,20 +46,7 @@
     </style>
 
     <style name="carbonX_Theme.Light" parent="Theme.AppCompat.Light">
-        <item name="carbonX_colorError">#ffF44336</item>
-        <item name="carbonX_debugMode">false</item>
 
-        <item name="android:buttonStyle">@style/carbonX_Button</item>
-        <item name="carbonX_textAppearanceButton">@style/carbonX_TextAppearance.Button.Light</item>
-        <item name="carbonX_textAppearanceButtonInverse">@style/carbonX_TextAppearance.Button.Dark
-        </item>
-        <item name="android:progressBarStyle">@style/carbonX_ProgressBar</item>
-        <item name="carbonX_frameLayoutStyle">@style/carbonX_FrameLayout</item>
-    </style>
-
-    <style name="carbonX_Theme.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="carbonX_ProgressBar" parent="Widget.AppCompat.ProgressBar">

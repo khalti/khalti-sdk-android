@@ -82,8 +82,17 @@ dependencies {
     compile "io.reactivex:rxjava:${rootProject.ext.rxVersion}"
     compile "io.reactivex:rxandroid:${rootProject.ext.rxAndroidVersion}"
 
-    compile project(':utila')
-    compile project(':rxBus')
+    /*RxPermission*/
+    compile "com.tbruyelle.rxpermissions:rxpermissions:${rootProject.ext.rxPermissionVersion}"
+
+    /*---------------------------------------------------------------------------------------------------------------------*/
+
+    /*Unit Testing*/
+    testCompile "junit:junit:${rootProject.ext.junitVersion}"
+    testCompile "org.mockito:mockito-all:${rootProject.ext.mockitoVersion}"
+    testCompile "org.hamcrest:hamcrest-all:${rootProject.ext.hamcrestVersion}"
+    testCompile "org.powermock:powermock-module-junit4:${rootProject.ext.powerMockVersion}"
+    testCompile "org.powermock:powermock-api-mockito:${rootProject.ext.powerMockVersion}"
 }
 
 

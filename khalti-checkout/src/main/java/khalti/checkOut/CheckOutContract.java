@@ -2,6 +2,7 @@ package khalti.checkOut;
 
 interface CheckOutContract {
     interface View {
+
         void setupViewPager();
 
         void setUpTabLayout();
@@ -18,6 +19,7 @@ interface CheckOutContract {
     }
 
     interface Listener {
+
         void setUpLayout();
 
         void toggleTab(int position, boolean selected);

@@ -2,13 +2,6 @@ package khalti.checkOut.EBanking;
 
 import android.support.annotation.NonNull;
 
-import com.utila.ApiUtil;
-import com.utila.EmptyUtil;
-import com.utila.GuavaUtil;
-import com.utila.NumberUtil;
-import com.utila.StringUtil;
-import com.utila.ValidationUtil;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,31 +9,39 @@ import khalti.checkOut.EBanking.chooseBank.BankPojo;
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
-import khalti.checkOut.api.OnCheckOutListener;
-import khalti.utils.DataHolder;
+import khalti.utils.ApiUtil;
+import khalti.utils.EmptyUtil;
+import khalti.utils.GuavaUtil;
+import khalti.utils.NumberUtil;
+import khalti.utils.Store;
+import khalti.utils.StringUtil;
+import khalti.utils.ValidationUtil;
+import rx.subscriptions.CompositeSubscription;
 
-class EBankingPresenter implements EBankingContract.Listener {
+public class EBankingPresenter implements EBankingContract.Listener {
     @NonNull
     private final EBankingContract.View mEBankingView;
     private EBankingModel eBankingModel;
     private List<BankPojo> bankLists;
-    private OnCheckOutListener onCheckOutListener;
+    private Config config;
+    private CompositeSubscription compositeSubscription;
 
-    EBankingPresenter(@NonNull EBankingContract.View mEBankingView) {
+    public EBankingPresenter(@NonNull EBankingContract.View mEBankingView) {
         this.mEBankingView = GuavaUtil.checkNotNull(mEBankingView);
         mEBankingView.setListener(this);
         eBankingModel = new EBankingModel();
-        onCheckOutListener = DataHolder.getConfig().getOnCheckOutListener();
     }
 
     @Override
     public void setUpLayout(boolean hasNetwork) {
+        this.config = Store.getConfig();
         mEBankingView.toggleButton(false);
         mEBankingView.showBankField();
-        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(DataHolder.getConfig().getAmount())));
+        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         if (hasNetwork) {
             mEBankingView.toggleProgressBar(true);
-            eBankingModel.fetchBankList(new EBankingModel.BankAction() {
+            compositeSubscription = new CompositeSubscription();
+            compositeSubscription.add(eBankingModel.fetchBankList(new EBankingModel.BankAction() {
                 @Override
 
                 public void onCompleted(Object bankList) {
@@ -60,9 +61,9 @@ class EBankingPresenter implements EBankingContract.Listener {
                 public void onError(String message) {
                     mEBankingView.toggleProgressBar(false);
                     mEBankingView.showError(message);
-                    onCheckOutListener.onError(ErrorAction.FETCH_BANK_LIST.getAction(), message);
+                    config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), message);
                 }
-            });
+            }));
         } else {
             mEBankingView.showNetworkError();
         }
@@ -99,7 +100,6 @@ class EBankingPresenter implements EBankingContract.Listener {
                 map.put("bankId", bankId);
                 map.put("bankName", bankName);
 
-                Config config = DataHolder.getConfig();
                 String data = "public_key=" + config.getPublicKey() + "&" +
                         "product_identity=" + config.getProductId() + "&" +
                         "product_name=" + config.getProductName() + "&" +
@@ -107,6 +107,7 @@ class EBankingPresenter implements EBankingContract.Listener {
                         "mobile=" + map.get("mobile") + "&" +
                         "bank=" + map.get("bankId") + "&" +
                         "source=android" + "&" +
+                        "return_url=" + mEBankingView.getPackageName() + "&" +
                         "product_url=" + config.getProductUrl() +
                         ApiUtil.getPostData(config.getAdditionalData());
 
@@ -122,5 +123,20 @@ class EBankingPresenter implements EBankingContract.Listener {
                 mEBankingView.setMobileError("Invalid mobile number");
             }
         }
+    }
+
+    @Override
+    public void unSubscribe() {
+        if (compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
+    }
+
+    public void injectModel(EBankingModel eBankingModel) {
+        this.eBankingModel = eBankingModel;
+    }
+
+    public void injectConfig(Config config) {
+        this.config = config;
     }
 }

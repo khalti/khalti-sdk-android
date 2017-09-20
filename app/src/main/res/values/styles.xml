@@ -1,10 +1,11 @@
 <resources>
 
+
     <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AppTheme.Base" parent="carbonX_Theme.Light.NoActionBar">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

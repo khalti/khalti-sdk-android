@@ -5,36 +5,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.EBanking.chooseBank.BankPojo;
+import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.KhaltiApi;
 import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 
 public class EBankingModel {
     private KhaltiApi khaltiService;
-    private CompositeSubscription compositeSubscription;
-    private int HTTP_STATUS_CODE;
-    private String HTTP_ERROR;
-
     private List<BankPojo> bankList;
 
     public EBankingModel() {
-        compositeSubscription = new CompositeSubscription();
         khaltiService = ApiHelper.apiBuilder();
     }
 
     public EBankingModel(KhaltiApi mockedKhaltiService) {
-        compositeSubscription = new CompositeSubscription();
         khaltiService = mockedKhaltiService;
     }
 
-    void fetchBankList(BankAction bankAction) {
+    public Subscription fetchBankList(BankAction bankAction) {
         String url = "api/bank/";
-        Subscription subscription = new ApiHelper().callApi(khaltiService.getBanks(url, 1, 100, true), new ApiHelper.ApiCallback() {
+        return new ApiHelper().callApi(khaltiService.getBanks(url, 1, 100, true), new ApiHelper.ApiCallback() {
             @Override
             public void onComplete() {
-                if (bankList.size() > 2) {
+                if (bankList.size() > 5) {
                     bankAction.onCompleted(bankList);
                 } else {
                     bankAction.onCompleted(getSimpleBankList(bankList));
@@ -51,9 +44,6 @@ public class EBankingModel {
                 bankList = ((BaseListPojo) o).getRecords();
             }
         });
-
-        compositeSubscription.add(subscription);
-
     }
 
     public interface BankAction {

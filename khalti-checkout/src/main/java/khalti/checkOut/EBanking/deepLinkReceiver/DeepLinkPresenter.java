@@ -2,15 +2,14 @@ package khalti.checkOut.EBanking.deepLinkReceiver;
 
 import android.support.annotation.NonNull;
 
-import com.rxbus.RxBus;
-import com.utila.EmptyUtil;
-import com.utila.GuavaUtil;
-
 import java.util.HashMap;
 
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.OnCheckOutListener;
-import khalti.utils.DataHolder;
+import khalti.rxBus.RxBus;
+import khalti.utils.Store;
+import khalti.utils.EmptyUtil;
+import khalti.utils.GuavaUtil;
 
 class DeepLinkPresenter implements DeepLinkContract.Listener {
     @NonNull
@@ -24,7 +23,7 @@ class DeepLinkPresenter implements DeepLinkContract.Listener {
     @Override
     public void receiveEBankingData() {
         HashMap<String, Object> map = mDeepLinkView.receiveEBankingData();
-        Config config = EmptyUtil.isNotNull(DataHolder.getConfig()) ? DataHolder.getConfig() : mDeepLinkView.getConfigFromFile();
+        Config config = EmptyUtil.isNotNull(Store.getConfig()) ? Store.getConfig() : mDeepLinkView.getConfigFromFile();
         if (EmptyUtil.isNotNull(map) && EmptyUtil.isNotNull(config)) {
             OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
             onCheckOutListener.onSuccess(map);

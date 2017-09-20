@@ -1,8 +1,9 @@
 package khalti.checkOut.Wallet;
 
-import com.rxbus.Event;
 
-interface WalletContract {
+import khalti.rxBus.Event;
+
+public interface WalletContract {
     interface View {
 
         void toggleProgressDialog(String action, boolean show);
@@ -25,13 +26,17 @@ interface WalletContract {
 
         void showMessageDialog(String title, String message);
 
-        void showInteractiveMessageDialog(String title, String message);
+        void showPINDialog(String title, String message);
+
+        void showPINInBrowserDialog(String title, String message);
 
         void openKhaltiSettings();
 
+        void openLinkInBrowser(String link);
+
         void closeWidget();
 
-        String getStringFromResource(int id);
+        String getMessage(String action);
 
         void setListener(Listener listener);
     }
@@ -48,7 +53,9 @@ interface WalletContract {
 
         void openKhaltiSettings();
 
-        void showMessageDialog(String title, String message);
+        void openLinkInBrowser();
+
+        void showPINInBrowserDialog(String title, String message);
 
         void initiatePayment(boolean isNetwork, String mobile);
 

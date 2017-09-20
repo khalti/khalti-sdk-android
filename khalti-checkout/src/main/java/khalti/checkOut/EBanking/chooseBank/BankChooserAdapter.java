@@ -7,13 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.utila.StringUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
+import khalti.utils.StringUtil;
 
 public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.MyViewHolder> {
 

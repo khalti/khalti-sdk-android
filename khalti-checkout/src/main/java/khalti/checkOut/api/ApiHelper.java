@@ -1,14 +1,13 @@
 package khalti.checkOut.api;
 
-
 import com.google.gson.GsonBuilder;
-import com.utila.ApiUtil;
-import com.utila.EmptyUtil;
-import com.utila.ErrorUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import khalti.utils.ApiUtil;
+import khalti.utils.EmptyUtil;
+import khalti.utils.ErrorUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
@@ -26,7 +25,7 @@ public class ApiHelper {
     private int HTTP_STATUS_CODE;
     private String HTTP_ERROR;
 
-        private static String url = "http://a.khalti.com/";
+            private static String url = "http://a.khalti.com/";
 //    private static String url = "https://khalti.com/";
 //    private static String url = "http://192.168.1.103:8000/";
 

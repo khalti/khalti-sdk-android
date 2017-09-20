@@ -78,6 +78,7 @@
  # If in your rest service interface you use methods with Callback argument.
  -keepattributes Exceptions
 
+
  # If your rest service methods throw custom exceptions, because you've defined an ErrorHandler.
  -keepattributes Signature
 
@@ -108,3 +109,9 @@
 
  #Apache
  -dontwarn org.apache.**
+
+ #utils
+ -keep class khalti.utils.** { *; }
+
+ #rxBus
+ -keep class khalti.rxBus.** { *; }
