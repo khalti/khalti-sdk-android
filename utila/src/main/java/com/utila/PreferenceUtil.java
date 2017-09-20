@@ -21,13 +21,4 @@ public class PreferenceUtil {
             return getSharedPreference(context).edit();
         }
     }
-
-    public static String getPrefString(Context context, String key) {
-        SharedPreferences sp = getSharedPreference(context);
-        if (sp.contains(key)) {
-            return sp.getString(key, "");
-        } else {
-            return "";
-        }
-    }
 }

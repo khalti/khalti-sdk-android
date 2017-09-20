@@ -23,3 +23,42 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#Utils
+ -keep class com.utila.** { *; }
+
+ #Support
+ #-dontwarn android.support.v7.**
+ #-keep class android.support.v7.** { *; }
+ #-keep interface android.support.v7.** { *; }
+
+ #Design library
+ #-dontwarn android.support.design.**
+ #-keep class android.support.design.** { *; }
+ #-keep interface android.support.design.** { *; }
+ #-keep public class android.support.design.R$* { *; }
+
+ # Rxjava
+  -keep class rx.schedulers.Schedulers {
+      public static <methods>;
+  }
+  -keep class rx.schedulers.ImmediateScheduler {
+      public <methods>;
+  }
+  -keep class rx.schedulers.TestScheduler {
+      public <methods>;
+  }
+  -keep class rx.schedulers.Schedulers {
+      public static ** test();
+  }
+  -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+      long producerIndex;
+      long consumerIndex;
+  }
+  -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+      long producerNode;
+      long consumerNode;
+  }
+
+  #Retrolambda
+  -dontwarn java.lang.invoke.*

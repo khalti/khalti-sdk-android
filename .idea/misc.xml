@@ -51,6 +51,7 @@
     </option>
 >>>>>>> da84dff07bf4947af0418efbaf3f3c1cd803f1b0
   </component>
+<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
@@ -80,6 +81,9 @@
     </states>
 =======
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+>>>>>>> 4e9c51279114b3958d2fc578e139d76705220df9
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
