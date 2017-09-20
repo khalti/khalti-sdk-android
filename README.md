@@ -103,5 +103,5 @@ HashMap<String, Object> map = new HashMap<>();
 #### Set Config
 Finally set your config in your KhaltiButton.
 ```java;
-khaltiButton.setConfig(config);
+khaltiButton.setCheckOutConfig(config);
 ```
