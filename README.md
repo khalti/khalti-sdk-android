@@ -22,14 +22,23 @@ compile 'com.android.support:appcompat-v7:26.0.1'
 Add these lines to the default config section in `build.gradle` file
 
 ```
-renderscriptTargetApi 20'
+android {
+    ...
 
-renderscriptSupportModeEnabled true
+    defaultConfig {
+        ...
+        
+        renderscriptTargetApi 20'   
+        renderscriptSupportModeEnabled true
+        vectorDrawables.useSupportLibrary = true;
+    }
+}
+
 ```
 
 ## Usage
 
-#### Add KhaltiButton to your layout
+#### Layout
 
 You can add it to your xml layout
 ```xml
@@ -82,10 +91,9 @@ HashMap<String, Object> map = new HashMap<>();
             }
         });
 ```
-
+#### Set Config
 Finally set your config in your KhaltiButton.
-```java
-KhaltiButton kButton = findViewById(R.id.khalti_button);
-kButton.setConfig(config);
+```java;
+khaltiButton.setConfig(config);
 ```
 ## Sample App
