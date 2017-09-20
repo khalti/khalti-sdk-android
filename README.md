@@ -73,7 +73,7 @@ Config config = new Config("Public Key", "Product ID", "Product Name", "Product 
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {
-                Log.i("Payment confirmed", data);
+                Log.i("Payment confirmed", data+"");
             }
 
             @Override
