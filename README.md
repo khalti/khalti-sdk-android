@@ -78,7 +78,7 @@ Addtionally, Config class also accepts a HashMap parameter which you can use to 
 HashMap<String, Object> map = new HashMap<>();
         map.put("extra", "This is extra data");
         
-        Config config = new Config("Public Key", "Product ID", "Product Name", "Product Url", amount, new OnCheckOutListener() {
+        Config config = new Config("Public Key", "Product ID", "Product Name", "Product Url", amount, map, new OnCheckOutListener() {
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {
