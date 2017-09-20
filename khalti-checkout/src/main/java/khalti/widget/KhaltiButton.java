@@ -16,31 +16,31 @@ import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 
 @Keep
-public class Button extends FrameLayout implements ButtonInterface {
+public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
     private Context context;
     private AttributeSet attrs;
 
     private Config config;
 
-    private ButtonContract.Listener listener;
+    private PayContract.Listener listener;
     private android.widget.FrameLayout flCustomView;
     private FrameLayout flStyle;
     private khalti.carbonX.widget.Button btnPay;
     private View customView;
     private int buttonStyle;
 
-    public Button(@NonNull Context context) {
+    public KhaltiButton(@NonNull Context context) {
         super(context);
         this.context = context;
     }
 
-    public Button(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public KhaltiButton(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         this.attrs = attrs;
 
-        BasicPay basicPay = new BasicPay();
-        listener = basicPay.getListener();
+        Pay pay = new Pay();
+        listener = pay.getListener();
         init();
     }
 
@@ -95,12 +95,12 @@ public class Button extends FrameLayout implements ButtonInterface {
         listener.setButtonClick();
     }
 
-    private class BasicPay implements ButtonContract.View {
-        private ButtonContract.Listener listener;
+    private class Pay implements PayContract.View {
+        private PayContract.Listener listener;
         private KhaltiCheckOut khaltiCheckOut;
 
-        BasicPay() {
-            listener = new ButtonPresenter(this);
+        Pay() {
+            listener = new PayPresenter(this);
         }
 
         @Override
@@ -163,12 +163,12 @@ public class Button extends FrameLayout implements ButtonInterface {
             khaltiCheckOut.destroy();
         }
 
-        ButtonContract.Listener getListener() {
+        PayContract.Listener getListener() {
             return listener;
         }
 
         @Override
-        public void setListener(ButtonContract.Listener listener) {
+        public void setListener(PayContract.Listener listener) {
             this.listener = listener;
         }
     }

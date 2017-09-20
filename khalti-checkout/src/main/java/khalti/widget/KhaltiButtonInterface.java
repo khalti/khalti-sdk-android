@@ -7,7 +7,7 @@ import android.view.View;
 import khalti.checkOut.api.Config;
 
 @Keep
-public interface ButtonInterface {
+public interface KhaltiButtonInterface {
     void setText(String buttonText);
 
     void setCheckOutConfig(Config config);

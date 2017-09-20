@@ -3,7 +3,7 @@ package khalti.widget;
 
 import khalti.checkOut.api.Config;
 
-interface ButtonContract {
+interface PayContract {
     interface View {
 
         void setCustomButtonView();

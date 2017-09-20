@@ -10,14 +10,14 @@
         android:layout_margin="@dimen/globalPadding"
         android:orientation="vertical">
 
-        <khalti.widget.Button
+        <khalti.widget.KhaltiButton
             android:id="@+id/kpPay0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/singleBottomMargin"/>
 
-        <khalti.widget.Button
+        <khalti.widget.KhaltiButton
             android:id="@+id/kpPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             khalti:button_style="eBanking_dark"
             khalti:text="Pay Rs 200" />
 
-        <khalti.widget.Button
+        <khalti.widget.KhaltiButton
             android:id="@+id/kpPay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:orientation="vertical"
             android:paddingTop="@dimen/singleBottomMargin">
 
-            <khalti.widget.Button
+            <khalti.widget.KhaltiButton
                 android:id="@+id/kpPay2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 khalti:button_style="eBanking_light"
                 khalti:text="Pay Rs 200" />
 
-            <khalti.widget.Button
+            <khalti.widget.KhaltiButton
                 android:id="@+id/kpPay3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

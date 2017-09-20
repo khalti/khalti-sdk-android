@@ -33,8 +33,8 @@ public class Config implements Serializable {
         this.productName = productName;
         this.productUrl = productUrl;
         this.amount = amount;
-        this.onCheckOutListener = onCheckOutListener;
         this.additionalData = additionalData;
+        this.onCheckOutListener = onCheckOutListener;
     }
 
     public String getPublicKey() {

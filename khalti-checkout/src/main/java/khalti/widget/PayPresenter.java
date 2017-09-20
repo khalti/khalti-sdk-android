@@ -5,13 +5,12 @@ import android.support.annotation.NonNull;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
-import khalti.utils.LogUtil;
 
-class ButtonPresenter implements ButtonContract.Listener {
+class PayPresenter implements PayContract.Listener {
     @NonNull
-    private final ButtonContract.View mPayView;
+    private final PayContract.View mPayView;
 
-    ButtonPresenter(@NonNull ButtonContract.View mPayView) {
+    PayPresenter(@NonNull PayContract.View mPayView) {
         this.mPayView = GuavaUtil.checkNotNull(mPayView);
         mPayView.setListener(this);
     }
