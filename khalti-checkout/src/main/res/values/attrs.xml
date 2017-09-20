@@ -295,8 +295,6 @@
         <attr name="button_style" format="enum">
             <enum name="eBanking_dark" value="0" />
             <enum name="eBanking_light" value="1" />
-            <enum name="khalti_dark" value="2" />
-            <enum name="khalti_light" value="3" />
         </attr>
     </declare-styleable>
 

@@ -119,12 +119,6 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
                 case 1:
                     imageId = R.mipmap.ebanking_light;
                     break;
-                case 2:
-                    imageId = R.mipmap.khalti_dark;
-                    break;
-                case 3:
-                    imageId = R.mipmap.khalti_light;
-                    break;
             }
             if (imageId != -1) {
                 btnPay.setVisibility(GONE);

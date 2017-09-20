@@ -47,9 +47,9 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_activity);
 
-        tlTitle = (TabLayout) findViewById(R.id.tlTitle);
-        vpContent = (ViewPager) findViewById(R.id.vpContent);
-        cdlMain = (CoordinatorLayout) findViewById(R.id.cdlMain);
+        tlTitle = findViewById(R.id.tlTitle);
+        vpContent = findViewById(R.id.vpContent);
+        cdlMain = findViewById(R.id.cdlMain);
 
         compositeSubscription = new CompositeSubscription();
         compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {

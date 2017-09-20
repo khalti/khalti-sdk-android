@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
@@ -29,8 +29,8 @@ ext {
     appVersionCode = 10000
     appVersionName = "1.0.0"
 
-    khaltiVersionCode = 00102
-    khaltiVersionName = "0.1.2"
+    khaltiVersionCode = 10000
+    khaltiVersionName = "1.0.0"
 
     compileSdk = 26
     buildToolVersion = '26.0.1'
@@ -38,10 +38,10 @@ ext {
     targetSdk = 26
     renderScriptTarget = 20
 
-    supportVersion = '26.0.1'
+    supportVersion = '26.0.2'
     rxPermissionVersion = '0.9.3@aar'
     nineDroidVersion = '2.4.0'
-    butterKnifeVersion = '8.1.0'
+    butterKnifeVersion = '8.4.0'
     gsonVersion = '2.7'
     retrofitVersion = '2.0.2'
     retrofitConverterVersion = '2.0.0'
