@@ -28,7 +28,10 @@ renderscriptSupportModeEnabled true
 ```
 
 ## Usage
-Add KhaltiButton to your layout
+
+#### Add KhaltiButton to your layout
+
+You can add it to your xml layout
 ```xml
 <khalti.widget.KhaltiButton
             android:id="@+id/khalti_button"
@@ -37,21 +40,31 @@ Add KhaltiButton to your layout
 
 
 ```
+Or, use it in Java
+
+``` java
+KhaltiButton khaltiButton = new KhaltiButton();         
+```
+#### Configure
+
+Configure Khalti Checkout by passing an instance of Config class
+
+When instantiating Config class pass public key, product id, product name, product web url, amount (in paisa) and a new instance of OnCheckOutListener.
 ```java
 Config config = new Config("Public Key", "Product ID", "Product Name", "Product Url", amount, new OnCheckOutListener() {
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {
-                LogUtil.i("Payment confirmed", data);
+                Log.i("Payment confirmed", data);
             }
 
             @Override
             public void onError(String action, String message) {
-                LogUtil.i(action, message);
+                Log.i(action, message);
             }
         });
 ```
-
+Addtionally, Config class also accepts a HashMap parameter which you can use to pass any additional data.
 ```java
 HashMap<String, Object> map = new HashMap<>();
         map.put("extra", "This is extra data");
@@ -60,16 +73,17 @@ HashMap<String, Object> map = new HashMap<>();
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {
-                LogUtil.i("Payment confirmed", data);
+                Log.i("Payment confirmed", data);
             }
 
             @Override
             public void onError(String action, String message) {
-                LogUtil.i(action, message);
+                Log.i(action, message);
             }
         });
 ```
 
+Finally set your config in your KhaltiButton.
 ```java
 KhaltiButton kButton = findViewById(R.id.khalti_button);
 kButton.setConfig(config);
