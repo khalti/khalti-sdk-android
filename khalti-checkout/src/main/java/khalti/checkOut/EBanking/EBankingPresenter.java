@@ -107,9 +107,13 @@ public class EBankingPresenter implements EBankingContract.Listener {
                         "mobile=" + map.get("mobile") + "&" +
                         "bank=" + map.get("bankId") + "&" +
                         "source=android" + "&" +
-                        "return_url=" + mEBankingView.getPackageName() + "&" +
-                        "product_url=" + config.getProductUrl() +
-                        ApiUtil.getPostData(config.getAdditionalData());
+                        "return_url=" + mEBankingView.getPackageName();
+
+                if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {
+                    data += "&" + "product_url=" + config.getProductUrl();
+                }
+
+                data += ApiUtil.getPostData(config.getAdditionalData());
 
                 mEBankingView.saveConfigInFile("khalti_config", config);
                 mEBankingView.openEBanking(Constant.url + "ebanking/initiate/?" + data);

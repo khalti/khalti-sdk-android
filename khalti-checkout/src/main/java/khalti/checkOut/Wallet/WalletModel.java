@@ -31,7 +31,9 @@ public class WalletModel {
         dataMap.put("return_url", "http://a.khalti.com/client/spec/widget/verify.html");
         dataMap.put("product_identity", config.getProductId());
         dataMap.put("product_name", config.getProductName());
-        dataMap.put("product_url", config.getProductUrl());
+        if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {
+            dataMap.put("product_url", config.getProductUrl());
+        }
         dataMap.put("amount", config.getAmount());
         dataMap.put("mobile", mobile);
         dataMap.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());

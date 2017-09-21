@@ -35,12 +35,6 @@ class PayPresenter implements PayContract.Listener {
         if (EmptyUtil.isEmpty(config.getProductName())) {
             return "Product name cannot be empty";
         }
-        if (EmptyUtil.isNull(config.getProductUrl())) {
-            return "Product url cannot be null";
-        }
-        if (EmptyUtil.isEmpty(config.getProductUrl())) {
-            return "Product url cannot be empty";
-        }
         if (EmptyUtil.isNull(config.getAmount())) {
             return "Product url cannot be null";
         }
