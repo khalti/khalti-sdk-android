@@ -106,4 +106,4 @@ Finally set your config in your KhaltiButton.
 khaltiButton.setCheckOutConfig(config);
 ```
 
-Check out the [documentation](http://docs.khalti.com/) for further details.
+Check out the [documentation](http://docs.khalti.com/checkout/android/) for further details.
