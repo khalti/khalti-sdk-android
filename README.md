@@ -105,3 +105,5 @@ Finally set your config in your KhaltiButton.
 ```java;
 khaltiButton.setCheckOutConfig(config);
 ```
+
+Check out the [documentation](http://docs.khalti.com/) for further details.
