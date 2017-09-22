@@ -1,8 +1,10 @@
-package com.khalti.android;
+package com.khaltiSample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.khalti.android.R;
 
 import java.util.HashMap;
 

@@ -31,6 +31,7 @@ android {
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
         maven { url "https://maven.google.com" }
+        maven { url "https://dl.bintray.com/khalti-official/khalti" }
     }
 }
 
@@ -43,4 +44,5 @@ dependencies {
     apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
 
     compile project(':khalti-android')
+//    compile 'com.khalti:khalti-android:1.0.0'
 }

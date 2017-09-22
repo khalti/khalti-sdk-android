@@ -38,6 +38,7 @@ import khalti.checkOut.EBanking.chooseBank.BankChooserActivity;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 import khalti.utils.FileStorageUtil;
+import khalti.utils.LogUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
 import khalti.utils.UserInterfaceUtil;
@@ -256,6 +257,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public String getPackageName() {
+        LogUtil.log("package name", fragmentActivity.getPackageName());
         return fragmentActivity.getPackageName();
     }
 
