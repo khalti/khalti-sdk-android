@@ -9,7 +9,7 @@
 /captures
 .externalNativeBuild
 /app/*.apk
-/khalti-android/build/
+/khalti-android/build
 key.jks
 /khalti-android/installv1.gradle
 /khalti-android/bintrayv1.gradle
