@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.khalti.android.R;
-
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -33,7 +31,7 @@ public class Sample extends AppCompatActivity {
         HashMap<String, Object> map = new HashMap<>();
         map.put("extra", "This is extra data");
 
-        Config config = new Config(Constant.pub, "Product ID", "Product Name", "Product Url", 100L, new OnCheckOutListener() {
+        Config config = new Config(Constant.pub, "Product ID", "Product Name", "Product Url", 100L, map, new OnCheckOutListener() {
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {

@@ -5,7 +5,7 @@ android {
     compileSdkVersion rootProject.ext.targetSdk
     buildToolsVersion rootProject.ext.buildToolVersion
     defaultConfig {
-        applicationId "com.khalti.android"
+        applicationId "com.khaltiSample"
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
         versionCode rootProject.ext.appVersionCode
