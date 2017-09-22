@@ -37,7 +37,7 @@ android {
     defaultConfig {
         ...
         
-        renderscriptTargetApi 20'   
+        renderscriptTargetApi 20 
         renderscriptSupportModeEnabled true
         vectorDrawables.useSupportLibrary = true;
     }
