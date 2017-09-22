@@ -17,6 +17,15 @@ buildToolsVersion '26.0.1'
 
 compile 'com.android.support:appcompat-v7:26.0.1'
 ```
+In order to add support library 26, add the Google's maven url in `build.gradle`
+
+```
+repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+    }
+```
 
 ## Setup
 Add these lines to the default config section in `build.gradle` file
@@ -64,7 +73,7 @@ Config config = new Config("Public Key", "Product ID", "Product Name", "Product 
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {
-                Log.i("Payment confirmed", data);
+                Log.i("Payment confirmed", data+"");
             }
 
             @Override
@@ -94,6 +103,7 @@ HashMap<String, Object> map = new HashMap<>();
 #### Set Config
 Finally set your config in your KhaltiButton.
 ```java;
-khaltiButton.setConfig(config);
+khaltiButton.setCheckOutConfig(config);
 ```
-## Sample App
+
+Check out the [documentation](http://docs.khalti.com/checkout/android/) for further details.
