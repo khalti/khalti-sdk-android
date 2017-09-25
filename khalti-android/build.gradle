@@ -1,20 +1,19 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion rootProject.ext.targetSdk
-    buildToolsVersion rootProject.ext.buildToolVersion
+    compileSdkVersion targetSdk
+    buildToolsVersion buildToolVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdk
-        targetSdkVersion rootProject.ext.targetSdk
-        versionCode rootProject.ext.khaltiVersionCode
-        versionName rootProject.ext.khaltiVersionName
-        renderscriptTargetApi rootProject.ext.renderScriptTarget
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        versionCode khaltiVersionCode
+        versionName khaltiVersionName
+        renderscriptTargetApi renderScriptTarget
         renderscriptSupportModeEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true;
+        vectorDrawables.useSupportLibrary = true
         consumerProguardFiles 'proguard-rules.pro'
     }
 
@@ -22,7 +21,6 @@ android {
         release {
             minifyEnabled true
             debuggable false
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,14 +28,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    repositories {
-        jcenter()
-        mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "https://jitpack.io" }
-        maven { url "https://maven.google.com" }
     }
 
     lintOptions {
@@ -52,47 +42,47 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     /*----Support Library----*/
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
-    compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
-    compile "com.android.support:design:${rootProject.ext.supportVersion}"
+    implementation supportLibrary.appCompat
+    implementation supportLibrary.recyclerView
+    implementation supportLibrary.design
 
     /*Android Animations*/
-    compile "com.nineoldandroids:library:${rootProject.ext.nineDroidVersion}"
+    implementation ui.nineoldanimations
 
     /*GSON*/
-    compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+    implementation serialization.gson
 
     /*Retrofit*/
-    compile "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitConverterVersion}"
-    compile "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-    compile "com.squareup.retrofit2:adapter-rxjava:${rootProject.ext.retrofitVersion}"
+    implementation network.retrofit2
+    implementation network.retrofit_rxadapter
+    implementation network.retrofit_gson_converter
 
     /*OkHTTP*/
-    compile "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingInterceptorVersion}"
-    compile "com.squareup.okhttp:okhttp-urlconnection:${rootProject.ext.okhttpUrlConnectionVersion}"
-    compile "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}"
+    implementation network.okhttp3
+    implementation network.okhttp_logging_interceptor
+    implementation network.okhttp_urlconnection
 
     /*Http Client*/
-    compile "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${rootProject.ext.httpClientVersion}"
+    implementation network.apache_http_client
 
     /*ReactiveX*/
-    compile "io.reactivex:rxjava:${rootProject.ext.rxVersion}"
-    compile "io.reactivex:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    implementation rx.rxjava
+    implementation rx.rxandroid
 
     /*RxPermission*/
-    compile "com.tbruyelle.rxpermissions:rxpermissions:${rootProject.ext.rxPermissionVersion}"
+    implementation rx.rxpermissions
 
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/
-    testCompile "junit:junit:${rootProject.ext.junitVersion}"
-    testCompile "org.mockito:mockito-all:${rootProject.ext.mockitoVersion}"
-    testCompile "org.hamcrest:hamcrest-all:${rootProject.ext.hamcrestVersion}"
-    testCompile "org.powermock:powermock-module-junit4:${rootProject.ext.powerMockVersion}"
-    testCompile "org.powermock:powermock-api-mockito:${rootProject.ext.powerMockVersion}"
+    testImplementation test.junit
+    testImplementation test.mockito
+    testImplementation test.hamcrest
+    testImplementation test.powerMockJUnit
+    testImplementation test.powerMockMockito
 }
 
 
