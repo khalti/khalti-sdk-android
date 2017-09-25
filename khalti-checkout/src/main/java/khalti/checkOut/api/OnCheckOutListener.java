@@ -6,7 +6,7 @@ import android.support.annotation.Keep;
 import java.util.HashMap;
 
 @Keep
-public interface OnCheckOutListener {
+public interface OnCheckOutListener{
     void onSuccess(HashMap<String, Object> data);
 
     void onError(String action, String message);

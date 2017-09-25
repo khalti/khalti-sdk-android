@@ -2,41 +2,41 @@ package khalti.checkOut.Wallet;
 
 import android.support.annotation.NonNull;
 
-import com.rxbus.Event;
-import com.utila.EmptyUtil;
-import com.utila.GuavaUtil;
-import com.utila.NumberUtil;
-import com.utila.StringUtil;
-import com.utila.ValidationUtil;
-
 import java.util.HashMap;
 
-import khalti.R;
+import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
-import khalti.utils.DataHolder;
+import khalti.rxBus.Event;
+import khalti.utils.EmptyUtil;
+import khalti.utils.GuavaUtil;
+import khalti.utils.HtmlUtil;
+import khalti.utils.NumberUtil;
+import khalti.utils.Store;
+import khalti.utils.StringUtil;
+import khalti.utils.ValidationUtil;
 import rx.subscriptions.CompositeSubscription;
 
-class WalletPresenter implements WalletContract.Listener {
+public class WalletPresenter implements WalletContract.Listener {
     @NonNull
     private final WalletContract.View mWalletView;
     private WalletModel walletModel;
     private CompositeSubscription compositeSubscription;
     private boolean smsListenerInitialized = false;
-    private OnCheckOutListener onCheckOutListener;
+    private Config config;
+    private String pinWebLink;
 
-    WalletPresenter(@NonNull WalletContract.View mWalletView) {
+    public WalletPresenter(@NonNull WalletContract.View mWalletView) {
         this.mWalletView = GuavaUtil.checkNotNull(mWalletView);
         mWalletView.setListener(this);
         walletModel = new WalletModel();
-        onCheckOutListener = DataHolder.getConfig().getOnCheckOutListener();
     }
 
     @Override
     public void setUpLayout() {
-        mWalletView.setEditTextListener();
-        mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(DataHolder.getConfig().getAmount())));
+        config = Store.getConfig();
+        mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         mWalletView.setButtonClickListener();
     }
 
@@ -62,8 +62,13 @@ class WalletPresenter implements WalletContract.Listener {
     }
 
     @Override
-    public void showMessageDialog(String title, String message) {
-        mWalletView.showMessageDialog(title, message);
+    public void openLinkInBrowser() {
+        mWalletView.openLinkInBrowser(ApiHelper.getUrl() + pinWebLink.substring(1));
+    }
+
+    @Override
+    public void showPINInBrowserDialog(String title, String message) {
+        mWalletView.showPINInBrowserDialog(title, message);
     }
 
     @Override
@@ -72,9 +77,10 @@ class WalletPresenter implements WalletContract.Listener {
             if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
                 mWalletView.toggleProgressDialog("init", true);
                 compositeSubscription = new CompositeSubscription();
-                compositeSubscription.add(walletModel.initiatePayment(mobile, DataHolder.getConfig(), new WalletModel.WalletAction() {
+                compositeSubscription.add(walletModel.initiatePayment(mobile, config, new WalletModel.WalletAction() {
                     @Override
                     public void onCompleted(Object o) {
+                        mWalletView.setEditTextListener();
                         mWalletView.toggleSmsListener(!smsListenerInitialized);
                         smsListenerInitialized = true;
                         mWalletView.toggleProgressDialog("init", false);
@@ -85,12 +91,13 @@ class WalletPresenter implements WalletContract.Listener {
                     public void onError(String message) {
                         mWalletView.toggleProgressDialog("init", false);
                         if (message.contains("</a>")) {
-                            mWalletView.showInteractiveMessageDialog("Error", mWalletView.getStringFromResource(R.string.pin_not_set) + "\n\n" +
-                                    mWalletView.getStringFromResource(R.string.pin_not_set_continue));
-                            onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.getAction(), mWalletView.getStringFromResource(R.string.pin_not_set));
+                            pinWebLink = HtmlUtil.getHrefLink(message);
+                            mWalletView.showPINDialog("Error", mWalletView.getMessage("pin_not_set") + "\n\n" +
+                                    mWalletView.getMessage("pin_not_set_continue"));
+                            config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), mWalletView.getMessage("pin_not_set"));
                         } else {
                             mWalletView.showMessageDialog("Error", message);
-                            onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.getAction(), message);
+                            config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), message);
                         }
                     }
                 }));
@@ -116,17 +123,16 @@ class WalletPresenter implements WalletContract.Listener {
                 compositeSubscription.add(walletModel.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
                     @Override
                     public void onCompleted(Object o) {
-                        WalletInitPojo walletInitPojo = (WalletInitPojo) o;
+                        WalletConfirmPojo walletConfirmPojo = (WalletConfirmPojo) o;
                         mWalletView.toggleProgressDialog("confirm", false);
-                        OnCheckOutListener onCheckOutListener = DataHolder.getConfig().getOnCheckOutListener();
+                        OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
                         HashMap<String, Object> data = new HashMap<>();
-                        Config config = DataHolder.getConfig();
-                        data.putAll(EmptyUtil.isNotNull(config.getAdditionalData()) ? config.getAdditionalData() : new HashMap<>());
-                        data.put("amount", config.getAmount());
-                        data.put("product_url", config.getProductUrl());
-                        data.put("token", walletInitPojo.getToken());
-                        data.put("product_name", config.getProductName());
-                        data.put("product_identity", config.getProductId());
+                        data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
+                        data.put("amount", walletConfirmPojo.getAmount());
+                        data.put("product_url", walletConfirmPojo.getProductUrl());
+                        data.put("token", walletConfirmPojo.getToken());
+                        data.put("product_name", walletConfirmPojo.getProductName());
+                        data.put("product_identity", walletConfirmPojo.getProductIdentity());
 
                         onCheckOutListener.onSuccess(data);
                         mWalletView.closeWidget();
@@ -136,7 +142,7 @@ class WalletPresenter implements WalletContract.Listener {
                     public void onError(String message) {
                         mWalletView.toggleProgressDialog("confirm", false);
                         mWalletView.showMessageDialog("Error", message);
-                        onCheckOutListener.onError(ErrorAction.WALLET_CONFIRM.getAction(), message);
+                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_CONFIRM.getAction(), message);
                     }
                 }));
             } else {
@@ -159,5 +165,13 @@ class WalletPresenter implements WalletContract.Listener {
         if (compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
+    }
+
+    public void injectModel(WalletModel walletModel) {
+        this.walletModel = walletModel;
+    }
+
+    public void injectConfig(Config config) {
+        this.config = config;
     }
 }

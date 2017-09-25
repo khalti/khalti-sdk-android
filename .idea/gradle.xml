@@ -11,8 +11,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/khalti-checkout" />
-            <option value="$PROJECT_DIR$/rxBus" />
-            <option value="$PROJECT_DIR$/utila" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -15,15 +15,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 
-import com.rxbus.Event;
-import com.rxbus.RxBus;
-import com.utila.EmptyUtil;
-import com.utila.ResourceUtil;
-
 import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
+import khalti.rxBus.Event;
+import khalti.rxBus.RxBus;
+import khalti.utils.EmptyUtil;
+import khalti.utils.ResourceUtil;
 import rx.subscriptions.CompositeSubscription;
 
 public class BankChooserActivity extends AppCompatActivity implements BankChooserContract.View, BankChooserAdapter.BankControls {

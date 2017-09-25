@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import khalti.checkOut.api.Config;
 
-interface EBankingContract {
+public interface EBankingContract {
     interface View {
 
         void toggleProgressBar(boolean show);
@@ -37,6 +37,8 @@ interface EBankingContract {
 
         void saveConfigInFile(String fileName, Config config);
 
+        String getPackageName();
+
         void setListener(Listener listener);
     }
 
@@ -53,5 +55,7 @@ interface EBankingContract {
         void updateBankItem(String bankName, String bankId);
 
         void initiatePayment(boolean isNetwork, String mobile, String bankId, String bankName);
+
+        void unSubscribe();
     }
 }

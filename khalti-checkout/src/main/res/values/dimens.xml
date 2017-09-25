@@ -4,6 +4,8 @@
     <dimen name="toolbarHeight">56dp</dimen>
     <dimen name="singleBottomMargin">10dp</dimen>
     <dimen name="doubleBottomMargin">20dp</dimen>
+    <dimen name="cardPadding">8dp</dimen>
+    <dimen name="editTextPadding">4dp</dimen>
 
     <dimen name="label2">12sp</dimen>
     <dimen name="body">14sp</dimen>

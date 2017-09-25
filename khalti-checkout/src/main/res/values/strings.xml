@@ -49,6 +49,7 @@
     <string name="pin_not_set">You have not enabled your transaction PIN.</string>
     <string name="pin_not_set_continue">Would you like to enable it?</string>
     <string name="khalti_not_found">Khalti is not installed in your device</string>
+    <string name="set_pin_in_browser">Do you want to set your PIN using your browser?</string>
     <string name="allow">Allow</string>
     <string name="deny">Deny</string>
 

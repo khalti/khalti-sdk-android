@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_tint_spinner.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_tint_default.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_tint_switch_track.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/abc_tint_edittext.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/49d4a3d26e808fb25131f3bdb525f19c4ceb836e/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/utila/build/intermediates/res/merged/release/color-v23/design_tint_password_toggle.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/86d4385281654f7d1467370f38400c0166a04fd4/output/res/color-v23/design_tint_password_toggle.xml"
+    }
+]
