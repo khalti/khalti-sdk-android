@@ -1,0 +1,13 @@
+ext {
+    appVersionCode = 10000
+    appVersionName = "1.0.0"
+
+    khaltiVersionCode = 10000
+    khaltiVersionName = "1.0.0"
+
+    compileSdk = 26
+    buildToolVersion = '26.0.1'
+    minSdk = 14
+    targetSdk = 26
+    renderScriptTarget = 20
+}

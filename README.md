@@ -9,7 +9,7 @@ compile 'com.khalti:khalti-checkout:0.1.2'
 ```
 Note : We recommend you use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
 
-In order to build and run this project, please use `Android Studio 3` and the minimum `Build tools` and `Support libraries` version should be `26`.
+In order to build and run this project, please use `Android Studio 3` and the minimum `Build tools` and `Support libraries` version should be `26`. Also, update your gradle plugin to at least `2.3.3`.
 
 ```
 compileSdkVersion 26
@@ -37,7 +37,7 @@ android {
     defaultConfig {
         ...
         
-        renderscriptTargetApi 20'   
+        renderscriptTargetApi 20 
         renderscriptSupportModeEnabled true
         vectorDrawables.useSupportLibrary = true;
     }
