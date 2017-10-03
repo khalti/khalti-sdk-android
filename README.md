@@ -5,7 +5,7 @@ SDK for Khalti Android App
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-checkout:0.1.2'
+compile 'com.khalti:khalti-android:1.0.3'
 ```
 Note : We recommend you use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
 
