@@ -5,7 +5,14 @@ SDK for Khalti Android App
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-checkout:0.1.2'
+compile 'com.khalti:khalti-android:1.0.4'
+```
+It is recommend that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
+
+```
+compile ('com.khalti:khalti-android:1.0.4') {
+        transitive = true
+    }
 ```
 Note : We recommend you use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
 
@@ -13,9 +20,9 @@ In order to build and run this project, please use `Android Studio 3` and the mi
 
 ```
 compileSdkVersion 26
-buildToolsVersion '26.0.1'
+buildToolsVersion '26.0.2'
 
-compile 'com.android.support:appcompat-v7:26.0.1'
+compile 'com.android.support:appcompat-v7:26.1.0'
 ```
 In order to add support library 26, add the Google's maven url in `build.gradle`
 
@@ -26,25 +33,6 @@ repositories {
         maven { url "https://maven.google.com" }
     }
 ```
-
-## Setup
-Add these lines to the default config section in `build.gradle` file
-
-```
-android {
-    ...
-
-    defaultConfig {
-        ...
-        
-        renderscriptTargetApi 20 
-        renderscriptSupportModeEnabled true
-        vectorDrawables.useSupportLibrary = true;
-    }
-}
-
-```
-
 ## Usage
 
 #### Layout
