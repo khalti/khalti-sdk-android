@@ -26,25 +26,6 @@ repositories {
         maven { url "https://maven.google.com" }
     }
 ```
-
-## Setup
-Add these lines to the default config section in `build.gradle` file
-
-```
-android {
-    ...
-
-    defaultConfig {
-        ...
-        
-        renderscriptTargetApi 20 
-        renderscriptSupportModeEnabled true
-        vectorDrawables.useSupportLibrary = true;
-    }
-}
-
-```
-
 ## Usage
 
 #### Layout
