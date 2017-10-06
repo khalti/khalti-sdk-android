@@ -64,4 +64,32 @@ public class Config implements Serializable {
     public HashMap<String, Object> getAdditionalData() {
         return additionalData;
     }
+
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public void setAdditionalData(HashMap<String, Object> additionalData) {
+        this.additionalData = additionalData;
+    }
+
+    public void setOnCheckOutListener(OnCheckOutListener onCheckOutListener) {
+        this.onCheckOutListener = onCheckOutListener;
+    }
 }
