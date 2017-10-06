@@ -139,7 +139,7 @@ public class EBankingPresenter implements EBankingContract.Listener {
 
     @Override
     public void unSubscribe() {
-        if (compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
     }

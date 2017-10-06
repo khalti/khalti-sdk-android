@@ -14,6 +14,7 @@ import khalti.carbonX.widget.FrameLayout;
 import khalti.checkOut.KhaltiCheckOut;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
+import khalti.utils.LogUtil;
 
 @Keep
 public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
@@ -28,6 +29,7 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
     private khalti.carbonX.widget.Button btnPay;
     private View customView;
     private int buttonStyle;
+    private OnClickListener onClickListener;
 
     public KhaltiButton(@NonNull Context context) {
         super(context);
@@ -70,6 +72,17 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
         this.buttonStyle = buttonStyle.getId();
         listener.setButtonStyle(this.buttonStyle);
         listener.setButtonClick();
+    }
+
+    @Override
+    public void setCustomClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+        listener.setButtonClick();
+    }
+
+    @Override
+    public void showCheckOut() {
+        listener.openForm();
     }
 
     @Override
@@ -134,12 +147,15 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
 
         @Override
         public void setButtonClick() {
+            LogUtil.log("onclick", onClickListener);
+            onClickListener = EmptyUtil.isNull(onClickListener) ? view -> listener.openForm() : onClickListener;
+
             if (EmptyUtil.isNotNull(customView)) {
-                flCustomView.getChildAt(0).setOnClickListener(view -> listener.openForm());
+                flCustomView.getChildAt(0).setOnClickListener(onClickListener);
             } else if (buttonStyle != -1) {
-                flStyle.setOnClickListener(view -> listener.openForm());
+                flStyle.setOnClickListener(onClickListener);
             } else {
-                btnPay.setOnClickListener(view -> listener.openForm());
+                btnPay.setOnClickListener(onClickListener);
             }
         }
 
