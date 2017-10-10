@@ -47,6 +47,7 @@ dependencies {
 
     /*----Support Library----*/
     implementation supportLibrary.appCompat
+    implementation supportLibrary.cardView
     implementation supportLibrary.recyclerView
     implementation supportLibrary.design
 

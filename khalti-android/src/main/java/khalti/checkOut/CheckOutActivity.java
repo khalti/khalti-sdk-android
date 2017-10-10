@@ -75,7 +75,6 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     protected void onDestroy() {
         super.onDestroy();
         if (EmptyUtil.isNotNull(compositeSubscription) && !compositeSubscription.isUnsubscribed()) {
-            LogUtil.checkpoint("UnSubscribe");
             compositeSubscription.unsubscribe();
         }
         listener.dismissAllDialogs();

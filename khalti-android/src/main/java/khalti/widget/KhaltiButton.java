@@ -147,7 +147,6 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
 
         @Override
         public void setButtonClick() {
-            LogUtil.log("onclick", onClickListener);
             onClickListener = EmptyUtil.isNull(onClickListener) ? view -> listener.openForm() : onClickListener;
 
             if (EmptyUtil.isNotNull(customView)) {
