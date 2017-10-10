@@ -5,18 +5,18 @@ SDK for Khalti Android App
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-android:1.0.4'
+compile 'com.khalti:khalti-android:1.0.6'
 ```
-It is recommend that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
+It is recommended that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
 
 ```
-compile ('com.khalti:khalti-android:1.0.4') {
+compile ('com.khalti:khalti-android:1.0.6') {
         transitive = true
     }
 ```
-Note : We recommend you use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
+Note : We recommend you to use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
 
-In order to build and run this project, please use `Android Studio 3` and the minimum `Build tools` and `Support libraries` version should be `26`. Also, update your gradle plugin to at least `2.3.3`.
+In order to build and run this project, please use `Android Studio 3` and please note that the minimum `Build tools` and `Support libraries` version should be `26`.
 
 ```
 compileSdkVersion 26
@@ -49,7 +49,7 @@ You can add it to your xml layout
 Or, use it in Java
 
 ``` java
-KhaltiButton khaltiButton = new KhaltiButton();         
+KhaltiButton khaltiButton = new KhaltiButton();
 ```
 #### Configure
 
@@ -70,8 +70,9 @@ Config config = new Config("Public Key", "Product ID", "Product Name", "Product 
             }
         });
 ```
-Addtionally, Config class also accepts a HashMap parameter which you can use to pass any additional data.
-```java
+Additionally, Config class also accepts a HashMap parameter which you can use to pass any additional data.
+
+``` java
 HashMap<String, Object> map = new HashMap<>();
         map.put("extra", "This is extra data");
         
@@ -87,10 +88,12 @@ HashMap<String, Object> map = new HashMap<>();
                 Log.i(action, message);
             }
         });
+
 ```
 #### Set Config
 Finally set your config in your KhaltiButton.
-```java;
+
+``` java
 khaltiButton.setCheckOutConfig(config);
 ```
 
