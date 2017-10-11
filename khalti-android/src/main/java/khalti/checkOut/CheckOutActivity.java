@@ -25,7 +25,6 @@ import khalti.checkOut.Wallet.Wallet;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.EmptyUtil;
-import khalti.utils.LogUtil;
 import khalti.utils.ResourceUtil;
 import khalti.utils.UserInterfaceUtil;
 import khalti.utils.ViewPagerAdapter;
@@ -83,8 +82,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void setupViewPager() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
         viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
+        viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
         vpContent.setAdapter(viewPagerAdapter);
 
         tlTitle.setupWithViewPager(vpContent);
@@ -92,16 +91,6 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
     @Override
     public void setUpTabLayout() {
-        LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        AppCompatTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
-        ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
-
-        tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
-        tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
-        DrawableCompat.setTint(ivWIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        tlTitle.getTabAt(0).setCustomView(walletTab);
-
         LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
         AppCompatTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
         ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
@@ -110,7 +99,17 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
         ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
         DrawableCompat.setTint(ivEIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        tlTitle.getTabAt(1).setCustomView(eBankingTab);
+        tlTitle.getTabAt(0).setCustomView(eBankingTab);
+
+        LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
+        AppCompatTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
+        ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
+
+        tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
+        tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
+        ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
+        DrawableCompat.setTint(ivWIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
+        tlTitle.getTabAt(1).setCustomView(walletTab);
 
         tabs.add(tlTitle.getTabAt(0));
         tabs.add(tlTitle.getTabAt(1));
@@ -136,7 +135,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
     @Override
     public void setUpToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
