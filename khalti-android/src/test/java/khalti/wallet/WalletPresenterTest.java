@@ -83,24 +83,11 @@ public class WalletPresenterTest {
     }
 
     @Test
-    public void initiatePaymentWithEmptyMobile() {
-        walletPresenter.initiatePayment(true, "");
-        verify(mWalletView).setEditTextError("mobile", "This field is required");
-    }
-
-    @Test
-    public void initiatePaymentWithInvalidMobile() {
-        walletPresenter.initiatePayment(true, "8000000000");
-        verify(mWalletView).setEditTextError("mobile", "Invalid mobile number");
-    }
-
-    @Test
     public void successfulPaymentInitiation() {
         walletPresenter.initiatePayment(true, mobile);
         verify(mWalletView).toggleProgressDialog("init", true);
         verify(walletModel).initiatePayment(eq(mobile), eq(config), walletArgument.capture());
         walletArgument.getValue().onCompleted(null);
-        verify(mWalletView).setEditTextListener();
         verify(mWalletView).toggleSmsListener(true);
         verify(mWalletView).toggleProgressDialog("init", false);
         verify(mWalletView).toggleConfirmationLayout(true);
@@ -130,25 +117,6 @@ public class WalletPresenterTest {
     public void confirmPaymentWithoutNetwork() {
         walletPresenter.confirmPayment(false, confirmationCode, pin);
         verify(mWalletView).showNetworkError();
-    }
-
-    @Test
-    public void confirmPaymentWithBothParamEmpty() {
-        walletPresenter.confirmPayment(true, "", "");
-        verify(mWalletView).setEditTextError(eq("code"), eq("This field is required"));
-        verify(mWalletView).setEditTextError(eq("pin"), eq("This field is required"));
-    }
-
-    @Test
-    public void confirmPaymentWithEmptyCode() {
-        walletPresenter.confirmPayment(true, "", pin);
-        verify(mWalletView).setEditTextError(eq("code"), eq("This field is required"));
-    }
-
-    @Test
-    public void confirmPaymentWithEmptyPIN() {
-        walletPresenter.confirmPayment(true, confirmationCode, "");
-        verify(mWalletView).setEditTextError(eq("pin"), eq("This field is required"));
     }
 
     @Test
