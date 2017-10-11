@@ -132,7 +132,7 @@ public class EBankingPresenter implements EBankingContract.Listener {
             if (EmptyUtil.isEmpty(mobile)) {
                 mEBankingView.setMobileError("This field is required");
             } else {
-                mEBankingView.setMobileError("Invalid mobile number");
+                mEBankingView.setMobileError("Enter a valid mobile number");
             }
         }
     }

@@ -80,8 +80,66 @@ public class WalletPresenter implements WalletContract.Listener {
             if (EmptyUtil.isEmpty(mobile)) {
                 mWalletView.setEditTextError("mobile", "This field is required");
             } else {
-                mWalletView.setEditTextError("mobile", "Invalid mobile number");
+                mWalletView.setEditTextError("mobile", "Enter a valid mobile number");
             }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isFinalFormValid(String pin, String confirmationCode) {
+        String status = "";
+        if (EmptyUtil.isNotEmpty(pin)) {
+            if (pin.length() == 4) {
+                status += "pc";
+            } else {
+                status += "pl";
+            }
+        } else {
+            status += "pe";
+        }
+
+        if (EmptyUtil.isNotEmpty(confirmationCode)) {
+            if (confirmationCode.length() == 6) {
+                status += "cc";
+            } else {
+                status += "cl";
+            }
+        } else {
+            status += "ce";
+        }
+
+        switch (status) {
+            case "pccc":
+                return true;
+            case "pccl":
+                mWalletView.setEditTextError("code", "Enter a valid 6 digit confirmation code");
+                return false;
+            case "pcce":
+                mWalletView.setEditTextError("code", "This field is required");
+                return false;
+            case "plcc":
+                mWalletView.setEditTextError("pin", "Enter a valid 4 digit PIN");
+                return false;
+            case "plcl":
+                mWalletView.setEditTextError("pin", "Enter a valid 4 digit PIN");
+                mWalletView.setEditTextError("code", "Enter a valid 6 digit confirmation code");
+                return false;
+            case "plce":
+                mWalletView.setEditTextError("pin", "Enter a valid 4 digit PIN");
+                mWalletView.setEditTextError("code", "This field is required");
+                return false;
+            case "pecc":
+                mWalletView.setEditTextError("pin", "This field is required");
+                return false;
+            case "pecl":
+                mWalletView.setEditTextError("pin", "This field is required");
+                mWalletView.setEditTextError("code", "Enter a valid 6 digit confirmation code");
+                return false;
+            case "pece":
+                mWalletView.setEditTextError("pin", "This field is required");
+                mWalletView.setEditTextError("code", "This field is required");
+                return false;
         }
         return false;
     }
@@ -122,45 +180,34 @@ public class WalletPresenter implements WalletContract.Listener {
     @Override
     public void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin) {
         if (isNetwork) {
-            if (EmptyUtil.isNotEmpty(confirmationCode) && EmptyUtil.isNotEmpty(transactionPin)) {
-                mWalletView.toggleProgressDialog("confirm", true);
-                compositeSubscription = new CompositeSubscription();
+            mWalletView.toggleProgressDialog("confirm", true);
+            compositeSubscription = new CompositeSubscription();
 
-                compositeSubscription.add(walletModel.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
-                    @Override
-                    public void onCompleted(Object o) {
-                        WalletConfirmPojo walletConfirmPojo = (WalletConfirmPojo) o;
-                        mWalletView.toggleProgressDialog("confirm", false);
-                        OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
-                        HashMap<String, Object> data = new HashMap<>();
-                        data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
-                        data.put("amount", walletConfirmPojo.getAmount());
-                        data.put("product_url", walletConfirmPojo.getProductUrl());
-                        data.put("token", walletConfirmPojo.getToken());
-                        data.put("product_name", walletConfirmPojo.getProductName());
-                        data.put("product_identity", walletConfirmPojo.getProductIdentity());
+            compositeSubscription.add(walletModel.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
+                @Override
+                public void onCompleted(Object o) {
+                    WalletConfirmPojo walletConfirmPojo = (WalletConfirmPojo) o;
+                    mWalletView.toggleProgressDialog("confirm", false);
+                    OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
+                    HashMap<String, Object> data = new HashMap<>();
+                    data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
+                    data.put("amount", walletConfirmPojo.getAmount());
+                    data.put("product_url", walletConfirmPojo.getProductUrl());
+                    data.put("token", walletConfirmPojo.getToken());
+                    data.put("product_name", walletConfirmPojo.getProductName());
+                    data.put("product_identity", walletConfirmPojo.getProductIdentity());
 
-                        onCheckOutListener.onSuccess(data);
-                        mWalletView.closeWidget();
-                    }
-
-                    @Override
-                    public void onError(String message) {
-                        mWalletView.toggleProgressDialog("confirm", false);
-                        mWalletView.showMessageDialog("Error", message);
-                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_CONFIRM.getAction(), message);
-                    }
-                }));
-            } else {
-                if (EmptyUtil.isEmpty(confirmationCode) && EmptyUtil.isEmpty(transactionPin)) {
-                    mWalletView.setEditTextError("code", "This field is required");
-                    mWalletView.setEditTextError("pin", "This field is required");
-                } else if (EmptyUtil.isEmpty(confirmationCode)) {
-                    mWalletView.setEditTextError("code", "This field is required");
-                } else {
-                    mWalletView.setEditTextError("pin", "This field is required");
+                    onCheckOutListener.onSuccess(data);
+                    mWalletView.closeWidget();
                 }
-            }
+
+                @Override
+                public void onError(String message) {
+                    mWalletView.toggleProgressDialog("confirm", false);
+                    mWalletView.showMessageDialog("Error", message);
+                    config.getOnCheckOutListener().onError(ErrorAction.WALLET_CONFIRM.getAction(), message);
+                }
+            }));
         } else {
             mWalletView.showNetworkError();
         }
