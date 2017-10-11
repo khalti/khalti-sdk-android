@@ -29,7 +29,7 @@ public class Sample extends AppCompatActivity {
         ButterKnife.bind(this);
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("extra", "This is extra data");
+        map.put("merchant_extra", "This is extra data");
 
         Config config = new Config(Constant.pub, "Product ID", "Product Name", "Product Url", 100L, map, new OnCheckOutListener() {
 
