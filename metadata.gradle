@@ -2,8 +2,8 @@ ext {
     appVersionCode = 10000
     appVersionName = "1.0.0"
 
-    khaltiVersionCode = 10007
-    khaltiVersionName = "1.0.7"
+    khaltiVersionCode = 10008
+    khaltiVersionName = "1.0.8"
 
     compileSdk = 26
     buildToolVersion = '26.0.2'
