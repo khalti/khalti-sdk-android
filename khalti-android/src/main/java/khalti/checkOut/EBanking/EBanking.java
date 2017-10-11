@@ -246,8 +246,6 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void openEBanking(String url) {
-        LogUtil.log("url", url);
-
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(browserIntent);
     }

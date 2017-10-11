@@ -6,6 +6,7 @@
     <string name="action_search">Search</string>
     <string name="please_wait">Please wait</string>
     <string name="generic_error">Something went wrong</string>
+    <string name="sms_info">Khalti has sent a confirmation code in your Khalti registered number. Enter the confirmation code below</string>
 
     <!--Font Icons-->
     <string name="account_box"></string>
@@ -39,7 +40,7 @@
     <!--Form-->
     <string name="mobile_hint">Mobile Number</string>
     <string name="code_hint">Confirmation Code</string>
-    <string name="pin_hint">PIN</string>
+    <string name="pin_hint">PIN (4 Digits)</string>
     <string name="select_bank">Select Bank</string>
     <string name="confirm_payment">Confirm Payment</string>
 

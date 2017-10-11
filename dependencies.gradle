@@ -4,6 +4,7 @@ ext {
 
     supportLibrary = [
             appCompat   : "com.android.support:appcompat-v7:${supportVersion}",
+            cardView    : "com.android.support:cardview-v7:${supportVersion}",
             recyclerView: "com.android.support:recyclerview-v7:${supportVersion}",
             design      : "com.android.support:design:${supportVersion}"
     ]
@@ -29,12 +30,12 @@ ext {
 
     network = [
             okhttp_logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLoggingInterceptorVersion}",
-            okhttp_urlconnection: "com.squareup.okhttp:okhttp-urlconnection:${okhttpUrlConnectionVersion}",
-            okhttp3: "com.squareup.okhttp3:okhttp:${okhttpVersion}",
-            retrofit_gson_converter: "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
-            retrofit2: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            retrofit_rxadapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
-            apache_http_client: "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${httpClientVersion}"
+            okhttp_urlconnection      : "com.squareup.okhttp:okhttp-urlconnection:${okhttpUrlConnectionVersion}",
+            okhttp3                   : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            retrofit_gson_converter   : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
+            retrofit2                 : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofit_rxadapter        : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            apache_http_client        : "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${httpClientVersion}"
     ]
 
     rxVersion = '1.1.0'

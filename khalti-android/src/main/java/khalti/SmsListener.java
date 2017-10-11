@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import khalti.rxBus.RxBus;
-import khalti.utils.LogUtil;
 
 public class SmsListener extends BroadcastReceiver {
 
@@ -22,8 +21,6 @@ public class SmsListener extends BroadcastReceiver {
         allowedSenders.add("SparrowSMS");
         allowedSenders.add("Khalti");
         allowedSenders.add("36001");
-
-        LogUtil.log("allowed senders", allowedSenders);
 
         Bundle bundle = intent.getExtras();
         if (bundle == null) {
@@ -44,8 +41,6 @@ public class SmsListener extends BroadcastReceiver {
 
                 String sender = smsMessage.getOriginatingAddress();
                 String msg = smsMessage.getMessageBody();
-
-                LogUtil.log("message", msg);
 
                 if (allowedSenders.contains(sender)) {
                     RxBus.getInstance().post("wallet_code", msg);
