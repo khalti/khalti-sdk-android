@@ -59,6 +59,8 @@ public interface WalletContract {
 
         boolean isMobileValid(String mobile);
 
+        boolean isFinalFormValid(String pin, String confirmationCode);
+
         void initiatePayment(boolean isNetwork, String mobile);
 
         void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin);
