@@ -57,6 +57,8 @@ public interface WalletContract {
 
         void showPINInBrowserDialog(String title, String message);
 
+        boolean isMobileValid(String mobile);
+
         void initiatePayment(boolean isNetwork, String mobile);
 
         void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin);

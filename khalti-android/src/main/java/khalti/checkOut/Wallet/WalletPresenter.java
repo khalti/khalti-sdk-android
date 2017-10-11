@@ -38,6 +38,7 @@ public class WalletPresenter implements WalletContract.Listener {
         config = Store.getConfig();
         mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         mWalletView.setButtonClickListener();
+        mWalletView.setEditTextListener();
     }
 
     @Override
@@ -72,42 +73,47 @@ public class WalletPresenter implements WalletContract.Listener {
     }
 
     @Override
+    public boolean isMobileValid(String mobile) {
+        if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
+            return true;
+        } else {
+            if (EmptyUtil.isEmpty(mobile)) {
+                mWalletView.setEditTextError("mobile", "This field is required");
+            } else {
+                mWalletView.setEditTextError("mobile", "Invalid mobile number");
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void initiatePayment(boolean isNetwork, String mobile) {
         if (isNetwork) {
-            if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
-                mWalletView.toggleProgressDialog("init", true);
-                compositeSubscription = new CompositeSubscription();
-                compositeSubscription.add(walletModel.initiatePayment(mobile, config, new WalletModel.WalletAction() {
-                    @Override
-                    public void onCompleted(Object o) {
-                        mWalletView.setEditTextListener();
-                        mWalletView.toggleSmsListener(!smsListenerInitialized);
-                        smsListenerInitialized = true;
-                        mWalletView.toggleProgressDialog("init", false);
-                        mWalletView.toggleConfirmationLayout(true);
-                    }
-
-                    @Override
-                    public void onError(String message) {
-                        mWalletView.toggleProgressDialog("init", false);
-                        if (message.contains("</a>")) {
-                            pinWebLink = HtmlUtil.getHrefLink(message);
-                            mWalletView.showPINDialog("Error", mWalletView.getMessage("pin_not_set") + "\n\n" +
-                                    mWalletView.getMessage("pin_not_set_continue"));
-                            config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), mWalletView.getMessage("pin_not_set"));
-                        } else {
-                            mWalletView.showMessageDialog("Error", message);
-                            config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), message);
-                        }
-                    }
-                }));
-            } else {
-                if (EmptyUtil.isEmpty(mobile)) {
-                    mWalletView.setEditTextError("mobile", "This field is required");
-                } else {
-                    mWalletView.setEditTextError("mobile", "Invalid mobile number");
+            mWalletView.toggleProgressDialog("init", true);
+            compositeSubscription = new CompositeSubscription();
+            compositeSubscription.add(walletModel.initiatePayment(mobile, config, new WalletModel.WalletAction() {
+                @Override
+                public void onCompleted(Object o) {
+                    mWalletView.toggleSmsListener(!smsListenerInitialized);
+                    smsListenerInitialized = true;
+                    mWalletView.toggleProgressDialog("init", false);
+                    mWalletView.toggleConfirmationLayout(true);
                 }
-            }
+
+                @Override
+                public void onError(String message) {
+                    mWalletView.toggleProgressDialog("init", false);
+                    if (message.contains("</a>")) {
+                        pinWebLink = HtmlUtil.getHrefLink(message);
+                        mWalletView.showPINDialog("Error", mWalletView.getMessage("pin_not_set") + "\n\n" +
+                                mWalletView.getMessage("pin_not_set_continue"));
+                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), mWalletView.getMessage("pin_not_set"));
+                    } else {
+                        mWalletView.showMessageDialog("Error", message);
+                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), message);
+                    }
+                }
+            }));
         } else {
             mWalletView.showNetworkError();
         }
