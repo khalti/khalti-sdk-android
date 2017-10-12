@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/empty"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title"
+        app:fontFamily="@font/roboto" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/flProgress"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/editTextPadding"
+            android:text="@string/empty"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/head"
+            app:fontFamily="@font/roboto" />
+    </LinearLayout>
+</LinearLayout>

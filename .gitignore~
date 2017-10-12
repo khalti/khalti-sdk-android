@@ -9,9 +9,8 @@
 /captures
 .externalNativeBuild
 /app/*.apk
-/fontana/build
-/khalti/build
-/utila/build
+/khalti-android/build
 key.jks
-/khalti/installv1.gradle
-/khalti/bintrayv1.gradle
+/khalti-android/installv1.gradle
+/khalti-android/bintrayv1.gradle
+/khalti-android/src/main/java/khalti/utils/Constant.java

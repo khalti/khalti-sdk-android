@@ -1,1 +1,1 @@
-include ':app', ':khalti-checkout'
+include ':app', ':khalti-android'

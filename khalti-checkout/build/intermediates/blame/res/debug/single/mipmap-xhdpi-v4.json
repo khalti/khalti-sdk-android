@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ebanking_dark.png",
+        "source": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/src/main/res/mipmap-xhdpi/ebanking_dark.png"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ebanking_light.png",
+        "source": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/src/main/res/mipmap-xhdpi/ebanking_light.png"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/khalti_light.png",
+        "source": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/src/main/res/mipmap-xhdpi/khalti_light.png"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/khalti_dark.png",
+        "source": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/src/main/res/mipmap-xhdpi/khalti_dark.png"
+    }
+]
