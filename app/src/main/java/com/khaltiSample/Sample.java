@@ -10,7 +10,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.OnCheckOutListener;
-import khalti.utils.Constant;
 import khalti.widget.KhaltiButton;
 
 public class Sample extends AppCompatActivity {
@@ -31,7 +30,7 @@ public class Sample extends AppCompatActivity {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchant_extra", "This is extra data");
 
-        Config config = new Config(Constant.pub, "Product ID", "Product Name", "Product Url", 100L, map, new OnCheckOutListener() {
+        Config config = new Config("live_public_key_91638b9e6167400b897d66fb590942f3", "Product ID", "Product Name", "Product Url", 1000L, map, new OnCheckOutListener() {
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {
