@@ -21,6 +21,7 @@ public class SmsListener extends BroadcastReceiver {
         allowedSenders.add("SparrowSMS");
         allowedSenders.add("Khalti");
         allowedSenders.add("36001");
+        allowedSenders.add("35455");
 
         Bundle bundle = intent.getExtras();
         if (bundle == null) {

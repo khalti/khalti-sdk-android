@@ -11,8 +11,6 @@ android {
         targetSdkVersion targetSdk
         versionCode appVersionCode
         versionName appVersionName
-        renderscriptTargetApi renderScriptTarget
-        renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,6 +40,6 @@ dependencies {
     implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
 
-//    implementation 'com.khalti:khalti-android:1.0.0'
+//    implementation 'com.khalti:khalti-android:1.0.8'
     implementation project(':khalti-android')
 }
