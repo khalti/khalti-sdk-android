@@ -3,6 +3,7 @@ package khalti.carbonX.animation;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.support.annotation.Keep;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -17,6 +18,7 @@ import khalti.R;
 import khalti.carbonX.shadow.ShadowView;
 import khalti.carbonX.widget.ProgressBar;
 
+@Keep
 public class AnimUtils {
     private AnimUtils() {
     }

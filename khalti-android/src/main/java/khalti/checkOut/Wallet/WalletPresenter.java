@@ -214,6 +214,11 @@ public class WalletPresenter implements WalletContract.Listener {
     }
 
     @Override
+    public void updateConfirmationHeight() {
+        mWalletView.updateConfirmationHeight();
+    }
+
+    @Override
     public void unSubscribe() {
         if (compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();

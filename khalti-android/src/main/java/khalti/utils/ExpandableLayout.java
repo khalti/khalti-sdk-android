@@ -1,7 +1,6 @@
 package khalti.utils;
 
 import android.animation.Animator;
-import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -153,28 +152,26 @@ public class ExpandableLayout extends LinearLayout {
         return false;
     }
 
-    public boolean toggleExpansion() {
-        return this.setExpanded(!isExpanded(), true);
+    public void toggleExpansion() {
+        this.setExpanded(!isExpanded(), true);
     }
 
-    public boolean setExpanded(boolean isExpanded) {
-        return this.setExpanded(isExpanded, false);
+    public void setExpanded(boolean isExpanded) {
+        this.setExpanded(isExpanded, false);
     }
 
-    public boolean setExpanded(boolean isExpanded, boolean shouldAnimate) {
-        boolean result = false;
+    public void setExpanded(boolean isExpanded, boolean shouldAnimate) {
         View child = findExpandableView();
         if (child != null) {
             if (isExpanded != this.isExpanded()) {
                 if (isExpanded) {
-                    result = this.expand(child, shouldAnimate);
+                    expand(child, shouldAnimate);
                 } else {
-                    result = this.collapse(child, shouldAnimate);
+                    this.collapse(child, shouldAnimate);
                 }
             }
         }
         this.requestLayout();
-        return result;
     }
 
     public void setOnExpandListener(OnExpandListener listener) {
@@ -222,7 +219,7 @@ public class ExpandableLayout extends LinearLayout {
             dispatchOffset(child);
             child.requestLayout();
         });
-        mExpandAnimator.addListener(new AnimatorListener() {
+        mExpandAnimator.addListener(new Animator.AnimatorListener() {
 
             @Override
             public void onAnimationStart(Animator animation) {
@@ -292,7 +289,7 @@ public class ExpandableLayout extends LinearLayout {
             dispatchOffset(child);
             child.requestLayout();
         });
-        mExpandAnimator.addListener(new AnimatorListener() {
+        mExpandAnimator.addListener(new Animator.AnimatorListener() {
 
             @Override
             public void onAnimationStart(Animator animation) {
@@ -430,8 +427,8 @@ public class ExpandableLayout extends LinearLayout {
     }
 
     public static class LayoutParams extends LinearLayout.LayoutParams {
-        private static final int NO_MESURED_HEIGHT = -10;
-        int originalHeight = NO_MESURED_HEIGHT;
+        private static final int NO_MEASURED_HEIGHT = -10;
+        int originalHeight = NO_MEASURED_HEIGHT;
         boolean isExpanded;
         boolean canExpand;
         boolean isExpanding;

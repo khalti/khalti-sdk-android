@@ -36,6 +36,8 @@ public interface WalletContract {
 
         void closeWidget();
 
+        void updateConfirmationHeight();
+
         String getMessage(String action);
 
         void setListener(Listener listener);
@@ -64,6 +66,8 @@ public interface WalletContract {
         void initiatePayment(boolean isNetwork, String mobile);
 
         void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin);
+
+        void updateConfirmationHeight();
 
         void unSubscribe();
     }
