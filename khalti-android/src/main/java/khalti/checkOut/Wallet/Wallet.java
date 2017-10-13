@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import java.util.HashMap;
 
@@ -43,12 +44,18 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private ExpandableLayout elConfirmation;
     private Button btnPay;
     private Dialog progressDialog;
+    private FrameLayout flPay;
+    private LinearLayout llConfirmation, llPIN, llCode;
 
     private FragmentActivity fragmentActivity;
     private khalti.checkOut.Wallet.WalletContract.Listener listener;
     private CompositeSubscription compositeSubscription;
     private SmsListener smsListener;
     private boolean isRegistered = false;
+
+    private LinearLayout.LayoutParams layoutParams;
+
+    private int height = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,6 +71,10 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         tilPIN = mainView.findViewById(R.id.tilPIN);
         btnPay = mainView.findViewById(R.id.btnPay);
         elConfirmation = mainView.findViewById(R.id.elConfirmation);
+        flPay = mainView.findViewById(R.id.flPay);
+        llConfirmation = mainView.findViewById(R.id.llConfirmation);
+        llPIN = mainView.findViewById(R.id.llPIN);
+        llCode = mainView.findViewById(R.id.llCode);
 
         listener.setUpLayout();
 
@@ -126,7 +137,23 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                tilCode.setErrorEnabled(false);
+                if (EmptyUtil.isNotNull(tilCode.getError())) {
+                    llCode.measure(0, 0);
+                    int beforeA = llCode.getMeasuredHeight();
+
+                    tilCode.setErrorEnabled(false);
+
+                    llCode.measure(0, 0);
+                    int afterA = llCode.getMeasuredHeight();
+
+                    height = Math.abs(height + (beforeA - afterA));
+
+                    ExpandableLayout.LayoutParams layoutParams = (ExpandableLayout.LayoutParams) llConfirmation.getLayoutParams();
+                    layoutParams.height = llConfirmation.getHeight() - height;
+                    llConfirmation.setLayoutParams(layoutParams);
+
+                    height = 0;
+                }
             }
 
             @Override
@@ -143,7 +170,23 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                tilPIN.setErrorEnabled(false);
+                if (EmptyUtil.isNotNull(tilPIN.getError())) {
+                    llPIN.measure(0, 0);
+                    int beforeA = llPIN.getMeasuredHeight();
+
+                    tilPIN.setErrorEnabled(false);
+
+                    llPIN.measure(0, 0);
+                    int afterA = llPIN.getMeasuredHeight();
+
+                    height = Math.abs(height + (beforeA - afterA));
+
+                    ExpandableLayout.LayoutParams layoutParams = (ExpandableLayout.LayoutParams) llConfirmation.getLayoutParams();
+                    layoutParams.height = llConfirmation.getHeight() - height;
+                    llConfirmation.setLayoutParams(layoutParams);
+
+                    height = 0;
+                }
             }
 
             @Override
@@ -184,10 +227,26 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                 tilMobile.setError(error);
                 break;
             case "code":
+                llCode.measure(0, 0);
+                int beforeA = llCode.getMeasuredHeight();
+
                 tilCode.setError(error);
+
+                llCode.measure(0, 0);
+                int afterA = llCode.getMeasuredHeight();
+
+                height = Math.abs(height + (afterA - beforeA));
                 break;
             case "pin":
+                llPIN.measure(0, 0);
+                int beforeB = llPIN.getMeasuredHeight();
+
                 tilPIN.setError(error);
+
+                llPIN.measure(0, 0);
+                int afterB = llPIN.getMeasuredHeight();
+
+                height = Math.abs(height + (afterB - beforeB));
                 break;
         }
     }
@@ -203,6 +262,8 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
             if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
                 if (listener.isFinalFormValid(etPIN.getText().toString(), etCode.getText().toString())) {
                     listener.confirmPayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etCode.getText().toString(), etPIN.getText().toString());
+                } else {
+                    listener.updateConfirmationHeight();
                 }
             } else {
                 if (listener.isMobileValid(etMobile.getText().toString())) {
@@ -311,6 +372,15 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     @Override
     public void closeWidget() {
         fragmentActivity.finish();
+    }
+
+    @Override
+    public void updateConfirmationHeight() {
+        ExpandableLayout.LayoutParams layoutParams = (ExpandableLayout.LayoutParams) llConfirmation.getLayoutParams();
+        layoutParams.height = llConfirmation.getHeight() + height;
+        llConfirmation.setLayoutParams(layoutParams);
+
+        height = 0;
     }
 
     @Override
