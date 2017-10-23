@@ -13,3 +13,4 @@
 key.jks
 /khalti-android/installv1.gradle
 /khalti-android/bintrayv1.gradle
+/khalti-android/src/main/java/khalti/utils/Constant.java
