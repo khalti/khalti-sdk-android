@@ -2,6 +2,8 @@ package khalti.checkOut.EBanking;
 
 import android.support.annotation.NonNull;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -100,23 +102,29 @@ public class EBankingPresenter implements EBankingContract.Listener {
                 map.put("bankId", bankId);
                 map.put("bankName", bankName);
 
-                String data = "public_key=" + config.getPublicKey() + "&" +
-                        "product_identity=" + config.getProductId() + "&" +
-                        "product_name=" + config.getProductName() + "&" +
-                        "amount=" + config.getAmount() + "&" +
-                        "mobile=" + map.get("mobile") + "&" +
-                        "bank=" + map.get("bankId") + "&" +
-                        "source=android" + "&" +
-                        "return_url=" + mEBankingView.getPackageName();
+                try {
+                    String data = "public_key=" + URLEncoder.encode(config.getPublicKey(), "UTF-8") + "&" +
+                            "product_identity=" + URLEncoder.encode(config.getProductId(), "UTF-8") + "&" +
+                            "product_name=" + URLEncoder.encode(config.getProductName(), "UTF-8") + "&" +
+                            "amount=" + URLEncoder.encode(config.getAmount() + "", "UTF-8") + "&" +
+                            "mobile=" + URLEncoder.encode(map.get("mobile") + "", "UTF-8") + "&" +
+                            "bank=" + URLEncoder.encode(map.get("bankId") + "", "UTF-8") + "&" +
+                            "source=android" + "&" +
+                            "return_url=" + URLEncoder.encode(mEBankingView.getPackageName(), "UTF-8");
 
-                if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {
-                    data += "&" + "product_url=" + config.getProductUrl();
+                    if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {
+                        data += "&" + "product_url=" + URLEncoder.encode(config.getProductUrl(), "UTF-8");
+                    }
+
+                    data += ApiUtil.getPostData(config.getAdditionalData());
+
+                    mEBankingView.saveConfigInFile("khalti_config", config);
+
+                    mEBankingView.openEBanking(Constant.url + "ebanking/initiate/?" + data);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    mEBankingView.showError("Something went wrong");
                 }
-
-                data += ApiUtil.getPostData(config.getAdditionalData());
-
-                mEBankingView.saveConfigInFile("khalti_config", config);
-                mEBankingView.openEBanking(Constant.url + "ebanking/initiate/?" + data);
             } else {
                 mEBankingView.showNetworkError();
             }
@@ -124,14 +132,14 @@ public class EBankingPresenter implements EBankingContract.Listener {
             if (EmptyUtil.isEmpty(mobile)) {
                 mEBankingView.setMobileError("This field is required");
             } else {
-                mEBankingView.setMobileError("Invalid mobile number");
+                mEBankingView.setMobileError("Enter a valid mobile number");
             }
         }
     }
 
     @Override
     public void unSubscribe() {
-        if (compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
     }

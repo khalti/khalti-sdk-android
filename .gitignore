@@ -8,7 +8,7 @@
 /build
 /captures
 .externalNativeBuild
-/app/*.apk
+/app/release/
 /khalti-android/build/
 key.jks
 /khalti-android/installv1.gradle

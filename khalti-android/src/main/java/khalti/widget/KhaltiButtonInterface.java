@@ -16,5 +16,9 @@ public interface KhaltiButtonInterface {
 
     void setButtonStyle(ButtonStyle style);
 
+    void setCustomClickListener(View.OnClickListener onClickListener);
+
+    void showCheckOut();
+
     void destroyCheckOut();
 }

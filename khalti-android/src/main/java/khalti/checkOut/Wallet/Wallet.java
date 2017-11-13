@@ -48,6 +48,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private khalti.checkOut.Wallet.WalletContract.Listener listener;
     private CompositeSubscription compositeSubscription;
     private SmsListener smsListener;
+    private boolean isRegistered = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -200,14 +201,17 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     public void setButtonClickListener() {
         btnPay.setOnClickListener(view -> {
             if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
-                listener.confirmPayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etCode.getText().toString(), etPIN.getText().toString());
+                if (listener.isFinalFormValid(etPIN.getText().toString(), etCode.getText().toString())) {
+                    listener.confirmPayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etCode.getText().toString(), etPIN.getText().toString());
+                }
             } else {
-                if (AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS)) {
-                    listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
-                } else {
-
-                    AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () ->
-                            listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString()));
+                if (listener.isMobileValid(etMobile.getText().toString())) {
+                    if (AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS)) {
+                        listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
+                    } else {
+                        AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () ->
+                                listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString()));
+                    }
                 }
             }
         });
@@ -336,9 +340,11 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
             IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
             smsListener = new SmsListener();
             fragmentActivity.registerReceiver(smsListener, intentFilter);
+            isRegistered = true;
         } else {
-            if (EmptyUtil.isNotNull(smsListener)) {
+            if (EmptyUtil.isNotNull(smsListener) && isRegistered) {
                 fragmentActivity.unregisterReceiver(smsListener);
+                isRegistered = false;
             }
         }
     }

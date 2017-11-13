@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -88,7 +89,7 @@
                         android:text="@string/select_bank"
                         android:textColor="@color/primaryText"
                         android:textSize="@dimen/label2"
-                        app:fontFamily="@font/roboto"  />
+                        app:fontFamily="@font/roboto" />
 
                     <Spinner
                         android:id="@+id/spBank"
@@ -118,7 +119,7 @@
                                 android:text="@string/empty"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/head"
-                                app:fontFamily="@font/roboto"  />
+                                app:fontFamily="@font/roboto" />
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tvBankId"
@@ -144,56 +145,13 @@
             <khalti.carbonX.widget.ExpandableLayout
                 android:id="@+id/elConfirmation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/doubleBottomMargin">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="190dp"
+                    android:layout_height="290dp"
                     android:orientation="vertical"
                     app:canExpand="true">
-
-                    <LinearLayout
-                        android:id="@+id/llCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/singleBottomMargin"
-                        android:baselineAligned="false"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="@dimen/globalPadding"
-                        android:paddingRight="@dimen/globalPadding"
-                        android:visibility="visible">
-
-                        <ImageView
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="@dimen/globalPadding"
-                            android:layout_marginRight="@dimen/globalPadding"
-                            android:adjustViewBounds="true"
-                            android:alpha="0.58"
-                            android:contentDescription="@null"
-                            app:srcCompat="@drawable/ic_lock_black_24px" />
-
-                        <khalti.carbonX.widget.TextInputLayout
-                            android:id="@+id/tilCode"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/code_hint"
-                            android:theme="@style/EditTextTheme"
-                            app:mainHintTextSize="16sp">
-
-                            <EditText
-                                android:id="@+id/etCode"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:ems="10"
-                                android:inputType="text"
-                                android:maxLength="6"
-                                android:textColor="@color/black" />
-                        </khalti.carbonX.widget.TextInputLayout>
-                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/llPIN"
@@ -210,8 +168,8 @@
                             android:layout_width="22dp"
                             android:layout_height="22dp"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="@dimen/globalPadding"
-                            android:layout_marginRight="@dimen/globalPadding"
+                            android:layout_marginEnd="13dp"
+                            android:layout_marginRight="13dp"
                             android:adjustViewBounds="true"
                             android:alpha="0.58"
                             android:contentDescription="@null"
@@ -232,6 +190,87 @@
                                 android:ems="10"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"
+                                android:textColor="@color/black" />
+                        </khalti.carbonX.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/globalPadding"
+                        android:layout_marginRight="@dimen/globalPadding"
+                        android:layout_marginBottom="@dimen/singleBottomMargin"
+                        card_view:cardBackgroundColor="@color/grey"
+                        card_view:cardElevation="2dp"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginEnd="@dimen/globalPadding"
+                                android:layout_marginRight="@dimen/globalPadding"
+                                android:alpha="0.6"
+                                android:contentDescription="@null"
+                                app:srcCompat="@drawable/ic_info_black_48px" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:includeFontPadding="false"
+                                android:lineSpacingMultiplier="1.1"
+                                android:text="@string/sms_info"
+                                android:textColor="@color/primaryText"
+                                android:textSize="13.3sp"
+                                app:fontFamily="@font/roboto" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:id="@+id/llCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/singleBottomMargin"
+                        android:baselineAligned="false"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/globalPadding"
+                        android:paddingRight="@dimen/globalPadding"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="13dp"
+                            android:layout_marginRight="13dp"
+                            android:adjustViewBounds="true"
+                            android:alpha="0.58"
+                            android:contentDescription="@null"
+                            app:srcCompat="@drawable/ic_lock_black_24px" />
+
+                        <khalti.carbonX.widget.TextInputLayout
+                            android:id="@+id/tilCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/code_hint"
+                            android:theme="@style/EditTextTheme"
+                            app:mainHintTextSize="16sp">
+
+                            <EditText
+                                android:id="@+id/etCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:maxLength="6"
                                 android:textColor="@color/black" />
                         </khalti.carbonX.widget.TextInputLayout>
                     </LinearLayout>
