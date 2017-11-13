@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import khalti.utils.ApiUtil;
+import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ErrorUtil;
 import okhttp3.OkHttpClient;

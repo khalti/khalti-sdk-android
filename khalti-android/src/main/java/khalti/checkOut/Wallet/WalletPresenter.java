@@ -8,6 +8,7 @@ import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.Event;
+import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.HtmlUtil;
@@ -210,6 +211,11 @@ public class WalletPresenter implements WalletContract.Listener {
         } else {
             mWalletView.showNetworkError();
         }
+    }
+
+    @Override
+    public void updateConfirmationHeight() {
+        mWalletView.updateConfirmationHeight();
     }
 
     @Override

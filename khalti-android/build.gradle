@@ -41,8 +41,10 @@ android {
         options.addStringOption('charSet', 'UTF-8')
     }
 
-    packagingOptions {
-        exclude 'typedefs.txt'
+
+    retrolambda {
+        defaultMethods false
+        include 'Debug'
     }
     buildToolsVersion '26.0.2'
 }
@@ -81,7 +83,6 @@ dependencies {
 
     /*RxPermission*/
     implementation rx.rxpermissions
-
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/

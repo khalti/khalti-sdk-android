@@ -145,11 +145,13 @@
             <khalti.carbonX.widget.ExpandableLayout
                 android:id="@+id/elConfirmation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/llConfirmation"
                     android:layout_width="match_parent"
-                    android:layout_height="290dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:canExpand="true">
 
@@ -197,9 +199,9 @@
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/singleBottomMargin"
                         android:layout_marginLeft="@dimen/globalPadding"
                         android:layout_marginRight="@dimen/globalPadding"
-                        android:layout_marginBottom="@dimen/singleBottomMargin"
                         card_view:cardBackgroundColor="@color/grey"
                         card_view:cardElevation="2dp"
                         card_view:cardUseCompatPadding="true">
@@ -237,7 +239,6 @@
                         android:id="@+id/llCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/singleBottomMargin"
                         android:baselineAligned="false"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -278,6 +279,7 @@
             </khalti.carbonX.widget.ExpandableLayout>
 
             <khalti.carbonX.widget.FrameLayout
+                android:id="@+id/flPay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

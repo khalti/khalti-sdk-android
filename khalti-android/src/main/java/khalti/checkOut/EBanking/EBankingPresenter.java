@@ -11,6 +11,7 @@ import khalti.checkOut.EBanking.chooseBank.BankPojo;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.utils.ApiUtil;
+import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.NumberUtil;
