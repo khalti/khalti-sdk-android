@@ -14,7 +14,6 @@ import khalti.carbonX.widget.FrameLayout;
 import khalti.checkOut.KhaltiCheckOut;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
-import khalti.utils.LogUtil;
 
 @Keep
 public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
@@ -24,6 +23,7 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
     private Config config;
 
     private PayContract.Listener listener;
+
     private android.widget.FrameLayout flCustomView;
     private FrameLayout flStyle;
     private khalti.carbonX.widget.Button btnPay;
@@ -75,19 +75,30 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
     }
 
     @Override
-    public void setCustomClickListener(OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
-        listener.setButtonClick();
+    public void showCheckOut() {
+        listener.openForm();
     }
 
     @Override
-    public void showCheckOut() {
+    public void showCheckOut(Config config) {
+        this.config = config;
+        String message = listener.checkConfig(config);
+        if (EmptyUtil.isNotNull(message)) {
+            throw new IllegalArgumentException(message);
+        }
         listener.openForm();
     }
 
     @Override
     public void destroyCheckOut() {
         listener.destroyCheckOut();
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+        this.onClickListener = l;
+        listener.setButtonClick();
     }
 
     private void init() {
