@@ -9,26 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24417e39-60b8-492c-ac1a-ed9a2e65bdf7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/utils/Constant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/khaltiSample/Sample.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/khaltiSample/Sample.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/build.gradle" afterPath="$PROJECT_DIR$/khalti-android/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/proguard-rules.pro" afterPath="$PROJECT_DIR$/khalti-android/proguard-rules.pro" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/carbonX/animation/AnimUtils.java" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/carbonX/animation/AnimUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBankingPresenter.java" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBankingPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/Wallet.java" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/Wallet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/WalletContract.java" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/WalletContract.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/WalletPresenter.java" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/WalletPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/api/ApiHelper.java" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/api/ApiHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/utils/ExpandableLayout.java" afterPath="$PROJECT_DIR$/khalti-android/src/main/java/khalti/utils/ExpandableLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/res/layout/payment_activity.xml" afterPath="$PROJECT_DIR$/khalti-android/src/main/res/layout/payment_activity.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/khalti-android/src/main/res/layout/payment_form.xml" afterPath="$PROJECT_DIR$/khalti-android/src/main/res/layout/payment_form.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metadata.gradle" afterPath="$PROJECT_DIR$/metadata.gradle" />
-    </list>
+    <list default="true" id="24417e39-60b8-492c-ac1a-ed9a2e65bdf7" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +31,7 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
@@ -64,101 +45,9 @@
       <file leaf-file-name="EBankingPresenter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBankingPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
+            <state relative-caret-position="1500">
               <caret line="122" column="52" lean-forward="false" selection-start-line="122" selection-start-column="52" selection-end-line="122" selection-end-column="52" />
-              <folding>
-                <element signature="e#1081#1112#0" expanded="true" />
-                <element signature="e#1081#1112#0" expanded="true" />
-                <element signature="e#1252#1269#0" expanded="true" />
-                <element signature="e#1361#1473#0" expanded="true" />
-                <element signature="e#1389#1472#0" expanded="true" />
-                <element signature="e#1452#1470#0" expanded="true" />
-                <element signature="e#1389#1472#0" expanded="true" />
-                <element signature="e#1995#2040#1" expanded="true" />
-                <element signature="e#2015#2039#0" expanded="true" />
-                <element signature="e#2092#2107#0" expanded="true" />
-                <element signature="e#2092#2107#0" expanded="true" />
-                <element signature="e#2109#2123#0" expanded="true" />
-                <element signature="e#2109#2123#0" expanded="true" />
-                <element signature="e#2179#2228#1" expanded="true" />
-                <element signature="e#2202#2227#0" expanded="true" />
-                <element signature="e#2324#2336#0" expanded="true" />
-                <element signature="e#2324#2336#0" expanded="true" />
-                <element signature="e#2324#2346#0" expanded="true" />
-                <element signature="e#2348#2360#0" expanded="true" />
-                <element signature="e#2348#2360#0" expanded="true" />
-                <element signature="e#2348#2369#0" expanded="true" />
-                <element signature="e#2627#2657#0" expanded="true" />
-                <element signature="e#2666#2705#0" expanded="true" />
-                <element signature="e#3115#3161#1" expanded="true" />
-                <element signature="e#3170#3197#0" expanded="true" />
-                <element signature="e#3170#3197#0" expanded="true" />
-                <element signature="e#3170#3197#0" expanded="true" />
-                <element signature="e#3637#3683#1" expanded="true" />
-                <element signature="e#3700#3725#0" expanded="true" />
-                <element signature="e#3700#3725#0" expanded="true" />
-                <element signature="e#3700#3725#0" expanded="true" />
-                <element signature="e#3743#3768#0" expanded="true" />
-                <element signature="e#3743#3768#0" expanded="true" />
-                <element signature="e#3743#3768#0" expanded="true" />
-                <element signature="e#3786#3815#0" expanded="true" />
-                <element signature="e#3786#3815#0" expanded="true" />
-                <element signature="e#3786#3815#0" expanded="true" />
-                <element signature="e#3860#4614#1" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3908#3929#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#4016#4037#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#4120#4143#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#4220#4243#0" expanded="true" />
-                <element signature="e#4220#4238#0" expanded="true" />
-                <element signature="e#4220#4243#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#4320#4342#0" expanded="true" />
-                <element signature="e#4320#4337#0" expanded="true" />
-                <element signature="e#4320#4337#0" expanded="true" />
-                <element signature="e#4320#4342#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#4417#4439#0" expanded="true" />
-                <element signature="e#4417#4434#0" expanded="true" />
-                <element signature="e#4417#4434#0" expanded="true" />
-                <element signature="e#4417#4439#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#4573#4603#0" expanded="true" />
-                <element signature="e#3874#4613#0" expanded="true" />
-                <element signature="e#4660#4682#0" expanded="true" />
-                <element signature="e#4708#4730#0" expanded="true" />
-                <element signature="e#4767#4840#0" expanded="true" />
-                <element signature="e#4767#4840#0" expanded="true" />
-                <element signature="e#4808#4830#0" expanded="true" />
-                <element signature="e#4767#4840#0" expanded="true" />
-                <element signature="e#4913#4939#0" expanded="true" />
-                <element signature="e#5068#5111#0" expanded="true" />
-                <element signature="e#5068#5111#0" expanded="true" />
-                <element signature="e#5068#5111#0" expanded="true" />
-                <element signature="e#5068#5111#0" expanded="true" />
-                <element signature="e#5464#5518#0" expanded="true" />
-                <element signature="e#5464#5518#0" expanded="true" />
-                <element signature="e#5557#5616#0" expanded="true" />
-                <element signature="e#5557#5616#0" expanded="true" />
-                <element signature="e#5798#5836#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,17 +55,9 @@
       <file leaf-file-name="ApiHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/api/ApiHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
+            <state relative-caret-position="300">
               <caret line="39" column="25" lean-forward="false" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
-              <folding>
-                <element signature="e#853#919#1" expanded="true" />
-                <element signature="e#928#983#0" expanded="true" />
-                <element signature="e#928#983#0" expanded="true" />
-                <element signature="e#993#1243#1" expanded="true" />
-                <element signature="e#1253#1566#1" expanded="true" />
-                <element signature="e#2558#2572#0" expanded="true" />
-                <element signature="e#2806#2829#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,62 +65,9 @@
       <file leaf-file-name="WalletPresenter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/WalletPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
-              <folding>
-                <element signature="e#1028#1057#0" expanded="true" />
-                <element signature="e#1028#1057#0" expanded="true" />
-                <element signature="e#1170#1187#0" expanded="true" />
-                <element signature="e#1197#1307#0" expanded="true" />
-                <element signature="e#1223#1306#0" expanded="true" />
-                <element signature="e#1286#1304#0" expanded="true" />
-                <element signature="e#1223#1306#0" expanded="true" />
-                <element signature="e#1478#1561#0" expanded="true" />
-                <element signature="e#1510#1526#0" expanded="true" />
-                <element signature="e#1478#1561#0" expanded="true" />
-                <element signature="e#2067#2090#0" expanded="true" />
-                <element signature="e#2067#2090#0" expanded="true" />
-                <element signature="e#2833#2852#1" expanded="true" />
-                <element signature="e#5950#6077#0" expanded="true" />
-                <element signature="e#5950#6077#0" expanded="true" />
-                <element signature="e#5950#6077#0" expanded="true" />
-                <element signature="e#5950#6077#0" expanded="true" />
-                <element signature="e#6104#6134#0" expanded="true" />
-                <element signature="e#6143#6182#0" expanded="true" />
-                <element signature="e#6350#6380#0" expanded="true" />
-                <element signature="e#6389#6428#0" expanded="true" />
-                <element signature="e#7073#7133#1" expanded="true" />
-                <element signature="e#7111#7132#0" expanded="true" />
-                <element signature="e#7226#7297#1" expanded="true" />
-                <element signature="e#7266#7296#0" expanded="true" />
-                <element signature="e#7318#7365#1" expanded="true" />
-                <element signature="e#7419#7445#0" expanded="true" />
-                <element signature="e#7471#7497#0" expanded="true" />
-                <element signature="e#7502#7528#0" expanded="true" />
-                <element signature="e#7569#7618#0" expanded="true" />
-                <element signature="e#7569#7618#0" expanded="true" />
-                <element signature="e#7588#7617#0" expanded="true" />
-                <element signature="e#7569#7618#0" expanded="true" />
-                <element signature="e#7640#7698#0" expanded="true" />
-                <element signature="e#7640#7698#0" expanded="true" />
-                <element signature="e#7664#7697#0" expanded="true" />
-                <element signature="e#7640#7698#0" expanded="true" />
-                <element signature="e#7720#7767#0" expanded="true" />
-                <element signature="e#7720#7767#0" expanded="true" />
-                <element signature="e#7738#7766#0" expanded="true" />
-                <element signature="e#7720#7767#0" expanded="true" />
-                <element signature="e#7789#7849#0" expanded="true" />
-                <element signature="e#7789#7849#0" expanded="true" />
-                <element signature="e#7814#7848#0" expanded="true" />
-                <element signature="e#7789#7849#0" expanded="true" />
-                <element signature="e#7871#7939#0" expanded="true" />
-                <element signature="e#7871#7939#0" expanded="true" />
-                <element signature="e#7900#7938#0" expanded="true" />
-                <element signature="e#7871#7939#0" expanded="true" />
-                <element signature="e#8305#8335#0" expanded="true" />
-                <element signature="e#8344#8382#0" expanded="true" />
-                <element signature="e#8724#8762#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="990">
+              <caret line="84" column="9" lean-forward="false" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -247,11 +75,9 @@
       <file leaf-file-name="EBanking.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBanking.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
+            <state relative-caret-position="330">
               <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-              <folding>
-                <element signature="e#2222#2296#1" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -302,7 +128,7 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/khalti-android/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
+            <state relative-caret-position="870">
               <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
               <folding />
             </state>
@@ -3256,9 +3082,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3271,179 +3094,12 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="checkOut" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="checkOut" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carbonX" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android-khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carbonX" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="khalti-android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3536,7 +3192,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510573729207" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510574006860" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3584,7 +3240,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510573729207" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510574006860" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3616,27 +3272,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -3767,7 +3402,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510573729208" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510574006861" />
       </method>
     </configuration>
     <list size="1">
@@ -3810,39 +3445,40 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66855526" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Key Promoter" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66855526" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Key Promoter" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -3853,6 +3489,89 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBankingPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="122" column="52" lean-forward="false" selection-start-line="122" selection-start-column="52" selection-end-line="122" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/api/ApiHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="39" column="25" lean-forward="false" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/WalletPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBanking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/utils/ExpandableLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/carbonX/CarbonX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/utils/FileStorageUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/khalti-android/src/main/res/layout/payment_form.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="144" column="13" lean-forward="false" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/utils/Constant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -3871,7 +3590,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/khalti-android/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
+        <state relative-caret-position="870">
           <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
           <folding />
         </state>
@@ -3895,178 +3614,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBankingPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
+        <state relative-caret-position="1500">
           <caret line="122" column="52" lean-forward="false" selection-start-line="122" selection-start-column="52" selection-end-line="122" selection-end-column="52" />
-          <folding>
-            <element signature="e#1081#1112#0" expanded="true" />
-            <element signature="e#1081#1112#0" expanded="true" />
-            <element signature="e#1252#1269#0" expanded="true" />
-            <element signature="e#1361#1473#0" expanded="true" />
-            <element signature="e#1389#1472#0" expanded="true" />
-            <element signature="e#1452#1470#0" expanded="true" />
-            <element signature="e#1389#1472#0" expanded="true" />
-            <element signature="e#1995#2040#1" expanded="true" />
-            <element signature="e#2015#2039#0" expanded="true" />
-            <element signature="e#2092#2107#0" expanded="true" />
-            <element signature="e#2092#2107#0" expanded="true" />
-            <element signature="e#2109#2123#0" expanded="true" />
-            <element signature="e#2109#2123#0" expanded="true" />
-            <element signature="e#2179#2228#1" expanded="true" />
-            <element signature="e#2202#2227#0" expanded="true" />
-            <element signature="e#2324#2336#0" expanded="true" />
-            <element signature="e#2324#2336#0" expanded="true" />
-            <element signature="e#2324#2346#0" expanded="true" />
-            <element signature="e#2348#2360#0" expanded="true" />
-            <element signature="e#2348#2360#0" expanded="true" />
-            <element signature="e#2348#2369#0" expanded="true" />
-            <element signature="e#2627#2657#0" expanded="true" />
-            <element signature="e#2666#2705#0" expanded="true" />
-            <element signature="e#3115#3161#1" expanded="true" />
-            <element signature="e#3170#3197#0" expanded="true" />
-            <element signature="e#3170#3197#0" expanded="true" />
-            <element signature="e#3170#3197#0" expanded="true" />
-            <element signature="e#3637#3683#1" expanded="true" />
-            <element signature="e#3700#3725#0" expanded="true" />
-            <element signature="e#3700#3725#0" expanded="true" />
-            <element signature="e#3700#3725#0" expanded="true" />
-            <element signature="e#3743#3768#0" expanded="true" />
-            <element signature="e#3743#3768#0" expanded="true" />
-            <element signature="e#3743#3768#0" expanded="true" />
-            <element signature="e#3786#3815#0" expanded="true" />
-            <element signature="e#3786#3815#0" expanded="true" />
-            <element signature="e#3786#3815#0" expanded="true" />
-            <element signature="e#3860#4614#1" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3908#3929#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#4016#4037#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#4120#4143#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#4220#4243#0" expanded="true" />
-            <element signature="e#4220#4238#0" expanded="true" />
-            <element signature="e#4220#4243#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#4320#4342#0" expanded="true" />
-            <element signature="e#4320#4337#0" expanded="true" />
-            <element signature="e#4320#4337#0" expanded="true" />
-            <element signature="e#4320#4342#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#4417#4439#0" expanded="true" />
-            <element signature="e#4417#4434#0" expanded="true" />
-            <element signature="e#4417#4434#0" expanded="true" />
-            <element signature="e#4417#4439#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#4573#4603#0" expanded="true" />
-            <element signature="e#3874#4613#0" expanded="true" />
-            <element signature="e#4660#4682#0" expanded="true" />
-            <element signature="e#4708#4730#0" expanded="true" />
-            <element signature="e#4767#4840#0" expanded="true" />
-            <element signature="e#4767#4840#0" expanded="true" />
-            <element signature="e#4808#4830#0" expanded="true" />
-            <element signature="e#4767#4840#0" expanded="true" />
-            <element signature="e#4913#4939#0" expanded="true" />
-            <element signature="e#5068#5111#0" expanded="true" />
-            <element signature="e#5068#5111#0" expanded="true" />
-            <element signature="e#5068#5111#0" expanded="true" />
-            <element signature="e#5068#5111#0" expanded="true" />
-            <element signature="e#5464#5518#0" expanded="true" />
-            <element signature="e#5464#5518#0" expanded="true" />
-            <element signature="e#5557#5616#0" expanded="true" />
-            <element signature="e#5557#5616#0" expanded="true" />
-            <element signature="e#5798#5836#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/api/ApiHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
+        <state relative-caret-position="300">
           <caret line="39" column="25" lean-forward="false" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
-          <folding>
-            <element signature="e#853#919#1" expanded="true" />
-            <element signature="e#928#983#0" expanded="true" />
-            <element signature="e#928#983#0" expanded="true" />
-            <element signature="e#993#1243#1" expanded="true" />
-            <element signature="e#1253#1566#1" expanded="true" />
-            <element signature="e#2558#2572#0" expanded="true" />
-            <element signature="e#2806#2829#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/Wallet/WalletPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
-          <folding>
-            <element signature="e#1028#1057#0" expanded="true" />
-            <element signature="e#1028#1057#0" expanded="true" />
-            <element signature="e#1170#1187#0" expanded="true" />
-            <element signature="e#1197#1307#0" expanded="true" />
-            <element signature="e#1223#1306#0" expanded="true" />
-            <element signature="e#1286#1304#0" expanded="true" />
-            <element signature="e#1223#1306#0" expanded="true" />
-            <element signature="e#1478#1561#0" expanded="true" />
-            <element signature="e#1510#1526#0" expanded="true" />
-            <element signature="e#1478#1561#0" expanded="true" />
-            <element signature="e#2067#2090#0" expanded="true" />
-            <element signature="e#2067#2090#0" expanded="true" />
-            <element signature="e#2833#2852#1" expanded="true" />
-            <element signature="e#5950#6077#0" expanded="true" />
-            <element signature="e#5950#6077#0" expanded="true" />
-            <element signature="e#5950#6077#0" expanded="true" />
-            <element signature="e#5950#6077#0" expanded="true" />
-            <element signature="e#6104#6134#0" expanded="true" />
-            <element signature="e#6143#6182#0" expanded="true" />
-            <element signature="e#6350#6380#0" expanded="true" />
-            <element signature="e#6389#6428#0" expanded="true" />
-            <element signature="e#7073#7133#1" expanded="true" />
-            <element signature="e#7111#7132#0" expanded="true" />
-            <element signature="e#7226#7297#1" expanded="true" />
-            <element signature="e#7266#7296#0" expanded="true" />
-            <element signature="e#7318#7365#1" expanded="true" />
-            <element signature="e#7419#7445#0" expanded="true" />
-            <element signature="e#7471#7497#0" expanded="true" />
-            <element signature="e#7502#7528#0" expanded="true" />
-            <element signature="e#7569#7618#0" expanded="true" />
-            <element signature="e#7569#7618#0" expanded="true" />
-            <element signature="e#7588#7617#0" expanded="true" />
-            <element signature="e#7569#7618#0" expanded="true" />
-            <element signature="e#7640#7698#0" expanded="true" />
-            <element signature="e#7640#7698#0" expanded="true" />
-            <element signature="e#7664#7697#0" expanded="true" />
-            <element signature="e#7640#7698#0" expanded="true" />
-            <element signature="e#7720#7767#0" expanded="true" />
-            <element signature="e#7720#7767#0" expanded="true" />
-            <element signature="e#7738#7766#0" expanded="true" />
-            <element signature="e#7720#7767#0" expanded="true" />
-            <element signature="e#7789#7849#0" expanded="true" />
-            <element signature="e#7789#7849#0" expanded="true" />
-            <element signature="e#7814#7848#0" expanded="true" />
-            <element signature="e#7789#7849#0" expanded="true" />
-            <element signature="e#7871#7939#0" expanded="true" />
-            <element signature="e#7871#7939#0" expanded="true" />
-            <element signature="e#7900#7938#0" expanded="true" />
-            <element signature="e#7871#7939#0" expanded="true" />
-            <element signature="e#8305#8335#0" expanded="true" />
-            <element signature="e#8344#8382#0" expanded="true" />
-            <element signature="e#8724#8762#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="990">
+          <caret line="84" column="9" lean-forward="false" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4080,11 +3646,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/khalti-android/src/main/java/khalti/checkOut/EBanking/EBanking.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
+        <state relative-caret-position="330">
           <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <element signature="e#2222#2296#1" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
