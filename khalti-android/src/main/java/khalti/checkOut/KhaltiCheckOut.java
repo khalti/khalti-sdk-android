@@ -27,6 +27,10 @@ public class KhaltiCheckOut implements KhaltiCheckOutInterface {
         if (EmptyUtil.isNull(Store.getConfig())) {
             throw new IllegalArgumentException("Config not set");
         }
+        String message = checkConfig(Store.getConfig());
+        if (EmptyUtil.isNotNull(message)) {
+            throw new IllegalArgumentException(message);
+        }
         ActivityUtil.openActivity(CheckOutActivity.class, context, null, true);
     }
 
@@ -36,11 +40,46 @@ public class KhaltiCheckOut implements KhaltiCheckOutInterface {
         if (EmptyUtil.isNull(Store.getConfig())) {
             throw new IllegalArgumentException("Config not set");
         }
+        String message = checkConfig(Store.getConfig());
+        if (EmptyUtil.isNotNull(message)) {
+            throw new IllegalArgumentException(message);
+        }
         ActivityUtil.openActivity(CheckOutActivity.class, context, null, true);
     }
 
     @Override
     public void destroy() {
         RxBus.getInstance().post("close_check_out", null);
+    }
+
+    private String checkConfig(Config config) {
+        if (EmptyUtil.isNull(config.getPublicKey())) {
+            return "Public key cannot be null";
+        }
+        if (EmptyUtil.isEmpty(config.getPublicKey())) {
+            return "Public key cannot be empty";
+        }
+        if (EmptyUtil.isNull(config.getProductId())) {
+            return "Product identity cannot be null";
+        }
+        if (EmptyUtil.isEmpty(config.getProductId())) {
+            return "Product identity cannot be empty";
+        }
+        if (EmptyUtil.isNull(config.getProductName())) {
+            return "Product name cannot be null";
+        }
+        if (EmptyUtil.isEmpty(config.getProductName())) {
+            return "Product name cannot be empty";
+        }
+        if (EmptyUtil.isNull(config.getAmount())) {
+            return "Product url cannot be null";
+        }
+        if (EmptyUtil.isEmpty(config.getAmount())) {
+            return "Product url cannot be 0";
+        }
+        if (EmptyUtil.isNull(config.getOnCheckOutListener())) {
+            return "Listener cannot be null";
+        }
+        return null;
     }
 }

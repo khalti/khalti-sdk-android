@@ -41,7 +41,7 @@
 #-keepclasseswithmembernames class * {
  #  native <methods>;
 #}
-#-keep class android.support.v8.renderscript.** { *; }
+-keep class android.support.v8.renderscript.** { *; }
 
 #Animations
 -keep class com.nineoldandroids.animation.** { *; }

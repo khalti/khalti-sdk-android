@@ -3,6 +3,7 @@ package com.khaltiSample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import java.util.HashMap;
 
@@ -21,6 +22,8 @@ public class Sample extends AppCompatActivity {
     KhaltiButton khaltiButton1;
     @BindView(R.id.kpPay2)
     KhaltiButton khaltiButton2;
+    @BindView(R.id.llContainer)
+    LinearLayout llContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

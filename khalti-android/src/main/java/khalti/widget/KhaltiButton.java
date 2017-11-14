@@ -34,6 +34,10 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
     public KhaltiButton(@NonNull Context context) {
         super(context);
         this.context = context;
+
+        Pay pay = new Pay();
+        listener = pay.getListener();
+        init();
     }
 
     public KhaltiButton(@NonNull Context context, @Nullable AttributeSet attrs) {
