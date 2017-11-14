@@ -16,6 +16,15 @@ public class Config implements Serializable {
     private HashMap<String, Object> additionalData;
     private OnCheckOutListener onCheckOutListener;
 
+    public Config(@NonNull String publicKey, @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.productId = productId;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.amount = amount;
+        this.onCheckOutListener = onCheckOutListener;
+    }
+
     public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount,
                   @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
