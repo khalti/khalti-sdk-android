@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    tools:context="com.khaltiSample.MoreSamples">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/globalPadding"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/globalPadding">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
-            android:text="Basic Button"
+            android:text="Default Khalti  Button"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <khalti.widget.KhaltiButton
-            android:id="@+id/kpPay"
+            android:id="@+id/kbDefault"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,18 +39,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
-            android:text="EBanking Button Dark"
+            android:text="Khalti Button With Custom Click Listener"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <khalti.widget.KhaltiButton
-            android:id="@+id/kpPay1"
+            android:id="@+id/kbWithCustomClickListener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="eBanking_dark"
-            khalti:text="Pay Rs 200" />
+            khalti:text="Pay" />
 
         <View
             android:layout_width="match_parent"
@@ -63,18 +62,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
-            android:text="EBanking Button Light"
+            android:text="Khalti Button With Custom View"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <khalti.widget.KhaltiButton
-            android:id="@+id/kpPay2"
+            android:id="@+id/kbWithCustomView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="eBanking_light"
-            khalti:text="Pay Rs 200" />
+            android:layout_marginBottom="@dimen/doubleBottomMargin" />
 
         <View
             android:layout_width="match_parent"
@@ -82,28 +79,69 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/globalPadding"
-            android:text="Click below for more examples"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/editTextPadding"
+            android:text="Button With Custom Click Listener"
+            android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
-        <khalti.carbonX.widget.Button
-            android:id="@+id/btnMore"
+        <Button
+            android:id="@+id/btnWithCustomClickListener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:paddingLeft="@dimen/globalPadding"
-            android:paddingRight="@dimen/globalPadding"
-            android:text="More"
-            android:textAllCaps="true"
-            android:textColor="@color/khaltiPrimary"
-            android:textSize="@dimen/body"
-            android:textStyle="bold"
-            app:carbonX_rippleColor="@color/khaltiPrimary" />
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:text="@string/pay" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:background="@color/disabled" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/editTextPadding"
+            android:text="Button With Java Khalti Button Implementation"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/body" />
+
+        <Button
+            android:id="@+id/btnWithJavaKhaltiButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:text="Pay" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:background="@color/disabled" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/editTextPadding"
+            android:text="Java Khalti Button"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/body" />
+
+        <LinearLayout
+            android:id="@+id/llContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:orientation="vertical" />
     </LinearLayout>
 </ScrollView>
-

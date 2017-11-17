@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/khaltiPrimary"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/globalPadding"
+    android:paddingRight="@dimen/globalPadding"
+    android:paddingTop="@dimen/globalPadding">
+
+    <ImageView
+        android:id="@+id/ivBtn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="@dimen/globalPadding"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tvBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingEnd="@dimen/globalPadding"
+        android:paddingLeft="@dimen/globalPadding"
+        android:paddingRight="@dimen/globalPadding"
+        android:paddingStart="@dimen/globalPadding"
+        android:text="@string/pay"
+        android:textColor="@color/white" />
+
+</LinearLayout>
