@@ -59,6 +59,9 @@ dependencies {
     /*Android Animations*/
     implementation ui.nineoldanimations
 
+    /*Image Loader*/
+    implementation ui.picasso
+
     /*GSON*/
     implementation serialization.gson
 

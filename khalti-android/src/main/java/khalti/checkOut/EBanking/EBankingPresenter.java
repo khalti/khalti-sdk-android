@@ -14,9 +14,7 @@ import khalti.utils.ApiUtil;
 import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
-import khalti.utils.NumberUtil;
 import khalti.utils.Store;
-import khalti.utils.StringUtil;
 import khalti.utils.ValidationUtil;
 import rx.subscriptions.CompositeSubscription;
 
@@ -37,26 +35,27 @@ public class EBankingPresenter implements EBankingContract.Listener {
     @Override
     public void setUpLayout(boolean hasNetwork) {
         this.config = Store.getConfig();
-        mEBankingView.toggleButton(false);
-        mEBankingView.showBankField();
-        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
+//        mEBankingView.toggleButton(false);
+//        mEBankingView.showBankField();
+//        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         if (hasNetwork) {
-            mEBankingView.toggleProgressBar(true);
+//            mEBankingView.toggleProgressBar(true);
             compositeSubscription = new CompositeSubscription();
             compositeSubscription.add(eBankingModel.fetchBankList(new EBankingModel.BankAction() {
                 @Override
 
-                public void onCompleted(Object bankList) {
-                    mEBankingView.toggleButton(true);
-                    mEBankingView.toggleProgressBar(false);
-                    if (bankList instanceof HashMap) {
+                public void onCompleted(List<BankPojo> bankList) {
+//                    mEBankingView.toggleButton(true);
+//                    mEBankingView.toggleProgressBar(false);
+                    /*if (bankList instanceof HashMap) {
                         HashMap<?, ?> map = (HashMap<?, ?>) bankList;
                         mEBankingView.setUpSpinner(map.get("name"), map.get("idx"));
                     } else {
                         List<BankPojo> banks = (List<BankPojo>) bankList;
                         bankLists = banks;
                         mEBankingView.setUpBankItem(banks.get(0).getName(), banks.get(0).getIdx());
-                    }
+                    }*/
+                    mEBankingView.setUpList(bankList);
                 }
 
                 @Override

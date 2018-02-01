@@ -1,4 +1,4 @@
-package khalti.checkOut.EBanking.chooseBank;
+package khalti.checkOut.EBanking.helper;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
@@ -6,23 +6,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
+import khalti.checkOut.EBanking.chooseBank.BankPojo;
 import khalti.utils.StringUtil;
 
 public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.MyViewHolder> {
 
+    private Context context;
     private LayoutInflater inflater;
     private List<BankPojo> banks;
     private List<BankPojo> banksBackUp = new ArrayList<>();
 
     private BankControls bankControls;
 
-    BankChooserAdapter(Context context, List<BankPojo> banks, BankControls bankControls) {
+    public BankChooserAdapter(Context context, List<BankPojo> banks, BankControls bankControls) {
+        this.context = context;
         this.banks = banks;
         banksBackUp.addAll(banks);
         this.bankControls = bankControls;
@@ -37,9 +43,31 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tvBankName.setText(banks.get(position).getName());
+        String shortName = banks.get(position).getShortName();
+        String name = banks.get(position).getName();
+        String iconName = StringUtil.getNameIcon(banks.get(position).getName());
+
         holder.tvBankId.setText(banks.get(position).getIdx());
-        holder.tvBankIcon.setText(StringUtil.getNameIcon(banks.get(position).getName()));
+        Picasso.with(context)
+                .load(banks.get(position).getLogo())
+                .noFade()
+                .into(holder.ivBankLogo, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        holder.flBankLogo.setVisibility(View.VISIBLE);
+                        holder.flBankTextIcon.setVisibility(View.GONE);
+                        holder.tvBankName.setText(shortName);
+                    }
+
+                    @Override
+                    public void onError() {
+                        holder.flBankLogo.setVisibility(View.GONE);
+                        holder.flBankTextIcon.setVisibility(View.VISIBLE);
+                        holder.tvBankIcon.setText(iconName);
+                        holder.tvBankName.setText(name);
+                    }
+                });
+
     }
 
     @Override
@@ -49,7 +77,8 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         AppCompatTextView tvBankName, tvBankId, tvBankIcon;
-        FrameLayout flContainer;
+        FrameLayout flContainer, flBankTextIcon, flBankLogo;
+        ImageView ivBankLogo;
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -58,18 +87,21 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
             tvBankName = itemView.findViewById(R.id.tvBankName);
             tvBankId = itemView.findViewById(R.id.tvBankId);
             flContainer = itemView.findViewById(R.id.flContainer);
+            flBankLogo = itemView.findViewById(R.id.flBankLogo);
+            flBankTextIcon = itemView.findViewById(R.id.flBankTextIcon);
+            ivBankLogo = itemView.findViewById(R.id.ivBankLogo);
 
             flContainer.setOnClickListener(view -> bankControls.chooseBank(((AppCompatTextView) view.findViewById(R.id.tvBankName)).getText() + "",
                     ((AppCompatTextView) view.findViewById(R.id.tvBankId)).getText() + ""));
         }
     }
 
-    interface BankControls {
+    public interface BankControls {
         void chooseBank(String bankName, String bankId);
     }
 
     /*Filter logic*/
-    int setFilter(String queryText) {
+    public int setFilter(String queryText) {
         if (queryText.length() > 0) {
             List<BankPojo> filteredAddress = new ArrayList<>();
             for (int i = 0; i < banksBackUp.size(); i++) {

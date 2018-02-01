@@ -1,7 +1,9 @@
 package khalti.checkOut.EBanking;
 
 import java.util.HashMap;
+import java.util.List;
 
+import khalti.checkOut.EBanking.chooseBank.BankPojo;
 import khalti.checkOut.api.Config;
 
 public interface EBankingContract {
@@ -16,6 +18,8 @@ public interface EBankingContract {
         void showBankField();
 
         void setUpSpinner(Object banks, Object bankIds);
+
+        void setUpList(List<BankPojo> bankList);
 
         void setUpBankItem(String bankName, String bankId);
 

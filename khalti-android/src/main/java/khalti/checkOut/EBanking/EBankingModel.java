@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.checkOut.EBanking.chooseBank.BankPojo;
+import khalti.checkOut.EBanking.helper.BaseListPojo;
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.KhaltiApi;
 import rx.Subscription;
@@ -27,11 +28,12 @@ public class EBankingModel {
         return new ApiHelper().callApi(khaltiService.getBanks(url, 1, 100, true), new ApiHelper.ApiCallback() {
             @Override
             public void onComplete() {
-                if (bankList.size() > 5) {
+                /*if (bankList.size() > 5) {
                     bankAction.onCompleted(bankList);
                 } else {
-                    bankAction.onCompleted(getSimpleBankList(bankList));
-                }
+                    bankAction.onCompleted(bankList);
+                }*/
+                bankAction.onCompleted(bankList);
             }
 
             @Override
@@ -47,7 +49,7 @@ public class EBankingModel {
     }
 
     public interface BankAction {
-        void onCompleted(Object bankList);
+        void onCompleted(List<BankPojo> bankList);
 
         void onError(String message);
     }

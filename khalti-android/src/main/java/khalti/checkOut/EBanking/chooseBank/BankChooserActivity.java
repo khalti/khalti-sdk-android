@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
+import khalti.checkOut.EBanking.helper.BankChooserAdapter;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.EmptyUtil;

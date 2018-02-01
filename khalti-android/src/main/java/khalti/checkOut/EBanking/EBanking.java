@@ -6,24 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.transition.ChangeBounds;
-import android.support.transition.Transition;
-import android.support.transition.TransitionManager;
-import android.support.transition.TransitionSet;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatTextView;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,55 +24,58 @@ import khalti.R;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
 import khalti.carbonX.widget.ProgressBar;
-import khalti.carbonX.widget.TextInputLayout;
 import khalti.checkOut.CheckOutActivity;
 import khalti.checkOut.EBanking.chooseBank.BankChooserActivity;
+import khalti.checkOut.EBanking.helper.BankChooserAdapter;
+import khalti.checkOut.EBanking.chooseBank.BankPojo;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 import khalti.utils.FileStorageUtil;
-import khalti.utils.LogUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
 import khalti.utils.UserInterfaceUtil;
 
 import static android.app.Activity.RESULT_OK;
 
-public class EBanking extends Fragment implements EBankingContract.View {
+public class EBanking extends Fragment implements EBankingContract.View, BankChooserAdapter.BankControls {
 
     private ProgressBar pdLoad;
     private LinearLayout llBank, llMobile;
-    private Spinner spBank;
+    //    private Spinner spBank;
     private FrameLayout flBank;
-    private AppCompatTextView tvBank, tvBankId;
+    //    private AppCompatTextView tvBank, tvBankId;
     private EditText etMobile;
-    private TextInputLayout tilMobile;
+    //    private TextInputLayout tilMobile;
     private Button btnPay;
+    private RecyclerView rvList;
 
     private FragmentActivity fragmentActivity;
     private EBankingContract.Listener listener;
+    private BankChooserAdapter bankChooserAdapter;
 
     private String bankId, bankName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.payment_form, container, false);
+        View mainView = inflater.inflate(R.layout.bank_list, container, false);
         fragmentActivity = getActivity();
         listener = new EBankingPresenter(this);
 
         pdLoad = mainView.findViewById(R.id.pdLoad);
         llBank = mainView.findViewById(R.id.llBank);
         llMobile = mainView.findViewById(R.id.llMobile);
-        spBank = mainView.findViewById(R.id.spBank);
+//        spBank = mainView.findViewById(R.id.spBank);
         flBank = mainView.findViewById(R.id.flBank);
-        tvBank = mainView.findViewById(R.id.tvBank);
-        tvBankId = mainView.findViewById(R.id.tvBankId);
+//        tvBank = mainView.findViewById(R.id.tvBank);
+//        tvBankId = mainView.findViewById(R.id.tvBankId);
         etMobile = mainView.findViewById(R.id.etMobile);
-        tilMobile = mainView.findViewById(R.id.tilMobile);
+//        tilMobile = mainView.findViewById(R.id.tilMobile);
         btnPay = mainView.findViewById(R.id.btnPay);
+        rvList = mainView.findViewById(R.id.rvList);
 
         listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
-        btnPay.setOnClickListener(view -> listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString(), bankId, bankName));
+//        btnPay.setOnClickListener(view -> listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString(), bankId, bankName));
 
         return mainView;
     }
@@ -114,7 +109,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void setUpSpinner(Object banks, Object bankIds) {
-        spBank.setVisibility(View.VISIBLE);
+        /*spBank.setVisibility(View.VISIBLE);
         flBank.setVisibility(View.GONE);
         ArrayAdapter<String> bankAdapter = new ArrayAdapter<>(fragmentActivity, android.R.layout.simple_list_item_1, (List<String>) banks);
 
@@ -135,12 +130,21 @@ public class EBanking extends Fragment implements EBankingContract.View {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
+    }
+
+    @Override
+    public void setUpList(List<BankPojo> bankList) {
+        bankChooserAdapter = new BankChooserAdapter(fragmentActivity, bankList, this);
+        rvList.setAdapter(bankChooserAdapter);
+        rvList.setHasFixedSize(false);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 2);
+        rvList.setLayoutManager(layoutManager);
     }
 
     @Override
     public void setUpBankItem(String bankName, String bankId) {
-        spBank.setVisibility(View.GONE);
+        /*spBank.setVisibility(View.GONE);
         flBank.setVisibility(View.VISIBLE);
         tvBank.setText(bankName);
         tvBankId.setText(bankId);
@@ -148,12 +152,12 @@ public class EBanking extends Fragment implements EBankingContract.View {
         this.bankId = bankId;
         this.bankName = bankName;
 
-        flBank.setOnClickListener(view -> listener.openBankList());
+        flBank.setOnClickListener(view -> listener.openBankList());*/
     }
 
     @Override
     public void toggleEditTextListener(boolean set) {
-        etMobile.addTextChangedListener(new TextWatcher() {
+/*        etMobile.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -169,7 +173,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
             public void afterTextChanged(Editable editable) {
 
             }
-        });
+        });*/
     }
 
     @Override
@@ -184,7 +188,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void setErrorAnimation() {
-        TransitionSet transitionSet = new TransitionSet();
+        /*TransitionSet transitionSet = new TransitionSet();
 
         Transition errorTransition = new ChangeBounds();
         errorTransition.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -193,13 +197,13 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
         transitionSet.addTransition(errorTransition);
 
-        TransitionManager.beginDelayedTransition(llMobile, transitionSet);
+        TransitionManager.beginDelayedTransition(llMobile, transitionSet);*/
     }
 
     @Override
     public void setMobileError(String error) {
         listener.setErrorAnimation();
-        tilMobile.setError(error);
+//        tilMobile.setError(error);
     }
 
     @Override
@@ -280,5 +284,10 @@ public class EBanking extends Fragment implements EBankingContract.View {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void chooseBank(String bankName, String bankId) {
+
     }
 }

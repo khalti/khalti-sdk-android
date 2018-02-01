@@ -1,4 +1,4 @@
-package khalti.checkOut.EBanking;
+package khalti.checkOut.EBanking.helper;
 
 
 import android.os.Parcel;
@@ -6,10 +6,11 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import khalti.checkOut.EBanking.chooseBank.BankPojo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import khalti.checkOut.EBanking.chooseBank.BankPojo;
 
 public class BaseListPojo implements Parcelable {
     @SerializedName("total_pages")
@@ -62,41 +63,35 @@ public class BaseListPojo implements Parcelable {
         return records;
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.totalPages);
-        dest.writeValue(this.totalRecords);
-        dest.writeString(this.next);
-        dest.writeString(this.previous);
-        dest.writeList(this.recordRange);
-        dest.writeValue(this.currentPage);
-        dest.writeTypedList(this.records);
-    }
-
-    public BaseListPojo() {
+    public static Creator<BaseListPojo> getCREATOR() {
+        return CREATOR;
     }
 
     protected BaseListPojo(Parcel in) {
-        this.totalPages = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.totalRecords = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.next = in.readString();
-        this.previous = in.readString();
-        this.recordRange = new ArrayList<Integer>();
-        in.readList(this.recordRange, Integer.class.getClassLoader());
-        this.currentPage = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.records = in.createTypedArrayList(BankPojo.CREATOR);
+        if (in.readByte() == 0) {
+            totalPages = null;
+        } else {
+            totalPages = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            totalRecords = null;
+        } else {
+            totalRecords = in.readInt();
+        }
+        next = in.readString();
+        previous = in.readString();
+        if (in.readByte() == 0) {
+            currentPage = null;
+        } else {
+            currentPage = in.readInt();
+        }
+        records = in.createTypedArrayList(BankPojo.CREATOR);
     }
 
     public static final Creator<BaseListPojo> CREATOR = new Creator<BaseListPojo>() {
         @Override
-        public BaseListPojo createFromParcel(Parcel source) {
-            return new BaseListPojo(source);
+        public BaseListPojo createFromParcel(Parcel in) {
+            return new BaseListPojo(in);
         }
 
         @Override
@@ -104,4 +99,34 @@ public class BaseListPojo implements Parcelable {
             return new BaseListPojo[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (totalPages == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(totalPages);
+        }
+        if (totalRecords == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(totalRecords);
+        }
+        parcel.writeString(next);
+        parcel.writeString(previous);
+        if (currentPage == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(currentPage);
+        }
+        parcel.writeTypedList(records);
+    }
 }

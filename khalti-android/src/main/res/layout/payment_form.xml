@@ -16,6 +16,40 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/llBranding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/globalPadding"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/ivIcon"
+                    android:layout_width="180dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/khalti_full_logo" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="@dimen/singleBottomMargin"
+                    android:layout_marginTop="@dimen/singleBottomMargin">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/check_out_title"
+                        android:textColor="@color/primaryText"
+                        android:textSize="@dimen/body"
+                        app:fontFamily="@font/roboto" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/llMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -314,4 +348,3 @@
             khalti:carbonX_tint="@color/pink500" />
     </FrameLayout>
 </android.support.v4.widget.NestedScrollView>
-

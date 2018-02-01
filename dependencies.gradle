@@ -12,9 +12,11 @@ ext {
     nineDroidVersion = '2.4.0'
     butterKnifeVersion = '8.4.0'
     gsonVersion = '2.7'
+    picassoVersion = '2.5.2'
 
     ui = [
-            nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}"
+            nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}",
+            picasso          : "com.squareup.picasso:picasso:${picassoVersion}"
     ]
 
     serialization = [
