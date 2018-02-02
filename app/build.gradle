@@ -1,47 +1,54 @@
 apply plugin: 'com.android.application'
 
 android {
-
+    signingConfigs {
+        config {
+            keyAlias 'khalti123'
+            keyPassword 'khalti123'
+            storeFile file('/Users/janakitechnology/khaltiSdkSignedKey')
+            storePassword 'khalti123'
+        }
+    }
     compileSdkVersion targetSdk
     buildToolsVersion buildToolVersion
-
     defaultConfig {
         applicationId "com.khaltiSample"
         minSdkVersion minSdk
         targetSdkVersion targetSdk
-        versionCode appVersionCode
         versionName appVersionName
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        renderscriptTargetApi 20
+        renderscriptSupportModeEnabled true
+        signingConfig signingConfigs.config
     }
-
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
-
     lintOptions {
         abortOnError false
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '26.0.2'
+    productFlavors {
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation supportLibrary.appCompat
-
     /*ButterKnife*/
     implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
-
-//    implementation 'com.khalti:khalti-android:1.0.8'
+    //    implementation 'com.khalti:khalti-android:1.0.8'
     implementation project(':khalti-android')
 }

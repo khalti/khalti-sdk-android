@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/janakitechnology/workspace/khalti/khalti-android/rxBus/src/main/assets"/><source path="/Users/janakitechnology/workspace/khalti/khalti-android/rxBus/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/janakitechnology/workspace/khalti/khalti-android/rxBus/src/release/assets"/></dataSet></merger>

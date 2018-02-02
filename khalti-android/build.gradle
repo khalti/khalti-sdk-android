@@ -41,10 +41,12 @@ android {
         options.addStringOption('charSet', 'UTF-8')
     }
 
+
     retrolambda {
         defaultMethods false
         include 'Debug'
     }
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {

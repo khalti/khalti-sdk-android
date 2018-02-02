@@ -78,7 +78,7 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
         getMenuInflater().inflate(R.menu.settings, menu);
 
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        EditText searchEditText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchEditText.setTextColor(getResources().getColor(R.color.black));
         searchEditText.setHintTextColor(getResources().getColor(R.color.secondaryText));
         searchEditText.setHint("Search Bank...");
