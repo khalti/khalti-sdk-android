@@ -11,27 +11,28 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.checkOut.EBanking.chooseBank.BankPojo;
 import khalti.utils.StringUtil;
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
-public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.MyViewHolder> {
+public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> {
 
     private Context context;
     private LayoutInflater inflater;
     private List<BankPojo> banks;
     private List<BankPojo> banksBackUp = new ArrayList<>();
 
-    private BankControls bankControls;
+    private PublishSubject<HashMap<String, String>> itemClickObservable = PublishSubject.create();
 
-    public BankChooserAdapter(Context context, List<BankPojo> banks, BankControls bankControls) {
+    public BankAdapter(Context context, List<BankPojo> banks) {
         this.context = context;
         this.banks = banks;
         banksBackUp.addAll(banks);
-        this.bankControls = bankControls;
         inflater = LayoutInflater.from(context);
     }
 
@@ -48,6 +49,7 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
         String iconName = StringUtil.getNameIcon(banks.get(position).getName());
 
         holder.tvBankId.setText(banks.get(position).getIdx());
+        holder.tvBankLogo.setText(banks.get(position).getLogo());
         Picasso.with(context)
                 .load(banks.get(position).getLogo())
                 .noFade()
@@ -56,6 +58,7 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
                     public void onSuccess() {
                         holder.flBankLogo.setVisibility(View.VISIBLE);
                         holder.flBankTextIcon.setVisibility(View.GONE);
+                        holder.tvBankIcon.setText(iconName);
                         holder.tvBankName.setText(shortName);
                     }
 
@@ -75,8 +78,12 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
         return banks.size();
     }
 
+    public Observable<HashMap<String, String>> getItemClickObservable() {
+        return itemClickObservable;
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
-        AppCompatTextView tvBankName, tvBankId, tvBankIcon;
+        AppCompatTextView tvBankName, tvBankId, tvBankIcon, tvBankLogo;
         FrameLayout flContainer, flBankTextIcon, flBankLogo;
         ImageView ivBankLogo;
 
@@ -90,9 +97,14 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
             flBankLogo = itemView.findViewById(R.id.flBankLogo);
             flBankTextIcon = itemView.findViewById(R.id.flBankTextIcon);
             ivBankLogo = itemView.findViewById(R.id.ivBankLogo);
+            tvBankLogo = itemView.findViewById(R.id.tvBankLogo);
 
-            flContainer.setOnClickListener(view -> bankControls.chooseBank(((AppCompatTextView) view.findViewById(R.id.tvBankName)).getText() + "",
-                    ((AppCompatTextView) view.findViewById(R.id.tvBankId)).getText() + ""));
+            flContainer.setOnClickListener(view -> itemClickObservable.onNext(new HashMap<String, String>() {{
+                put("idx", tvBankId.getText() + "");
+                put("name", tvBankName.getText() + "");
+                put("icon", tvBankIcon.getText() + "");
+                put("logo", tvBankLogo.getText() + "");
+            }}));
         }
     }
 
@@ -101,7 +113,7 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
     }
 
     /*Filter logic*/
-    public int setFilter(String queryText) {
+    public void setFilter(String queryText) {
         if (queryText.length() > 0) {
             List<BankPojo> filteredAddress = new ArrayList<>();
             for (int i = 0; i < banksBackUp.size(); i++) {
@@ -112,12 +124,10 @@ public class BankChooserAdapter extends RecyclerView.Adapter<BankChooserAdapter.
             banks.clear();
             banks.addAll(filteredAddress);
             notifyDataSetChanged();
-            return banks.size();
         } else {
             banks.clear();
             banks.addAll(banksBackUp);
             notifyDataSetChanged();
-            return banks.size();
         }
     }
 }

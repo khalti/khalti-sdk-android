@@ -43,11 +43,13 @@ ext {
     rxVersion = '1.1.0'
     rxAndroidVersion = '1.2.1'
     rxPermissionVersion = '0.9.3@aar'
+    rxBinding = '1.0.1'
 
     rx = [
             rxjava       : "io.reactivex:rxjava:${rxVersion}",
             rxandroid    : "io.reactivex:rxandroid:${rxAndroidVersion}",
-            rxpermissions: "com.tbruyelle.rxpermissions:rxpermissions:${rxPermissionVersion}"
+            rxpermissions: "com.tbruyelle.rxpermissions:rxpermissions:${rxPermissionVersion}",
+            rxBinding    : "com.jakewharton.rxbinding:rxbinding:${rxBinding}"
     ]
 
     junitVersion = '4.12'

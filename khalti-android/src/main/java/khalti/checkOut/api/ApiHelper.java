@@ -20,6 +20,7 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
 public class ApiHelper {
     private static final int TIME_OUT = 30;
@@ -82,6 +83,46 @@ public class ApiHelper {
                         }
                     }
                 });
+    }
+
+    public <T> Observable<Object> callApiAlt(Observable<Response<T>> observable) {
+        PublishSubject<Object> ps = PublishSubject.create();
+        observable
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<T>>() {
+                    @Override
+                    public void onCompleted() {
+                        if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
+                            ps.onCompleted();
+                        } else {
+                            ps.onError(new Throwable(ErrorUtil.parseError(HTTP_ERROR)));
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (EmptyUtil.isNotNull(e)) {
+                            e.printStackTrace();
+                        }
+                        ps.onError(EmptyUtil.isNotNull(e) ? e : new Throwable(ErrorUtil.parseError("")));
+                    }
+
+                    @Override
+                    public void onNext(Response<T> response) {
+                        HTTP_STATUS_CODE = response.code();
+                        if (response.isSuccessful()) {
+                            ps.onNext(response.body());
+                        } else {
+                            try {
+                                HTTP_ERROR = new String(response.errorBody().bytes());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+        return ps;
     }
 
     public interface ApiCallback {

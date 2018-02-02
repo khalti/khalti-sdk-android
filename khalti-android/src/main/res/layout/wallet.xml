@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,12 +22,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/globalPadding"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/ivIcon"
-                    android:layout_width="180dp"
-                    android:layout_height="90dp"
+                    android:layout_width="165dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:contentDescription="@null"
@@ -35,8 +36,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="22dp"
-                    android:layout_marginBottom="@dimen/singleBottomMargin"
-                    android:layout_marginTop="@dimen/singleBottomMargin">
+                    android:visibility="gone">
 
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -345,6 +345,6 @@
             android:background="@color/disabled"
             android:visibility="gone"
             khalti:carbonX_progressStyle="bar_indeterminate"
-            khalti:carbonX_tint="@color/pink500" />
+            khalti:carbonX_tint="@color/khaltiAccent" />
     </FrameLayout>
 </android.support.v4.widget.NestedScrollView>

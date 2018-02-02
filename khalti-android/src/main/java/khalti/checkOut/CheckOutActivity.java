@@ -37,9 +37,9 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     public CoordinatorLayout cdlMain;
     public Toolbar toolbar;
 
-    private CheckOutContract.Listener listener;
+    private CheckOutContract.Presenter presenter;
     private List<TabLayout.Tab> tabs = new ArrayList<>();
-    CompositeSubscription compositeSubscription;
+    private CompositeSubscription compositeSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +56,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
                 finish();
             }
         }));
-        listener = new CheckOutPresenter(this);
-        listener.setUpLayout();
+        presenter = new CheckOutPresenter(this);
+        presenter.onCreate();
     }
 
     @Override
@@ -76,7 +76,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         if (EmptyUtil.isNotNull(compositeSubscription) && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
-        listener.dismissAllDialogs();
+        presenter.dismissAllDialogs();
     }
 
     @Override
@@ -99,7 +99,9 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
         ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
         DrawableCompat.setTint(ivEIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        tlTitle.getTabAt(0).setCustomView(eBankingTab);
+        if (EmptyUtil.isNotNull(tlTitle.getTabAt(0))) {
+            tlTitle.getTabAt(0).setCustomView(eBankingTab);
+        }
 
         LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
         AppCompatTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
@@ -109,7 +111,9 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
         ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
         DrawableCompat.setTint(ivWIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        tlTitle.getTabAt(1).setCustomView(walletTab);
+        if (EmptyUtil.isNotNull(tlTitle.getTabAt(1))) {
+            tlTitle.getTabAt(1).setCustomView(walletTab);
+        }
 
         tabs.add(tlTitle.getTabAt(0));
         tabs.add(tlTitle.getTabAt(1));
@@ -118,12 +122,12 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 vpContent.setCurrentItem(tab.getPosition());
-                listener.toggleTab(tab.getPosition(), true);
+                presenter.onTabSelected(tab.getPosition(), true);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                listener.toggleTab(tab.getPosition(), false);
+                presenter.onTabSelected(tab.getPosition(), false);
             }
 
             @Override
@@ -183,8 +187,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setListener(CheckOutContract.Listener listener) {
-        this.listener = listener;
+    public void setPresenter(CheckOutContract.Presenter presenter) {
+        this.presenter = presenter;
     }
 
     @Override

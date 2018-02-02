@@ -84,6 +84,9 @@ dependencies {
 
     /*RxPermission*/
     implementation rx.rxpermissions
+
+    /*RxBinding*/
+    implementation rx.rxBinding
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/

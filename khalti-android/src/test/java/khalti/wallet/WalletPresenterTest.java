@@ -12,7 +12,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import khalti.checkOut.Wallet.WalletConfirmPojo;
+import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import khalti.checkOut.Wallet.WalletContract;
 import khalti.checkOut.Wallet.WalletModel;
 import khalti.checkOut.Wallet.WalletPresenter;

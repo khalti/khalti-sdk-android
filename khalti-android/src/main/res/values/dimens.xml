@@ -12,6 +12,7 @@
     <dimen name="head">16sp</dimen>
     <dimen name="title">20sp</dimen>
     <dimen name="title1">24sp</dimen>
+    <dimen name="display">34sp</dimen>
 
     <dimen name="carbonX_elevationLow">4dp</dimen>
     <dimen name="carbonX_1dip">1dp</dimen>

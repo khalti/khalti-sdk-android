@@ -3,6 +3,8 @@ package khalti.checkOut.Wallet;
 
 import java.util.HashMap;
 
+import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
+import khalti.checkOut.Wallet.helper.WalletInitPojo;
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.KhaltiApi;

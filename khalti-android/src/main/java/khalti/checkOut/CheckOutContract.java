@@ -15,14 +15,14 @@ interface CheckOutContract {
 
         void dismissAllDialogs();
 
-        void setListener(Listener listener);
+        void setPresenter(Presenter presenter);
     }
 
-    interface Listener {
+    interface Presenter {
 
-        void setUpLayout();
+        void onCreate();
 
-        void toggleTab(int position, boolean selected);
+        void onTabSelected(int position, boolean selected);
 
         void dismissAllDialogs();
     }

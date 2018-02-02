@@ -17,19 +17,19 @@
 
         <khalti.carbonX.widget.FrameLayout
             android:id="@+id/flBankLogo"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginBottom="@dimen/cardPadding"
             android:background="@drawable/circle_outline"
             android:gravity="center"
             android:padding="2dp"
             android:visibility="visible"
-            khalti:carbonX_cornerRadius="28dp">
+            khalti:carbonX_cornerRadius="32dp">
 
             <ImageView
                 android:id="@+id/ivBankLogo"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
                 android:scaleType="center" />
@@ -37,14 +37,14 @@
 
         <khalti.carbonX.widget.FrameLayout
             android:id="@+id/flBankTextIcon"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginBottom="@dimen/cardPadding"
             android:background="@color/khaltiPrimary"
             android:gravity="center"
             android:padding="2dp"
             android:visibility="gone"
-            khalti:carbonX_cornerRadius="28dp">
+            khalti:carbonX_cornerRadius="32dp">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvBankIcon"
@@ -66,10 +66,15 @@
             android:text="@string/empty"
             android:textColor="@color/black"
             android:textSize="@dimen/head"
-            app:fontFamily="@font/roboto" />
+            app:fontFamily="@font/roboto_medium" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvBankId"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvBankLogo"
             android:layout_width="0dp"
             android:layout_height="0dp" />
     </LinearLayout>

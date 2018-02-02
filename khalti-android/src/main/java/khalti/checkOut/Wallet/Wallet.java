@@ -51,15 +51,13 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private khalti.checkOut.Wallet.WalletContract.Listener listener;
     private CompositeSubscription compositeSubscription;
     private SmsListener smsListener;
+
     private boolean isRegistered = false;
-
-    private LinearLayout.LayoutParams layoutParams;
-
     private int height = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.payment_form, container, false);
+        View mainView = inflater.inflate(R.layout.wallet, container, false);
         fragmentActivity = getActivity();
         listener = new WalletPresenter(this);
 

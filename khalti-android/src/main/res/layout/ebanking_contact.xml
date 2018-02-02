@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:khalti="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#05000000"
+                android:orientation="horizontal"
+                android:padding="@dimen/globalPadding">
+
+                <khalti.carbonX.widget.FrameLayout
+                    android:id="@+id/flBankLogo"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circle_outline"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:visibility="visible"
+                    khalti:carbonX_cornerRadius="24dp">
+
+                    <ImageView
+                        android:id="@+id/ivBankLogo"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:scaleType="center" />
+                </khalti.carbonX.widget.FrameLayout>
+
+                <khalti.carbonX.widget.FrameLayout
+                    android:id="@+id/flBankTextIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/khaltiPrimary"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:visibility="gone"
+                    khalti:carbonX_cornerRadius="24dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tvBankIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/app_name"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/head"
+                        app:fontFamily="@font/roboto_bold" />
+                </khalti.carbonX.widget.FrameLayout>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvBankName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/globalPadding"
+                    android:layout_marginStart="@dimen/globalPadding"
+                    android:gravity="center"
+                    android:text="@string/empty"
+                    android:textColor="@color/primaryText"
+                    android:textSize="@dimen/head"
+                    app:fontFamily="@font/roboto_medium" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:background="#15000000" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/globalPadding"
+            android:paddingRight="@dimen/globalPadding">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/globalPadding"
+                android:layout_marginRight="@dimen/globalPadding"
+                android:adjustViewBounds="true"
+                android:alpha="0.58"
+                android:contentDescription="@null"
+                app:srcCompat="@drawable/ic_user_account_box" />
+
+            <khalti.carbonX.widget.TextInputLayout
+                android:id="@+id/tilContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contact_hint"
+                android:theme="@style/EditTextTheme">
+
+                <EditText
+                    android:id="@+id/etContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="20"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/title" />
+            </khalti.carbonX.widget.TextInputLayout>
+        </LinearLayout>
+
+        <include
+            android:id="@+id/btnPay"
+            layout="@layout/component_button_alt"
+            android:layout_width="@dimen/carbonX_buttonWidth1"
+            android:layout_height="@dimen/toolbarHeight"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="@dimen/globalPadding"
+            android:layout_marginRight="@dimen/globalPadding" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

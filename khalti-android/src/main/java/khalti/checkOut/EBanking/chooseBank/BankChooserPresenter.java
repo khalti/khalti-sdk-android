@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.HashMap;
 import java.util.List;
 
+import khalti.checkOut.EBanking.helper.BankPojo;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 

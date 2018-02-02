@@ -3,10 +3,7 @@ package khalti.eBanking;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -33,8 +30,8 @@ public class EBankingPresenterTest {
     private Config config;
     @Mock
     private OnCheckOutListener onCheckOutListener;
-    @Captor
-    private ArgumentCaptor<EBankingModel.BankAction> bankArgument;
+    //    @Captor
+//    private ArgumentCaptor<EBankingModel.BankAction> bankArgument;
     @Mock
     private Subscription subscription;
 
@@ -49,7 +46,7 @@ public class EBankingPresenterTest {
         config = new Config("public_key", "product_id", "product_name", "product_url", 1L, onCheckOutListener);
 
         PowerMockito.when(Store.getConfig()).thenReturn(config);
-        Mockito.when(eBankingModel.fetchBankList(bankArgument.capture())).thenReturn(subscription);
+//        Mockito.when(eBankingModel.fetchBankList(bankArgument.capture())).thenReturn(subscription);
 
         eBankingPresenter.injectModel(eBankingModel);
         eBankingPresenter.injectConfig(config);
@@ -57,7 +54,7 @@ public class EBankingPresenterTest {
 
     @Test
     public void setUpLayout() {
-//        eBankingPresenter.setUpLayout(true);
+//        eBankingPresenter.onCreate(true);
 //        verify(mEBankingView).toggleButton(false);
     }
 }

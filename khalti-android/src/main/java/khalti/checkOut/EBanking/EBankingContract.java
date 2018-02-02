@@ -3,62 +3,40 @@ package khalti.checkOut.EBanking;
 import java.util.HashMap;
 import java.util.List;
 
-import khalti.checkOut.EBanking.chooseBank.BankPojo;
-import khalti.checkOut.api.Config;
+import khalti.checkOut.EBanking.helper.BankPojo;
+import khalti.checkOut.EBanking.helper.EBankingData;
+import rx.Observable;
 
 public interface EBankingContract {
     interface View {
 
-        void toggleProgressBar(boolean show);
-
-        void toggleEditTextListener(boolean set);
-
-        void toggleButton(boolean enabled);
-
-        void showBankField();
-
-        void setUpSpinner(Object banks, Object bankIds);
+        void toggleIndented(boolean show);
 
         void setUpList(List<BankPojo> bankList);
 
-        void setUpBankItem(String bankName, String bankId);
+        void showIndentedNetworkError();
 
-        void setButtonText(String text);
+        void showIndentedError(String error);
 
-        void setErrorAnimation();
+        void openMobileForm(EBankingData eBankingData);
 
-        void setMobileError(String error);
+        Observable<HashMap<String, String>> getItemClickObservable();
 
-        void showNetworkError();
+        Observable<Void> setTryAgainClick();
 
-        void showError(String message);
-
-        void showMessageDialog(String title, String message);
-
-        void openBankList(HashMap<String, Object> dataMap);
-
-        void openEBanking(String url);
-
-        void saveConfigInFile(String fileName, Config config);
-
-        String getPackageName();
-
-        void setListener(Listener listener);
+        void setPresenter(Presenter presenter);
     }
 
-    interface Listener {
+    interface Presenter {
 
-        void setUpLayout(boolean hasNetwork);
+        void onCreate(boolean hasNetwork);
 
-        void toggleEditTextListener(boolean set);
+        void onDestroy();
+    }
 
-        void setErrorAnimation();
+    interface Model {
 
-        void openBankList();
-
-        void updateBankItem(String bankName, String bankId);
-
-        void initiatePayment(boolean isNetwork, String mobile, String bankId, String bankName);
+        Observable<List<BankPojo>> fetchBankList();
 
         void unSubscribe();
     }

@@ -1,4 +1,4 @@
-package khalti.checkOut.EBanking.chooseBank;
+package khalti.checkOut.EBanking.helper;
 
 import android.os.Parcel;
 import android.os.Parcelable;

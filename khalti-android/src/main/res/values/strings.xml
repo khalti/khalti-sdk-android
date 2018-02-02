@@ -39,6 +39,7 @@
 
     <!--Form-->
     <string name="mobile_hint">Mobile Number</string>
+    <string name="contact_hint">Contact Number</string>
     <string name="code_hint">Confirmation Code</string>
     <string name="pin_hint">PIN (4 Digits)</string>
     <string name="select_bank">Select Bank</string>

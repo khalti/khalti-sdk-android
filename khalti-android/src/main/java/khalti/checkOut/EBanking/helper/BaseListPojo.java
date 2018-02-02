@@ -10,8 +10,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import khalti.checkOut.EBanking.chooseBank.BankPojo;
-
 public class BaseListPojo implements Parcelable {
     @SerializedName("total_pages")
     @Expose

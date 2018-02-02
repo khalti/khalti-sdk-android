@@ -5,17 +5,17 @@ import android.support.annotation.NonNull;
 import khalti.utils.GuavaUtil;
 
 
-class CheckOutPresenter implements CheckOutContract.Listener {
+class CheckOutPresenter implements CheckOutContract.Presenter {
     @NonNull
     private final CheckOutContract.View mCheckOutView;
 
     CheckOutPresenter(@NonNull CheckOutContract.View mCheckOutView) {
         this.mCheckOutView = GuavaUtil.checkNotNull(mCheckOutView);
-        mCheckOutView.setListener(this);
+        mCheckOutView.setPresenter(this);
     }
 
     @Override
-    public void setUpLayout() {
+    public void onCreate() {
         mCheckOutView.setStatusBarColor();
         mCheckOutView.setUpToolbar();
         mCheckOutView.setupViewPager();
@@ -23,7 +23,7 @@ class CheckOutPresenter implements CheckOutContract.Listener {
     }
 
     @Override
-    public void toggleTab(int position, boolean selected) {
+    public void onTabSelected(int position, boolean selected) {
         mCheckOutView.toggleTab(position, selected);
     }
 

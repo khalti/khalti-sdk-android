@@ -2,145 +2,71 @@ package khalti.checkOut.EBanking;
 
 import android.support.annotation.NonNull;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
 
-import khalti.checkOut.EBanking.chooseBank.BankPojo;
+import khalti.checkOut.EBanking.helper.BankPojo;
+import khalti.checkOut.EBanking.helper.EBankingData;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
-import khalti.utils.ApiUtil;
-import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.Store;
-import khalti.utils.ValidationUtil;
+import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
-public class EBankingPresenter implements EBankingContract.Listener {
+public class EBankingPresenter implements EBankingContract.Presenter {
     @NonNull
-    private final EBankingContract.View mEBankingView;
+    private final EBankingContract.View view;
     private EBankingModel eBankingModel;
-    private List<BankPojo> bankLists;
     private Config config;
     private CompositeSubscription compositeSubscription;
 
-    public EBankingPresenter(@NonNull EBankingContract.View mEBankingView) {
-        this.mEBankingView = GuavaUtil.checkNotNull(mEBankingView);
-        mEBankingView.setListener(this);
+    public EBankingPresenter(@NonNull EBankingContract.View view) {
+        this.view = GuavaUtil.checkNotNull(view);
+        view.setPresenter(this);
         eBankingModel = new EBankingModel();
+        compositeSubscription = new CompositeSubscription();
     }
 
     @Override
-    public void setUpLayout(boolean hasNetwork) {
+    public void onCreate(boolean hasNetwork) {
         this.config = Store.getConfig();
-//        mEBankingView.toggleButton(false);
-//        mEBankingView.showBankField();
-//        mEBankingView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
+        view.toggleIndented(true);
+        compositeSubscription.add(view.setTryAgainClick().subscribe(o -> onCreate(hasNetwork)));
         if (hasNetwork) {
-//            mEBankingView.toggleProgressBar(true);
-            compositeSubscription = new CompositeSubscription();
-            compositeSubscription.add(eBankingModel.fetchBankList(new EBankingModel.BankAction() {
-                @Override
+            compositeSubscription.add(eBankingModel.fetchBankList()
+                    .subscribe(new Subscriber<List<BankPojo>>() {
+                        @Override
+                        public void onCompleted() {
 
-                public void onCompleted(List<BankPojo> bankList) {
-//                    mEBankingView.toggleButton(true);
-//                    mEBankingView.toggleProgressBar(false);
-                    /*if (bankList instanceof HashMap) {
-                        HashMap<?, ?> map = (HashMap<?, ?>) bankList;
-                        mEBankingView.setUpSpinner(map.get("name"), map.get("idx"));
-                    } else {
-                        List<BankPojo> banks = (List<BankPojo>) bankList;
-                        bankLists = banks;
-                        mEBankingView.setUpBankItem(banks.get(0).getName(), banks.get(0).getIdx());
-                    }*/
-                    mEBankingView.setUpList(bankList);
-                }
+                        }
 
-                @Override
-                public void onError(String message) {
-                    mEBankingView.toggleProgressBar(false);
-                    mEBankingView.showError(message);
-                    config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), message);
-                }
-            }));
+                        @Override
+                        public void onError(Throwable e) {
+                            view.showIndentedError(e.getMessage());
+                            config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), e.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(List<BankPojo> banks) {
+                            view.toggleIndented(false);
+                            view.setUpList(banks);
+                            compositeSubscription.add(view.getItemClickObservable()
+                                    .subscribe(hashMap -> view.openMobileForm(new EBankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
+                                            hashMap.get("icon"), config))));
+                        }
+                    }));
         } else {
-            mEBankingView.showNetworkError();
+            view.showIndentedNetworkError();
         }
     }
 
     @Override
-    public void toggleEditTextListener(boolean set) {
-        mEBankingView.toggleEditTextListener(set);
-    }
-
-    @Override
-    public void setErrorAnimation() {
-        mEBankingView.setErrorAnimation();
-    }
-
-    @Override
-    public void openBankList() {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("banks", bankLists);
-        mEBankingView.openBankList(map);
-    }
-
-    @Override
-    public void updateBankItem(String bankName, String bankId) {
-        mEBankingView.setUpBankItem(bankName, bankId);
-    }
-
-    @Override
-    public void initiatePayment(boolean isNetwork, String mobile, String bankId, String bankName) {
-        if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
-            if (isNetwork) {
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("mobile", mobile);
-                map.put("bankId", bankId);
-                map.put("bankName", bankName);
-
-                try {
-                    String data = "public_key=" + URLEncoder.encode(config.getPublicKey(), "UTF-8") + "&" +
-                            "product_identity=" + URLEncoder.encode(config.getProductId(), "UTF-8") + "&" +
-                            "product_name=" + URLEncoder.encode(config.getProductName(), "UTF-8") + "&" +
-                            "amount=" + URLEncoder.encode(config.getAmount() + "", "UTF-8") + "&" +
-                            "mobile=" + URLEncoder.encode(map.get("mobile") + "", "UTF-8") + "&" +
-                            "bank=" + URLEncoder.encode(map.get("bankId") + "", "UTF-8") + "&" +
-                            "source=android" + "&" +
-                            "return_url=" + URLEncoder.encode(mEBankingView.getPackageName(), "UTF-8");
-
-                    if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {
-                        data += "&" + "product_url=" + URLEncoder.encode(config.getProductUrl(), "UTF-8");
-                    }
-
-                    data += ApiUtil.getPostData(config.getAdditionalData());
-
-                    mEBankingView.saveConfigInFile("khalti_config", config);
-
-                    mEBankingView.openEBanking(Constant.url + "ebanking/initiate/?" + data);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                    mEBankingView.showError("Something went wrong");
-                }
-            } else {
-                mEBankingView.showNetworkError();
-            }
-        } else {
-            if (EmptyUtil.isEmpty(mobile)) {
-                mEBankingView.setMobileError("This field is required");
-            } else {
-                mEBankingView.setMobileError("Enter a valid mobile number");
-            }
-        }
-    }
-
-    @Override
-    public void unSubscribe() {
+    public void onDestroy() {
         if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
+        eBankingModel.unSubscribe();
     }
 
     public void injectModel(EBankingModel eBankingModel) {

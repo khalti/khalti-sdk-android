@@ -22,7 +22,7 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
 
     private Config config;
 
-    private PayContract.Listener listener;
+    private PayContract.Presenter presenter;
 
     private android.widget.FrameLayout flCustomView;
     private FrameLayout flStyle;
@@ -36,7 +36,7 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
         this.context = context;
 
         Pay pay = new Pay();
-        listener = pay.getListener();
+        presenter = pay.getPresenter();
         init();
     }
 
@@ -46,19 +46,19 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
         this.attrs = attrs;
 
         Pay pay = new Pay();
-        listener = pay.getListener();
+        presenter = pay.getPresenter();
         init();
     }
 
     @Override
     public void setText(String text) {
-        listener.setButtonText(text);
+        presenter.setButtonText(text);
     }
 
     @Override
     public void setCheckOutConfig(Config config) {
         this.config = config;
-        String message = listener.checkConfig(config);
+        String message = presenter.checkConfig(config);
         if (EmptyUtil.isNotNull(message)) {
             throw new IllegalArgumentException(message);
         }
@@ -67,42 +67,42 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
     @Override
     public void setCustomView(View view) {
         this.customView = view;
-        listener.setCustomButtonView();
-        listener.setButtonClick();
+        presenter.setCustomButtonView();
+        presenter.setButtonClick();
     }
 
     @Override
     public void setButtonStyle(ButtonStyle buttonStyle) {
         this.buttonStyle = buttonStyle.getId();
-        listener.setButtonStyle(this.buttonStyle);
-        listener.setButtonClick();
+        presenter.setButtonStyle(this.buttonStyle);
+        presenter.setButtonClick();
     }
 
     @Override
     public void showCheckOut() {
-        listener.openForm();
+        presenter.openForm();
     }
 
     @Override
     public void showCheckOut(Config config) {
         this.config = config;
-        String message = listener.checkConfig(config);
+        String message = presenter.checkConfig(config);
         if (EmptyUtil.isNotNull(message)) {
             throw new IllegalArgumentException(message);
         }
-        listener.openForm();
+        presenter.openForm();
     }
 
     @Override
     public void destroyCheckOut() {
-        listener.destroyCheckOut();
+        presenter.destroyCheckOut();
     }
 
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
         super.setOnClickListener(l);
         this.onClickListener = l;
-        listener.setButtonClick();
+        presenter.setButtonClick();
     }
 
     private void init() {
@@ -118,17 +118,17 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
         flCustomView = mainView.findViewById(R.id.flCustomView);
         flStyle = mainView.findViewById(R.id.flStyle);
 
-        listener.setButtonText(buttonText);
-        listener.setButtonStyle(buttonStyle);
-        listener.setButtonClick();
+        presenter.setButtonText(buttonText);
+        presenter.setButtonStyle(buttonStyle);
+        presenter.setButtonClick();
     }
 
     private class Pay implements PayContract.View {
-        private PayContract.Listener listener;
+        private PayContract.Presenter presenter;
         private KhaltiCheckOut khaltiCheckOut;
 
         Pay() {
-            listener = new PayPresenter(this);
+            presenter = new PayPresenter(this);
         }
 
         @Override
@@ -162,7 +162,7 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
 
         @Override
         public void setButtonClick() {
-            onClickListener = EmptyUtil.isNull(onClickListener) ? view -> listener.openForm() : onClickListener;
+            onClickListener = EmptyUtil.isNull(onClickListener) ? view -> presenter.openForm() : onClickListener;
 
             if (EmptyUtil.isNotNull(customView)) {
                 flCustomView.getChildAt(0).setOnClickListener(onClickListener);
@@ -187,13 +187,13 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
             khaltiCheckOut.destroy();
         }
 
-        PayContract.Listener getListener() {
-            return listener;
+        PayContract.Presenter getPresenter() {
+            return presenter;
         }
 
         @Override
-        public void setListener(PayContract.Listener listener) {
-            this.listener = listener;
+        public void setPresenter(PayContract.Presenter presenter) {
+            this.presenter = presenter;
         }
     }
 }

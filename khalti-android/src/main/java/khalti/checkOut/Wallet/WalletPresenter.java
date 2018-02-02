@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 
+import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;

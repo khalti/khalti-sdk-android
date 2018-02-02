@@ -2,8 +2,8 @@ package khalti.checkOut.api;
 
 
 import khalti.checkOut.EBanking.helper.BaseListPojo;
-import khalti.checkOut.Wallet.WalletConfirmPojo;
-import khalti.checkOut.Wallet.WalletInitPojo;
+import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
+import khalti.checkOut.Wallet.helper.WalletInitPojo;
 
 import java.util.HashMap;
 

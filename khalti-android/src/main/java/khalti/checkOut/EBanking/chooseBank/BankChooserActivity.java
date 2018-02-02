@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -19,26 +18,27 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
-import khalti.checkOut.EBanking.helper.BankChooserAdapter;
+import khalti.checkOut.EBanking.helper.BankAdapter;
+import khalti.checkOut.EBanking.helper.BankPojo;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ResourceUtil;
 import rx.subscriptions.CompositeSubscription;
 
-public class BankChooserActivity extends AppCompatActivity implements BankChooserContract.View, BankChooserAdapter.BankControls {
+public class BankChooserActivity extends AppCompatActivity implements BankChooserContract.View, BankAdapter.BankControls {
 
     private RecyclerView rvList;
     private Toolbar toolbar;
 
     private BankChooserContract.Listener listener;
-    private BankChooserAdapter bankChooserAdapter;
+    private BankAdapter bankAdapter;
     private CompositeSubscription compositeSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bank_list);
+        setContentView(R.layout.ebanking);
 
         rvList = (RecyclerView) findViewById(R.id.rvList);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -94,7 +94,7 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                bankChooserAdapter.setFilter(newText);
+                bankAdapter.setFilter(newText);
                 return false;
             }
         });
@@ -127,7 +127,7 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
 
     @Override
     public void setUpToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -136,11 +136,11 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
 
     @Override
     public void setUpList(List<BankPojo> bankList) {
-        bankChooserAdapter = new BankChooserAdapter(this, bankList, this);
-        rvList.setAdapter(bankChooserAdapter);
+       /* bankAdapter = new BankAdapter(this, bankList, this);
+        rvList.setAdapter(bankAdapter);
         rvList.setHasFixedSize(false);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvList.setLayoutManager(layoutManager);
+        rvList.setLayoutManager(layoutManager);*/
     }
 
     @Override
