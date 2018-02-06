@@ -112,22 +112,21 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
         void chooseBank(String bankName, String bankId);
     }
 
-    /*Filter logic*/
     public void setFilter(String queryText) {
         if (queryText.length() > 0) {
-            List<BankPojo> filteredAddress = new ArrayList<>();
+            List<BankPojo> filteredBanks = new ArrayList<>();
             for (int i = 0; i < banksBackUp.size(); i++) {
-                if (banksBackUp.get(i).getName().toLowerCase().contains(queryText.toLowerCase())) {
-                    filteredAddress.add(banksBackUp.get(i));
+                if (banksBackUp.get(i).getName().toLowerCase().contains(queryText.toLowerCase()) ||
+                        banksBackUp.get(i).getShortName().toLowerCase().contains(queryText.toLowerCase())) {
+                    filteredBanks.add(banksBackUp.get(i));
                 }
             }
             banks.clear();
-            banks.addAll(filteredAddress);
-            notifyDataSetChanged();
+            banks.addAll(filteredBanks);
         } else {
             banks.clear();
             banks.addAll(banksBackUp);
-            notifyDataSetChanged();
         }
+        notifyDataSetChanged();
     }
 }

@@ -24,6 +24,12 @@ public interface EBankingContract {
 
         HashMap<String, Observable<Void>> setOnClickListener();
 
+        Observable<CharSequence> setEditTextListener();
+
+        void filterList(String text);
+
+        void flushList();
+
         void toggleSearch(boolean show);
 
         void setPresenter(Presenter presenter);

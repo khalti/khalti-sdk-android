@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -132,6 +133,22 @@ public class EBanking extends Fragment implements EBankingContract.View {
             put("open_search", RxView.clicks(flSearch));
             put("close_search", RxView.clicks(flCloseSearch));
         }};
+    }
+
+    @Override
+    public Observable<CharSequence> setEditTextListener() {
+        return RxTextView.textChanges(etSearch);
+    }
+
+    @Override
+    public void filterList(String text) {
+        fragmentActivity.runOnUiThread(() -> bankAdapter.setFilter(text));
+    }
+
+    @Override
+    public void flushList() {
+        etSearch.setText("");
+        bankAdapter.setFilter("");
     }
 
     @Override
