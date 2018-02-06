@@ -32,6 +32,8 @@ public interface EBankingContract {
 
         void toggleSearch(boolean show);
 
+        void toggleKeyboard(boolean show);
+
         void setPresenter(Presenter presenter);
     }
 

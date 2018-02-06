@@ -37,9 +37,13 @@ public class EBankingPresenter implements EBankingContract.Presenter {
         view.toggleIndented(true);
         HashMap<String, Observable<Void>> map = view.setOnClickListener();
         compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate(hasNetwork)));
-        compositeSubscription.add(map.get("open_search").subscribe(aVoid -> view.toggleSearch(true)));
+        compositeSubscription.add(map.get("open_search").subscribe(aVoid -> {
+            view.toggleSearch(true);
+            view.toggleKeyboard(true);
+        }));
         compositeSubscription.add(map.get("close_search").subscribe(aVoid -> {
             view.toggleSearch(false);
+            view.toggleKeyboard(false);
             view.flushList();
         }));
         if (hasNetwork) {

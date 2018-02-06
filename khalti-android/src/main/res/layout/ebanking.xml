@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:background="#00000000"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:visibility="visible"
+        android:visibility="gone"
         app:elevation="0dp">
 
         <FrameLayout

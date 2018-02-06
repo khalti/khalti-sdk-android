@@ -1,5 +1,6 @@
 package khalti.checkOut.EBanking;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -13,6 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -30,6 +32,7 @@ import khalti.checkOut.EBanking.contactForm.ContactFormFragment;
 import khalti.checkOut.EBanking.helper.BankAdapter;
 import khalti.checkOut.EBanking.helper.BankPojo;
 import khalti.checkOut.EBanking.helper.EBankingData;
+import khalti.utils.EmptyUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
 import rx.Observable;
@@ -153,6 +156,9 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void toggleSearch(boolean show) {
+        if (show) {
+            etSearch.requestFocus();
+        }
         flCloseSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
         tilSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
         tvHeader.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
@@ -161,6 +167,18 @@ public class EBanking extends Fragment implements EBankingContract.View {
         android.widget.FrameLayout.LayoutParams lp = (android.widget.FrameLayout.LayoutParams) flSearch.getLayoutParams();
         lp.gravity = show ? Gravity.CENTER_VERTICAL | Gravity.START : Gravity.CENTER_VERTICAL | Gravity.END;
         flSearch.setLayoutParams(lp);
+    }
+
+    @Override
+    public void toggleKeyboard(boolean show) {
+        InputMethodManager inputManager = (InputMethodManager) fragmentActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (EmptyUtil.isNotNull(inputManager)) {
+            if (show) {
+                inputManager.showSoftInput(etSearch, InputMethodManager.SHOW_IMPLICIT);
+            } else {
+                inputManager.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
+            }
+        }
     }
 
     @Override
