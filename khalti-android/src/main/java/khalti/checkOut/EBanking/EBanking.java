@@ -3,14 +3,17 @@ package khalti.checkOut.EBanking;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -35,10 +38,12 @@ public class EBanking extends Fragment implements EBankingContract.View {
     private RecyclerView rvList;
     private LinearLayout llIndented;
     private ProgressBar pdLoad;
-    private AppCompatTextView tvMessage;
-    private FrameLayout flTryAgain;
+    private AppCompatTextView tvMessage, tvHeader;
+    private FrameLayout flTryAgain, flCloseSearch, flSearch;
     private Button btnTryAgain;
     private AppBarLayout appBarLayout;
+    private TextInputLayout tilSearch;
+    private EditText etSearch;
 
     private FragmentActivity fragmentActivity;
     private EBankingContract.Presenter presenter;
@@ -55,8 +60,13 @@ public class EBanking extends Fragment implements EBankingContract.View {
         pdLoad = mainView.findViewById(R.id.pdLoad);
         tvMessage = mainView.findViewById(R.id.tvMessage);
         flTryAgain = mainView.findViewById(R.id.flTryAgain);
+        flCloseSearch = mainView.findViewById(R.id.flCloseSearch);
+        flSearch = mainView.findViewById(R.id.flSearch);
         btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
         appBarLayout = mainView.findViewById(R.id.appBar);
+        tilSearch = mainView.findViewById(R.id.tilSearch);
+        etSearch = mainView.findViewById(R.id.etSearch);
+        tvHeader = mainView.findViewById(R.id.tvHeader);
 
         presenter.onCreate(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
@@ -116,8 +126,24 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
-    public Observable<Void> setTryAgainClick() {
-        return RxView.clicks(btnTryAgain);
+    public HashMap<String, Observable<Void>> setOnClickListener() {
+        return new HashMap<String, Observable<Void>>() {{
+            put("try_again", RxView.clicks(btnTryAgain));
+            put("open_search", RxView.clicks(flSearch));
+            put("close_search", RxView.clicks(flCloseSearch));
+        }};
+    }
+
+    @Override
+    public void toggleSearch(boolean show) {
+        flCloseSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        tilSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        tvHeader.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
+        flSearch.setEnabled(!show);
+
+        android.widget.FrameLayout.LayoutParams lp = (android.widget.FrameLayout.LayoutParams) flSearch.getLayoutParams();
+        lp.gravity = show ? Gravity.CENTER_VERTICAL | Gravity.START : Gravity.CENTER_VERTICAL | Gravity.END;
+        flSearch.setLayoutParams(lp);
     }
 
     @Override

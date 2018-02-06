@@ -22,7 +22,9 @@ public interface EBankingContract {
 
         Observable<HashMap<String, String>> getItemClickObservable();
 
-        Observable<Void> setTryAgainClick();
+        HashMap<String, Observable<Void>> setOnClickListener();
+
+        void toggleSearch(boolean show);
 
         void setPresenter(Presenter presenter);
     }

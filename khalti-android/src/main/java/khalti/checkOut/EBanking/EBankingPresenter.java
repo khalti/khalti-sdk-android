@@ -2,6 +2,7 @@ package khalti.checkOut.EBanking;
 
 import android.support.annotation.NonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import khalti.checkOut.EBanking.helper.BankPojo;
@@ -11,6 +12,7 @@ import khalti.checkOut.api.ErrorAction;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 import khalti.utils.Store;
+import rx.Observable;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
@@ -32,7 +34,10 @@ public class EBankingPresenter implements EBankingContract.Presenter {
     public void onCreate(boolean hasNetwork) {
         this.config = Store.getConfig();
         view.toggleIndented(true);
-        compositeSubscription.add(view.setTryAgainClick().subscribe(o -> onCreate(hasNetwork)));
+        HashMap<String, Observable<Void>> map = view.setOnClickListener();
+        compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate(hasNetwork)));
+        compositeSubscription.add(map.get("open_search").subscribe(aVoid -> view.toggleSearch(true)));
+        compositeSubscription.add(map.get("close_search").subscribe(aVoid -> view.toggleSearch(false)));
         if (hasNetwork) {
             compositeSubscription.add(eBankingModel.fetchBankList()
                     .subscribe(new Subscriber<List<BankPojo>>() {

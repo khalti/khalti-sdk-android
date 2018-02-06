@@ -5,6 +5,7 @@
     android:id="@+id/flContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    khalti:carbonX_cornerRadius="2dp"
     khalti:carbonX_rippleColor="@color/defaultRipple"
     khalti:carbonX_rippleStyle="over">
 

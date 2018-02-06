@@ -57,4 +57,5 @@
 
     <!--E Banking-->
     <string name="loading_bank">Loading Bank</string>
+    <string name="search_bank">Search Bank</string>
 </resources>
