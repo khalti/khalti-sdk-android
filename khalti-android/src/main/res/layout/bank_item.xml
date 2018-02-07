@@ -29,11 +29,11 @@
 
             <ImageView
                 android:id="@+id/ivBankLogo"
-                android:layout_width="62dp"
-                android:layout_height="62dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
-                android:scaleType="center" />
+                android:scaleType="fitCenter" />
         </khalti.carbonX.widget.FrameLayout>
 
         <khalti.carbonX.widget.FrameLayout

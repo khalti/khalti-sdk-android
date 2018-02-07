@@ -35,10 +35,12 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tlTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/toolbarHeight"
             android:background="@color/white"
             app:elevation="0dp"
+            android:layout_gravity="center"
+            app:tabGravity="center"
             app:tabIndicatorColor="@color/khaltiAccentAlt" />
 
         <View

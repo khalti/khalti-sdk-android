@@ -1,5 +1,4 @@
-package khalti.checkOut.EBanking;
-
+package khalti.checkOut.Card;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,19 +13,20 @@ import rx.Subscriber;
 import rx.subjects.PublishSubject;
 import rx.subscriptions.CompositeSubscription;
 
-class EBankingModel implements EBankingContract.Model {
+public class CardModel implements CardContract.Model {
     private KhaltiApi khaltiService;
     private CompositeSubscription compositeSubscription;
 
-    EBankingModel() {
+    public CardModel() {
         khaltiService = ApiHelper.apiBuilder();
         compositeSubscription = new CompositeSubscription();
     }
 
-    public EBankingModel(KhaltiApi mockedKhaltiService) {
+    public CardModel(KhaltiApi mockedKhaltiService) {
         khaltiService = mockedKhaltiService;
         compositeSubscription = new CompositeSubscription();
     }
+
 
     @Override
     public Observable<List<BankPojo>> fetchBankList() {
@@ -34,7 +34,7 @@ class EBankingModel implements EBankingContract.Model {
         compositeSubscription.add(new ApiHelper().callApiAlt(khaltiService.getBanks("/api/bank/", new HashMap<String, Object>() {{
             put("page", 1);
             put("page_size", 100);
-            put("has_ebanking", true);
+            put("has_cardpayment", true);
         }}))
                 .map(o -> ((BaseListPojo) o).getRecords())
                 .subscribe(new Subscriber<List<BankPojo>>() {

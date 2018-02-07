@@ -57,7 +57,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.wallet, container, false);
+        View mainView = inflater.inflate(R.layout.payment_form, container, false);
         fragmentActivity = getActivity();
         listener = new WalletPresenter(this);
 

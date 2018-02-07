@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import khalti.R;
+import khalti.checkOut.Card.Card;
 import khalti.checkOut.EBanking.EBanking;
 import khalti.checkOut.Wallet.Wallet;
 import khalti.rxBus.Event;
@@ -84,9 +85,12 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
         viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
+        viewPagerAdapter.addFrag(new Card(), ResourceUtil.getString(this, R.string.card));
         vpContent.setAdapter(viewPagerAdapter);
 
+        vpContent.setOffscreenPageLimit(3);
         tlTitle.setupWithViewPager(vpContent);
+        tlTitle.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 
     @Override
@@ -97,10 +101,11 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
         tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
         tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
+        ivEIcon.setImageResource(R.drawable.ic_bank);
         DrawableCompat.setTint(ivEIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        if (EmptyUtil.isNotNull(tlTitle.getTabAt(0))) {
-            tlTitle.getTabAt(0).setCustomView(eBankingTab);
+        TabLayout.Tab ebTab = tlTitle.getTabAt(0);
+        if (EmptyUtil.isNotNull(ebTab)) {
+            ebTab.setCustomView(eBankingTab);
         }
 
         LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
@@ -109,14 +114,29 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
         tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
         tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
+        ivWIcon.setImageResource(R.drawable.ic_wallet);
         DrawableCompat.setTint(ivWIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        if (EmptyUtil.isNotNull(tlTitle.getTabAt(1))) {
-            tlTitle.getTabAt(1).setCustomView(walletTab);
+        TabLayout.Tab wTab = tlTitle.getTabAt(1);
+        if (EmptyUtil.isNotNull(wTab)) {
+            wTab.setCustomView(walletTab);
         }
 
-        tabs.add(tlTitle.getTabAt(0));
-        tabs.add(tlTitle.getTabAt(1));
+        LinearLayout cardTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
+        AppCompatTextView tvCTitle = cardTab.findViewById(R.id.tvTitle);
+        ImageView ivCIcon = cardTab.findViewById(R.id.ivIcon);
+
+        tvCTitle.setText(ResourceUtil.getString(this, R.string.card));
+        tvCTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
+        ivCIcon.setImageResource(R.drawable.ic_credit_card);
+        DrawableCompat.setTint(ivCIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
+        TabLayout.Tab cTab = tlTitle.getTabAt(2);
+        if (EmptyUtil.isNotNull(cTab)) {
+            cTab.setCustomView(cardTab);
+        }
+
+        tabs.add(ebTab);
+        tabs.add(wTab);
+        tabs.add(cTab);
 
         tlTitle.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -145,7 +165,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24px);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         }
     }
 

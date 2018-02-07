@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/select_bank"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryText"
                 android:textSize="@dimen/title1"
                 app:fontFamily="@font/roboto_medium" />
 
@@ -81,6 +81,7 @@
                 android:id="@+id/flSearch"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:animateLayoutChanges="true"
                 android:layout_gravity="center_vertical|end"
                 khalti:carbonX_cornerRadius="18dp"
                 khalti:carbonX_rippleColor="@color/defaultRipple">
@@ -93,7 +94,7 @@
                     android:alpha="0.58"
                     android:contentDescription="@null"
                     android:tint="@color/black"
-                    app:srcCompat="@drawable/ic_search_white_48px" />
+                    app:srcCompat="@drawable/ic_search" />
             </khalti.carbonX.widget.FrameLayout>
 
             <khalti.carbonX.widget.FrameLayout
@@ -113,7 +114,7 @@
                     android:alpha="0.58"
                     android:contentDescription="@null"
                     android:tint="@color/black"
-                    app:srcCompat="@drawable/ic_close_black_24px" />
+                    app:srcCompat="@drawable/ic_close" />
             </khalti.carbonX.widget.FrameLayout>
         </FrameLayout>
     </android.support.design.widget.AppBarLayout>
