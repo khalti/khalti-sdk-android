@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -17,12 +17,12 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/llBranding"
+                android:id="@+id/llKhaltiBranding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/globalPadding"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/ivIcon"
@@ -47,6 +47,31 @@
                         android:textSize="@dimen/body"
                         app:fontFamily="@font/roboto" />
                 </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCardBranding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/globalPadding"
+                android:orientation="vertical"
+                android:padding="@dimen/globalPadding"
+                android:visibility="gone">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/we_accept"
+                    android:textColor="@color/primaryText"
+                    android:textSize="@dimen/body"
+                    app:fontFamily="@font/roboto" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    app:srcCompat="@mipmap/cards" />
             </LinearLayout>
 
             <LinearLayout
@@ -125,24 +150,38 @@
                         android:textSize="@dimen/label2"
                         app:fontFamily="@font/roboto" />
 
-                    <Spinner
-                        android:id="@+id/spBank"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/carbonX_paddingHalf"
-                        android:visibility="gone" />
-
                     <khalti.carbonX.widget.FrameLayout
                         android:id="@+id/flBank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/carbonX_paddingHalf"
+                        android:padding="@dimen/cardPadding"
                         khalti:carbonX_rippleColor="@color/defaultRipple">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
+                            <khalti.carbonX.widget.FrameLayout
+                                android:id="@+id/flBankLogo"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_marginEnd="@dimen/globalPadding"
+                                android:layout_marginRight="@dimen/globalPadding"
+                                android:background="@drawable/circle_outline"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:visibility="visible"
+                                khalti:carbonX_cornerRadius="16dp">
+
+                                <ImageView
+                                    android:id="@+id/ivBankLogo"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:scaleType="center" />
+                            </khalti.carbonX.widget.FrameLayout>
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tvBank"
@@ -314,7 +353,6 @@
             </khalti.utils.ExpandableLayout>
 
             <khalti.carbonX.widget.FrameLayout
-                android:id="@+id/flPay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

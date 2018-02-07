@@ -13,17 +13,15 @@ public interface CardContract {
 
         void toggleProgressBar(boolean show);
 
-        void toggleEditTextListener(boolean set);
-
         void toggleButton(boolean enabled);
 
         void showCardFields();
 
-        void setBankItemWithLogo(String logo, String shortName, String bankId);
-
-        void setBankItemWithIcon(String icon, String name, String bankId);
+        void setBankItem(String logo, String name, String shortName, String bankId);
 
         void setButtonText(String text);
+
+        Observable<CharSequence> setEditTextListener();
 
         void setErrorAnimation();
 

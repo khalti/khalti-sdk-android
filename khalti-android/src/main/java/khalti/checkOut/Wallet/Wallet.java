@@ -44,7 +44,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private ExpandableLayout elConfirmation;
     private Button btnPay;
     private Dialog progressDialog;
-    private FrameLayout flPay;
     private LinearLayout llConfirmation, llPIN, llCode;
 
     private FragmentActivity fragmentActivity;
@@ -69,7 +68,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         tilPIN = mainView.findViewById(R.id.tilPIN);
         btnPay = mainView.findViewById(R.id.btnPay);
         elConfirmation = mainView.findViewById(R.id.elConfirmation);
-        flPay = mainView.findViewById(R.id.flPay);
         llConfirmation = mainView.findViewById(R.id.llConfirmation);
         llPIN = mainView.findViewById(R.id.llPIN);
         llCode = mainView.findViewById(R.id.llCode);
