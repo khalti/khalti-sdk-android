@@ -33,6 +33,7 @@ import khalti.carbonX.widget.ProgressBar;
 import khalti.checkOut.CheckOutActivity;
 import khalti.checkOut.EBanking.chooseBank.BankChooserActivity;
 import khalti.checkOut.api.Config;
+import khalti.utils.EmptyUtil;
 import khalti.utils.FileStorageUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
@@ -45,7 +46,7 @@ public class Card extends Fragment implements CardContract.View {
     private khalti.carbonX.widget.TextInputLayout tilMobile;
     private Button btnPay;
     private ProgressBar pdLoad;
-    private LinearLayout llCardBranding, llMobile;
+    private LinearLayout llCardBranding, llMobile, llBank;
     private FrameLayout flBankLogo, flBank;
     private ImageView ivBankLogo;
     private AppCompatTextView tvBankName, tvBankId;
@@ -66,6 +67,7 @@ public class Card extends Fragment implements CardContract.View {
         pdLoad = mainView.findViewById(R.id.pdLoad);
         llCardBranding = mainView.findViewById(R.id.llCardBranding);
         llMobile = mainView.findViewById(R.id.llMobile);
+        llBank = mainView.findViewById(R.id.llBank);
         flBankLogo = mainView.findViewById(R.id.flBankLogo);
         flBank = mainView.findViewById(R.id.flBank);
         ivBankLogo = mainView.findViewById(R.id.ivBankLogo);
@@ -96,27 +98,30 @@ public class Card extends Fragment implements CardContract.View {
     @Override
     public void showCardFields() {
         llCardBranding.setVisibility(View.VISIBLE);
+        llBank.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void setBankItem(String logo, String name, String shortName, String bankId) {
-        Picasso.with(fragmentActivity)
-                .load(logo)
-                .noFade()
-                .into(ivBankLogo, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                        flBankLogo.setVisibility(View.VISIBLE);
-                        tvBankName.setText(shortName);
-                    }
+        if (EmptyUtil.isNotNull(logo) && EmptyUtil.isNotEmpty(logo)) {
+            Picasso.with(fragmentActivity)
+                    .load(logo)
+                    .noFade()
+                    .into(ivBankLogo, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            tvBankName.setText(shortName);
+                        }
 
-                    @Override
-                    public void onError() {
-                        flBankLogo.setVisibility(View.GONE);
-                        tvBankName.setText(name);
-                    }
-                });
-        tvBankName.setText(bankId);
+                        @Override
+                        public void onError() {
+                            tvBankName.setText(name);
+                        }
+                    });
+        } else {
+            tvBankName.setText(name);
+        }
+        tvBankId.setText(bankId);
     }
 
     @Override
