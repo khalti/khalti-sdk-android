@@ -36,7 +36,7 @@
         android:visibility="gone"
         app:elevation="0dp">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -46,77 +46,108 @@
             android:paddingTop="@dimen/globalPadding"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tvHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/select_bank"
-                android:textColor="@color/primaryText"
-                android:textSize="@dimen/title1"
-                app:fontFamily="@font/roboto_medium" />
-
-            <khalti.carbonX.widget.TextInputLayout
-                android:id="@+id/tilSearch"
+            <LinearLayout
+                android:id="@+id/llCardBranding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:hint="@string/search_bank"
-                android:theme="@style/EditTextTheme"
-                android:visibility="invisible">
+                android:layout_marginBottom="@dimen/cardPadding"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                <EditText
-                    android:id="@+id/etSearch"
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/editTextPadding"
+                    android:text="@string/we_accept"
+                    android:textColor="@color/primaryText"
+                    android:textSize="@dimen/body"
+                    app:fontFamily="@font/roboto" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    app:srcCompat="@mipmap/cards" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/select_bank"
+                    android:textColor="@color/primaryText"
+                    android:textSize="@dimen/title1"
+                    app:fontFamily="@font/roboto_medium" />
+
+                <khalti.carbonX.widget.TextInputLayout
+                    android:id="@+id/tilSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:maxLength="100"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </khalti.carbonX.widget.TextInputLayout>
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="@string/search_bank"
+                    android:theme="@style/EditTextTheme"
+                    android:visibility="invisible">
 
-            <khalti.carbonX.widget.FrameLayout
-                android:id="@+id/flSearch"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:animateLayoutChanges="true"
-                android:layout_gravity="center_vertical|end"
-                khalti:carbonX_cornerRadius="18dp"
-                khalti:carbonX_rippleColor="@color/defaultRipple">
+                    <EditText
+                        android:id="@+id/etSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </khalti.carbonX.widget.TextInputLayout>
 
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:alpha="0.58"
-                    android:contentDescription="@null"
-                    android:tint="@color/black"
-                    app:srcCompat="@drawable/ic_search" />
-            </khalti.carbonX.widget.FrameLayout>
+                <khalti.carbonX.widget.FrameLayout
+                    android:id="@+id/flSearch"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:animateLayoutChanges="true"
+                    khalti:carbonX_cornerRadius="18dp"
+                    khalti:carbonX_rippleColor="@color/defaultRipple">
 
-            <khalti.carbonX.widget.FrameLayout
-                android:id="@+id/flCloseSearch"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_vertical|end"
-                android:visibility="gone"
-                khalti:carbonX_cornerRadius="18dp"
-                khalti:carbonX_rippleColor="@color/defaultRipple">
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:alpha="0.58"
+                        android:contentDescription="@null"
+                        android:tint="@color/black"
+                        app:srcCompat="@drawable/ic_search" />
+                </khalti.carbonX.widget.FrameLayout>
 
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:alpha="0.58"
-                    android:contentDescription="@null"
-                    android:tint="@color/black"
-                    app:srcCompat="@drawable/ic_close" />
-            </khalti.carbonX.widget.FrameLayout>
-        </FrameLayout>
+                <khalti.carbonX.widget.FrameLayout
+                    android:id="@+id/flCloseSearch"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:visibility="gone"
+                    khalti:carbonX_cornerRadius="18dp"
+                    khalti:carbonX_rippleColor="@color/defaultRipple">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:alpha="0.58"
+                        android:contentDescription="@null"
+                        android:tint="@color/black"
+                        app:srcCompat="@drawable/ic_close" />
+                </khalti.carbonX.widget.FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout

@@ -48,7 +48,7 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.ebanking_contact, container, false);
+        View mainView = inflater.inflate(R.layout.banking_contact, container, false);
         fragmentActivity = getActivity();
 
         tilContact = mainView.findViewById(R.id.tilContact);

@@ -17,7 +17,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
-public class CardPresenter implements CardContract.Presenter {
+class CardPresenter implements CardContract.Presenter {
 
     @NonNull
     private final CardContract.View view;
@@ -25,7 +25,7 @@ public class CardPresenter implements CardContract.Presenter {
     private Config config;
     private CompositeSubscription compositeSubscription;
 
-    public CardPresenter(@NonNull CardContract.View view) {
+    CardPresenter(@NonNull CardContract.View view) {
         this.view = GuavaUtil.checkNotNull(view);
         view.setPresenter(this);
         model = new CardModel();
@@ -35,6 +35,7 @@ public class CardPresenter implements CardContract.Presenter {
     @Override
     public void onCreate(boolean hasNetwork) {
         this.config = Store.getConfig();
+        view.showBranding();
         view.toggleIndented(true);
         HashMap<String, Observable<Void>> map = view.setOnClickListener();
         compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate(hasNetwork)));

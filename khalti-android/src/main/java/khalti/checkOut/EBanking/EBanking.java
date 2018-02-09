@@ -55,7 +55,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.ebanking, container, false);
+        View mainView = inflater.inflate(R.layout.banking, container, false);
         fragmentActivity = getActivity();
         presenter = new EBankingPresenter(this);
 

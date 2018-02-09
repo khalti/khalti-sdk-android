@@ -15,6 +15,8 @@ public interface CardContract {
 
         void setUpList(List<BankPojo> bankList);
 
+        void showBranding();
+
         void showIndentedNetworkError();
 
         void showIndentedError(String error);

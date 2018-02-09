@@ -40,7 +40,7 @@ import rx.Observable;
 public class Card extends Fragment implements CardContract.View {
 
     private RecyclerView rvList;
-    private LinearLayout llIndented;
+    private LinearLayout llIndented, llCardBranding;
     private ProgressBar pdLoad;
     private AppCompatTextView tvMessage, tvHeader;
     private FrameLayout flTryAgain, flCloseSearch, flSearch;
@@ -55,12 +55,13 @@ public class Card extends Fragment implements CardContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.ebanking, container, false);
+        View mainView = inflater.inflate(R.layout.banking, container, false);
         fragmentActivity = getActivity();
         presenter = new CardPresenter(this);
 
         rvList = mainView.findViewById(R.id.rvList);
         llIndented = mainView.findViewById(R.id.llIndented);
+        llCardBranding = mainView.findViewById(R.id.llCardBranding);
         pdLoad = mainView.findViewById(R.id.pdLoad);
         tvMessage = mainView.findViewById(R.id.tvMessage);
         flTryAgain = mainView.findViewById(R.id.flTryAgain);
@@ -97,6 +98,11 @@ public class Card extends Fragment implements CardContract.View {
         rvList.setHasFixedSize(false);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 3);
         rvList.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void showBranding() {
+        llCardBranding.setVisibility(View.VISIBLE);
     }
 
     @Override

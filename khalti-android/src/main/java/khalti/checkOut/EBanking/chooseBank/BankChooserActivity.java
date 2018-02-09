@@ -38,7 +38,7 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ebanking);
+        setContentView(R.layout.banking);
 
         rvList = (RecyclerView) findViewById(R.id.rvList);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
