@@ -4,73 +4,93 @@ import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 
-import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import khalti.checkOut.api.Config;
-import khalti.checkOut.api.ErrorAction;
-import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.Event;
 import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
-import khalti.utils.HtmlUtil;
 import khalti.utils.NumberUtil;
 import khalti.utils.Store;
 import khalti.utils.StringUtil;
 import khalti.utils.ValidationUtil;
+import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 
-public class WalletPresenter implements WalletContract.Listener {
+public class WalletPresenter implements WalletContract.Presenter {
     @NonNull
-    private final WalletContract.View mWalletView;
-    private WalletModel walletModel;
-    private CompositeSubscription compositeSubscription;
+    private final WalletContract.View view;
+    private WalletModel model;
     private boolean smsListenerInitialized = false;
     private Config config;
     private String pinWebLink;
+    private CompositeSubscription compositeSubscription;
 
-    public WalletPresenter(@NonNull WalletContract.View mWalletView) {
-        this.mWalletView = GuavaUtil.checkNotNull(mWalletView);
-        mWalletView.setListener(this);
-        walletModel = new WalletModel();
+    public WalletPresenter(@NonNull WalletContract.View view) {
+        this.view = GuavaUtil.checkNotNull(view);
+        view.setPresenter(this);
+        model = new WalletModel();
+        compositeSubscription = new CompositeSubscription();
+    }
+
+    @Override
+    public void onCreate() {
+        config = Store.getConfig();
+        view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
+
+        HashMap<String, Observable<CharSequence>> map = view.setEditTextListener();
+        compositeSubscription.add(map.get("mobile").subscribe());
+         view.setEditTextListener();
+        view.setButtonClickListener();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
+        model.unSubscribe();
+        toggleSmsListener(false);
     }
 
     @Override
     public void setUpLayout() {
-        config = Store.getConfig();
-        mWalletView.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
-        mWalletView.setButtonClickListener();
-        mWalletView.setEditTextListener();
+
+    }
+
+    @Override
+    public void onSmsReceiptPermitted() {
+
     }
 
     @Override
     public void setConfirmationCode(Event event) {
-        mWalletView.setConfirmationCode(event.getEvent().toString().replaceAll("\\D+", ""));
+        view.setConfirmationCode(event.getEvent().toString().replaceAll("\\D+", ""));
     }
 
     @Override
     public void toggleConfirmationLayout(boolean show) {
-        mWalletView.toggleConfirmationLayout(show);
+        view.toggleConfirmationLayout(show);
     }
 
     @Override
     public void toggleSmsListener(boolean listen) {
-        mWalletView.toggleSmsListener(listen);
+        view.toggleSmsListener(listen);
         smsListenerInitialized = false;
     }
 
     @Override
     public void openKhaltiSettings() {
-        mWalletView.openKhaltiSettings();
+        view.openKhaltiSettings();
     }
 
     @Override
     public void openLinkInBrowser() {
-        mWalletView.openLinkInBrowser(Constant.url + pinWebLink.substring(1));
+        view.openLinkInBrowser(Constant.url + pinWebLink.substring(1));
     }
 
     @Override
     public void showPINInBrowserDialog(String title, String message) {
-        mWalletView.showPINInBrowserDialog(title, message);
+        view.showPINInBrowserDialog(title, message);
     }
 
     @Override
@@ -79,9 +99,9 @@ public class WalletPresenter implements WalletContract.Listener {
             return true;
         } else {
             if (EmptyUtil.isEmpty(mobile)) {
-                mWalletView.setEditTextError("mobile", "This field is required");
+                view.setEditTextError("mobile", "This field is required");
             } else {
-                mWalletView.setEditTextError("mobile", "Enter a valid mobile number");
+                view.setEditTextError("mobile", "Enter a valid mobile number");
             }
         }
         return false;
@@ -114,32 +134,32 @@ public class WalletPresenter implements WalletContract.Listener {
             case "pccc":
                 return true;
             case "pccl":
-                mWalletView.setEditTextError("code", "Enter a valid 6 digit confirmation code");
+                view.setEditTextError("code", "Enter a valid 6 digit confirmation code");
                 return false;
             case "pcce":
-                mWalletView.setEditTextError("code", "This field is required");
+                view.setEditTextError("code", "This field is required");
                 return false;
             case "plcc":
-                mWalletView.setEditTextError("pin", "Enter a valid 4 digit PIN");
+                view.setEditTextError("pin", "Enter a valid 4 digit PIN");
                 return false;
             case "plcl":
-                mWalletView.setEditTextError("pin", "Enter a valid 4 digit PIN");
-                mWalletView.setEditTextError("code", "Enter a valid 6 digit confirmation code");
+                view.setEditTextError("pin", "Enter a valid 4 digit PIN");
+                view.setEditTextError("code", "Enter a valid 6 digit confirmation code");
                 return false;
             case "plce":
-                mWalletView.setEditTextError("pin", "Enter a valid 4 digit PIN");
-                mWalletView.setEditTextError("code", "This field is required");
+                view.setEditTextError("pin", "Enter a valid 4 digit PIN");
+                view.setEditTextError("code", "This field is required");
                 return false;
             case "pecc":
-                mWalletView.setEditTextError("pin", "This field is required");
+                view.setEditTextError("pin", "This field is required");
                 return false;
             case "pecl":
-                mWalletView.setEditTextError("pin", "This field is required");
-                mWalletView.setEditTextError("code", "Enter a valid 6 digit confirmation code");
+                view.setEditTextError("pin", "This field is required");
+                view.setEditTextError("code", "Enter a valid 6 digit confirmation code");
                 return false;
             case "pece":
-                mWalletView.setEditTextError("pin", "This field is required");
-                mWalletView.setEditTextError("code", "This field is required");
+                view.setEditTextError("pin", "This field is required");
+                view.setEditTextError("code", "This field is required");
                 return false;
         }
         return false;
@@ -147,48 +167,48 @@ public class WalletPresenter implements WalletContract.Listener {
 
     @Override
     public void initiatePayment(boolean isNetwork, String mobile) {
-        if (isNetwork) {
-            mWalletView.toggleProgressDialog("init", true);
+        /*if (isNetwork) {
+            view.toggleProgressDialog("init", true);
             compositeSubscription = new CompositeSubscription();
-            compositeSubscription.add(walletModel.initiatePayment(mobile, config, new WalletModel.WalletAction() {
+            compositeSubscription.add(model.initiatePayment(mobile, config, new WalletModel.WalletAction() {
                 @Override
                 public void onCompleted(Object o) {
-                    mWalletView.toggleSmsListener(!smsListenerInitialized);
+                    view.toggleSmsListener(!smsListenerInitialized);
                     smsListenerInitialized = true;
-                    mWalletView.toggleProgressDialog("init", false);
-                    mWalletView.toggleConfirmationLayout(true);
+                    view.toggleProgressDialog("init", false);
+                    view.toggleConfirmationLayout(true);
                 }
 
                 @Override
                 public void onError(String message) {
-                    mWalletView.toggleProgressDialog("init", false);
+                    view.toggleProgressDialog("init", false);
                     if (message.contains("</a>")) {
                         pinWebLink = HtmlUtil.getHrefLink(message);
-                        mWalletView.showPINDialog("Error", mWalletView.getMessage("pin_not_set") + "\n\n" +
-                                mWalletView.getMessage("pin_not_set_continue"));
-                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), mWalletView.getMessage("pin_not_set"));
+                        view.showPINDialog("Error", view.getMessage("pin_not_set") + "\n\n" +
+                                view.getMessage("pin_not_set_continue"));
+                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), view.getMessage("pin_not_set"));
                     } else {
-                        mWalletView.showMessageDialog("Error", message);
+                        view.showMessageDialog("Error", message);
                         config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), message);
                     }
                 }
             }));
         } else {
-            mWalletView.showNetworkError();
-        }
+            view.showNetworkError();
+        }*/
     }
 
     @Override
     public void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin) {
-        if (isNetwork) {
-            mWalletView.toggleProgressDialog("confirm", true);
+        /*if (isNetwork) {
+            view.toggleProgressDialog("confirm", true);
             compositeSubscription = new CompositeSubscription();
 
-            compositeSubscription.add(walletModel.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
+            compositeSubscription.add(model.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
                 @Override
                 public void onCompleted(Object o) {
                     WalletConfirmPojo walletConfirmPojo = (WalletConfirmPojo) o;
-                    mWalletView.toggleProgressDialog("confirm", false);
+                    view.toggleProgressDialog("confirm", false);
                     OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
                     HashMap<String, Object> data = new HashMap<>();
                     data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
@@ -199,24 +219,24 @@ public class WalletPresenter implements WalletContract.Listener {
                     data.put("product_identity", walletConfirmPojo.getProductIdentity());
 
                     onCheckOutListener.onSuccess(data);
-                    mWalletView.closeWidget();
+                    view.closeWidget();
                 }
 
                 @Override
                 public void onError(String message) {
-                    mWalletView.toggleProgressDialog("confirm", false);
-                    mWalletView.showMessageDialog("Error", message);
+                    view.toggleProgressDialog("confirm", false);
+                    view.showMessageDialog("Error", message);
                     config.getOnCheckOutListener().onError(ErrorAction.WALLET_CONFIRM.getAction(), message);
                 }
             }));
         } else {
-            mWalletView.showNetworkError();
-        }
+            view.showNetworkError();
+        }*/
     }
 
     @Override
     public void updateConfirmationHeight() {
-        mWalletView.updateConfirmationHeight();
+        view.updateConfirmationHeight();
     }
 
     @Override
@@ -227,7 +247,7 @@ public class WalletPresenter implements WalletContract.Listener {
     }
 
     public void injectModel(WalletModel walletModel) {
-        this.walletModel = walletModel;
+        this.model = walletModel;
     }
 
     public void injectConfig(Config config) {

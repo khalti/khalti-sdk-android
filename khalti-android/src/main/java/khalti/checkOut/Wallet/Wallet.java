@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.HashMap;
 
@@ -34,6 +35,7 @@ import khalti.utils.NumberUtil;
 import khalti.utils.ResourceUtil;
 import khalti.utils.Store;
 import khalti.utils.UserInterfaceUtil;
+import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 
 
@@ -47,7 +49,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private LinearLayout llConfirmation, llPIN, llCode;
 
     private FragmentActivity fragmentActivity;
-    private khalti.checkOut.Wallet.WalletContract.Listener listener;
+    private WalletContract.Presenter presenter;
     private CompositeSubscription compositeSubscription;
     private SmsListener smsListener;
 
@@ -58,7 +60,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.wallet_form, container, false);
         fragmentActivity = getActivity();
-        listener = new WalletPresenter(this);
+        presenter = new WalletPresenter(this);
 
         etMobile = mainView.findViewById(R.id.etMobile);
         etCode = mainView.findViewById(R.id.etCode);
@@ -72,12 +74,12 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         llPIN = mainView.findViewById(R.id.llPIN);
         llCode = mainView.findViewById(R.id.llCode);
 
-        listener.setUpLayout();
+        presenter.setUpLayout();
 
         compositeSubscription = new CompositeSubscription();
         compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
             if (event.getTag().equals("wallet_code")) {
-                listener.setConfirmationCode(event);
+                presenter.setConfirmationCode(event);
             }
         }));
 
@@ -100,12 +102,18 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         if (EmptyUtil.isNotNull(compositeSubscription) && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
-        listener.toggleSmsListener(false);
+        presenter.toggleSmsListener(false);
     }
 
     @Override
-    public void setEditTextListener() {
-        etMobile.addTextChangedListener(new TextWatcher() {
+    public HashMap<String, Observable<CharSequence>> setEditTextListener() {
+        return new HashMap<String, Observable<CharSequence>>() {{
+            put("mobile", RxTextView.textChanges(etMobile));
+            put("code", RxTextView.textChanges(etCode));
+            put("pin", RxTextView.textChanges(etPIN));
+        }};
+
+        /*etMobile.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -189,7 +197,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
             public void afterTextChanged(Editable editable) {
 
             }
-        });
+        });*/
     }
 
     @Override
@@ -207,7 +215,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
         if (show) {
             progressDialog = UserInterfaceUtil.runProgressDialog(fragmentActivity, message, ResourceUtil.getString(fragmentActivity, R.string.please_wait), flCircularProgress, () -> {
-                listener.unSubscribe();
+                presenter.unSubscribe();
             });
         } else {
             if (EmptyUtil.isNotNull(progressDialog)) {
@@ -253,8 +261,10 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public void setButtonClickListener() {
-        btnPay.setOnClickListener(view -> {
+    public Observable<Void> setButtonClickListener() {
+        return RxView.clicks(btnPay);
+
+        /*btnPay.setOnClickListener(view -> {
             if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
                 if (listener.isFinalFormValid(etPIN.getText().toString(), etCode.getText().toString())) {
                     listener.confirmPayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etCode.getText().toString(), etPIN.getText().toString());
@@ -271,7 +281,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                     }
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -309,7 +319,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                     @Override
                     public void onPositiveAction(Dialog dialog) {
                         dialog.dismiss();
-                        listener.openKhaltiSettings();
+                        presenter.openKhaltiSettings();
                     }
 
                     @Override
@@ -326,7 +336,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                     @Override
                     public void onPositiveAction(Dialog dialog) {
                         dialog.dismiss();
-                        listener.openLinkInBrowser();
+                        presenter.openLinkInBrowser();
                     }
 
                     @Override
@@ -354,7 +364,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
             startActivity(i);
         } catch (PackageManager.NameNotFoundException e) {
-            listener.showPINInBrowserDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found) + "\n\n" +
+            presenter.showPINInBrowserDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found) + "\n\n" +
                     ResourceUtil.getString(fragmentActivity, R.string.set_pin_in_browser));
         }
     }
@@ -392,6 +402,21 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
+    public boolean hasContactPermission() {
+        return AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS);
+    }
+
+    @Override
+    public void askContactPermission() {
+        AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () -> presenter.onSmsReceiptPermitted());
+    }
+
+    @Override
+    public boolean hasNetwork() {
+        return NetworkUtil.isNetworkAvailable(fragmentActivity);
+    }
+
+    @Override
     public void toggleConfirmationLayout(boolean show) {
         String buttonText = show ? ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) : "Pay Rs " + NumberUtil.convertToRupees(Store.getConfig().getAmount());
         btnPay.setText(buttonText);
@@ -416,7 +441,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public void setListener(khalti.checkOut.Wallet.WalletContract.Listener listener) {
-        this.listener = listener;
+    public void setPresenter(WalletContract.Presenter presenter) {
+        this.presenter = presenter;
     }
 }

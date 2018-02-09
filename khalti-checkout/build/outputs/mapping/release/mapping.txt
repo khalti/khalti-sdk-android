@@ -9114,7 +9114,7 @@ khalti.checkOut.Wallet.WalletModel$WalletAction -> khalti.checkOut.a.i$a:
     void onCompleted(java.lang.Object) -> a
     void onError(java.lang.String) -> a
 khalti.checkOut.Wallet.WalletPresenter -> khalti.checkOut.a.j:
-    khalti.checkOut.Wallet.WalletContract$View mWalletView -> a
+    khalti.checkOut.Wallet.WalletContract$View view -> a
     khalti.checkOut.Wallet.WalletModel walletModel -> b
     rx.subscriptions.CompositeSubscription compositeSubscription -> c
     boolean smsListenerInitialized -> d
