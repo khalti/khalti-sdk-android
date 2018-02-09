@@ -1,4 +1,4 @@
-package khalti.checkOut.EBanking.contactForm;
+package khalti.checkOut.Card.contactForm;
 
 import khalti.checkOut.EBanking.helper.BankingData;
 import khalti.checkOut.api.Config;

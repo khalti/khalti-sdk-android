@@ -4,57 +4,45 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.checkOut.EBanking.helper.BankPojo;
-import khalti.checkOut.api.Config;
+import khalti.checkOut.EBanking.helper.BankingData;
 import rx.Observable;
 
 public interface CardContract {
 
     interface View {
 
-        void toggleProgressBar(boolean show);
+        void toggleIndented(boolean show);
 
-        void toggleButton(boolean enabled);
+        void setUpList(List<BankPojo> bankList);
 
-        void showCardFields();
+        void showIndentedNetworkError();
 
-        void setBankItem(String logo, String name, String shortName, String bankId);
+        void showIndentedError(String error);
 
-        void setButtonText(String text);
+        void openMobileForm(BankingData bankingData);
+
+        Observable<HashMap<String, String>> getItemClickObservable();
+
+        HashMap<String, Observable<Void>> setOnClickListener();
 
         Observable<CharSequence> setEditTextListener();
 
-        void setErrorAnimation();
+        void filterList(String text);
 
-        void setMobileError(String error);
+        void flushList();
 
-        void showNetworkError();
+        void toggleSearch(boolean show);
 
-        void showError(String message);
+        void toggleKeyboard(boolean show);
 
-        void showMessageDialog(String title, String message);
-
-        void openBankList(HashMap<String, Object> dataMap);
-
-        void openCardBanking(String url);
-
-        void saveConfigInFile(String fileName, Config config);
-
-        String getPackageName();
-
-        boolean hasNetwork();
-
-        HashMap<String, Observable<Void>> setClickListeners();
-
-        void setPresenter(Presenter presenter);
+        void setPresenter(CardContract.Presenter presenter);
     }
 
     interface Presenter {
 
-        void onCreate();
+        void onCreate(boolean hasNetwork);
 
         void onDestroy();
-
-        void onFormSubmitted(boolean isNetwork, String mobile, String bankId, String bankName, Config config);
     }
 
     interface Model {

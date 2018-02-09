@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.checkOut.EBanking.helper.BankPojo;
-import khalti.checkOut.EBanking.helper.EBankingData;
+import khalti.checkOut.EBanking.helper.BankingData;
 import rx.Observable;
 
 public interface EBankingContract {
@@ -18,7 +18,7 @@ public interface EBankingContract {
 
         void showIndentedError(String error);
 
-        void openMobileForm(EBankingData eBankingData);
+        void openMobileForm(BankingData bankingData);
 
         Observable<HashMap<String, String>> getItemClickObservable();
 

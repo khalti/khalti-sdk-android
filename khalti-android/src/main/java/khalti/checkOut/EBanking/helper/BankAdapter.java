@@ -16,6 +16,8 @@ import java.util.List;
 
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
+import khalti.utils.EmptyUtil;
+import khalti.utils.LogUtil;
 import khalti.utils.StringUtil;
 import rx.Observable;
 import rx.subjects.PublishSubject;
@@ -48,29 +50,38 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
         String name = banks.get(position).getName();
         String iconName = StringUtil.getNameIcon(banks.get(position).getName());
 
+        LogUtil.log("name", name);
+        LogUtil.log("short name", shortName);
+
         holder.tvBankId.setText(banks.get(position).getIdx());
         holder.tvBankLogo.setText(banks.get(position).getLogo());
-        Picasso.with(context)
-                .load(banks.get(position).getLogo())
-                .noFade()
-                .into(holder.ivBankLogo, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                        holder.flBankLogo.setVisibility(View.VISIBLE);
-                        holder.flBankTextIcon.setVisibility(View.GONE);
-                        holder.tvBankIcon.setText(iconName);
-                        holder.tvBankName.setText(shortName);
-                    }
+        if (EmptyUtil.isNotNull(banks.get(position).getLogo()) && EmptyUtil.isNotEmpty(banks.get(position).getLogo())) {
+            Picasso.with(context)
+                    .load(banks.get(position).getLogo())
+                    .noFade()
+                    .into(holder.ivBankLogo, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            holder.flBankLogo.setVisibility(View.VISIBLE);
+                            holder.flBankTextIcon.setVisibility(View.GONE);
+                            holder.tvBankIcon.setText(iconName);
+                            holder.tvBankName.setText(shortName);
+                        }
 
-                    @Override
-                    public void onError() {
-                        holder.flBankLogo.setVisibility(View.GONE);
-                        holder.flBankTextIcon.setVisibility(View.VISIBLE);
-                        holder.tvBankIcon.setText(iconName);
-                        holder.tvBankName.setText(name);
-                    }
-                });
-
+                        @Override
+                        public void onError() {
+                            holder.flBankLogo.setVisibility(View.GONE);
+                            holder.flBankTextIcon.setVisibility(View.VISIBLE);
+                            holder.tvBankIcon.setText(iconName);
+                            holder.tvBankName.setText(name);
+                        }
+                    });
+        } else {
+            holder.flBankLogo.setVisibility(View.GONE);
+            holder.flBankTextIcon.setVisibility(View.VISIBLE);
+            holder.tvBankIcon.setText(iconName);
+            holder.tvBankName.setText(name);
+        }
     }
 
     @Override

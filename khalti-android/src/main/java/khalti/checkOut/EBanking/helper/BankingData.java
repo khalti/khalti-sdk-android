@@ -7,14 +7,14 @@ import java.io.Serializable;
 import khalti.checkOut.api.Config;
 
 @Keep
-public class EBankingData implements Serializable {
+public class BankingData implements Serializable {
     private String bankIdx;
     private String bankName;
     private String bankLogo;
     private String bankIcon;
     private Config config;
 
-    public EBankingData(String bankIdx, String bankName, String bankLogo, String bankIcon, Config config) {
+    public BankingData(String bankIdx, String bankName, String bankLogo, String bankIcon, Config config) {
         this.bankIdx = bankIdx;
         this.bankName = bankName;
         this.bankLogo = bankLogo;

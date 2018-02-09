@@ -1,80 +1,78 @@
 package khalti.checkOut.Card;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.transition.ChangeBounds;
-import android.support.transition.Transition;
-import android.support.transition.TransitionManager;
-import android.support.transition.TransitionSet;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+import java.util.List;
 
 import khalti.R;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
 import khalti.carbonX.widget.ProgressBar;
-import khalti.checkOut.CheckOutActivity;
-import khalti.checkOut.EBanking.chooseBank.BankChooserActivity;
-import khalti.checkOut.api.Config;
+import khalti.checkOut.Card.contactForm.ContactFormFragment;
+import khalti.checkOut.EBanking.helper.BankAdapter;
+import khalti.checkOut.EBanking.helper.BankPojo;
+import khalti.checkOut.EBanking.helper.BankingData;
 import khalti.utils.EmptyUtil;
-import khalti.utils.FileStorageUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
-import khalti.utils.UserInterfaceUtil;
 import rx.Observable;
 
 public class Card extends Fragment implements CardContract.View {
 
-    private EditText etMobile;
-    private khalti.carbonX.widget.TextInputLayout tilMobile;
-    private Button btnPay;
+    private RecyclerView rvList;
+    private LinearLayout llIndented;
     private ProgressBar pdLoad;
-    private LinearLayout llCardBranding, llMobile, llBank;
-    private FrameLayout flBankLogo, flBank;
-    private ImageView ivBankLogo;
-    private AppCompatTextView tvBankName, tvBankId;
+    private AppCompatTextView tvMessage, tvHeader;
+    private FrameLayout flTryAgain, flCloseSearch, flSearch;
+    private Button btnTryAgain;
+    private AppBarLayout appBarLayout;
+    private TextInputLayout tilSearch;
+    private EditText etSearch;
 
     private FragmentActivity fragmentActivity;
     private CardContract.Presenter presenter;
-    private Dialog progressDialog;
+    private BankAdapter bankAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.payment_form, container, false);
+        View mainView = inflater.inflate(R.layout.ebanking, container, false);
         fragmentActivity = getActivity();
         presenter = new CardPresenter(this);
 
-        etMobile = mainView.findViewById(R.id.etMobile);
-        tilMobile = mainView.findViewById(R.id.tilMobile);
-        btnPay = mainView.findViewById(R.id.btnPay);
+        rvList = mainView.findViewById(R.id.rvList);
+        llIndented = mainView.findViewById(R.id.llIndented);
         pdLoad = mainView.findViewById(R.id.pdLoad);
-        llCardBranding = mainView.findViewById(R.id.llCardBranding);
-        llMobile = mainView.findViewById(R.id.llMobile);
-        llBank = mainView.findViewById(R.id.llBank);
-        flBankLogo = mainView.findViewById(R.id.flBankLogo);
-        flBank = mainView.findViewById(R.id.flBank);
-        ivBankLogo = mainView.findViewById(R.id.ivBankLogo);
-        tvBankName = mainView.findViewById(R.id.tvBank);
-        tvBankId = mainView.findViewById(R.id.tvBankId);
+        tvMessage = mainView.findViewById(R.id.tvMessage);
+        flTryAgain = mainView.findViewById(R.id.flTryAgain);
+        flCloseSearch = mainView.findViewById(R.id.flCloseSearch);
+        flSearch = mainView.findViewById(R.id.flSearch);
+        btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
+        appBarLayout = mainView.findViewById(R.id.appBar);
+        tilSearch = mainView.findViewById(R.id.tilSearch);
+        etSearch = mainView.findViewById(R.id.etSearch);
+        tvHeader = mainView.findViewById(R.id.tvHeader);
 
-        presenter.onCreate();
+        presenter.onCreate(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
         return mainView;
     }
@@ -86,142 +84,101 @@ public class Card extends Fragment implements CardContract.View {
     }
 
     @Override
-    public void toggleProgressBar(boolean show) {
-        pdLoad.setVisibility(show ? View.VISIBLE : View.GONE);
+    public void toggleIndented(boolean show) {
+        llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     @Override
-    public void toggleButton(boolean enabled) {
-        btnPay.setEnabled(enabled);
+    public void setUpList(List<BankPojo> bankList) {
+        appBarLayout.setVisibility(View.VISIBLE);
+        rvList.setVisibility(View.VISIBLE);
+        bankAdapter = new BankAdapter(fragmentActivity, bankList);
+        rvList.setAdapter(bankAdapter);
+        rvList.setHasFixedSize(false);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 3);
+        rvList.setLayoutManager(layoutManager);
     }
 
     @Override
-    public void showCardFields() {
-        llCardBranding.setVisibility(View.VISIBLE);
-        llBank.setVisibility(View.VISIBLE);
+    public void showIndentedNetworkError() {
+        pdLoad.setVisibility(View.INVISIBLE);
+        flTryAgain.setVisibility(View.INVISIBLE);
+        tvMessage.setVisibility(View.VISIBLE);
+        tvMessage.setText(ResourceUtil.getString(fragmentActivity, R.string.network_error_body));
     }
 
     @Override
-    public void setBankItem(String logo, String name, String shortName, String bankId) {
-        if (EmptyUtil.isNotNull(logo) && EmptyUtil.isNotEmpty(logo)) {
-            Picasso.with(fragmentActivity)
-                    .load(logo)
-                    .noFade()
-                    .into(ivBankLogo, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                            tvBankName.setText(shortName);
-                        }
-
-                        @Override
-                        public void onError() {
-                            tvBankName.setText(name);
-                        }
-                    });
-        } else {
-            tvBankName.setText(name);
-        }
-        tvBankId.setText(bankId);
+    public void showIndentedError(String error) {
+        pdLoad.setVisibility(View.INVISIBLE);
+        flTryAgain.setVisibility(View.VISIBLE);
+        tvMessage.setVisibility(View.VISIBLE);
+        tvMessage.setText(error);
     }
 
     @Override
-    public void setButtonText(String text) {
-        btnPay.setText(text);
+    public void openMobileForm(BankingData bankingData) {
+        ContactFormFragment contactFormFragment = new ContactFormFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("data", bankingData);
+        contactFormFragment.setArguments(bundle);
+        contactFormFragment.show(getFragmentManager(), contactFormFragment.getTag());
+    }
+
+    @Override
+    public Observable<HashMap<String, String>> getItemClickObservable() {
+        return bankAdapter.getItemClickObservable();
+    }
+
+    @Override
+    public HashMap<String, Observable<Void>> setOnClickListener() {
+        return new HashMap<String, Observable<Void>>() {{
+            put("try_again", RxView.clicks(btnTryAgain));
+            put("open_search", RxView.clicks(flSearch));
+            put("close_search", RxView.clicks(flCloseSearch));
+        }};
     }
 
     @Override
     public Observable<CharSequence> setEditTextListener() {
-        return RxTextView.textChanges(etMobile);
+        return RxTextView.textChanges(etSearch);
     }
 
     @Override
-    public void setErrorAnimation() {
-        TransitionSet transitionSet = new TransitionSet();
-
-        Transition errorTransition = new ChangeBounds();
-        errorTransition.setInterpolator(new AccelerateDecelerateInterpolator());
-        errorTransition.setDuration(400);
-        errorTransition.addTarget(tilMobile);
-
-        transitionSet.addTransition(errorTransition);
-
-        TransitionManager.beginDelayedTransition(llMobile, transitionSet);
+    public void filterList(String text) {
+        fragmentActivity.runOnUiThread(() -> bankAdapter.setFilter(text));
     }
 
     @Override
-    public void setMobileError(String error) {
-        tilMobile.setError(error);
+    public void flushList() {
+        etSearch.setText("");
+        bankAdapter.setFilter("");
     }
 
     @Override
-    public void showNetworkError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.network_error_body),
-                false, "", 0, 0, null);
+    public void toggleSearch(boolean show) {
+        if (show) {
+            etSearch.requestFocus();
+        }
+        flCloseSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        tilSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        tvHeader.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
+        flSearch.setEnabled(!show);
+
+        android.widget.FrameLayout.LayoutParams lp = (android.widget.FrameLayout.LayoutParams) flSearch.getLayoutParams();
+        lp.gravity = show ? Gravity.CENTER_VERTICAL | Gravity.START : Gravity.CENTER_VERTICAL | Gravity.END;
+        flSearch.setLayoutParams(lp);
     }
 
     @Override
-    public void showError(String message) {
-        /*UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, message,
-                true, ResourceUtil.getString(fragmentActivity, R.string.try_again), Snackbar.LENGTH_INDEFINITE, R.color.khaltiAccent, () ->
-                        listener.setUpLayout(NetworkUtil.isNetworkAvailable(fragmentActivity)));*/
-    }
-
-    @Override
-    public void showMessageDialog(String title, String message) {
-        FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
-        AppCompatTextView tvButton = flButton.findViewById(R.id.tvButton);
-        tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
-
-        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, true, true, ResourceUtil.getString(fragmentActivity, R.string.got_it), null,
-                new UserInterfaceUtil.DialogAction() {
-                    @Override
-                    public void onPositiveAction(Dialog dialog) {
-                        dialog.dismiss();
-                    }
-
-                    @Override
-                    public void onNegativeAction(Dialog dialog) {
-
-                    }
-                });
-    }
-
-    @Override
-    public void openBankList(HashMap<String, Object> dataMap) {
-        Intent intent = new Intent(fragmentActivity, BankChooserActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("map", dataMap);
-        intent.putExtras(bundle);
-        startActivityForResult(intent, 1007);
-    }
-
-    @Override
-    public void openCardBanking(String url) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(browserIntent);
-    }
-
-    @Override
-    public void saveConfigInFile(String fileName, Config config) {
-        FileStorageUtil.writeIntoFile(fragmentActivity, fileName, config);
-    }
-
-    @Override
-    public String getPackageName() {
-        return fragmentActivity.getPackageName();
-    }
-
-    @Override
-    public boolean hasNetwork() {
-        return NetworkUtil.isNetworkAvailable(fragmentActivity);
-    }
-
-    @Override
-    public HashMap<String, Observable<Void>> setClickListeners() {
-        return new HashMap<String, Observable<Void>>() {{
-            put("pay", RxView.clicks(btnPay));
-            put("open_bank_list", RxView.clicks(flBank));
-        }};
+    public void toggleKeyboard(boolean show) {
+        InputMethodManager inputManager = (InputMethodManager) fragmentActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (EmptyUtil.isNotNull(inputManager)) {
+            if (show) {
+                inputManager.showSoftInput(etSearch, InputMethodManager.SHOW_IMPLICIT);
+            } else {
+                inputManager.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
+            }
+        }
     }
 
     @Override

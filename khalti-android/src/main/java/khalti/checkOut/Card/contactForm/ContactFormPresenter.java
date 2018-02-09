@@ -1,4 +1,4 @@
-package khalti.checkOut.EBanking.contactForm;
+package khalti.checkOut.Card.contactForm;
 
 import android.support.annotation.NonNull;
 

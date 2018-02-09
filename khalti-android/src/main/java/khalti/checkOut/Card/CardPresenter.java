@@ -4,8 +4,10 @@ import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import khalti.checkOut.EBanking.helper.BankPojo;
+import khalti.checkOut.EBanking.helper.BankingData;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.utils.EmptyUtil;
@@ -31,19 +33,21 @@ public class CardPresenter implements CardContract.Presenter {
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate(boolean hasNetwork) {
         this.config = Store.getConfig();
-        HashMap<String, Observable<Void>> map = view.setClickListeners();
-        compositeSubscription.add(map.get("pay").subscribe(aVoid -> {
-            //
+        view.toggleIndented(true);
+        HashMap<String, Observable<Void>> map = view.setOnClickListener();
+        compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate(hasNetwork)));
+        compositeSubscription.add(map.get("open_search").subscribe(aVoid -> {
+            view.toggleSearch(true);
+            view.toggleKeyboard(true);
         }));
-        compositeSubscription.add(view.setEditTextListener().subscribe(charSequence -> {
-            view.setMobileError(null);
+        compositeSubscription.add(map.get("close_search").subscribe(aVoid -> {
+            view.toggleSearch(false);
+            view.toggleKeyboard(false);
+            view.flushList();
         }));
-        view.showCardFields();
-        view.toggleButton(false);
-        if (view.hasNetwork()) {
-            view.toggleProgressBar(true);
+        if (hasNetwork) {
             compositeSubscription.add(model.fetchBankList()
                     .subscribe(new Subscriber<List<BankPojo>>() {
                         @Override
@@ -53,24 +57,24 @@ public class CardPresenter implements CardContract.Presenter {
 
                         @Override
                         public void onError(Throwable e) {
-                            view.showError(e.getMessage());
-                            config.getOnCheckOutListener().onError(ErrorAction.FETCH_CARD_BANK_LIST.getAction(), e.getMessage());
+                            view.showIndentedError(e.getMessage());
+                            config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), e.getMessage());
                         }
 
                         @Override
                         public void onNext(List<BankPojo> banks) {
-                            view.toggleProgressBar(false);
-                            if (EmptyUtil.isNotEmpty(banks)) {
-                                view.toggleButton(true);
-                                view.setBankItem(banks.get(0).getLogo(), banks.get(0).getName(), banks.get(0).getShortName(), banks.get(0).getIdx());
-                                compositeSubscription.add(map.get("open_bank_list").subscribe(aVoid -> view.openBankList(new HashMap<String, Object>() {{
-                                    put("banks", banks);
-                                }})));
-                            }
+                            view.toggleIndented(false);
+                            view.setUpList(banks);
+                            compositeSubscription.add(view.getItemClickObservable()
+                                    .subscribe(hashMap -> view.openMobileForm(new BankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
+                                            hashMap.get("icon"), config))));
+                            compositeSubscription.add(view.setEditTextListener()
+                                    .debounce(500, TimeUnit.MILLISECONDS)
+                                    .subscribe(charSequence -> view.filterList(charSequence + "")));
                         }
                     }));
         } else {
-            view.showNetworkError();
+            view.showIndentedNetworkError();
         }
     }
 
@@ -79,10 +83,14 @@ public class CardPresenter implements CardContract.Presenter {
         if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
+        model.unSubscribe();
     }
 
-    @Override
-    public void onFormSubmitted(boolean isNetwork, String mobile, String bankId, String bankName, Config config) {
+    public void injectModel(CardModel model) {
+        this.model = model;
+    }
 
+    public void injectConfig(Config config) {
+        this.config = config;
     }
 }

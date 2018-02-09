@@ -1,4 +1,4 @@
-package khalti.checkOut.EBanking.contactForm;
+package khalti.checkOut.Card.contactForm;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -166,7 +166,7 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
 
     @Override
     public void showNetworkError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, ((khalti.checkOut.CheckOutActivity) this.fragmentActivity).cdlMain,
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain,
                 ResourceUtil.getString(fragmentActivity, R.string.network_error_body), false, "", 0, 0, null);
     }
 

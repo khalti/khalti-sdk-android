@@ -31,7 +31,7 @@ import khalti.carbonX.widget.ProgressBar;
 import khalti.checkOut.EBanking.contactForm.ContactFormFragment;
 import khalti.checkOut.EBanking.helper.BankAdapter;
 import khalti.checkOut.EBanking.helper.BankPojo;
-import khalti.checkOut.EBanking.helper.EBankingData;
+import khalti.checkOut.EBanking.helper.BankingData;
 import khalti.utils.EmptyUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
@@ -116,10 +116,10 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
-    public void openMobileForm(EBankingData eBankingData) {
+    public void openMobileForm(BankingData bankingData) {
         ContactFormFragment contactFormFragment = new ContactFormFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable("data", eBankingData);
+        bundle.putSerializable("data", bankingData);
         contactFormFragment.setArguments(bundle);
         contactFormFragment.show(getFragmentManager(), contactFormFragment.getTag());
     }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import khalti.checkOut.EBanking.helper.BankPojo;
-import khalti.checkOut.EBanking.helper.EBankingData;
+import khalti.checkOut.EBanking.helper.BankingData;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.utils.EmptyUtil;
@@ -65,7 +65,7 @@ public class EBankingPresenter implements EBankingContract.Presenter {
                             view.toggleIndented(false);
                             view.setUpList(banks);
                             compositeSubscription.add(view.getItemClickObservable()
-                                    .subscribe(hashMap -> view.openMobileForm(new EBankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
+                                    .subscribe(hashMap -> view.openMobileForm(new BankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
                                             hashMap.get("icon"), config))));
                             compositeSubscription.add(view.setEditTextListener()
                                     .debounce(500, TimeUnit.MILLISECONDS)
