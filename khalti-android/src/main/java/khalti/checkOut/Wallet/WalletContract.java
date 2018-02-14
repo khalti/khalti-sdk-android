@@ -20,17 +20,15 @@ public interface WalletContract {
 
         HashMap<String, Observable<CharSequence>> setEditTextListener();
 
-//        void setEditTextListener();
-
         void setEditTextError(String view, String error);
 
         void setButtonText(String text);
 
         Observable<Void> setButtonClickListener();
 
-//        void setButtonClickListener();
-
         void setConfirmationCode(String code);
+
+        void setConfirmationLayoutHeight(String view);
 
         void showNetworkError();
 
@@ -50,11 +48,15 @@ public interface WalletContract {
 
         String getMessage(String action);
 
-        boolean hasContactPermission();
+        boolean hasSmsReceiptPermission();
 
-        void askContactPermission();
+        void askSmsReceiptPermission();
 
         boolean hasNetwork();
+
+        String getPayButtonText();
+
+        HashMap<String, String> getFormData();
 
         void setPresenter(Presenter presenter);
     }
@@ -65,13 +67,9 @@ public interface WalletContract {
 
         void onDestroy();
 
-        void setUpLayout();
-
         void onSmsReceiptPermitted();
 
         void setConfirmationCode(Event event);
-
-        void toggleConfirmationLayout(boolean show);
 
         void toggleSmsListener(boolean listen);
 

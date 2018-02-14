@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -25,8 +26,6 @@ import khalti.R;
 import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.rxBus.Event;
-import khalti.rxBus.RxBus;
 import khalti.utils.AppPermissionUtil;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ExpandableLayout;
@@ -36,7 +35,6 @@ import khalti.utils.ResourceUtil;
 import khalti.utils.Store;
 import khalti.utils.UserInterfaceUtil;
 import rx.Observable;
-import rx.subscriptions.CompositeSubscription;
 
 
 public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletContract.View {
@@ -50,7 +48,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     private FragmentActivity fragmentActivity;
     private WalletContract.Presenter presenter;
-    private CompositeSubscription compositeSubscription;
     private SmsListener smsListener;
 
     private boolean isRegistered = false;
@@ -74,35 +71,15 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         llPIN = mainView.findViewById(R.id.llPIN);
         llCode = mainView.findViewById(R.id.llCode);
 
-        presenter.setUpLayout();
-
-        compositeSubscription = new CompositeSubscription();
-        compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
-            if (event.getTag().equals("wallet_code")) {
-                presenter.setConfirmationCode(event);
-            }
-        }));
+        presenter.onCreate();
 
         return mainView;
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (EmptyUtil.isNotNull(compositeSubscription) && !compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.unsubscribe();
-        }
-        presenter.toggleSmsListener(false);
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
     @Override
@@ -291,6 +268,36 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
+    public void setConfirmationLayoutHeight(String view) {
+        TextInputLayout til;
+        LinearLayout ll;
+        if (view.equals("code")) {
+            til = tilCode;
+            ll = llCode;
+        } else {
+            til = tilPIN;
+            ll = llPIN;
+        }
+        if (EmptyUtil.isNotNull(til.getError())) {
+            ll.measure(0, 0);
+            int beforeA = ll.getMeasuredHeight();
+
+            til.setErrorEnabled(false);
+
+            ll.measure(0, 0);
+            int afterA = ll.getMeasuredHeight();
+
+            height = Math.abs(height + (beforeA - afterA));
+
+            ExpandableLayout.LayoutParams layoutParams = (ExpandableLayout.LayoutParams) llConfirmation.getLayoutParams();
+            layoutParams.height = llConfirmation.getHeight() - height;
+            llConfirmation.setLayoutParams(layoutParams);
+
+            height = 0;
+        }
+    }
+
+    @Override
     public void showNetworkError() {
         UserInterfaceUtil.showSnackBar(fragmentActivity, ((khalti.checkOut.CheckOutActivity) this.fragmentActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.network_error_body),
                 false, "", 0, 0, null);
@@ -402,18 +409,32 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public boolean hasContactPermission() {
+    public boolean hasSmsReceiptPermission() {
         return AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS);
     }
 
     @Override
-    public void askContactPermission() {
+    public void askSmsReceiptPermission() {
         AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () -> presenter.onSmsReceiptPermitted());
     }
 
     @Override
     public boolean hasNetwork() {
         return NetworkUtil.isNetworkAvailable(fragmentActivity);
+    }
+
+    @Override
+    public String getPayButtonText() {
+        return btnPay.getText() + "";
+    }
+
+    @Override
+    public HashMap<String, String> getFormData() {
+        return new HashMap<String, String>() {{
+            put("mobile", etMobile.getText() + "");
+            put("code", etCode.getText() + "");
+            put("pin", etPIN.getText() + "");
+        }};
     }
 
     @Override

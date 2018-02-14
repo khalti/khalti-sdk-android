@@ -4,16 +4,23 @@ import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 
+import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
+import khalti.checkOut.Wallet.helper.WalletInitPojo;
 import khalti.checkOut.api.Config;
+import khalti.checkOut.api.ErrorAction;
+import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.Event;
+import khalti.rxBus.RxBus;
 import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
+import khalti.utils.HtmlUtil;
 import khalti.utils.NumberUtil;
 import khalti.utils.Store;
 import khalti.utils.StringUtil;
 import khalti.utils.ValidationUtil;
 import rx.Observable;
+import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
 public class WalletPresenter implements WalletContract.Presenter {
@@ -38,9 +45,37 @@ public class WalletPresenter implements WalletContract.Presenter {
         view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
 
         HashMap<String, Observable<CharSequence>> map = view.setEditTextListener();
-        compositeSubscription.add(map.get("mobile").subscribe());
-         view.setEditTextListener();
-        view.setButtonClickListener();
+        compositeSubscription.add(map.get("mobile").subscribe(charSequence -> {
+            view.setEditTextError("mobile", null);
+            if (view.getPayButtonText().toLowerCase().contains("confirm")) {
+                view.toggleConfirmationLayout(false);
+            }
+        }));
+        compositeSubscription.add(map.get("code").subscribe(charSequence -> view.setConfirmationLayoutHeight("code")));
+        compositeSubscription.add(map.get("pin").subscribe(charSequence -> view.setConfirmationLayoutHeight("pin")));
+        compositeSubscription.add(view.setButtonClickListener().subscribe(aVoid -> {
+            HashMap<String, String> dataMap = view.getFormData();
+            if (view.getPayButtonText().toLowerCase().contains("confirm")) {
+                if (isFinalFormValid(dataMap.get("pin"), dataMap.get("code"))) {
+                    confirmPayment(view.hasNetwork(), dataMap.get("code"), dataMap.get("pin"));
+                } else {
+                    updateConfirmationHeight();
+                }
+            } else {
+                if (isMobileValid(dataMap.get("mobile"))) {
+                    if (view.hasSmsReceiptPermission()) {
+                        initiatePayment(view.hasNetwork(), dataMap.get("mobile"));
+                    } else {
+                        view.askSmsReceiptPermission();
+                    }
+                }
+            }
+        }));
+        compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
+            if (event.getTag().equals("wallet_code")) {
+                setConfirmationCode(event);
+            }
+        }));
     }
 
     @Override
@@ -53,23 +88,13 @@ public class WalletPresenter implements WalletContract.Presenter {
     }
 
     @Override
-    public void setUpLayout() {
-
-    }
-
-    @Override
     public void onSmsReceiptPermitted() {
-
+        initiatePayment(view.hasNetwork(), view.getFormData().get("mobile"));
     }
 
     @Override
     public void setConfirmationCode(Event event) {
         view.setConfirmationCode(event.getEvent().toString().replaceAll("\\D+", ""));
-    }
-
-    @Override
-    public void toggleConfirmationLayout(boolean show) {
-        view.toggleConfirmationLayout(show);
     }
 
     @Override
@@ -167,71 +192,79 @@ public class WalletPresenter implements WalletContract.Presenter {
 
     @Override
     public void initiatePayment(boolean isNetwork, String mobile) {
-        /*if (isNetwork) {
+        if (isNetwork) {
             view.toggleProgressDialog("init", true);
-            compositeSubscription = new CompositeSubscription();
-            compositeSubscription.add(model.initiatePayment(mobile, config, new WalletModel.WalletAction() {
-                @Override
-                public void onCompleted(Object o) {
-                    view.toggleSmsListener(!smsListenerInitialized);
-                    smsListenerInitialized = true;
-                    view.toggleProgressDialog("init", false);
-                    view.toggleConfirmationLayout(true);
-                }
+            compositeSubscription.add(model.initiatePayment(mobile, config)
+                    .subscribe(new Subscriber<WalletInitPojo>() {
+                        @Override
+                        public void onCompleted() {
 
-                @Override
-                public void onError(String message) {
-                    view.toggleProgressDialog("init", false);
-                    if (message.contains("</a>")) {
-                        pinWebLink = HtmlUtil.getHrefLink(message);
-                        view.showPINDialog("Error", view.getMessage("pin_not_set") + "\n\n" +
-                                view.getMessage("pin_not_set_continue"));
-                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), view.getMessage("pin_not_set"));
-                    } else {
-                        view.showMessageDialog("Error", message);
-                        config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), message);
-                    }
-                }
-            }));
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            view.toggleProgressDialog("init", false);
+                            if (e.getMessage().contains("</a>")) {
+                                pinWebLink = HtmlUtil.getHrefLink(e.getMessage());
+                                view.showPINDialog("Error", view.getMessage("pin_not_set") + "\n\n" +
+                                        view.getMessage("pin_not_set_continue"));
+                                config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), view.getMessage("pin_not_set"));
+                            } else {
+                                view.showMessageDialog("Error", e.getMessage());
+                                config.getOnCheckOutListener().onError(ErrorAction.WALLET_INITIATE.getAction(), e.getMessage());
+                            }
+                        }
+
+                        @Override
+                        public void onNext(WalletInitPojo walletInitPojo) {
+                            view.toggleSmsListener(!smsListenerInitialized);
+                            smsListenerInitialized = true;
+                            view.toggleProgressDialog("init", false);
+                            view.toggleConfirmationLayout(true);
+                        }
+                    }));
         } else {
             view.showNetworkError();
-        }*/
+        }
     }
 
     @Override
     public void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin) {
-        /*if (isNetwork) {
+        if (isNetwork) {
             view.toggleProgressDialog("confirm", true);
-            compositeSubscription = new CompositeSubscription();
+            compositeSubscription.add(model.confirmPayment(confirmationCode, transactionPin)
+                    .subscribe(new Subscriber<WalletConfirmPojo>() {
+                        @Override
+                        public void onCompleted() {
 
-            compositeSubscription.add(model.confirmPayment(confirmationCode, transactionPin, new WalletModel.WalletAction() {
-                @Override
-                public void onCompleted(Object o) {
-                    WalletConfirmPojo walletConfirmPojo = (WalletConfirmPojo) o;
-                    view.toggleProgressDialog("confirm", false);
-                    OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
-                    HashMap<String, Object> data = new HashMap<>();
-                    data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
-                    data.put("amount", walletConfirmPojo.getAmount());
-                    data.put("product_url", walletConfirmPojo.getProductUrl());
-                    data.put("token", walletConfirmPojo.getToken());
-                    data.put("product_name", walletConfirmPojo.getProductName());
-                    data.put("product_identity", walletConfirmPojo.getProductIdentity());
+                        }
 
-                    onCheckOutListener.onSuccess(data);
-                    view.closeWidget();
-                }
+                        @Override
+                        public void onError(Throwable e) {
+                            view.toggleProgressDialog("confirm", false);
+                            view.showMessageDialog("Error", e.getMessage());
+                            config.getOnCheckOutListener().onError(ErrorAction.WALLET_CONFIRM.getAction(), e.getMessage());
+                        }
 
-                @Override
-                public void onError(String message) {
-                    view.toggleProgressDialog("confirm", false);
-                    view.showMessageDialog("Error", message);
-                    config.getOnCheckOutListener().onError(ErrorAction.WALLET_CONFIRM.getAction(), message);
-                }
-            }));
+                        @Override
+                        public void onNext(WalletConfirmPojo walletConfirmPojo) {
+                            view.toggleProgressDialog("confirm", false);
+                            OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
+                            HashMap<String, Object> data = new HashMap<>();
+                            data.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
+                            data.put("amount", walletConfirmPojo.getAmount());
+                            data.put("product_url", walletConfirmPojo.getProductUrl());
+                            data.put("token", walletConfirmPojo.getToken());
+                            data.put("product_name", walletConfirmPojo.getProductName());
+                            data.put("product_identity", walletConfirmPojo.getProductIdentity());
+
+                            onCheckOutListener.onSuccess(data);
+                            view.closeWidget();
+                        }
+                    }));
         } else {
             view.showNetworkError();
-        }*/
+        }
     }
 
     @Override
