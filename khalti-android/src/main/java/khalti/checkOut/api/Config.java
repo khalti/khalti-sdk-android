@@ -13,15 +13,12 @@ public class Config implements Serializable {
     private String productName;
     private String productUrl;
     private Long amount;
+    private String paymentType;
     private HashMap<String, Object> additionalData;
     private OnCheckOutListener onCheckOutListener;
 
     public Config(@NonNull String publicKey, @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
-        this.productId = productId;
-        this.productName = productName;
-        this.productUrl = productUrl;
-        this.amount = amount;
         this.onCheckOutListener = onCheckOutListener;
     }
 
@@ -46,6 +43,29 @@ public class Config implements Serializable {
         this.onCheckOutListener = onCheckOutListener;
     }
 
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull String paymentType,
+                  @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.productId = productId;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.amount = amount;
+        this.paymentType = paymentType;
+        this.onCheckOutListener = onCheckOutListener;
+    }
+
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull String paymentType,
+                  @NonNull HashMap<String, Object> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.productId = productId;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.amount = amount;
+        this.paymentType = paymentType;
+        this.additionalData = additionalData;
+        this.onCheckOutListener = onCheckOutListener;
+    }
+
     public String getPublicKey() {
         return publicKey;
     }
@@ -64,6 +84,10 @@ public class Config implements Serializable {
 
     public Long getAmount() {
         return amount;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
     }
 
     public OnCheckOutListener getOnCheckOutListener() {
@@ -92,6 +116,10 @@ public class Config implements Serializable {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 
     public void setAdditionalData(HashMap<String, Object> additionalData) {
