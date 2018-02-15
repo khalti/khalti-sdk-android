@@ -8651,7 +8651,7 @@ khalti.checkOut.CheckOutContract$View -> khalti.checkOut.b$b:
     void dismissAllDialogs() -> e
     void setListener(khalti.checkOut.CheckOutContract$Listener) -> a
 khalti.checkOut.CheckOutPresenter -> khalti.checkOut.c:
-    khalti.checkOut.CheckOutContract$View mCheckOutView -> a
+    khalti.checkOut.CheckOutContract$View view -> a
     void <init>(khalti.checkOut.CheckOutContract$View) -> <init>
     void setUpLayout() -> a
     void toggleTab(int,boolean) -> a
@@ -8934,7 +8934,7 @@ khalti.checkOut.EBanking.deepLinkReceiver.DeepLinkPresenter -> khalti.checkOut.E
     khalti.checkOut.EBanking.deepLinkReceiver.DeepLinkContract$View mDeepLinkView -> a
     void <init>(khalti.checkOut.EBanking.deepLinkReceiver.DeepLinkContract$View) -> <init>
     void receiveEBankingData() -> a
-khalti.checkOut.KhaltiCheckOut -> khalti.checkOut.KhaltiCheckOut:
+khalti.checkOut.helper.KhaltiCheckOut -> khalti.checkOut.helper.KhaltiCheckOut:
     android.content.Context context -> context
     void <init>(android.content.Context) -> <init>
     void <init>(android.content.Context,khalti.checkOut.api.Config) -> <init>
@@ -9520,7 +9520,7 @@ khalti.widget.KhaltiButton -> khalti.widget.KhaltiButton:
     khalti.checkOut.api.Config access$600(khalti.widget.KhaltiButton) -> access$600
 khalti.widget.KhaltiButton$Pay -> khalti.widget.KhaltiButton$a:
     khalti.widget.PayContract$Listener listener -> b
-    khalti.checkOut.KhaltiCheckOut khaltiCheckOut -> c
+    khalti.checkOut.helper.KhaltiCheckOut khaltiCheckOut -> c
     khalti.widget.KhaltiButton this$0 -> a
     void <init>(khalti.widget.KhaltiButton) -> <init>
     void setCustomButtonView() -> a

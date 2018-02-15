@@ -7240,13 +7240,13 @@ khalti.checkOut.EBanking.chooseBank.BankChooserActivity: BankChooserActivity()
 khalti.checkOut.EBanking.chooseBank.BankPojo: android.os.Parcelable$Creator CREATOR
 khalti.checkOut.EBanking.deepLinkReceiver.DeepLink
 khalti.checkOut.EBanking.deepLinkReceiver.DeepLink: DeepLink()
-khalti.checkOut.KhaltiCheckOut
-khalti.checkOut.KhaltiCheckOut: android.content.Context context
-khalti.checkOut.KhaltiCheckOut: KhaltiCheckOut(android.content.Context)
-khalti.checkOut.KhaltiCheckOut: KhaltiCheckOut(android.content.Context,khalti.checkOut.api.Config)
-khalti.checkOut.KhaltiCheckOut: void show()
-khalti.checkOut.KhaltiCheckOut: void show(khalti.checkOut.api.Config)
-khalti.checkOut.KhaltiCheckOut: void destroy()
+khalti.checkOut.helper.KhaltiCheckOut
+khalti.checkOut.helper.KhaltiCheckOut: android.content.Context context
+khalti.checkOut.helper.KhaltiCheckOut: KhaltiCheckOut(android.content.Context)
+khalti.checkOut.helper.KhaltiCheckOut: KhaltiCheckOut(android.content.Context,khalti.checkOut.api.Config)
+khalti.checkOut.helper.KhaltiCheckOut: void show()
+khalti.checkOut.helper.KhaltiCheckOut: void show(khalti.checkOut.api.Config)
+khalti.checkOut.helper.KhaltiCheckOut: void destroy()
 khalti.checkOut.api.Config
 khalti.checkOut.api.Config: java.lang.String publicKey
 khalti.checkOut.api.Config: java.lang.String productId

@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import khalti.checkOut.KhaltiCheckOut;
+import khalti.checkOut.helper.KhaltiCheckOut;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.utils.Constant;

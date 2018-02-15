@@ -1,4 +1,4 @@
-package khalti.checkOut;
+package khalti.checkOut.helper;
 
 import khalti.checkOut.api.Config;
 

@@ -270,7 +270,7 @@ khalti.checkOut.EBanking.chooseBank.BankPojo:
     31:31:public java.lang.String getCreatedOn()
     35:35:public java.lang.String getModifiedOn()
     43:43:public java.lang.String getAddress()
-khalti.checkOut.KhaltiCheckOutInterface
+khalti.checkOut.helper.KhaltiCheckOutInterface
 khalti.checkOut.Wallet.WalletConfirmPojo:
     private java.lang.String mobile
     48:48:public java.lang.String getMobile()

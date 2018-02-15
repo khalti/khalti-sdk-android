@@ -1,8 +1,9 @@
-package khalti.checkOut;
+package khalti.checkOut.helper;
 
 import android.content.Context;
 import android.support.annotation.Keep;
 
+import khalti.checkOut.CheckOutActivity;
 import khalti.checkOut.api.Config;
 import khalti.rxBus.RxBus;
 import khalti.utils.ActivityUtil;

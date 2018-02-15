@@ -31,7 +31,7 @@ public class CardModel implements CardContract.Model {
     @Override
     public Observable<List<BankPojo>> fetchBankList() {
         PublishSubject<List<BankPojo>> bankObservable = PublishSubject.create();
-        compositeSubscription.add(new ApiHelper().callApiAlt(khaltiService.getBanks("/api/bank/", new HashMap<String, Object>() {{
+        compositeSubscription.add(new ApiHelper().callApi(khaltiService.getBanks("/api/bank/", new HashMap<String, Object>() {{
             put("page", 1);
             put("page_size", 100);
             put("has_cardpayment", true);

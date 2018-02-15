@@ -11,7 +11,7 @@ import android.view.View;
 
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.checkOut.KhaltiCheckOut;
+import khalti.checkOut.helper.KhaltiCheckOut;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 
