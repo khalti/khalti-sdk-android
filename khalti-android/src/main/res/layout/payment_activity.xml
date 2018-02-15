@@ -38,7 +38,7 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tlTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/toolbarHeight"
             android:layout_gravity="center"
             android:background="@color/white"

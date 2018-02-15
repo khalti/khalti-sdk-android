@@ -33,8 +33,11 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
             }
         }));
         compositeSubscription.add(view.setTryAgainClickListener().subscribe(aVoid -> fetchPreference(Store.getConfig().getPublicKey())));
+        view.toggleIndented(false);
         if (view.hasNetwork()) {
-            fetchPreference(Store.getConfig().getPublicKey());
+            view.setupViewPager(true, true, false);
+            view.setUpTabLayout();
+//            fetchPreference(Store.getConfig().getPublicKey());
         } else {
             view.showIndentedNetworkError();
         }

@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:paddingLeft="@dimen/cardPadding"
-    android:paddingRight="@dimen/cardPadding"
-    android:gravity="center">
+    android:paddingRight="@dimen/cardPadding">
 
     <ImageView
         android:id="@+id/ivIcon"

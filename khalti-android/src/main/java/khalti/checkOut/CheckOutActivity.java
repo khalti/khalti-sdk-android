@@ -120,9 +120,13 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         }
         vpContent.setAdapter(viewPagerAdapter);
 
-        vpContent.setOffscreenPageLimit(3);
+        vpContent.setOffscreenPageLimit(viewPagerAdapter.getCount());
         tlTitle.setupWithViewPager(vpContent);
-        tlTitle.setTabMode(TabLayout.MODE_SCROLLABLE);
+        if (viewPagerAdapter.getCount() > 2) {
+            tlTitle.setTabMode(TabLayout.MODE_SCROLLABLE);
+        } else {
+            tlTitle.setTabMode(TabLayout.MODE_FIXED);
+        }
     }
 
     @Override
