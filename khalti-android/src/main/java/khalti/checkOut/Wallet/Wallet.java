@@ -15,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -44,7 +46,8 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private ExpandableLayout elConfirmation;
     private Button btnPay;
     private Dialog progressDialog;
-    private LinearLayout llConfirmation, llPIN, llCode;
+    private LinearLayout llConfirmation, llPIN, llCode, llKhaltiBranding;
+    private ImageView ivKhalti;
 
     private FragmentActivity fragmentActivity;
     private WalletContract.Presenter presenter;
@@ -70,6 +73,8 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         llConfirmation = mainView.findViewById(R.id.llConfirmation);
         llPIN = mainView.findViewById(R.id.llPIN);
         llCode = mainView.findViewById(R.id.llCode);
+        ivKhalti = mainView.findViewById(R.id.ivKhalti);
+        llKhaltiBranding = mainView.findViewById(R.id.llKhaltiBranding);
 
         presenter.onCreate();
 
@@ -262,6 +267,11 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
+    public Observable<Void> setImageClickListener() {
+        return RxView.clicks(ivKhalti);
+    }
+
+    @Override
     public void setConfirmationCode(String code) {
         etCode.setText(code);
         etPIN.requestFocus();
@@ -435,6 +445,16 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
             put("code", etCode.getText() + "");
             put("pin", etPIN.getText() + "");
         }};
+    }
+
+    @Override
+    public void showSlogan() {
+        Toast.makeText(fragmentActivity, ResourceUtil.getString(fragmentActivity, R.string.slogan), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showBranding() {
+        llKhaltiBranding.setVisibility(View.VISIBLE);
     }
 
     @Override

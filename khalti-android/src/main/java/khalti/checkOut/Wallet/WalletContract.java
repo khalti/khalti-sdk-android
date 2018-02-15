@@ -26,6 +26,8 @@ public interface WalletContract {
 
         Observable<Void> setButtonClickListener();
 
+        Observable<Void> setImageClickListener();
+
         void setConfirmationCode(String code);
 
         void setConfirmationLayoutHeight(String view);
@@ -57,6 +59,10 @@ public interface WalletContract {
         String getPayButtonText();
 
         HashMap<String, String> getFormData();
+
+        void showSlogan();
+
+        void showBranding();
 
         void setPresenter(Presenter presenter);
     }

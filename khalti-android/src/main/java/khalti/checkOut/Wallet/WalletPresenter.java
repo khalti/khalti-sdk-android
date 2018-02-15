@@ -27,10 +27,12 @@ public class WalletPresenter implements WalletContract.Presenter {
     @NonNull
     private final WalletContract.View view;
     private WalletModel model;
-    private boolean smsListenerInitialized = false;
     private Config config;
-    private String pinWebLink;
     private CompositeSubscription compositeSubscription;
+
+    private String pinWebLink;
+    private boolean smsListenerInitialized = false;
+    private int clicks = 0;
 
     public WalletPresenter(@NonNull WalletContract.View view) {
         this.view = GuavaUtil.checkNotNull(view);
@@ -43,7 +45,15 @@ public class WalletPresenter implements WalletContract.Presenter {
     public void onCreate() {
         config = Store.getConfig();
         view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
+        view.showBranding();
 
+        compositeSubscription.add(view.setImageClickListener().subscribe(aVoid -> {
+            clicks += 1;
+            if (clicks > 2) {
+                clicks = 0;
+                view.showSlogan();
+            }
+        }));
         HashMap<String, Observable<CharSequence>> map = view.setEditTextListener();
         compositeSubscription.add(map.get("mobile").subscribe(charSequence -> {
             view.setEditTextError("mobile", null);

@@ -7,6 +7,7 @@
     <string name="please_wait">Please wait</string>
     <string name="generic_error">Something went wrong</string>
     <string name="sms_info">Khalti has sent a confirmation code in your Khalti registered number. Enter the confirmation code below</string>
+    <string name="slogan">पैसा को नयाँ ठेगाना</string>
 
     <!--Font Icons-->
     <string name="account_box"></string>
