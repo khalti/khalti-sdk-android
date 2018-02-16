@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import khalti.checkOut.EBanking.helper.BaseListPojo;
-import khalti.checkOut.helper.PaymentPreferencePojo;
 import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import khalti.checkOut.Wallet.helper.WalletInitPojo;
+import khalti.checkOut.helper.MerchantPreferencePojo;
 import retrofit2.Response;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -22,7 +23,7 @@ public interface KhaltiApi {
     Observable<Response<BaseListPojo>> getBanks(@Url String url, @QueryMap Map<String, Object> queryMap);
 
     @GET
-    Observable<Response<PaymentPreferencePojo>> getPreference(@Url String url, @QueryMap Map<String, Object> queryMap);
+    Observable<Response<MerchantPreferencePojo>> getPreference(@Url String url, @Header("Authorization") String publicKey);
 
     @POST
     @FormUrlEncoded

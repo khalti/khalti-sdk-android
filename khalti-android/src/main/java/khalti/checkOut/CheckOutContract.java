@@ -1,6 +1,8 @@
 package khalti.checkOut;
 
-import khalti.checkOut.helper.PaymentPreferencePojo;
+import java.util.List;
+
+import khalti.checkOut.helper.MerchantPreferencePojo;
 import rx.Observable;
 
 interface CheckOutContract {
@@ -14,9 +16,11 @@ interface CheckOutContract {
 
         Observable<Void> setTryAgainClickListener();
 
-        void setupViewPager(boolean eBanking, boolean wallet, boolean card);
+        void setupViewPager(List<String> types);
 
-        void setUpTabLayout();
+        void setUpTabLayout(List<String> types);
+
+        void setTabListener();
 
         void setUpToolbar();
 
@@ -46,7 +50,7 @@ interface CheckOutContract {
 
     interface Model {
 
-        Observable<PaymentPreferencePojo> fetchPreference(String key);
+        Observable<MerchantPreferencePojo> fetchPreference(String key);
 
         void unSubscribe();
     }

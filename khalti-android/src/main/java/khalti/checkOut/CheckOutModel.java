@@ -1,10 +1,8 @@
 package khalti.checkOut;
 
-import java.util.HashMap;
-
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.KhaltiApi;
-import khalti.checkOut.helper.PaymentPreferencePojo;
+import khalti.checkOut.helper.MerchantPreferencePojo;
 import khalti.utils.EmptyUtil;
 import rx.Observable;
 import rx.Subscriber;
@@ -23,15 +21,11 @@ public class CheckOutModel implements CheckOutContract.Model {
     }
 
     @Override
-    public Observable<PaymentPreferencePojo> fetchPreference(String key) {
-        PublishSubject<PaymentPreferencePojo> prefObservable = PublishSubject.create();
-
-        HashMap<String, Object> dataMap = new HashMap<>();
-        dataMap.put("public_key", key);
-
-        compositeSubscription.add(apiHelper.callApi(khaltiService.getPreference("/api/payment/preference/", dataMap))
-                .map(o -> (PaymentPreferencePojo) o)
-                .subscribe(new Subscriber<PaymentPreferencePojo>() {
+    public Observable<MerchantPreferencePojo> fetchPreference(String key) {
+        PublishSubject<MerchantPreferencePojo> prefObservable = PublishSubject.create();
+        compositeSubscription.add(apiHelper.callApi(khaltiService.getPreference("/api/merchant/preference/", "Key " + key))
+                .map(o -> (MerchantPreferencePojo) o)
+                .subscribe(new Subscriber<MerchantPreferencePojo>() {
                     @Override
                     public void onCompleted() {
 
@@ -43,8 +37,8 @@ public class CheckOutModel implements CheckOutContract.Model {
                     }
 
                     @Override
-                    public void onNext(PaymentPreferencePojo paymentPreferencePojo) {
-                        prefObservable.onNext(paymentPreferencePojo);
+                    public void onNext(MerchantPreferencePojo merchantPreferencePojo) {
+                        prefObservable.onNext(merchantPreferencePojo);
                     }
                 }));
 

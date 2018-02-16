@@ -2,7 +2,9 @@ package khalti.checkOut;
 
 import android.support.annotation.NonNull;
 
-import khalti.checkOut.helper.PaymentPreferencePojo;
+import java.util.List;
+
+import khalti.checkOut.helper.MerchantPreferencePojo;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.GuavaUtil;
@@ -35,9 +37,7 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
         compositeSubscription.add(view.setTryAgainClickListener().subscribe(aVoid -> fetchPreference(Store.getConfig().getPublicKey())));
         view.toggleIndented(false);
         if (view.hasNetwork()) {
-            view.setupViewPager(true, true, false);
-            view.setUpTabLayout();
-//            fetchPreference(Store.getConfig().getPublicKey());
+            fetchPreference(Store.getConfig().getPublicKey());
         } else {
             view.showIndentedNetworkError();
         }
@@ -57,7 +57,7 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
     public void fetchPreference(String key) {
         view.toggleIndented(true);
         compositeSubscription.add(model.fetchPreference(key)
-                .subscribe(new Subscriber<PaymentPreferencePojo>() {
+                .subscribe(new Subscriber<MerchantPreferencePojo>() {
                     @Override
                     public void onCompleted() {
 
@@ -69,10 +69,13 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(PaymentPreferencePojo preference) {
+                    public void onNext(MerchantPreferencePojo preference) {
                         view.toggleIndented(false);
-                        view.setupViewPager(true, true, true);
-                        view.setUpTabLayout();
+                        List<String> types = preference.getSdkPosition();
+
+                        view.setupViewPager(types);
+                        view.setUpTabLayout(types);
+                        view.setTabListener();
                     }
                 }));
     }

@@ -82,6 +82,10 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void toggleIndented(boolean show) {
         llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
+        pdLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        alTab.setVisibility(!show ? View.VISIBLE : View.GONE);
+        vpContent.setVisibility(!show ? View.VISIBLE : View.GONE);
+        tvMessage.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
@@ -106,21 +110,28 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setupViewPager(boolean eBanking, boolean wallet, boolean card) {
+    public void setupViewPager(List<String> types) {
         flContainer.setVisibility(View.VISIBLE);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        if (eBanking) {
-            viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
+
+        for (String type : types) {
+            switch (type.toLowerCase()) {
+                case "wallet":
+                    viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
+                    break;
+                case "ebanking":
+                    viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
+                    break;
+                case "card":
+                    viewPagerAdapter.addFrag(new Card(), ResourceUtil.getString(this, R.string.card));
+                    break;
+            }
         }
-        if (wallet) {
-            viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
-        }
-        if (card) {
-            viewPagerAdapter.addFrag(new Card(), ResourceUtil.getString(this, R.string.card));
-        }
+
         vpContent.setAdapter(viewPagerAdapter);
 
         vpContent.setOffscreenPageLimit(viewPagerAdapter.getCount());
+        alTab.setVisibility(View.VISIBLE);
         tlTitle.setupWithViewPager(vpContent);
         if (viewPagerAdapter.getCount() > 2) {
             tlTitle.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -130,51 +141,55 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setUpTabLayout() {
+    public void setUpTabLayout(List<String> types) {
         alTab.setVisibility(View.VISIBLE);
-        LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        AppCompatTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
-        ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
 
-        tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
-        tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        ivEIcon.setImageResource(R.drawable.ic_bank);
-        DrawableCompat.setTint(ivEIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        TabLayout.Tab ebTab = tlTitle.getTabAt(0);
-        if (EmptyUtil.isNotNull(ebTab)) {
-            ebTab.setCustomView(eBankingTab);
+        for (int i = 0; i < types.size(); i++) {
+            String name = types.get(i);
+            String title = "";
+            int color, tabIcon = 0;
+
+            switch (name.toLowerCase()) {
+                case "wallet":
+                    title = ResourceUtil.getString(this, R.string.wallet);
+                    tabIcon = R.drawable.ic_wallet;
+                    break;
+                case "ebanking":
+                    title = ResourceUtil.getString(this, R.string.eBanking);
+                    tabIcon = R.drawable.ic_bank;
+                    break;
+                case "card":
+                    title = ResourceUtil.getString(this, R.string.card);
+                    tabIcon = R.drawable.ic_credit_card;
+                    break;
+            }
+
+            if (name.equalsIgnoreCase("ebanking") || name.equalsIgnoreCase("card") || name.equalsIgnoreCase("wallet")) {
+                if (i == 0) {
+                    color = ResourceUtil.getColor(this, R.color.khaltiAccentAlt);
+                } else {
+                    color = ResourceUtil.getColor(this, R.color.khaltiPrimary);
+                }
+
+                LinearLayout llTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
+                AppCompatTextView tvETitle = llTab.findViewById(R.id.tvTitle);
+                ImageView ivEIcon = llTab.findViewById(R.id.ivIcon);
+
+                tvETitle.setText(title);
+                tvETitle.setTextColor(color);
+                ivEIcon.setImageResource(tabIcon);
+                DrawableCompat.setTint(ivEIcon.getDrawable(), color);
+                TabLayout.Tab tab = tlTitle.getTabAt(i);
+                if (EmptyUtil.isNotNull(tab)) {
+                    tab.setCustomView(llTab);
+                }
+                tabs.add(tab);
+            }
         }
+    }
 
-        LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        AppCompatTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
-        ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
-
-        tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
-        tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        ivWIcon.setImageResource(R.drawable.ic_wallet);
-        DrawableCompat.setTint(ivWIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        TabLayout.Tab wTab = tlTitle.getTabAt(1);
-        if (EmptyUtil.isNotNull(wTab)) {
-            wTab.setCustomView(walletTab);
-        }
-
-        LinearLayout cardTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        AppCompatTextView tvCTitle = cardTab.findViewById(R.id.tvTitle);
-        ImageView ivCIcon = cardTab.findViewById(R.id.ivIcon);
-
-        tvCTitle.setText(ResourceUtil.getString(this, R.string.card));
-        tvCTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        ivCIcon.setImageResource(R.drawable.ic_credit_card);
-        DrawableCompat.setTint(ivCIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        TabLayout.Tab cTab = tlTitle.getTabAt(2);
-        if (EmptyUtil.isNotNull(cTab)) {
-            cTab.setCustomView(cardTab);
-        }
-
-        tabs.add(ebTab);
-        tabs.add(wTab);
-        tabs.add(cTab);
-
+    @Override
+    public void setTabListener() {
         tlTitle.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

@@ -12,11 +12,10 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import khalti.checkOut.helper.KhaltiCheckOut;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.OnCheckOutListener;
+import khalti.checkOut.helper.KhaltiCheckOut;
 import khalti.utils.Constant;
-import khalti.utils.LogUtil;
 import khalti.widget.KhaltiButton;
 
 public class MoreSamples extends AppCompatActivity {
@@ -59,14 +58,12 @@ public class MoreSamples extends AppCompatActivity {
             @Override
             public void onSuccess(HashMap<String, Object> data) {
                 Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show();
-                LogUtil.log(TAG, data.toString());
 
             }
 
             @Override
             public void onError(String action, String message) {
                 Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show();
-                LogUtil.log(TAG, message);
             }
         });
 

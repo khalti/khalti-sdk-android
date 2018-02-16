@@ -17,7 +17,6 @@ import java.util.List;
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
 import khalti.utils.EmptyUtil;
-import khalti.utils.LogUtil;
 import khalti.utils.StringUtil;
 import rx.Observable;
 import rx.subjects.PublishSubject;
@@ -49,9 +48,6 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
         String shortName = banks.get(position).getShortName();
         String name = banks.get(position).getName();
         String iconName = StringUtil.getNameIcon(banks.get(position).getName());
-
-        LogUtil.log("name", name);
-        LogUtil.log("short name", shortName);
 
         holder.tvBankId.setText(banks.get(position).getIdx());
         holder.tvBankLogo.setText(banks.get(position).getLogo());
