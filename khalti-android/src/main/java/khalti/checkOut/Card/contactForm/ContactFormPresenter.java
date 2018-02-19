@@ -61,6 +61,7 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
                             "amount=" + URLEncoder.encode(config.getAmount() + "", "UTF-8") + "&" +
                             "mobile=" + URLEncoder.encode(map.get("mobile") + "", "UTF-8") + "&" +
                             "bank=" + URLEncoder.encode(map.get("bankId") + "", "UTF-8") + "&" +
+                            "is_card_payment=" + true + "&" +
                             "source=android" + "&" +
                             "return_url=" + URLEncoder.encode(view.getPackageName(), "UTF-8");
 

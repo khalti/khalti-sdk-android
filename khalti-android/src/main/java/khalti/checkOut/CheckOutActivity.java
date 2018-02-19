@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,15 +22,15 @@ import android.widget.LinearLayout;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.ProgressBar;
-import khalti.checkOut.Card.Card;
-import khalti.checkOut.EBanking.EBanking;
-import khalti.checkOut.Wallet.Wallet;
 import khalti.utils.EmptyUtil;
+import khalti.utils.LogUtil;
+import khalti.utils.MerchantUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
 import khalti.utils.UserInterfaceUtil;
@@ -114,17 +115,11 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         flContainer.setVisibility(View.VISIBLE);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        for (String type : types) {
-            switch (type.toLowerCase()) {
-                case "wallet":
-                    viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
-                    break;
-                case "ebanking":
-                    viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
-                    break;
-                case "card":
-                    viewPagerAdapter.addFrag(new Card(), ResourceUtil.getString(this, R.string.card));
-                    break;
+        for (String s : types) {
+            LogUtil.log("s", s);
+            HashMap<String, Object> map = MerchantUtil.getTab(s.toLowerCase());
+            if (EmptyUtil.isNotNull(map)) {
+                viewPagerAdapter.addFrag((Fragment) map.get("fragment"), map.get("title") + "");
             }
         }
 
@@ -143,29 +138,12 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void setUpTabLayout(List<String> types) {
         alTab.setVisibility(View.VISIBLE);
-
-        for (int i = 0; i < types.size(); i++) {
-            String name = types.get(i);
-            String title = "";
-            int color, tabIcon = 0;
-
-            switch (name.toLowerCase()) {
-                case "wallet":
-                    title = ResourceUtil.getString(this, R.string.wallet);
-                    tabIcon = R.drawable.ic_wallet;
-                    break;
-                case "ebanking":
-                    title = ResourceUtil.getString(this, R.string.eBanking);
-                    tabIcon = R.drawable.ic_bank;
-                    break;
-                case "card":
-                    title = ResourceUtil.getString(this, R.string.card);
-                    tabIcon = R.drawable.ic_credit_card;
-                    break;
-            }
-
-            if (name.equalsIgnoreCase("ebanking") || name.equalsIgnoreCase("card") || name.equalsIgnoreCase("wallet")) {
-                if (i == 0) {
+        int position = 0;
+        for (String s : types) {
+            int color;
+            HashMap<String, Object> map = MerchantUtil.getTab(s.toLowerCase());
+            if (EmptyUtil.isNotNull(map)) {
+                if (position == 0) {
                     color = ResourceUtil.getColor(this, R.color.khaltiAccentAlt);
                 } else {
                     color = ResourceUtil.getColor(this, R.color.khaltiPrimary);
@@ -175,15 +153,17 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
                 AppCompatTextView tvETitle = llTab.findViewById(R.id.tvTitle);
                 ImageView ivEIcon = llTab.findViewById(R.id.ivIcon);
 
-                tvETitle.setText(title);
+                tvETitle.setText((String) map.get("title"));
                 tvETitle.setTextColor(color);
-                ivEIcon.setImageResource(tabIcon);
+                ivEIcon.setImageResource((Integer) map.get("icon"));
                 DrawableCompat.setTint(ivEIcon.getDrawable(), color);
-                TabLayout.Tab tab = tlTitle.getTabAt(i);
+                TabLayout.Tab tab = tlTitle.getTabAt(position);
                 if (EmptyUtil.isNotNull(tab)) {
                     tab.setCustomView(llTab);
                 }
                 tabs.add(tab);
+
+                position++;
             }
         }
     }
