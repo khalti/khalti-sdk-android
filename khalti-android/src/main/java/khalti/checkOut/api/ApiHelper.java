@@ -5,11 +5,14 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import khalti.BuildConfig;
 import khalti.utils.ApiUtil;
+import khalti.utils.AppUtil;
 import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ErrorUtil;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -33,6 +36,15 @@ public class ApiHelper {
         okhttp3.OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .addInterceptor(chain -> {
+                    Request request = chain.request().newBuilder()
+                            .addHeader("checkout-version", BuildConfig.VERSION_NAME)
+                            .addHeader("checkout-source", "android")
+                            .addHeader("checkout-android-version", AppUtil.getOsVersion())
+                            .addHeader("checkout-android-api-level", AppUtil.getApiLevel() + "")
+                            .build();
+                    return chain.proceed(request);
+                })
                 .addInterceptor(interceptor)
                 .build();
 

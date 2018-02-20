@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import khalti.checkOut.helper.MerchantPreferencePojo;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.GuavaUtil;
 import khalti.utils.MerchantUtil;
 import khalti.utils.Store;
+import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
 class CheckOutPresenter implements CheckOutContract.Presenter {
@@ -56,7 +58,7 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
 
     @Override
     public void fetchPreference(String key) {
-        /*view.toggleIndented(true);
+        view.toggleIndented(true);
         compositeSubscription.add(model.fetchPreference(key)
                 .subscribe(new Subscriber<MerchantPreferencePojo>() {
                     @Override
@@ -65,7 +67,7 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {`
+                    public void onError(Throwable e) {
                         view.showIndentedError(e.getMessage());
                     }
 
@@ -74,63 +76,17 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
                         view.toggleIndented(false);
                         List<String> types = preference.getSdkPosition();
 
-                        List<String> test = new ArrayList<>();
-                        test.add("ebanking0");
-                        test.add("ebanking1");
-                        test.add("ebanking");
-                        test.add("ebanking");
-                        test.add("wallet");
-                        test.add("wallet1");
-                        test.add("card");
-                        test.add("card1");
-                        test.add("card1");
-                        test.add("card1");
-                        test.add("card");
+                        List<String> uniqueList = new ArrayList<>(new LinkedHashSet<>(types));
+                        if (!uniqueList.contains(MerchantUtil.CARD) && !uniqueList.contains(MerchantUtil.WALLET) && !uniqueList.contains(MerchantUtil.EBANKING)) {
+                            uniqueList.add(MerchantUtil.EBANKING);
+                            uniqueList.add(MerchantUtil.WALLET);
+                            uniqueList.add(MerchantUtil.CARD);
+                        }
 
-                        Observable<String> os = Observable.from(test);
-
-                        view.setupViewPager(os);
-                        view.setUpTabLayout(os);
+                        view.setupViewPager(uniqueList);
+                        view.setUpTabLayout(uniqueList);
                         view.setTabListener();
                     }
-                }));*/
-        view.toggleIndented(false);
-        List<String> test = new ArrayList<>();
-        test.add("e");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking0");
-        test.add("ebanking");
-        test.add("wallet1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-        test.add("card1");
-
-        List<String> uniqueList = new ArrayList<>(new LinkedHashSet<>(test));
-        if (!uniqueList.contains(MerchantUtil.CARD) && !uniqueList.contains(MerchantUtil.WALLET) && !uniqueList.contains(MerchantUtil.EBANKING)) {
-            uniqueList.add(MerchantUtil.EBANKING);
-            uniqueList.add(MerchantUtil.WALLET);
-            uniqueList.add(MerchantUtil.CARD);
-        }
-
-        view.setupViewPager(uniqueList);
-        view.setUpTabLayout(uniqueList);
-        view.setTabListener();
+                }));
     }
 }

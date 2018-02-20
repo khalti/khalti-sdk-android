@@ -6,7 +6,7 @@ ext {
     khaltiVersionName = "1.1.2"
 
     compileSdk = 26
-    buildToolVersion = '26.0.2'
+    buildToolVersion = '27.0.3'
     minSdk = 14
     targetSdk = 26
     renderScriptTarget = 20

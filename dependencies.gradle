@@ -10,7 +10,7 @@ ext {
     ]
 
     nineDroidVersion = '2.4.0'
-    butterKnifeVersion = '8.4.0'
+    butterKnifeVersion = '8.8.0'
     gsonVersion = '2.8.2'
     picassoVersion = '2.5.2'
 
