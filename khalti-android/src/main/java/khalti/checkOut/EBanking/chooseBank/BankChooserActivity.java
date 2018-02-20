@@ -1,6 +1,5 @@
 package khalti.checkOut.EBanking.chooseBank;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -26,7 +25,7 @@ import khalti.utils.EmptyUtil;
 import khalti.utils.ResourceUtil;
 import rx.subscriptions.CompositeSubscription;
 
-public class BankChooserActivity extends AppCompatActivity implements BankChooserContract.View, BankAdapter.BankControls {
+public class BankChooserActivity extends AppCompatActivity implements BankChooserContract.View {
 
     private RecyclerView rvList;
     private Toolbar toolbar;
@@ -40,8 +39,8 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
         super.onCreate(savedInstanceState);
         setContentView(R.layout.banking);
 
-        rvList = (RecyclerView) findViewById(R.id.rvList);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        rvList = findViewById(R.id.rvList);
+        toolbar = findViewById(R.id.toolbar);
 
         listener = new BankChooserPresenter(this);
 
@@ -163,12 +162,12 @@ public class BankChooserActivity extends AppCompatActivity implements BankChoose
         this.listener = listener;
     }
 
-    @Override
+    /*@Override
     public void chooseBank(String bankName, String bankId) {
         Intent intent = new Intent();
         intent.putExtra("name", bankName);
         intent.putExtra("id", bankId);
         setResult(RESULT_OK, intent);
         finish();
-    }
+    }*/
 }
