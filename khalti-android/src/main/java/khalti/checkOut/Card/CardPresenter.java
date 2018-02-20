@@ -59,7 +59,7 @@ class CardPresenter implements CardContract.Presenter {
                         @Override
                         public void onError(Throwable e) {
                             view.showIndentedError(e.getMessage());
-                            config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), e.getMessage());
+                            config.getOnCheckOutListener().onError(ErrorAction.FETCH_CARD_BANK_LIST.getAction(), e.getMessage());
                         }
 
                         @Override

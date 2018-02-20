@@ -83,7 +83,7 @@
                     android:layout_gravity="center"
                     android:text="@string/select_bank"
                     android:textColor="@color/primaryText"
-                    android:textSize="@dimen/title1"
+                    android:textSize="@dimen/title"
                     app:fontFamily="@font/roboto_medium" />
 
                 <khalti.carbonX.widget.TextInputLayout

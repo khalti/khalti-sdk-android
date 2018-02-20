@@ -190,18 +190,6 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setUpToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        }
-    }
-
-    @Override
     public void toggleTab(int position, boolean selected) {
         LinearLayout ll = (LinearLayout) tabs.get(position).getCustomView();
         if (EmptyUtil.isNotNull(ll)) {

@@ -52,11 +52,5 @@
 
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="khalti.checkOut.EBanking.chooseBank.BankChooserActivity"
-            android:label="@string/blank"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.khalti" />
     </application>
 </manifest>

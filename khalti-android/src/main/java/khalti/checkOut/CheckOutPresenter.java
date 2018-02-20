@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import khalti.checkOut.helper.MerchantPreferencePojo;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.GuavaUtil;
 import khalti.utils.MerchantUtil;
 import khalti.utils.Store;
-import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
 class CheckOutPresenter implements CheckOutContract.Presenter {
@@ -31,7 +29,6 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
     @Override
     public void onCreate() {
         view.setStatusBarColor();
-//        view.setUpToolbar();
         compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
             if (event.getTag().equals("close_check_out")) {
                 view.closeCheckOut();
@@ -59,7 +56,7 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
     @Override
     public void fetchPreference(String key) {
         view.toggleIndented(true);
-        compositeSubscription.add(model.fetchPreference(key)
+        /*compositeSubscription.add(model.fetchPreference(key)
                 .subscribe(new Subscriber<MerchantPreferencePojo>() {
                     @Override
                     public void onCompleted() {
@@ -87,6 +84,24 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
                         view.setUpTabLayout(uniqueList);
                         view.setTabListener();
                     }
-                }));
+                }));*/
+        view.toggleIndented(false);
+        List<String> types = new ArrayList<String>() {{
+            add("ebanking");
+            add("wallet");
+            add("card");
+        }};
+
+        List<String> uniqueList = new ArrayList<>(new LinkedHashSet<>(types));
+        if (!uniqueList.contains(MerchantUtil.CARD) && !uniqueList.contains(MerchantUtil.WALLET) && !uniqueList.contains(MerchantUtil.EBANKING)) {
+            uniqueList.add(MerchantUtil.EBANKING);
+            uniqueList.add(MerchantUtil.WALLET);
+            uniqueList.add(MerchantUtil.CARD);
+        }
+
+        view.setupViewPager(uniqueList);
+        view.setUpTabLayout(uniqueList);
+        view.setTabListener();
+
     }
 }

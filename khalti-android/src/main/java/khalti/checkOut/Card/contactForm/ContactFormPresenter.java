@@ -42,7 +42,9 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
 
     @Override
     public void onDestroy() {
-
+        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
     }
 
     @Override

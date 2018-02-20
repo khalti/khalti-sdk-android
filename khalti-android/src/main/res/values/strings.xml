@@ -6,7 +6,9 @@
     <string name="action_search">Search</string>
     <string name="please_wait">Please wait</string>
     <string name="generic_error">Something went wrong</string>
-    <string name="sms_info">Khalti has sent a confirmation code in your Khalti registered number. Enter the confirmation code below</string>
+    <string name="code_sms_info">Khalti has sent a confirmation code in your Khalti registered number. Enter the confirmation code below</string>
+    <string name="pin_sms_info">Your third party transaction pin has been generated and sent to your mobile number. Enter the PIN below</string>
+    <string name="sms_info">Enter the PIN below</string>
     <string name="slogan">पैसा को नयाँ ठेगाना</string>
 
     <!--Font Icons-->

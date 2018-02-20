@@ -22,8 +22,6 @@ interface CheckOutContract {
 
         void setTabListener();
 
-        void setUpToolbar();
-
         void toggleTab(int position, boolean selected);
 
         void setStatusBarColor();
