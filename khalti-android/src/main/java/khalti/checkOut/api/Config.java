@@ -13,7 +13,7 @@ public class Config implements Serializable {
     private String productName;
     private String productUrl;
     private Long amount;
-    private HashMap<String, Object> additionalData;
+    private HashMap<String, String> additionalData;
     private OnCheckOutListener onCheckOutListener;
 
     public Config(@NonNull String publicKey, @NonNull OnCheckOutListener onCheckOutListener) {
@@ -32,7 +32,7 @@ public class Config implements Serializable {
     }
 
     public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount,
-                  @NonNull HashMap<String, Object> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
+                  @NonNull HashMap<String, String> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
         this.productId = productId;
         this.productName = productName;
@@ -66,7 +66,7 @@ public class Config implements Serializable {
         return onCheckOutListener;
     }
 
-    public HashMap<String, Object> getAdditionalData() {
+    public HashMap<String, String> getAdditionalData() {
         return additionalData;
     }
 
@@ -90,7 +90,7 @@ public class Config implements Serializable {
         this.amount = amount;
     }
 
-    public void setAdditionalData(HashMap<String, Object> additionalData) {
+    public void setAdditionalData(HashMap<String, String> additionalData) {
         this.additionalData = additionalData;
     }
 

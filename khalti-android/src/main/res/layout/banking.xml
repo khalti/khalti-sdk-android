@@ -15,6 +15,7 @@
         android:clipToPadding="false"
         android:paddingLeft="@dimen/cardPadding"
         android:paddingRight="@dimen/cardPadding"
+        android:paddingBottom="@dimen/cardPadding"
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

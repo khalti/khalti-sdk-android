@@ -23,7 +23,7 @@ public class MerchantUtil {
 
     private static final HashMap<String, String> CHECKOUT_TITLES = new HashMap<String, String>() {{
         put(EBANKING, "E-Banking");
-        put(CARD, "Card");
+        put(CARD, "Debit/Credit Card");
         put(WALLET, "Wallet");
     }};
 

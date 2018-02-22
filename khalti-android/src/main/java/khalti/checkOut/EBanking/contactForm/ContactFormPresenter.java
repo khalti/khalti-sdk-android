@@ -51,7 +51,7 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
     public void onFormSubmitted(boolean isNetwork, String mobile, String bankId, String bankName, Config config) {
         if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
             if (isNetwork) {
-                HashMap<String, Object> map = new HashMap<>();
+                HashMap<String, String> map = new HashMap<>();
                 map.put("mobile", mobile);
                 map.put("bankId", bankId);
                 map.put("bankName", bankName);
@@ -73,7 +73,6 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
                     data += ApiUtil.getPostData(config.getAdditionalData());
 
                     view.saveConfigInFile(config);
-
                     view.openEBanking(Constant.url + "ebanking/initiate/?" + data);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();

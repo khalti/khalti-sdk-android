@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.LinearLayout;
 
 import java.util.HashMap;
 
@@ -34,10 +33,11 @@ public class Sample extends AppCompatActivity {
         setContentView(R.layout.sample);
         ButterKnife.bind(this);
 
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("merchant_extra", "This is extra data");
+        map.put("merchant_extra_2", "This is extra data 2");
 
-        Config config = new Config(Constant.pub, "Product ID", "Product Name", "Product Url", 1000L, map, new OnCheckOutListener() {
+        Config config = new Config(Constant.pub, "Product ID", "Product Name", "Product Url", 1100L, map, new OnCheckOutListener() {
 
             @Override
             public void onSuccess(HashMap<String, Object> data) {
@@ -54,7 +54,6 @@ public class Sample extends AppCompatActivity {
         khaltiButton.setOnClickListener(view -> khaltiButton.showCheckOut(config));
         khaltiButton1.setCheckOutConfig(config);
         khaltiButton2.setCheckOutConfig(config);
-
     }
 
     @OnClick(R.id.btnMore)

@@ -39,7 +39,7 @@
     <string name="check_out_title">One app payment solution</string>
     <string name="eBanking">E-Banking</string>
     <string name="wallet">Wallet</string>
-    <string name="card">Card</string>
+    <string name="card">Debit/Credit Card</string>
 
     <!--Form-->
     <string name="mobile_hint">Khalti Mobile Number</string>
