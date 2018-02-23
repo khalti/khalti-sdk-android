@@ -75,6 +75,10 @@
  -dontwarn retrofit.**
  -dontwarn rx.**
 
+ -dontwarn okio.**
+ -dontwarn javax.annotation.Nullable
+ -dontwarn javax.annotation.ParametersAreNonnullByDefault
+
  # If in your rest service interface you use methods with Callback argument.
  -keepattributes Exceptions
 

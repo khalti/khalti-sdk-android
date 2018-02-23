@@ -13,9 +13,9 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:clipToPadding="false"
+        android:paddingBottom="76dp"
         android:paddingLeft="@dimen/cardPadding"
         android:paddingRight="@dimen/cardPadding"
-        android:paddingBottom="@dimen/cardPadding"
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -95,7 +95,7 @@
                     android:layout_marginRight="40dp"
                     android:hint="@string/search_bank"
                     android:theme="@style/EditTextTheme"
-                    android:visibility="invisible">
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/etSearch"
@@ -114,6 +114,7 @@
                     android:layout_height="36dp"
                     android:layout_gravity="center_vertical|end"
                     android:animateLayoutChanges="true"
+                    android:visibility="gone"
                     khalti:carbonX_cornerRadius="18dp"
                     khalti:carbonX_rippleColor="@color/defaultRipple">
 
@@ -207,4 +208,38 @@
                 app:carbonX_textAllCaps="true" />
         </khalti.carbonX.widget.FrameLayout>
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/flSearchBank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="visible"
+        android:background="#FBFBFB">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:alpha="0.1"
+            android:background="@color/primaryText" />
+
+        <khalti.carbonX.widget.FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_margin="@dimen/cardPadding"
+            android:background="@color/white"
+            android:padding="@dimen/cardPadding"
+            khalti:carbonX_cornerRadius="26dp"
+            khalti:carbonX_elevation="1dp">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/svBank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_bank" />
+        </khalti.carbonX.widget.FrameLayout>
+    </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

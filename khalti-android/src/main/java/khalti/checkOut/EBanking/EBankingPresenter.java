@@ -37,10 +37,10 @@ public class EBankingPresenter implements EBankingContract.Presenter {
         view.toggleIndented(true);
         HashMap<String, Observable<Void>> map = view.setOnClickListener();
         compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate(hasNetwork)));
-        compositeSubscription.add(map.get("open_search").subscribe(aVoid -> {
+        /*compositeSubscription.add(map.get("open_search").subscribe(aVoid -> {
             view.toggleSearch(true);
             view.toggleKeyboard(true);
-        }));
+        }));*/
         compositeSubscription.add(map.get("close_search").subscribe(aVoid -> {
             view.toggleSearch(false);
             view.toggleKeyboard(false);
@@ -67,9 +67,19 @@ public class EBankingPresenter implements EBankingContract.Presenter {
                             compositeSubscription.add(view.getItemClickObservable()
                                     .subscribe(hashMap -> view.openMobileForm(new BankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
                                             hashMap.get("icon"), config))));
-                            compositeSubscription.add(view.setEditTextListener()
+
+                            /*compositeSubscription.add(view.setEditTextListener()
                                     .debounce(500, TimeUnit.MILLISECONDS)
-                                    .subscribe(charSequence -> view.filterList(charSequence + "")));
+                                    .subscribe(charSequence -> view.filterList(charSequence + "")));*/
+
+                            compositeSubscription.add(view.setSearchListener()
+                                    .debounce(500, TimeUnit.MILLISECONDS)
+                                    .subscribe(charSequence -> compositeSubscription.add(view.filterList(charSequence + "")
+                                            .subscribe(integer -> {
+                                                if (EmptyUtil.isNotNull(integer)) {
+                                                    view.toggleSearchError(integer == 0);
+                                                }
+                                            }))));
                         }
                     }));
         } else {

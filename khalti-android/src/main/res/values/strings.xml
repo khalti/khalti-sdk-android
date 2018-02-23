@@ -61,7 +61,8 @@
 
     <!--E Banking-->
     <string name="loading_bank">Loading Bank</string>
-    <string name="search_bank">Search Bank</string>
+    <string name="search_bank">Search Bank…</string>
+    <string name="no_banks">No Banks</string>
 
     <!--Card-->
     <string name="we_accept">We accept</string>

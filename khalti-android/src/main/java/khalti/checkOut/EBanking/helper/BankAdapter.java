@@ -105,21 +105,17 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
             ivBankLogo = itemView.findViewById(R.id.ivBankLogo);
             tvBankLogo = itemView.findViewById(R.id.tvBankLogo);
 
-            flContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    itemClickObservable.onNext(new HashMap<String, String>() {{
-                        put("idx", tvBankId.getText() + "");
-                        put("name", tvBankFullName.getText() + "");
-                        put("icon", tvBankIcon.getText() + "");
-                        put("logo", tvBankLogo.getText() + "");
-                    }});
-                }
-            });
+            flContainer.setOnClickListener(view -> itemClickObservable.onNext(new HashMap<String, String>() {{
+                put("idx", tvBankId.getText() + "");
+                put("name", tvBankFullName.getText() + "");
+                put("icon", tvBankIcon.getText() + "");
+                put("logo", tvBankLogo.getText() + "");
+            }}));
         }
     }
 
-    public void setFilter(String queryText) {
+    public Integer setFilter(String queryText) {
+        Integer count;
         if (queryText.length() > 0) {
             List<BankPojo> filteredBanks = new ArrayList<>();
             for (int i = 0; i < banksBackUp.size(); i++) {
@@ -130,10 +126,13 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
             }
             banks.clear();
             banks.addAll(filteredBanks);
+            count = filteredBanks.size();
         } else {
             banks.clear();
             banks.addAll(banksBackUp);
+            count = -1;
         }
         notifyDataSetChanged();
+        return count;
     }
 }

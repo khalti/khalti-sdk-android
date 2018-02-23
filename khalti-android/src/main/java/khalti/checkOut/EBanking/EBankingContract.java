@@ -26,13 +26,17 @@ public interface EBankingContract {
 
         Observable<CharSequence> setEditTextListener();
 
-        void filterList(String text);
+        Observable<CharSequence> setSearchListener();
+
+        Observable<Integer> filterList(String text);
 
         void flushList();
 
         void toggleSearch(boolean show);
 
         void toggleKeyboard(boolean show);
+
+        void toggleSearchError(boolean show);
 
         void setPresenter(Presenter presenter);
     }

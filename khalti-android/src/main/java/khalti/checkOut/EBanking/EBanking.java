@@ -2,6 +2,7 @@ package khalti.checkOut.EBanking;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TextInputLayout;
@@ -10,7 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.jakewharton.rxbinding.support.v7.widget.RxSearchView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
@@ -36,6 +38,7 @@ import khalti.utils.EmptyUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
 import rx.Observable;
+import rx.subjects.PublishSubject;
 
 public class EBanking extends Fragment implements EBankingContract.View {
 
@@ -48,13 +51,15 @@ public class EBanking extends Fragment implements EBankingContract.View {
     private AppBarLayout appBarLayout;
     private TextInputLayout tilSearch;
     private EditText etSearch;
+    private SearchView svBanks;
+    private android.widget.FrameLayout flSearchBank;
 
     private FragmentActivity fragmentActivity;
     private EBankingContract.Presenter presenter;
     private BankAdapter bankAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.banking, container, false);
         fragmentActivity = getActivity();
         presenter = new EBankingPresenter(this);
@@ -71,6 +76,8 @@ public class EBanking extends Fragment implements EBankingContract.View {
         tilSearch = mainView.findViewById(R.id.tilSearch);
         etSearch = mainView.findViewById(R.id.etSearch);
         tvHeader = mainView.findViewById(R.id.tvHeader);
+        svBanks = mainView.findViewById(R.id.svBank);
+        flSearchBank = mainView.findViewById(R.id.flSearchBank);
 
         presenter.onCreate(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
@@ -86,6 +93,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     @Override
     public void toggleIndented(boolean show) {
         llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
+        pdLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
@@ -121,7 +129,9 @@ public class EBanking extends Fragment implements EBankingContract.View {
         Bundle bundle = new Bundle();
         bundle.putSerializable("data", bankingData);
         contactFormFragment.setArguments(bundle);
-        contactFormFragment.show(getFragmentManager(), contactFormFragment.getTag());
+        if (EmptyUtil.isNotNull(getFragmentManager())) {
+            contactFormFragment.show(getFragmentManager(), contactFormFragment.getTag());
+        }
     }
 
     @Override
@@ -144,8 +154,19 @@ public class EBanking extends Fragment implements EBankingContract.View {
     }
 
     @Override
-    public void filterList(String text) {
-        fragmentActivity.runOnUiThread(() -> bankAdapter.setFilter(text));
+    public Observable<CharSequence> setSearchListener() {
+        return RxSearchView.queryTextChanges(svBanks);
+    }
+
+    @Override
+    public Observable<Integer> filterList(String text) {
+        PublishSubject<Integer> publishSubject = PublishSubject.create();
+        final Integer[] count = new Integer[1];
+        fragmentActivity.runOnUiThread(() -> {
+            count[0] = bankAdapter.setFilter(text);
+            publishSubject.onNext(count[0]);
+        });
+        return publishSubject;
     }
 
     @Override
@@ -159,14 +180,15 @@ public class EBanking extends Fragment implements EBankingContract.View {
         if (show) {
             etSearch.requestFocus();
         }
-        flCloseSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+
+        /*flCloseSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
         tilSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
         tvHeader.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
         flSearch.setEnabled(!show);
 
         android.widget.FrameLayout.LayoutParams lp = (android.widget.FrameLayout.LayoutParams) flSearch.getLayoutParams();
         lp.gravity = show ? Gravity.CENTER_VERTICAL | Gravity.START : Gravity.CENTER_VERTICAL | Gravity.END;
-        flSearch.setLayoutParams(lp);
+        flSearch.setLayoutParams(lp);*/
     }
 
     @Override
@@ -179,6 +201,14 @@ public class EBanking extends Fragment implements EBankingContract.View {
                 inputManager.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
             }
         }
+    }
+
+    @Override
+    public void toggleSearchError(boolean show) {
+        rvList.setVisibility(show ? View.GONE : View.VISIBLE);
+        llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
+        tvMessage.setVisibility(View.VISIBLE);
+        tvMessage.setText(ResourceUtil.getString(fragmentActivity, R.string.no_banks));
     }
 
     @Override
