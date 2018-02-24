@@ -46,7 +46,6 @@ android {
         defaultMethods false
         include 'Debug'
     }
-    buildToolsVersion '26.0.2'
 }
 
 dependencies {

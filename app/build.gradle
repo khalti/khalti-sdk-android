@@ -16,11 +16,9 @@ android {
         minSdkVersion minSdk
         targetSdkVersion targetSdk
         versionName appVersionName
-        renderscriptTargetApi 20
+        renderscriptTargetApi renderScriptTarget
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        renderscriptTargetApi 20
-        renderscriptSupportModeEnabled true
         signingConfig signingConfigs.config
     }
     buildTypes {
@@ -38,7 +36,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '26.0.2'
     productFlavors {
     }
 }
