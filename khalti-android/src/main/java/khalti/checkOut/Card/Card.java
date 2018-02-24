@@ -51,7 +51,7 @@ public class Card extends Fragment implements CardContract.View {
     private Button btnTryAgain;
     private AppBarLayout appBarLayout;
     private SearchView svBanks;
-    private android.widget.FrameLayout flSearchBank;
+    private FrameLayout flSearchBank;
 
     private FragmentActivity fragmentActivity;
     private CardContract.Presenter presenter;

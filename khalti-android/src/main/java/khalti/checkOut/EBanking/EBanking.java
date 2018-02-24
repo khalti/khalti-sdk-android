@@ -50,7 +50,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     private Button btnTryAgain;
     private AppBarLayout appBarLayout;
     private SearchView svBanks;
-    private android.widget.FrameLayout flSearchBank;
+    private FrameLayout flSearchBank;
 
     private FragmentActivity fragmentActivity;
     private EBankingContract.Presenter presenter;

@@ -64,8 +64,6 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
         presenter = new ContactFormPresenter(this);
         presenter.onCreate();
 
-        etContact.setText("9803058366");
-
         return mainView;
     }
 

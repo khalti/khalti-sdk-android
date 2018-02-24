@@ -141,13 +141,13 @@
         </khalti.carbonX.widget.FrameLayout>
     </LinearLayout>
 
-    <FrameLayout
+    <khalti.carbonX.widget.FrameLayout
         android:id="@+id/flSearchBank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:visibility="gone"
-        android:background="#F3F3F3">
+        android:background="#F3F3F3"
+        android:visibility="gone">
 
         <View
             android:layout_width="match_parent"
@@ -158,6 +158,7 @@
         <khalti.carbonX.widget.FrameLayout
             android:layout_width="match_parent"
             android:layout_height="42dp"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/cardPadding"
             android:background="@color/white"
             android:padding="@dimen/cardPadding"
@@ -173,5 +174,5 @@
                 app:queryBackground="@android:color/transparent"
                 app:queryHint="@string/search_bank" />
         </khalti.carbonX.widget.FrameLayout>
-    </FrameLayout>
+    </khalti.carbonX.widget.FrameLayout>
 </android.support.design.widget.CoordinatorLayout>
