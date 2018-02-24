@@ -55,7 +55,7 @@ public class EBankingPresenter implements EBankingContract.Presenter {
                         public void onNext(List<BankPojo> banks) {
                             view.toggleIndented(false);
                             view.setUpList(banks);
-                            view.toggleSearch(banks.size() > 5);
+                            view.toggleSearch(banks.size() > 3);
                             compositeSubscription.add(view.getItemClickObservable()
                                     .subscribe(hashMap -> view.openMobileForm(new BankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
                                             hashMap.get("icon"), config))));
