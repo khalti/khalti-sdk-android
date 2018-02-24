@@ -2,6 +2,7 @@ package khalti.checkOut.Card;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TextInputLayout;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.jakewharton.rxbinding.support.v7.widget.RxSearchView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
@@ -36,6 +39,7 @@ import khalti.utils.EmptyUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
 import rx.Observable;
+import rx.subjects.PublishSubject;
 
 public class Card extends Fragment implements CardContract.View {
 
@@ -46,13 +50,15 @@ public class Card extends Fragment implements CardContract.View {
     private FrameLayout flTryAgain;
     private Button btnTryAgain;
     private AppBarLayout appBarLayout;
+    private SearchView svBanks;
+    private android.widget.FrameLayout flSearchBank;
 
     private FragmentActivity fragmentActivity;
     private CardContract.Presenter presenter;
     private BankAdapter bankAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.banking, container, false);
         fragmentActivity = getActivity();
         presenter = new CardPresenter(this);
@@ -65,8 +71,10 @@ public class Card extends Fragment implements CardContract.View {
         flTryAgain = mainView.findViewById(R.id.flTryAgain);
         btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
         appBarLayout = mainView.findViewById(R.id.appBar);
+        svBanks = mainView.findViewById(R.id.svBank);
+        flSearchBank = mainView.findViewById(R.id.flSearchBank);
 
-        presenter.onCreate(NetworkUtil.isNetworkAvailable(fragmentActivity));
+        presenter.onCreate();
 
         return mainView;
     }
@@ -80,6 +88,7 @@ public class Card extends Fragment implements CardContract.View {
     @Override
     public void toggleIndented(boolean show) {
         llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
+        pdLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
@@ -138,8 +147,37 @@ public class Card extends Fragment implements CardContract.View {
     }
 
     @Override
-    public void filterList(String text) {
-        fragmentActivity.runOnUiThread(() -> bankAdapter.setFilter(text));
+    public Observable<CharSequence> setSearchListener() {
+        return RxSearchView.queryTextChanges(svBanks);
+    }
+
+    @Override
+    public Observable<Integer> filterList(String text) {
+        PublishSubject<Integer> publishSubject = PublishSubject.create();
+        final Integer[] count = new Integer[1];
+        fragmentActivity.runOnUiThread(() -> {
+            count[0] = bankAdapter.setFilter(text);
+            publishSubject.onNext(count[0]);
+        });
+        return publishSubject;
+    }
+
+    @Override
+    public void toggleSearch(boolean show) {
+        flSearchBank.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void toggleSearchError(boolean show) {
+        rvList.setVisibility(show ? View.GONE : View.VISIBLE);
+        llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
+        tvMessage.setVisibility(View.VISIBLE);
+        tvMessage.setText(ResourceUtil.getString(fragmentActivity, R.string.no_banks));
+    }
+
+    @Override
+    public boolean hasNetwork() {
+        return NetworkUtil.isNetworkAvailable(fragmentActivity);
     }
 
     @Override

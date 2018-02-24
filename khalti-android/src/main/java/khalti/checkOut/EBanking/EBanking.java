@@ -72,7 +72,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
         svBanks = mainView.findViewById(R.id.svBank);
         flSearchBank = mainView.findViewById(R.id.flSearchBank);
 
-        presenter.onCreate(NetworkUtil.isNetworkAvailable(fragmentActivity));
+        presenter.onCreate();
 
         return mainView;
     }
@@ -166,6 +166,11 @@ public class EBanking extends Fragment implements EBankingContract.View {
         llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
         tvMessage.setVisibility(View.VISIBLE);
         tvMessage.setText(ResourceUtil.getString(fragmentActivity, R.string.no_banks));
+    }
+
+    @Override
+    public boolean hasNetwork() {
+        return NetworkUtil.isNetworkAvailable(fragmentActivity);
     }
 
     @Override

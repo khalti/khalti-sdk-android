@@ -32,12 +32,14 @@ public interface EBankingContract {
 
         void toggleSearchError(boolean show);
 
+        boolean hasNetwork();
+
         void setPresenter(Presenter presenter);
     }
 
     interface Presenter {
 
-        void onCreate(boolean hasNetwork);
+        void onCreate();
 
         void onDestroy();
     }

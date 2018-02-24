@@ -157,11 +157,11 @@
 
         <khalti.carbonX.widget.FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="42dp"
             android:layout_margin="@dimen/cardPadding"
             android:background="@color/white"
             android:padding="@dimen/cardPadding"
-            khalti:carbonX_cornerRadius="23dp"
+            khalti:carbonX_cornerRadius="21dp"
             khalti:carbonX_elevation="1dp">
 
             <android.support.v7.widget.SearchView

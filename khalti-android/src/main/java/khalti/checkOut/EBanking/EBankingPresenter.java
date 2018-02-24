@@ -32,12 +32,12 @@ public class EBankingPresenter implements EBankingContract.Presenter {
     }
 
     @Override
-    public void onCreate(boolean hasNetwork) {
+    public void onCreate() {
         this.config = Store.getConfig();
         view.toggleIndented(true);
         HashMap<String, Observable<Void>> map = view.setOnClickListener();
-        compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate(hasNetwork)));
-        if (hasNetwork) {
+        compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate()));
+        if (view.hasNetwork()) {
             compositeSubscription.add(eBankingModel.fetchBankList()
                     .subscribe(new Subscriber<List<BankPojo>>() {
                         @Override
@@ -56,6 +56,7 @@ public class EBankingPresenter implements EBankingContract.Presenter {
                             view.toggleIndented(false);
                             view.setUpList(banks);
                             view.toggleSearch(banks.size() > 3);
+
                             compositeSubscription.add(view.getItemClickObservable()
                                     .subscribe(hashMap -> view.openMobileForm(new BankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
                                             hashMap.get("icon"), config))));

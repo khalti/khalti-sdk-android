@@ -27,14 +27,22 @@ public interface CardContract {
 
         HashMap<String, Observable<Void>> setOnClickListener();
 
-        void filterList(String text);
+        Observable<CharSequence> setSearchListener();
+
+        Observable<Integer> filterList(String text);
+
+        void toggleSearch(boolean show);
+
+        void toggleSearchError(boolean show);
+
+        boolean hasNetwork();
 
         void setPresenter(CardContract.Presenter presenter);
     }
 
     interface Presenter {
 
-        void onCreate(boolean hasNetwork);
+        void onCreate();
 
         void onDestroy();
     }
