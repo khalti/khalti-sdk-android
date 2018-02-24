@@ -70,6 +70,11 @@
             app:fontFamily="@font/roboto_medium" />
 
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvBankFullName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvBankId"
             android:layout_width="0dp"
             android:layout_height="0dp" />

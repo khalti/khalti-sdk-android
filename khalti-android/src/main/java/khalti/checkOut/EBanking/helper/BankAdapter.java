@@ -45,12 +45,13 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String shortName = banks.get(position).getShortName();
-        String name = banks.get(position).getName();
         String iconName = StringUtil.getNameIcon(banks.get(position).getName());
 
         holder.tvBankId.setText(banks.get(position).getIdx());
         holder.tvBankLogo.setText(banks.get(position).getLogo());
+        holder.tvBankName.setText(banks.get(position).getShortName());
+        holder.tvBankFullName.setText(banks.get(position).getName());
+
         if (EmptyUtil.isNotNull(banks.get(position).getLogo()) && EmptyUtil.isNotEmpty(banks.get(position).getLogo())) {
             Picasso.with(context)
                     .load(banks.get(position).getLogo())
@@ -61,7 +62,6 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
                             holder.flBankLogo.setVisibility(View.VISIBLE);
                             holder.flBankTextIcon.setVisibility(View.GONE);
                             holder.tvBankIcon.setText(iconName);
-                            holder.tvBankName.setText(shortName);
                         }
 
                         @Override
@@ -69,14 +69,12 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
                             holder.flBankLogo.setVisibility(View.GONE);
                             holder.flBankTextIcon.setVisibility(View.VISIBLE);
                             holder.tvBankIcon.setText(iconName);
-                            holder.tvBankName.setText(name);
                         }
                     });
         } else {
             holder.flBankLogo.setVisibility(View.GONE);
             holder.flBankTextIcon.setVisibility(View.VISIBLE);
             holder.tvBankIcon.setText(iconName);
-            holder.tvBankName.setText(name);
         }
     }
 
@@ -90,7 +88,7 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        AppCompatTextView tvBankName, tvBankId, tvBankIcon, tvBankLogo;
+        AppCompatTextView tvBankName, tvBankFullName, tvBankId, tvBankIcon, tvBankLogo;
         FrameLayout flContainer, flBankTextIcon, flBankLogo;
         ImageView ivBankLogo;
 
@@ -99,6 +97,7 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
 
             tvBankIcon = itemView.findViewById(R.id.tvBankIcon);
             tvBankName = itemView.findViewById(R.id.tvBankName);
+            tvBankFullName = itemView.findViewById(R.id.tvBankFullName);
             tvBankId = itemView.findViewById(R.id.tvBankId);
             flContainer = itemView.findViewById(R.id.flContainer);
             flBankLogo = itemView.findViewById(R.id.flBankLogo);
@@ -108,18 +107,15 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
 
             flContainer.setOnClickListener(view -> itemClickObservable.onNext(new HashMap<String, String>() {{
                 put("idx", tvBankId.getText() + "");
-                put("name", tvBankName.getText() + "");
+                put("name", tvBankFullName.getText() + "");
                 put("icon", tvBankIcon.getText() + "");
                 put("logo", tvBankLogo.getText() + "");
             }}));
         }
     }
 
-    public interface BankControls {
-        void chooseBank(String bankName, String bankId);
-    }
-
-    public void setFilter(String queryText) {
+    public Integer setFilter(String queryText) {
+        Integer count;
         if (queryText.length() > 0) {
             List<BankPojo> filteredBanks = new ArrayList<>();
             for (int i = 0; i < banksBackUp.size(); i++) {
@@ -130,10 +126,13 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
             }
             banks.clear();
             banks.addAll(filteredBanks);
+            count = filteredBanks.size();
         } else {
             banks.clear();
             banks.addAll(banksBackUp);
+            count = -1;
         }
         notifyDataSetChanged();
+        return count;
     }
 }

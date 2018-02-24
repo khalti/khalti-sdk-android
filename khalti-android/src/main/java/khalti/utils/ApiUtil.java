@@ -1,6 +1,5 @@
 package khalti.utils;
 
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -11,12 +10,12 @@ public class ApiUtil {
         return statusCode >= 200 && statusCode <= 299;
     }
 
-    public static String getPostData(HashMap<String, Object> map) {
+    public static String getPostData(HashMap<String, String> map) {
         String postData = "";
         try {
             if (EmptyUtil.isNotNull(map) && EmptyUtil.isNotEmpty(map)) {
-                for (Map.Entry<String, Object> entry : map.entrySet()) {
-                    postData = "&" + URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue()+"", "UTF-8");
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    postData = "&" + URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue() + "", "UTF-8");
                 }
             }
         } catch (UnsupportedEncodingException e) {

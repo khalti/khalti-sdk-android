@@ -27,15 +27,7 @@ public interface CardContract {
 
         HashMap<String, Observable<Void>> setOnClickListener();
 
-        Observable<CharSequence> setEditTextListener();
-
         void filterList(String text);
-
-        void flushList();
-
-        void toggleSearch(boolean show);
-
-        void toggleKeyboard(boolean show);
 
         void setPresenter(CardContract.Presenter presenter);
     }

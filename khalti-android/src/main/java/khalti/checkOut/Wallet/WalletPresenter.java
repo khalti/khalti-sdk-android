@@ -231,6 +231,8 @@ public class WalletPresenter implements WalletContract.Presenter {
                             smsListenerInitialized = true;
                             view.toggleProgressDialog("init", false);
                             view.toggleConfirmationLayout(true);
+                            view.togglePinMessage(walletInitPojo.isPinCreated());
+                            view.setPinMessage(walletInitPojo.getPinCreatedMessage());
                         }
                     }));
         } else {

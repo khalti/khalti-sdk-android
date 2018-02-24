@@ -2,12 +2,15 @@ package khalti.checkOut;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import khalti.checkOut.helper.MerchantPreferencePojo;
 import khalti.rxBus.Event;
 import khalti.rxBus.RxBus;
 import khalti.utils.GuavaUtil;
+import khalti.utils.MerchantUtil;
 import khalti.utils.Store;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
@@ -28,7 +31,6 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
     @Override
     public void onCreate() {
         view.setStatusBarColor();
-//        view.setUpToolbar();
         compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
             if (event.getTag().equals("close_check_out")) {
                 view.closeCheckOut();
@@ -73,10 +75,18 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
                         view.toggleIndented(false);
                         List<String> types = preference.getSdkPosition();
 
-                        view.setupViewPager(types);
-                        view.setUpTabLayout(types);
+                        List<String> uniqueList = new ArrayList<>(new LinkedHashSet<>(types));
+                        if (!uniqueList.contains(MerchantUtil.CARD) && !uniqueList.contains(MerchantUtil.WALLET) && !uniqueList.contains(MerchantUtil.EBANKING)) {
+                            uniqueList.add(MerchantUtil.EBANKING);
+                            uniqueList.add(MerchantUtil.WALLET);
+                            uniqueList.add(MerchantUtil.CARD);
+                        }
+
+                        view.setupViewPager(uniqueList);
+                        view.setUpTabLayout(uniqueList);
                         view.setTabListener();
                     }
                 }));
+
     }
 }

@@ -18,6 +18,10 @@ public interface WalletContract {
 
         void toggleSmsListener(boolean listen);
 
+        void togglePinMessage(boolean show);
+
+        void setPinMessage(String message);
+
         HashMap<String, Observable<CharSequence>> setEditTextListener();
 
         void setEditTextError(String view, String error);

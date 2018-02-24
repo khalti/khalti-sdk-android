@@ -6,9 +6,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
+import khalti.BuildConfig;
 import khalti.checkOut.EBanking.helper.BankingData;
 import khalti.checkOut.api.Config;
 import khalti.utils.ApiUtil;
+import khalti.utils.AppUtil;
 import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
@@ -42,7 +44,9 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
 
     @Override
     public void onDestroy() {
-
+        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
     }
 
     @Override
@@ -61,7 +65,11 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
                             "amount=" + URLEncoder.encode(config.getAmount() + "", "UTF-8") + "&" +
                             "mobile=" + URLEncoder.encode(map.get("mobile") + "", "UTF-8") + "&" +
                             "bank=" + URLEncoder.encode(map.get("bankId") + "", "UTF-8") + "&" +
+                            "is_card_payment=" + true + "&" +
                             "source=android" + "&" +
+                            "checkout_version=" + BuildConfig.VERSION_NAME + "&" +
+                            "checkout_android_version=" + AppUtil.getOsVersion() + "&" +
+                            "checkout_android_api_level=" + AppUtil.getApiLevel() + "&" +
                             "return_url=" + URLEncoder.encode(view.getPackageName(), "UTF-8");
 
                     if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {

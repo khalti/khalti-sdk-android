@@ -19,6 +19,7 @@ import retrofit2.http.Url;
 import rx.Observable;
 
 public interface KhaltiApi {
+
     @GET
     Observable<Response<BaseListPojo>> getBanks(@Url String url, @QueryMap Map<String, Object> queryMap);
 

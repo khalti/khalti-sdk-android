@@ -39,15 +39,6 @@ class CardPresenter implements CardContract.Presenter {
         view.toggleIndented(true);
         HashMap<String, Observable<Void>> map = view.setOnClickListener();
         compositeSubscription.add(map.get("try_again").subscribe(aVoid -> onCreate(hasNetwork)));
-        compositeSubscription.add(map.get("open_search").subscribe(aVoid -> {
-            view.toggleSearch(true);
-            view.toggleKeyboard(true);
-        }));
-        compositeSubscription.add(map.get("close_search").subscribe(aVoid -> {
-            view.toggleSearch(false);
-            view.toggleKeyboard(false);
-            view.flushList();
-        }));
         if (hasNetwork) {
             compositeSubscription.add(model.fetchBankList()
                     .subscribe(new Subscriber<List<BankPojo>>() {
@@ -59,7 +50,7 @@ class CardPresenter implements CardContract.Presenter {
                         @Override
                         public void onError(Throwable e) {
                             view.showIndentedError(e.getMessage());
-                            config.getOnCheckOutListener().onError(ErrorAction.FETCH_BANK_LIST.getAction(), e.getMessage());
+                            config.getOnCheckOutListener().onError(ErrorAction.FETCH_CARD_BANK_LIST.getAction(), e.getMessage());
                         }
 
                         @Override
@@ -69,9 +60,6 @@ class CardPresenter implements CardContract.Presenter {
                             compositeSubscription.add(view.getItemClickObservable()
                                     .subscribe(hashMap -> view.openMobileForm(new BankingData(hashMap.get("idx"), hashMap.get("name"), hashMap.get("logo"),
                                             hashMap.get("icon"), config))));
-                            compositeSubscription.add(view.setEditTextListener()
-                                    .debounce(500, TimeUnit.MILLISECONDS)
-                                    .subscribe(charSequence -> view.filterList(charSequence + "")));
                         }
                     }));
         } else {

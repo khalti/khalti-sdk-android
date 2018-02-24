@@ -42,12 +42,10 @@ public class Card extends Fragment implements CardContract.View {
     private RecyclerView rvList;
     private LinearLayout llIndented, llCardBranding;
     private ProgressBar pdLoad;
-    private AppCompatTextView tvMessage, tvHeader;
-    private FrameLayout flTryAgain, flCloseSearch, flSearch;
+    private AppCompatTextView tvMessage;
+    private FrameLayout flTryAgain;
     private Button btnTryAgain;
     private AppBarLayout appBarLayout;
-    private TextInputLayout tilSearch;
-    private EditText etSearch;
 
     private FragmentActivity fragmentActivity;
     private CardContract.Presenter presenter;
@@ -65,13 +63,8 @@ public class Card extends Fragment implements CardContract.View {
         pdLoad = mainView.findViewById(R.id.pdLoad);
         tvMessage = mainView.findViewById(R.id.tvMessage);
         flTryAgain = mainView.findViewById(R.id.flTryAgain);
-        flCloseSearch = mainView.findViewById(R.id.flCloseSearch);
-        flSearch = mainView.findViewById(R.id.flSearch);
         btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
         appBarLayout = mainView.findViewById(R.id.appBar);
-        tilSearch = mainView.findViewById(R.id.tilSearch);
-        etSearch = mainView.findViewById(R.id.etSearch);
-        tvHeader = mainView.findViewById(R.id.tvHeader);
 
         presenter.onCreate(NetworkUtil.isNetworkAvailable(fragmentActivity));
 
@@ -127,7 +120,9 @@ public class Card extends Fragment implements CardContract.View {
         Bundle bundle = new Bundle();
         bundle.putSerializable("data", bankingData);
         contactFormFragment.setArguments(bundle);
-        contactFormFragment.show(getFragmentManager(), contactFormFragment.getTag());
+        if (EmptyUtil.isNotNull(getFragmentManager())) {
+            contactFormFragment.show(getFragmentManager(), contactFormFragment.getTag());
+        }
     }
 
     @Override
@@ -139,52 +134,12 @@ public class Card extends Fragment implements CardContract.View {
     public HashMap<String, Observable<Void>> setOnClickListener() {
         return new HashMap<String, Observable<Void>>() {{
             put("try_again", RxView.clicks(btnTryAgain));
-            put("open_search", RxView.clicks(flSearch));
-            put("close_search", RxView.clicks(flCloseSearch));
         }};
-    }
-
-    @Override
-    public Observable<CharSequence> setEditTextListener() {
-        return RxTextView.textChanges(etSearch);
     }
 
     @Override
     public void filterList(String text) {
         fragmentActivity.runOnUiThread(() -> bankAdapter.setFilter(text));
-    }
-
-    @Override
-    public void flushList() {
-        etSearch.setText("");
-        bankAdapter.setFilter("");
-    }
-
-    @Override
-    public void toggleSearch(boolean show) {
-        if (show) {
-            etSearch.requestFocus();
-        }
-        flCloseSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        tilSearch.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        tvHeader.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
-        flSearch.setEnabled(!show);
-
-        android.widget.FrameLayout.LayoutParams lp = (android.widget.FrameLayout.LayoutParams) flSearch.getLayoutParams();
-        lp.gravity = show ? Gravity.CENTER_VERTICAL | Gravity.START : Gravity.CENTER_VERTICAL | Gravity.END;
-        flSearch.setLayoutParams(lp);
-    }
-
-    @Override
-    public void toggleKeyboard(boolean show) {
-        InputMethodManager inputManager = (InputMethodManager) fragmentActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (EmptyUtil.isNotNull(inputManager)) {
-            if (show) {
-                inputManager.showSoftInput(etSearch, InputMethodManager.SHOW_IMPLICIT);
-            } else {
-                inputManager.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
-            }
-        }
     }
 
     @Override

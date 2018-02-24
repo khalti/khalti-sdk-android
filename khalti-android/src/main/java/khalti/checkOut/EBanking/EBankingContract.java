@@ -24,15 +24,13 @@ public interface EBankingContract {
 
         HashMap<String, Observable<Void>> setOnClickListener();
 
-        Observable<CharSequence> setEditTextListener();
+        Observable<CharSequence> setSearchListener();
 
-        void filterList(String text);
-
-        void flushList();
+        Observable<Integer> filterList(String text);
 
         void toggleSearch(boolean show);
 
-        void toggleKeyboard(boolean show);
+        void toggleSearchError(boolean show);
 
         void setPresenter(Presenter presenter);
     }

@@ -6,21 +6,16 @@
     <string name="action_search">Search</string>
     <string name="please_wait">Please wait</string>
     <string name="generic_error">Something went wrong</string>
-    <string name="sms_info">Khalti has sent a confirmation code in your Khalti registered number. Enter the confirmation code below</string>
+    <string name="code_sms_info">Khalti has sent a confirmation code in your Khalti registered number. Enter the confirmation code below</string>
+    <string name="pin_sms_info">Your third party transaction pin has been generated and sent to your mobile number. Enter the PIN below</string>
+    <string name="sms_info">Enter the PIN below</string>
     <string name="slogan">पैसा को नयाँ ठेगाना</string>
-
-    <!--Font Icons-->
-    <string name="account_box"></string>
-    <string name="lock"></string>
-    <string name="close"></string>
-    <string name="caret_down"></string>
-    <string name="building"></string>
 
     <!--Component Button-->
     <string name="pay">PAY</string>
 
     <!--Network Error-->
-    <string name="network_error_body">No Internet detected. Please check your internet connection</string>
+    <string name="network_error_body">No Internet detected.\nPlease check your internet connection.</string>
 
     <!--Data fetch error-->
     <string name="fetch_error">Some information could not be fetched. Please try again.</string>
@@ -37,10 +32,10 @@
     <string name="check_out_title">One app payment solution</string>
     <string name="eBanking">E-Banking</string>
     <string name="wallet">Wallet</string>
-    <string name="card">Card</string>
+    <string name="card">Debit/Credit Card</string>
 
     <!--Form-->
-    <string name="mobile_hint">Mobile Number</string>
+    <string name="mobile_hint">Khalti Mobile Number</string>
     <string name="contact_hint">Contact Number</string>
     <string name="code_hint">Confirmation Code</string>
     <string name="pin_hint">PIN (4 Digits)</string>
@@ -59,7 +54,8 @@
 
     <!--E Banking-->
     <string name="loading_bank">Loading Bank</string>
-    <string name="search_bank">Search Bank</string>
+    <string name="search_bank">Search Bank…</string>
+    <string name="no_banks">No Banks</string>
 
     <!--Card-->
     <string name="we_accept">We accept</string>

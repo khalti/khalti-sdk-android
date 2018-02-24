@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:paddingLeft="@dimen/cardPadding"
-    android:paddingRight="@dimen/cardPadding">
+    android:paddingLeft="@dimen/editTextPadding"
+    android:paddingRight="@dimen/editTextPadding">
 
     <ImageView
         android:id="@+id/ivIcon"

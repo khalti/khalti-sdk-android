@@ -20,6 +20,6 @@
     <dimen name="carbonX_elevationButton">2dp</dimen>
     <dimen name="carbonX_buttonWidth">150dp</dimen>
     <dimen name="carbonX_buttonWidth1">250dp</dimen>
-    <dimen name="carbonX_buttonHeight">50dp</dimen>
+    <dimen name="carbonX_buttonHeight">52dp</dimen>
     <dimen name="carbonX_textSizeButton">14sp</dimen>
 </resources>
