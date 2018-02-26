@@ -41,7 +41,6 @@ android {
         options.addStringOption('charSet', 'UTF-8')
     }
 
-
     retrolambda {
         defaultMethods false
         include 'Debug'
@@ -89,6 +88,8 @@ dependencies {
     /*RxBinding*/
     implementation rx.rxBinding
     implementation rx.rxAppCompatBinding
+
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.3'
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/
