@@ -1,7 +1,13 @@
 package khalti.checkOut.Wallet;
 
 
+import java.util.HashMap;
+
+import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
+import khalti.checkOut.Wallet.helper.WalletInitPojo;
+import khalti.checkOut.api.Config;
 import khalti.rxBus.Event;
+import rx.Observable;
 
 public interface WalletContract {
     interface View {
@@ -12,15 +18,25 @@ public interface WalletContract {
 
         void toggleSmsListener(boolean listen);
 
-        void setEditTextListener();
+        void togglePinMessage(boolean show);
+
+        void setPinMessage(String message);
+
+        void setMobile(String mobile);
+
+        HashMap<String, Observable<CharSequence>> setEditTextListener();
 
         void setEditTextError(String view, String error);
 
         void setButtonText(String text);
 
-        void setButtonClickListener();
+        Observable<Void> setButtonClickListener();
+
+        Observable<Void> setImageClickListener();
 
         void setConfirmationCode(String code);
+
+        void setConfirmationLayoutHeight(String view);
 
         void showNetworkError();
 
@@ -40,16 +56,32 @@ public interface WalletContract {
 
         String getMessage(String action);
 
-        void setListener(Listener listener);
+        boolean hasSmsReceiptPermission();
+
+        void askSmsReceiptPermission();
+
+        boolean hasNetwork();
+
+        String getPayButtonText();
+
+        HashMap<String, String> getFormData();
+
+        void showSlogan();
+
+        void showBranding();
+
+        void setPresenter(Presenter presenter);
     }
 
-    interface Listener {
+    interface Presenter {
 
-        void setUpLayout();
+        void onCreate();
+
+        void onDestroy();
+
+        void onSmsReceiptPermitted();
 
         void setConfirmationCode(Event event);
-
-        void toggleConfirmationLayout(boolean show);
 
         void toggleSmsListener(boolean listen);
 
@@ -68,6 +100,15 @@ public interface WalletContract {
         void confirmPayment(boolean isNetwork, String confirmationCode, String transactionPin);
 
         void updateConfirmationHeight();
+
+        void unSubscribe();
+    }
+
+    interface Model {
+
+        Observable<WalletInitPojo> initiatePayment(String mobile, Config config);
+
+        Observable<WalletConfirmPojo> confirmPayment(String confirmationCode, String transactionPIN);
 
         void unSubscribe();
     }

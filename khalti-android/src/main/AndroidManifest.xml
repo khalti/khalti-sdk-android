@@ -46,17 +46,23 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
+                    android:host="192.168.1.118"
+                    android:pathPattern="/.*"
+                    android:scheme="http" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
                     android:host="ebanking"
                     android:pathPattern="/.*"
                     android:scheme="khalti" />
 
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="khalti.checkOut.EBanking.chooseBank.BankChooserActivity"
-            android:label="@string/blank"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.khalti" />
     </application>
 </manifest>

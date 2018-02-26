@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cdlMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/alTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
+        android:visibility="gone"
         app:elevation="0dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -24,54 +27,23 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/toolbarHeight"
                 android:background="@color/white"
                 android:minHeight="@dimen/toolbarHeight"
+                android:visibility="gone"
                 app:elevation="0dp"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="72dp"
-                    android:layout_marginEnd="72dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/ivIcon"
-                        android:layout_width="180dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@null"
-                        app:srcCompat="@drawable/khalti_full_logo" />
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="22dp"
-                        android:layout_marginBottom="@dimen/singleBottomMargin"
-                        android:layout_marginTop="@dimen/singleBottomMargin">
-
-                        <android.support.v7.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/check_out_title"
-                            android:textColor="@color/primaryText"
-                            android:textSize="@dimen/body"
-                            app:fontFamily="@font/roboto" />
-                    </FrameLayout>
-                </LinearLayout>
-            </android.support.v7.widget.Toolbar>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tlTitle"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/toolbarHeight"
+            android:layout_gravity="center"
             android:background="@color/white"
             app:elevation="0dp"
+            app:tabGravity="center"
             app:tabIndicatorColor="@color/khaltiAccentAlt" />
 
         <View
@@ -81,9 +53,78 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpContent"
+    <FrameLayout
+        android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--<View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/toolbar_shadow" />-->
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/llIndented"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <khalti.carbonX.widget.ProgressBar
+            android:id="@+id/pdLoad"
+            android:layout_width="150dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/cardPadding"
+            android:layout_marginLeft="@dimen/globalPadding"
+            android:layout_marginRight="@dimen/globalPadding"
+            android:background="@color/disabled"
+            khalti:carbonX_progressStyle="bar_indeterminate"
+            khalti:carbonX_tint="@color/khaltiPrimary" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:text="@string/empty"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/body"
+            android:visibility="gone"
+            app:fontFamily="@font/roboto" />
+
+        <khalti.carbonX.widget.FrameLayout
+            android:id="@+id/flTryAgain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/globalPadding"
+            android:visibility="gone">
+
+            <khalti.carbonX.widget.Button
+                android:id="@+id/btnTryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/carbonX_buttonHeight"
+                android:minHeight="@dimen/carbonX_buttonHeight"
+                android:minWidth="@dimen/carbonX_buttonWidth"
+                android:text="@string/try_again"
+                android:textAppearance="@style/carbonX_TextAppearance.Button.Dark"
+                app:carbonX_backgroundTint="@color/khaltiPrimary"
+                app:carbonX_cornerRadius="2dp"
+                app:carbonX_elevation="2dp"
+                app:carbonX_rippleColor="@color/defaultRipple"
+                app:carbonX_textAllCaps="true" />
+        </khalti.carbonX.widget.FrameLayout>
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

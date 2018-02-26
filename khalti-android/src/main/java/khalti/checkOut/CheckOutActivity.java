@@ -2,8 +2,10 @@ package khalti.checkOut;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,33 +15,43 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.jakewharton.rxbinding.view.RxView;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
-import khalti.checkOut.EBanking.EBanking;
-import khalti.checkOut.Wallet.Wallet;
-import khalti.rxBus.Event;
-import khalti.rxBus.RxBus;
+import khalti.carbonX.widget.Button;
+import khalti.carbonX.widget.ProgressBar;
 import khalti.utils.EmptyUtil;
+import khalti.utils.MerchantUtil;
+import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
 import khalti.utils.UserInterfaceUtil;
 import khalti.utils.ViewPagerAdapter;
-import rx.subscriptions.CompositeSubscription;
+import rx.Observable;
 
 public class CheckOutActivity extends AppCompatActivity implements CheckOutContract.View {
 
     private TabLayout tlTitle;
     private ViewPager vpContent;
+    private AppBarLayout alTab;
+    private FrameLayout flContainer;
+    private ProgressBar pdLoad;
     public CoordinatorLayout cdlMain;
     public Toolbar toolbar;
+    private LinearLayout llIndented;
+    private AppCompatTextView tvMessage;
+    private khalti.carbonX.widget.FrameLayout flTryAgain;
+    private Button btnTryAgain;
 
-    private CheckOutContract.Listener listener;
+    private CheckOutContract.Presenter presenter;
     private List<TabLayout.Tab> tabs = new ArrayList<>();
-    CompositeSubscription compositeSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,83 +59,128 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         setContentView(R.layout.payment_activity);
 
         tlTitle = findViewById(R.id.tlTitle);
+        alTab = findViewById(R.id.alTab);
+        flContainer = findViewById(R.id.flContainer);
+        pdLoad = findViewById(R.id.pdLoad);
         vpContent = findViewById(R.id.vpContent);
         cdlMain = findViewById(R.id.cdlMain);
+        llIndented = findViewById(R.id.llIndented);
+        tvMessage = findViewById(R.id.tvMessage);
+        flTryAgain = findViewById(R.id.flTryAgain);
+        btnTryAgain = findViewById(R.id.btnTryAgain);
 
-        compositeSubscription = new CompositeSubscription();
-        compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
-            if (event.getTag().equals("close_check_out")) {
-                finish();
-            }
-        }));
-        listener = new CheckOutPresenter(this);
-        listener.setUpLayout();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
+        presenter = new CheckOutPresenter(this);
+        presenter.onCreate();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (EmptyUtil.isNotNull(compositeSubscription) && !compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.unsubscribe();
-        }
-        listener.dismissAllDialogs();
+        presenter.onDestroy();
     }
 
     @Override
-    public void setupViewPager() {
+    public void toggleIndented(boolean show) {
+        llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
+        pdLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        alTab.setVisibility(!show ? View.VISIBLE : View.GONE);
+        vpContent.setVisibility(!show ? View.VISIBLE : View.GONE);
+        tvMessage.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    @Override
+    public void showIndentedNetworkError() {
+        alTab.setVisibility(View.GONE);
+        llIndented.setVisibility(View.VISIBLE);
+        pdLoad.setVisibility(View.INVISIBLE);
+        flTryAgain.setVisibility(View.INVISIBLE);
+        tvMessage.setVisibility(View.VISIBLE);
+        tvMessage.setText(ResourceUtil.getString(this, R.string.network_error_body));
+    }
+
+    @Override
+    public void showIndentedError(String error) {
+        alTab.setVisibility(View.GONE);
+        llIndented.setVisibility(View.VISIBLE);
+        pdLoad.setVisibility(View.INVISIBLE);
+        flTryAgain.setVisibility(View.VISIBLE);
+        tvMessage.setVisibility(View.VISIBLE);
+        tvMessage.setText(error);
+    }
+
+    @Override
+    public Observable<Void> setTryAgainClickListener() {
+        return RxView.clicks(btnTryAgain);
+    }
+
+    @Override
+    public void setupViewPager(List<String> types) {
+        alTab.setVisibility(View.VISIBLE);
+        flContainer.setVisibility(View.VISIBLE);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFrag(new EBanking(), ResourceUtil.getString(this, R.string.eBanking));
-        viewPagerAdapter.addFrag(new Wallet(), ResourceUtil.getString(this, R.string.wallet));
-        vpContent.setAdapter(viewPagerAdapter);
 
+        for (String s : types) {
+            HashMap<String, Object> map = MerchantUtil.getTab(s.toLowerCase());
+            if (EmptyUtil.isNotNull(map)) {
+                viewPagerAdapter.addFrag((Fragment) map.get("fragment"), map.get("title") + "");
+            }
+        }
+
+        vpContent.setAdapter(viewPagerAdapter);
+        vpContent.setOffscreenPageLimit(viewPagerAdapter.getCount());
         tlTitle.setupWithViewPager(vpContent);
+        if (viewPagerAdapter.getCount() > 2) {
+            tlTitle.setTabMode(TabLayout.MODE_SCROLLABLE);
+        } else {
+            tlTitle.setTabMode(TabLayout.MODE_FIXED);
+        }
     }
 
     @Override
-    public void setUpTabLayout() {
-        LinearLayout eBankingTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        AppCompatTextView tvETitle = eBankingTab.findViewById(R.id.tvTitle);
-        ImageView ivEIcon = eBankingTab.findViewById(R.id.ivIcon);
+    public void setUpTabLayout(List<String> types) {
+        alTab.setVisibility(View.VISIBLE);
+        int position = 0;
+        for (String s : types) {
+            int color;
+            HashMap<String, Object> map = MerchantUtil.getTab(s.toLowerCase());
+            if (EmptyUtil.isNotNull(map)) {
+                if (position == 0) {
+                    color = ResourceUtil.getColor(this, R.color.khaltiAccentAlt);
+                } else {
+                    color = ResourceUtil.getColor(this, R.color.khaltiPrimary);
+                }
 
-        tvETitle.setText(ResourceUtil.getString(this, R.string.eBanking));
-        tvETitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        ivEIcon.setImageResource(R.drawable.ic_account_balance_black_48px);
-        DrawableCompat.setTint(ivEIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiAccentAlt));
-        tlTitle.getTabAt(0).setCustomView(eBankingTab);
+                LinearLayout llTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
+                AppCompatTextView tvETitle = llTab.findViewById(R.id.tvTitle);
+                ImageView ivEIcon = llTab.findViewById(R.id.ivIcon);
 
-        LinearLayout walletTab = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false);
-        AppCompatTextView tvWTitle = walletTab.findViewById(R.id.tvTitle);
-        ImageView ivWIcon = walletTab.findViewById(R.id.ivIcon);
+                tvETitle.setText((String) map.get("title"));
+                tvETitle.setTextColor(color);
+                ivEIcon.setImageResource((Integer) map.get("icon"));
+                DrawableCompat.setTint(ivEIcon.getDrawable(), color);
+                TabLayout.Tab tab = tlTitle.getTabAt(position);
+                if (EmptyUtil.isNotNull(tab)) {
+                    tab.setCustomView(llTab);
+                }
+                tabs.add(tab);
 
-        tvWTitle.setText(ResourceUtil.getString(this, R.string.wallet));
-        tvWTitle.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        ivWIcon.setImageResource(R.drawable.ic_account_balance_wallet_black_48px);
-        DrawableCompat.setTint(ivWIcon.getDrawable(), ResourceUtil.getColor(this, R.color.khaltiPrimary));
-        tlTitle.getTabAt(1).setCustomView(walletTab);
+                position++;
+            }
+        }
+    }
 
-        tabs.add(tlTitle.getTabAt(0));
-        tabs.add(tlTitle.getTabAt(1));
-
+    @Override
+    public void setTabListener() {
         tlTitle.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 vpContent.setCurrentItem(tab.getPosition());
-                listener.toggleTab(tab.getPosition(), true);
+                presenter.onTabSelected(tab.getPosition(), true);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                listener.toggleTab(tab.getPosition(), false);
+                presenter.onTabSelected(tab.getPosition(), false);
             }
 
             @Override
@@ -131,18 +188,6 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
 
             }
         });
-    }
-
-    @Override
-    public void setUpToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24px);
-        }
     }
 
     @Override
@@ -183,8 +228,18 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setListener(CheckOutContract.Listener listener) {
-        this.listener = listener;
+    public boolean hasNetwork() {
+        return NetworkUtil.isNetworkAvailable(this);
+    }
+
+    @Override
+    public void closeCheckOut() {
+        finish();
+    }
+
+    @Override
+    public void setPresenter(CheckOutContract.Presenter presenter) {
+        this.presenter = presenter;
     }
 
     @Override

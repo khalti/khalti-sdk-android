@@ -1,6 +1,6 @@
 ext {
 
-    supportVersion = '26.1.0'
+    supportVersion = '27.0.2'
 
     supportLibrary = [
             appCompat   : "com.android.support:appcompat-v7:${supportVersion}",
@@ -10,22 +10,24 @@ ext {
     ]
 
     nineDroidVersion = '2.4.0'
-    butterKnifeVersion = '8.4.0'
-    gsonVersion = '2.7'
+    butterKnifeVersion = '8.8.0'
+    gsonVersion = '2.8.2'
+    picassoVersion = '2.5.2'
 
     ui = [
-            nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}"
+            nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}",
+            picasso          : "com.squareup.picasso:picasso:${picassoVersion}"
     ]
 
     serialization = [
             gson: "com.google.code.gson:gson:${gsonVersion}"
     ]
 
-    retrofitVersion = '2.0.2'
-    retrofitConverterVersion = '2.0.0'
-    okhttpLoggingInterceptorVersion = '3.0.1'
-    okhttpUrlConnectionVersion = '2.0.0'
-    okhttpVersion = '3.2.0'
+    retrofitVersion = '2.3.0'
+    retrofitConverterVersion = '2.3.0'
+    okhttpLoggingInterceptorVersion = '3.9.1'
+    okhttpUrlConnectionVersion = '2.7.5'
+    okhttpVersion = '3.9.1'
     httpClientVersion = '4.1.2'
 
     network = [
@@ -41,11 +43,15 @@ ext {
     rxVersion = '1.1.0'
     rxAndroidVersion = '1.2.1'
     rxPermissionVersion = '0.9.3@aar'
+    rxBinding = '1.0.1'
+    rxAppCompatBindingVersion = "1.0.1"
 
     rx = [
-            rxjava       : "io.reactivex:rxjava:${rxVersion}",
-            rxandroid    : "io.reactivex:rxandroid:${rxAndroidVersion}",
-            rxpermissions: "com.tbruyelle.rxpermissions:rxpermissions:${rxPermissionVersion}"
+            rxjava            : "io.reactivex:rxjava:${rxVersion}",
+            rxandroid         : "io.reactivex:rxandroid:${rxAndroidVersion}",
+            rxpermissions     : "com.tbruyelle.rxpermissions:rxpermissions:${rxPermissionVersion}",
+            rxBinding         : "com.jakewharton.rxbinding:rxbinding:${rxBinding}",
+            rxAppCompatBinding: "com.jakewharton.rxbinding:rxbinding-appcompat-v7:${rxAppCompatBindingVersion}"
     ]
 
     junitVersion = '4.12'

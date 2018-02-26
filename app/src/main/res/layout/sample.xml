@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg">
 
     <LinearLayout
+        android:id="@+id/llContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/globalPadding"
@@ -74,6 +76,35 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             khalti:button_style="eBanking_light"
             khalti:text="Pay Rs 200" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:background="@color/disabled" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/globalPadding"
+            android:text="Click below for more examples"
+            android:textSize="@dimen/body" />
+
+        <khalti.carbonX.widget.Button
+            android:id="@+id/btnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingLeft="@dimen/globalPadding"
+            android:paddingRight="@dimen/globalPadding"
+            android:text="More"
+            android:textAllCaps="true"
+            android:textColor="@color/khaltiPrimary"
+            android:textSize="@dimen/body"
+            android:textStyle="bold"
+            app:carbonX_rippleColor="@color/khaltiPrimary" />
     </LinearLayout>
 </ScrollView>
 

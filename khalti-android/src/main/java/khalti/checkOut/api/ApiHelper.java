@@ -5,11 +5,14 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import khalti.BuildConfig;
 import khalti.utils.ApiUtil;
+import khalti.utils.AppUtil;
 import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ErrorUtil;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -17,9 +20,9 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Subscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
 public class ApiHelper {
     private static final int TIME_OUT = 30;
@@ -33,6 +36,15 @@ public class ApiHelper {
         okhttp3.OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .addInterceptor(chain -> {
+                    Request request = chain.request().newBuilder()
+                            .addHeader("checkout-version", BuildConfig.VERSION_NAME)
+                            .addHeader("checkout-source", "android")
+                            .addHeader("checkout-android-version", AppUtil.getOsVersion())
+                            .addHeader("checkout-android-api-level", AppUtil.getApiLevel() + "")
+                            .build();
+                    return chain.proceed(request);
+                })
                 .addInterceptor(interceptor)
                 .build();
 
@@ -46,17 +58,18 @@ public class ApiHelper {
         return retrofit.create(KhaltiApi.class);
     }
 
-    public <T> Subscription callApi(Observable<Response<T>> observable, ApiCallback callback) {
-        return observable
+    public <T> Observable<Object> callApi(Observable<Response<T>> observable) {
+        PublishSubject<Object> ps = PublishSubject.create();
+        observable
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<T>>() {
                     @Override
                     public void onCompleted() {
                         if (ApiUtil.isSuccessFul(HTTP_STATUS_CODE)) {
-                            callback.onComplete();
+                            ps.onCompleted();
                         } else {
-                            callback.onError(ErrorUtil.parseError(HTTP_ERROR));
+                            ps.onError(new Throwable(ErrorUtil.parseError(HTTP_ERROR)));
                         }
                     }
 
@@ -65,14 +78,14 @@ public class ApiHelper {
                         if (EmptyUtil.isNotNull(e)) {
                             e.printStackTrace();
                         }
-                        callback.onError(EmptyUtil.isNotNull(e) ? e.getMessage() : ErrorUtil.parseError(""));
+                        ps.onError(EmptyUtil.isNotNull(e) ? e : new Throwable(ErrorUtil.parseError("")));
                     }
 
                     @Override
                     public void onNext(Response<T> response) {
                         HTTP_STATUS_CODE = response.code();
                         if (response.isSuccessful()) {
-                            callback.onNext(response.body());
+                            ps.onNext(response.body());
                         } else {
                             try {
                                 HTTP_ERROR = new String(response.errorBody().bytes());
@@ -82,6 +95,7 @@ public class ApiHelper {
                         }
                     }
                 });
+        return ps;
     }
 
     public interface ApiCallback {

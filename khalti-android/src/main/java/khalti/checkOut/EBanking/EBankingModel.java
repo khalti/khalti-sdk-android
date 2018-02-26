@@ -1,70 +1,65 @@
 package khalti.checkOut.EBanking;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import khalti.checkOut.EBanking.chooseBank.BankPojo;
+import khalti.checkOut.EBanking.helper.BankPojo;
+import khalti.checkOut.EBanking.helper.BaseListPojo;
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.KhaltiApi;
-import rx.Subscription;
+import khalti.utils.EmptyUtil;
+import rx.Observable;
+import rx.Subscriber;
+import rx.subjects.PublishSubject;
+import rx.subscriptions.CompositeSubscription;
 
-public class EBankingModel {
+class EBankingModel implements EBankingContract.Model {
     private KhaltiApi khaltiService;
-    private List<BankPojo> bankList;
+    private CompositeSubscription compositeSubscription;
 
-    public EBankingModel() {
+    EBankingModel() {
         khaltiService = ApiHelper.apiBuilder();
+        compositeSubscription = new CompositeSubscription();
     }
 
     public EBankingModel(KhaltiApi mockedKhaltiService) {
         khaltiService = mockedKhaltiService;
+        compositeSubscription = new CompositeSubscription();
     }
 
-    public Subscription fetchBankList(BankAction bankAction) {
-        String url = "api/bank/";
-        return new ApiHelper().callApi(khaltiService.getBanks(url, 1, 100, true), new ApiHelper.ApiCallback() {
-            @Override
-            public void onComplete() {
-                if (bankList.size() > 5) {
-                    bankAction.onCompleted(bankList);
-                } else {
-                    bankAction.onCompleted(getSimpleBankList(bankList));
-                }
-            }
+    @Override
+    public Observable<List<BankPojo>> fetchBankList() {
+        PublishSubject<List<BankPojo>> bankObservable = PublishSubject.create();
+        compositeSubscription.add(new ApiHelper().callApi(khaltiService.getBanks("/api/bank/", new HashMap<String, Object>() {{
+            put("page", 1);
+            put("page_size", 100);
+            put("has_ebanking", true);
+        }}))
+                .map(o -> ((BaseListPojo) o).getRecords())
+                .subscribe(new Subscriber<List<BankPojo>>() {
+                    @Override
+                    public void onCompleted() {
 
-            @Override
-            public void onError(String errorMessage) {
-                bankAction.onError(errorMessage);
-            }
+                    }
 
-            @Override
-            public void onNext(Object o) {
-                bankList = ((BaseListPojo) o).getRecords();
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        bankObservable.onError(e);
+                    }
+
+                    @Override
+                    public void onNext(List<BankPojo> o) {
+                        bankObservable.onNext(o);
+                    }
+                }));
+        return bankObservable;
     }
 
-    public interface BankAction {
-        void onCompleted(Object bankList);
-
-        void onError(String message);
-    }
-
-    private HashMap<?, ?> getSimpleBankList(List<BankPojo> banks) {
-        HashMap<String, List<String>> map = new HashMap<>();
-        List<String> names = new ArrayList<>();
-        List<String> idxes = new ArrayList<>();
-
-        for (BankPojo bank : banks) {
-            names.add(bank.getName());
-            idxes.add(bank.getIdx());
+    @Override
+    public void unSubscribe() {
+        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
         }
-
-        map.put("name", names);
-        map.put("idx", idxes);
-
-        return map;
     }
 }

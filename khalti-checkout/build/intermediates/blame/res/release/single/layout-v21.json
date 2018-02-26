@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/f65bda2287baea58008553fdb07b96a4a260fe48/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/f65bda2287baea58008553fdb07b96a4a260fe48/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/f65bda2287baea58008553fdb07b96a4a260fe48/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/janakitechnology/workspace/khalti/khalti-android/khalti-checkout/build/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/janakitechnology/.android/build-cache/f65bda2287baea58008553fdb07b96a4a260fe48/output/res/layout-v21/notification_template_custom_big.xml"
+    }
+]

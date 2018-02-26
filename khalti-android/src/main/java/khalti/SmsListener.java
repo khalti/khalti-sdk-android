@@ -43,7 +43,7 @@ public class SmsListener extends BroadcastReceiver {
                 String sender = smsMessage.getOriginatingAddress();
                 String msg = smsMessage.getMessageBody();
 
-                if (allowedSenders.contains(sender)) {
+                if (allowedSenders.contains(sender) && msg.toLowerCase().contains("confirm") && msg.toLowerCase().contains("payment")) {
                     RxBus.getInstance().post("wallet_code", msg);
                 }
             }

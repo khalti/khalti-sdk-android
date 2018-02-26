@@ -18,10 +18,10 @@ interface PayContract {
 
         void destroyCheckOut();
 
-        void setListener(Listener listener);
+        void setPresenter(Presenter presenter);
     }
 
-    interface Listener {
+    interface Presenter {
 
         String checkConfig(Config config);
 

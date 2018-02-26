@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="com_google_android_gms_fonts_certs">
+        <item>@array/com_google_android_gms_fonts_certs_dev</item>
+        <item>@array/com_google_android_gms_fonts_certs_prod</item>
+    </array>
+    <string-array name="com_google_android_gms_fonts_certs_dev">
+        <item>
+            MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajtWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacKhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/cVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0cxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGapIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZnOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAWPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITEI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=
+        </item>
+    </string-array>
+    <string-array name="com_google_android_gms_fonts_certs_prod">
+        <item>
+            MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEzMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtWLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKkedxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjAsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/CxURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJEqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/Tgt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/yzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCEyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1SKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifKZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3WfMBEmh/9iFBDAaTCK
+        </item>
+    </string-array>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/roboto</item>
+        <item>@font/roboto_bold</item>
+        <item>@font/roboto</item>
+    </array>
+    <attr format="reference" name="carbonX_anchor"/>
+    <attr format="enum" name="carbonX_anchorGravity">
+        <enum name="top" value="0x00000030"/>
+        <enum name="bottom" value="0x00000050"/>
+        <enum name="left" value="0x00000003"/>
+        <enum name="right" value="0x00000005"/>
+        <enum name="start" value="0x00800003"/>
+        <enum name="end" value="0x00800005"/>
+        <enum name="center" value="0x00000011"/>
+        <enum name="center_horizontal" value="0x00000001"/>
+        <enum name="center_vertical" value="0x00000010"/>
+    </attr>
+    <attr format="enum" name="carbonX_backgroundTintMode">
+        <enum name="src_over" value="0"/>
+        <enum name="src_in" value="1"/>
+        <enum name="src_atop" value="2"/>
+        <enum name="multiply" value="3"/>
+        <enum name="screen" value="4"/>
+        <enum name="add" value="5"/>
+    </attr>
+    <attr format="boolean" name="carbonX_debugMode"/>
+    <attr format="dimension" name="carbonX_elevation"/>
+    <attr format="string" name="carbonX_fontFamily"/>
+    <attr format="string" name="carbonX_fontPath"/>
+    <attr format="reference" name="carbonX_frameLayoutStyle"/>
+    <attr format="enum" name="carbonX_inAnimation">
+        <enum name="none" value="0"/>
+        <enum name="fade" value="1"/>
+        <enum name="pop" value="2"/>
+        <enum name="fly" value="3"/>
+        <enum name="brightnessSaturationFade" value="4"/>
+        <enum name="progressWidth" value="5"/>
+    </attr>
+    <attr format="dimension" name="carbonX_inset"/>
+    <attr format="dimension" name="carbonX_insetBottom"/>
+    <attr format="color" name="carbonX_insetColor"/>
+    <attr format="dimension" name="carbonX_insetLeft"/>
+    <attr format="dimension" name="carbonX_insetRight"/>
+    <attr format="dimension" name="carbonX_insetTop"/>
+    <attr format="dimension" name="carbonX_maxHeight"/>
+    <attr format="dimension" name="carbonX_maxWidth"/>
+    <attr format="enum" name="carbonX_outAnimation">
+        <enum name="none" value="0"/>
+        <enum name="fade" value="1"/>
+        <enum name="pop" value="2"/>
+        <enum name="fly" value="3"/>
+        <enum name="brightnessSaturationFade" value="4"/>
+        <enum name="progressWidth" value="5"/>
+    </attr>
+    <attr format="color|reference" name="carbonX_rippleColor"/>
+    <attr format="boolean" name="carbonX_rippleHotspot"/>
+    <attr format="dimension" name="carbonX_rippleRadius"/>
+    <attr format="enum" name="carbonX_rippleStyle">
+        <enum name="over" value="0"/>
+        <enum name="background" value="1"/>
+        <enum name="borderless" value="2"/>
+    </attr>
+    <attr format="boolean" name="carbonX_state_invalid"/>
+    <attr format="boolean" name="carbonX_textAllCaps"/>
+    <attr format="reference" name="carbonX_theme"/>
+    <attr format="color|reference" name="carbonX_tint"/>
+    <attr format="enum" name="carbonX_tintMode">
+        <enum name="src_over" value="0"/>
+        <enum name="src_in" value="1"/>
+        <enum name="src_atop" value="2"/>
+        <enum name="multiply" value="3"/>
+        <enum name="screen" value="4"/>
+        <enum name="add" value="5"/>
+    </attr>
+    <attr format="dimension" name="carbonX_touchMargin"/>
+    <attr format="dimension" name="carbonX_touchMarginBottom"/>
+    <attr format="dimension" name="carbonX_touchMarginLeft"/>
+    <attr format="dimension" name="carbonX_touchMarginRight"/>
+    <attr format="dimension" name="carbonX_touchMarginTop"/>
+    <color name="bg">#07000000</color>
+    <color name="black">#000000</color>
+    <color name="carbonX_text_button_dark">#deffffff</color>
+    <color name="carbonX_text_button_light">#de000000</color>
+    <color name="defaultRipple">#54000000</color>
+    <color name="disabled">#38000000</color>
+    <color name="khaltiAccent">#673ab7</color>
+    <color name="khaltiAccentAlt">#F79320</color>
+    <color name="khaltiPrimary">#4C276D</color>
+    <color name="khaltiPrimaryDark">#421D63</color>
+    <color name="pink500">#e91e63</color>
+    <color name="primaryText">#87000000</color>
+    <color name="secondaryText">#54000000</color>
+    <color name="white">#ffffff</color>
+    <declare-styleable name="ButtonX"><attr name="carbonX_theme"/><attr name="carbonX_rippleColor"/><attr name="carbonX_rippleHotspot"/><attr name="carbonX_rippleStyle"/><attr name="carbonX_rippleRadius"/><attr name="carbonX_elevation"/><attr name="carbonX_touchMargin"/><attr name="carbonX_touchMarginLeft"/><attr name="carbonX_touchMarginTop"/><attr name="carbonX_touchMarginRight"/><attr name="carbonX_touchMarginBottom"/><attr name="carbonX_inAnimation"/><attr name="carbonX_outAnimation"/><attr name="carbonX_maxWidth"/><attr name="carbonX_maxHeight"/><attr name="carbonX_tint"/><attr name="carbonX_tintMode"/><attr name="carbonX_backgroundTint"/><attr name="carbonX_backgroundTintMode"/><attr name="carbonX_animateColorChanges"/><attr name="carbonX_fontFamily"/><attr name="android:textStyle"/><attr name="carbonX_fontPath"/><attr name="carbonX_textAllCaps"/><attr name="android:textAppearance"/><attr name="carbonX_cornerRadius"/><attr name="android:background"/></declare-styleable>
+    <declare-styleable name="CarbonX"><attr format="reference|color" name="carbonX_colorError"/><attr format="reference|color" name="carbonX_colorDisabled"/><attr format="boolean" name="carbonX_animateColorChanges"/><attr format="color|reference" name="carbonX_backgroundTint"/><attr format="dimension" name="carbonX_cornerRadius"/><attr format="fraction|reference" name="carbonX_widthPercent"/><attr format="fraction|reference" name="carbonX_heightPercent"/><attr format="fraction|reference" name="carbonX_marginPercent"/><attr format="fraction|reference" name="carbonX_marginLeftPercent"/><attr format="fraction|reference" name="carbonX_marginTopPercent"/><attr format="fraction|reference" name="carbonX_marginRightPercent"/><attr format="fraction|reference" name="carbonX_marginBottomPercent"/><attr format="fraction|reference" name="carbonX_marginStartPercent"/><attr format="fraction|reference" name="carbonX_marginEndPercent"/><attr format="fraction|reference" name="carbonX_aspectRatio"/><attr format="reference" name="carbonX_textAppearanceButton"/><attr format="reference" name="carbonX_textAppearanceButtonInverse"/></declare-styleable>
+    <declare-styleable name="ExpandableLayout"><attr format="boolean" name="canExpand"/></declare-styleable>
+    <declare-styleable name="FrameLayoutX"><attr name="carbonX_theme"/><attr name="carbonX_rippleColor"/><attr name="carbonX_rippleHotspot"/><attr name="carbonX_rippleStyle"/><attr name="carbonX_rippleRadius"/><attr name="carbonX_inAnimation"/><attr name="carbonX_outAnimation"/><attr name="carbonX_touchMargin"/><attr name="carbonX_touchMarginLeft"/><attr name="carbonX_touchMarginTop"/><attr name="carbonX_touchMarginRight"/><attr name="carbonX_touchMarginBottom"/><attr name="carbonX_inset"/><attr name="carbonX_insetLeft"/><attr name="carbonX_insetTop"/><attr name="carbonX_insetRight"/><attr name="carbonX_insetBottom"/><attr name="carbonX_insetColor"/><attr name="carbonX_maxWidth"/><attr name="carbonX_maxHeight"/><attr name="carbonX_elevation"/><attr name="carbonX_cornerRadius"/></declare-styleable>
+    <declare-styleable name="FrameLayoutX_Layout"><attr name="carbonX_anchor"/><attr name="carbonX_anchorGravity"/></declare-styleable>
+    <declare-styleable name="LayerDrawable"><attr name="android:visible"/><attr name="android:opacity"/><attr name="android:autoMirrored"/><attr name="android:paddingMode"/><attr name="android:paddingTop"/><attr name="android:paddingBottom"/><attr name="android:paddingLeft"/><attr name="android:paddingRight"/><attr name="android:paddingStart"/><attr name="android:paddingEnd"/></declare-styleable>
+    <declare-styleable name="LayerDrawableItem"><attr name="android:left"/><attr name="android:top"/><attr name="android:right"/><attr name="android:bottom"/><attr name="android:drawable"/><attr name="android:id"/><attr name="android:width"/><attr name="android:height"/><attr name="android:start"/><attr name="android:end"/><attr name="android:gravity"/></declare-styleable>
+    <declare-styleable name="ProgressBarX"><attr name="carbonX_theme"/><attr name="carbonX_tint"/><attr name="carbonX_tintMode"/><attr name="carbonX_backgroundTint"/><attr name="carbonX_backgroundTintMode"/><attr name="carbonX_animateColorChanges"/><attr name="carbonX_inAnimation"/><attr name="carbonX_outAnimation"/><attr format="enum" name="carbonX_progressStyle">
+            <enum name="bar_determinate" value="0"/>
+            <enum name="bar_indeterminate" value="1"/>
+            <enum name="bar_query" value="2"/>
+            <enum name="circular_determinate" value="3"/>
+            <enum name="circular_indeterminate" value="4"/>
+        </attr><attr format="dimension" name="carbonX_barWidth"/></declare-styleable>
+    <declare-styleable name="RippleDrawableX"><attr name="android:color"/><attr name="android:radius"/></declare-styleable>
+    <declare-styleable name="TextAppearance"><attr name="carbonX_fontFamily"/><attr name="android:textStyle"/><attr name="carbonX_fontPath"/><attr name="carbonX_textAllCaps"/></declare-styleable>
+    <declare-styleable name="TextInputLayout"><attr format="dimension" name="mainHintTextSize"/></declare-styleable>
+    <declare-styleable name="khalti"><attr format="string" name="text"/><attr format="enum" name="button_style">
+            <enum name="eBanking_dark" value="0"/>
+            <enum name="eBanking_light" value="1"/>
+            <enum name="khalti_dark" value="2"/>
+            <enum name="khalti_light" value="3"/>
+        </attr></declare-styleable>
+    <dimen name="body">14sp</dimen>
+    <dimen name="carbonX_1dip">1dp</dimen>
+    <dimen name="carbonX_buttonHeight">50dp</dimen>
+    <dimen name="carbonX_buttonWidth">150dp</dimen>
+    <dimen name="carbonX_buttonWidth1">250dp</dimen>
+    <dimen name="carbonX_elevationButton">2dp</dimen>
+    <dimen name="carbonX_elevationLow">4dp</dimen>
+    <dimen name="carbonX_paddingHalf">8dp</dimen>
+    <dimen name="carbonX_textSizeButton">14sp</dimen>
+    <dimen name="cardPadding">8dp</dimen>
+    <dimen name="doubleBottomMargin">20dp</dimen>
+    <dimen name="editTextPadding">4dp</dimen>
+    <dimen name="globalPadding">16dp</dimen>
+    <dimen name="head">16sp</dimen>
+    <dimen name="label2">12sp</dimen>
+    <dimen name="singleBottomMargin">10dp</dimen>
+    <dimen name="title">20sp</dimen>
+    <dimen name="title1">24sp</dimen>
+    <dimen name="toolbarHeight">56dp</dimen>
+    <item name="carbonX_mask" type="id"/>
+    <string name="account_box"></string>
+    <string name="action_search">Search</string>
+    <string name="allow">Allow</string>
+    <string name="app_name">Khalti</string>
+    <string name="blank"> </string>
+    <string name="building"></string>
+    <string name="cancel">Cancel</string>
+    <string name="caret_down"></string>
+    <string name="check_out_title">Awesome App</string>
+    <string name="close"></string>
+    <string name="code_hint">Confirmation Code</string>
+    <string name="confirm_payment">Confirm Payment</string>
+    <string name="confirming_payment">Confirming payment</string>
+    <string name="deny">Deny</string>
+    <string name="eBanking">E-Banking</string>
+    <string name="empty">…</string>
+    <string name="fetch_error">Some information could not be fetched. Please try again.</string>
+    <string name="generic_error">Something went wrong</string>
+    <string name="got_it">Got It</string>
+    <string name="init_payment">Initiating payment</string>
+    <string name="khalti_not_found">Khalti is not installed in your device</string>
+    <string name="loading_bank">Loading Bank</string>
+    <string name="lock"></string>
+    <string name="mobile_hint">Mobile Number</string>
+    <string name="network_error_body">No Internet detected. Please check your internet connection</string>
+    <string name="ok">OK</string>
+    <string name="pay">PAY</string>
+    <string name="pin_hint">PIN</string>
+    <string name="pin_not_set">You have not enabled your transaction PIN.</string>
+    <string name="pin_not_set_continue">Would you like to enable it?</string>
+    <string name="please_wait">Please wait</string>
+    <string name="select_bank">Select Bank</string>
+    <string name="set_pin_in_browser">Do you want to set your PIN using your browser?</string>
+    <string name="try_again">Try Again</string>
+    <string name="wallet">Wallet</string>
+    <style name="AppTheme" parent="AppTheme.khalti">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="AppTheme.khalti" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/khaltiPrimary</item>
+        <item name="colorPrimaryDark">@color/khaltiPrimaryDark</item>
+        <item name="colorAccent">@color/khaltiAccent</item>
+
+        <item name="carbonX_colorError">#ffF44336</item>
+        <item name="carbonX_debugMode">false</item>
+
+        <item name="android:buttonStyle">@style/carbonX_Button</item>
+        <item name="carbonX_textAppearanceButton">@style/carbonX_TextAppearance.Button.Light</item>
+        <item name="carbonX_textAppearanceButtonInverse">@style/carbonX_TextAppearance.Button.Dark
+        </item>
+        <item name="android:progressBarStyle">@style/carbonX_ProgressBar</item>
+        <item name="carbonX_frameLayoutStyle">@style/carbonX_FrameLayout</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="EditTextTheme" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/secondaryText</item>
+        <item name="android:textSize">20sp</item>
+
+        <item name="colorControlNormal">@color/primaryText</item>
+        <item name="colorControlActivated">@color/khaltiPrimary</item>
+    </style>
+    <style name="EditTextTheme.HintAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">8sp</item>
+    </style>
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorAccent">@color/khaltiPrimary</item>
+    </style>
+    <style name="ToolbarTextStyle" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="carbonX_Button" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">@dimen/carbonX_paddingHalf</item>
+        <item name="android:paddingRight">@dimen/carbonX_paddingHalf</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="carbonX_elevation">@dimen/carbonX_elevationButton</item>
+        <item name="carbonX_touchMarginTop">6dp</item>
+        <item name="carbonX_touchMarginBottom">6dp</item>
+        <item name="carbonX_cornerRadius">2dp</item>
+        <item name="android:textColor">@null</item>
+        <!--<item name="android:textAppearance">?attr/carbonX_textAppearanceButtonInverse</item>-->
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/carbonx_buttonbackground</item>
+        <item name="carbonX_animateColorChanges">true</item>
+        <item name="carbonX_tint">#00000000</item>
+        <item name="carbonX_backgroundTint">#00000000</item>
+    </style>
+    <style name="carbonX_Button.Flat">
+        <item name="carbonX_elevation">0dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@null</item>
+        <item name="android:textAppearance">?attr/carbonX_textAppearanceButton</item>
+    </style>
+    <style name="carbonX_FrameLayout">
+        <item name="carbonX_rippleColor">@null</item>
+    </style>
+    <style name="carbonX_ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="carbonX_progressStyle">bar_indeterminate</item>
+        <item name="carbonX_tint">?attr/colorPrimary</item>
+        <item name="carbonX_barWidth">3dp</item>
+        <item name="carbonX_inAnimation">progressWidth</item>
+        <item name="carbonX_outAnimation">progressWidth</item>
+    </style>
+    <style name="carbonX_TextAppearance" parent="@android:style/TextAppearance"/>
+    <style name="carbonX_TextAppearance.Button">
+        <item name="android:textSize">@dimen/carbonX_textSizeButton</item>
+        <item name="carbonX_fontFamily">"sans-serif-medium"</item>
+        <item name="carbonX_textAllCaps">true</item>
+    </style>
+    <style name="carbonX_TextAppearance.Button.Dark">
+        <item name="android:textColor">@color/carbonX_text_button_dark</item>
+    </style>
+    <style name="carbonX_TextAppearance.Button.Light">
+        <item name="android:textColor">@color/carbonX_text_button_light</item>
+    </style>
+    <style name="carbonX_Theme.Light" parent="Theme.AppCompat.Light">
+
+    </style>
+</resources>

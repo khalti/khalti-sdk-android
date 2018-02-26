@@ -1,60 +1,52 @@
 package khalti.checkOut.EBanking;
 
 import java.util.HashMap;
+import java.util.List;
 
-import khalti.checkOut.api.Config;
+import khalti.checkOut.EBanking.helper.BankPojo;
+import khalti.checkOut.EBanking.helper.BankingData;
+import rx.Observable;
 
 public interface EBankingContract {
     interface View {
 
-        void toggleProgressBar(boolean show);
+        void toggleIndented(boolean show);
 
-        void toggleEditTextListener(boolean set);
+        void setUpList(List<BankPojo> bankList);
 
-        void toggleButton(boolean enabled);
+        void showIndentedNetworkError();
 
-        void showBankField();
+        void showIndentedError(String error);
 
-        void setUpSpinner(Object banks, Object bankIds);
+        void openMobileForm(BankingData bankingData);
 
-        void setUpBankItem(String bankName, String bankId);
+        Observable<HashMap<String, String>> getItemClickObservable();
 
-        void setButtonText(String text);
+        HashMap<String, Observable<Void>> setOnClickListener();
 
-        void setErrorAnimation();
+        Observable<CharSequence> setSearchListener();
 
-        void setMobileError(String error);
+        Observable<Integer> filterList(String text);
 
-        void showNetworkError();
+        void toggleSearch(boolean show);
 
-        void showError(String message);
+        void toggleSearchError(boolean show);
 
-        void showMessageDialog(String title, String message);
+        boolean hasNetwork();
 
-        void openBankList(HashMap<String, Object> dataMap);
-
-        void openEBanking(String url);
-
-        void saveConfigInFile(String fileName, Config config);
-
-        String getPackageName();
-
-        void setListener(Listener listener);
+        void setPresenter(Presenter presenter);
     }
 
-    interface Listener {
+    interface Presenter {
 
-        void setUpLayout(boolean hasNetwork);
+        void onCreate();
 
-        void toggleEditTextListener(boolean set);
+        void onDestroy();
+    }
 
-        void setErrorAnimation();
+    interface Model {
 
-        void openBankList();
-
-        void updateBankItem(String bankName, String bankId);
-
-        void initiatePayment(boolean isNetwork, String mobile, String bankId, String bankName);
+        Observable<List<BankPojo>> fetchBankList();
 
         void unSubscribe();
     }

@@ -7,16 +7,23 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.HashMap;
 
@@ -24,8 +31,6 @@ import khalti.R;
 import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.rxBus.Event;
-import khalti.rxBus.RxBus;
 import khalti.utils.AppPermissionUtil;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ExpandableLayout;
@@ -34,8 +39,7 @@ import khalti.utils.NumberUtil;
 import khalti.utils.ResourceUtil;
 import khalti.utils.Store;
 import khalti.utils.UserInterfaceUtil;
-import rx.subscriptions.CompositeSubscription;
-
+import rx.Observable;
 
 public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletContract.View {
 
@@ -44,24 +48,23 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private ExpandableLayout elConfirmation;
     private Button btnPay;
     private Dialog progressDialog;
-    private FrameLayout flPay;
-    private LinearLayout llConfirmation, llPIN, llCode;
+    private LinearLayout llConfirmation, llPIN, llCode, llKhaltiBranding;
+    private ImageView ivKhalti;
+    private CardView cvPinMessage;
+    private AppCompatTextView tvPinMessage;
 
     private FragmentActivity fragmentActivity;
-    private khalti.checkOut.Wallet.WalletContract.Listener listener;
-    private CompositeSubscription compositeSubscription;
+    private WalletContract.Presenter presenter;
     private SmsListener smsListener;
+
     private boolean isRegistered = false;
-
-    private LinearLayout.LayoutParams layoutParams;
-
     private int height = 0;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.payment_form, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View mainView = inflater.inflate(R.layout.wallet_form, container, false);
         fragmentActivity = getActivity();
-        listener = new WalletPresenter(this);
+        presenter = new WalletPresenter(this);
 
         etMobile = mainView.findViewById(R.id.etMobile);
         etCode = mainView.findViewById(R.id.etCode);
@@ -71,129 +74,32 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         tilPIN = mainView.findViewById(R.id.tilPIN);
         btnPay = mainView.findViewById(R.id.btnPay);
         elConfirmation = mainView.findViewById(R.id.elConfirmation);
-        flPay = mainView.findViewById(R.id.flPay);
         llConfirmation = mainView.findViewById(R.id.llConfirmation);
         llPIN = mainView.findViewById(R.id.llPIN);
         llCode = mainView.findViewById(R.id.llCode);
+        ivKhalti = mainView.findViewById(R.id.ivKhalti);
+        llKhaltiBranding = mainView.findViewById(R.id.llKhaltiBranding);
+        cvPinMessage = mainView.findViewById(R.id.cvPinMessage);
+        tvPinMessage = mainView.findViewById(R.id.tvPinMessage);
 
-        listener.setUpLayout();
-
-        compositeSubscription = new CompositeSubscription();
-        compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
-            if (event.getTag().equals("wallet_code")) {
-                listener.setConfirmationCode(event);
-            }
-        }));
+        presenter.onCreate();
 
         return mainView;
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (EmptyUtil.isNotNull(compositeSubscription) && !compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.unsubscribe();
-        }
-        listener.toggleSmsListener(false);
-    }
-
-    @Override
-    public void setEditTextListener() {
-        etMobile.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                tilMobile.setErrorEnabled(false);
-                if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
-                    listener.toggleConfirmationLayout(false);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        etCode.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (EmptyUtil.isNotNull(tilCode.getError())) {
-                    llCode.measure(0, 0);
-                    int beforeA = llCode.getMeasuredHeight();
-
-                    tilCode.setErrorEnabled(false);
-
-                    llCode.measure(0, 0);
-                    int afterA = llCode.getMeasuredHeight();
-
-                    height = Math.abs(height + (beforeA - afterA));
-
-                    ExpandableLayout.LayoutParams layoutParams = (ExpandableLayout.LayoutParams) llConfirmation.getLayoutParams();
-                    layoutParams.height = llConfirmation.getHeight() - height;
-                    llConfirmation.setLayoutParams(layoutParams);
-
-                    height = 0;
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        etPIN.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (EmptyUtil.isNotNull(tilPIN.getError())) {
-                    llPIN.measure(0, 0);
-                    int beforeA = llPIN.getMeasuredHeight();
-
-                    tilPIN.setErrorEnabled(false);
-
-                    llPIN.measure(0, 0);
-                    int afterA = llPIN.getMeasuredHeight();
-
-                    height = Math.abs(height + (beforeA - afterA));
-
-                    ExpandableLayout.LayoutParams layoutParams = (ExpandableLayout.LayoutParams) llConfirmation.getLayoutParams();
-                    layoutParams.height = llConfirmation.getHeight() - height;
-                    llConfirmation.setLayoutParams(layoutParams);
-
-                    height = 0;
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+    public HashMap<String, Observable<CharSequence>> setEditTextListener() {
+        return new HashMap<String, Observable<CharSequence>>() {{
+            put("mobile", RxTextView.textChanges(etMobile));
+            put("code", RxTextView.textChanges(etCode));
+            put("pin", RxTextView.textChanges(etPIN));
+        }};
     }
 
     @Override
@@ -211,7 +117,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
         if (show) {
             progressDialog = UserInterfaceUtil.runProgressDialog(fragmentActivity, message, ResourceUtil.getString(fragmentActivity, R.string.please_wait), flCircularProgress, () -> {
-                listener.unSubscribe();
+//                presenter.unSubscribe();
             });
         } else {
             if (EmptyUtil.isNotNull(progressDialog)) {
@@ -222,14 +128,17 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     @Override
     public void setEditTextError(String view, String error) {
+        boolean isError = EmptyUtil.isNotNull(error);
         switch (view) {
             case "mobile":
+                tilMobile.setErrorEnabled(isError);
                 tilMobile.setError(error);
                 break;
             case "code":
                 llCode.measure(0, 0);
                 int beforeA = llCode.getMeasuredHeight();
 
+                tilCode.setErrorEnabled(isError);
                 tilCode.setError(error);
 
                 llCode.measure(0, 0);
@@ -241,6 +150,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                 llPIN.measure(0, 0);
                 int beforeB = llPIN.getMeasuredHeight();
 
+                tilPIN.setErrorEnabled(isError);
                 tilPIN.setError(error);
 
                 llPIN.measure(0, 0);
@@ -257,31 +167,49 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public void setButtonClickListener() {
-        btnPay.setOnClickListener(view -> {
-            if (btnPay.getText().toString().toLowerCase().contains("confirm")) {
-                if (listener.isFinalFormValid(etPIN.getText().toString(), etCode.getText().toString())) {
-                    listener.confirmPayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etCode.getText().toString(), etPIN.getText().toString());
-                } else {
-                    listener.updateConfirmationHeight();
-                }
-            } else {
-                if (listener.isMobileValid(etMobile.getText().toString())) {
-                    if (AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS)) {
-                        listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString());
-                    } else {
-                        AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () ->
-                                listener.initiatePayment(NetworkUtil.isNetworkAvailable(fragmentActivity), etMobile.getText().toString()));
-                    }
-                }
-            }
-        });
+    public Observable<Void> setButtonClickListener() {
+        return RxView.clicks(btnPay);
+    }
+
+    @Override
+    public Observable<Void> setImageClickListener() {
+        return RxView.clicks(ivKhalti);
     }
 
     @Override
     public void setConfirmationCode(String code) {
         etCode.setText(code);
         etPIN.requestFocus();
+    }
+
+    @Override
+    public void setConfirmationLayoutHeight(String view) {
+        TextInputLayout til;
+        LinearLayout ll;
+        if (view.equals("code")) {
+            til = tilCode;
+            ll = llCode;
+        } else {
+            til = tilPIN;
+            ll = llPIN;
+        }
+        if (EmptyUtil.isNotNull(til.getError())) {
+            ll.measure(0, 0);
+            int beforeA = ll.getMeasuredHeight();
+
+            til.setErrorEnabled(false);
+
+            ll.measure(0, 0);
+            int afterA = ll.getMeasuredHeight();
+
+            height = Math.abs(height + (beforeA - afterA));
+
+            ExpandableLayout.LayoutParams layoutParams = (ExpandableLayout.LayoutParams) llConfirmation.getLayoutParams();
+            layoutParams.height = llConfirmation.getHeight() - height;
+            llConfirmation.setLayoutParams(layoutParams);
+
+            height = 0;
+        }
     }
 
     @Override
@@ -313,7 +241,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                     @Override
                     public void onPositiveAction(Dialog dialog) {
                         dialog.dismiss();
-                        listener.openKhaltiSettings();
+                        presenter.openKhaltiSettings();
                     }
 
                     @Override
@@ -330,7 +258,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                     @Override
                     public void onPositiveAction(Dialog dialog) {
                         dialog.dismiss();
-                        listener.openLinkInBrowser();
+                        presenter.openLinkInBrowser();
                     }
 
                     @Override
@@ -358,7 +286,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
             startActivity(i);
         } catch (PackageManager.NameNotFoundException e) {
-            listener.showPINInBrowserDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found) + "\n\n" +
+            presenter.showPINInBrowserDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found) + "\n\n" +
                     ResourceUtil.getString(fragmentActivity, R.string.set_pin_in_browser));
         }
     }
@@ -396,6 +324,45 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
+    public boolean hasSmsReceiptPermission() {
+        return AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS);
+    }
+
+    @Override
+    public void askSmsReceiptPermission() {
+        AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () -> presenter.onSmsReceiptPermitted());
+    }
+
+    @Override
+    public boolean hasNetwork() {
+        return NetworkUtil.isNetworkAvailable(fragmentActivity);
+    }
+
+    @Override
+    public String getPayButtonText() {
+        return btnPay.getText() + "";
+    }
+
+    @Override
+    public HashMap<String, String> getFormData() {
+        return new HashMap<String, String>() {{
+            put("mobile", etMobile.getText() + "");
+            put("code", etCode.getText() + "");
+            put("pin", etPIN.getText() + "");
+        }};
+    }
+
+    @Override
+    public void showSlogan() {
+        Toast.makeText(fragmentActivity, ResourceUtil.getString(fragmentActivity, R.string.slogan), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showBranding() {
+        llKhaltiBranding.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void toggleConfirmationLayout(boolean show) {
         String buttonText = show ? ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) : "Pay Rs " + NumberUtil.convertToRupees(Store.getConfig().getAmount());
         btnPay.setText(buttonText);
@@ -420,7 +387,23 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public void setListener(khalti.checkOut.Wallet.WalletContract.Listener listener) {
-        this.listener = listener;
+    public void togglePinMessage(boolean show) {
+        cvPinMessage.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void setPinMessage(String message) {
+        String s = message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info);
+        tvPinMessage.setText(s);
+    }
+
+    @Override
+    public void setMobile(String mobile) {
+        etMobile.setText(mobile);
+    }
+
+    @Override
+    public void setPresenter(WalletContract.Presenter presenter) {
+        this.presenter = presenter;
     }
 }

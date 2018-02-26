@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:khalti="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cdlMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clipToPadding="false"
+        android:paddingBottom="76dp"
+        android:paddingLeft="@dimen/cardPadding"
+        android:paddingRight="@dimen/cardPadding"
+        android:paddingTop="@dimen/cardPadding"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:visibility="gone"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/cardPadding"
+            android:paddingLeft="@dimen/globalPadding"
+            android:paddingRight="@dimen/globalPadding"
+            android:paddingTop="@dimen/globalPadding"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <LinearLayout
+                android:id="@+id/llCardBranding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/singleBottomMargin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/editTextPadding"
+                    android:text="@string/we_accept"
+                    android:textColor="@color/primaryText"
+                    android:textSize="@dimen/label2"
+                    app:fontFamily="@font/roboto" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    app:srcCompat="@mipmap/cards" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/select_bank"
+                    android:textColor="@color/primaryText"
+                    android:textSize="@dimen/title"
+                    app:fontFamily="@font/roboto_medium" />
+            </FrameLayout>
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/llIndented"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <khalti.carbonX.widget.ProgressBar
+            android:id="@+id/pdLoad"
+            android:layout_width="150dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/cardPadding"
+            android:layout_marginLeft="@dimen/globalPadding"
+            android:layout_marginRight="@dimen/globalPadding"
+            android:background="@color/disabled"
+            khalti:carbonX_progressStyle="bar_indeterminate"
+            khalti:carbonX_tint="@color/khaltiPrimary" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:text="@string/empty"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/body"
+            android:visibility="gone"
+            app:fontFamily="@font/roboto" />
+
+        <khalti.carbonX.widget.FrameLayout
+            android:id="@+id/flTryAgain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/globalPadding"
+            android:visibility="gone">
+
+            <khalti.carbonX.widget.Button
+                android:id="@+id/btnTryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/carbonX_buttonHeight"
+                android:minHeight="@dimen/carbonX_buttonHeight"
+                android:minWidth="@dimen/carbonX_buttonWidth"
+                android:text="@string/try_again"
+                android:textAppearance="@style/carbonX_TextAppearance.Button.Dark"
+                app:carbonX_backgroundTint="@color/khaltiPrimary"
+                app:carbonX_cornerRadius="2dp"
+                app:carbonX_elevation="2dp"
+                app:carbonX_rippleColor="@color/defaultRipple"
+                app:carbonX_textAllCaps="true" />
+        </khalti.carbonX.widget.FrameLayout>
+    </LinearLayout>
+
+    <khalti.carbonX.widget.FrameLayout
+        android:id="@+id/flSearchBank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#F3F3F3"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:alpha="0.1"
+            android:background="@color/primaryText" />
+
+        <khalti.carbonX.widget.FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/cardPadding"
+            android:background="@color/white"
+            android:padding="@dimen/cardPadding"
+            khalti:carbonX_cornerRadius="21dp"
+            khalti:carbonX_elevation="1dp">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/svBank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_bank" />
+        </khalti.carbonX.widget.FrameLayout>
+    </khalti.carbonX.widget.FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

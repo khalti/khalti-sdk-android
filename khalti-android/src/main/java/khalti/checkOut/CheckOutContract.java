@@ -1,13 +1,26 @@
 package khalti.checkOut;
 
+import java.util.List;
+
+import khalti.checkOut.helper.MerchantPreferencePojo;
+import rx.Observable;
+
 interface CheckOutContract {
     interface View {
 
-        void setupViewPager();
+        void toggleIndented(boolean show);
 
-        void setUpTabLayout();
+        void showIndentedNetworkError();
 
-        void setUpToolbar();
+        void showIndentedError(String error);
+
+        Observable<Void> setTryAgainClickListener();
+
+        void setupViewPager(List<String> types);
+
+        void setUpTabLayout(List<String> types);
+
+        void setTabListener();
 
         void toggleTab(int position, boolean selected);
 
@@ -15,15 +28,28 @@ interface CheckOutContract {
 
         void dismissAllDialogs();
 
-        void setListener(Listener listener);
+        boolean hasNetwork();
+
+        void closeCheckOut();
+
+        void setPresenter(Presenter presenter);
     }
 
-    interface Listener {
+    interface Presenter {
 
-        void setUpLayout();
+        void onCreate();
 
-        void toggleTab(int position, boolean selected);
+        void onDestroy();
 
-        void dismissAllDialogs();
+        void onTabSelected(int position, boolean selected);
+
+        void fetchPreference(String key);
+    }
+
+    interface Model {
+
+        Observable<MerchantPreferencePojo> fetchPreference(String key);
+
+        void unSubscribe();
     }
 }

@@ -41,6 +41,7 @@ android {
         options.addStringOption('charSet', 'UTF-8')
     }
 
+
     retrolambda {
         defaultMethods false
         include 'Debug'
@@ -58,6 +59,9 @@ dependencies {
 
     /*Android Animations*/
     implementation ui.nineoldanimations
+
+    /*Image Loader*/
+    implementation ui.picasso
 
     /*GSON*/
     implementation serialization.gson
@@ -81,6 +85,10 @@ dependencies {
 
     /*RxPermission*/
     implementation rx.rxpermissions
+
+    /*RxBinding*/
+    implementation rx.rxBinding
+    implementation rx.rxAppCompatBinding
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/

@@ -6,13 +6,13 @@ import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
 
-class PayPresenter implements PayContract.Listener {
+class PayPresenter implements PayContract.Presenter {
     @NonNull
     private final PayContract.View mPayView;
 
     PayPresenter(@NonNull PayContract.View mPayView) {
         this.mPayView = GuavaUtil.checkNotNull(mPayView);
-        mPayView.setListener(this);
+        mPayView.setPresenter(this);
     }
 
     @Override

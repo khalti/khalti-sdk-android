@@ -3,29 +3,39 @@ package khalti.checkOut.Wallet;
 
 import java.util.HashMap;
 
+import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
+import khalti.checkOut.Wallet.helper.WalletInitPojo;
 import khalti.checkOut.api.ApiHelper;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.KhaltiApi;
-import khalti.utils.Store;
 import khalti.utils.EmptyUtil;
-import rx.Subscription;
+import khalti.utils.Store;
+import rx.Observable;
+import rx.Subscriber;
+import rx.subjects.PublishSubject;
+import rx.subscriptions.CompositeSubscription;
 
-public class WalletModel {
+public class WalletModel implements WalletContract.Model {
     private KhaltiApi khaltiService;
     private ApiHelper apiHelper;
-    private WalletInitPojo walletInitPojo;
-    private WalletConfirmPojo walletConfirmPojo;
+    private WalletInitPojo walletInit;
+    private CompositeSubscription compositeSubscription;
 
     WalletModel() {
         khaltiService = ApiHelper.apiBuilder();
         apiHelper = new ApiHelper();
+        compositeSubscription = new CompositeSubscription();
     }
 
     WalletModel(KhaltiApi mockedKhaltiService) {
         khaltiService = mockedKhaltiService;
+        compositeSubscription = new CompositeSubscription();
     }
 
-    public Subscription initiatePayment(String mobile, Config config, WalletAction walletAction) {
+    @Override
+    public Observable<WalletInitPojo> initiatePayment(String mobile, Config config) {
+        PublishSubject<WalletInitPojo> initObservable = PublishSubject.create();
+
         HashMap<String, Object> dataMap = new HashMap<>();
         dataMap.put("public_key", config.getPublicKey());
         dataMap.put("return_url", "http://a.khalti.com/client/spec/widget/verify.html");
@@ -38,53 +48,69 @@ public class WalletModel {
         dataMap.put("mobile", mobile);
         dataMap.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
 
-        String url = "/api/payment/initiate/";
-        return new ApiHelper().callApi(khaltiService.initiatePayment(url, dataMap), new ApiHelper.ApiCallback() {
-            @Override
-            public void onComplete() {
-                walletAction.onCompleted(null);
-            }
+        compositeSubscription.add(apiHelper.callApi(khaltiService.initiatePayment("/api/payment/initiate/", dataMap))
+                .map(o -> (WalletInitPojo) o)
+                .subscribe(new Subscriber<WalletInitPojo>() {
+                    @Override
+                    public void onCompleted() {
 
-            @Override
-            public void onError(String errorMessage) {
-                walletAction.onError(errorMessage);
-            }
+                    }
 
-            @Override
-            public void onNext(Object o) {
-                walletInitPojo = (WalletInitPojo) o;
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        initObservable.onError(e);
+                    }
+
+                    @Override
+                    public void onNext(WalletInitPojo walletInitPojo) {
+                        walletInit = walletInitPojo;
+                        initObservable.onNext(walletInitPojo);
+                    }
+                }));
+
+        return initObservable;
     }
 
-    public Subscription confirmPayment(String confirmationCode, String transactionPIN, WalletAction walletAction) {
+    @Override
+    public Observable<WalletConfirmPojo> confirmPayment(String confirmationCode, String transactionPIN) {
+        PublishSubject<WalletConfirmPojo> confirmObservable = PublishSubject.create();
+
         HashMap<String, Object> dataMap = new HashMap<>();
-        dataMap.put("token", walletInitPojo.getToken());
+        dataMap.put("token", walletInit.getToken());
         dataMap.put("confirmation_code", confirmationCode);
         dataMap.put("transaction_pin", transactionPIN);
         dataMap.put("public_key", Store.getConfig().getPublicKey());
 
-        String url = "api/payment/confirm/";
+        compositeSubscription.add(apiHelper.callApi(khaltiService.confirmPayment("api/payment/confirm/", dataMap))
+                .map(o -> (WalletConfirmPojo) o)
+                .subscribe(new Subscriber<WalletConfirmPojo>() {
+                    @Override
+                    public void onCompleted() {
 
-        return apiHelper.callApi(khaltiService.confirmPayment(url, dataMap), new ApiHelper.ApiCallback() {
-            @Override
-            public void onComplete() {
-                walletAction.onCompleted(walletConfirmPojo);
-            }
+                    }
 
-            @Override
-            public void onError(String errorMessage) {
-                walletAction.onError(errorMessage);
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        confirmObservable.onError(e);
+                    }
 
-            @Override
-            public void onNext(Object o) {
-                walletConfirmPojo = (WalletConfirmPojo) o;
-            }
-        });
+                    @Override
+                    public void onNext(WalletConfirmPojo walletConfirmPojo) {
+                        confirmObservable.onNext(walletConfirmPojo);
+                    }
+                }));
+
+        return confirmObservable;
     }
 
-   public interface WalletAction {
+    @Override
+    public void unSubscribe() {
+        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
+    }
+
+    public interface WalletAction {
         void onCompleted(Object o);
 
         void onError(String message);

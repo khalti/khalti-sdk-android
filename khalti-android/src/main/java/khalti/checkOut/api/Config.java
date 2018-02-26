@@ -13,8 +13,14 @@ public class Config implements Serializable {
     private String productName;
     private String productUrl;
     private Long amount;
-    private HashMap<String, Object> additionalData;
+    private String mobile;
+    private HashMap<String, String> additionalData;
     private OnCheckOutListener onCheckOutListener;
+
+    public Config(@NonNull String publicKey, @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.onCheckOutListener = onCheckOutListener;
+    }
 
     public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount,
                   @NonNull OnCheckOutListener onCheckOutListener) {
@@ -27,13 +33,36 @@ public class Config implements Serializable {
     }
 
     public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount,
-                  @NonNull HashMap<String, Object> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
+                  @NonNull HashMap<String, String> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
         this.productId = productId;
         this.productName = productName;
         this.productUrl = productUrl;
         this.amount = amount;
         this.additionalData = additionalData;
+        this.onCheckOutListener = onCheckOutListener;
+    }
+
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull String mobile,
+                  @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.productId = productId;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.amount = amount;
+        this.mobile = mobile;
+        this.onCheckOutListener = onCheckOutListener;
+    }
+
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull String mobile,
+                  @NonNull HashMap<String, String> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.productId = productId;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.amount = amount;
+        this.additionalData = additionalData;
+        this.mobile = mobile;
         this.onCheckOutListener = onCheckOutListener;
     }
 
@@ -57,11 +86,15 @@ public class Config implements Serializable {
         return amount;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
+
     public OnCheckOutListener getOnCheckOutListener() {
         return onCheckOutListener;
     }
 
-    public HashMap<String, Object> getAdditionalData() {
+    public HashMap<String, String> getAdditionalData() {
         return additionalData;
     }
 
@@ -85,7 +118,11 @@ public class Config implements Serializable {
         this.amount = amount;
     }
 
-    public void setAdditionalData(HashMap<String, Object> additionalData) {
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setAdditionalData(HashMap<String, String> additionalData) {
         this.additionalData = additionalData;
     }
 

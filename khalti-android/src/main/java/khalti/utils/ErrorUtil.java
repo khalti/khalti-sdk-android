@@ -20,21 +20,23 @@ public class ErrorUtil {
 
             while (keys.hasNext()) {
                 String currentKey = (String) keys.next();
-                Object o = jsonObject.get(currentKey);
 
-                if (o instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) o;
-                    ArrayList<String> responseArray = new ArrayList<>();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        String response = jsonArray.getString(i);
-                        responseArray.add(response);
+                if (!currentKey.toLowerCase().contains("status_code")) {
+                    Object o = jsonObject.get(currentKey);
+                    if (o instanceof JSONArray) {
+                        JSONArray jsonArray = (JSONArray) o;
+                        ArrayList<String> responseArray = new ArrayList<>();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            String response = jsonArray.getString(i);
+                            responseArray.add(response);
+                        }
+                        String sep = "\n";
+                        for (int i = 0; i < responseArray.size(); i++) {
+                            sb.append(responseArray.get(i)).append(sep);
+                        }
+                    } else {
+                        sb.append(o);
                     }
-                    String sep = "\n";
-                    for (int i = 0; i < responseArray.size(); i++) {
-                        sb.append(responseArray.get(i)).append(sep);
-                    }
-                } else {
-                    sb.append(o);
                 }
             }
             return sb.toString();
