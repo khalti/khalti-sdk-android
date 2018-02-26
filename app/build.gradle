@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'khalti123'
-            keyPassword 'khalti123'
-            storeFile file('/Users/janakitechnology/khaltiSdkSignedKey')
-            storePassword 'khalti123'
-        }
-    }
     compileSdkVersion targetSdk
     buildToolsVersion buildToolVersion
     defaultConfig {
@@ -19,14 +11,12 @@ android {
         renderscriptTargetApi renderScriptTarget
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
     }
     lintOptions {
