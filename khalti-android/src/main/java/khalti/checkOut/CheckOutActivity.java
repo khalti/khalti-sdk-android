@@ -29,7 +29,6 @@ import khalti.R;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.ProgressBar;
 import khalti.utils.EmptyUtil;
-import khalti.utils.LogUtil;
 import khalti.utils.MerchantUtil;
 import khalti.utils.NetworkUtil;
 import khalti.utils.ResourceUtil;
@@ -121,7 +120,6 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         for (String s : types) {
-            LogUtil.log("s", s);
             HashMap<String, Object> map = MerchantUtil.getTab(s.toLowerCase());
             if (EmptyUtil.isNotNull(map)) {
                 viewPagerAdapter.addFrag((Fragment) map.get("fragment"), map.get("title") + "");

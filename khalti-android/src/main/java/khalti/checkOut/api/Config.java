@@ -13,6 +13,7 @@ public class Config implements Serializable {
     private String productName;
     private String productUrl;
     private Long amount;
+    private String mobile;
     private HashMap<String, String> additionalData;
     private OnCheckOutListener onCheckOutListener;
 
@@ -42,6 +43,29 @@ public class Config implements Serializable {
         this.onCheckOutListener = onCheckOutListener;
     }
 
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull String mobile,
+                  @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.productId = productId;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.amount = amount;
+        this.mobile = mobile;
+        this.onCheckOutListener = onCheckOutListener;
+    }
+
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull String mobile,
+                  @NonNull HashMap<String, String> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
+        this.publicKey = publicKey;
+        this.productId = productId;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.amount = amount;
+        this.additionalData = additionalData;
+        this.mobile = mobile;
+        this.onCheckOutListener = onCheckOutListener;
+    }
+
     public String getPublicKey() {
         return publicKey;
     }
@@ -60,6 +84,10 @@ public class Config implements Serializable {
 
     public Long getAmount() {
         return amount;
+    }
+
+    public String getMobile() {
+        return mobile;
     }
 
     public OnCheckOutListener getOnCheckOutListener() {
@@ -88,6 +116,10 @@ public class Config implements Serializable {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public void setAdditionalData(HashMap<String, String> additionalData) {

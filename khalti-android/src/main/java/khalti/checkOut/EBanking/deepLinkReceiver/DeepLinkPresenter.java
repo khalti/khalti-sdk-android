@@ -7,9 +7,10 @@ import java.util.HashMap;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.RxBus;
-import khalti.utils.Store;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
+import khalti.utils.LogUtil;
+import khalti.utils.Store;
 
 class DeepLinkPresenter implements DeepLinkContract.Listener {
     @NonNull
@@ -24,6 +25,7 @@ class DeepLinkPresenter implements DeepLinkContract.Listener {
     public void receiveEBankingData() {
         HashMap<String, Object> map = mDeepLinkView.receiveEBankingData();
         Config config = EmptyUtil.isNotNull(Store.getConfig()) ? Store.getConfig() : mDeepLinkView.getConfigFromFile();
+
         if (EmptyUtil.isNotNull(map) && EmptyUtil.isNotNull(config)) {
             OnCheckOutListener onCheckOutListener = config.getOnCheckOutListener();
             onCheckOutListener.onSuccess(map);

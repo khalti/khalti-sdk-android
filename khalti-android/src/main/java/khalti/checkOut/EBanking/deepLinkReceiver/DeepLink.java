@@ -8,8 +8,8 @@ import java.util.HashMap;
 import khalti.R;
 import khalti.checkOut.api.Config;
 import khalti.utils.EmptyUtil;
-import khalti.utils.JsonUtil;
 import khalti.utils.FileStorageUtil;
+import khalti.utils.JsonUtil;
 
 public class DeepLink extends AppCompatActivity implements DeepLinkContract.View {
 

@@ -44,6 +44,9 @@ public class WalletPresenter implements WalletContract.Presenter {
     @Override
     public void onCreate() {
         config = Store.getConfig();
+        if (EmptyUtil.isNotNull(config.getMobile()) && EmptyUtil.isNotEmpty(config.getMobile())) {
+            view.setMobile(config.getMobile());
+        }
         view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.getAmount())));
         view.showBranding();
 

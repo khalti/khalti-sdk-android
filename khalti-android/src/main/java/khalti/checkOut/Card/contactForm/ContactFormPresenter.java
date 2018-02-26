@@ -2,6 +2,8 @@ package khalti.checkOut.Card.contactForm;
 
 import android.support.annotation.NonNull;
 
+import com.google.gson.Gson;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -58,6 +60,11 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
                 map.put("bankId", bankId);
                 map.put("bankName", bankName);
 
+                HashMap<String, String> checkOutLog = new HashMap<>();
+                checkOutLog.put("checkout_version", BuildConfig.VERSION_NAME);
+                checkOutLog.put("checkout_android_version", AppUtil.getOsVersion());
+                checkOutLog.put("checkout_android_api_level", AppUtil.getApiLevel() + "");
+
                 try {
                     String data = "public_key=" + URLEncoder.encode(config.getPublicKey(), "UTF-8") + "&" +
                             "product_identity=" + URLEncoder.encode(config.getProductId(), "UTF-8") + "&" +
@@ -67,9 +74,7 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
                             "bank=" + URLEncoder.encode(map.get("bankId") + "", "UTF-8") + "&" +
                             "is_card_payment=" + true + "&" +
                             "source=android" + "&" +
-                            "checkout_version=" + BuildConfig.VERSION_NAME + "&" +
-                            "checkout_android_version=" + AppUtil.getOsVersion() + "&" +
-                            "checkout_android_api_level=" + AppUtil.getApiLevel() + "&" +
+                            "checkout_details=" + URLEncoder.encode(new Gson().toJson(checkOutLog), "UTF-8") + "&" +
                             "return_url=" + URLEncoder.encode(view.getPackageName(), "UTF-8");
 
                     if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {

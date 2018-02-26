@@ -22,6 +22,8 @@ public interface WalletContract {
 
         void setPinMessage(String message);
 
+        void setMobile(String mobile);
+
         HashMap<String, Observable<CharSequence>> setEditTextListener();
 
         void setEditTextError(String view, String error);

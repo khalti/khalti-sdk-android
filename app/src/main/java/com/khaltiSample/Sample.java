@@ -50,7 +50,6 @@ public class Sample extends AppCompatActivity {
             }
         });
 
-
         khaltiButton.setOnClickListener(view -> khaltiButton.showCheckOut(config));
         khaltiButton1.setCheckOutConfig(config);
         khaltiButton2.setCheckOutConfig(config);

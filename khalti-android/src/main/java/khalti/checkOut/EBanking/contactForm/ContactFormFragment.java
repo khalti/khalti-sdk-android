@@ -135,6 +135,7 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
 
     @Override
     public void setEditTextError(String error) {
+        tilContact.setErrorEnabled(EmptyUtil.isNotNull(error));
         tilContact.setError(error);
     }
 

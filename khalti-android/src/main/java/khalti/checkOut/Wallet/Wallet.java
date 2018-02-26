@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -40,7 +41,6 @@ import khalti.utils.Store;
 import khalti.utils.UserInterfaceUtil;
 import rx.Observable;
 
-
 public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletContract.View {
 
     private EditText etMobile, etCode, etPIN;
@@ -61,7 +61,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     private int height = 0;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.wallet_form, container, false);
         fragmentActivity = getActivity();
         presenter = new WalletPresenter(this);
@@ -128,14 +128,17 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     @Override
     public void setEditTextError(String view, String error) {
+        boolean isError = EmptyUtil.isNotNull(error);
         switch (view) {
             case "mobile":
+                tilMobile.setErrorEnabled(isError);
                 tilMobile.setError(error);
                 break;
             case "code":
                 llCode.measure(0, 0);
                 int beforeA = llCode.getMeasuredHeight();
 
+                tilCode.setErrorEnabled(isError);
                 tilCode.setError(error);
 
                 llCode.measure(0, 0);
@@ -147,6 +150,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
                 llPIN.measure(0, 0);
                 int beforeB = llPIN.getMeasuredHeight();
 
+                tilPIN.setErrorEnabled(isError);
                 tilPIN.setError(error);
 
                 llPIN.measure(0, 0);
@@ -391,6 +395,11 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     public void setPinMessage(String message) {
         String s = message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info);
         tvPinMessage.setText(s);
+    }
+
+    @Override
+    public void setMobile(String mobile) {
+        etMobile.setText(mobile);
     }
 
     @Override

@@ -105,12 +105,17 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
             ivBankLogo = itemView.findViewById(R.id.ivBankLogo);
             tvBankLogo = itemView.findViewById(R.id.tvBankLogo);
 
-            flContainer.setOnClickListener(view -> itemClickObservable.onNext(new HashMap<String, String>() {{
-                put("idx", tvBankId.getText() + "");
-                put("name", tvBankFullName.getText() + "");
-                put("icon", tvBankIcon.getText() + "");
-                put("logo", tvBankLogo.getText() + "");
-            }}));
+            flContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemClickObservable.onNext(new HashMap<String, String>() {{
+                        put("idx", tvBankId.getText() + "");
+                        put("name", tvBankFullName.getText() + "");
+                        put("icon", tvBankIcon.getText() + "");
+                        put("logo", tvBankLogo.getText() + "");
+                    }});
+                }
+            });
         }
     }
 
