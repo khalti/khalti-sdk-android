@@ -1,26 +1,9 @@
 package khalti.eBanking;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-import khalti.checkOut.EBanking.EBankingContract;
-import khalti.checkOut.EBanking.EBankingModel;
-import khalti.checkOut.EBanking.EBankingPresenter;
-import khalti.checkOut.api.Config;
-import khalti.checkOut.api.OnCheckOutListener;
-import khalti.utils.Store;
-import rx.Subscription;
-
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(EBankingPresenter.class)
+//@RunWith(PowerMockRunner.class)
+//@PrepareForTest(EBankingPresenter.class)
 public class EBankingPresenterTest {
-    private EBankingPresenter eBankingPresenter;
+    /*private EBankingPresenter eBankingPresenter;
 
     @Mock
     private EBankingContract.View mEBankingView;
@@ -56,5 +39,5 @@ public class EBankingPresenterTest {
     public void setUpLayout() {
 //        eBankingPresenter.onCreate(true);
 //        verify(mEBankingView).toggleButton(false);
-    }
+    }*/
 }
