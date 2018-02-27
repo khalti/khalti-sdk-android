@@ -24,7 +24,7 @@ buildToolsVersion '27.0.3'
 
 compile 'com.android.support:appcompat-v7:27.0.2'
 ```
-In order to add support library 26, add the Google's maven url in your project level `build.gradle`
+In order to add support library 27, add the Google's maven url in your project level `build.gradle`
 
 ```
 repositories {
