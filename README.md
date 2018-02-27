@@ -113,4 +113,4 @@ khaltiButton.setCheckOutConfig(config);
 
 Check out the [documentation](http://docs.khalti.com/checkout/android/) for further details.
 
-[#### Changelog](https://github.com/khalti/khalti-sdk-android/blob/master/CHANGELOG.md)
+#### [Changelog](https://github.com/khalti/khalti-sdk-android/blob/master/CHANGELOG.md)
