@@ -5,24 +5,24 @@ SDK for Khalti Android App
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-android:1.1.2'
+compile 'com.khalti:khalti-android:1.2.1'
 ```
 It is recommended that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
 
 ```
-compile ('com.khalti:khalti-android:1.1.2') {
+compile ('com.khalti:khalti-android:1.2.1') {
         transitive = true
     }
 ```
 Note : We recommend you to use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
 
-In order to build and run this project, please use `Android Studio 3` and please note that the minimum `Build tools` and `Support libraries` version should be `26`.
+In order to build and run this project, please use `Android Studio 3` and please note that the minimum `Build tools` and `Support libraries` version should be `27`.
 
 ```
-compileSdkVersion 26
-buildToolsVersion '26.0.2'
+compileSdkVersion 27
+buildToolsVersion '27.0.3'
 
-compile 'com.android.support:appcompat-v7:26.1.0'
+compile 'com.android.support:appcompat-v7:27.0.2'
 ```
 In order to add support library 26, add the Google's maven url in your project level `build.gradle`
 
@@ -87,7 +87,7 @@ Config config = new Config("Public Key", "Product ID", "Product Name", "Product 
 Additionally, Config class also accepts a HashMap parameter which you can use to pass any additional data. Make sure you add a `merchant_` prefix in your map key.
 
 ``` java
-HashMap<String, Object> map = new HashMap<>();
+HashMap<String, String> map = new HashMap<>();
         map.put("merchant_extra", "This is extra data");
         
         Config config = new Config("Public Key", "Product ID", "Product Name", "Product Url", amount, map, new OnCheckOutListener() {
@@ -112,3 +112,5 @@ khaltiButton.setCheckOutConfig(config);
 ```
 
 Check out the [documentation](http://docs.khalti.com/checkout/android/) for further details.
+
+[#### Changelog](https://github.com/khalti/khalti-sdk-android/blob/master/CHANGELOG.md)
