@@ -5,12 +5,12 @@ SDK for Khalti Android App
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-android:1.1.0'
+compile 'com.khalti:khalti-android:1.1.2'
 ```
 It is recommended that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
 
 ```
-compile ('com.khalti:khalti-android:1.1.0') {
+compile ('com.khalti:khalti-android:1.1.2') {
         transitive = true
     }
 ```
@@ -24,7 +24,7 @@ buildToolsVersion '26.0.2'
 
 compile 'com.android.support:appcompat-v7:26.1.0'
 ```
-In order to add support library 26, add the Google's maven url in `build.gradle`
+In order to add support library 26, add the Google's maven url in your project level `build.gradle`
 
 ```
 repositories {
@@ -33,25 +33,39 @@ repositories {
         maven { url "https://maven.google.com" }
     }
 ```
+
+`Important` Add the lines below in android default config of 'build.gradle'
+``` java
+renderscriptTargetApi 20
+renderscriptSupportModeEnabled true
+```
+
 ## Usage
 
-#### Layout
+### Layout
 
-You can add it to your xml layout
+You can add KhaltiButton to your xml layout
 ```xml
 <khalti.widget.KhaltiButton
             android:id="@+id/khalti_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-
 ```
+And, Locate your xml Khalti Button in your Java
+``` java
+KhaltiButton khaltiButton = (KhaltiButton) findViewById(R.id.khalti_button);
+```
+
 Or, use it in Java
 
 ``` java
 KhaltiButton khaltiButton = new KhaltiButton();
 ```
-#### Configure
+And, add this java KhaltiButton into your layout container.
+
+
+### Configure
 
 Configure Khalti Checkout by passing an instance of Config class
 
