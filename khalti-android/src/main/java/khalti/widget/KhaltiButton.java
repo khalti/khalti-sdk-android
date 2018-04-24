@@ -11,8 +11,8 @@ import android.view.View;
 
 import khalti.R;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.checkOut.helper.KhaltiCheckOut;
 import khalti.checkOut.api.Config;
+import khalti.checkOut.helper.KhaltiCheckOut;
 import khalti.utils.EmptyUtil;
 
 @Keep
@@ -106,6 +106,7 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
     }
 
     private void init() {
+
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.khalti, 0, 0);
         String buttonText = a.getString(R.styleable.khalti_text);
         buttonStyle = a.getInt(R.styleable.khalti_button_style, -1);
