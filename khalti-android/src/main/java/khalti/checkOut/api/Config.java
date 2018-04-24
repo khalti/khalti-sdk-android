@@ -22,39 +22,22 @@ public class Config implements Serializable {
         this.onCheckOutListener = onCheckOutListener;
     }
 
-    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull OnCheckOutListener onCheckOutListener) {
-        this.publicKey = publicKey;
-        this.productId = productId;
-        this.productName = productName;
-        this.productUrl = productUrl;
-        this.amount = amount;
-        this.onCheckOutListener = onCheckOutListener;
-    }
-
-    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, @NonNull Long amount, @NonNull OnCheckOutListener onCheckOutListener) {
-        this.publicKey = publicKey;
-        this.productId = productId;
-        this.productName = productName;
-        this.amount = amount;
-        this.onCheckOutListener = onCheckOutListener;
-    }
-
-    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount, @NonNull HashMap<String, String> additionalData,
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount,
                   @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
         this.productId = productId;
         this.productName = productName;
         this.productUrl = productUrl;
         this.amount = amount;
-        this.additionalData = additionalData;
         this.onCheckOutListener = onCheckOutListener;
     }
 
-    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, @NonNull Long amount, @NonNull HashMap<String, String> additionalData,
-                  @NonNull OnCheckOutListener onCheckOutListener) {
+    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, String productUrl, @NonNull Long amount,
+                  @NonNull HashMap<String, String> additionalData, @NonNull OnCheckOutListener onCheckOutListener) {
         this.publicKey = publicKey;
         this.productId = productId;
         this.productName = productName;
+        this.productUrl = productUrl;
         this.amount = amount;
         this.additionalData = additionalData;
         this.onCheckOutListener = onCheckOutListener;
@@ -66,15 +49,6 @@ public class Config implements Serializable {
         this.productId = productId;
         this.productName = productName;
         this.productUrl = productUrl;
-        this.amount = amount;
-        this.mobile = mobile;
-        this.onCheckOutListener = onCheckOutListener;
-    }
-
-    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, @NonNull Long amount, @NonNull String mobile, @NonNull OnCheckOutListener onCheckOutListener) {
-        this.publicKey = publicKey;
-        this.productId = productId;
-        this.productName = productName;
         this.amount = amount;
         this.mobile = mobile;
         this.onCheckOutListener = onCheckOutListener;
@@ -86,17 +60,6 @@ public class Config implements Serializable {
         this.productId = productId;
         this.productName = productName;
         this.productUrl = productUrl;
-        this.amount = amount;
-        this.additionalData = additionalData;
-        this.mobile = mobile;
-        this.onCheckOutListener = onCheckOutListener;
-    }
-
-    public Config(@NonNull String publicKey, @NonNull String productId, @NonNull String productName, @NonNull Long amount, @NonNull String mobile, @NonNull HashMap<String, String> additionalData,
-                  @NonNull OnCheckOutListener onCheckOutListener) {
-        this.publicKey = publicKey;
-        this.productId = productId;
-        this.productName = productName;
         this.amount = amount;
         this.additionalData = additionalData;
         this.mobile = mobile;
