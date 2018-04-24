@@ -140,6 +140,11 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
     }
 
     @Override
+    public void setMobile(String mobile) {
+        etContact.setText(mobile);
+    }
+
+    @Override
     public void showMessageDialog(String title, String message) {
         FrameLayout flButton = (FrameLayout) fragmentActivity.getLayoutInflater().inflate(R.layout.component_flat_button, null);
         AppCompatTextView tvButton = flButton.findViewById(R.id.tvButton);

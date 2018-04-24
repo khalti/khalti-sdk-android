@@ -36,6 +36,10 @@ class ContactFormPresenter implements ContactFormContract.Presenter {
     public void onCreate() {
         BankingData bankingData = view.receiveData();
         if (EmptyUtil.isNotNull(bankingData)) {
+            if (EmptyUtil.isNotNull(bankingData.getConfig().getMobile()) && EmptyUtil.isNotEmpty(bankingData.getConfig().getMobile()) &&
+                    ValidationUtil.isMobileNumberValid(bankingData.getConfig().getMobile())) {
+                view.setMobile(bankingData.getConfig().getMobile());
+            }
             view.setBankData(bankingData.getBankLogo(), bankingData.getBankName(), bankingData.getBankIcon());
             view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(bankingData.getConfig().getAmount())));
             compositeSubscription.add(view.setClickListener().subscribe(aVoid -> onFormSubmitted(view.isNetworkAvailable(), view.getContactNumber(), bankingData.getBankIdx(),
