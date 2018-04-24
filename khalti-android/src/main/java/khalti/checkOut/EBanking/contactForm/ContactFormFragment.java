@@ -142,6 +142,7 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
     @Override
     public void setMobile(String mobile) {
         etContact.setText(mobile);
+        etContact.setSelection(mobile.length());
     }
 
     @Override

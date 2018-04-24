@@ -400,6 +400,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     @Override
     public void setMobile(String mobile) {
         etMobile.setText(mobile);
+        etMobile.setSelection(mobile.length());
     }
 
     @Override
