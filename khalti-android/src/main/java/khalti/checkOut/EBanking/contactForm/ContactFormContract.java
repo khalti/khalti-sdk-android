@@ -16,6 +16,8 @@ interface ContactFormContract {
 
         void setEditTextError(String error);
 
+        void setMobile(String mobile);
+
         void showMessageDialog(String title, String message);
 
         void showError(String message);

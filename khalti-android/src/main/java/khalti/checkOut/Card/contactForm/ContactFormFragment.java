@@ -47,7 +47,7 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
     private AppCompatTextView tvBankIcon, tvBankName;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.banking_contact, container, false);
         fragmentActivity = getActivity();
 
@@ -137,6 +137,12 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
     public void setEditTextError(String error) {
         tilContact.setErrorEnabled(EmptyUtil.isNotNull(error));
         tilContact.setError(error);
+    }
+
+    @Override
+    public void setMobile(String mobile) {
+        etContact.setText(mobile);
+        etContact.setSelection(mobile.length());
     }
 
     @Override

@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.2.2
+
+- Added mobile preset to both e-banking and card payment
+- Fixed bank logo size issue in bank contact form
+
 ### 1.2.1
 
 - Fixed static method not found issue (Downgraded retrolambda to 3.2.3)
@@ -11,4 +16,5 @@
 - Changed bank list to searchable grid view list with bank logo
 - Merchant can now order and visibilty of payment option tabs
 - Mobile number can be preset in wallet form
+- Merchant extra info map changed from <String, Object> to <String, String>
 - Bug fixes and minor tweaks
