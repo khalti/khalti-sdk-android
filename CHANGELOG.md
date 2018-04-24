@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.2.2
+
+- Added mobile preset to both e-banking and card payment
+- Fixed bank logo size issue in bank contact form
+
 ### 1.2.1
 
 - Fixed static method not found issue (Downgraded retrolambda to 3.2.3)
