@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.2.3
+
+- Fixed error message in amount in KhaltiCheckOut
+- Made product url optional in Config
+
 ### 1.2.2
 
 - Added mobile preset to both e-banking and card payment

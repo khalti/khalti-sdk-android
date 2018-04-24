@@ -73,10 +73,10 @@ public class KhaltiCheckOut implements KhaltiCheckOutInterface {
             return "Product name cannot be empty";
         }
         if (EmptyUtil.isNull(config.getAmount())) {
-            return "Product amount cannot be null";
+            return "Product url cannot be null";
         }
         if (EmptyUtil.isEmpty(config.getAmount())) {
-            return "Product amount cannot be 0";
+            return "Product url cannot be 0";
         }
         if (EmptyUtil.isNull(config.getOnCheckOutListener())) {
             return "Listener cannot be null";
