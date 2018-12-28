@@ -1,6 +1,5 @@
 ext {
-
-    supportVersion = '27.0.2'
+    supportVersion = '28.0.0'
 
     supportLibrary = [
             appCompat   : "com.android.support:appcompat-v7:${supportVersion}",
@@ -13,10 +12,14 @@ ext {
     butterKnifeVersion = '8.8.0'
     gsonVersion = '2.8.2'
     picassoVersion = '2.5.2'
+    rippleVersion = '1.0.2'
+    progressBarVersion = '1.4.0'
 
     ui = [
             nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}",
-            picasso          : "com.squareup.picasso:picasso:${picassoVersion}"
+            picasso          : "com.squareup.picasso:picasso:${picassoVersion}",
+            ripple           : "com.balysv:material-ripple:${rippleVersion}",
+            progressBar      : "me.zhanghai.android.materialprogressbar:library:${progressBarVersion}"
     ]
 
     serialization = [

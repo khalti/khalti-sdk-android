@@ -2,6 +2,7 @@ package com.khaltiSample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -10,7 +11,6 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import khalti.carbonX.widget.Button;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.OnCheckOutListener;
 import khalti.utils.Constant;
@@ -25,7 +25,7 @@ public class Sample extends AppCompatActivity {
     @BindView(R.id.kpPay2)
     KhaltiButton khaltiButton2;
     @BindView(R.id.btnMore)
-    Button btnMore;
+    MaterialButton btnMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

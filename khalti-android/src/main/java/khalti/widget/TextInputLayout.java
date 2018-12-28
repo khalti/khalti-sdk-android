@@ -1,4 +1,4 @@
-package khalti.carbonX.widget;
+package khalti.widget;
 
 
 import android.content.Context;

@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<khalti.carbonX.widget.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/carbonX_buttonHeight"
-    android:background="@color/khaltiPrimary"
-    android:minWidth="@dimen/carbonX_buttonWidth"
-    khalti:carbonX_cornerRadius="2dp"
-    khalti:carbonX_elevation="2dp"
-    khalti:carbonX_rippleColor="@color/defaultRipple">
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:paddingLeft="@dimen/globalPadding"
-        android:paddingRight="@dimen/globalPadding"
-        android:text="@string/empty"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:fontFamily="@font/roboto_medium" />
-</khalti.carbonX.widget.FrameLayout>
+    android:layout_height="@dimen/toolbarHeight"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/globalPadding"
+    android:minWidth="@dimen/carbonX_buttonWidth1"
+    android:minHeight="@dimen/carbonX_buttonHeight"
+    android:text="@string/pay"
+    android:textAllCaps="true"
+    android:theme="@style/Theme.MaterialComponents"
+    app:backgroundTint="@color/khaltiPrimary"
+    app:cornerRadius="2dp"
+    app:rippleColor="@color/defaultRipple" />

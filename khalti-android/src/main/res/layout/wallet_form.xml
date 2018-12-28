@@ -2,7 +2,6 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -79,8 +78,8 @@
                 android:id="@+id/llMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/singleBottomMargin"
                 android:layout_marginTop="@dimen/globalPadding"
+                android:layout_marginBottom="@dimen/singleBottomMargin"
                 android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -98,7 +97,7 @@
                     android:contentDescription="@null"
                     app:srcCompat="@drawable/ic_user_account_box" />
 
-                <khalti.carbonX.widget.TextInputLayout
+                <khalti.widget.TextInputLayout
                     android:id="@+id/tilMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,7 +113,7 @@
                         android:inputType="number"
                         android:maxLength="10"
                         android:textColor="@color/black" />
-                </khalti.carbonX.widget.TextInputLayout>
+                </khalti.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -152,19 +151,18 @@
                         android:textSize="@dimen/label2"
                         app:fontFamily="@font/roboto" />
 
-                    <khalti.carbonX.widget.FrameLayout
+                    <FrameLayout
                         android:id="@+id/flBank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/cardPadding"
-                        khalti:carbonX_rippleColor="@color/defaultRipple">
+                        android:padding="@dimen/cardPadding">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <khalti.carbonX.widget.FrameLayout
+                            <FrameLayout
                                 android:id="@+id/flBankLogo"
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
@@ -174,17 +172,16 @@
                                 android:background="@drawable/circle_outline"
                                 android:gravity="center"
                                 android:padding="2dp"
-                                android:visibility="visible"
-                                khalti:carbonX_cornerRadius="16dp">
+                                android:visibility="visible">
 
                                 <ImageView
                                     android:id="@+id/ivBankLogo"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:contentDescription="@null"
                                     android:scaleType="center" />
-                            </khalti.carbonX.widget.FrameLayout>
+                            </FrameLayout>
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tvBank"
@@ -207,14 +204,14 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/cardPadding"
                                 android:layout_marginStart="@dimen/cardPadding"
+                                android:layout_marginLeft="@dimen/cardPadding"
                                 android:adjustViewBounds="true"
                                 android:alpha="0.58"
                                 android:contentDescription="@null"
                                 app:srcCompat="@drawable/ic_arrow_drop_down" />
                         </LinearLayout>
-                    </khalti.carbonX.widget.FrameLayout>
+                    </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -235,10 +232,10 @@
                         android:id="@+id/cvPinMessage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/globalPadding"
                         android:layout_marginLeft="@dimen/globalPadding"
-                        android:layout_marginRight="@dimen/globalPadding"
                         android:layout_marginTop="@dimen/cardPadding"
+                        android:layout_marginRight="@dimen/globalPadding"
+                        android:layout_marginBottom="@dimen/globalPadding"
                         card_view:cardBackgroundColor="@color/grey"
                         card_view:cardElevation="2dp"
                         card_view:cardUseCompatPadding="true">
@@ -295,7 +292,7 @@
                             android:contentDescription="@null"
                             app:srcCompat="@drawable/ic_lock_outline" />
 
-                        <khalti.carbonX.widget.TextInputLayout
+                        <khalti.widget.TextInputLayout
                             android:id="@+id/tilPIN"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -311,16 +308,16 @@
                                 android:inputType="numberPassword"
                                 android:maxLength="4"
                                 android:textColor="@color/black" />
-                        </khalti.carbonX.widget.TextInputLayout>
+                        </khalti.widget.TextInputLayout>
                     </LinearLayout>
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/globalPadding"
                         android:layout_marginLeft="@dimen/globalPadding"
-                        android:layout_marginRight="@dimen/globalPadding"
                         android:layout_marginTop="@dimen/cardPadding"
+                        android:layout_marginRight="@dimen/globalPadding"
+                        android:layout_marginBottom="@dimen/globalPadding"
                         card_view:cardBackgroundColor="@color/grey"
                         card_view:cardElevation="2dp"
                         card_view:cardUseCompatPadding="true">
@@ -376,7 +373,7 @@
                             android:contentDescription="@null"
                             app:srcCompat="@drawable/ic_lock" />
 
-                        <khalti.carbonX.widget.TextInputLayout
+                        <khalti.widget.TextInputLayout
                             android:id="@+id/tilCode"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -392,43 +389,43 @@
                                 android:inputType="number"
                                 android:maxLength="6"
                                 android:textColor="@color/black" />
-                        </khalti.carbonX.widget.TextInputLayout>
+                        </khalti.widget.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>
 
             </khalti.utils.ExpandableLayout>
 
-            <khalti.carbonX.widget.FrameLayout
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnPay"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
-
-                <khalti.carbonX.widget.Button
-                    android:id="@+id/btnPay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/carbonX_buttonHeight"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/globalPadding"
-                    android:minHeight="@dimen/carbonX_buttonHeight"
-                    android:minWidth="@dimen/carbonX_buttonWidth1"
-                    android:text="@string/pay"
-                    android:textAppearance="@style/carbonX_TextAppearance.Button.Dark"
-                    app:carbonX_backgroundTint="@color/khaltiPrimary"
-                    app:carbonX_cornerRadius="2dp"
-                    app:carbonX_elevation="2dp"
-                    app:carbonX_rippleColor="@color/defaultRipple"
-                    app:carbonX_textAllCaps="true" />
-            </khalti.carbonX.widget.FrameLayout>
+                android:layout_height="@dimen/toolbarHeight"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/globalPadding"
+                android:minWidth="@dimen/carbonX_buttonWidth1"
+                android:minHeight="@dimen/carbonX_buttonHeight"
+                android:text="@string/pay"
+                android:textAllCaps="true"
+                android:theme="@style/Theme.MaterialComponents"
+                app:backgroundTint="@color/khaltiPrimary"
+                app:cornerRadius="2dp"
+                app:rippleColor="@color/defaultRipple" />
         </LinearLayout>
 
-        <khalti.carbonX.widget.ProgressBar
-            android:id="@+id/pdLoad"
+        <FrameLayout
+            android:id="@+id/flProgressBar"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="wrap_content"
             android:background="@color/disabled"
-            android:visibility="gone"
-            khalti:carbonX_progressStyle="bar_indeterminate"
-            khalti:carbonX_tint="@color/khaltiAccent" />
+            android:visibility="gone">
+
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                app:mpb_indeterminateTint="@color/khaltiAccent"
+                app:mpb_progressStyle="horizontal" />
+        </FrameLayout>
     </FrameLayout>
 </android.support.v4.widget.NestedScrollView>

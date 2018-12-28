@@ -1,14 +1,13 @@
 package khalti.checkOut.Wallet;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -18,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -28,10 +28,6 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import java.util.HashMap;
 
 import khalti.R;
-import khalti.SmsListener;
-import khalti.carbonX.widget.Button;
-import khalti.carbonX.widget.FrameLayout;
-import khalti.utils.AppPermissionUtil;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ExpandableLayout;
 import khalti.utils.NetworkUtil;
@@ -44,9 +40,9 @@ import rx.Observable;
 public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletContract.View {
 
     private EditText etMobile, etCode, etPIN;
-    private khalti.carbonX.widget.TextInputLayout tilMobile, tilCode, tilPIN;
+    private khalti.widget.TextInputLayout tilMobile, tilCode, tilPIN;
     private ExpandableLayout elConfirmation;
-    private Button btnPay;
+    private MaterialButton btnPay;
     private Dialog progressDialog;
     private LinearLayout llConfirmation, llPIN, llCode, llKhaltiBranding;
     private ImageView ivKhalti;
@@ -55,9 +51,7 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     private FragmentActivity fragmentActivity;
     private WalletContract.Presenter presenter;
-    private SmsListener smsListener;
 
-    private boolean isRegistered = false;
     private int height = 0;
 
     @Override
@@ -174,12 +168,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     @Override
     public Observable<Void> setImageClickListener() {
         return RxView.clicks(ivKhalti);
-    }
-
-    @Override
-    public void setConfirmationCode(String code) {
-        etCode.setText(code);
-        etPIN.requestFocus();
     }
 
     @Override
@@ -324,16 +312,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public boolean hasSmsReceiptPermission() {
-        return AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS);
-    }
-
-    @Override
-    public void askSmsReceiptPermission() {
-        AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () -> presenter.onSmsReceiptPermitted());
-    }
-
-    @Override
     public boolean hasNetwork() {
         return NetworkUtil.isNetworkAvailable(fragmentActivity);
     }
@@ -369,21 +347,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         etCode.setText("");
         etPIN.setText("");
         elConfirmation.toggleExpansion();
-    }
-
-    @Override
-    public void toggleSmsListener(boolean listen) {
-        if (listen) {
-            IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
-            smsListener = new SmsListener();
-            fragmentActivity.registerReceiver(smsListener, intentFilter);
-            isRegistered = true;
-        } else {
-            if (EmptyUtil.isNotNull(smsListener) && isRegistered) {
-                fragmentActivity.unregisterReceiver(smsListener);
-                isRegistered = false;
-            }
-        }
     }
 
     @Override

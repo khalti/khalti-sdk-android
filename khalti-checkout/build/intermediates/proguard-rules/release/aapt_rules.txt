@@ -151,7 +151,7 @@
 # view res/layout/payment_form.xml #generated:180
 # view res/layout/payment_form.xml #generated:221
 # view res/layout/payment_form.xml #generated:41
--keep class khalti.carbonX.widget.TextInputLayout { <init>(...); }
+-keep class khalti.widget.TextInputLayout { <init>(...); }
 
 # view AndroidManifest.xml #generated:22
 -keep class khalti.checkOut.CheckOutActivity { <init>(...); }

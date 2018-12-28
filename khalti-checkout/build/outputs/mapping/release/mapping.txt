@@ -8581,7 +8581,7 @@ khalti.carbonX.widget.ProgressBar$Style -> khalti.carbonX.widget.ProgressBar$a:
     void <clinit>() -> <clinit>
 khalti.carbonX.widget.StateAnimatorView -> khalti.carbonX.widget.r:
     khalti.carbonX.animation.StateAnimator getStateAnimator() -> getStateAnimator
-khalti.carbonX.widget.TextInputLayout -> khalti.carbonX.widget.TextInputLayout:
+khalti.widget.TextInputLayout -> khalti.widget.TextInputLayout:
     float mainHintTextSize -> a
     float editTextSize -> b
     void <init>(android.content.Context) -> <init>
@@ -8686,7 +8686,7 @@ khalti.checkOut.EBanking.EBanking -> khalti.checkOut.EBanking.b:
     android.support.v7.widget.AppCompatTextView tvBank -> f
     android.support.v7.widget.AppCompatTextView tvBankId -> g
     android.widget.EditText etMobile -> h
-    khalti.carbonX.widget.TextInputLayout tilMobile -> i
+    khalti.widget.TextInputLayout tilMobile -> i
     khalti.carbonX.widget.Button btnPay -> j
     android.support.v4.app.FragmentActivity fragmentActivity -> k
     khalti.checkOut.EBanking.EBankingContract$Listener listener -> l
@@ -8718,7 +8718,7 @@ khalti.checkOut.EBanking.EBanking -> khalti.checkOut.EBanking.b:
     void lambda$onCreateView$0(khalti.checkOut.EBanking.EBanking,android.view.View) -> b
     java.lang.String access$002(khalti.checkOut.EBanking.EBanking,java.lang.String) -> a
     java.lang.String access$102(khalti.checkOut.EBanking.EBanking,java.lang.String) -> b
-    khalti.carbonX.widget.TextInputLayout access$200(khalti.checkOut.EBanking.EBanking) -> b
+    khalti.widget.TextInputLayout access$200(khalti.checkOut.EBanking.EBanking) -> b
     khalti.checkOut.EBanking.EBankingContract$Listener access$300(khalti.checkOut.EBanking.EBanking) -> c
 khalti.checkOut.EBanking.EBanking$$Lambda$1 -> khalti.checkOut.EBanking.c:
     khalti.checkOut.EBanking.EBanking arg$1 -> a
@@ -8945,9 +8945,9 @@ khalti.checkOut.Wallet.Wallet -> khalti.checkOut.a.a:
     android.widget.EditText etMobile -> a
     android.widget.EditText etCode -> b
     android.widget.EditText etPIN -> c
-    khalti.carbonX.widget.TextInputLayout tilMobile -> d
-    khalti.carbonX.widget.TextInputLayout tilCode -> e
-    khalti.carbonX.widget.TextInputLayout tilPIN -> f
+    khalti.widget.TextInputLayout tilMobile -> d
+    khalti.widget.TextInputLayout tilCode -> e
+    khalti.widget.TextInputLayout tilPIN -> f
     khalti.utils.ExpandableLayout elConfirmation -> g
     khalti.carbonX.widget.Button btnPay -> h
     android.app.Dialog progressDialog -> i
@@ -8981,11 +8981,11 @@ khalti.checkOut.Wallet.Wallet -> khalti.checkOut.a.a:
     void lambda$null$2(khalti.checkOut.Wallet.Wallet) -> a
     void lambda$toggleProgressDialog$1(khalti.checkOut.Wallet.Wallet) -> b
     void lambda$onCreateView$0(khalti.checkOut.Wallet.Wallet,khalti.rxBus.Event) -> a
-    khalti.carbonX.widget.TextInputLayout access$000(khalti.checkOut.Wallet.Wallet) -> c
+    khalti.widget.TextInputLayout access$000(khalti.checkOut.Wallet.Wallet) -> c
     khalti.carbonX.widget.Button access$100(khalti.checkOut.Wallet.Wallet) -> d
     khalti.checkOut.Wallet.WalletContract$Listener access$200(khalti.checkOut.Wallet.Wallet) -> e
-    khalti.carbonX.widget.TextInputLayout access$300(khalti.checkOut.Wallet.Wallet) -> f
-    khalti.carbonX.widget.TextInputLayout access$400(khalti.checkOut.Wallet.Wallet) -> g
+    khalti.widget.TextInputLayout access$300(khalti.checkOut.Wallet.Wallet) -> f
+    khalti.widget.TextInputLayout access$400(khalti.checkOut.Wallet.Wallet) -> g
 khalti.checkOut.Wallet.Wallet$$Lambda$1 -> khalti.checkOut.a.b:
     khalti.checkOut.Wallet.Wallet arg$1 -> a
     void <init>(khalti.checkOut.Wallet.Wallet) -> <init>
