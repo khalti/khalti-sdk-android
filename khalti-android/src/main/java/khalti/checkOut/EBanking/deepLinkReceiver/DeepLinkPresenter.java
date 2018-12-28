@@ -9,7 +9,6 @@ import khalti.checkOut.api.OnCheckOutListener;
 import khalti.rxBus.RxBus;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
-import khalti.utils.LogUtil;
 import khalti.utils.Store;
 
 class DeepLinkPresenter implements DeepLinkContract.Listener {

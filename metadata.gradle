@@ -5,9 +5,9 @@ ext {
     khaltiVersionCode = 10203
     khaltiVersionName = "1.2.3"
 
-    compileSdk = 27
-    buildToolVersion = '27.0.3'
+    compileSdk = 28
+    buildToolVersion = '28.0.3'
     minSdk = 14
-    targetSdk = 27
+    targetSdk = 28
     renderScriptTarget = 20
 }
