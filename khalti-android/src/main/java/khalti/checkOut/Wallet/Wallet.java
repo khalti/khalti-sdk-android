@@ -1,9 +1,7 @@
 package khalti.checkOut.Wallet;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,10 +26,8 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import java.util.HashMap;
 
 import khalti.R;
-import khalti.SmsListener;
 import khalti.carbonX.widget.Button;
 import khalti.carbonX.widget.FrameLayout;
-import khalti.utils.AppPermissionUtil;
 import khalti.utils.EmptyUtil;
 import khalti.utils.ExpandableLayout;
 import khalti.utils.NetworkUtil;
@@ -55,7 +51,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
 
     private FragmentActivity fragmentActivity;
     private WalletContract.Presenter presenter;
-    private SmsListener smsListener;
 
     private boolean isRegistered = false;
     private int height = 0;
@@ -174,12 +169,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     @Override
     public Observable<Void> setImageClickListener() {
         return RxView.clicks(ivKhalti);
-    }
-
-    @Override
-    public void setConfirmationCode(String code) {
-        etCode.setText(code);
-        etPIN.requestFocus();
     }
 
     @Override
@@ -324,16 +313,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
     }
 
     @Override
-    public boolean hasSmsReceiptPermission() {
-        return AppPermissionUtil.checkAndroidPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS);
-    }
-
-    @Override
-    public void askSmsReceiptPermission() {
-        AppPermissionUtil.askPermission(fragmentActivity, Manifest.permission.RECEIVE_SMS, "Please allow permission to receive SMS", () -> presenter.onSmsReceiptPermitted());
-    }
-
-    @Override
     public boolean hasNetwork() {
         return NetworkUtil.isNetworkAvailable(fragmentActivity);
     }
@@ -369,21 +348,6 @@ public class Wallet extends Fragment implements khalti.checkOut.Wallet.WalletCon
         etCode.setText("");
         etPIN.setText("");
         elConfirmation.toggleExpansion();
-    }
-
-    @Override
-    public void toggleSmsListener(boolean listen) {
-        if (listen) {
-            IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
-            smsListener = new SmsListener();
-            fragmentActivity.registerReceiver(smsListener, intentFilter);
-            isRegistered = true;
-        } else {
-            if (EmptyUtil.isNotNull(smsListener) && isRegistered) {
-                fragmentActivity.unregisterReceiver(smsListener);
-                isRegistered = false;
-            }
-        }
     }
 
     @Override

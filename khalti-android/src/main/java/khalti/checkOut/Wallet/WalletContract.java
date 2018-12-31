@@ -16,8 +16,6 @@ public interface WalletContract {
 
         void toggleConfirmationLayout(boolean show);
 
-        void toggleSmsListener(boolean listen);
-
         void togglePinMessage(boolean show);
 
         void setPinMessage(String message);
@@ -33,8 +31,6 @@ public interface WalletContract {
         Observable<Void> setButtonClickListener();
 
         Observable<Void> setImageClickListener();
-
-        void setConfirmationCode(String code);
 
         void setConfirmationLayoutHeight(String view);
 
@@ -56,10 +52,6 @@ public interface WalletContract {
 
         String getMessage(String action);
 
-        boolean hasSmsReceiptPermission();
-
-        void askSmsReceiptPermission();
-
         boolean hasNetwork();
 
         String getPayButtonText();
@@ -78,12 +70,6 @@ public interface WalletContract {
         void onCreate();
 
         void onDestroy();
-
-        void onSmsReceiptPermitted();
-
-        void setConfirmationCode(Event event);
-
-        void toggleSmsListener(boolean listen);
 
         void openKhaltiSettings();
 
