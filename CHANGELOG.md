@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.2.5
+
+- Removed sms permission
+
 ### 1.2.3
 
 - Fixed error message in amount in KhaltiCheckOut
