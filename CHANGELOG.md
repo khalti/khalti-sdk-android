@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.2.5
+
+- Removed sms permission
+
 ### 1.2.3
 
 - Fixed error message in amount in KhaltiCheckOut
@@ -19,7 +23,7 @@
 
 - Added Card (Debit/Credit) as a payment method
 - Changed bank list to searchable grid view list with bank logo
-- Merchant can now order and visibilty of payment option tabs
+- Merchant can now order and visibility of payment option tabs
 - Mobile number can be preset in wallet form
 - Merchant extra info map changed from <String, Object> to <String, String>
 - Bug fixes and minor tweaks
