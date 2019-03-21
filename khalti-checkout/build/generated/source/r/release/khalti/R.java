@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package khalti;
+package com.khalti;
 
 public final class R {
     public static final class anim {
@@ -4379,7 +4379,7 @@ containing a value of this type.
             0x7f010088
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#background}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#background}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4389,7 +4389,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_background = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4401,7 +4401,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_backgroundSplit = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#backgroundStacked}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#backgroundStacked}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4413,7 +4413,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_backgroundStacked = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4429,7 +4429,7 @@ containing a value of this type.
         */
         public static int ActionBar_contentInsetEnd = 21;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4445,7 +4445,7 @@ containing a value of this type.
         */
         public static int ActionBar_contentInsetEndWithActions = 25;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4461,7 +4461,7 @@ containing a value of this type.
         */
         public static int ActionBar_contentInsetLeft = 22;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4477,7 +4477,7 @@ containing a value of this type.
         */
         public static int ActionBar_contentInsetRight = 23;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4493,7 +4493,7 @@ containing a value of this type.
         */
         public static int ActionBar_contentInsetStart = 20;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4509,7 +4509,7 @@ containing a value of this type.
         */
         public static int ActionBar_contentInsetStartWithNavigation = 24;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#customNavigationLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#customNavigationLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4519,7 +4519,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_customNavigationLayout = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#displayOptions}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#displayOptions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4541,7 +4541,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_displayOptions = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#divider}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#divider}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4551,7 +4551,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_divider = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#elevation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4567,7 +4567,7 @@ containing a value of this type.
         */
         public static int ActionBar_elevation = 26;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#height}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#height}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4583,7 +4583,7 @@ containing a value of this type.
         */
         public static int ActionBar_height = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#hideOnContentScroll}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#hideOnContentScroll}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4597,7 +4597,7 @@ containing a value of this type.
         */
         public static int ActionBar_hideOnContentScroll = 19;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4607,7 +4607,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_homeAsUpIndicator = 28;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#homeLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#homeLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4617,7 +4617,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_homeLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#icon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#icon}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4627,7 +4627,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_icon = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#indeterminateProgressStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#indeterminateProgressStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4637,7 +4637,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_indeterminateProgressStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4653,7 +4653,7 @@ containing a value of this type.
         */
         public static int ActionBar_itemPadding = 18;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#logo}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#logo}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4663,7 +4663,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_logo = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#navigationMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#navigationMode}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4681,7 +4681,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_navigationMode = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#popupTheme}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4691,7 +4691,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_popupTheme = 27;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#progressBarPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#progressBarPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4707,7 +4707,7 @@ containing a value of this type.
         */
         public static int ActionBar_progressBarPadding = 17;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#progressBarStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#progressBarStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4717,7 +4717,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_progressBarStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#subtitle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4731,7 +4731,7 @@ containing a value of this type.
         */
         public static int ActionBar_subtitle = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4741,7 +4741,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionBar_subtitleTextStyle = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#title}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#title}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4755,7 +4755,7 @@ containing a value of this type.
         */
         public static int ActionBar_title = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -4832,7 +4832,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01002e, 0x7f01003e
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#background}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#background}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -4842,7 +4842,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionMode_background = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -4854,7 +4854,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionMode_backgroundSplit = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#closeItemLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#closeItemLayout}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -4864,7 +4864,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionMode_closeItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#height}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#height}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -4880,7 +4880,7 @@ containing a value of this type.
         */
         public static int ActionMode_height = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -4890,7 +4890,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActionMode_subtitleTextStyle = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -4915,7 +4915,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01003f, 0x7f010040
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandActivityOverflowButtonDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandActivityOverflowButtonDrawable}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
@@ -4925,7 +4925,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#initialActivityCount}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#initialActivityCount}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
@@ -4971,7 +4971,7 @@ containing a value of this type.
         */
         public static int AlertDialog_android_layout = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonPanelSideLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonPanelSideLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -4981,7 +4981,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AlertDialog_buttonPanelSideLayout = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listItemLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -4991,7 +4991,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AlertDialog_listItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -5001,7 +5001,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AlertDialog_listLayout = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#multiChoiceItemLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#multiChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -5011,7 +5011,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AlertDialog_multiChoiceItemLayout = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#showTitle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#showTitle}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -5025,7 +5025,7 @@ containing a value of this type.
         */
         public static int AlertDialog_showTitle = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#singleChoiceItemLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#singleChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -5075,7 +5075,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppBarLayout_android_touchscreenBlocksFocus = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#elevation}
           attribute's value can be found in the {@link #AppBarLayout} array.
 
 
@@ -5091,7 +5091,7 @@ containing a value of this type.
         */
         public static int AppBarLayout_elevation = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expanded}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expanded}
           attribute's value can be found in the {@link #AppBarLayout} array.
 
 
@@ -5120,7 +5120,7 @@ containing a value of this type.
             0x7f010048, 0x7f010049
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#state_collapsed}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#state_collapsed}
           attribute's value can be found in the {@link #AppBarLayoutStates} array.
 
 
@@ -5134,7 +5134,7 @@ containing a value of this type.
         */
         public static int AppBarLayoutStates_state_collapsed = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#state_collapsible}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#state_collapsible}
           attribute's value can be found in the {@link #AppBarLayoutStates} array.
 
 
@@ -5163,7 +5163,7 @@ containing a value of this type.
             0x7f01004a, 0x7f01004b
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_scrollFlags}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_scrollFlags}
           attribute's value can be found in the {@link #AppBarLayout_Layout} array.
 
 
@@ -5183,7 +5183,7 @@ containing a value of this type.
         */
         public static int AppBarLayout_Layout_layout_scrollFlags = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_scrollInterpolator}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_scrollInterpolator}
           attribute's value can be found in the {@link #AppBarLayout_Layout} array.
 
 
@@ -5218,7 +5218,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatImageView_android_src = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#srcCompat}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#srcCompat}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
@@ -5228,7 +5228,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatImageView_srcCompat = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tint}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
@@ -5243,7 +5243,7 @@ containing a value of this type.
         */
         public static int AppCompatImageView_tint = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tintMode}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
@@ -5288,7 +5288,7 @@ containing a value of this type.
         */
         public static int AppCompatSeekBar_android_thumb = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tickMark}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tickMark}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -5298,7 +5298,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatSeekBar_tickMark = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tickMarkTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tickMarkTint}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -5313,7 +5313,7 @@ containing a value of this type.
         */
         public static int AppCompatSeekBar_tickMarkTint = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tickMarkTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tickMarkTintMode}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -5436,7 +5436,7 @@ containing a value of this type.
         */
         public static int AppCompatTextView_android_textAppearance = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#autoSizeMaxTextSize}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#autoSizeMaxTextSize}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -5452,7 +5452,7 @@ containing a value of this type.
         */
         public static int AppCompatTextView_autoSizeMaxTextSize = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#autoSizeMinTextSize}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#autoSizeMinTextSize}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -5468,7 +5468,7 @@ containing a value of this type.
         */
         public static int AppCompatTextView_autoSizeMinTextSize = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#autoSizePresetSizes}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#autoSizePresetSizes}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -5478,7 +5478,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTextView_autoSizePresetSizes = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#autoSizeStepGranularity}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#autoSizeStepGranularity}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -5494,7 +5494,7 @@ containing a value of this type.
         */
         public static int AppCompatTextView_autoSizeStepGranularity = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#autoSizeTextType}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#autoSizeTextType}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -5511,7 +5511,7 @@ containing a value of this type.
         */
         public static int AppCompatTextView_autoSizeTextType = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontFamily}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -5525,7 +5525,7 @@ containing a value of this type.
         */
         public static int AppCompatTextView_fontFamily = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAllCaps}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -5814,7 +5814,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100cb, 0x7f0100cc, 0x7f0100cd
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarDivider}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarDivider}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5824,7 +5824,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarDivider = 23;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarItemBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5834,7 +5834,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarItemBackground = 24;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarPopupTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarPopupTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5844,7 +5844,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarPopupTheme = 17;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarSize}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarSize}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5868,7 +5868,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_actionBarSize = 22;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarSplitStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarSplitStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5878,7 +5878,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarSplitStyle = 19;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5888,7 +5888,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarStyle = 18;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarTabBarStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarTabBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5898,7 +5898,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarTabBarStyle = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarTabStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarTabStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5908,7 +5908,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarTabStyle = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarTabTextStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarTabTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5918,7 +5918,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarTabTextStyle = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5928,7 +5928,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarTheme = 20;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionBarWidgetTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionBarWidgetTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5938,7 +5938,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionBarWidgetTheme = 21;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5948,7 +5948,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionButtonStyle = 50;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionDropDownStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionDropDownStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5958,7 +5958,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionDropDownStyle = 46;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionMenuTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionMenuTextAppearance}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5968,7 +5968,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionMenuTextAppearance = 25;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionMenuTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionMenuTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5980,7 +5980,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionMenuTextColor = 26;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5990,7 +5990,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeBackground = 29;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeCloseButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeCloseButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6000,7 +6000,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeCloseButtonStyle = 28;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeCloseDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeCloseDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6010,7 +6010,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeCloseDrawable = 31;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeCopyDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeCopyDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6020,7 +6020,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeCopyDrawable = 33;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeCutDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeCutDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6030,7 +6030,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeCutDrawable = 32;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeFindDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeFindDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6040,7 +6040,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeFindDrawable = 37;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModePasteDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModePasteDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6050,7 +6050,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModePasteDrawable = 34;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModePopupWindowStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModePopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6060,7 +6060,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModePopupWindowStyle = 39;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeSelectAllDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeSelectAllDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6070,7 +6070,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeSelectAllDrawable = 35;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeShareDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeShareDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6080,7 +6080,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeShareDrawable = 36;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeSplitBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeSplitBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6090,7 +6090,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeSplitBackground = 30;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6100,7 +6100,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeStyle = 27;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionModeWebSearchDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionModeWebSearchDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6110,7 +6110,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionModeWebSearchDrawable = 38;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionOverflowButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionOverflowButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6120,7 +6120,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionOverflowButtonStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionOverflowMenuStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionOverflowMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6130,7 +6130,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_actionOverflowMenuStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#activityChooserViewStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#activityChooserViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6140,7 +6140,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_activityChooserViewStyle = 58;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#alertDialogButtonGroupStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#alertDialogButtonGroupStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6150,7 +6150,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_alertDialogButtonGroupStyle = 95;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#alertDialogCenterButtons}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#alertDialogCenterButtons}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6164,7 +6164,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_alertDialogCenterButtons = 96;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#alertDialogStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#alertDialogStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6174,7 +6174,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_alertDialogStyle = 94;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#alertDialogTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#alertDialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6196,7 +6196,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_android_windowIsFloating = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#autoCompleteTextViewStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#autoCompleteTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6206,7 +6206,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_autoCompleteTextViewStyle = 102;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#borderlessButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#borderlessButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6216,7 +6216,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_borderlessButtonStyle = 55;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonBarButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonBarButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6226,7 +6226,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_buttonBarButtonStyle = 52;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonBarNegativeButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonBarNegativeButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6236,7 +6236,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_buttonBarNegativeButtonStyle = 100;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonBarNeutralButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonBarNeutralButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6246,7 +6246,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_buttonBarNeutralButtonStyle = 101;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonBarPositiveButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonBarPositiveButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6256,7 +6256,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_buttonBarPositiveButtonStyle = 99;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonBarStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6266,7 +6266,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_buttonBarStyle = 51;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6276,7 +6276,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_buttonStyle = 103;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonStyleSmall}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6286,7 +6286,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_buttonStyleSmall = 104;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#checkboxStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#checkboxStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6296,7 +6296,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_checkboxStyle = 105;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#checkedTextViewStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#checkedTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6306,7 +6306,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_checkedTextViewStyle = 106;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorAccent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorAccent}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6321,7 +6321,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorAccent = 86;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorBackgroundFloating}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorBackgroundFloating}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6336,7 +6336,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorBackgroundFloating = 93;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorButtonNormal}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorButtonNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6351,7 +6351,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorButtonNormal = 90;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorControlActivated}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorControlActivated}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6366,7 +6366,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorControlActivated = 88;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorControlHighlight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorControlHighlight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6381,7 +6381,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorControlHighlight = 89;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorControlNormal}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorControlNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6396,7 +6396,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorControlNormal = 87;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorError}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorError}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6408,7 +6408,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_colorError = 118;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorPrimary}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorPrimary}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6423,7 +6423,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorPrimary = 84;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorPrimaryDark}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorPrimaryDark}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6438,7 +6438,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorPrimaryDark = 85;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#colorSwitchThumbNormal}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#colorSwitchThumbNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6453,7 +6453,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_colorSwitchThumbNormal = 91;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#controlBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#controlBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6463,7 +6463,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_controlBackground = 92;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#dialogPreferredPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#dialogPreferredPadding}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6479,7 +6479,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_dialogPreferredPadding = 44;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#dialogTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#dialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6489,7 +6489,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_dialogTheme = 43;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#dividerHorizontal}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#dividerHorizontal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6499,7 +6499,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_dividerHorizontal = 57;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#dividerVertical}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#dividerVertical}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6509,7 +6509,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_dividerVertical = 56;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#dropDownListViewStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#dropDownListViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6519,7 +6519,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_dropDownListViewStyle = 75;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#dropdownListPreferredItemHeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#dropdownListPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6535,7 +6535,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_dropdownListPreferredItemHeight = 47;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#editTextBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#editTextBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6545,7 +6545,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_editTextBackground = 64;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#editTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#editTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6557,7 +6557,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_editTextColor = 63;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#editTextStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#editTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6567,7 +6567,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_editTextStyle = 107;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6577,7 +6577,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_homeAsUpIndicator = 49;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#imageButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#imageButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6587,7 +6587,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_imageButtonStyle = 65;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listChoiceBackgroundIndicator}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listChoiceBackgroundIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6597,7 +6597,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_listChoiceBackgroundIndicator = 83;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listDividerAlertDialog}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listDividerAlertDialog}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6607,7 +6607,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_listDividerAlertDialog = 45;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listMenuViewStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listMenuViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6617,7 +6617,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_listMenuViewStyle = 115;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listPopupWindowStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listPopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6627,7 +6627,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_listPopupWindowStyle = 76;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listPreferredItemHeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6643,7 +6643,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_listPreferredItemHeight = 70;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listPreferredItemHeightLarge}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listPreferredItemHeightLarge}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6659,7 +6659,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_listPreferredItemHeightLarge = 72;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listPreferredItemHeightSmall}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listPreferredItemHeightSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6675,7 +6675,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_listPreferredItemHeightSmall = 71;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listPreferredItemPaddingLeft}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listPreferredItemPaddingLeft}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6691,7 +6691,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_listPreferredItemPaddingLeft = 73;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#listPreferredItemPaddingRight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#listPreferredItemPaddingRight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6707,7 +6707,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_listPreferredItemPaddingRight = 74;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#panelBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#panelBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6717,7 +6717,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_panelBackground = 80;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#panelMenuListTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#panelMenuListTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6727,7 +6727,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_panelMenuListTheme = 82;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#panelMenuListWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#panelMenuListWidth}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6743,7 +6743,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_panelMenuListWidth = 81;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#popupMenuStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#popupMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6753,7 +6753,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_popupMenuStyle = 61;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#popupWindowStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#popupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6763,7 +6763,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_popupWindowStyle = 62;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#radioButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#radioButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6773,7 +6773,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_radioButtonStyle = 108;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#ratingBarStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#ratingBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6783,7 +6783,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_ratingBarStyle = 109;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#ratingBarStyleIndicator}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#ratingBarStyleIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6793,7 +6793,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_ratingBarStyleIndicator = 110;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#ratingBarStyleSmall}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#ratingBarStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6803,7 +6803,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_ratingBarStyleSmall = 111;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#searchViewStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#searchViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6813,7 +6813,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_searchViewStyle = 69;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#seekBarStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#seekBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6823,7 +6823,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_seekBarStyle = 112;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#selectableItemBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#selectableItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6833,7 +6833,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_selectableItemBackground = 53;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#selectableItemBackgroundBorderless}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#selectableItemBackgroundBorderless}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6843,7 +6843,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_selectableItemBackgroundBorderless = 54;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#spinnerDropDownItemStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#spinnerDropDownItemStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6853,7 +6853,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_spinnerDropDownItemStyle = 48;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#spinnerStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#spinnerStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6863,7 +6863,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_spinnerStyle = 113;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#switchStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#switchStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6873,7 +6873,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_switchStyle = 114;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearanceLargePopupMenu}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearanceLargePopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6883,7 +6883,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearanceLargePopupMenu = 40;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearanceListItem}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearanceListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6893,7 +6893,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearanceListItem = 77;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearanceListItemSecondary}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearanceListItemSecondary}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6903,7 +6903,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearanceListItemSecondary = 78;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearanceListItemSmall}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearanceListItemSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6913,7 +6913,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearanceListItemSmall = 79;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearancePopupMenuHeader}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearancePopupMenuHeader}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6923,7 +6923,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearancePopupMenuHeader = 42;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearanceSearchResultSubtitle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearanceSearchResultSubtitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6933,7 +6933,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearanceSearchResultSubtitle = 67;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearanceSearchResultTitle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearanceSearchResultTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6943,7 +6943,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearanceSearchResultTitle = 66;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAppearanceSmallPopupMenu}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAppearanceSmallPopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6953,7 +6953,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textAppearanceSmallPopupMenu = 41;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textColorAlertDialogListItem}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textColorAlertDialogListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6965,7 +6965,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textColorAlertDialogListItem = 98;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textColorSearchUrl}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textColorSearchUrl}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6977,7 +6977,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_textColorSearchUrl = 68;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#toolbarNavigationButtonStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#toolbarNavigationButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6987,7 +6987,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_toolbarNavigationButtonStyle = 60;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#toolbarStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#toolbarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6997,7 +6997,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_toolbarStyle = 59;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tooltipForegroundColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tooltipForegroundColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7009,7 +7009,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_tooltipForegroundColor = 117;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tooltipFrameBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tooltipFrameBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7019,7 +7019,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_tooltipFrameBackground = 116;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowActionBar}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowActionBar}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7033,7 +7033,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowActionBar = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowActionBarOverlay}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowActionBarOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7047,7 +7047,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowActionBarOverlay = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowActionModeOverlay}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowActionModeOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7061,7 +7061,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowActionModeOverlay = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowFixedHeightMajor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowFixedHeightMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7080,7 +7080,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowFixedHeightMajor = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowFixedHeightMinor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowFixedHeightMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7099,7 +7099,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowFixedHeightMinor = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowFixedWidthMajor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowFixedWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7118,7 +7118,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowFixedWidthMajor = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowFixedWidthMinor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowFixedWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7137,7 +7137,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowFixedWidthMinor = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowMinWidthMajor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowMinWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7156,7 +7156,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowMinWidthMajor = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowMinWidthMinor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowMinWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7175,7 +7175,7 @@ containing a value of this type.
         */
         public static int AppCompatTheme_windowMinWidthMinor = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#windowNoTitle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#windowNoTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7211,7 +7211,7 @@ containing a value of this type.
             0x7f01012d
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#elevation}
           attribute's value can be found in the {@link #BottomNavigationView} array.
 
 
@@ -7227,7 +7227,7 @@ containing a value of this type.
         */
         public static int BottomNavigationView_elevation = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemBackground}
           attribute's value can be found in the {@link #BottomNavigationView} array.
 
 
@@ -7237,7 +7237,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int BottomNavigationView_itemBackground = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemIconTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemIconTint}
           attribute's value can be found in the {@link #BottomNavigationView} array.
 
 
@@ -7252,7 +7252,7 @@ containing a value of this type.
         */
         public static int BottomNavigationView_itemIconTint = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemTextColor}
           attribute's value can be found in the {@link #BottomNavigationView} array.
 
 
@@ -7267,7 +7267,7 @@ containing a value of this type.
         */
         public static int BottomNavigationView_itemTextColor = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#menu}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#menu}
           attribute's value can be found in the {@link #BottomNavigationView} array.
 
 
@@ -7294,7 +7294,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100ce, 0x7f0100cf, 0x7f0100d0
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#behavior_hideable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#behavior_hideable}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7308,7 +7308,7 @@ containing a value of this type.
         */
         public static int BottomSheetBehavior_Layout_behavior_hideable = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#behavior_peekHeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#behavior_peekHeight}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7332,7 +7332,7 @@ containing a value of this type.
         */
         public static int BottomSheetBehavior_Layout_behavior_peekHeight = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#behavior_skipCollapsed}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#behavior_skipCollapsed}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7359,7 +7359,7 @@ containing a value of this type.
             0x7f0100d1
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#allowStacking}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#allowStacking}
           attribute's value can be found in the {@link #ButtonBarLayout} array.
 
 
@@ -7462,7 +7462,7 @@ containing a value of this type.
         */
         public static int ButtonX_android_textStyle = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_animateColorChanges}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_animateColorChanges}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7476,7 +7476,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_animateColorChanges = 24;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_backgroundTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_backgroundTint}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7488,7 +7488,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ButtonX_carbonX_backgroundTint = 25;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_backgroundTintMode}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7509,7 +7509,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ButtonX_carbonX_backgroundTintMode = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_cornerRadius}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_cornerRadius}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7525,7 +7525,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_cornerRadius = 26;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_elevation}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7541,7 +7541,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_elevation = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_fontFamily}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_fontFamily}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7555,7 +7555,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_fontFamily = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_fontPath}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_fontPath}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7569,7 +7569,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_fontPath = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_inAnimation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_inAnimation}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7590,7 +7590,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_inAnimation = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_maxHeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_maxHeight}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7606,7 +7606,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_maxHeight = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_maxWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_maxWidth}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7622,7 +7622,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_maxWidth = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_outAnimation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_outAnimation}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7643,7 +7643,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_outAnimation = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleColor}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7655,7 +7655,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ButtonX_carbonX_rippleColor = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleHotspot}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleHotspot}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7669,7 +7669,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_rippleHotspot = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleRadius}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleRadius}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7685,7 +7685,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_rippleRadius = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleStyle}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7703,7 +7703,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_rippleStyle = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_textAllCaps}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_textAllCaps}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7717,7 +7717,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_textAllCaps = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_theme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_theme}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7727,7 +7727,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ButtonX_carbonX_theme = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_tint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_tint}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7739,7 +7739,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ButtonX_carbonX_tint = 17;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_tintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_tintMode}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7760,7 +7760,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ButtonX_carbonX_tintMode = 18;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMargin}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMargin}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7776,7 +7776,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_touchMargin = 19;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginBottom}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginBottom}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7792,7 +7792,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_touchMarginBottom = 20;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginLeft}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginLeft}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7808,7 +7808,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_touchMarginLeft = 21;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginRight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginRight}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7824,7 +7824,7 @@ containing a value of this type.
         */
         public static int ButtonX_carbonX_touchMarginRight = 22;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginTop}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginTop}
           attribute's value can be found in the {@link #ButtonX} array.
 
 
@@ -7889,7 +7889,7 @@ containing a value of this type.
             0x7f0100e2
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_animateColorChanges}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_animateColorChanges}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7903,7 +7903,7 @@ containing a value of this type.
         */
         public static int CarbonX_carbonX_animateColorChanges = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_aspectRatio}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_aspectRatio}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7916,7 +7916,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_aspectRatio = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_backgroundTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_backgroundTint}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7928,7 +7928,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CarbonX_carbonX_backgroundTint = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_colorDisabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_colorDisabled}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7940,7 +7940,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CarbonX_carbonX_colorDisabled = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_colorError}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_colorError}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7952,7 +7952,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CarbonX_carbonX_colorError = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_cornerRadius}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_cornerRadius}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7968,7 +7968,7 @@ containing a value of this type.
         */
         public static int CarbonX_carbonX_cornerRadius = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_heightPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_heightPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7981,7 +7981,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_heightPercent = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_marginBottomPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_marginBottomPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -7994,7 +7994,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_marginBottomPercent = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_marginEndPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_marginEndPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8007,7 +8007,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_marginEndPercent = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_marginLeftPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_marginLeftPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8020,7 +8020,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_marginLeftPercent = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_marginPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_marginPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8033,7 +8033,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_marginPercent = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_marginRightPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_marginRightPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8046,7 +8046,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_marginRightPercent = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_marginStartPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_marginStartPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8059,7 +8059,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_marginStartPercent = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_marginTopPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_marginTopPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8072,7 +8072,7 @@ some parent container.
         */
         public static int CarbonX_carbonX_marginTopPercent = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_textAppearanceButton}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_textAppearanceButton}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8082,7 +8082,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CarbonX_carbonX_textAppearanceButton = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_textAppearanceButtonInverse}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_textAppearanceButtonInverse}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8092,7 +8092,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CarbonX_carbonX_textAppearanceButtonInverse = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_widthPercent}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_widthPercent}
           attribute's value can be found in the {@link #CarbonX} array.
 
 
@@ -8151,7 +8151,7 @@ some parent container.
             0x7f0100ee, 0x7f0100ef, 0x7f0100f0, 0x7f0100f1
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#collapsedTitleGravity}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#collapsedTitleGravity}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8176,7 +8176,7 @@ some parent container.
         */
         public static int CollapsingToolbarLayout_collapsedTitleGravity = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#collapsedTitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#collapsedTitleTextAppearance}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8186,7 +8186,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CollapsingToolbarLayout_collapsedTitleTextAppearance = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentScrim}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentScrim}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8201,7 +8201,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_contentScrim = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandedTitleGravity}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandedTitleGravity}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8226,7 +8226,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_expandedTitleGravity = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandedTitleMargin}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandedTitleMargin}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8242,7 +8242,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_expandedTitleMargin = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandedTitleMarginBottom}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandedTitleMarginBottom}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8258,7 +8258,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginBottom = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandedTitleMarginEnd}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandedTitleMarginEnd}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8274,7 +8274,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginEnd = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandedTitleMarginStart}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandedTitleMarginStart}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8290,7 +8290,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginStart = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandedTitleMarginTop}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandedTitleMarginTop}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8306,7 +8306,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginTop = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#expandedTitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#expandedTitleTextAppearance}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8316,7 +8316,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CollapsingToolbarLayout_expandedTitleTextAppearance = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#scrimAnimationDuration}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#scrimAnimationDuration}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8330,7 +8330,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_scrimAnimationDuration = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#scrimVisibleHeightTrigger}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#scrimVisibleHeightTrigger}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8346,7 +8346,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_scrimVisibleHeightTrigger = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#statusBarScrim}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#statusBarScrim}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8361,7 +8361,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_statusBarScrim = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#title}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#title}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8375,7 +8375,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_title = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleEnabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleEnabled}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8389,7 +8389,7 @@ containing a value of this type.
         */
         public static int CollapsingToolbarLayout_titleEnabled = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#toolbarId}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#toolbarId}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8414,7 +8414,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100f2, 0x7f0100f3
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_collapseMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_collapseMode}
           attribute's value can be found in the {@link #CollapsingToolbarLayout_Layout} array.
 
 
@@ -8432,7 +8432,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CollapsingToolbarLayout_Layout_layout_collapseMode = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_collapseParallaxMultiplier}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_collapseParallaxMultiplier}
           attribute's value can be found in the {@link #CollapsingToolbarLayout_Layout} array.
 
 
@@ -8463,7 +8463,7 @@ containing a value of this type.
             0x010101a5, 0x0101031f, 0x7f0100f4
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#alpha}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#alpha}
           attribute's value can be found in the {@link #ColorStateListItem} array.
 
 
@@ -8512,7 +8512,7 @@ containing a value of this type.
         */
         public static int CompoundButton_android_button = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonTint}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -8527,7 +8527,7 @@ containing a value of this type.
         */
         public static int CompoundButton_buttonTint = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonTintMode}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -8562,7 +8562,7 @@ containing a value of this type.
             0x7f0100f7, 0x7f0100f8
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#keylines}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#keylines}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
@@ -8572,7 +8572,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CoordinatorLayout_keylines = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#statusBarBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#statusBarBackground}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
@@ -8614,7 +8614,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CoordinatorLayout_Layout_android_layout_gravity = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_anchor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_anchor}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -8624,7 +8624,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CoordinatorLayout_Layout_layout_anchor = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_anchorGravity}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_anchorGravity}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -8653,7 +8653,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CoordinatorLayout_Layout_layout_anchorGravity = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_behavior}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_behavior}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -8667,7 +8667,7 @@ containing a value of this type.
         */
         public static int CoordinatorLayout_Layout_layout_behavior = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_dodgeInsetEdges}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_dodgeInsetEdges}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -8690,7 +8690,7 @@ containing a value of this type.
         */
         public static int CoordinatorLayout_Layout_layout_dodgeInsetEdges = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_insetEdge}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_insetEdge}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -8712,7 +8712,7 @@ containing a value of this type.
         */
         public static int CoordinatorLayout_Layout_layout_insetEdge = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout_keyline}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout_keyline}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -8743,7 +8743,7 @@ containing a value of this type.
             0x7f0100ff, 0x7f010100, 0x7f010101
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#bottomSheetDialogTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#bottomSheetDialogTheme}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
@@ -8753,7 +8753,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int DesignTheme_bottomSheetDialogTheme = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#bottomSheetStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#bottomSheetStyle}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
@@ -8763,7 +8763,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int DesignTheme_bottomSheetStyle = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textColorError}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textColorError}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
@@ -8803,7 +8803,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010106, 0x7f010107, 0x7f010108, 0x7f010109
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#arrowHeadLength}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#arrowHeadLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8819,7 +8819,7 @@ containing a value of this type.
         */
         public static int DrawerArrowToggle_arrowHeadLength = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#arrowShaftLength}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#arrowShaftLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8835,7 +8835,7 @@ containing a value of this type.
         */
         public static int DrawerArrowToggle_arrowShaftLength = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#barLength}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#barLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8851,7 +8851,7 @@ containing a value of this type.
         */
         public static int DrawerArrowToggle_barLength = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#color}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#color}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8866,7 +8866,7 @@ containing a value of this type.
         */
         public static int DrawerArrowToggle_color = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#drawableSize}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#drawableSize}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8882,7 +8882,7 @@ containing a value of this type.
         */
         public static int DrawerArrowToggle_drawableSize = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#gapBetweenBars}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#gapBetweenBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8898,7 +8898,7 @@ containing a value of this type.
         */
         public static int DrawerArrowToggle_gapBetweenBars = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#spinBars}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#spinBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8912,7 +8912,7 @@ containing a value of this type.
         */
         public static int DrawerArrowToggle_spinBars = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#thickness}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#thickness}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -8941,7 +8941,7 @@ containing a value of this type.
             0x7f01010a
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#canExpand}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#canExpand}
           attribute's value can be found in the {@link #ExpandableLayout} array.
 
 
@@ -8983,7 +8983,7 @@ containing a value of this type.
             0x7f01010e, 0x7f01010f, 0x7f01018d, 0x7f01018e
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#backgroundTint}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -8998,7 +8998,7 @@ containing a value of this type.
         */
         public static int FloatingActionButton_backgroundTint = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -9018,7 +9018,7 @@ containing a value of this type.
         */
         public static int FloatingActionButton_backgroundTintMode = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#borderWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#borderWidth}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -9034,7 +9034,7 @@ containing a value of this type.
         */
         public static int FloatingActionButton_borderWidth = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#elevation}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -9050,7 +9050,7 @@ containing a value of this type.
         */
         public static int FloatingActionButton_elevation = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fabSize}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fabSize}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -9068,7 +9068,7 @@ containing a value of this type.
         */
         public static int FloatingActionButton_fabSize = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#pressedTranslationZ}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#pressedTranslationZ}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -9084,7 +9084,7 @@ containing a value of this type.
         */
         public static int FloatingActionButton_pressedTranslationZ = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#rippleColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#rippleColor}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -9099,7 +9099,7 @@ containing a value of this type.
         */
         public static int FloatingActionButton_rippleColor = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#useCompatPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#useCompatPadding}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -9126,7 +9126,7 @@ containing a value of this type.
             0x7f010110
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#behavior_autoHide}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#behavior_autoHide}
           attribute's value can be found in the {@link #FloatingActionButton_Behavior_Layout} array.
 
 
@@ -9164,7 +9164,7 @@ containing a value of this type.
             0x7f010115, 0x7f010116
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontProviderAuthority}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontProviderAuthority}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -9178,7 +9178,7 @@ containing a value of this type.
         */
         public static int FontFamily_fontProviderAuthority = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontProviderCerts}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontProviderCerts}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -9188,7 +9188,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int FontFamily_fontProviderCerts = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontProviderFetchStrategy}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontProviderFetchStrategy}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -9205,7 +9205,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int FontFamily_fontProviderFetchStrategy = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontProviderFetchTimeout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontProviderFetchTimeout}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -9227,7 +9227,7 @@ containing a value of this type.
         */
         public static int FontFamily_fontProviderFetchTimeout = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontProviderPackage}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontProviderPackage}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -9241,7 +9241,7 @@ containing a value of this type.
         */
         public static int FontFamily_fontProviderPackage = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontProviderQuery}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontProviderQuery}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -9272,7 +9272,7 @@ containing a value of this type.
             0x7f010117, 0x7f010118, 0x7f010119
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#font}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#font}
           attribute's value can be found in the {@link #FontFamilyFont} array.
 
 
@@ -9282,7 +9282,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int FontFamilyFont_font = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontStyle}
           attribute's value can be found in the {@link #FontFamilyFont} array.
 
 
@@ -9299,7 +9299,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int FontFamilyFont_fontStyle = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontWeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontWeight}
           attribute's value can be found in the {@link #FontFamilyFont} array.
 
 
@@ -9342,7 +9342,7 @@ containing a value of this type.
         */
         public static int ForegroundLinearLayout_android_foregroundGravity = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#foregroundInsidePadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#foregroundInsidePadding}
           attribute's value can be found in the {@link #ForegroundLinearLayout} array.
 
 
@@ -9416,7 +9416,7 @@ containing a value of this type.
             0x7f01001f, 0x7f0100d6
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_cornerRadius}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_cornerRadius}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9432,7 +9432,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_cornerRadius = 21;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_elevation}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9448,7 +9448,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_elevation = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_inAnimation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_inAnimation}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9469,7 +9469,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_inAnimation = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_inset}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_inset}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9485,7 +9485,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_inset = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_insetBottom}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_insetBottom}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9501,7 +9501,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_insetBottom = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_insetColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_insetColor}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9516,7 +9516,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_insetColor = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_insetLeft}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_insetLeft}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9532,7 +9532,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_insetLeft = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_insetRight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_insetRight}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9548,7 +9548,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_insetRight = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_insetTop}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_insetTop}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9564,7 +9564,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_insetTop = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_maxHeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_maxHeight}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9580,7 +9580,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_maxHeight = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_maxWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_maxWidth}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9596,7 +9596,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_maxWidth = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_outAnimation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_outAnimation}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9617,7 +9617,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_outAnimation = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleColor}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9629,7 +9629,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int FrameLayoutX_carbonX_rippleColor = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleHotspot}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleHotspot}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9643,7 +9643,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_rippleHotspot = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleRadius}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleRadius}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9659,7 +9659,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_rippleRadius = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_rippleStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_rippleStyle}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9677,7 +9677,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_rippleStyle = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_theme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_theme}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9687,7 +9687,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int FrameLayoutX_carbonX_theme = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMargin}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMargin}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9703,7 +9703,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_touchMargin = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginBottom}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginBottom}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9719,7 +9719,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_touchMarginBottom = 17;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginLeft}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginLeft}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9735,7 +9735,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_touchMarginLeft = 18;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginRight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginRight}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9751,7 +9751,7 @@ containing a value of this type.
         */
         public static int FrameLayoutX_carbonX_touchMarginRight = 19;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_touchMarginTop}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_touchMarginTop}
           attribute's value can be found in the {@link #FrameLayoutX} array.
 
 
@@ -9782,7 +9782,7 @@ containing a value of this type.
             0x7f010000, 0x7f010001
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_anchor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_anchor}
           attribute's value can be found in the {@link #FrameLayoutX_Layout} array.
 
 
@@ -9792,7 +9792,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int FrameLayoutX_Layout_carbonX_anchor = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_anchorGravity}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_anchorGravity}
           attribute's value can be found in the {@link #FrameLayoutX_Layout} array.
 
 
@@ -10071,7 +10071,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int LinearLayoutCompat_android_weightSum = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#divider}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#divider}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10081,7 +10081,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int LinearLayoutCompat_divider = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#dividerPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#dividerPadding}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10097,7 +10097,7 @@ containing a value of this type.
         */
         public static int LinearLayoutCompat_dividerPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#measureWithLargestChild}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#measureWithLargestChild}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10111,7 +10111,7 @@ containing a value of this type.
         */
         public static int LinearLayoutCompat_measureWithLargestChild = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#showDividers}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#showDividers}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10322,7 +10322,7 @@ containing a value of this type.
             0x7f010125, 0x7f010126, 0x7f010127
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionLayout}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10332,7 +10332,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int MenuItem_actionLayout = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionProviderClass}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionProviderClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10346,7 +10346,7 @@ containing a value of this type.
         */
         public static int MenuItem_actionProviderClass = 18;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#actionViewClass}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#actionViewClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10360,7 +10360,7 @@ containing a value of this type.
         */
         public static int MenuItem_actionViewClass = 17;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#alphabeticModifiers}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#alphabeticModifiers}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10459,7 +10459,7 @@ containing a value of this type.
         */
         public static int MenuItem_android_visible = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentDescription}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentDescription}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10473,7 +10473,7 @@ containing a value of this type.
         */
         public static int MenuItem_contentDescription = 19;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#iconTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#iconTint}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10488,7 +10488,7 @@ containing a value of this type.
         */
         public static int MenuItem_iconTint = 21;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#iconTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#iconTintMode}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10509,7 +10509,7 @@ containing a value of this type.
         */
         public static int MenuItem_iconTintMode = 22;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#numericModifiers}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#numericModifiers}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10530,7 +10530,7 @@ containing a value of this type.
         */
         public static int MenuItem_numericModifiers = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#showAsAction}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#showAsAction}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10550,7 +10550,7 @@ containing a value of this type.
         */
         public static int MenuItem_showAsAction = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tooltipText}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tooltipText}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10637,7 +10637,7 @@ containing a value of this type.
         */
         public static int MenuView_android_windowAnimationStyle = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#preserveIconSpacing}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#preserveIconSpacing}
           attribute's value can be found in the {@link #MenuView} array.
 
 
@@ -10651,7 +10651,7 @@ containing a value of this type.
         */
         public static int MenuView_preserveIconSpacing = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#subMenuArrow}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#subMenuArrow}
           attribute's value can be found in the {@link #MenuView} array.
 
 
@@ -10712,7 +10712,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int NavigationView_android_maxWidth = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#elevation}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -10728,7 +10728,7 @@ containing a value of this type.
         */
         public static int NavigationView_elevation = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#headerLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#headerLayout}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -10738,7 +10738,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int NavigationView_headerLayout = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemBackground}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -10748,7 +10748,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int NavigationView_itemBackground = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemIconTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemIconTint}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -10763,7 +10763,7 @@ containing a value of this type.
         */
         public static int NavigationView_itemIconTint = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemTextAppearance}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -10773,7 +10773,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int NavigationView_itemTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#itemTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#itemTextColor}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -10788,7 +10788,7 @@ containing a value of this type.
         */
         public static int NavigationView_itemTextColor = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#menu}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#menu}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -10827,7 +10827,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int PopupWindow_android_popupBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#overlapAnchor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#overlapAnchor}
           attribute's value can be found in the {@link #PopupWindow} array.
 
 
@@ -10854,7 +10854,7 @@ containing a value of this type.
             0x7f010131
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#state_above_anchor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#state_above_anchor}
           attribute's value can be found in the {@link #PopupWindowBackgroundState} array.
 
 
@@ -10901,7 +10901,7 @@ containing a value of this type.
             0x7f010132, 0x7f010133
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_animateColorChanges}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_animateColorChanges}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -10915,7 +10915,7 @@ containing a value of this type.
         */
         public static int ProgressBarX_carbonX_animateColorChanges = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_backgroundTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_backgroundTint}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -10927,7 +10927,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ProgressBarX_carbonX_backgroundTint = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_backgroundTintMode}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -10948,7 +10948,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ProgressBarX_carbonX_backgroundTintMode = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_barWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_barWidth}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -10964,7 +10964,7 @@ containing a value of this type.
         */
         public static int ProgressBarX_carbonX_barWidth = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_inAnimation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_inAnimation}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -10985,7 +10985,7 @@ containing a value of this type.
         */
         public static int ProgressBarX_carbonX_inAnimation = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_outAnimation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_outAnimation}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -11006,7 +11006,7 @@ containing a value of this type.
         */
         public static int ProgressBarX_carbonX_outAnimation = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_progressStyle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_progressStyle}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -11026,7 +11026,7 @@ containing a value of this type.
         */
         public static int ProgressBarX_carbonX_progressStyle = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_theme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_theme}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -11036,7 +11036,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ProgressBarX_carbonX_theme = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_tint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_tint}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -11048,7 +11048,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ProgressBarX_carbonX_tint = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_tintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_tintMode}
           attribute's value can be found in the {@link #ProgressBarX} array.
 
 
@@ -11084,7 +11084,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010134, 0x7f010135
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#paddingBottomNoButtons}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#paddingBottomNoButtons}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -11100,7 +11100,7 @@ containing a value of this type.
         */
         public static int RecycleListView_paddingBottomNoButtons = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#paddingTopNoTitle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#paddingTopNoTitle}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -11163,7 +11163,7 @@ containing a value of this type.
         */
         public static int RecyclerView_android_orientation = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fastScrollEnabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fastScrollEnabled}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11177,7 +11177,7 @@ containing a value of this type.
         */
         public static int RecyclerView_fastScrollEnabled = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fastScrollHorizontalThumbDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fastScrollHorizontalThumbDrawable}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11187,7 +11187,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int RecyclerView_fastScrollHorizontalThumbDrawable = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fastScrollHorizontalTrackDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fastScrollHorizontalTrackDrawable}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11197,7 +11197,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int RecyclerView_fastScrollHorizontalTrackDrawable = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fastScrollVerticalThumbDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fastScrollVerticalThumbDrawable}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11207,7 +11207,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int RecyclerView_fastScrollVerticalThumbDrawable = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fastScrollVerticalTrackDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fastScrollVerticalTrackDrawable}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11217,7 +11217,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int RecyclerView_fastScrollVerticalTrackDrawable = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layoutManager}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layoutManager}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11231,7 +11231,7 @@ containing a value of this type.
         */
         public static int RecyclerView_layoutManager = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#reverseLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#reverseLayout}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11245,7 +11245,7 @@ containing a value of this type.
         */
         public static int RecyclerView_reverseLayout = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#spanCount}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#spanCount}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11259,7 +11259,7 @@ containing a value of this type.
         */
         public static int RecyclerView_spanCount = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#stackFromEnd}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#stackFromEnd}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11313,7 +11313,7 @@ containing a value of this type.
             0x7f01013f
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#insetForeground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#insetForeground}
           attribute's value can be found in the {@link #ScrimInsetsFrameLayout} array.
 
 
@@ -11338,7 +11338,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010140
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#behavior_overlapTop}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#behavior_overlapTop}
           attribute's value can be found in the {@link #ScrollingViewBehavior_Layout} array.
 
 
@@ -11427,7 +11427,7 @@ containing a value of this type.
         */
         public static int SearchView_android_maxWidth = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#closeIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#closeIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11437,7 +11437,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_closeIcon = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#commitIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#commitIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11447,7 +11447,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_commitIcon = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#defaultQueryHint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#defaultQueryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11461,7 +11461,7 @@ containing a value of this type.
         */
         public static int SearchView_defaultQueryHint = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#goIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#goIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11471,7 +11471,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_goIcon = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#iconifiedByDefault}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#iconifiedByDefault}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11485,7 +11485,7 @@ containing a value of this type.
         */
         public static int SearchView_iconifiedByDefault = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#layout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#layout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11495,7 +11495,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_layout = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#queryBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#queryBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11505,7 +11505,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_queryBackground = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#queryHint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#queryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11519,7 +11519,7 @@ containing a value of this type.
         */
         public static int SearchView_queryHint = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#searchHintIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#searchHintIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11529,7 +11529,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_searchHintIcon = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#searchIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#searchIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11539,7 +11539,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_searchIcon = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#submitBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#submitBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11549,7 +11549,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_submitBackground = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#suggestionRowLayout}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#suggestionRowLayout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11559,7 +11559,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SearchView_suggestionRowLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#voiceIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#voiceIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -11592,7 +11592,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SnackbarLayout_android_maxWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#elevation}
           attribute's value can be found in the {@link #SnackbarLayout} array.
 
 
@@ -11608,7 +11608,7 @@ containing a value of this type.
         */
         public static int SnackbarLayout_elevation = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#maxActionInlineWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#maxActionInlineWidth}
           attribute's value can be found in the {@link #SnackbarLayout} array.
 
 
@@ -11670,7 +11670,7 @@ containing a value of this type.
         */
         public static int Spinner_android_prompt = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#popupTheme}
           attribute's value can be found in the {@link #Spinner} array.
 
 
@@ -11740,7 +11740,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SwitchCompat_android_thumb = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#showText}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#showText}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11754,7 +11754,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_showText = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#splitTrack}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#splitTrack}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11768,7 +11768,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_splitTrack = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#switchMinWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#switchMinWidth}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11784,7 +11784,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_switchMinWidth = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#switchPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#switchPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11800,7 +11800,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_switchPadding = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#switchTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#switchTextAppearance}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11810,7 +11810,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SwitchCompat_switchTextAppearance = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#thumbTextPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#thumbTextPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11826,7 +11826,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_thumbTextPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#thumbTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#thumbTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11841,7 +11841,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_thumbTint = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#thumbTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#thumbTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11862,7 +11862,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_thumbTintMode = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#track}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#track}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11872,7 +11872,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SwitchCompat_track = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#trackTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#trackTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11887,7 +11887,7 @@ containing a value of this type.
         */
         public static int SwitchCompat_trackTint = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#trackTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#trackTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -11989,7 +11989,7 @@ containing a value of this type.
             0x7f010166, 0x7f010167, 0x7f010168, 0x7f010169
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabBackground}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabBackground}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -11999,7 +11999,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TabLayout_tabBackground = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabContentStart}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabContentStart}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12015,7 +12015,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabContentStart = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabGravity}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabGravity}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12032,7 +12032,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabGravity = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabIndicatorColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabIndicatorColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12047,7 +12047,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabIndicatorColor = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabIndicatorHeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabIndicatorHeight}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12063,7 +12063,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabIndicatorHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabMaxWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabMaxWidth}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12079,7 +12079,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabMaxWidth = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabMinWidth}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabMinWidth}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12095,7 +12095,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabMinWidth = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabMode}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12112,7 +12112,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabMode = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabPadding}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabPadding}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12128,7 +12128,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabPadding = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabPaddingBottom}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabPaddingBottom}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12144,7 +12144,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabPaddingBottom = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabPaddingEnd}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabPaddingEnd}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12160,7 +12160,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabPaddingEnd = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabPaddingStart}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabPaddingStart}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12176,7 +12176,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabPaddingStart = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabPaddingTop}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabPaddingTop}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12192,7 +12192,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabPaddingTop = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabSelectedTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabSelectedTextColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12207,7 +12207,7 @@ containing a value of this type.
         */
         public static int TabLayout_tabSelectedTextColor = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabTextAppearance}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12217,7 +12217,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TabLayout_tabTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#tabTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#tabTextColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12344,7 +12344,7 @@ containing a value of this type.
         */
         public static int TextAppearance_android_typeface = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_fontFamily}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_fontFamily}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
@@ -12358,7 +12358,7 @@ containing a value of this type.
         */
         public static int TextAppearance_carbonX_fontFamily = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_fontPath}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_fontPath}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
@@ -12372,7 +12372,7 @@ containing a value of this type.
         */
         public static int TextAppearance_carbonX_fontPath = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#carbonX_textAllCaps}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#carbonX_textAllCaps}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
@@ -12386,7 +12386,7 @@ containing a value of this type.
         */
         public static int TextAppearance_carbonX_textAllCaps = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#fontFamily}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
@@ -12400,7 +12400,7 @@ containing a value of this type.
         */
         public static int TextAppearance_fontFamily = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#textAllCaps}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
@@ -12472,7 +12472,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_android_textColorHint = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#counterEnabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#counterEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12486,7 +12486,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_counterEnabled = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#counterMaxLength}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#counterMaxLength}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12500,7 +12500,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_counterMaxLength = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#counterOverflowTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#counterOverflowTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12510,7 +12510,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_counterOverflowTextAppearance = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#counterTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#counterTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12520,7 +12520,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_counterTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#errorEnabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#errorEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12534,7 +12534,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_errorEnabled = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#errorTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#errorTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12544,7 +12544,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_errorTextAppearance = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#hintAnimationEnabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#hintAnimationEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12558,7 +12558,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_hintAnimationEnabled = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#hintEnabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#hintEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12572,7 +12572,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_hintEnabled = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#hintTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#hintTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12582,7 +12582,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_hintTextAppearance = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#mainHintTextSize}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#mainHintTextSize}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12598,7 +12598,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_mainHintTextSize = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#passwordToggleContentDescription}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#passwordToggleContentDescription}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12612,7 +12612,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_passwordToggleContentDescription = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#passwordToggleDrawable}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#passwordToggleDrawable}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12622,7 +12622,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_passwordToggleDrawable = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#passwordToggleEnabled}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#passwordToggleEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12636,7 +12636,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_passwordToggleEnabled = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#passwordToggleTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#passwordToggleTint}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12651,7 +12651,7 @@ containing a value of this type.
         */
         public static int TextInputLayout_passwordToggleTint = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#passwordToggleTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#passwordToggleTintMode}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -12759,7 +12759,7 @@ containing a value of this type.
         */
         public static int Toolbar_android_minHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#buttonGravity}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#buttonGravity}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12776,7 +12776,7 @@ containing a value of this type.
         */
         public static int Toolbar_buttonGravity = 21;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#collapseContentDescription}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#collapseContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12790,7 +12790,7 @@ containing a value of this type.
         */
         public static int Toolbar_collapseContentDescription = 23;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#collapseIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#collapseIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12800,7 +12800,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_collapseIcon = 22;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12816,7 +12816,7 @@ containing a value of this type.
         */
         public static int Toolbar_contentInsetEnd = 6;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12832,7 +12832,7 @@ containing a value of this type.
         */
         public static int Toolbar_contentInsetEndWithActions = 10;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12848,7 +12848,7 @@ containing a value of this type.
         */
         public static int Toolbar_contentInsetLeft = 7;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12864,7 +12864,7 @@ containing a value of this type.
         */
         public static int Toolbar_contentInsetRight = 8;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12880,7 +12880,7 @@ containing a value of this type.
         */
         public static int Toolbar_contentInsetStart = 5;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12896,7 +12896,7 @@ containing a value of this type.
         */
         public static int Toolbar_contentInsetStartWithNavigation = 9;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#logo}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#logo}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12906,7 +12906,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_logo = 4;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#logoDescription}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#logoDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12920,7 +12920,7 @@ containing a value of this type.
         */
         public static int Toolbar_logoDescription = 26;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#maxButtonHeight}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#maxButtonHeight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12936,7 +12936,7 @@ containing a value of this type.
         */
         public static int Toolbar_maxButtonHeight = 20;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#navigationContentDescription}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#navigationContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12950,7 +12950,7 @@ containing a value of this type.
         */
         public static int Toolbar_navigationContentDescription = 25;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#navigationIcon}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#navigationIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12960,7 +12960,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_navigationIcon = 24;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#popupTheme}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12970,7 +12970,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_popupTheme = 11;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#subtitle}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12984,7 +12984,7 @@ containing a value of this type.
         */
         public static int Toolbar_subtitle = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#subtitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#subtitleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -12994,7 +12994,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_subtitleTextAppearance = 13;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#subtitleTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#subtitleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13009,7 +13009,7 @@ containing a value of this type.
         */
         public static int Toolbar_subtitleTextColor = 28;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#title}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#title}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13023,7 +13023,7 @@ containing a value of this type.
         */
         public static int Toolbar_title = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleMargin}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleMargin}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13039,7 +13039,7 @@ containing a value of this type.
         */
         public static int Toolbar_titleMargin = 14;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleMarginBottom}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleMarginBottom}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13055,7 +13055,7 @@ containing a value of this type.
         */
         public static int Toolbar_titleMarginBottom = 18;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleMarginEnd}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleMarginEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13071,7 +13071,7 @@ containing a value of this type.
         */
         public static int Toolbar_titleMarginEnd = 16;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleMarginStart}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleMarginStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13087,7 +13087,7 @@ containing a value of this type.
         */
         public static int Toolbar_titleMarginStart = 15;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleMarginTop}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleMarginTop}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13103,7 +13103,7 @@ containing a value of this type.
         */
         public static int Toolbar_titleMarginTop = 17;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleMargins}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleMargins}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13119,7 +13119,7 @@ containing a value of this type.
         */
         public static int Toolbar_titleMargins = 19;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleTextAppearance}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13129,7 +13129,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_titleTextAppearance = 12;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#titleTextColor}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#titleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13178,7 +13178,7 @@ containing a value of this type.
         */
         public static int View_android_theme = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#paddingEnd}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#paddingEnd}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -13194,7 +13194,7 @@ containing a value of this type.
         */
         public static int View_paddingEnd = 3;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#paddingStart}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#paddingStart}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -13210,7 +13210,7 @@ containing a value of this type.
         */
         public static int View_paddingStart = 2;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#theme}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -13243,7 +13243,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ViewBackgroundHelper_android_background = 0;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#backgroundTint}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -13258,7 +13258,7 @@ containing a value of this type.
         */
         public static int ViewBackgroundHelper_backgroundTint = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -13328,7 +13328,7 @@ containing a value of this type.
             0x7f01018f, 0x7f010190
         };
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#button_style}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#button_style}
           attribute's value can be found in the {@link #khalti} array.
 
 
@@ -13347,7 +13347,7 @@ containing a value of this type.
         */
         public static int khalti_button_style = 1;
         /**
-          <p>This symbol is the offset where the {@link khalti.R.attr#text}
+          <p>This symbol is the offset where the {@link com.khalti.R.attr#text}
           attribute's value can be found in the {@link #khalti} array.
 
 

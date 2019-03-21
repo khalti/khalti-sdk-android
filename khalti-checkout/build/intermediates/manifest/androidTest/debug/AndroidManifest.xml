@@ -10,7 +10,7 @@
         android:name="android.support.test.runner.AndroidJUnitRunner"
         android:functionalTest="false"
         android:handleProfiling="false"
-        android:label="Tests for khalti.test"
+        android:label="Tests for com.khalti.test"
         android:targetPackage="khalti.test" />
 
     <uses-permission android:name="android.permission.INTERNET" />

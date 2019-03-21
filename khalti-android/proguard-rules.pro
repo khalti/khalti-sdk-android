@@ -41,8 +41,6 @@
 #-keepclasseswithmembernames class * {
  #  native <methods>;
 #}
--keep class android.support.v8.renderscript.** { *; }
-
 #Animations
 -keep class com.nineoldandroids.animation.** { *; }
 -keep interface com.nineoldandroids.animation.** { *; }
@@ -108,15 +106,11 @@
      long consumerNode;
  }
 
- #Retrolambda
- -dontwarn java.lang.invoke.*
- -dontwarn **$$Lambda$*
-
  #Apache
  -dontwarn org.apache.**
 
  #utils
- -keep class khalti.utils.** { *; }
+ -keep class com.khalti.utils.** { *; }
 
  #rxBus
  -keep class khalti.rxBus.** { *; }

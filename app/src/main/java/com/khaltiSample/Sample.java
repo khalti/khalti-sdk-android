@@ -11,10 +11,10 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import khalti.checkOut.api.Config;
-import khalti.checkOut.api.OnCheckOutListener;
-import khalti.utils.Constant;
-import khalti.widget.KhaltiButton;
+import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.api.OnCheckOutListener;
+import com.khalti.utils.Constant;
+import com.khalti.widget.KhaltiButton;
 
 public class Sample extends AppCompatActivity {
 

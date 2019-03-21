@@ -22,7 +22,7 @@
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
-        <khalti.widget.KhaltiButton
+        <com.khalti.widget.KhaltiButton
             android:id="@+id/kpPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
-        <khalti.widget.KhaltiButton
+        <com.khalti.widget.KhaltiButton
             android:id="@+id/kpPay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
-        <khalti.widget.KhaltiButton
+        <com.khalti.widget.KhaltiButton
             android:id="@+id/kpPay2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

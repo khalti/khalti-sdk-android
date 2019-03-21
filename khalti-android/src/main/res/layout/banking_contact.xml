@@ -104,7 +104,7 @@
                 android:contentDescription="@null"
                 app:srcCompat="@drawable/ic_user_account_box" />
 
-            <khalti.widget.TextInputLayout
+            <com.khalti.widget.TextInputLayout
                 android:id="@+id/tilContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                     android:maxLength="10"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title" />
-            </khalti.widget.TextInputLayout>
+            </com.khalti.widget.TextInputLayout>
         </LinearLayout>
 
         <include

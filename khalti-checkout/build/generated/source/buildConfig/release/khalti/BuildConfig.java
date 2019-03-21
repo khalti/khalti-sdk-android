@@ -1,7 +1,7 @@
 /**
  * Automatically generated file. DO NOT MODIFY
  */
-package khalti;
+package com.khalti;
 
 public final class BuildConfig {
   public static final boolean DEBUG = false;
