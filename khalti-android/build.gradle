@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion targetSdk
@@ -10,8 +9,6 @@ android {
         targetSdkVersion targetSdk
         versionCode khaltiVersionCode
         versionName khaltiVersionName
-        renderscriptTargetApi renderScriptTarget
-        renderscriptSupportModeEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -39,11 +36,6 @@ android {
         options.addStringOption('Xdoclint:none', '-quiet')
         options.addStringOption('encoding', 'UTF-8')
         options.addStringOption('charSet', 'UTF-8')
-    }
-
-    retrolambda {
-        defaultMethods false
-        include 'Debug'
     }
 }
 
@@ -94,8 +86,6 @@ dependencies {
     /*RxBinding*/
     implementation rx.rxBinding
     implementation rx.rxAppCompatBinding
-
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.3'
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/
@@ -105,7 +95,6 @@ dependencies {
     testImplementation test.powerMockJUnit
     testImplementation test.powerMockMockito
 }
-
 
 apply from: 'kInstall.gradle'
 apply from: 'kBintray.gradle'

@@ -9,5 +9,4 @@ ext {
     buildToolVersion = '28.0.3'
     minSdk = 14
     targetSdk = 28
-    renderScriptTarget = 20
 }
