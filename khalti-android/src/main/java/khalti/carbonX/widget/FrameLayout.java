@@ -187,13 +187,13 @@ public class FrameLayout extends android.widget.FrameLayout implements ShadowVie
                 float childElevation = shadowView.getElevation() + shadowView.getTranslationZ();
                 Matrix matrix = MatrixHelper.getMatrix(child);
 
-                canvas.save(Canvas.MATRIX_SAVE_FLAG);
+                canvas.save();
                 canvas.translate(child.getLeft(), child.getTop() + childElevation / 2);
                 canvas.concat(matrix);
                 shadow.draw(canvas, child, paint);
                 canvas.restore();
 
-                canvas.save(Canvas.MATRIX_SAVE_FLAG);
+                canvas.save();
                 canvas.translate(child.getLeft(), child.getTop());
                 canvas.concat(matrix);
                 shadow.draw(canvas, child, paint);
@@ -205,7 +205,7 @@ public class FrameLayout extends android.widget.FrameLayout implements ShadowVie
             RippleView rippleView = (RippleView) child;
             RippleDrawable rippleDrawable = rippleView.getRippleDrawable();
             if (rippleDrawable != null && rippleDrawable.getStyle() == RippleDrawable.Style.Borderless) {
-                int saveCount = canvas.save(Canvas.MATRIX_SAVE_FLAG);
+                int saveCount = canvas.save();
                 canvas.translate(
                         child.getLeft(),
                         child.getTop());
