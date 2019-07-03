@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -23,7 +25,6 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import com.squareup.picasso.Picasso;
 
 import khalti.R;
-import khalti.carbonX.widget.FrameLayout;
 import khalti.checkOut.CheckOutActivity;
 import khalti.checkOut.EBanking.helper.BankingData;
 import khalti.checkOut.api.Config;
@@ -41,7 +42,8 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
 
     private TextInputLayout tilContact;
     private EditText etContact;
-    private FrameLayout btnPay, flBankLogo, flBankTextIcon;
+    private FrameLayout flBankLogo, flBankTextIcon;
+    private MaterialButton btnPay;
     private AppCompatTextView tvButton;
     private ImageView ivBankLogo;
     private AppCompatTextView tvBankIcon, tvBankName;

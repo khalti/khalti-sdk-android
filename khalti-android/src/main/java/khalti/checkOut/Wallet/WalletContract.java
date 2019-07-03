@@ -6,7 +6,6 @@ import java.util.HashMap;
 import khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import khalti.checkOut.Wallet.helper.WalletInitPojo;
 import khalti.checkOut.api.Config;
-import khalti.rxBus.Event;
 import rx.Observable;
 
 public interface WalletContract {
@@ -15,8 +14,6 @@ public interface WalletContract {
         void toggleProgressDialog(String action, boolean show);
 
         void toggleConfirmationLayout(boolean show);
-
-        void toggleSmsListener(boolean listen);
 
         void togglePinMessage(boolean show);
 
@@ -33,8 +30,6 @@ public interface WalletContract {
         Observable<Void> setButtonClickListener();
 
         Observable<Void> setImageClickListener();
-
-        void setConfirmationCode(String code);
 
         void setConfirmationLayoutHeight(String view);
 
@@ -56,10 +51,6 @@ public interface WalletContract {
 
         String getMessage(String action);
 
-        boolean hasSmsReceiptPermission();
-
-        void askSmsReceiptPermission();
-
         boolean hasNetwork();
 
         String getPayButtonText();
@@ -78,12 +69,6 @@ public interface WalletContract {
         void onCreate();
 
         void onDestroy();
-
-        void onSmsReceiptPermitted();
-
-        void setConfirmationCode(Event event);
-
-        void toggleSmsListener(boolean listen);
 
         void openKhaltiSettings();
 

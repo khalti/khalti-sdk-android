@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion targetSdk
@@ -40,11 +39,6 @@ android {
         options.addStringOption('encoding', 'UTF-8')
         options.addStringOption('charSet', 'UTF-8')
     }
-
-    retrolambda {
-        defaultMethods false
-        include 'Debug'
-    }
 }
 
 dependencies {
@@ -58,6 +52,12 @@ dependencies {
 
     /*Android Animations*/
     implementation ui.nineoldanimations
+
+    /*Ripple*/
+    implementation ui.ripple
+
+    /*Progress bar*/
+    implementation ui.progressBar
 
     /*Image Loader*/
     implementation ui.picasso
@@ -89,7 +89,6 @@ dependencies {
     implementation rx.rxBinding
     implementation rx.rxAppCompatBinding
 
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.3'
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/

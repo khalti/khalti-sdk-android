@@ -38,7 +38,7 @@
                     android:contentDescription="@null"
                     app:srcCompat="@drawable/ic_user_account_box" />
 
-                <khalti.carbonX.widget.TextInputLayout
+                <khalti.widget.TextInputLayout
                     android:id="@+id/tilMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                         android:inputType="number"
                         android:maxLength="10"
                         android:textColor="@color/black" />
-                </khalti.carbonX.widget.TextInputLayout>
+                </khalti.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -177,7 +177,7 @@
                             android:contentDescription="@null"
                             app:srcCompat="@drawable/ic_lock_black_24px" />
 
-                        <khalti.carbonX.widget.TextInputLayout
+                        <khalti.widget.TextInputLayout
                             android:id="@+id/tilCode"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
                                 android:inputType="text"
                                 android:maxLength="6"
                                 android:textColor="@color/black" />
-                        </khalti.carbonX.widget.TextInputLayout>
+                        </khalti.widget.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -218,7 +218,7 @@
                             android:contentDescription="@null"
                             app:srcCompat="@drawable/ic_lock_outline_black_24px" />
 
-                        <khalti.carbonX.widget.TextInputLayout
+                        <khalti.widget.TextInputLayout
                             android:id="@+id/tilPIN"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -234,7 +234,7 @@
                                 android:inputType="numberPassword"
                                 android:maxLength="4"
                                 android:textColor="@color/black" />
-                        </khalti.carbonX.widget.TextInputLayout>
+                        </khalti.widget.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>
             </khalti.utils.ExpandableLayout>

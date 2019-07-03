@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<khalti.carbonX.widget.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.balysv.materialripple.MaterialRippleLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:id="@+id/flContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    khalti:carbonX_cornerRadius="2dp"
-    khalti:carbonX_rippleColor="@color/defaultRipple"
-    khalti:carbonX_rippleStyle="over">
+    app:mrl_rippleColor="@color/defaultRipple"
+    app:mrl_rippleOverlay="true"
+    app:mrl_rippleDimension="60dp"
+    app:mrl_rippleRoundedCorners="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:padding="@dimen/globalPadding">
 
-        <khalti.carbonX.widget.FrameLayout
+        <FrameLayout
             android:id="@+id/flBankLogo"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -24,8 +24,7 @@
             android:background="@drawable/circle_outline"
             android:gravity="center"
             android:padding="2dp"
-            android:visibility="visible"
-            khalti:carbonX_cornerRadius="32dp">
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/ivBankLogo"
@@ -34,30 +33,29 @@
                 android:layout_gravity="center"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter" />
-        </khalti.carbonX.widget.FrameLayout>
+        </FrameLayout>
 
-        <khalti.carbonX.widget.FrameLayout
+        <FrameLayout
             android:id="@+id/flBankTextIcon"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginBottom="@dimen/cardPadding"
-            android:background="@color/khaltiPrimary"
+            android:background="@drawable/circle_primary"
             android:gravity="center"
             android:padding="2dp"
-            android:visibility="gone"
-            khalti:carbonX_cornerRadius="32dp">
+            android:visibility="gone">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvBankIcon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/app_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/head"
                 app:fontFamily="@font/roboto_bold" />
-        </khalti.carbonX.widget.FrameLayout>
+        </FrameLayout>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvBankName"
@@ -72,7 +70,7 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvBankFullName"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvBankId"
@@ -84,4 +82,4 @@
             android:layout_width="0dp"
             android:layout_height="0dp" />
     </LinearLayout>
-</khalti.carbonX.widget.FrameLayout>
+</com.balysv.materialripple.MaterialRippleLayout>

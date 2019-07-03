@@ -91,20 +91,20 @@
             android:text="Click below for more examples"
             android:textSize="@dimen/body" />
 
-        <khalti.carbonX.widget.Button
+        <android.support.design.button.MaterialButton
             android:id="@+id/btnMore"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/toolbarHeight"
             android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:paddingLeft="@dimen/globalPadding"
-            android:paddingRight="@dimen/globalPadding"
+            android:layout_margin="@dimen/globalPadding"
+            android:minWidth="@dimen/carbonX_buttonWidth1"
+            android:minHeight="@dimen/carbonX_buttonHeight"
             android:text="More"
             android:textAllCaps="true"
-            android:textColor="@color/khaltiPrimary"
-            android:textSize="@dimen/body"
-            android:textStyle="bold"
-            app:carbonX_rippleColor="@color/khaltiPrimary" />
+            android:theme="@style/Theme.MaterialComponents"
+            app:backgroundTint="@color/khaltiPrimary"
+            app:cornerRadius="2dp"
+            app:rippleColor="@color/defaultRipple" />
     </LinearLayout>
 </ScrollView>
 

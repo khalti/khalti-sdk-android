@@ -1,11 +1,10 @@
 package khalti.checkOut.EBanking;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatTextView;
@@ -15,21 +14,16 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding.support.v7.widget.RxSearchView;
 import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
-import khalti.carbonX.widget.Button;
-import khalti.carbonX.widget.FrameLayout;
-import khalti.carbonX.widget.ProgressBar;
 import khalti.checkOut.EBanking.contactForm.ContactFormFragment;
 import khalti.checkOut.EBanking.helper.BankAdapter;
 import khalti.checkOut.EBanking.helper.BankPojo;
@@ -44,10 +38,9 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     private RecyclerView rvList;
     private LinearLayout llIndented;
-    private ProgressBar pdLoad;
+    private FrameLayout flLoad;
     private AppCompatTextView tvMessage;
-    private FrameLayout flTryAgain;
-    private Button btnTryAgain;
+    private MaterialButton btnTryAgain;
     private AppBarLayout appBarLayout;
     private SearchView svBanks;
     private FrameLayout flSearchBank;
@@ -64,9 +57,9 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
         rvList = mainView.findViewById(R.id.rvList);
         llIndented = mainView.findViewById(R.id.llIndented);
-        pdLoad = mainView.findViewById(R.id.pdLoad);
+        flLoad = mainView.findViewById(R.id.flLoad);
         tvMessage = mainView.findViewById(R.id.tvMessage);
-        flTryAgain = mainView.findViewById(R.id.flTryAgain);
+        btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
         btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
         appBarLayout = mainView.findViewById(R.id.appBar);
         svBanks = mainView.findViewById(R.id.svBank);
@@ -86,7 +79,7 @@ public class EBanking extends Fragment implements EBankingContract.View {
     @Override
     public void toggleIndented(boolean show) {
         llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
-        pdLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        flLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
@@ -102,16 +95,16 @@ public class EBanking extends Fragment implements EBankingContract.View {
 
     @Override
     public void showIndentedNetworkError() {
-        pdLoad.setVisibility(View.INVISIBLE);
-        flTryAgain.setVisibility(View.INVISIBLE);
+        flLoad.setVisibility(View.INVISIBLE);
+        btnTryAgain.setVisibility(View.INVISIBLE);
         tvMessage.setVisibility(View.VISIBLE);
         tvMessage.setText(ResourceUtil.getString(fragmentActivity, R.string.network_error_body));
     }
 
     @Override
     public void showIndentedError(String error) {
-        pdLoad.setVisibility(View.INVISIBLE);
-        flTryAgain.setVisibility(View.VISIBLE);
+        flLoad.setVisibility(View.INVISIBLE);
+        btnTryAgain.setVisibility(View.VISIBLE);
         tvMessage.setVisibility(View.VISIBLE);
         tvMessage.setText(error);
     }
