@@ -4,12 +4,12 @@ Documentation of Khalti checkout for android
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-android:1.2.3'
+compile 'com.khalti:khalti-android:1.2.5'
 ```
 It is recommended that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
 
 ```
-compile ('com.khalti:khalti-android:1.2.3') {
+compile ('com.khalti:khalti-android:1.2.5') {
         transitive = true
     }
 ```
@@ -148,7 +148,7 @@ khaltiButton.setCheckOutConfig(config);
 
 
 ##### Response Sample
-###### Success Messsage
+###### Success Message
 | Key               |        Value                 |            Type         |
 |-------------------|------------------------------|-------------------------|
 | mobile            | 98XXXXXXXX                   |           String        |
@@ -160,7 +160,7 @@ khaltiButton.setCheckOutConfig(config);
 
 The success message also contains all the `key` and `value` provide as extra data while initiating `Config` 
 
-###### Error Messsage
+###### Error Message
 |  Variable                 | Description                            |    Type   |
 |---------------------------|----------------------------------------|-----------|   
 | action                    | Action performed - initiate, confirm   |   String  |
