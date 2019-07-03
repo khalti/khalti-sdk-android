@@ -59,6 +59,12 @@ dependencies {
     /*Android Animations*/
     implementation ui.nineoldanimations
 
+    /*Ripple*/
+    implementation ui.ripple
+
+    /*Progress bar*/
+    implementation ui.progressBar
+
     /*Image Loader*/
     implementation ui.picasso
 

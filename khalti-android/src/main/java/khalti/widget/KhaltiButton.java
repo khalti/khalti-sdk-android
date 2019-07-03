@@ -5,12 +5,13 @@ import android.content.res.TypedArray;
 import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import khalti.R;
-import khalti.carbonX.widget.FrameLayout;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.helper.KhaltiCheckOut;
 import khalti.utils.EmptyUtil;
@@ -24,9 +25,9 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
 
     private PayContract.Presenter presenter;
 
-    private android.widget.FrameLayout flCustomView;
+    private FrameLayout flCustomView;
     private FrameLayout flStyle;
-    private khalti.carbonX.widget.Button btnPay;
+    private MaterialButton btnPay;
     private View customView;
     private int buttonStyle;
     private OnClickListener onClickListener;
@@ -113,15 +114,17 @@ public class KhaltiButton extends FrameLayout implements KhaltiButtonInterface {
         a.recycle();
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View mainView = inflater.inflate(R.layout.component_button, this, true);
+        if (EmptyUtil.isNotNull(inflater)) {
+            View mainView = inflater.inflate(R.layout.component_button, this, true);
 
-        btnPay = mainView.findViewById(R.id.btnPay);
-        flCustomView = mainView.findViewById(R.id.flCustomView);
-        flStyle = mainView.findViewById(R.id.flStyle);
+            btnPay = mainView.findViewById(R.id.btnPay);
+            flCustomView = mainView.findViewById(R.id.flCustomView);
+            flStyle = mainView.findViewById(R.id.flStyle);
 
-        presenter.setButtonText(buttonText);
-        presenter.setButtonStyle(buttonStyle);
-        presenter.setButtonClick();
+            presenter.setButtonText(buttonText);
+            presenter.setButtonStyle(buttonStyle);
+            presenter.setButtonClick();
+        }
     }
 
     private class Pay implements PayContract.View {

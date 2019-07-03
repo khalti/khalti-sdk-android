@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -40,15 +39,17 @@
         android:orientation="horizontal"
         android:padding="@dimen/cardPadding">
 
-        <khalti.carbonX.widget.FrameLayout
+        <com.balysv.materialripple.MaterialRippleLayout
             android:id="@+id/flNegativeAction"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginEnd="@dimen/cardPadding"
             android:layout_marginRight="@dimen/cardPadding"
             android:visibility="gone"
-            khalti:carbonX_cornerRadius="2dp"
-            khalti:carbonX_rippleColor="@color/defaultRipple">
+            app:mrl_rippleColor="@color/defaultRipple"
+            app:mrl_rippleDimension="60dp"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleRoundedCorners="2dp">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvNegative"
@@ -64,15 +65,17 @@
                 android:textColor="@color/khaltiAccent"
                 android:textSize="@dimen/body"
                 app:fontFamily="@font/roboto" />
-        </khalti.carbonX.widget.FrameLayout>
+        </com.balysv.materialripple.MaterialRippleLayout>
 
-        <khalti.carbonX.widget.FrameLayout
+        <com.balysv.materialripple.MaterialRippleLayout
             android:id="@+id/flPositiveAction"
             android:layout_width="wrap_content"
             android:layout_height="42dp"
             android:minWidth="100dp"
-            khalti:carbonX_cornerRadius="2dp"
-            khalti:carbonX_rippleColor="@color/defaultRipple">
+            app:mrl_rippleColor="@color/defaultRipple"
+            app:mrl_rippleDimension="60dp"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleRoundedCorners="2dp">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvPositive"
@@ -88,7 +91,7 @@
                 android:textColor="@color/khaltiAccent"
                 android:textSize="@dimen/body"
                 app:fontFamily="@font/roboto_medium" />
-        </khalti.carbonX.widget.FrameLayout>
+        </com.balysv.materialripple.MaterialRippleLayout>
     </LinearLayout>
 </LinearLayout>
 

@@ -7226,12 +7226,12 @@ khalti.carbonX.widget.ProgressBar: float getY()
 khalti.carbonX.widget.ProgressBar: void setY(float)
 khalti.carbonX.widget.ProgressBar$Style: khalti.carbonX.widget.ProgressBar$Style[] values()
 khalti.carbonX.widget.ProgressBar$Style: khalti.carbonX.widget.ProgressBar$Style valueOf(java.lang.String)
-khalti.carbonX.widget.TextInputLayout
-khalti.carbonX.widget.TextInputLayout: TextInputLayout(android.content.Context)
-khalti.carbonX.widget.TextInputLayout: TextInputLayout(android.content.Context,android.util.AttributeSet)
-khalti.carbonX.widget.TextInputLayout: TextInputLayout(android.content.Context,android.util.AttributeSet,int)
-khalti.carbonX.widget.TextInputLayout: float getMainHintTextSize()
-khalti.carbonX.widget.TextInputLayout: void setMainHintTextSize(float)
+khalti.widget.TextInputLayout
+khalti.widget.TextInputLayout: TextInputLayout(android.content.Context)
+khalti.widget.TextInputLayout: TextInputLayout(android.content.Context,android.util.AttributeSet)
+khalti.widget.TextInputLayout: TextInputLayout(android.content.Context,android.util.AttributeSet,int)
+khalti.widget.TextInputLayout: float getMainHintTextSize()
+khalti.widget.TextInputLayout: void setMainHintTextSize(float)
 khalti.checkOut.CheckOutActivity
 khalti.checkOut.CheckOutActivity: CheckOutActivity()
 khalti.checkOut.EBanking.BaseListPojo: android.os.Parcelable$Creator CREATOR

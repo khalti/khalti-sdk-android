@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cdlMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,10 +12,10 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:clipToPadding="false"
-        android:paddingBottom="76dp"
         android:paddingLeft="@dimen/cardPadding"
-        android:paddingRight="@dimen/cardPadding"
         android:paddingTop="@dimen/cardPadding"
+        android:paddingRight="@dimen/cardPadding"
+        android:paddingBottom="76dp"
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -33,10 +32,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/cardPadding"
             android:paddingLeft="@dimen/globalPadding"
-            android:paddingRight="@dimen/globalPadding"
             android:paddingTop="@dimen/globalPadding"
+            android:paddingRight="@dimen/globalPadding"
+            android:paddingBottom="@dimen/cardPadding"
             app:layout_scrollFlags="scroll|enterAlways">
 
             <LinearLayout
@@ -92,17 +91,21 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <khalti.carbonX.widget.ProgressBar
-            android:id="@+id/pdLoad"
+        <FrameLayout
+            android:id="@+id/flLoad"
             android:layout_width="150dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/cardPadding"
-            android:layout_marginLeft="@dimen/globalPadding"
-            android:layout_marginRight="@dimen/globalPadding"
-            android:background="@color/disabled"
-            khalti:carbonX_progressStyle="bar_indeterminate"
-            khalti:carbonX_tint="@color/khaltiPrimary" />
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                app:mpb_indeterminateTint="@color/khaltiAccent"
+                app:mpb_progressStyle="horizontal" />
+        </FrameLayout>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvMessage"
@@ -117,31 +120,24 @@
             android:visibility="gone"
             app:fontFamily="@font/roboto" />
 
-        <khalti.carbonX.widget.FrameLayout
-            android:id="@+id/flTryAgain"
+        <android.support.design.button.MaterialButton
+            android:id="@+id/btnTryAgain"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/toolbarHeight"
             android:layout_gravity="center"
-            android:padding="@dimen/globalPadding"
-            android:visibility="gone">
-
-            <khalti.carbonX.widget.Button
-                android:id="@+id/btnTryAgain"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/carbonX_buttonHeight"
-                android:minHeight="@dimen/carbonX_buttonHeight"
-                android:minWidth="@dimen/carbonX_buttonWidth"
-                android:text="@string/try_again"
-                android:textAppearance="@style/carbonX_TextAppearance.Button.Dark"
-                app:carbonX_backgroundTint="@color/khaltiPrimary"
-                app:carbonX_cornerRadius="2dp"
-                app:carbonX_elevation="2dp"
-                app:carbonX_rippleColor="@color/defaultRipple"
-                app:carbonX_textAllCaps="true" />
-        </khalti.carbonX.widget.FrameLayout>
+            android:layout_margin="@dimen/globalPadding"
+            android:minWidth="@dimen/carbonX_buttonWidth1"
+            android:minHeight="@dimen/carbonX_buttonHeight"
+            android:text="@string/try_again"
+            android:textAllCaps="true"
+            android:theme="@style/Theme.MaterialComponents"
+            android:visibility="gone"
+            app:backgroundTint="@color/khaltiPrimary"
+            app:cornerRadius="2dp"
+            app:rippleColor="@color/defaultRipple" />
     </LinearLayout>
 
-    <khalti.carbonX.widget.FrameLayout
+    <FrameLayout
         android:id="@+id/flSearchBank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -155,15 +151,14 @@
             android:alpha="0.1"
             android:background="@color/primaryText" />
 
-        <khalti.carbonX.widget.FrameLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/cardPadding"
-            android:background="@color/white"
             android:padding="@dimen/cardPadding"
-            khalti:carbonX_cornerRadius="21dp"
-            khalti:carbonX_elevation="1dp">
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="21dp">
 
             <android.support.v7.widget.SearchView
                 android:id="@+id/svBank"
@@ -173,6 +168,6 @@
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
                 app:queryHint="@string/search_bank" />
-        </khalti.carbonX.widget.FrameLayout>
-    </khalti.carbonX.widget.FrameLayout>
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -9,8 +9,6 @@ import khalti.checkOut.Wallet.helper.WalletInitPojo;
 import khalti.checkOut.api.Config;
 import khalti.checkOut.api.ErrorAction;
 import khalti.checkOut.api.OnCheckOutListener;
-import khalti.rxBus.Event;
-import khalti.rxBus.RxBus;
 import khalti.utils.Constant;
 import khalti.utils.EmptyUtil;
 import khalti.utils.GuavaUtil;
@@ -31,7 +29,6 @@ public class WalletPresenter implements WalletContract.Presenter {
     private CompositeSubscription compositeSubscription;
 
     private String pinWebLink;
-    private boolean smsListenerInitialized = false;
     private int clicks = 0;
 
     public WalletPresenter(@NonNull WalletContract.View view) {
@@ -76,17 +73,8 @@ public class WalletPresenter implements WalletContract.Presenter {
                 }
             } else {
                 if (isMobileValid(dataMap.get("mobile"))) {
-                    if (view.hasSmsReceiptPermission()) {
-                        initiatePayment(view.hasNetwork(), dataMap.get("mobile"));
-                    } else {
-                        view.askSmsReceiptPermission();
-                    }
+                    initiatePayment(view.hasNetwork(), dataMap.get("mobile"));
                 }
-            }
-        }));
-        compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
-            if (event.getTag().equals("wallet_code")) {
-                setConfirmationCode(event);
             }
         }));
     }
@@ -97,23 +85,6 @@ public class WalletPresenter implements WalletContract.Presenter {
             compositeSubscription.unsubscribe();
         }
         model.unSubscribe();
-        toggleSmsListener(false);
-    }
-
-    @Override
-    public void onSmsReceiptPermitted() {
-        initiatePayment(view.hasNetwork(), view.getFormData().get("mobile"));
-    }
-
-    @Override
-    public void setConfirmationCode(Event event) {
-        view.setConfirmationCode(event.getEvent().toString().replaceAll("\\D+", ""));
-    }
-
-    @Override
-    public void toggleSmsListener(boolean listen) {
-        view.toggleSmsListener(listen);
-        smsListenerInitialized = false;
     }
 
     @Override
@@ -230,8 +201,6 @@ public class WalletPresenter implements WalletContract.Presenter {
 
                         @Override
                         public void onNext(WalletInitPojo walletInitPojo) {
-                            view.toggleSmsListener(!smsListenerInitialized);
-                            smsListenerInitialized = true;
                             view.toggleProgressDialog("init", false);
                             view.toggleConfirmationLayout(true);
                             view.togglePinMessage(walletInitPojo.isPinCreated());

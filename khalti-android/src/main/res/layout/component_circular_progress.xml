@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<khalti.carbonX.widget.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <khalti.carbonX.widget.ProgressBar
-        android:id="@+id/progress2"
+    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+        style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        khalti:carbonX_barWidth="4dp"
-        khalti:carbonX_progressStyle="circular_indeterminate"
-        khalti:carbonX_tint="@color/khaltiAccent" />
-</khalti.carbonX.widget.FrameLayout>
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        app:mpb_indeterminateTint="@color/khaltiAccent"
+        app:mpb_progressStyle="circular" />
+</FrameLayout>

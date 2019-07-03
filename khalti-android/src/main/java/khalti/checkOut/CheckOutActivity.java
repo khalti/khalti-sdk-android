@@ -2,6 +2,7 @@ package khalti.checkOut;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -26,8 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import khalti.R;
-import khalti.carbonX.widget.Button;
-import khalti.carbonX.widget.ProgressBar;
 import khalti.utils.EmptyUtil;
 import khalti.utils.MerchantUtil;
 import khalti.utils.NetworkUtil;
@@ -42,13 +41,12 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     private ViewPager vpContent;
     private AppBarLayout alTab;
     private FrameLayout flContainer;
-    private ProgressBar pdLoad;
+    private FrameLayout flLoad;
     public CoordinatorLayout cdlMain;
     public Toolbar toolbar;
     private LinearLayout llIndented;
     private AppCompatTextView tvMessage;
-    private khalti.carbonX.widget.FrameLayout flTryAgain;
-    private Button btnTryAgain;
+    private MaterialButton btnTryAgain;
 
     private CheckOutContract.Presenter presenter;
     private List<TabLayout.Tab> tabs = new ArrayList<>();
@@ -61,12 +59,11 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
         tlTitle = findViewById(R.id.tlTitle);
         alTab = findViewById(R.id.alTab);
         flContainer = findViewById(R.id.flContainer);
-        pdLoad = findViewById(R.id.pdLoad);
+        flLoad = findViewById(R.id.flLoad);
         vpContent = findViewById(R.id.vpContent);
         cdlMain = findViewById(R.id.cdlMain);
         llIndented = findViewById(R.id.llIndented);
         tvMessage = findViewById(R.id.tvMessage);
-        flTryAgain = findViewById(R.id.flTryAgain);
         btnTryAgain = findViewById(R.id.btnTryAgain);
 
         presenter = new CheckOutPresenter(this);
@@ -82,7 +79,7 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     @Override
     public void toggleIndented(boolean show) {
         llIndented.setVisibility(show ? View.VISIBLE : View.GONE);
-        pdLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        flLoad.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
         alTab.setVisibility(!show ? View.VISIBLE : View.GONE);
         vpContent.setVisibility(!show ? View.VISIBLE : View.GONE);
         tvMessage.setVisibility(!show ? View.VISIBLE : View.INVISIBLE);
@@ -92,8 +89,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     public void showIndentedNetworkError() {
         alTab.setVisibility(View.GONE);
         llIndented.setVisibility(View.VISIBLE);
-        pdLoad.setVisibility(View.INVISIBLE);
-        flTryAgain.setVisibility(View.INVISIBLE);
+        flLoad.setVisibility(View.INVISIBLE);
+        btnTryAgain.setVisibility(View.INVISIBLE);
         tvMessage.setVisibility(View.VISIBLE);
         tvMessage.setText(ResourceUtil.getString(this, R.string.network_error_body));
     }
@@ -102,8 +99,8 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     public void showIndentedError(String error) {
         alTab.setVisibility(View.GONE);
         llIndented.setVisibility(View.VISIBLE);
-        pdLoad.setVisibility(View.INVISIBLE);
-        flTryAgain.setVisibility(View.VISIBLE);
+        flLoad.setVisibility(View.INVISIBLE);
+        btnTryAgain.setVisibility(View.VISIBLE);
         tvMessage.setVisibility(View.VISIBLE);
         tvMessage.setText(error);
     }
