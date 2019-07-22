@@ -15,7 +15,7 @@ compile ('com.khalti:khalti-android:1.2.8') {
 ```
 Note : We recommend you to use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
 
-In order to build and run this project, please use `Android Studio 3` and please note that the minimum `Build tools` and `Support libraries` version should be `27`.
+In order to build and run this project, please use `Android Studio 3` and please note that the minimum `Build tools` and `Support libraries` version should be `28`.
 
 ```
 compileSdkVersion 29
@@ -34,7 +34,7 @@ repositories {
     }
 ```
 
-`Important` Add the lines below inside android of your app 'build.gradle'
+`Important` Add the lines inside android of your app 'build.gradle'
 ``` java
 compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -42,7 +42,7 @@ compileOptions {
    }
 ```
 
-`Important` Add the lines below inside your 'gradle.properties'
+`Important` Add the lines inside your 'gradle.properties'
 ``` java
 android.enableR8 = false
 ```
