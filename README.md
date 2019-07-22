@@ -4,27 +4,27 @@ Documentation of Khalti checkout for android
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-android:1.2.5'
+compile 'com.khalti:khalti-android:1.2.8'
 ```
 It is recommended that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
 
 ```
-compile ('com.khalti:khalti-android:1.2.5') {
+compile ('com.khalti:khalti-android:1.2.8') {
         transitive = true
     }
 ```
 Note : We recommend you to use the latest version of `Build tools` and `Support libraries` for maximum compatibility. 
 
-In order to build and run this project, please use `Android Studio 3` and please note that the minimum `Build tools` and `Support libraries` version should be `27`.
+In order to build and run this project, please use `Android Studio 3` and please note that the minimum `Build tools` and `Support libraries` version should be `28`.
 
 ```
-compileSdkVersion 27
-buildToolsVersion '27.0.3'
+compileSdkVersion 29
+buildToolsVersion '29.0.0'
 
-compile 'com.android.support:appcompat-v7:27.0.2'
+compile 'com.android.support:appcompat-v7:28.0.0'
 ```
 
-In order to add support library 27, add the Google's maven url in `build.gradle`
+In order to add support library 28, add the Google's maven url in `build.gradle`
 
 ```
 repositories {
@@ -34,10 +34,17 @@ repositories {
     }
 ```
 
-`Important` Add the lines below in android default config of 'build.gradle'
+`Important` Add the lines inside android of your app 'build.gradle'
 ``` java
-renderscriptTargetApi 20
-renderscriptSupportModeEnabled true
+compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+   }
+```
+
+`Important` Add the lines inside your 'gradle.properties'
+``` java
+android.enableR8 = false
 ```
 
 ## Usage
