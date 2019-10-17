@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="@dimen/globalPadding">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -34,7 +34,7 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -57,7 +57,7 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -79,7 +79,7 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -104,7 +104,7 @@
             android:background="@color/disabled" />
 
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -128,7 +128,7 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

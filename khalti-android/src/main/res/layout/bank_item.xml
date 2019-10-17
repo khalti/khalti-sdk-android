@@ -45,7 +45,7 @@
             android:padding="2dp"
             android:visibility="gone">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvBankIcon"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -57,7 +57,7 @@
                 app:fontFamily="@font/roboto_bold" />
         </FrameLayout>
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBankName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,17 +67,17 @@
             android:textSize="@dimen/head"
             app:fontFamily="@font/roboto_medium" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBankFullName"
             android:layout_width="0dp"
             android:layout_height="0dp" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBankId"
             android:layout_width="0dp"
             android:layout_height="0dp" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBankLogo"
             android:layout_width="0dp"
             android:layout_height="0dp" />

@@ -1,7 +1,7 @@
 package com.khalti.checkOut.api;
 
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import java.util.HashMap;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:layout_height="22dp"
                     android:visibility="gone">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -57,7 +57,7 @@
                 android:padding="@dimen/globalPadding"
                 android:visibility="gone">
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/editTextPadding"
@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/select_bank"
@@ -183,7 +183,7 @@
                                     android:scaleType="center" />
                             </FrameLayout>
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvBank"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                                 android:textSize="@dimen/head"
                                 app:fontFamily="@font/roboto" />
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvBankId"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
@@ -228,7 +228,7 @@
                     android:orientation="vertical"
                     app:canExpand="true">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cvPinMessage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -256,7 +256,7 @@
                                 android:contentDescription="@null"
                                 app:srcCompat="@drawable/ic_info" />
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvPinMessage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -268,7 +268,7 @@
                                 android:textSize="13.3sp"
                                 app:fontFamily="@font/roboto" />
                         </LinearLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:id="@+id/llPIN"
@@ -311,7 +311,7 @@
                         </com.khalti.widget.TextInputLayout>
                     </LinearLayout>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/globalPadding"
@@ -338,7 +338,7 @@
                                 android:contentDescription="@null"
                                 app:srcCompat="@drawable/ic_info" />
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -349,7 +349,7 @@
                                 android:textSize="13.3sp"
                                 app:fontFamily="@font/roboto" />
                         </LinearLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:id="@+id/llCode"
@@ -395,7 +395,7 @@
 
             </com.khalti.utils.ExpandableLayout>
 
-            <android.support.design.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPay"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/toolbarHeight"
@@ -428,4 +428,4 @@
                 app:mpb_progressStyle="horizontal" />
         </FrameLayout>
     </FrameLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -1,7 +1,7 @@
 package com.khalti.widget;
 
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.view.View;
 
 import com.khalti.checkOut.api.Config;

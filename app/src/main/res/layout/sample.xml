@@ -13,7 +13,7 @@
         android:layout_margin="@dimen/globalPadding"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -35,7 +35,7 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -59,7 +59,7 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -91,7 +91,7 @@
             android:text="Click below for more examples"
             android:textSize="@dimen/body" />
 
-        <android.support.design.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMore"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/toolbarHeight"

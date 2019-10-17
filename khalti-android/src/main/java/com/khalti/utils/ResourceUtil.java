@@ -1,7 +1,7 @@
 package com.khalti.utils;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 
 public class ResourceUtil {
     public static String getString(Context context, int id) {

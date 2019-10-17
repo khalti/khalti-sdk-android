@@ -1,7 +1,7 @@
 package com.khalti.widget;
 
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 @Keep
 public enum ButtonStyle {
