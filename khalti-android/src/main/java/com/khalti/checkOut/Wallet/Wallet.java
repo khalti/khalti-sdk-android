@@ -24,9 +24,6 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
-
-import java.util.HashMap;
-
 import com.khalti.R;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.ExpandableLayout;
@@ -35,6 +32,9 @@ import com.khalti.utils.NumberUtil;
 import com.khalti.utils.ResourceUtil;
 import com.khalti.utils.Store;
 import com.khalti.utils.UserInterfaceUtil;
+
+import java.util.HashMap;
+
 import rx.Observable;
 
 public class Wallet extends Fragment implements com.khalti.checkOut.Wallet.WalletContract.View {

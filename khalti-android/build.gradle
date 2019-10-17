@@ -86,6 +86,7 @@ dependencies {
     /*RxBinding*/
     implementation rx.rxBinding
     implementation rx.rxAppCompatBinding
+
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/

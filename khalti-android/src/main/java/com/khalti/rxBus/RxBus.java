@@ -16,12 +16,13 @@ public class RxBus {
         return INSTANCE;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> Subscription register(final Class<T> eventClass, Action1<T> onNext) {
         Log.i("RxBus", "register: ");
         return bus
                 .filter(event -> event.getClass().equals(eventClass))
                 .map(obj -> (T) obj)
-                .subscribe(onNext);
+                .subscribe(onNext, Throwable::printStackTrace);
     }
 
     public void post(String tag, Object event) {
