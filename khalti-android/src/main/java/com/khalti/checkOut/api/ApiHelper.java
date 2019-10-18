@@ -11,6 +11,10 @@ import com.khalti.utils.AppUtil;
 import com.khalti.utils.Constant;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.ErrorUtil;
+
+import org.jetbrains.annotations.NotNull;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -96,13 +100,5 @@ public class ApiHelper {
                     }
                 });
         return ps;
-    }
-
-    public interface ApiCallback {
-        void onComplete();
-
-        void onError(String errorMessage);
-
-        void onNext(Object o);
     }
 }
