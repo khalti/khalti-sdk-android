@@ -4,12 +4,12 @@ Documentation of Khalti checkout for android
 Add the following line to `dependency` section in `build.gradle` file
 
 ```
-compile 'com.khalti:khalti-android:1.2.8'
+compile 'com.khalti:khalti-android:1.02.09'
 ```
 It is recommended that you update your support libraries to the latest version. However, if you're unable to update the libraries add the following line instead.
 
 ```
-compile ('com.khalti:khalti-android:1.2.8') {
+compile ('com.khalti:khalti-android:1.02.09') {
         transitive = true
     }
 ```
@@ -53,7 +53,7 @@ android.enableR8 = false
 
 You can add KhaltiButton to your xml layout
 ```xml
-<khalti.widget.KhaltiButton
+<com.khalti.widget.KhaltiButton
             android:id="@+id/khalti_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

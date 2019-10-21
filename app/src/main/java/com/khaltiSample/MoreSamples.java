@@ -8,15 +8,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.util.HashMap;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.khalti.checkOut.api.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
 import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
 import com.khalti.widget.KhaltiButton;
+
+import java.util.HashMap;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MoreSamples extends AppCompatActivity {
 
