@@ -114,3 +114,5 @@
 
  #rxBus
  -keep class khalti.rxBus.** { *; }
+
+ -ignorewarnings

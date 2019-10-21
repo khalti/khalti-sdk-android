@@ -5,6 +5,7 @@
 - Updated picasso version
 - Fixed crashing due to picasso
 - Updated version naming to x.xx.xx format
+- Package has been moved from khalti to com.khalti
 
 ### 1.2.5
 
