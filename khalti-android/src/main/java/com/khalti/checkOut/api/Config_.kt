@@ -2,7 +2,6 @@ package com.khalti.checkOut.api
 
 import androidx.annotation.Keep
 import java.io.Serializable
-import java.security.PublicKey
 
 @Keep
 data class Config_(

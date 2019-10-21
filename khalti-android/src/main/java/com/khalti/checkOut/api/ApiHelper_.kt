@@ -2,10 +2,7 @@ package com.khalti.checkOut.api
 
 import com.google.gson.GsonBuilder
 import com.khalti.BuildConfig
-import com.khalti.utils.AppUtil
-import com.khalti.utils.Constant
-import com.khalti.utils.EmptyUtil
-import com.khalti.utils.ErrorUtil
+import com.khalti.utils.*
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -51,11 +48,10 @@ public class ApiHelper_ {
     suspend fun <T : Any> callApi(response: Deferred<Response<T>>): Result<T> {
         val apiResponse = response.await()
         try {
-            if (apiResponse.isSuccessful)
+            if (apiResponse.isSuccessful) {
                 return Result.Success(apiResponse.body()!!)
-
-            val error = if (EmptyUtil.isNotNull(apiResponse.errorBody())) String(apiResponse.errorBody()!!.bytes()) else ""
-            return Result.Error(Throwable(ErrorUtil.parseError(error)))
+            }
+            return Result.Error(Throwable(ErrorUtil.parseError(if (EmptyUtil.isNotNull(apiResponse.errorBody())) String(apiResponse.errorBody()!!.bytes()) else "")))
         } catch (e: Exception) {
             return Result.Error(if (EmptyUtil.isNotNull(e)) e else Throwable(ErrorUtil.parseError("")))
         }
