@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.9
+## 1.02.09
 
 - Updated picasso version
 - Fixed crashing due to picasso
