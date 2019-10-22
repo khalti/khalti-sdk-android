@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -53,10 +54,10 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
         holder.tvBankFullName.setText(banks.get(position).getName());
 
         if (EmptyUtil.isNotNull(banks.get(position).getLogo()) && EmptyUtil.isNotEmpty(banks.get(position).getLogo())) {
-            Picasso.with(context)
+            Picasso.get()
                     .load(banks.get(position).getLogo())
                     .noFade()
-                    .into(holder.ivBankLogo, new com.squareup.picasso.Callback() {
+                    .into(holder.ivBankLogo, new Callback() {
                         @Override
                         public void onSuccess() {
                             holder.flBankLogo.setVisibility(View.VISIBLE);
@@ -65,7 +66,8 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
                         }
 
                         @Override
-                        public void onError() {
+                        public void onError(Exception e) {
+                            e.printStackTrace();
                             holder.flBankLogo.setVisibility(View.GONE);
                             holder.flBankTextIcon.setVisibility(View.VISIBLE);
                             holder.tvBankIcon.setText(iconName);

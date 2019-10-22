@@ -12,16 +12,16 @@ import retrofit2.http.*
 interface KhaltiApi {
 
     @GET
-    suspend fun getBanks(@Url url: String, @QueryMap queryMap: Map<String, Any>): Deferred<Response<BaseListPojo>>
+    suspend fun getBanks(@Url url: String, @QueryMap queryMap: Map<String, Any>): Response<BaseListPojo>
 
     @GET
-    suspend fun getPreference(@Url url: String, @Header("Authorization") publicKey: String): Deferred<Response<MerchantPreferencePojo>>
+    suspend fun getPreference(@Url url: String, @Header("Authorization") publicKey: String): Response<MerchantPreferencePojo>
 
     @POST
     @FormUrlEncoded
-    suspend fun initiatePayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Deferred<Response<WalletInitPojo>>
+    suspend fun initiatePayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Response<WalletInitPojo>
 
     @POST
     @FormUrlEncoded
-    suspend fun confirmPayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Deferred<Response<WalletConfirmPojo>>
+    suspend fun confirmPayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Response<WalletConfirmPojo>
 }

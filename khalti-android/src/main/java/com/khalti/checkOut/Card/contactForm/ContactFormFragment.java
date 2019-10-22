@@ -22,6 +22,7 @@ import android.widget.ImageView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import com.khalti.R;
@@ -33,6 +34,7 @@ import com.khalti.utils.FileStorageUtil;
 import com.khalti.utils.NetworkUtil;
 import com.khalti.utils.ResourceUtil;
 import com.khalti.utils.UserInterfaceUtil;
+
 import rx.Observable;
 
 public class ContactFormFragment extends BottomSheetDialogFragment implements ContactFormContract.View {
@@ -104,10 +106,10 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
     public void setBankData(String logo, String name, String icon) {
         tvBankName.setText(name);
         if (EmptyUtil.isNotNull(logo) && EmptyUtil.isNotEmpty(logo)) {
-            Picasso.with(fragmentActivity)
+            Picasso.get()
                     .load(logo)
                     .noFade()
-                    .into(ivBankLogo, new com.squareup.picasso.Callback() {
+                    .into(ivBankLogo, new Callback() {
                         @Override
                         public void onSuccess() {
                             flBankLogo.setVisibility(View.VISIBLE);
@@ -116,7 +118,8 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
                         }
 
                         @Override
-                        public void onError() {
+                        public void onError(Exception e) {
+                            e.printStackTrace();
                             flBankLogo.setVisibility(View.GONE);
                             flBankTextIcon.setVisibility(View.VISIBLE);
                             tvBankIcon.setText(icon);

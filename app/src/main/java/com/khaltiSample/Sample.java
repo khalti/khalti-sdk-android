@@ -6,15 +6,17 @@ import com.google.android.material.button.MaterialButton;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
+
+import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.api.OnCheckOutListener;
+import com.khalti.utils.Constant;
+import com.khalti.widget.KhaltiButton;
+
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.khalti.checkOut.api.Config;
-import com.khalti.checkOut.api.OnCheckOutListener;
-import com.khalti.utils.Constant;
-import com.khalti.widget.KhaltiButton;
 
 public class Sample extends AppCompatActivity {
 

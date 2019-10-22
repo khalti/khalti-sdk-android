@@ -72,6 +72,7 @@ dependencies {
 
     /*Coroutine*/
     implementation coroutine.core
+    implementation coroutine.android
 
     /*Retrofit*/
     implementation network.retrofit2

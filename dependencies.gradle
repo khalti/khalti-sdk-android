@@ -11,7 +11,7 @@ ext {
     nineDroidVersion = '2.4.0'
     butterKnifeVersion = '8.8.0'
     gsonVersion = '2.8.2'
-    picassoVersion = '2.5.2'
+    picassoVersion = '2.71828'
     rippleVersion = '1.0.2'
     progressBarVersion = '1.4.0'
 
@@ -27,9 +27,11 @@ ext {
     ]
 
     coroutineCoreVersion = '1.3.2'
+    coroutineAndroidVersion = '1.3.0'
 
     coroutine = [
-            core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineCoreVersion"
+            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineCoreVersion",
+            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineAndroidVersion"
     ]
 
     retrofitVersion = '2.6.2'
