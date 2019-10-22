@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import com.khalti.checkOut.helper.CheckoutEventListener;
 import com.khalti.checkOut.helper.MerchantPreferencePojo;
 import com.khalti.rxBus.Event;
 import com.khalti.rxBus.RxBus;
 import com.khalti.utils.GuavaUtil;
 import com.khalti.utils.MerchantUtil;
 import com.khalti.utils.Store;
+
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
@@ -31,11 +33,15 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
     @Override
     public void onCreate() {
         view.setStatusBarColor();
-        compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
+       /* compositeSubscription.add(RxBus.getInstance().register(Event.class, event -> {
             if (event.getTag().equals("close_check_out")) {
                 view.closeCheckOut();
             }
-        }));
+        }));*/
+
+        CheckoutEventListener checkoutEventListener = view::closeCheckOut;
+        Store.setCheckoutEventListener(checkoutEventListener);
+
         compositeSubscription.add(view.setTryAgainClickListener().subscribe(aVoid -> fetchPreference(Store.getConfig().getPublicKey())));
         view.toggleIndented(false);
         if (view.hasNetwork()) {

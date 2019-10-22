@@ -16,7 +16,7 @@ public class ApiHelper_ {
     companion object {
         private val TIME_OUT = 30L
 
-        fun apiBuilder(): KhaltiApi {
+        fun apiBuilder(): KhaltiApi_ {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val okHttpClient = OkHttpClient.Builder()
@@ -39,7 +39,7 @@ public class ApiHelper_ {
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                     .build()
-                    .create(KhaltiApi::class.java)
+                    .create(KhaltiApi_::class.java)
         }
 
     }

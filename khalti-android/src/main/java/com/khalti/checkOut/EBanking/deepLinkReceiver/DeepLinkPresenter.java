@@ -30,6 +30,7 @@ class DeepLinkPresenter implements DeepLinkContract.Listener {
             onCheckOutListener.onSuccess(map);
         }
         mDeepLinkView.closeDeepLink();
-        RxBus.getInstance().post("close_check_out", null);
+//        RxBus.getInstance().post("close_check_out", null);
+        Store.getCheckoutEventListener().closeCheckout();
     }
 }

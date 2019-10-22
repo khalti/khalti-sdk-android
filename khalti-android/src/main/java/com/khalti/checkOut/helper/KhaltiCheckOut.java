@@ -1,11 +1,11 @@
 package com.khalti.checkOut.helper;
 
 import android.content.Context;
+
 import androidx.annotation.Keep;
 
 import com.khalti.checkOut.CheckOutActivity;
 import com.khalti.checkOut.api.Config;
-import com.khalti.rxBus.RxBus;
 import com.khalti.utils.ActivityUtil;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.Store;
@@ -50,7 +50,8 @@ public class KhaltiCheckOut implements KhaltiCheckOutInterface {
 
     @Override
     public void destroy() {
-        RxBus.getInstance().post("close_check_out", null);
+        Store.getCheckoutEventListener().closeCheckout();
+//        RxBus.getInstance().post("close_check_out", null);
     }
 
     private String checkConfig(Config config) {

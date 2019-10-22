@@ -2,11 +2,11 @@ package com.khaltiSample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.button.MaterialButton;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 import com.khalti.checkOut.api.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
 import com.khalti.utils.Constant;
@@ -52,9 +52,12 @@ public class Sample extends AppCompatActivity {
             }
         });
 
-        khaltiButton.setOnClickListener(view -> khaltiButton.showCheckOut(config));
+        khaltiButton.setOnClickListener(view -> {
+            khaltiButton.showCheckOut(config);
+        });
         khaltiButton1.setCheckOutConfig(config);
         khaltiButton2.setCheckOutConfig(config);
+
     }
 
     @OnClick(R.id.btnMore)

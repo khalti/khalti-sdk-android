@@ -8,20 +8,21 @@ import com.khalti.checkOut.helper.MerchantPreferencePojo
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.*
+import rx.Observable
 
 interface KhaltiApi {
 
     @GET
-    suspend fun getBanks(@Url url: String, @QueryMap queryMap: Map<String, Any>): Response<BaseListPojo>
+    fun getBanks(@Url url: String, @QueryMap queryMap: Map<String, Any>): Observable<Response<BaseListPojo>>
 
     @GET
-    suspend fun getPreference(@Url url: String, @Header("Authorization") publicKey: String): Response<MerchantPreferencePojo>
+    fun getPreference(@Url url: String, @Header("Authorization") publicKey: String): Observable<Response<MerchantPreferencePojo>>
 
     @POST
     @FormUrlEncoded
-    suspend fun initiatePayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Response<WalletInitPojo>
+    fun initiatePayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Observable<Response<WalletInitPojo>>
 
     @POST
     @FormUrlEncoded
-    suspend fun confirmPayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Response<WalletConfirmPojo>
+    fun confirmPayment(@Url url: String, @FieldMap dataMap: Map<String, Any>): Observable<Response<WalletConfirmPojo>>
 }
