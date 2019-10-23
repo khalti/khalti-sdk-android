@@ -25,14 +25,18 @@ import com.jakewharton.rxbinding.view.RxView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.khalti.R;
 import com.khalti.utils.EmptyUtil;
+import com.khalti.utils.LogUtil;
 import com.khalti.utils.MerchantUtil;
 import com.khalti.utils.NetworkUtil;
 import com.khalti.utils.ResourceUtil;
 import com.khalti.utils.UserInterfaceUtil;
 import com.khalti.utils.ViewPagerAdapter;
+
+import kotlin.collections.CollectionsKt;
 import rx.Observable;
 
 public class CheckOutActivity extends AppCompatActivity implements CheckOutContract.View {

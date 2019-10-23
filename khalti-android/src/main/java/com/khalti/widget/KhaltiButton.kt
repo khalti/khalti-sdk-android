@@ -10,15 +10,16 @@ import com.khalti.R
 import com.khalti.checkOut.api.Config
 import com.khalti.checkOut.helper.KhaltiCheckOut
 import com.khalti.utils.EmptyUtil
+import com.khalti.utils.LogUtil
 import kotlinx.android.synthetic.main.component_button.view.*
 
 @Keep
-class KhaltiButton constructor(context: Context, private var attrs: AttributeSet? = null, private var defStyleAttr: Int = 0)
-    : FrameLayout(context), KhaltiButtonInterface {
+class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs: AttributeSet? = null, private var defStyleAttr: Int = 0)
+    : FrameLayout(context, attrs, defStyleAttr), KhaltiButtonInterface {
 
     private lateinit var config: Config
     private var presenter: PayContract.Presenter
-    private lateinit var customView: View
+    private var customView: View? = null
     private var buttonStyle: Int = -1
     private var clickListener: OnClickListener? = null
 
@@ -78,7 +79,7 @@ class KhaltiButton constructor(context: Context, private var attrs: AttributeSet
 
         val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         if (EmptyUtil.isNotNull(inflater)) {
-            val mainView = inflater.inflate(R.layout.component_button, this, true)
+            inflater.inflate(R.layout.component_button, this, true)
 
             if (EmptyUtil.isNotNull(buttonText)) {
                 presenter.onSetButtonText(buttonText!!)
@@ -119,13 +120,14 @@ class KhaltiButton constructor(context: Context, private var attrs: AttributeSet
         }
 
         override fun setButtonClick() {
-            if (EmptyUtil.isNull(clickListener)) {
-                clickListener = OnClickListener { presenter.onOpenForm() }
-            }
+
+            clickListener = if (EmptyUtil.isNull(clickListener)) OnClickListener {
+                presenter.onOpenForm()
+            } else clickListener
 
             when {
                 EmptyUtil.isNotNull(customView) -> flCustomView.getChildAt(0).setOnClickListener(clickListener)
-                buttonStyle != 1 -> flStyle.setOnClickListener(clickListener)
+                buttonStyle != -1 -> flStyle.setOnClickListener(clickListener)
                 else -> btnPay.setOnClickListener(clickListener)
             }
         }

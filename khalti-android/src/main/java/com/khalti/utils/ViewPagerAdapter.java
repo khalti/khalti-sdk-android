@@ -18,6 +18,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        LogUtil.log("frag size", pendingFragments.size());
+        LogUtil.log("frag", pendingFragments.get(position));
         return pendingFragments.get(position);
     }
 

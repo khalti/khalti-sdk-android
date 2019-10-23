@@ -2,17 +2,16 @@ package com.khalti.checkOut;
 
 import androidx.annotation.NonNull;
 
+import com.khalti.checkOut.helper.CheckoutEventListener;
+import com.khalti.checkOut.helper.MerchantPreferencePojo;
+import com.khalti.utils.GuavaUtil;
+import com.khalti.utils.LogUtil;
+import com.khalti.utils.MerchantUtil;
+import com.khalti.utils.Store;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
-
-import com.khalti.checkOut.helper.CheckoutEventListener;
-import com.khalti.checkOut.helper.MerchantPreferencePojo;
-import com.khalti.rxBus.Event;
-import com.khalti.rxBus.RxBus;
-import com.khalti.utils.GuavaUtil;
-import com.khalti.utils.MerchantUtil;
-import com.khalti.utils.Store;
 
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
@@ -82,12 +81,13 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
                         List<String> types = preference.getSdkPosition();
 
                         List<String> uniqueList = new ArrayList<>(new LinkedHashSet<>(types));
-                        if (!uniqueList.contains(MerchantUtil.CARD) && !uniqueList.contains(MerchantUtil.WALLET) && !uniqueList.contains(MerchantUtil.EBANKING)) {
+                        if (uniqueList.size() == 0) {
                             uniqueList.add(MerchantUtil.EBANKING);
                             uniqueList.add(MerchantUtil.WALLET);
                             uniqueList.add(MerchantUtil.CARD);
                         }
 
+                        LogUtil.log("unique list size", uniqueList.size());
                         view.setupViewPager(uniqueList);
                         view.setUpTabLayout(uniqueList);
                         view.setTabListener();

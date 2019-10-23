@@ -1,12 +1,14 @@
 package com.khaltiSample;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.khalti.checkOut.api.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
@@ -14,7 +16,7 @@ import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
 import com.khalti.widget.KhaltiButton;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,22 +53,22 @@ public class MoreSamples extends AppCompatActivity {
         Long amount = 100L; // In Paisa
 
         /*
-        * Very important
-        */
+         * Very important
+         */
         // Config must me initialize ahead
-        config = new Config(publicKey, productId, productName, "", amount, new HashMap<>(
-        ), new OnCheckOutListener() {
+        config = new Config.Builder(publicKey, productId, productName, amount, new OnCheckOutListener() {
             @Override
-            public void onSuccess(HashMap<String, Object> data) {
+            public void onSuccess(@NonNull Map<String, ?> data) {
                 Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
-            public void onError(String action, String message) {
+            public void onError(@NonNull String action, @NonNull String message) {
                 Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show();
             }
-        });
+        })
+                .build();
 
         // Init The Buttons
         initKhaltiButton();
