@@ -45,7 +45,7 @@ public class WalletPresenterTest {
     @Test
     public void setUpLayout() {
         walletPresenter.setUpLayout();
-        verify(mWalletView).setButtonText(Mockito.anyString());
+        verify(mWalletView).onSetButtonText(Mockito.anyString());
         verify(mWalletView).setButtonClickListener();
     }
 

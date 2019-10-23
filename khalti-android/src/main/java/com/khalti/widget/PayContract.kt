@@ -3,7 +3,7 @@ package com.khalti.widget
 
 import com.khalti.checkOut.api.Config
 
-internal interface PayContract {
+interface PayContract {
     interface View {
 
         fun setCustomButtonView()
@@ -23,18 +23,18 @@ internal interface PayContract {
 
     interface Presenter {
 
-        fun checkConfig(config: Config): String
+        fun onCheckConfig(config: Config): String
 
-        fun setCustomButtonView()
+        fun onSetCustomButtonView()
 
-        fun setButtonStyle(id: Int)
+        fun onSetButtonStyle(id: Int)
 
-        fun setButtonText(text: String)
+        fun onSetButtonText(text: String)
 
-        fun setButtonClick()
+        fun onSetButtonClick()
 
-        fun openForm()
+        fun onOpenForm()
 
-        fun destroyCheckOut()
+        fun onDestroyCheckOut()
     }
 }

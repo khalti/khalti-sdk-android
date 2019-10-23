@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import java.io.Serializable
 
 @Keep
-data class Config_(
+data class Config(
         val publicKey: String,
         val productId: String,
         val productName: String,
@@ -31,7 +31,7 @@ data class Config_(
         fun mobile(mobile: String?) = apply { this.mobile = mobile }
         fun additionalData(additionalData: Map<String, Any>?) = apply { this.additionalData = additionalData }
 
-        fun build() = Config_(
+        fun build() = Config(
                 publicKey,
                 productId,
                 productName,
