@@ -57,11 +57,6 @@ public class Sample extends AppCompatActivity {
         })
                 .productUrl("Product url")
                 .additionalData(map)
-                .paymentPreferences(new ArrayList<PaymentPreference>() {{
-                    add(PaymentPreference.EBANKING);
-                    add(PaymentPreference.EBANKING);
-                    add(PaymentPreference.EBANKING);
-                }})
                 .build();
 
         khaltiButton.setOnClickListener(view -> khaltiButton.showCheckOut(config));

@@ -59,7 +59,7 @@ class CheckOutPresenter implements CheckOutContract.Presenter {
             uniqueList.add(PaymentPreference.EBANKING);
             uniqueList.add(PaymentPreference.WALLET);
         } else {
-            uniqueList.addAll(types);
+            uniqueList.addAll(new LinkedHashSet<>(types));
         }
 
         view.setupViewPager(uniqueList);
