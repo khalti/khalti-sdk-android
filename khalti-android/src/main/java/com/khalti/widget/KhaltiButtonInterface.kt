@@ -4,7 +4,7 @@ package com.khalti.widget
 import androidx.annotation.Keep
 import android.view.View
 
-import com.khalti.checkOut.api.Config
+import com.khalti.checkOut.helper.Config
 
 @Keep
 interface KhaltiButtonInterface {

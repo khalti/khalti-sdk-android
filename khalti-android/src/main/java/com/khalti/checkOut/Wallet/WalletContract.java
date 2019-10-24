@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import com.khalti.checkOut.Wallet.helper.WalletInitPojo;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import rx.Observable;
 
 public interface WalletContract {

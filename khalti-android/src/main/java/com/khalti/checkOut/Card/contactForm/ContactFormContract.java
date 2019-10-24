@@ -1,7 +1,7 @@
 package com.khalti.checkOut.Card.contactForm;
 
 import com.khalti.checkOut.EBanking.helper.BankingData;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import rx.Observable;
 
 interface ContactFormContract {

@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
 import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;

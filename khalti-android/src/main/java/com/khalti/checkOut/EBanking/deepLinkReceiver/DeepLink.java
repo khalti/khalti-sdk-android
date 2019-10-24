@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 
 import com.khalti.R;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.FileStorageUtil;
 import com.khalti.utils.JsonUtil;

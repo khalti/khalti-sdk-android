@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.khalti.checkOut.EBanking.helper.BankPojo;
 import com.khalti.checkOut.EBanking.helper.BankingData;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.ErrorAction;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.GuavaUtil;

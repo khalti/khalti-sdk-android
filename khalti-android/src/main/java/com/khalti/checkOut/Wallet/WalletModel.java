@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import com.khalti.checkOut.Wallet.helper.WalletInitPojo;
 import com.khalti.checkOut.api.ApiHelper;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.KhaltiApi;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.Store;

@@ -8,11 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
+import com.khalti.checkOut.helper.PaymentPreference;
 import com.khalti.utils.Constant;
 import com.khalti.widget.KhaltiButton;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +57,11 @@ public class Sample extends AppCompatActivity {
         })
                 .productUrl("Product url")
                 .additionalData(map)
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.EBANKING);
+                }})
                 .build();
 
         khaltiButton.setOnClickListener(view -> khaltiButton.showCheckOut(config));

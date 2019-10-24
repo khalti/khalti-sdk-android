@@ -2,7 +2,7 @@ package com.khalti.checkOut.EBanking.deepLinkReceiver;
 
 import androidx.annotation.NonNull;
 
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.GuavaUtil;

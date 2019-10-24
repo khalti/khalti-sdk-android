@@ -1,6 +1,6 @@
 package com.khalti.utils
 
-import com.khalti.checkOut.api.Config
+import com.khalti.checkOut.helper.Config
 
 class ConfigUtil {
 

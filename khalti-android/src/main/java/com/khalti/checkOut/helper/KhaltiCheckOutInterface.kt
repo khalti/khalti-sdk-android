@@ -1,7 +1,5 @@
 package com.khalti.checkOut.helper
 
-import com.khalti.checkOut.api.Config
-
 interface KhaltiCheckOutInterface {
 
     fun show()

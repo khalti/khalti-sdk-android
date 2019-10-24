@@ -5,32 +5,25 @@ import androidx.fragment.app.Fragment;
 import java.util.HashMap;
 
 import com.khalti.R;
-import com.khalti.checkOut.Card.Card;
 import com.khalti.checkOut.EBanking.EBanking;
 import com.khalti.checkOut.Wallet.Wallet;
+import com.khalti.checkOut.helper.PaymentPreference;
 
 public class MerchantUtil {
 
-    public static final String WALLET = "wallet";
-    public static final String CARD = "card";
-    public static final String EBANKING = "ebanking";
-
     private static final HashMap<String, Fragment> CHECKOUT_FRAGMENTS = new HashMap<String, Fragment>() {{
-        put(EBANKING, new EBanking());
-        put(CARD, new Card());
-        put(WALLET, new Wallet());
+        put(PaymentPreference.EBANKING.getValue(), new EBanking());
+        put(PaymentPreference.WALLET.getValue(), new Wallet());
     }};
 
     private static final HashMap<String, String> CHECKOUT_TITLES = new HashMap<String, String>() {{
-        put(EBANKING, "E-Banking");
-        put(CARD, "Debit/Credit Card");
-        put(WALLET, "Wallet");
+        put(PaymentPreference.EBANKING.getValue(), "E-Banking");
+        put(PaymentPreference.WALLET.getValue(), "Wallet");
     }};
 
     private static final HashMap<String, Integer> CHECKOUT_ICONS = new HashMap<String, Integer>() {{
-        put("ebanking", R.drawable.ic_bank);
-        put("card", R.drawable.ic_credit_card);
-        put("wallet", R.drawable.ic_wallet);
+        put(PaymentPreference.EBANKING.getValue(), R.drawable.ic_bank);
+        put(PaymentPreference.WALLET.getValue(), R.drawable.ic_wallet);
     }};
 
     public static HashMap<String, Object> getTab(String key) {

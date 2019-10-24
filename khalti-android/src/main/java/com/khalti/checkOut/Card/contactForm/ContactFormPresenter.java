@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 import com.khalti.BuildConfig;
 import com.khalti.checkOut.EBanking.helper.BankingData;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.utils.ApiUtil;
 import com.khalti.utils.AppUtil;
 import com.khalti.utils.Constant;

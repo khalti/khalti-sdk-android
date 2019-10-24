@@ -2,7 +2,6 @@ package com.khalti.checkOut.helper
 
 import android.content.Context
 import com.khalti.checkOut.CheckOutActivity
-import com.khalti.checkOut.api.Config
 import com.khalti.utils.ActivityUtil
 import com.khalti.utils.ConfigUtil
 import com.khalti.utils.EmptyUtil

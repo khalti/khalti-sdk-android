@@ -4,7 +4,7 @@ import androidx.annotation.Keep;
 
 import java.io.Serializable;
 
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 
 @Keep
 public class BankingData implements Serializable {

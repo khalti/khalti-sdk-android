@@ -3,6 +3,8 @@ package com.khalti.checkOut;
 import java.util.List;
 
 import com.khalti.checkOut.helper.MerchantPreferencePojo;
+import com.khalti.checkOut.helper.PaymentPreference;
+
 import rx.Observable;
 
 interface CheckOutContract {
@@ -16,9 +18,9 @@ interface CheckOutContract {
 
         Observable<Void> setTryAgainClickListener();
 
-        void setupViewPager(List<String> types);
+        void setupViewPager(List<PaymentPreference> types);
 
-        void setUpTabLayout(List<String> types);
+        void setUpTabLayout(List<PaymentPreference> types);
 
         void setTabListener();
 

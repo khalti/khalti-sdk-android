@@ -1,7 +1,7 @@
 package com.khalti.widget
 
 
-import com.khalti.checkOut.api.Config
+import com.khalti.checkOut.helper.Config
 
 interface PayContract {
     interface View {

@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.khalti.R;
+import com.khalti.checkOut.helper.PaymentPreference;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.LogUtil;
 import com.khalti.utils.MerchantUtil;
@@ -115,13 +116,13 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setupViewPager(List<String> types) {
+    public void setupViewPager(List<PaymentPreference> types) {
         alTab.setVisibility(View.VISIBLE);
         flContainer.setVisibility(View.VISIBLE);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        for (String s : types) {
-            HashMap<String, Object> map = MerchantUtil.getTab(s.toLowerCase());
+        for (PaymentPreference p : types) {
+            HashMap<String, Object> map = MerchantUtil.getTab(p.getValue().toLowerCase());
             if (EmptyUtil.isNotNull(map)) {
                 viewPagerAdapter.addFrag((Fragment) map.get("fragment"), map.get("title") + "");
             }
@@ -138,12 +139,12 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
-    public void setUpTabLayout(List<String> types) {
+    public void setUpTabLayout(List<PaymentPreference> types) {
         alTab.setVisibility(View.VISIBLE);
         int position = 0;
-        for (String s : types) {
+        for (PaymentPreference p : types) {
             int color;
-            HashMap<String, Object> map = MerchantUtil.getTab(s.toLowerCase());
+            HashMap<String, Object> map = MerchantUtil.getTab(p.getValue().toLowerCase());
             if (EmptyUtil.isNotNull(map)) {
                 if (position == 0) {
                     color = ResourceUtil.getColor(this, R.color.khaltiAccentAlt);

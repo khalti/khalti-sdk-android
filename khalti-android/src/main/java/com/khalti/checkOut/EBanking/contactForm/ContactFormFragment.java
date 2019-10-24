@@ -28,7 +28,7 @@ import com.squareup.picasso.Picasso;
 import com.khalti.R;
 import com.khalti.checkOut.CheckOutActivity;
 import com.khalti.checkOut.EBanking.helper.BankingData;
-import com.khalti.checkOut.api.Config;
+import com.khalti.checkOut.helper.Config;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.FileStorageUtil;
 import com.khalti.utils.NetworkUtil;
