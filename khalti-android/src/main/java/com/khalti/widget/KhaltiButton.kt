@@ -10,7 +10,6 @@ import com.khalti.R
 import com.khalti.checkOut.api.Config
 import com.khalti.checkOut.helper.KhaltiCheckOut
 import com.khalti.utils.EmptyUtil
-import com.khalti.utils.LogUtil
 import kotlinx.android.synthetic.main.component_button.view.*
 
 @Keep
