@@ -1,10 +1,11 @@
 package com.khalti.checkOut.EBanking;
 
+import com.khalti.checkOut.EBanking.helper.BankPojo;
+import com.khalti.checkOut.EBanking.helper.BankingData;
+
 import java.util.HashMap;
 import java.util.List;
 
-import com.khalti.checkOut.EBanking.helper.BankPojo;
-import com.khalti.checkOut.EBanking.helper.BankingData;
 import rx.Observable;
 
 public interface EBankingContract {
@@ -23,6 +24,7 @@ public interface EBankingContract {
         Observable<HashMap<String, String>> getItemClickObservable();
 
         HashMap<String, Observable<Void>> setOnClickListener();
+
 
         Observable<CharSequence> setSearchListener();
 

@@ -172,13 +172,13 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
 
     @Override
     public void showError(String message) {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain, message,
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).getCdlMain(), message,
                 false, null, Snackbar.LENGTH_LONG, 0, null);
     }
 
     @Override
     public void showNetworkError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).cdlMain,
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).getCdlMain(),
                 ResourceUtil.getString(fragmentActivity, R.string.network_error_body), false, "", 0, 0, null);
     }
 

@@ -1,28 +1,25 @@
 package com.khalti.checkOut.EBanking;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.button.MaterialButton;
 import com.jakewharton.rxbinding.support.v7.widget.RxSearchView;
 import com.jakewharton.rxbinding.view.RxView;
-
-import java.util.HashMap;
-import java.util.List;
-
 import com.khalti.R;
 import com.khalti.checkOut.EBanking.contactForm.ContactFormFragment;
 import com.khalti.checkOut.EBanking.helper.BankAdapter;
@@ -31,6 +28,10 @@ import com.khalti.checkOut.EBanking.helper.BankingData;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.NetworkUtil;
 import com.khalti.utils.ResourceUtil;
+
+import java.util.HashMap;
+import java.util.List;
+
 import rx.Observable;
 import rx.subjects.PublishSubject;
 

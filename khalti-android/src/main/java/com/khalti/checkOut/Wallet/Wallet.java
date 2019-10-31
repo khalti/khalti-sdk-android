@@ -202,7 +202,7 @@ public class Wallet extends Fragment implements com.khalti.checkOut.Wallet.Walle
 
     @Override
     public void showNetworkError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, ((com.khalti.checkOut.CheckOutActivity) this.fragmentActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.network_error_body),
+        UserInterfaceUtil.showSnackBar(fragmentActivity, ((com.khalti.checkOut.CheckOutActivity) this.fragmentActivity).getCdlMain(), ResourceUtil.getString(fragmentActivity, R.string.network_error_body),
                 false, "", 0, 0, null);
     }
 

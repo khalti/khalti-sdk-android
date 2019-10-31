@@ -1,6 +1,7 @@
 package com.khalti.utils
 
 import com.khalti.checkOut.helper.Config
+import kotlin.properties.ObservableProperty
 
 class ConfigUtil {
 
