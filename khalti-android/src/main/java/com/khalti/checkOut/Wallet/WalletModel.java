@@ -6,10 +6,16 @@ import java.util.HashMap;
 import com.khalti.checkOut.Wallet.helper.WalletConfirmPojo;
 import com.khalti.checkOut.Wallet.helper.WalletInitPojo;
 import com.khalti.checkOut.api.ApiHelper;
+import com.khalti.checkOut.api.Result;
 import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.KhaltiApi;
 import com.khalti.utils.EmptyUtil;
 import com.khalti.utils.Store;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import kotlin.coroutines.Continuation;
 import rx.Observable;
 import rx.Subscriber;
 import rx.subjects.PublishSubject;
@@ -32,87 +38,16 @@ public class WalletModel implements WalletContract.Model {
         compositeSubscription = new CompositeSubscription();
     }
 
+
+    @Nullable
     @Override
-    public Observable<WalletInitPojo> initiatePayment(String mobile, Config config) {
-        PublishSubject<WalletInitPojo> initObservable = PublishSubject.create();
-
-        HashMap<String, Object> dataMap = new HashMap<>();
-        dataMap.put("public_key", config.getPublicKey());
-        dataMap.put("return_url", "http://a.khalti.com/client/spec/widget/verify.html");
-        dataMap.put("product_identity", config.getProductId());
-        dataMap.put("product_name", config.getProductName());
-        if (EmptyUtil.isNotNull(config.getProductUrl()) && EmptyUtil.isNotEmpty(config.getProductUrl())) {
-            dataMap.put("product_url", config.getProductUrl());
-        }
-        dataMap.put("amount", config.getAmount());
-        dataMap.put("mobile", mobile);
-        dataMap.putAll((EmptyUtil.isNotNull(config.getAdditionalData()) && EmptyUtil.isNotEmpty(config.getAdditionalData())) ? config.getAdditionalData() : new HashMap<>());
-
-        compositeSubscription.add(apiHelper.callApi(khaltiService.initiatePayment("/api/payment/initiate/", dataMap))
-                .map(o -> (WalletInitPojo) o)
-                .subscribe(new Subscriber<WalletInitPojo>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        initObservable.onError(e);
-                    }
-
-                    @Override
-                    public void onNext(WalletInitPojo walletInitPojo) {
-                        walletInit = walletInitPojo;
-                        initObservable.onNext(walletInitPojo);
-                    }
-                }));
-
-        return initObservable;
+    public Object initiatePayment(@NotNull String mobile, @NotNull Config config, @NotNull Continuation<? super Result<WalletInitPojo>> continuation) {
+        return null;
     }
 
+    @Nullable
     @Override
-    public Observable<WalletConfirmPojo> confirmPayment(String confirmationCode, String transactionPIN) {
-        PublishSubject<WalletConfirmPojo> confirmObservable = PublishSubject.create();
-
-        HashMap<String, Object> dataMap = new HashMap<>();
-        dataMap.put("token", walletInit.getToken());
-        dataMap.put("confirmation_code", confirmationCode);
-        dataMap.put("transaction_pin", transactionPIN);
-        dataMap.put("public_key", Store.getConfig().getPublicKey());
-
-        compositeSubscription.add(apiHelper.callApi(khaltiService.confirmPayment("api/payment/confirm/", dataMap))
-                .map(o -> (WalletConfirmPojo) o)
-                .subscribe(new Subscriber<WalletConfirmPojo>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        confirmObservable.onError(e);
-                    }
-
-                    @Override
-                    public void onNext(WalletConfirmPojo walletConfirmPojo) {
-                        confirmObservable.onNext(walletConfirmPojo);
-                    }
-                }));
-
-        return confirmObservable;
-    }
-
-    @Override
-    public void unSubscribe() {
-        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.unsubscribe();
-        }
-    }
-
-    public interface WalletAction {
-        void onCompleted(Object o);
-
-        void onError(String message);
+    public Object confirmPayment(@NotNull String confirmationCode, @NotNull String transactionPIN, @NotNull String token, @NotNull Continuation<? super Result<WalletConfirmPojo>> continuation) {
+        return null;
     }
 }

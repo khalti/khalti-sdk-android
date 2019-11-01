@@ -34,7 +34,6 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
         view.setupViewPager(uniqueList)
         view.setUpTabLayout(uniqueList)
-        view.setTabListener()
     }
 
     override fun onDestroy() {

@@ -1,6 +1,6 @@
 package com.khalti.base
 
-interface Model {
+interface BaseModel {
 
     fun cancelJob()
 }

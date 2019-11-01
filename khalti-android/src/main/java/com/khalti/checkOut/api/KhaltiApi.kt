@@ -5,7 +5,6 @@ import com.khalti.checkOut.EBanking.helper.BaseListPojo
 import com.khalti.checkOut.Wallet.helper.WalletConfirmPojo
 import com.khalti.checkOut.Wallet.helper.WalletInitPojo
 import com.khalti.checkOut.helper.MerchantPreferencePojo
-import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.*
 import rx.Observable

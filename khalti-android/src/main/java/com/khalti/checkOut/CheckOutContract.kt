@@ -3,6 +3,7 @@ package com.khalti.checkOut
 import com.khalti.base.LifeCycle
 import com.khalti.checkOut.helper.MerchantPreferencePojo
 import com.khalti.checkOut.helper.PaymentPreference
+import kotlinx.coroutines.flow.Flow
 
 import rx.Observable
 
@@ -12,8 +13,6 @@ interface CheckOutContract {
         fun setupViewPager(types: List<PaymentPreference>)
 
         fun setUpTabLayout(types: List<PaymentPreference>)
-
-        fun setTabListener()
 
         fun toggleTab(position: Int, selected: Boolean)
 

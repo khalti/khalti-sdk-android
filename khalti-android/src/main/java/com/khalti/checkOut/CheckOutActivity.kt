@@ -15,6 +15,9 @@ import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.utils.*
 import kotlinx.android.synthetic.main.component_tab.view.*
 import kotlinx.android.synthetic.main.payment_activity.*
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 
 public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
@@ -55,6 +58,21 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         } else {
             tlTitle.tabMode = TabLayout.MODE_FIXED
         }
+
+        tlTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                vpContent.currentItem = tab.position
+                presenter.onTabSelected(tab.position, true)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                presenter.onTabSelected(tab.position, false)
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
     }
 
     override fun setUpTabLayout(types: List<PaymentPreference>) {
@@ -83,23 +101,6 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
                 position++
             }
         }
-    }
-
-    override fun setTabListener() {
-        tlTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                vpContent.currentItem = tab.position
-                presenter.onTabSelected(tab.position, true)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                presenter.onTabSelected(tab.position, false)
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-        })
     }
 
     override fun toggleTab(position: Int, selected: Boolean) {
