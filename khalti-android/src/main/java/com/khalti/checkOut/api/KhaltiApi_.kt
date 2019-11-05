@@ -8,6 +8,7 @@ import com.khalti.checkOut.helper.MerchantPreferencePojo
 import retrofit2.Response
 import retrofit2.http.*
 
+@JvmSuppressWildcards
 interface KhaltiApi_ {
 
     @GET

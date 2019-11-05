@@ -39,7 +39,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
             view.setMobile(mobile!!)
         }
 
-        view.setButtonText("Pay Rs" + StringUtil.formatNumber(NumberUtil.convertToRupees(config.amount)))
+        view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.amount)))
         view.showBranding()
 
         val clickMap = view.setClickListener()

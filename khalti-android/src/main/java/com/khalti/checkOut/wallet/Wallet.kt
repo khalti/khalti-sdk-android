@@ -17,7 +17,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.khalti.R
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.wallet_form.*
+import kotlinx.android.synthetic.main.wallet_form.view.*
 import java.util.*
 import kotlin.math.abs
 
@@ -28,10 +28,11 @@ class Wallet : Fragment(), WalletContract.View {
     private lateinit var presenter: WalletContract.Presenter
 
     private var height: Int = 0
+    private lateinit var mainView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val mainView = inflater.inflate(R.layout.wallet_form, container, false)
+        mainView = inflater.inflate(R.layout.wallet_form, container, false)
         fragmentActivity = activity!!
         presenter = WalletPresenter(this)
 
@@ -45,14 +46,14 @@ class Wallet : Fragment(), WalletContract.View {
         presenter.onDestroy()
     }
 
-    override val payButtonText: String get() = ViewUtil.getText(btnPay)
+    override val payButtonText: String get() = ViewUtil.getText(mainView.btnPay)
 
     override val formData: Map<String, String>
         get() = object : HashMap<String, String>() {
             init {
-                put("mobile", ViewUtil.getText(etMobile))
-                put("code", ViewUtil.getText(etCode))
-                put("pin", ViewUtil.getText(etPIN))
+                put("mobile", ViewUtil.getText(mainView.etMobile))
+                put("code", ViewUtil.getText(mainView.etCode))
+                put("pin", ViewUtil.getText(mainView.etPIN))
             }
         }
 
@@ -76,53 +77,53 @@ class Wallet : Fragment(), WalletContract.View {
 
     override fun toggleConfirmationLayout(show: Boolean) {
         val buttonText = if (show) ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) else "Pay Rs ${NumberUtil.convertToRupees(Store.getConfig().amount)}"
-        btnPay?.text = buttonText
-        etCode?.setText("")
-        etPIN?.setText("")
-        elConfirmation.toggleExpansion()
+        mainView.btnPay?.text = buttonText
+        mainView.etCode?.setText("")
+        mainView.etPIN?.setText("")
+        mainView.elConfirmation.toggleExpansion()
     }
 
     override fun togglePinMessage(show: Boolean) {
-        cvPinMessage?.visibility = if (show) View.VISIBLE else View.GONE
+        mainView.cvPinMessage?.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun setPinMessage(message: String) {
-        tvPinMessage?.text = message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info)
+        mainView.tvPinMessage?.text = message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info)
     }
 
     override fun setMobile(mobile: String) {
-        etMobile?.setText(mobile)
-        etMobile?.setSelection(mobile.length)
+        mainView.etMobile?.setText(mobile)
+        mainView.etMobile?.setSelection(mobile.length)
     }
 
     override fun setEditTextError(view: String, error: String?) {
         val isError = EmptyUtil.isNotNull(error)
         when (view) {
             "mobile" -> {
-                tilMobile?.isErrorEnabled = isError
-                tilMobile?.error = error
+                mainView.tilMobile?.isErrorEnabled = isError
+                mainView.tilMobile?.error = error
             }
             "code" -> {
-                llCode.measure(0, 0)
-                val beforeA = llCode.measuredHeight
+                mainView.llCode.measure(0, 0)
+                val beforeA = mainView.llCode.measuredHeight
 
-                tilCode.isErrorEnabled = isError
-                tilCode.error = error
+                mainView.tilCode.isErrorEnabled = isError
+                mainView.tilCode.error = error
 
-                llCode.measure(0, 0)
-                val afterA = llCode.measuredHeight
+                mainView.llCode.measure(0, 0)
+                val afterA = mainView.llCode.measuredHeight
 
                 height = abs(height + (afterA - beforeA))
             }
             "pin" -> {
-                llPIN.measure(0, 0)
-                val beforeB = llPIN.measuredHeight
+                mainView.llPIN.measure(0, 0)
+                val beforeB = mainView.llPIN.measuredHeight
 
-                tilPIN.isErrorEnabled = isError
-                tilPIN.error = error
+                mainView.tilPIN.isErrorEnabled = isError
+                mainView.tilPIN.error = error
 
-                llPIN.measure(0, 0)
-                val afterB = llPIN.measuredHeight
+                mainView.llPIN.measure(0, 0)
+                val afterB = mainView.llPIN.measuredHeight
 
                 height = abs(height + (afterB - beforeB))
             }
@@ -130,18 +131,18 @@ class Wallet : Fragment(), WalletContract.View {
     }
 
     override fun setButtonText(text: String) {
-        btnPay?.text = text
+        mainView.btnPay?.text = text
     }
 
     override fun setConfirmationLayoutHeight(view: String) {
         val til: TextInputLayout
         val ll: LinearLayout
         if (view == "code") {
-            til = tilCode
-            ll = llCode
+            til = mainView.tilCode
+            ll = mainView.llCode
         } else {
-            til = tilPIN
-            ll = llPIN
+            til = mainView.tilPIN
+            ll = mainView.llPIN
         }
         if (EmptyUtil.isNotNull(til?.error)) {
             ll?.measure(0, 0)
@@ -155,9 +156,9 @@ class Wallet : Fragment(), WalletContract.View {
             if (EmptyUtil.isNotNull(beforeA) && EmptyUtil.isNotNull(afterA)) {
                 height = abs(height + (beforeA!! - afterA!!))
 
-                val layoutParams = llConfirmation.layoutParams as ExpandableLayout.LayoutParams
-                layoutParams.height = llConfirmation.height - height
-                llConfirmation.layoutParams = layoutParams
+                val layoutParams = mainView.llConfirmation.layoutParams as ExpandableLayout.LayoutParams
+                layoutParams.height = mainView.llConfirmation.height - height
+                mainView.llConfirmation.layoutParams = layoutParams
 
                 height = 0
             }
@@ -166,16 +167,16 @@ class Wallet : Fragment(), WalletContract.View {
 
     override fun setEditTextListener(): Map<String, Signal<CharSequence>> = object : HashMap<String, Signal<CharSequence>>() {
         init {
-            put("mobile", ViewUtil.setTextChangeListener(etMobile))
-            put("code", ViewUtil.setTextChangeListener(etCode))
-            put("pin", ViewUtil.setTextChangeListener(etPIN))
+            put("mobile", ViewUtil.setTextChangeListener(mainView.etMobile))
+            put("code", ViewUtil.setTextChangeListener(mainView.etCode))
+            put("pin", ViewUtil.setTextChangeListener(mainView.etPIN))
         }
     }
 
     override fun setClickListener(): Map<String, Signal<Any>> = object : HashMap<String, Signal<Any>>() {
         init {
-            put("pay", ViewUtil.setClickListener(btnPay))
-            put("khalti", ViewUtil.setClickListener(ivKhalti))
+            put("pay", ViewUtil.setClickListener(mainView.btnPay))
+            put("khalti", ViewUtil.setClickListener(mainView.ivKhalti))
         }
     }
 
@@ -195,7 +196,7 @@ class Wallet : Fragment(), WalletContract.View {
     }
 
     override fun showBranding() {
-        llKhaltiBranding.visibility = View.VISIBLE
+        mainView.llKhaltiBranding?.visibility = View.VISIBLE
     }
 
     override fun openKhaltiSettings() {
@@ -233,9 +234,9 @@ class Wallet : Fragment(), WalletContract.View {
     }
 
     override fun updateConfirmationHeight() {
-        val layoutParams = llConfirmation.layoutParams as ExpandableLayout.LayoutParams
-        layoutParams.height = llConfirmation.height + height
-        llConfirmation.layoutParams = layoutParams
+        val layoutParams = mainView.llConfirmation.layoutParams as ExpandableLayout.LayoutParams
+        layoutParams.height = mainView.llConfirmation.height + height
+        mainView.llConfirmation.layoutParams = layoutParams
 
         height = 0
     }

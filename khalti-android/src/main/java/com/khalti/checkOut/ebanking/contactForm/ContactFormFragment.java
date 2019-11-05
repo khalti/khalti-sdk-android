@@ -153,7 +153,7 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
         AppCompatTextView tvButton = flButton.findViewById(R.id.tvButton);
         tvButton.setText(ResourceUtil.getString(fragmentActivity, R.string.got_it));
 
-        UserInterfaceUtil.INSTANCE.showInfoDialog(fragmentActivity, title, message, true, true, ResourceUtil.getString(fragmentActivity, R.string.got_it), null,
+        /*UserInterfaceUtil.INSTANCE.showInfoDialog(fragmentActivity, title, message, true, true, ResourceUtil.getString(fragmentActivity, R.string.got_it), null,
                 new UserInterfaceUtil.DialogAction() {
                     @Override
                     public void onPositiveAction(Dialog dialog) {
@@ -164,19 +164,19 @@ public class ContactFormFragment extends BottomSheetDialogFragment implements Co
                     public void onNegativeAction(Dialog dialog) {
 
                     }
-                });
+                });*/
     }
 
     @Override
     public void showError(String message) {
-        UserInterfaceUtil.INSTANCE.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).getCdlMain(), message,
-                false, null, Snackbar.LENGTH_LONG, 0, null);
+        /*UserInterfaceUtil.INSTANCE.showSnackBar(fragmentActivity, ((CheckOutActivity) this.fragmentActivity).getCdlMain(), message,
+                false, null, Snackbar.LENGTH_LONG, 0, null);*/
     }
 
     @Override
     public void showNetworkError() {
-        UserInterfaceUtil.INSTANCE.showSnackBar(fragmentActivity, ((com.khalti.checkOut.CheckOutActivity) this.fragmentActivity).getCdlMain(),
-                ResourceUtil.getString(fragmentActivity, R.string.network_error_body), false, "", 0, 0, null);
+        /*UserInterfaceUtil.INSTANCE.showSnackBar(fragmentActivity, ((com.khalti.checkOut.CheckOutActivity) this.fragmentActivity).getCdlMain(),
+                ResourceUtil.getString(fragmentActivity, R.string.network_error_body), false, "", 0, 0, null);*/
     }
 
     @Override
