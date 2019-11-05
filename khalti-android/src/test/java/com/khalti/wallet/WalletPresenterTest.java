@@ -35,8 +35,8 @@ public class WalletPresenterTest {
         config = new Config("public_key", "product_id", "product_name", "product_url", 1L, onCheckOutListener);
 
         PowerMockito.when(Store.getConfig()).thenReturn(config);
-        Mockito.when(walletModel.initiatePayment(eq(mobile), eq(config), walletArgument.capture())).thenReturn(subscription);
-        Mockito.when(walletModel.confirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture())).thenReturn(subscription);
+        Mockito.when(walletModel.onInitiatePayment(eq(mobile), eq(config), walletArgument.capture())).thenReturn(subscription);
+        Mockito.when(walletModel.onConfirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture())).thenReturn(subscription);
 
         walletPresenter.injectModel(walletModel);
         walletPresenter.injectConfig(config);
@@ -51,15 +51,15 @@ public class WalletPresenterTest {
 
     @Test
     public void initiatePaymentWithoutNetwork() {
-        walletPresenter.initiatePayment(false, mobile);
+        walletPresenter.onInitiatePayment(false, mobile);
         verify(mWalletView).showNetworkError();
     }
 
     @Test
     public void successfulPaymentInitiation() {
-        walletPresenter.initiatePayment(true, mobile);
+        walletPresenter.onInitiatePayment(true, mobile);
         verify(mWalletView).toggleProgressDialog("init", true);
-        verify(walletModel).initiatePayment(eq(mobile), eq(config), walletArgument.capture());
+        verify(walletModel).onInitiatePayment(eq(mobile), eq(config), walletArgument.capture());
         walletArgument.getValue().onCompleted(null);
         verify(mWalletView).toggleSmsListener(true);
         verify(mWalletView).toggleProgressDialog("init", false);
@@ -68,9 +68,9 @@ public class WalletPresenterTest {
 
     @Test
     public void failedPaymentInitiationWithNoPIN() {
-        walletPresenter.initiatePayment(true, mobile);
+        walletPresenter.onInitiatePayment(true, mobile);
         verify(mWalletView).toggleProgressDialog("init", true);
-        verify(walletModel).initiatePayment(eq(mobile), eq(config), walletArgument.capture());
+        verify(walletModel).onInitiatePayment(eq(mobile), eq(config), walletArgument.capture());
         walletArgument.getValue().onError("</a>");
         verify(mWalletView).showPINDialog(anyString(), anyString());
         verify(config.getOnCheckOutListener()).onError(anyString(), anyString());
@@ -78,9 +78,9 @@ public class WalletPresenterTest {
 
     @Test
     public void failedPaymentInitiation() {
-        walletPresenter.initiatePayment(true, mobile);
+        walletPresenter.onInitiatePayment(true, mobile);
         verify(mWalletView).toggleProgressDialog("init", true);
-        verify(walletModel).initiatePayment(eq(mobile), eq(config), walletArgument.capture());
+        verify(walletModel).onInitiatePayment(eq(mobile), eq(config), walletArgument.capture());
         walletArgument.getValue().onError("");
         verify(mWalletView).showMessageDialog(Mockito.anyString(), Mockito.anyString());
         verify(config.getOnCheckOutListener()).onError(eq(ErrorAction.WALLET_INITIATE.getAction()), anyString());
@@ -88,15 +88,15 @@ public class WalletPresenterTest {
 
     @Test
     public void confirmPaymentWithoutNetwork() {
-        walletPresenter.confirmPayment(false, confirmationCode, pin);
+        walletPresenter.onConfirmPayment(false, confirmationCode, pin);
         verify(mWalletView).showNetworkError();
     }
 
     @Test
     public void failedPaymentConfirmation() {
-        walletPresenter.confirmPayment(true, confirmationCode, pin);
+        walletPresenter.onConfirmPayment(true, confirmationCode, pin);
         verify(mWalletView).toggleProgressDialog("confirm", true);
-        verify(walletModel).confirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture());
+        verify(walletModel).onConfirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture());
         walletArgument.getValue().onError(eq(anyString()));
         verify(mWalletView).toggleProgressDialog("confirm", false);
         verify(mWalletView).showMessageDialog(eq("Error"), anyString());
@@ -105,9 +105,9 @@ public class WalletPresenterTest {
 
     @Test
     public void successfulPaymentConfirmation() {
-        walletPresenter.confirmPayment(true, confirmationCode, pin);
+        walletPresenter.onConfirmPayment(true, confirmationCode, pin);
         verify(mWalletView).toggleProgressDialog("confirm", true);
-        verify(walletModel).confirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture());
+        verify(walletModel).onConfirmPayment(eq(confirmationCode), eq(pin), walletArgument.capture());
         walletArgument.getValue().onCompleted(walletConfirmPojo);
         verify(mWalletView).toggleProgressDialog("confirm", false);
         verify(onCheckOutListener).onSuccess(any());

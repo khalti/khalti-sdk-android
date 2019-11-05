@@ -1,9 +1,9 @@
 package com.khalti.checkOut.api
 
 
-import com.khalti.checkOut.EBanking.helper.BaseListPojo
-import com.khalti.checkOut.Wallet.helper.WalletConfirmPojo
-import com.khalti.checkOut.Wallet.helper.WalletInitPojo
+import com.khalti.checkOut.ebanking.helper.BaseListPojo
+import com.khalti.checkOut.wallet.helper.WalletConfirmPojo
+import com.khalti.checkOut.wallet.helper.WalletInitPojo
 import com.khalti.checkOut.helper.MerchantPreferencePojo
 import retrofit2.Response
 import retrofit2.http.*

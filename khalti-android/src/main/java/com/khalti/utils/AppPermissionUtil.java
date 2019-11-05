@@ -20,7 +20,7 @@ public class AppPermissionUtil {
             rxPermissions.requestEach(permission)
                     .subscribe(permission1 -> {
                         if (permission1.shouldShowRequestPermissionRationale) {
-                            UserInterfaceUtil.showPermissionInfo(activity, "Grant permission", messageBody, activity, permission);
+                            UserInterfaceUtil.INSTANCE.showPermissionInfo(activity, "Grant permission", messageBody, activity, permission);
                         } else if (permission1.granted) {
                             myPermission.onPermission();
                         }
