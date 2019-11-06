@@ -54,7 +54,7 @@ public class EBankingPresenter implements EBankingContract.Presenter {
                         @Override
                         public void onNext(List<BankPojo> banks) {
                             view.toggleIndented(false);
-                            view.setUpList(banks);
+                            view.setupList(banks);
                             view.toggleSearch(banks.size() > 3);
 
                             compositeSubscription.add(view.getItemClickObservable()

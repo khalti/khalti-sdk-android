@@ -83,7 +83,7 @@ public class BaseListPojo implements Parcelable {
         } else {
             currentPage = in.readInt();
         }
-        records = in.createTypedArrayList(BankPojo.CREATOR);
+        records = in.createTypedArrayList(BankPojo.Companion.getCREATOR());
     }
 
     public static final Creator<BaseListPojo> CREATOR = new Creator<BaseListPojo>() {
