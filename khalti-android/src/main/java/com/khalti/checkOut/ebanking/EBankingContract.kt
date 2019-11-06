@@ -19,7 +19,7 @@ interface EBankingContract {
 
         fun toggleSearchError(show: Boolean)
 
-        fun setupList(bankList: List<BankPojo>): Signal<Map<String, String>>
+        fun setupList(bankList: MutableList<BankPojo>): Signal<Map<String, String>>
 
         fun showIndentedNetworkError()
 
@@ -29,7 +29,7 @@ interface EBankingContract {
 
         fun setOnClickListener(): Map<String, Signal<Any>>
 
-        fun setSearchListener(): Signal<CharSequence>
+        fun setSearchListener(): Signal<String>
 
         fun filterList(text: String): Signal<Int>
 

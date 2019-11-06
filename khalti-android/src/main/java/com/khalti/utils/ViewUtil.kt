@@ -4,27 +4,28 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import com.khalti.signal.Signal
 
 class ViewUtil {
 
     companion object {
 
-        fun setClickListener(view: View): Signal<Any> {
+        fun setClickListener(view: View?): Signal<Any> {
             val signal = Signal<Any>()
             if (EmptyUtil.isNotNull(view)) {
-                view.setOnClickListener {
+                view!!.setOnClickListener {
                     signal.emit("")
                 }
             }
             return signal
         }
 
-        fun setTextChangeListener(view: TextView): Signal<CharSequence> {
+        fun setTextChangeListener(view: TextView?): Signal<CharSequence> {
             val signal = Signal<CharSequence>()
 
             if (EmptyUtil.isNotNull(view)) {
-                view.addTextChangedListener(object : TextWatcher {
+                view!!.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(p0: Editable?) {
                     }
 
@@ -41,12 +42,49 @@ class ViewUtil {
             return signal
         }
 
-        fun getText(view: TextView): String {
+        fun setSearchListener(view: SearchView?): Signal<String> {
+            val signal = Signal<String>()
+
             if (EmptyUtil.isNotNull(view)) {
-                return view.text.toString()
+
+                view!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String): Boolean {
+                        signal.emit(query)
+                        return true
+                    }
+
+                    override fun onQueryTextChange(newText: String): Boolean {
+                        return false
+                    }
+                })
+            }
+            return signal
+        }
+
+        fun getText(view: TextView?): String {
+            if (EmptyUtil.isNotNull(view)) {
+                return view!!.text.toString()
             }
 
             return ""
+        }
+
+        fun toggleView(view: View?, show: Boolean) {
+            if (EmptyUtil.isNotNull(view)) {
+                view!!.visibility = if (show) View.VISIBLE else View.GONE
+            }
+        }
+
+        fun toggleViewInvisible(view: View?, show: Boolean) {
+            if (EmptyUtil.isNotNull(view)) {
+                view!!.visibility = if (show) View.VISIBLE else View.INVISIBLE
+            }
+        }
+
+        fun setText(view: TextView?, text: String?) {
+            if (EmptyUtil.isNotNull(view)) {
+                view!!.text = text
+            }
         }
     }
 }
