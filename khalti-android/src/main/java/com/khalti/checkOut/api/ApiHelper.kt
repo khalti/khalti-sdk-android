@@ -11,12 +11,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
-public class ApiHelper_ {
+public class ApiHelper {
 
     companion object {
         private val TIME_OUT = 30L
 
-        fun apiBuilder(): KhaltiApi_ {
+        fun apiBuilder(): KhaltiApi {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val okHttpClient = OkHttpClient.Builder()
@@ -39,7 +39,7 @@ public class ApiHelper_ {
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                     .build()
-                    .create(KhaltiApi_::class.java)
+                    .create(KhaltiApi::class.java)
         }
 
         fun <T : Any> callApi(response: Response<T>): Result<T> {
