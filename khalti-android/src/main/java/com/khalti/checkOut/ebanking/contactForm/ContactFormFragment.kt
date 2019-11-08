@@ -21,7 +21,6 @@ import com.khalti.utils.*
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.banking_contact.view.*
-import kotlinx.android.synthetic.main.component_button.*
 import kotlinx.android.synthetic.main.component_flat_button.view.*
 import java.util.*
 
@@ -106,7 +105,7 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
 
     override fun setButtonText(text: String) {
         if (EmptyUtil.isNotNull(mainView.btnPay)) {
-            ViewUtil.setText(btnPay.tvButton, text)
+            ViewUtil.setText(mainView.btnPay.tvButton, text)
         }
     }
 

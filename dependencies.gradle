@@ -8,7 +8,6 @@ ext {
             design      : "com.google.android.material:material:$supportVersion"
     ]
 
-    nineDroidVersion = '2.4.0'
     butterKnifeVersion = '10.1.0'
     gsonVersion = '2.8.2'
     picassoVersion = '2.71828'
@@ -16,7 +15,6 @@ ext {
     progressBarVersion = '1.4.0'
 
     ui = [
-            nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}",
             picasso          : "com.squareup.picasso:picasso:${picassoVersion}",
             ripple           : "com.balysv:material-ripple:${rippleVersion}",
             progressBar      : "me.zhanghai.android.materialprogressbar:library:${progressBarVersion}"
@@ -49,20 +47,6 @@ ext {
             retrofit2                 : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofit_rxadapter        : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
             apache_http_client        : "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${httpClientVersion}"
-    ]
-
-    rxVersion = '1.1.0'
-    rxAndroidVersion = '1.2.1'
-    rxPermissionVersion = '0.9.3@aar'
-    rxBinding = '1.0.1'
-    rxAppCompatBindingVersion = "1.0.1"
-
-    rx = [
-            rxjava            : "io.reactivex:rxjava:${rxVersion}",
-            rxandroid         : "io.reactivex:rxandroid:${rxAndroidVersion}",
-            rxpermissions     : "com.tbruyelle.rxpermissions:rxpermissions:${rxPermissionVersion}",
-            rxBinding         : "com.jakewharton.rxbinding:rxbinding:${rxBinding}",
-            rxAppCompatBinding: "com.jakewharton.rxbinding:rxbinding-appcompat-v7:${rxAppCompatBindingVersion}"
     ]
 
     junitVersion = '4.12'

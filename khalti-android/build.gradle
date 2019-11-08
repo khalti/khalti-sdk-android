@@ -55,9 +55,6 @@ dependencies {
     implementation supportLibrary.recyclerView
     implementation supportLibrary.design
 
-    /*Android Animations*/
-    implementation ui.nineoldanimations
-
     /*Ripple*/
     implementation ui.ripple
 
@@ -86,17 +83,6 @@ dependencies {
 
     /*Http Client*/
     implementation network.apache_http_client
-
-    /*ReactiveX*/
-    implementation rx.rxjava
-    implementation rx.rxandroid
-
-    /*RxPermission*/
-    implementation rx.rxpermissions
-
-    /*RxBinding*/
-    implementation rx.rxBinding
-    implementation rx.rxAppCompatBinding
 
     /*---------------------------------------------------------------------------------------------------------------------*/
 
