@@ -42,17 +42,16 @@ public class ApiHelper_ {
                     .create(KhaltiApi_::class.java)
         }
 
-    }
-
-    fun <T : Any> callApi(response: Response<T>): Result<T> {
-        return try {
-            if (response.isSuccessful) {
-                Result.Success(response.body()!!)
-            } else {
-                Result.Error(Throwable(ErrorUtil.parseError(if (EmptyUtil.isNotNull(response.errorBody())) String(response.errorBody()!!.bytes()) else "")))
+        fun <T : Any> callApi(response: Response<T>): Result<T> {
+            return try {
+                if (response.isSuccessful) {
+                    Result.Success(response.body()!!)
+                } else {
+                    Result.Error(Throwable(ErrorUtil.parseError(if (EmptyUtil.isNotNull(response.errorBody())) String(response.errorBody()!!.bytes()) else "")))
+                }
+            } catch (e: Exception) {
+                Result.Error(if (EmptyUtil.isNotNull(e)) e else Throwable(ErrorUtil.parseError("")))
             }
-        } catch (e: Exception) {
-            Result.Error(if (EmptyUtil.isNotNull(e)) e else Throwable(ErrorUtil.parseError("")))
         }
     }
 }

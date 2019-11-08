@@ -1,5 +1,6 @@
 package com.khalti.utils
 
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -10,6 +11,9 @@ import com.khalti.signal.Signal
 class ViewUtil {
 
     companion object {
+
+        private val handler = Handler()
+        private lateinit var runnable: Runnable
 
         fun setClickListener(view: View?): Signal<Any> {
             val signal = Signal<Any>()
@@ -46,15 +50,21 @@ class ViewUtil {
             val signal = Signal<String>()
 
             if (EmptyUtil.isNotNull(view)) {
-
                 view!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String): Boolean {
-                        signal.emit(query)
                         return true
                     }
 
                     override fun onQueryTextChange(newText: String): Boolean {
-                        return false
+                        if (::runnable.isInitialized) {
+                            handler.removeCallbacks(runnable)
+                        }
+
+                        runnable = Runnable {
+                            signal.emit(newText)
+                        }
+                        handler.postDelayed(runnable, 500)
+                        return true
                     }
                 })
             }

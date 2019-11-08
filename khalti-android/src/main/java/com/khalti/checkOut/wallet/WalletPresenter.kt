@@ -19,7 +19,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
     private val model = WalletModel()
 
     private val parentJob = Job()
-    private val scope = CoroutineScope((Dispatchers.Main + parentJob))
+    private val scope = CoroutineScope(Dispatchers.Main + parentJob)
 
     private var pinWebLink: String? = null
     private var clicks = 0

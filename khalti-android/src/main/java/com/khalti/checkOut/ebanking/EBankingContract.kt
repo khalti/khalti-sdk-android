@@ -4,6 +4,7 @@ import com.khalti.base.LifeCycle
 import com.khalti.checkOut.api.Result
 import com.khalti.checkOut.ebanking.helper.BankPojo
 import com.khalti.checkOut.ebanking.helper.BankingData
+import com.khalti.checkOut.ebanking.helper.BaseListPojo
 import com.khalti.signal.Signal
 
 import java.util.HashMap
@@ -31,17 +32,20 @@ interface EBankingContract {
 
         fun setSearchListener(): Signal<String>
 
-        fun filterList(text: String): Signal<Int>
+        fun filterList(text: String): Int?
 
         fun hasNetwork(): Boolean
 
         fun setPresenter(presenter: Presenter)
     }
 
-    interface Presenter : LifeCycle
+    interface Presenter : LifeCycle {
+
+        fun onFetch()
+    }
 
     interface Model {
 
-        suspend fun fetchBankList(): Result<List<BankPojo>>
+        suspend fun fetchBankList(): Result<BaseListPojo>
     }
 }

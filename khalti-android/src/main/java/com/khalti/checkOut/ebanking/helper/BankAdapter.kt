@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.khalti.R
 import com.khalti.signal.Signal
 import com.khalti.utils.EmptyUtil
+import com.khalti.utils.LogUtil
 import com.khalti.utils.StringUtil
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -97,15 +98,16 @@ class BankAdapter(private val banks: MutableList<BankPojo>) : RecyclerView.Adapt
         var ivBankLogo: ImageView = itemView.ivBankLogo
     }
 
-    fun setFilter(queryText: String): Int? {
-        val count: Int?
+    fun filter(queryText: String): Int {
+        val count: Int
         count = if (queryText.isNotEmpty()) {
-            val filteredBanks = ArrayList<BankPojo>()
-            for (i in banksBackUp.indices) {
-                if (banksBackUp[i].name.toLowerCase().contains(queryText.toLowerCase()) || banksBackUp[i].shortName.toLowerCase().contains(queryText.toLowerCase())) {
-                    filteredBanks.add(banksBackUp[i])
-                }
-            }
+            val filteredBanks = banksBackUp
+                    .asSequence()
+                    .filter {
+                        it.name.toLowerCase().contains(queryText.toLowerCase()) || it.shortName.toLowerCase().contains(queryText.toLowerCase())
+                    }
+                    .toList()
+
             banks.clear()
             banks.addAll(filteredBanks)
             filteredBanks.size

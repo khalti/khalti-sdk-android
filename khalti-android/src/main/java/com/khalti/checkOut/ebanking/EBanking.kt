@@ -4,40 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.button.MaterialButton
-import com.jakewharton.rxbinding.support.v7.widget.RxSearchView
-import com.jakewharton.rxbinding.view.RxView
 import com.khalti.R
 import com.khalti.checkOut.ebanking.contactForm.ContactFormFragment
 import com.khalti.checkOut.ebanking.helper.BankAdapter
 import com.khalti.checkOut.ebanking.helper.BankPojo
 import com.khalti.checkOut.ebanking.helper.BankingData
-import com.khalti.checkOut.wallet.WalletContract
 import com.khalti.signal.Signal
-import com.khalti.utils.EmptyUtil
-import com.khalti.utils.NetworkUtil
-import com.khalti.utils.ResourceUtil
-import com.khalti.utils.ViewUtil
+import com.khalti.utils.*
 import kotlinx.android.synthetic.main.banking.*
 import kotlinx.android.synthetic.main.banking.view.*
-import kotlinx.android.synthetic.main.wallet_form.view.*
 
 import java.util.HashMap
 
-import rx.Observable
-import rx.subjects.PublishSubject
-
-class EBanking_ : Fragment(), EBankingContract.View {
+class EBanking : Fragment(), EBankingContract.View {
 
     private lateinit var mainView: View
     private var fragmentActivity: FragmentActivity? = null
@@ -48,7 +31,7 @@ class EBanking_ : Fragment(), EBankingContract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainView = inflater.inflate(R.layout.banking, container, false)
         fragmentActivity = activity
-        presenter = EBankingPresenter_(this)
+        presenter = EBankingPresenter(this)
 
         presenter.onCreate()
 
@@ -70,7 +53,7 @@ class EBanking_ : Fragment(), EBankingContract.View {
     }
 
     override fun toggleSearchError(show: Boolean) {
-        ViewUtil.toggleView(mainView.rvList, !show)
+//        ViewUtil.toggleView(mainView.rvList, !show)
         ViewUtil.toggleView(mainView.llIndented, show)
         ViewUtil.toggleView(mainView.tvMessage, true)
         ViewUtil.setText(tvMessage, ResourceUtil.getString(fragmentActivity, R.string.no_banks))
@@ -122,19 +105,11 @@ class EBanking_ : Fragment(), EBankingContract.View {
         return ViewUtil.setSearchListener(mainView.svBank)
     }
 
-    override fun filterList(text: String): Signal<Int> {
-        val signal = Signal<Int>()
-
+    override fun filterList(text: String): Int? {
         if (EmptyUtil.isNotNull(bankAdapter)) {
-            fragmentActivity!!.runOnUiThread {
-                val count = bankAdapter.setFilter(text)
-                if (EmptyUtil.isNotNull(count)) {
-                    signal.emit(count!!)
-                }
-            }
+            return bankAdapter.filter(text)
         }
-
-        return signal
+        return null
     }
 
     override fun hasNetwork(): Boolean {

@@ -84,13 +84,13 @@ public class Card extends Fragment implements CardContract.View {
 
     @Override
     public void setUpList(List<BankPojo> bankList) {
-        appBarLayout.setVisibility(View.VISIBLE);
+       /* appBarLayout.setVisibility(View.VISIBLE);
         rvList.setVisibility(View.VISIBLE);
         bankAdapter = new BankAdapter(fragmentActivity, bankList);
         rvList.setAdapter(bankAdapter);
         rvList.setHasFixedSize(false);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 3);
-        rvList.setLayoutManager(layoutManager);
+        rvList.setLayoutManager(layoutManager);*/
     }
 
     @Override
@@ -127,7 +127,8 @@ public class Card extends Fragment implements CardContract.View {
 
     @Override
     public Observable<HashMap<String, String>> getItemClickObservable() {
-        return bankAdapter.getItemClickObservable();
+//        return bankAdapter.getItemClickObservable();
+        return null;
     }
 
     @Override
@@ -147,7 +148,7 @@ public class Card extends Fragment implements CardContract.View {
         PublishSubject<Integer> publishSubject = PublishSubject.create();
         final Integer[] count = new Integer[1];
         fragmentActivity.runOnUiThread(() -> {
-            count[0] = bankAdapter.setFilter(text);
+            count[0] = bankAdapter.filter(text);
             publishSubject.onNext(count[0]);
         });
         return publishSubject;

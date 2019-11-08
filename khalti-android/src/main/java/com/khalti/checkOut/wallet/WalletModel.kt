@@ -17,7 +17,6 @@ class WalletModel(mockedKhaltiApi: KhaltiApi_? = null) : WalletContract.Model {
     } else {
         ApiHelper_.apiBuilder()
     }
-    private var apiHelper: ApiHelper_ = ApiHelper_()
 
     override suspend fun initiatePayment(mobile: String, config: Config): Result<WalletInitPojo> {
 
@@ -34,7 +33,7 @@ class WalletModel(mockedKhaltiApi: KhaltiApi_? = null) : WalletContract.Model {
             dataMap.putAll(config.additionalData!!)
         }
 
-        return apiHelper.callApi(khaltiApi.initiatePayment(Urls.WALLET_INITIATE.value, dataMap))
+        return ApiHelper_.callApi(khaltiApi.initiatePayment(Urls.WALLET_INITIATE.value, dataMap))
     }
 
     override suspend fun confirmPayment(confirmationCode: String, transactionPIN: String, token: String): Result<WalletConfirmPojo> {
@@ -45,6 +44,6 @@ class WalletModel(mockedKhaltiApi: KhaltiApi_? = null) : WalletContract.Model {
         dataMap["transaction_pin"] = transactionPIN
         dataMap["public_key"] = Store.getConfig().publicKey
 
-        return apiHelper.callApi(khaltiApi.confirmPayment(Urls.WALLET_CONFIRM.value, dataMap))
+        return ApiHelper_.callApi(khaltiApi.confirmPayment(Urls.WALLET_CONFIRM.value, dataMap))
     }
 }
