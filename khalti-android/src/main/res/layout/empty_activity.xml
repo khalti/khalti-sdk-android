@@ -14,5 +14,5 @@
         android:layout_marginRight="@dimen/globalPadding"
         android:adjustViewBounds="true"
         android:contentDescription="@null"
-        app:srcCompat="@drawable/khalti_full_logo" />
+        app:srcCompat="@drawable/khalti_logo_full" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

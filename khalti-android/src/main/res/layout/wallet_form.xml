@@ -30,7 +30,7 @@
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/khalti_full_logo" />
+                    app:srcCompat="@drawable/khalti_logo_full" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
