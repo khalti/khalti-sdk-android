@@ -2,12 +2,14 @@ package com.khalti.checkOut
 
 import com.khalti.checkOut.helper.CheckoutEventListener
 import com.khalti.checkOut.helper.PaymentPreference
+import com.khalti.signal.CompositeSignal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
 import com.khalti.utils.Store
 
 internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
     private val view: CheckOutContract.View = GuavaUtil.checkNotNull<CheckOutContract.View>(view)
+    private val compositeSignal = CompositeSignal()
 
     init {
         view.setPresenter(this)
@@ -33,14 +35,14 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
         }
 
         view.setupViewPager(uniqueList)
-        view.setUpTabLayout(uniqueList)
+
+        compositeSignal.add(view.setUpTabLayout(uniqueList)
+                .connect {
+                    view.toggleTab(it.getValue("position") as Int, it.getValue("selected") as Boolean, it.getValue("id") as String)
+                })
     }
 
     override fun onDestroy() {
         view.dismissAllDialogs()
-    }
-
-    override fun onTabSelected(position: Int, selected: Boolean) {
-        view.toggleTab(position, selected)
     }
 }

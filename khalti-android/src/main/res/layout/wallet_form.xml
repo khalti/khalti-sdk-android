@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -228,7 +227,7 @@
                     android:orientation="vertical"
                     app:canExpand="true">
 
-                    <androidx.cardview.widget.CardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/cvPinMessage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -236,9 +235,9 @@
                         android:layout_marginTop="@dimen/cardPadding"
                         android:layout_marginRight="@dimen/globalPadding"
                         android:layout_marginBottom="@dimen/globalPadding"
-                        card_view:cardBackgroundColor="@color/grey"
-                        card_view:cardElevation="2dp"
-                        card_view:cardUseCompatPadding="true">
+                        app:cardBackgroundColor="@color/grey"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -268,7 +267,7 @@
                                 android:textSize="13.3sp"
                                 app:fontFamily="@font/roboto" />
                         </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
                         android:id="@+id/llPIN"
@@ -311,16 +310,16 @@
                         </com.khalti.widget.TextInputLayout>
                     </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/globalPadding"
                         android:layout_marginTop="@dimen/cardPadding"
                         android:layout_marginRight="@dimen/globalPadding"
                         android:layout_marginBottom="@dimen/globalPadding"
-                        card_view:cardBackgroundColor="@color/grey"
-                        card_view:cardElevation="2dp"
-                        card_view:cardUseCompatPadding="true">
+                        app:cardBackgroundColor="@color/grey"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -349,7 +348,7 @@
                                 android:textSize="13.3sp"
                                 app:fontFamily="@font/roboto" />
                         </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
                         android:id="@+id/llCode"

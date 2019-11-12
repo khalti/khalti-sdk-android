@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="globalPadding">16dp</dimen>
-    <dimen name="toolbarHeight">64dp</dimen>
+    <dimen name="toolbarHeight">56dp</dimen>
     <dimen name="singleBottomMargin">10dp</dimen>
     <dimen name="doubleBottomMargin">20dp</dimen>
     <dimen name="cardPadding">8dp</dimen>

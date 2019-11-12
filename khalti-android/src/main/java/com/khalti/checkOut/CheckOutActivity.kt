@@ -4,20 +4,17 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.tabs.TabLayout
 import com.khalti.R
 import com.khalti.checkOut.helper.PaymentPreference
+import com.khalti.signal.Signal
 import com.khalti.utils.*
 import kotlinx.android.synthetic.main.component_tab.view.*
 import kotlinx.android.synthetic.main.payment_activity.*
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 
 public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
@@ -58,61 +55,89 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         } else {
             tlTitle.tabMode = TabLayout.MODE_FIXED
         }
-
-        tlTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                vpContent.currentItem = tab.position
-                presenter.onTabSelected(tab.position, true)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                presenter.onTabSelected(tab.position, false)
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-        })
     }
 
-    override fun setUpTabLayout(types: List<PaymentPreference>) {
+    override fun setUpTabLayout(types: List<PaymentPreference>): Signal<Map<String, Any>> {
+        val signal = Signal<Map<String, Any>>()
         var position = 0
-        for (p in types) {
-            val color: Int
-            val map = MerchantUtil.getTab(p.value.toLowerCase())
+
+        for (i in types.indices) {
+            var color: Int
+            var background: Int
+            var icon: Int
+            val map = MerchantUtil.getTab(types[i].value.toLowerCase())
             if (EmptyUtil.isNotNull(map)) {
-                color = if (position == 0) {
-                    ResourceUtil.getColor(this, R.color.khaltiAccentAlt)
+                if (position == 0) {
+                    color = ResourceUtil.getColor(this, R.color.white)
+                    background = ResourceUtil.getColor(this, R.color.khaltiPrimary)
+                    icon = map.getValue("icon_active") as Int
                 } else {
-                    ResourceUtil.getColor(this, R.color.khaltiPrimary)
+                    color = ResourceUtil.getColor(this, R.color.black)
+                    background = ResourceUtil.getColor(this, R.color.white)
+                    icon = map.getValue("icon") as Int
                 }
 
-                val llTab: LinearLayout = LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false) as LinearLayout
-                llTab.tvTitle.text = map["title"].toString()
-                llTab.tvTitle.setTextColor(color)
-                llTab.ivIcon.setImageResource(map["icon"] as Int)
-                DrawableCompat.setTint(llTab.ivIcon.drawable, color)
+                val mcTab = LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false) as MaterialCardView
+                mcTab.tvTitle.text = map["title"].toString()
+                mcTab.tvTitle.setTextColor(color)
+                mcTab.mcContainer.setCardBackgroundColor(background)
+                mcTab.ivIcon.setImageResource(icon)
                 val tab: TabLayout.Tab? = tlTitle.getTabAt(position)
                 if (EmptyUtil.isNotNull(tab)) {
-                    tab!!.customView = llTab
+                    tab!!.customView = mcTab
+                }
+                mcTab.setOnClickListener {
+                    vpContent.currentItem = i
                 }
                 tabs.add(tab)
 
                 position++
             }
         }
+
+        tlTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                signal.emit(object : HashMap<String, Any>() {
+                    init {
+                        put("position", tab.position)
+                        put("selected", true)
+                        put("id", types[tab.position].value)
+                    }
+                })
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                signal.emit(object : HashMap<String, Any>() {
+                    init {
+                        put("position", tab.position)
+                        put("selected", false)
+                        put("id", types[tab.position].value)
+                    }
+                })
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
+
+        return signal
     }
 
-    override fun toggleTab(position: Int, selected: Boolean) {
-        val ll: LinearLayout? = tabs[position]?.customView as LinearLayout?
-        if (EmptyUtil.isNotNull(ll)) {
-
-            if (selected) {
-                ll?.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.khaltiAccentAlt))
-                DrawableCompat.setTint(ll?.ivIcon?.drawable!!, ResourceUtil.getColor(this, R.color.khaltiAccentAlt))
-            } else {
-                ll?.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.khaltiPrimary))
-                DrawableCompat.setTint(ll?.ivIcon?.drawable!!, ResourceUtil.getColor(this, R.color.khaltiPrimary))
+    override fun toggleTab(position: Int, selected: Boolean, id: String) {
+        val mcTab = tabs[position]?.customView as MaterialCardView?
+        if (EmptyUtil.isNotNull(mcTab)) {
+            val tabMap = MerchantUtil.getTab(id)
+            if (EmptyUtil.isNotNull(tabMap)) {
+                if (selected) {
+                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.white))
+                    mcTab.mcContainer.setCardBackgroundColor(ResourceUtil.getColor(this, R.color.khaltiPrimary))
+                    mcTab.ivIcon.setImageResource(tabMap.getValue("icon_active") as Int)
+                } else {
+                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.black))
+                    mcTab.mcContainer.setCardBackgroundColor(ResourceUtil.getColor(this, R.color.white))
+                    mcTab.ivIcon.setImageResource(tabMap.getValue("icon") as Int)
+                }
             }
         }
     }

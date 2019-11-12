@@ -37,15 +37,18 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbarHeight"
             android:layout_gravity="center"
-            android:background="@color/white"
             app:elevation="0dp"
             app:tabGravity="center"
-            app:tabIndicatorColor="@color/khaltiAccentAlt" />
+            app:tabPaddingEnd="4dp"
+            app:tabPaddingStart="4dp"
+            app:tabIndicator="@null"
+            app:tabRippleColor="@null" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/disabled" />
+            android:background="@color/disabled"
+            android:visibility="gone" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

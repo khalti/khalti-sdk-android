@@ -1,11 +1,11 @@
 ext {
     supportVersion = '1.0.0'
+    materialVersion = '1.2.0-alpha01'
 
     supportLibrary = [
             appCompat   : "androidx.appcompat:appcompat:$supportVersion",
-            cardView    : "androidx.cardview:cardview:$supportVersion",
             recyclerView: "androidx.recyclerview:recyclerview:$supportVersion",
-            design      : "com.google.android.material:material:$supportVersion"
+            material      : "com.google.android.material:material:$materialVersion"
     ]
 
     butterKnifeVersion = '10.1.0'
