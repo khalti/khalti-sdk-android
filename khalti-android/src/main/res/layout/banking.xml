@@ -21,10 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/globalPadding"
-                android:paddingTop="@dimen/globalPadding"
-                android:paddingRight="@dimen/globalPadding"
-                android:paddingBottom="@dimen/cardPadding"
+                android:padding="12dp"
                 android:visibility="gone"
                 app:layout_scrollFlags="scroll|enterAlways">
 
@@ -77,9 +74,9 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:clipToPadding="false"
-                android:paddingLeft="@dimen/cardPadding"
+                android:paddingLeft="@dimen/globalPadding"
                 android:paddingTop="@dimen/cardPadding"
-                android:paddingRight="@dimen/cardPadding"
+                android:paddingRight="@dimen/globalPadding"
                 android:paddingBottom="76dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

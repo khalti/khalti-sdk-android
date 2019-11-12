@@ -73,10 +73,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <!--<View
+            <View
+                android:id="@+id/vToolbarShadow"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="@drawable/toolbar_shadow" />-->
+                android:layout_height="4dp"
+                android:visibility="gone"
+                android:background="@drawable/toolbar_shadow" />
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -85,32 +87,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#F3F3F3"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/cardPadding"
+        android:paddingTop="@dimen/editTextPadding"
+        android:paddingRight="@dimen/cardPadding"
+        android:paddingBottom="@dimen/editTextPadding"
         android:visibility="gone">
 
-        <View
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/svBank"
             android:layout_width="match_parent"
-            android:layout_height="0.8dp"
-            android:alpha="0.1"
-            android:background="@color/primaryText" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/cardPadding"
-            android:padding="@dimen/cardPadding"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="21dp">
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/svBank"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:queryHint="@string/search_bank" />
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/search_bg"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/search_bank" />
     </FrameLayout>
 </RelativeLayout>
