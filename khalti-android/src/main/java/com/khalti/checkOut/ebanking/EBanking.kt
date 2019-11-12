@@ -9,13 +9,13 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.khalti.R
+import com.khalti.checkOut.CheckOutActivity
 import com.khalti.checkOut.ebanking.contactForm.ContactFormFragment
 import com.khalti.checkOut.ebanking.helper.BankAdapter
 import com.khalti.checkOut.ebanking.helper.BankPojo
 import com.khalti.checkOut.ebanking.helper.BankingData
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.banking.*
 import kotlinx.android.synthetic.main.banking.view.*
 
 import java.util.HashMap
@@ -49,19 +49,19 @@ class EBanking : Fragment(), EBankingContract.View {
     }
 
     override fun toggleSearch(show: Boolean) {
-        ViewUtil.toggleView(mainView.flSearchBank, show)
+        ViewUtil.toggleView((this.fragmentActivity as CheckOutActivity).flSearch, show)
     }
 
     override fun toggleSearchError(show: Boolean) {
 //        ViewUtil.toggleView(mainView.rvList, !show)
         ViewUtil.toggleView(mainView.llIndented, show)
         ViewUtil.toggleView(mainView.tvMessage, true)
-        ViewUtil.setText(tvMessage, ResourceUtil.getString(fragmentActivity, R.string.no_banks))
+        ViewUtil.setText(mainView.tvMessage, ResourceUtil.getString(fragmentActivity, R.string.no_banks))
     }
 
     override fun setupList(bankList: MutableList<BankPojo>): Signal<Map<String, String>> {
-        ViewUtil.toggleView(mainView.appBar, true)
-        ViewUtil.toggleView(mainView.rvList, true)
+        ViewUtil.toggleView(mainView.llTopBar, true)
+        ViewUtil.toggleView(mainView.nsvContainer, true)
         bankAdapter = BankAdapter(bankList)
         mainView.rvList.adapter = bankAdapter
         mainView.rvList.setHasFixedSize(false)
@@ -102,7 +102,7 @@ class EBanking : Fragment(), EBankingContract.View {
     }
 
     override fun setSearchListener(): Signal<String> {
-        return ViewUtil.setSearchListener(mainView.svBank)
+        return ViewUtil.setSearchListener((this.fragmentActivity as CheckOutActivity).svSearch)
     }
 
     override fun filterList(text: String): Int? {

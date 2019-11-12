@@ -10,6 +10,7 @@
     <string name="pin_sms_info">Your third party transaction pin has been generated and sent to your mobile number. Enter the PIN below</string>
     <string name="sms_info">Enter the PIN below</string>
     <string name="slogan">पैसा को नयाँ ठेगाना</string>
+    <string name="title">Choose your payment method</string>
 
     <!--Component Button-->
     <string name="pay">PAY</string>
@@ -39,7 +40,7 @@
     <string name="contact_hint">Contact Number</string>
     <string name="code_hint">Confirmation Code</string>
     <string name="pin_hint">PIN (4 Digits)</string>
-    <string name="select_bank">Select Bank</string>
+    <string name="select_bank">Please select your bank</string>
     <string name="confirm_payment">Confirm Payment</string>
 
     <!--Wallet-->

@@ -4,7 +4,9 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
@@ -19,6 +21,8 @@ import kotlinx.android.synthetic.main.payment_activity.*
 public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
     public var cdlMain: CoordinatorLayout? = null
+    public var flSearch: FrameLayout? = null
+    public var svSearch: SearchView? = null
     private lateinit var presenter: CheckOutContract.Presenter
     private val tabs: MutableList<TabLayout.Tab?> = ArrayList()
 
@@ -27,6 +31,8 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         setContentView(R.layout.payment_activity)
 
         this.cdlMain = clMain
+        this.flSearch = flSearchBank
+        this.svSearch = svBank
 
         presenter = CheckOutPresenter(this)
         presenter.onCreate()

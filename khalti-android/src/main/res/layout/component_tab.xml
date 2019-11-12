@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mcContainer"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mcContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="18dp"
     app:contentPaddingLeft="@dimen/doubleBottomMargin"
     app:contentPaddingRight="@dimen/doubleBottomMargin"
+    app:cardElevation="0dp"
     app:rippleColor="@color/khaltiPrimary">
 
     <LinearLayout

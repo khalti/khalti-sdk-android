@@ -1,71 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/clMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/clMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.Light"
-        android:visibility="visible"
-        app:elevation="0dp">
+        android:layout_height="match_parent"
+        android:layout_above="@id/flSearchBank"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:elevation="0dp"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            app:titleEnabled="false">
+            android:background="@color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            android:visibility="visible"
+            app:elevation="0dp">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="0dp"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:titleEnabled="false">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/globalPadding"
+                    android:text="@string/title"
+                    android:textColor="@color/khaltiPrimary"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/roboto_medium" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tlTitle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbarHeight"
-                android:background="@color/white"
-                android:minHeight="@dimen/toolbarHeight"
-                android:visibility="gone"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/editTextPadding"
+                android:paddingBottom="@dimen/editTextPadding"
                 app:elevation="0dp"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+                app:tabGravity="center"
+                app:tabIndicator="@null"
+                app:tabPaddingEnd="@dimen/editTextPadding"
+                app:tabPaddingStart="@dimen/editTextPadding"
+                app:tabRippleColor="@null" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tlTitle"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/disabled"
+                android:visibility="gone" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbarHeight"
-            android:layout_gravity="center"
-            app:elevation="0dp"
-            app:tabGravity="center"
-            app:tabPaddingEnd="4dp"
-            app:tabPaddingStart="4dp"
-            app:tabIndicator="@null"
-            app:tabRippleColor="@null" />
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!--<View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/toolbar_shadow" />-->
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:id="@+id/flSearchBank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#F3F3F3"
+        android:visibility="gone">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/disabled"
-            android:visibility="gone" />
+            android:layout_height="0.8dp"
+            android:alpha="0.1"
+            android:background="@color/primaryText" />
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vpContent"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/cardPadding"
+            android:padding="@dimen/cardPadding"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="21dp">
 
-        <!--<View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/toolbar_shadow" />-->
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/svBank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_bank" />
+        </androidx.cardview.widget.CardView>
     </FrameLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>
