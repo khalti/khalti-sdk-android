@@ -15,6 +15,8 @@ interface CheckOutContract {
 
         fun toggleToolbarShadow(show: Boolean)
 
+        fun toggleSearch(show: Boolean)
+
         fun setupViewPager(types: List<PaymentPreference>)
 
         fun setUpTabLayout(types: List<PaymentPreference>): Signal<Map<String, Any>>

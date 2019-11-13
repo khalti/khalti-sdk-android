@@ -67,6 +67,10 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         ViewUtil.toggleView(vToolbarShadow, show)
     }
 
+    override fun toggleSearch(show: Boolean) {
+        ViewUtil.toggleView(flSearchBank, show)
+    }
+
     override fun setupViewPager(types: List<PaymentPreference>) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
 
