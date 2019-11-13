@@ -27,15 +27,14 @@
                     android:id="@+id/flBankLogo"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:background="@drawable/circle_outline"
                     android:gravity="center"
                     android:padding="@dimen/editTextPadding"
                     android:visibility="visible">
 
                     <ImageView
                         android:id="@+id/ivBankLogo"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_gravity="center"
                         android:contentDescription="@null"
                         android:scaleType="fitCenter" />
@@ -71,8 +70,8 @@
                     android:layout_marginLeft="@dimen/globalPadding"
                     android:gravity="center"
                     android:text="@string/empty"
-                    android:textColor="@color/primaryText"
-                    android:textSize="@dimen/head"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/title"
                     app:fontFamily="@font/roboto_medium" />
             </LinearLayout>
 

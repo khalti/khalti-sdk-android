@@ -19,11 +19,11 @@ import com.khalti.utils.*
 import kotlinx.android.synthetic.main.component_tab.view.*
 import kotlinx.android.synthetic.main.payment_activity.*
 
-public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
+class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
-    public var cdlMain: CoordinatorLayout? = null
-    public var flSearch: FrameLayout? = null
-    public var svSearch: SearchView? = null
+    var cdlMain: CoordinatorLayout? = null
+    var flSearch: FrameLayout? = null
+    var svSearch: SearchView? = null
     private lateinit var presenter: CheckOutContract.Presenter
     private val tabs: MutableList<TabLayout.Tab?> = ArrayList()
 
@@ -69,6 +69,10 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
     override fun toggleSearch(show: Boolean) {
         ViewUtil.toggleView(flSearchBank, show)
+    }
+
+    override fun toggleAppBar(show: Boolean) {
+        ViewUtil.toggleView(appBar, show)
     }
 
     override fun setupViewPager(types: List<PaymentPreference>) {

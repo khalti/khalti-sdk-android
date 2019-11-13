@@ -14,8 +14,6 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
     private val searchList = listOf(PaymentPreference.EBANKING.value, PaymentPreference.MOBILE_BANKING.value)
 
-    private lateinit var uniqueList: List<PaymentPreference>
-
     init {
         view.setPresenter(this)
     }
@@ -40,6 +38,8 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
         }
 
         view.setupViewPager(uniqueList)
+
+        view.toggleAppBar(uniqueList.size > 1)
 
         compositeSignal.add(view.setUpTabLayout(uniqueList)
                 .connect {

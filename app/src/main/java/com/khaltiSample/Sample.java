@@ -57,8 +57,8 @@ public class Sample extends AppCompatActivity {
         })
                 .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
-                    add(PaymentPreference.WALLET);
                     add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.WALLET);
                 }})
                 .additionalData(map)
                 .build();
