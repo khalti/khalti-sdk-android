@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="14dp"
     app:cardElevation="4dp"
     android:layout_margin="@dimen/cardPadding"
     app:rippleColor="@color/khaltiPrimary">
@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/ivBankLogo"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter" />
@@ -61,12 +61,12 @@
             android:id="@+id/tvBankName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/cardPadding"
             android:gravity="center"
             android:text="@string/empty"
-            android:layout_marginBottom="@dimen/cardPadding"
             android:textColor="@color/black"
-            android:textSize="@dimen/head"
-            app:fontFamily="@font/roboto_medium" />
+            android:textSize="@dimen/body"
+            app:fontFamily="@font/roboto" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBankFullName"

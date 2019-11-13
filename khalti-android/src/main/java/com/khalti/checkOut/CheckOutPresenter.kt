@@ -5,6 +5,7 @@ import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
+import com.khalti.utils.LogUtil
 import com.khalti.utils.Store
 
 internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
@@ -40,9 +41,13 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
                 .connect {
                     view.toggleTab(it.getValue("position") as Int, it.getValue("selected") as Boolean, it.getValue("id") as String)
                 })
+
+        compositeSignal.add(view.setOffsetListener()
+                .connect { view.toggleToolbarShadow(it < 0) })
     }
 
     override fun onDestroy() {
         view.dismissAllDialogs()
+        compositeSignal.clear()
     }
 }

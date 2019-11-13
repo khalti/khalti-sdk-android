@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.tabs.TabLayout
 import com.khalti.R
@@ -35,12 +36,35 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         this.svSearch = svBank
 
         presenter = CheckOutPresenter(this)
+
         presenter.onCreate()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDestroy()
+    }
+
+    override fun toggleTab(position: Int, selected: Boolean, id: String) {
+        val mcTab = tabs[position]?.customView as MaterialCardView?
+        if (EmptyUtil.isNotNull(mcTab)) {
+            val tabMap = MerchantUtil.getTab(id)
+            if (EmptyUtil.isNotNull(tabMap)) {
+                if (selected) {
+                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.white))
+                    mcTab.mcContainer.setCardBackgroundColor(ResourceUtil.getColor(this, R.color.khaltiPrimary))
+                    mcTab.ivIcon.setImageResource(tabMap.getValue("icon_active") as Int)
+                } else {
+                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.black))
+                    mcTab.mcContainer.setCardBackgroundColor(ResourceUtil.getColor(this, R.color.white))
+                    mcTab.ivIcon.setImageResource(tabMap.getValue("icon") as Int)
+                }
+            }
+        }
+    }
+
+    override fun toggleToolbarShadow(show: Boolean) {
+        ViewUtil.toggleView(vToolbarShadow, show)
     }
 
     override fun setupViewPager(types: List<PaymentPreference>) {
@@ -130,22 +154,13 @@ public class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         return signal
     }
 
-    override fun toggleTab(position: Int, selected: Boolean, id: String) {
-        val mcTab = tabs[position]?.customView as MaterialCardView?
-        if (EmptyUtil.isNotNull(mcTab)) {
-            val tabMap = MerchantUtil.getTab(id)
-            if (EmptyUtil.isNotNull(tabMap)) {
-                if (selected) {
-                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.white))
-                    mcTab.mcContainer.setCardBackgroundColor(ResourceUtil.getColor(this, R.color.khaltiPrimary))
-                    mcTab.ivIcon.setImageResource(tabMap.getValue("icon_active") as Int)
-                } else {
-                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.black))
-                    mcTab.mcContainer.setCardBackgroundColor(ResourceUtil.getColor(this, R.color.white))
-                    mcTab.ivIcon.setImageResource(tabMap.getValue("icon") as Int)
-                }
-            }
-        }
+    override fun setOffsetListener(): Signal<Int> {
+        val signal = Signal<Int>()
+        appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            signal.emit(verticalOffset)
+        })
+
+        return signal
     }
 
     override fun setStatusBarColor() {

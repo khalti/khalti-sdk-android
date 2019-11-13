@@ -11,11 +11,15 @@ import rx.Observable
 interface CheckOutContract {
     interface View {
 
+        fun toggleTab(position: Int, selected: Boolean, id: String)
+
+        fun toggleToolbarShadow(show: Boolean)
+
         fun setupViewPager(types: List<PaymentPreference>)
 
         fun setUpTabLayout(types: List<PaymentPreference>): Signal<Map<String, Any>>
 
-        fun toggleTab(position: Int, selected: Boolean, id: String)
+        fun setOffsetListener(): Signal<Int>
 
         fun setStatusBarColor()
 
