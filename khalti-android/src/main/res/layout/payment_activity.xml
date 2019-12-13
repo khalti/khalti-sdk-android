@@ -47,6 +47,7 @@
                 android:layout_height="@dimen/toolbarHeight"
                 android:layout_gravity="center"
                 android:paddingTop="@dimen/editTextPadding"
+                android:animateLayoutChanges="true"
                 android:paddingBottom="@dimen/editTextPadding"
                 app:elevation="0dp"
                 app:tabGravity="center"

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
+import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.checkOut.helper.PaymentPreference;
 import com.khalti.utils.Constant;
 import com.khalti.widget.KhaltiButton;
@@ -63,9 +64,11 @@ public class Sample extends AppCompatActivity {
                 .additionalData(map)
                 .build();
 
-        khaltiButton.setOnClickListener(view -> khaltiButton.showCheckOut(config));
+        KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(this, config);
+        khaltiButton.setOnClickListener(view -> khaltiCheckOut.show());
         khaltiButton1.setCheckOutConfig(config);
         khaltiButton2.setCheckOutConfig(config);
+
     }
 
     @OnClick(R.id.btnMore)
