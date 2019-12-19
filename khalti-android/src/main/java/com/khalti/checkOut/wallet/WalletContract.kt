@@ -67,17 +67,19 @@ interface WalletContract {
 
         fun isMobileValid(mobile: String): Boolean
 
+        fun isInitialFormValid(mobile: String, pin: String): Boolean
+
         fun isFinalFormValid(pin: String, confirmationCode: String): Boolean
 
-        fun onInitiatePayment(isNetwork: Boolean, mobile: String)
+        fun onInitiatePayment(isNetwork: Boolean, mobile: String, pin: String)
 
         fun onConfirmPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String)
     }
 
     interface Model {
 
-        suspend fun initiatePayment(mobile: String, config: Config): Result<WalletInitPojo>
+        suspend fun initiatePayment(mobile: String, pin: String, config: Config): Result<WalletInitPojo>
 
-        suspend fun confirmPayment(confirmationCode: String, transactionPIN: String, token: String): Result<WalletConfirmPojo>
+        suspend fun confirmPayment(confirmationCode: String, pin: String, token: String): Result<WalletConfirmPojo>
     }
 }

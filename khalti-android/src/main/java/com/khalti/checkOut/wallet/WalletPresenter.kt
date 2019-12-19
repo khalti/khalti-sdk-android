@@ -13,6 +13,25 @@ import kotlinx.coroutines.launch
 
 class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
 
+    /*Error messages*/
+    private val EMPTY_ERROR = "This field is required"
+    private val MOBILE_ERROR = "Enter a valid mobile number"
+    private val PIN_ERROR = "Enter valid 4 digit PIN"
+    private val CODE_ERROR = "Enter valid 6 digit confirmation code"
+
+    /*Validation status*/
+    private val MOBILE_VALID = "mv"
+    private val PIN_VALID = "pv"
+    private val CODE_VALID = "cv"
+
+    private val MOBILE_EMPTY = "me"
+    private val PIN_EMPTY = "pe"
+    private val CODE_EMPTY = "ce"
+
+    private val MOBILE_INVALID = "mi"
+    private val PIN_INVALID = "pi"
+    private val CODE_INVALID = "ci"
+
     private val view: WalletContract.View = GuavaUtil.checkNotNull<WalletContract.View>(view)
     private lateinit var config: Config
     private val compositeSignal = CompositeSignal()
@@ -54,8 +73,8 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                         view.updateConfirmationHeight()
                     }
                 } else {
-                    if (isMobileValid(dataMap.getValue("mobile"))) {
-                        onInitiatePayment(view.hasNetwork(), dataMap.getValue("mobile"))
+                    if (isInitialFormValid(dataMap.getValue("mobile"), dataMap.getValue("pin"))) {
+                        onInitiatePayment(view.hasNetwork(), dataMap.getValue("mobile"), dataMap.getValue("pin"))
                     }
                 }
             })
@@ -109,6 +128,32 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
             }
         }
         return false
+    }
+
+    override fun isInitialFormValid(mobile: String, pin: String): Boolean {
+        var mobileError: String? = null
+        var pinError: String? = null
+
+        if (EmptyUtil.isNotEmpty(mobile)) {
+            if (!ValidationUtil.isMobileNumberValid(mobile)) {
+                mobileError = MOBILE_ERROR
+            }
+        } else {
+            mobileError = EMPTY_ERROR
+        }
+
+        if (EmptyUtil.isNotEmpty(pin)) {
+            if (pin.length < 4) {
+                pinError = PIN_ERROR
+            }
+        } else {
+            pinError = EMPTY_ERROR
+        }
+
+        view.setEditTextError("mobile", mobileError)
+        view.setEditTextError("pin", pinError)
+
+        return EmptyUtil.isNull(mobileError) && EmptyUtil.isNull(pinError)
     }
 
     override fun isFinalFormValid(pin: String, confirmationCode: String): Boolean {
@@ -175,12 +220,12 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
         return false
     }
 
-    override fun onInitiatePayment(isNetwork: Boolean, mobile: String) {
+    override fun onInitiatePayment(isNetwork: Boolean, mobile: String, pin: String) {
         if (isNetwork) {
             this.mobile = mobile
             scope.launch {
                 view.toggleProgressDialog("init", true)
-                when (val result = model.initiatePayment(mobile, config)) {
+                when (val result = model.initiatePayment(mobile, pin, config)) {
                     is Result.Success -> {
                         walletInitPojo = result.data
                         view.toggleProgressDialog("init", false)
