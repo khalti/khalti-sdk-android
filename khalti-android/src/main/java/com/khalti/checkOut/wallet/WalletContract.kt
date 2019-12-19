@@ -30,7 +30,7 @@ interface WalletContract {
 
         fun setButtonText(text: String)
 
-        fun setConfirmationLayoutHeight(view: String)
+        fun setConfirmationLayoutHeight()
 
         fun setEditTextListener(): Map<String, Signal<CharSequence>>
 
@@ -65,11 +65,9 @@ interface WalletContract {
 
     interface Presenter : LifeCycle {
 
-        fun isMobileValid(mobile: String): Boolean
-
         fun isInitialFormValid(mobile: String, pin: String): Boolean
 
-        fun isFinalFormValid(pin: String, confirmationCode: String): Boolean
+        fun isFinalFormValid(confirmationCode: String): Boolean
 
         fun onInitiatePayment(isNetwork: Boolean, mobile: String, pin: String)
 

@@ -67,7 +67,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
 
                 val dataMap = view.formData
                 if (view.payButtonText.toLowerCase().contains("confirm")) {
-                    if (isFinalFormValid(dataMap.getValue("pin"), dataMap.getValue("code"))) {
+                    if (isFinalFormValid(dataMap.getValue("code"))) {
                         onConfirmPayment(view.hasNetwork(), dataMap.getValue("code"), dataMap.getValue("pin"))
                     } else {
                         view.updateConfirmationHeight()
@@ -101,33 +101,28 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                     })
         }
 
-        if (EmptyUtil.isNotNull(watcherMap["code"])) {
-            compositeSignal.add(watcherMap.getValue("code")
-                    .connect { view.setConfirmationLayoutHeight("code") })
-        }
-
         if (EmptyUtil.isNotNull(watcherMap["pin"])) {
             compositeSignal.add(watcherMap.getValue("pin")
-                    .connect { view.setConfirmationLayoutHeight("pin") })
+                    .connect {
+                        view.setEditTextError("pin", null)
+                        if (view.payButtonText.toLowerCase().contains("confirm")) {
+                            view.toggleConfirmationLayout(false)
+                        }
+                    })
+        }
+
+        if (EmptyUtil.isNotNull(watcherMap["code"])) {
+            compositeSignal.add(watcherMap.getValue("code")
+                    .connect {
+                        view.setEditTextError("code", null)
+                        view.setConfirmationLayoutHeight()
+                    })
         }
     }
 
     override fun onDestroy() {
         compositeSignal.clear()
         parentJob.cancel()
-    }
-
-    override fun isMobileValid(mobile: String): Boolean {
-        if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
-            return true
-        } else {
-            if (EmptyUtil.isEmpty(mobile)) {
-                view.setEditTextError("mobile", "This field is required")
-            } else {
-                view.setEditTextError("mobile", "Enter a valid mobile number")
-            }
-        }
-        return false
     }
 
     override fun isInitialFormValid(mobile: String, pin: String): Boolean {
@@ -156,68 +151,20 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
         return EmptyUtil.isNull(mobileError) && EmptyUtil.isNull(pinError)
     }
 
-    override fun isFinalFormValid(pin: String, confirmationCode: String): Boolean {
-        var status = ""
-        status += if (EmptyUtil.isNotEmpty(pin)) {
-            if (pin.length == 4) {
-                "pc"
-            } else {
-                "pl"
+    override fun isFinalFormValid(confirmationCode: String): Boolean {
+        var codeError: String? = null
+
+        if (EmptyUtil.isNotEmpty(mobile)) {
+            if (confirmationCode.length < 6) {
+                codeError = CODE_ERROR
             }
         } else {
-            "pe"
+            codeError = EMPTY_ERROR
         }
 
-        status += if (EmptyUtil.isNotEmpty(confirmationCode)) {
-            if (confirmationCode.length == 6) {
-                "cc"
-            } else {
-                "cl"
-            }
-        } else {
-            "ce"
-        }
+        view.setEditTextError("code", codeError)
 
-        when (status) {
-            "pccc" -> return true
-            "pccl" -> {
-                view.setEditTextError("code", "Enter a valid 6 digit confirmation code")
-                return false
-            }
-            "pcce" -> {
-                view.setEditTextError("code", "This field is required")
-                return false
-            }
-            "plcc" -> {
-                view.setEditTextError("pin", "Enter a valid 4 digit PIN")
-                return false
-            }
-            "plcl" -> {
-                view.setEditTextError("pin", "Enter a valid 4 digit PIN")
-                view.setEditTextError("code", "Enter a valid 6 digit confirmation code")
-                return false
-            }
-            "plce" -> {
-                view.setEditTextError("pin", "Enter a valid 4 digit PIN")
-                view.setEditTextError("code", "This field is required")
-                return false
-            }
-            "pecc" -> {
-                view.setEditTextError("pin", "This field is required")
-                return false
-            }
-            "pecl" -> {
-                view.setEditTextError("pin", "This field is required")
-                view.setEditTextError("code", "Enter a valid 6 digit confirmation code")
-                return false
-            }
-            "pece" -> {
-                view.setEditTextError("pin", "This field is required")
-                view.setEditTextError("code", "This field is required")
-                return false
-            }
-        }
-        return false
+        return EmptyUtil.isNull(codeError)
     }
 
     override fun onInitiatePayment(isNetwork: Boolean, mobile: String, pin: String) {
@@ -230,10 +177,6 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                         walletInitPojo = result.data
                         view.toggleProgressDialog("init", false)
                         view.toggleConfirmationLayout(true)
-                        view.togglePinMessage(walletInitPojo.isPinCreated)
-                        if (EmptyUtil.isNotNull(walletInitPojo.pinCreatedMessage)) {
-                            view.setPinMessage(walletInitPojo.pinCreatedMessage!!)
-                        }
                     }
                     is Result.Error -> {
                         view.toggleProgressDialog("init", false)

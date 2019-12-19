@@ -79,7 +79,6 @@ class Wallet : Fragment(), WalletContract.View {
         val buttonText = if (show) ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) else "Pay Rs ${NumberUtil.convertToRupees(Store.getConfig().amount)}"
         mainView.btnPay?.text = buttonText
         mainView.etCode?.setText("")
-        mainView.etPIN?.setText("")
         mainView.elConfirmation.toggleExpansion()
     }
 
@@ -103,6 +102,10 @@ class Wallet : Fragment(), WalletContract.View {
                 mainView.tilMobile?.isErrorEnabled = isError
                 mainView.tilMobile?.error = error
             }
+            "pin" -> {
+                mainView.tilPIN?.isErrorEnabled = isError
+                mainView.tilPIN?.error = error
+            }
             "code" -> {
                 mainView.llCode.measure(0, 0)
                 val beforeA = mainView.llCode.measuredHeight
@@ -115,18 +118,6 @@ class Wallet : Fragment(), WalletContract.View {
 
                 height = abs(height + (afterA - beforeA))
             }
-            "pin" -> {
-                mainView.llPIN.measure(0, 0)
-                val beforeB = mainView.llPIN.measuredHeight
-
-                mainView.tilPIN.isErrorEnabled = isError
-                mainView.tilPIN.error = error
-
-                mainView.llPIN.measure(0, 0)
-                val afterB = mainView.llPIN.measuredHeight
-
-                height = abs(height + (afterB - beforeB))
-            }
         }
     }
 
@@ -134,27 +125,20 @@ class Wallet : Fragment(), WalletContract.View {
         mainView.btnPay?.text = text
     }
 
-    override fun setConfirmationLayoutHeight(view: String) {
-        val til: TextInputLayout
-        val ll: LinearLayout
-        if (view == "code") {
-            til = mainView.tilCode
-            ll = mainView.llCode
-        } else {
-            til = mainView.tilPIN
-            ll = mainView.llPIN
-        }
+    override fun setConfirmationLayoutHeight() {
+        val til = mainView.tilCode
+        val ll: LinearLayout = mainView.llCode
         if (EmptyUtil.isNotNull(til?.error)) {
-            ll?.measure(0, 0)
-            val beforeA = ll?.measuredHeight
+            ll.measure(0, 0)
+            val beforeA = ll.measuredHeight
 
-            til?.setErrorEnabled(false)
+            til?.isErrorEnabled = false
 
-            ll?.measure(0, 0)
-            val afterA = ll?.measuredHeight
+            ll.measure(0, 0)
+            val afterA = ll.measuredHeight
 
             if (EmptyUtil.isNotNull(beforeA) && EmptyUtil.isNotNull(afterA)) {
-                height = abs(height + (beforeA!! - afterA!!))
+                height = abs(height + (beforeA - afterA))
 
                 val layoutParams = mainView.llConfirmation.layoutParams as ExpandableLayout.LayoutParams
                 layoutParams.height = mainView.llConfirmation.height - height
