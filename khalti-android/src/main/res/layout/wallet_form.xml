@@ -222,6 +222,7 @@
                 android:layout_marginTop="@dimen/cardPadding"
                 android:layout_marginRight="@dimen/globalPadding"
                 android:layout_marginBottom="@dimen/globalPadding"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/grey"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">

@@ -13,28 +13,27 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:layout_marginBottom="@dimen/singleBottomMargin"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#05000000"
                 android:orientation="horizontal"
                 android:padding="@dimen/globalPadding">
 
                 <FrameLayout
                     android:id="@+id/flBankLogo"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:gravity="center"
                     android:padding="@dimen/editTextPadding"
                     android:visibility="visible">
 
                     <ImageView
                         android:id="@+id/ivBankLogo"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:contentDescription="@null"
                         android:scaleType="fitCenter" />
@@ -42,8 +41,8 @@
 
                 <FrameLayout
                     android:id="@+id/flBankTextIcon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:background="@drawable/circle_primary"
                     android:gravity="center"
                     android:padding="2dp"
@@ -51,8 +50,8 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvBankIcon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/empty"
@@ -68,7 +67,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/globalPadding"
                     android:layout_marginLeft="@dimen/globalPadding"
-                    android:gravity="center"
                     android:text="@string/empty"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title"
@@ -79,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_gravity="bottom"
+                android:visibility="gone"
                 android:background="#15000000" />
         </FrameLayout>
 
