@@ -5,7 +5,7 @@ ext {
             appCompat   : 'androidx.appcompat:appcompat:1.0.0',
             cardView    : 'androidx.cardview:cardview:1.0.0',
             recyclerView: 'androidx.recyclerview:recyclerview:1.0.0',
-            design      : 'com.google.android.material:material:1.0.0'
+            design      : 'com.google.android.material:material:1.2.0-alpha02'
     ]
 
     nineDroidVersion = '2.4.0'
