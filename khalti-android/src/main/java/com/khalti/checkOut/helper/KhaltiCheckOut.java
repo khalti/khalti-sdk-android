@@ -1,7 +1,7 @@
 package com.khalti.checkOut.helper;
 
 import android.content.Context;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import com.khalti.checkOut.CheckOutActivity;
 import com.khalti.checkOut.api.Config;

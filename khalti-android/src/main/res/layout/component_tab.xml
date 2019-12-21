@@ -15,7 +15,7 @@
         android:layout_marginRight="@dimen/carbonX_paddingHalf"
         android:contentDescription="@null" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,6 +1,6 @@
 package com.khalti.utils;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import com.khalti.checkOut.api.Config;
 

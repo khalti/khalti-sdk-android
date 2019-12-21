@@ -9,6 +9,6 @@
         android:icon="@drawable/ic_search_white_48px"
         android:title="@string/action_search"
         android:visible="true"
-        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
 </menu>

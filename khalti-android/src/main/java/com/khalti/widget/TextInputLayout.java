@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.khalti.R;
 
-public class TextInputLayout extends android.support.design.widget.TextInputLayout {
+public class TextInputLayout extends com.google.android.material.textfield.TextInputLayout {
     private float mainHintTextSize;
     private float editTextSize;
 

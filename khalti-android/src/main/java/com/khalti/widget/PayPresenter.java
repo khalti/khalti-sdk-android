@@ -1,6 +1,6 @@
 package com.khalti.widget;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.khalti.checkOut.api.Config;
 import com.khalti.utils.EmptyUtil;

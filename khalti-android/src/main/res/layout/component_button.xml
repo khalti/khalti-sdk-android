@@ -6,7 +6,7 @@
     android:gravity="center"
     android:theme="@style/AppTheme.khalti">
 
-    <android.support.design.button.MaterialButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPay"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/toolbarHeight"

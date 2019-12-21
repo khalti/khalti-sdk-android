@@ -2,8 +2,8 @@ package com.khaltiSample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.button.MaterialButton;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.button.MaterialButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 
