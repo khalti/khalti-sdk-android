@@ -76,8 +76,7 @@ internal class ContactFormPresenter(view: ContactFormContract.View) : ContactFor
 
                 val data = EncodeUtil.urlEncode(map)
 
-//                view.saveConfigInFile(config)
-                view.openConfigService()
+                view.saveConfigInFile(config)
                 view.openEBanking(Constant.url + "ebanking/initiate/?" + data)
                 LogUtil.log("data", data)
 

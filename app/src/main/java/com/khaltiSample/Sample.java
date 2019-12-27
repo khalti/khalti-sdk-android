@@ -4,26 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.arch.core.util.Function;
 
 import com.google.android.material.button.MaterialButton;
-import com.khalti.checkOut.api.OnSuccessListener;
-import com.khalti.checkOut.helper.CheckoutEventListener;
 import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.checkOut.helper.PaymentPreference;
-import com.khalti.checkOut.service.ConfigServiceComm;
 import com.khalti.utils.Constant;
 import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,23 +58,6 @@ public class Sample extends AppCompatActivity {
         khaltiButton.setOnClickListener(view -> khaltiCheckOut.show());
         khaltiButton1.setCheckOutConfig(config);
         khaltiButton2.setCheckOutConfig(config);
-
-        OnSuccessListener function = new OnSuccessListener() {
-            @Override
-            public void onSuccess(Map<String, ?> data) {
-
-            }
-        };
-        OnSuccessListener function2 = data -> {
-
-        };
-
-        LogUtil.log("function", function);
-        LogUtil.log("function", function2);
-
-        LogUtil.log("function is serializable", function instanceof Serializable);
-        LogUtil.log("function 2 is serializable", function2 instanceof Serializable);
-
     }
 
     @OnClick(R.id.btnMore)

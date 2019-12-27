@@ -36,8 +36,6 @@ interface ContactFormContract {
 
         fun saveConfigInFile(config: Config)
 
-        fun openConfigService()
-
         fun setOnClickListener(): Map<String, Signal<Any>>
 
         fun setEditTextListener(): Signal<CharSequence>

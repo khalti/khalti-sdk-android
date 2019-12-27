@@ -226,7 +226,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                                     data["product_identity"] = walletConfirmPojo.productIdentity!!
                                 }
 
-                                config.onCheckOutListener.onSuccess(data)
+                                config.onSuccessListener?.onSuccess(data)
                                 view.closeWidget()
                             }
 

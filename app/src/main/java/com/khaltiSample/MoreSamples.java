@@ -60,23 +60,9 @@ public class MoreSamples extends AppCompatActivity {
          * Very important
          */
         // Config must me initialize ahead
-        config = new Config.Builder(publicKey, productId, productName, amount, new OnCheckOutListener() {
-            @Override
-            public void onSuccess(Map<String, ?> data) {
-
-            }
-        } /*new OnCheckOutListener() {
-            @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
-                Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show();
-            }
-        }*/)
+        config = new Config.Builder(publicKey, productId, productName, amount)
+                .onSuccess(data -> Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show())
+                .onError((action, message) -> Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show())
                 .build();
 
         // Init The Buttons

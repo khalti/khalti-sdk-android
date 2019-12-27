@@ -71,10 +71,5 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".checkOut.service.ConfigService"
-            android:label="Config service"
-            android:stopWithTask="false">
-        </service>
     </application>
 </manifest>
