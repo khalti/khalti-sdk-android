@@ -8,6 +8,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ErrorUtil {
+
+    /*Form error messages*/
+    public static String EMPTY_ERROR = "This field is required";
+    public static String MOBILE_ERROR = "Enter a valid mobile number";
+    public static String PIN_ERROR = "Enter valid 4 digit PIN";
+    public static String CODE_ERROR = "Enter valid 6 digit confirmation code";
+
     public static String parseError(String json) {
         String defaultError = "Something went wrong.";
         if (EmptyUtil.isNull(json)) {

@@ -61,7 +61,7 @@ class EBankingPresenter(view: EBankingContract.View) : EBankingContract.Presente
                         val message = result.throwable.message
                         if (EmptyUtil.isNotNull(message)) {
                             view.showIndentedError(message!!)
-                            config.onCheckOutListener.onError(ErrorAction.FETCH_BANK_LIST.action, message)
+//                            config.onCheckOutListener.onError(ErrorAction.FETCH_BANK_LIST.action, message)//TODO
                         }
                     }
                 }

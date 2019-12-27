@@ -3,11 +3,13 @@ package com.khalti.checkOut.ebanking.contactForm
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -16,6 +18,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.khalti.R
 import com.khalti.checkOut.ebanking.helper.BankingData
 import com.khalti.checkOut.helper.Config
+import com.khalti.checkOut.service.ConfigService
+import com.khalti.checkOut.service.ConfigService2
 import com.khalti.signal.Signal
 import com.khalti.utils.*
 import com.squareup.picasso.Callback
@@ -140,6 +144,16 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
 
     override fun saveConfigInFile(config: Config) {
         FileStorageUtil.writeIntoFile(fragmentActivity, "khalti_config", config)
+    }
+
+    override fun openConfigService() {
+        val intent = Intent(fragmentActivity, ConfigService::class.java)
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            fragmentActivity.startForegroundService(intent)
+        } else {
+            fragmentActivity.startService(intent)
+        }*/
+        ContextCompat.startForegroundService(fragmentActivity, intent)
     }
 
     override fun setOnClickListener(): Map<String, Signal<Any>> = object : HashMap<String, Signal<Any>>() {

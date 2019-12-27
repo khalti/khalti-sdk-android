@@ -2,11 +2,14 @@ package com.khalti.utils;
 
 import android.content.Context;
 
+import com.khalti.checkOut.helper.Config;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 public class FileStorageUtil {
 
@@ -18,6 +21,7 @@ public class FileStorageUtil {
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (IOException e) {
+            LogUtil.log("file name", fileName);
             e.printStackTrace();
         }
     }

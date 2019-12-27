@@ -1,6 +1,8 @@
 package com.khalti.checkOut.helper
 
-enum class PaymentPreference(val value: String) {
+import java.io.Serializable
+
+enum class PaymentPreference(val value: String) : Serializable {
     WALLET("wallet"),
     SCT("sct"),
     EBANKING("ebanking"),

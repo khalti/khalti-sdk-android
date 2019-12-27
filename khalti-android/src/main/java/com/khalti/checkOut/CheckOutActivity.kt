@@ -19,6 +19,7 @@ import com.khalti.utils.*
 import kotlinx.android.synthetic.main.component_tab.view.*
 import kotlinx.android.synthetic.main.payment_activity.*
 
+
 class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
     var cdlMain: CoordinatorLayout? = null
@@ -39,6 +40,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
         presenter.onCreate()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

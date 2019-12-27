@@ -10,12 +10,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.khalti.checkOut.api.OnSuccessListener;
 import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.api.OnCheckOutListener;
 import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
 import com.khalti.widget.KhaltiButton;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -52,11 +54,18 @@ public class MoreSamples extends AppCompatActivity {
         String productName = "product_name";
         Long amount = 100L; // In Paisa
 
+
+
         /*
          * Very important
          */
         // Config must me initialize ahead
         config = new Config.Builder(publicKey, productId, productName, amount, new OnCheckOutListener() {
+            @Override
+            public void onSuccess(Map<String, ?> data) {
+
+            }
+        } /*new OnCheckOutListener() {
             @Override
             public void onSuccess(@NonNull Map<String, ?> data) {
                 Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show();
@@ -67,7 +76,7 @@ public class MoreSamples extends AppCompatActivity {
             public void onError(@NonNull String action, @NonNull String message) {
                 Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show();
             }
-        })
+        }*/)
                 .build();
 
         // Init The Buttons

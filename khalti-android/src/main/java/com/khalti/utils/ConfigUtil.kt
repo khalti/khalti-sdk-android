@@ -32,9 +32,14 @@ class ConfigUtil {
             if (EmptyUtil.isEmpty(config.amount)) {
                 return "Amount cannot be 0"
             }
-            return if (EmptyUtil.isNull(config.onCheckOutListener)) {
-                "Listener cannot be null"
-            } else ""
+            if (EmptyUtil.isNull(config.onSuccessListener)) {
+               return "Success listener should be set and cannot be null"
+            }
+            if (EmptyUtil.isNull(config.onErrorListener)) {
+                return "Error listener should be set and cannot be null"
+            }
+
+            return ""
         }
     }
 }

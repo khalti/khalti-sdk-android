@@ -1,12 +1,17 @@
 package com.khalti.checkOut.ebanking.deepLinkReceiver
 
+import android.content.ComponentName
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
 
 import java.util.HashMap
 
 import com.khalti.R
 import com.khalti.checkOut.helper.Config
+import com.khalti.checkOut.service.ConfigService
+import com.khalti.checkOut.service.ConfigServiceComm
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.FileStorageUtil
 import com.khalti.utils.JsonUtil
@@ -25,6 +30,9 @@ class DeepLink : AppCompatActivity(), DeepLinkContract.View {
 
     override val configFromFile: Config
         get() = FileStorageUtil.readFromFile(this, "khalti_config") as Config
+
+    override val configFromService: Config?
+        get() = ConfigService.getConfig()
 
     override fun receiveEBankingData(): Map<String, Any>? {
         val bundle = intent.extras

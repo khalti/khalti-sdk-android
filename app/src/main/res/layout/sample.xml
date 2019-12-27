@@ -99,7 +99,7 @@
             android:layout_margin="@dimen/globalPadding"
             android:minWidth="@dimen/carbonX_buttonWidth1"
             android:minHeight="@dimen/carbonX_buttonHeight"
-            android:text="More"
+            android:text="More s"
             android:textAllCaps="true"
             android:theme="@style/Theme.MaterialComponents"
             app:backgroundTint="@color/khaltiPrimary"

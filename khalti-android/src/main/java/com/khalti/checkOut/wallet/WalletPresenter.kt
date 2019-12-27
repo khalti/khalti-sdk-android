@@ -6,31 +6,13 @@ import com.khalti.checkOut.helper.Config
 import com.khalti.checkOut.wallet.helper.WalletInitPojo
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.*
+import com.khalti.utils.ErrorUtil.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
-
-    /*Error messages*/
-    private val EMPTY_ERROR = "This field is required"
-    private val MOBILE_ERROR = "Enter a valid mobile number"
-    private val PIN_ERROR = "Enter valid 4 digit PIN"
-    private val CODE_ERROR = "Enter valid 6 digit confirmation code"
-
-    /*Validation status*/
-    private val MOBILE_VALID = "mv"
-    private val PIN_VALID = "pv"
-    private val CODE_VALID = "cv"
-
-    private val MOBILE_EMPTY = "me"
-    private val PIN_EMPTY = "pe"
-    private val CODE_EMPTY = "ce"
-
-    private val MOBILE_INVALID = "mi"
-    private val PIN_INVALID = "pi"
-    private val CODE_INVALID = "ci"
 
     private val view: WalletContract.View = GuavaUtil.checkNotNull<WalletContract.View>(view)
     private lateinit var config: Config
@@ -200,7 +182,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                                             }
                                         }
                                     })
-                            config.onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.action, message)
+//                            config.onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.action, message)/TODO
                         } else {
                             if (EmptyUtil.isNull(message)) {
                                 message = ""
@@ -257,7 +239,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                             }
                             view.toggleProgressDialog("confirm", false)
                             view.showMessageDialog("Error", message!!)
-                            config.onCheckOutListener.onError(ErrorAction.WALLET_CONFIRM.action, message)
+//                            config.onCheckOutListener.onError(ErrorAction.WALLET_CONFIRM.action, message)//TODO
                         }
 
                     }
