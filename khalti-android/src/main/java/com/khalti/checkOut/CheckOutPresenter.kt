@@ -46,11 +46,16 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
         view.toggleAppBar(uniqueList.size > 1)
 
+        val barWidth = view.convertDpToPx(250) / uniqueList.size
         compositeSignal.add(view.setUpTabLayout(uniqueList)
                 .connect {
                     view.toggleTab(it.getValue("position") as Int, it.getValue("selected") as Boolean, it.getValue("id") as String)
                     view.toggleSearch(searchList.contains(it.getValue("id") as String))
+                    view.setIndicatorBarPosition((it.getValue("position") as Int) * barWidth)
                 })
+
+        view.toggleIndicator(uniqueList.size > 1)
+        view.setIndicatorBarWidth(barWidth)
 
         compositeSignal.add(view.setOffsetListener()
                 .connect { view.toggleToolbarShadow(it < 0) })

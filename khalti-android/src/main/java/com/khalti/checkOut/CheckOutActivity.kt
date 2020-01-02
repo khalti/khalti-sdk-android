@@ -2,6 +2,8 @@ package com.khalti.checkOut
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -37,13 +39,6 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         this.svSearch = svBank
 
         presenter = CheckOutPresenter(this)
-
-        val list: MutableList<String> = ArrayList()
-        val list2: MutableList<String> = ArrayList()
-        list.add("test")
-
-        list2.addAll(list)
-
         presenter.onCreate()
     }
 
@@ -52,6 +47,12 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         super.onDestroy()
         presenter.onDestroy()
     }
+
+    override val indicatorWidth: Int
+        get() {
+            Handler().postDelayed({ LogUtil.log("width", mvTabPositionIndicator.width) }, 10000)
+            return mvTabPositionIndicator.width
+        }
 
     override fun toggleTab(position: Int, selected: Boolean, id: String) {
         val mcTab = tabs[position]?.customView as MaterialCardView?
@@ -73,6 +74,30 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
     override fun toggleToolbarShadow(show: Boolean) {
         ViewUtil.toggleView(vToolbarShadow, show)
+    }
+
+    override fun toggleIndicator(show: Boolean) {
+        ViewUtil.toggleView(mvTabPositionIndicator, show)
+    }
+
+    override fun setIndicatorBarWidth(width: Int) {
+        if (EmptyUtil.isNotNull(mvTabPositionIndicatorBar)) {
+            val lp = mvTabPositionIndicatorBar.layoutParams as FrameLayout.LayoutParams
+            if (EmptyUtil.isNotNull(lp)) {
+                lp.width = width
+                mvTabPositionIndicatorBar?.layoutParams = lp
+            }
+        }
+    }
+
+    override fun setIndicatorBarPosition(position: Int) {
+        if (EmptyUtil.isNotNull(mvTabPositionIndicator)) {
+            val lp = mvTabPositionIndicatorBar.layoutParams as FrameLayout.LayoutParams
+            if (EmptyUtil.isNotNull(lp)) {
+                lp.setMargins(position, 0, 0, 0)
+                mvTabPositionIndicatorBar?.layoutParams = lp
+            }
+        }
     }
 
     override fun toggleSearch(show: Boolean) {
@@ -205,6 +230,10 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
     override fun closeCheckOut() {
         finish()
+    }
+
+    override fun convertDpToPx(dp: Int): Int {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), resources.displayMetrics).toInt()
     }
 
     override fun setPresenter(presenter: CheckOutContract.Presenter) {

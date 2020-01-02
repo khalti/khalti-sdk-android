@@ -41,20 +41,52 @@
                     app:fontFamily="@font/roboto_medium" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tlTitle"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbarHeight"
-                android:layout_gravity="center"
-                android:paddingTop="@dimen/editTextPadding"
-                android:animateLayoutChanges="true"
-                android:paddingBottom="@dimen/editTextPadding"
-                app:elevation="0dp"
-                app:tabGravity="center"
-                app:tabIndicator="@null"
-                app:tabPaddingEnd="@dimen/editTextPadding"
-                app:tabPaddingStart="@dimen/editTextPadding"
-                app:tabRippleColor="@null" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tlTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbarHeight"
+                    android:layout_gravity="center"
+                    android:animateLayoutChanges="true"
+                    android:paddingTop="@dimen/editTextPadding"
+                    android:paddingBottom="@dimen/editTextPadding"
+                    app:elevation="0dp"
+                    app:tabGravity="center"
+                    app:tabIndicator="@null"
+                    app:tabPaddingEnd="@dimen/editTextPadding"
+                    app:tabPaddingStart="@dimen/editTextPadding"
+                    app:tabRippleColor="@null" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mvTabPositionIndicator"
+                    android:layout_width="250dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/cardPadding"
+                    android:layout_marginBottom="@dimen/cardPadding"
+                    app:cardBackgroundColor="#12000000"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="0dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mvTabPositionIndicatorBar"
+                        android:layout_width="50dp"
+                        android:layout_height="6dp"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginTop="@dimen/cardPadding"
+                        android:layout_marginBottom="@dimen/cardPadding"
+                        app:cardBackgroundColor="@color/disabled"
+                        app:cardCornerRadius="3dp"
+                        app:cardElevation="0dp">
+
+                    </com.google.android.material.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
 
             <View
                 android:layout_width="match_parent"
@@ -79,8 +111,8 @@
                 android:id="@+id/vToolbarShadow"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:visibility="gone"
-                android:background="@drawable/toolbar_shadow" />
+                android:background="@drawable/toolbar_shadow"
+                android:visibility="gone" />
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -12,9 +12,17 @@ import rx.Observable
 interface CheckOutContract {
     interface View {
 
+        val indicatorWidth: Int
+
         fun toggleTab(position: Int, selected: Boolean, id: String)
 
         fun toggleToolbarShadow(show: Boolean)
+
+        fun toggleIndicator(show: Boolean)
+
+        fun setIndicatorBarWidth(width: Int)
+
+        fun setIndicatorBarPosition(position: Int)
 
         fun toggleSearch(show: Boolean)
 
@@ -31,6 +39,8 @@ interface CheckOutContract {
         fun dismissAllDialogs()
 
         fun closeCheckOut()
+
+        fun convertDpToPx(dp : Int) : Int
 
         fun setPresenter(presenter: Presenter)
     }
