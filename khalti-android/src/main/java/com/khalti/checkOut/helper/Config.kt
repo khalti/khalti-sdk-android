@@ -1,10 +1,13 @@
 package com.khalti.checkOut.helper
 
 import androidx.annotation.Keep
-import com.khalti.checkOut.api.OnCheckOutListener
 import com.khalti.checkOut.api.OnErrorListener
 import com.khalti.checkOut.api.OnSuccessListener
+import com.khalti.utils.EmptyUtil
 import java.io.Serializable
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 @Keep
 data class Config(
@@ -17,8 +20,8 @@ data class Config(
         val onErrorListener: OnErrorListener?,
         val mobile: String?,
         val productUrl: String?,
-        val additionalData: HashMap<String, Any>?,
-        val paymentPreferences: List<PaymentPreference>?
+        val additionalData: Map<String, Any>?,
+        val paymentPreferences: MutableList<PaymentPreference>?
 ) : Serializable {
 
     class Builder(
@@ -29,8 +32,8 @@ data class Config(
     ) {
         private var productUrl: String? = null
         private var mobile: String? = null
-        private var additionalData: HashMap<String, Any>? = null
-        private var paymentPreferences: List<PaymentPreference>? = null
+        private var additionalData: MutableMap<String, Any> = HashMap()
+        private var paymentPreferences: MutableList<PaymentPreference> = ArrayList()
 
         private var onSuccessListener: OnSuccessListener? = null
         private var onErrorListener: OnErrorListener? = null
@@ -39,8 +42,17 @@ data class Config(
         fun onError(onErrorListener: OnErrorListener) = apply { this.onErrorListener = onErrorListener }
         fun productUrl(productUrl: String?) = apply { this.productUrl = productUrl }
         fun mobile(mobile: String?) = apply { this.mobile = mobile }
-        fun additionalData(additionalData: HashMap<String, Any>?) = apply { this.additionalData = additionalData }
-        fun paymentPreferences(paymentPreferences: List<PaymentPreference>?) = apply { this.paymentPreferences = paymentPreferences }
+        fun additionalData(additionalData: Map<String, Any>?) = apply {
+            if (EmptyUtil.isNotNull(additionalData)) {
+                this.additionalData.putAll(additionalData!!)
+            }
+        }
+
+        fun paymentPreferences(paymentPreferences: List<PaymentPreference>?) = apply {
+            if (EmptyUtil.isNotNull(paymentPreferences)) {
+                this.paymentPreferences.addAll(paymentPreferences!!)
+            }
+        }
 
         fun build() = Config(
                 publicKey,

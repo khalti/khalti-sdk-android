@@ -9,7 +9,9 @@ import androidx.annotation.Keep
 import com.khalti.R
 import com.khalti.checkOut.helper.Config
 import com.khalti.checkOut.helper.KhaltiCheckOut
+import com.khalti.utils.ConfigUtil
 import com.khalti.utils.EmptyUtil
+import com.khalti.utils.Store
 import kotlinx.android.synthetic.main.component_button.view.*
 
 @Keep
@@ -34,7 +36,14 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
     override fun setCheckOutConfig(config: Config) {
         this.config = config
         val message = presenter.onCheckConfig(config)
-        require(EmptyUtil.isEmpty(message)) { message }
+
+        if (EmptyUtil.isEmpty(message)) {
+            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, Store.getConfig())
+
+            require(EmptyUtil.isEmpty(message2)) { message2 }
+        } else {
+            throw IllegalArgumentException(message)
+        }
     }
 
     override fun setCustomView(view: View) {
@@ -56,7 +65,14 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
     override fun showCheckOut(config: Config) {
         this.config = config
         val message = presenter.onCheckConfig(config)
-        require(EmptyUtil.isEmpty(message)) { message }
+
+        if (EmptyUtil.isEmpty(message)) {
+            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, Store.getConfig())
+
+            require(EmptyUtil.isEmpty(message2)) { message2 }
+        } else {
+            throw IllegalArgumentException(message)
+        }
         presenter.onOpenForm()
     }
 

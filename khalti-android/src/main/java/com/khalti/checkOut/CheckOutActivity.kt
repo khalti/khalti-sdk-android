@@ -38,6 +38,12 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
         presenter = CheckOutPresenter(this)
 
+        val list: MutableList<String> = ArrayList()
+        val list2: MutableList<String> = ArrayList()
+        list.add("test")
+
+        list2.addAll(list)
+
         presenter.onCreate()
     }
 

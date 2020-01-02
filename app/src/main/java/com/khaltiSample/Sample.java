@@ -6,16 +6,20 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.khalti.checkOut.helper.CheckoutEventListener;
 import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.checkOut.helper.PaymentPreference;
 import com.khalti.utils.Constant;
+import com.khalti.utils.FileStorageUtil;
 import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,9 +42,10 @@ public class Sample extends AppCompatActivity {
         setContentView(R.layout.sample);
         ButterKnife.bind(this);
 
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("merchant_extra", "This is extra data");
-        map.put("merchant_extra_2", "This is extra data 2");
+        HashMap<String, Object> map = new HashMap<String, Object>() {{
+            put("merchant_extra", "This is extra data");
+            put("merchant_extra_2", "This is extra data 2");
+        }};
 
         List<PaymentPreference> ls = new ArrayList<PaymentPreference>() {{
             add(PaymentPreference.EBANKING);
@@ -50,9 +55,11 @@ public class Sample extends AppCompatActivity {
                 .onSuccess(data -> LogUtil.log("success", data))
                 .onError(LogUtil::log)
                 .productUrl("Product url")
-//                .paymentPreferences(ls)
-//                .additionalData(map)
+                .paymentPreferences(ls)
+                .additionalData(map)
                 .build();
+
+        FileStorageUtil.writeIntoFile(this, "config", config);
 
         KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(this, config);
         khaltiButton.setOnClickListener(view -> khaltiCheckOut.show());
@@ -64,5 +71,4 @@ public class Sample extends AppCompatActivity {
     public void onBtnMoreLoadClick() {
         startActivity(new Intent(this, MoreSamples.class));
     }
-
 }
