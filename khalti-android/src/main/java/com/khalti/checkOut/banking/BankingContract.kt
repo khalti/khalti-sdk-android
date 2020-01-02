@@ -1,18 +1,16 @@
-package com.khalti.checkOut.ebanking
+package com.khalti.checkOut.banking
 
 import com.khalti.base.LifeCycle
 import com.khalti.checkOut.api.Result
-import com.khalti.checkOut.ebanking.helper.BankPojo
-import com.khalti.checkOut.ebanking.helper.BankingData
-import com.khalti.checkOut.ebanking.helper.BaseListPojo
+import com.khalti.checkOut.banking.helper.BankPojo
+import com.khalti.checkOut.banking.helper.BankingData
+import com.khalti.checkOut.banking.helper.BaseListPojo
 import com.khalti.signal.Signal
 
-import java.util.HashMap
-
-import rx.Observable
-
-interface EBankingContract {
+interface BankingContract {
     interface View {
+
+        fun receiveData(): Map<String, Any>?
 
         fun toggleIndented(show: Boolean)
 
@@ -46,6 +44,6 @@ interface EBankingContract {
 
     interface Model {
 
-        suspend fun fetchBankList(): Result<BaseListPojo>
+        suspend fun fetchBankList(paymentType: String): Result<BaseListPojo>
     }
 }

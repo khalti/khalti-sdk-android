@@ -5,14 +5,14 @@ import androidx.fragment.app.Fragment;
 import java.util.HashMap;
 
 import com.khalti.R;
-import com.khalti.checkOut.ebanking.EBanking;
+import com.khalti.checkOut.banking.Banking;
 import com.khalti.checkOut.helper.PaymentPreference;
 import com.khalti.checkOut.wallet.Wallet;
 
 public class MerchantUtil {
 
     private static final HashMap<String, Fragment> CHECKOUT_FRAGMENTS = new HashMap<String, Fragment>() {{
-        put(PaymentPreference.EBANKING.getValue(), new EBanking());
+        put(PaymentPreference.EBANKING.getValue(), new Banking());
         put(PaymentPreference.WALLET.getValue(), new Wallet());
     }};
 

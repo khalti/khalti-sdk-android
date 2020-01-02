@@ -182,7 +182,9 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                                             }
                                         }
                                     })
-//                            config.onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.action, message)/TODO
+                            if (EmptyUtil.isNotNull(config.onErrorListener)) {
+                                config.onErrorListener!!.onError(ErrorAction.WALLET_INITIATE.action, message)
+                            }
                         } else {
                             if (EmptyUtil.isNull(message)) {
                                 message = ""
@@ -239,7 +241,9 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                             }
                             view.toggleProgressDialog("confirm", false)
                             view.showMessageDialog("Error", message!!)
-//                            config.onCheckOutListener.onError(ErrorAction.WALLET_CONFIRM.action, message)//TODO
+                            if (EmptyUtil.isNotNull(config.onErrorListener)) {
+                                config.onErrorListener!!.onError(ErrorAction.WALLET_CONFIRM.action, message)
+                            }
                         }
 
                     }

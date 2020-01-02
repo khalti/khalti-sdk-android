@@ -1,4 +1,4 @@
-package com.khalti.checkOut.ebanking.helper
+package com.khalti.checkOut.banking.helper
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.khalti.R
 import com.khalti.signal.Signal
 import com.khalti.utils.EmptyUtil
-import com.khalti.utils.LogUtil
 import com.khalti.utils.StringUtil
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso

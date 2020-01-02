@@ -1,7 +1,7 @@
 package com.khalti.checkOut.api
 
 
-import com.khalti.checkOut.ebanking.helper.BaseListPojo
+import com.khalti.checkOut.banking.helper.BaseListPojo
 import com.khalti.checkOut.wallet.helper.WalletConfirmPojo
 import com.khalti.checkOut.wallet.helper.WalletInitPojo
 import com.khalti.checkOut.helper.MerchantPreferencePojo

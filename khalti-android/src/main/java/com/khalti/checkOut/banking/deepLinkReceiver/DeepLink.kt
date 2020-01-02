@@ -1,4 +1,4 @@
-package com.khalti.checkOut.ebanking.deepLinkReceiver
+package com.khalti.checkOut.banking.deepLinkReceiver
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

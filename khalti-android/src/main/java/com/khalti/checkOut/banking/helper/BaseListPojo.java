@@ -1,4 +1,4 @@
-package com.khalti.checkOut.ebanking.helper;
+package com.khalti.checkOut.banking.helper;
 
 
 import android.os.Parcel;

@@ -1,10 +1,9 @@
-package com.khalti.checkOut.ebanking.contactForm
+package com.khalti.checkOut.banking.contactForm
 
 import com.khalti.base.LifeCycle
-import com.khalti.checkOut.ebanking.helper.BankingData
+import com.khalti.checkOut.banking.helper.BankingData
 import com.khalti.checkOut.helper.Config
 import com.khalti.signal.Signal
-import rx.Observable
 
 interface ContactFormContract {
 
@@ -45,6 +44,6 @@ interface ContactFormContract {
 
     interface Presenter : LifeCycle {
 
-        fun onFormSubmitted(mobile: String, bankId: String, bankName: String, config: Config)
+        fun onFormSubmitted(mobile: String, bankId: String, bankName: String, paymentType: String, config: Config)
     }
 }

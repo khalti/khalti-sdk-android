@@ -1,4 +1,4 @@
-package com.khalti.checkOut.ebanking
+package com.khalti.checkOut.banking
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,28 +10,28 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.khalti.R
 import com.khalti.checkOut.CheckOutActivity
-import com.khalti.checkOut.ebanking.contactForm.ContactFormFragment
-import com.khalti.checkOut.ebanking.helper.BankAdapter
-import com.khalti.checkOut.ebanking.helper.BankPojo
-import com.khalti.checkOut.ebanking.helper.BankingData
+import com.khalti.checkOut.banking.contactForm.ContactFormFragment
+import com.khalti.checkOut.banking.helper.BankAdapter
+import com.khalti.checkOut.banking.helper.BankPojo
+import com.khalti.checkOut.banking.helper.BankingData
 import com.khalti.signal.Signal
 import com.khalti.utils.*
 import kotlinx.android.synthetic.main.banking.view.*
 
 import java.util.HashMap
 
-class EBanking : Fragment(), EBankingContract.View {
+class Banking : Fragment(), BankingContract.View {
 
     private lateinit var mainView: View
     private var fragmentActivity: FragmentActivity? = null
     private lateinit var bankAdapter: BankAdapter
 
-    private lateinit var presenter: EBankingContract.Presenter
+    private lateinit var presenter: BankingContract.Presenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainView = inflater.inflate(R.layout.banking, container, false)
         fragmentActivity = activity
-        presenter = EBankingPresenter(this)
+        presenter = BankingPresenter(this)
 
         presenter.onCreate()
 
@@ -41,6 +41,14 @@ class EBanking : Fragment(), EBankingContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDestroy()
+    }
+
+    override fun receiveData(): Map<String, Any>? {
+        val bundle = arguments
+        if (EmptyUtil.isNotNull(bundle)) {
+            return bundle!!.getSerializable("data") as Map<String, Any>
+        }
+        return null
     }
 
     override fun toggleIndented(show: Boolean) {
@@ -116,7 +124,7 @@ class EBanking : Fragment(), EBankingContract.View {
         return NetworkUtil.isNetworkAvailable(fragmentActivity)
     }
 
-    override fun setPresenter(presenter: EBankingContract.Presenter) {
+    override fun setPresenter(presenter: BankingContract.Presenter) {
         this.presenter = presenter
     }
 }

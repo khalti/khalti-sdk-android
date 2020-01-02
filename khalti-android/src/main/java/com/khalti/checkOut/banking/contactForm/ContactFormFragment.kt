@@ -1,4 +1,4 @@
-package com.khalti.checkOut.ebanking.contactForm
+package com.khalti.checkOut.banking.contactForm
 
 import android.app.Dialog
 import android.content.Intent
@@ -14,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.khalti.R
-import com.khalti.checkOut.ebanking.helper.BankingData
+import com.khalti.checkOut.banking.helper.BankingData
 import com.khalti.checkOut.helper.Config
 import com.khalti.signal.Signal
 import com.khalti.utils.*

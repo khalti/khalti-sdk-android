@@ -1,19 +1,13 @@
-package com.khalti.checkOut.ebanking.contactForm
+package com.khalti.checkOut.banking.contactForm
 
-import com.google.gson.Gson
-
-import java.io.UnsupportedEncodingException
-import java.net.URLEncoder
 import java.util.HashMap
 
 import com.khalti.BuildConfig
-import com.khalti.checkOut.ebanking.helper.BankingData
 import com.khalti.checkOut.helper.Config
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.*
 import com.khalti.utils.ErrorUtil.EMPTY_ERROR
 import com.khalti.utils.ErrorUtil.MOBILE_ERROR
-import rx.subscriptions.CompositeSubscription
 
 internal class ContactFormPresenter(view: ContactFormContract.View) : ContactFormContract.Presenter {
     private val view: ContactFormContract.View = GuavaUtil.checkNotNull<ContactFormContract.View>(view)
@@ -38,7 +32,7 @@ internal class ContactFormPresenter(view: ContactFormContract.View) : ContactFor
                 compositeSignal.add(clickMap.getValue("pay")
                         .connect {
                             onFormSubmitted(view.contactNumber, bankingData.bankIdx,
-                                    bankingData.bankName, bankingData.config)
+                                    bankingData.bankName, bankingData.paymentType, bankingData.config)
                         })
             }
             compositeSignal.add(view.setEditTextListener()
@@ -52,7 +46,7 @@ internal class ContactFormPresenter(view: ContactFormContract.View) : ContactFor
         compositeSignal.clear()
     }
 
-    override fun onFormSubmitted(mobile: String, bankId: String, bankName: String, config: Config) {
+    override fun onFormSubmitted(mobile: String, bankId: String, bankName: String, paymentType: String, config: Config) {
         if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
             if (view.isNetworkAvailable) {
                 val map = HashMap<String, String>()
@@ -69,6 +63,7 @@ internal class ContactFormPresenter(view: ContactFormContract.View) : ContactFor
                 map["bank"] = map["bankId"].orEmpty()
                 map["source"] = "android"
                 map["return_url"] = view.packageName
+                map["payment_type"] = paymentType
 
                 if (EmptyUtil.isNotNull(config.productUrl) && EmptyUtil.isNotEmpty(config.productUrl)) {
                     map["product_url"] = config.productUrl!!

@@ -1,4 +1,4 @@
-package com.khalti.checkOut.ebanking.deepLinkReceiver
+package com.khalti.checkOut.banking.deepLinkReceiver
 
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil

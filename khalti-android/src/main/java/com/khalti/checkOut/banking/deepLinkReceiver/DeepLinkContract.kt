@@ -1,4 +1,4 @@
-package com.khalti.checkOut.ebanking.deepLinkReceiver
+package com.khalti.checkOut.banking.deepLinkReceiver
 
 import com.khalti.base.LifeCycle
 import com.khalti.checkOut.helper.Config
