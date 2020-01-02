@@ -43,8 +43,8 @@ class ConfigUtil {
         }
 
         fun validateIfConfigIsSerializable(context: Context, config: Config): String {
-            if (FileStorageUtil.writeIntoFile(context, "Config", config)) {
-                return "Success Listener, Error Listener and Additional data needs to be serializable. Please make sure the values you pass can be serialized"
+            if (!FileStorageUtil.writeIntoFile(context, "Config", config)) {
+                return "Success Listener, Error Listener and Additional data needs to be serializable. Please make sure the values you passed can be serialized"
             }
             return ""
         }

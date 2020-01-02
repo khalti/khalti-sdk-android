@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
-import com.khalti.checkOut.helper.CheckoutEventListener;
 import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.checkOut.helper.PaymentPreference;
@@ -15,11 +14,9 @@ import com.khalti.utils.FileStorageUtil;
 import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +56,6 @@ public class Sample extends AppCompatActivity {
                 .additionalData(map)
                 .build();
 
-        FileStorageUtil.writeIntoFile(this, "config", config);
 
         KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(this, config);
         khaltiButton.setOnClickListener(view -> khaltiCheckOut.show());
