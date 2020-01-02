@@ -7,7 +7,7 @@ import java.util.HashMap;
 import com.khalti.R;
 import com.khalti.checkOut.banking.Banking;
 import com.khalti.checkOut.helper.PaymentPreference;
-import com.khalti.checkOut.wallet.Wallet;
+import com.khalti.checkOut.form.Form;
 
 public class MerchantUtil {
 
@@ -15,8 +15,8 @@ public class MerchantUtil {
         put(PaymentPreference.EBANKING.getValue(), new Banking());
         put(PaymentPreference.MOBILE_BANKING.getValue(), new Banking());
         put(PaymentPreference.SCT.getValue(), new Banking());
-        put(PaymentPreference.WALLET.getValue(), new Wallet());
-        put(PaymentPreference.CONNECT_IPS.getValue(), new Wallet());
+        put(PaymentPreference.WALLET.getValue(), new Form());
+        put(PaymentPreference.CONNECT_IPS.getValue(), new Form());
     }};
 
     private static final HashMap<String, String> CHECKOUT_TITLES = new HashMap<String, String>() {{

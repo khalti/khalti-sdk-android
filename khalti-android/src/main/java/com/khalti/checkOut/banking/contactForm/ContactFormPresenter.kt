@@ -1,8 +1,5 @@
 package com.khalti.checkOut.banking.contactForm
 
-import java.util.HashMap
-
-import com.khalti.BuildConfig
 import com.khalti.checkOut.helper.Config
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.*
@@ -49,32 +46,7 @@ internal class ContactFormPresenter(view: ContactFormContract.View) : ContactFor
     override fun onFormSubmitted(mobile: String, bankId: String, bankName: String, paymentType: String, config: Config) {
         if (EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
             if (view.isNetworkAvailable) {
-                val map = HashMap<String, String>()
-                map["mobile"] = mobile
-                map["bankId"] = bankId
-                map["bankName"] = bankName
-                map["checkout_version"] = BuildConfig.VERSION_NAME
-                map["checkout_android_version"] = AppUtil.getOsVersion()
-                map["checkout_android_api_level"] = AppUtil.getApiLevel().toString()
-                map["public_key"] = config.publicKey
-                map["product_identity"] = config.productId
-                map["product_name"] = config.productName
-                map["amount"] = config.amount.toString()
-                map["bank"] = map["bankId"].orEmpty()
-                map["source"] = "android"
-                map["return_url"] = view.packageName
-                map["payment_type"] = paymentType
-
-                if (EmptyUtil.isNotNull(config.productUrl) && EmptyUtil.isNotEmpty(config.productUrl)) {
-                    map["product_url"] = config.productUrl!!
-                }
-
-                val data = EncodeUtil.urlEncode(map)
-
-                view.saveConfigInFile(config)
-                view.openEBanking(Constant.url + "ebanking/initiate/?" + data)
-                LogUtil.log("data", data)
-
+                view.openBanking(PayloadUtil.buildPayload(mobile, bankId, bankName, paymentType, view.packageName, config))
             } else {
                 view.showNetworkError()
             }

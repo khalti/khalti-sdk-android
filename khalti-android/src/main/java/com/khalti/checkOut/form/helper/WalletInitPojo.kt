@@ -1,4 +1,4 @@
-package com.khalti.checkOut.wallet.helper
+package com.khalti.checkOut.form.helper
 
 
 import com.google.gson.annotations.Expose

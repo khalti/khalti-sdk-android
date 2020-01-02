@@ -31,7 +31,7 @@ interface ContactFormContract {
 
         fun showNetworkError()
 
-        fun openEBanking(url: String)
+        fun openBanking(url: String)
 
         fun saveConfigInFile(config: Config)
 

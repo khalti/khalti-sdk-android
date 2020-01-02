@@ -1,4 +1,4 @@
-package com.khalti.checkOut.wallet
+package com.khalti.checkOut.form
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -13,28 +13,29 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputLayout
 import com.khalti.R
+import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.wallet_form.view.*
+import kotlinx.android.synthetic.main.form.*
+import kotlinx.android.synthetic.main.form.view.*
 import java.util.*
 import kotlin.math.abs
 
-class Wallet : Fragment(), WalletContract.View {
+class Form : Fragment(), FormContract.View {
 
     private var progressDialog: AppCompatDialog? = null
     private lateinit var fragmentActivity: FragmentActivity
-    private lateinit var presenter: WalletContract.Presenter
+    private lateinit var presenter: FormContract.Presenter
 
     private var height: Int = 0
     private lateinit var mainView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        mainView = inflater.inflate(R.layout.wallet_form, container, false)
+        mainView = inflater.inflate(R.layout.form, container, false)
         fragmentActivity = activity!!
-        presenter = WalletPresenter(this)
+        presenter = FormPresenter(this)
 
         presenter.onCreate()
 
@@ -44,6 +45,16 @@ class Wallet : Fragment(), WalletContract.View {
     override fun onDestroyView() {
         super.onDestroyView()
         presenter.onDestroy()
+    }
+
+    override val packageName: String get() = fragmentActivity.packageName
+
+    override fun receiveData(): Map<String, Any>? {
+        val bundle = arguments
+        if (EmptyUtil.isNotNull(bundle)) {
+            return bundle!!.getSerializable("map") as Map<String, Any>
+        }
+        return null
     }
 
     override val payButtonText: String get() = ViewUtil.getText(mainView.btnPay)
@@ -82,8 +93,25 @@ class Wallet : Fragment(), WalletContract.View {
         mainView.elConfirmation.toggleExpansion()
     }
 
+    override fun togglePinLayout(show: Boolean) {
+        ViewUtil.toggleView(mainView.llPIN, show)
+    }
+
     override fun togglePinMessage(show: Boolean) {
-        mainView.cvPinMessage?.visibility = if (show) View.VISIBLE else View.GONE
+        ViewUtil.toggleView(mainView.cvPinMessage, show)
+    }
+
+    override fun toggleMobileLabel(paymentType: String) {
+        val label = when (paymentType) {
+            PaymentPreference.WALLET.value -> {
+                ResourceUtil.getString(fragmentActivity, R.string.mobile_hint)
+            }
+            PaymentPreference.CONNECT_IPS.value -> {
+                ResourceUtil.getString(fragmentActivity, R.string.contact_hint)
+            }
+            else -> ResourceUtil.getString(fragmentActivity, R.string.mobile_hint)
+        }
+        ViewUtil.setHint(mainView.tilMobile, label)
     }
 
     override fun setPinMessage(message: String) {
@@ -179,8 +207,16 @@ class Wallet : Fragment(), WalletContract.View {
         Toast.makeText(fragmentActivity, ResourceUtil.getString(fragmentActivity, R.string.slogan), Toast.LENGTH_SHORT).show()
     }
 
-    override fun showBranding() {
-        mainView.llKhaltiBranding?.visibility = View.VISIBLE
+    override fun showBranding(paymentType: String) {
+        ViewUtil.toggleView(mainView.llBranding, true)
+        when (paymentType) {
+            PaymentPreference.WALLET.value -> {
+                ViewUtil.toggleView(mainView.ivKhalti, true)
+            }
+            PaymentPreference.CONNECT_IPS.value -> {
+                ViewUtil.toggleView(mainView.ivConnectIps, true)
+            }
+        }
     }
 
     override fun openKhaltiSettings() {
@@ -225,6 +261,11 @@ class Wallet : Fragment(), WalletContract.View {
         height = 0
     }
 
+    override fun openBanking(url: String) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(browserIntent)
+    }
+
     override fun getMessage(action: String): String {
         return when (action) {
             "pin_not_set" -> ResourceUtil.getString(fragmentActivity, R.string.pin_not_set)
@@ -255,7 +296,7 @@ class Wallet : Fragment(), WalletContract.View {
         }
     }
 
-    override fun setPresenter(presenter: WalletContract.Presenter) {
+    override fun setPresenter(presenter: FormContract.Presenter) {
         this.presenter = presenter
     }
 }

@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
+import com.google.android.material.textfield.TextInputLayout
 import com.khalti.signal.Signal
 
 class ViewUtil {
@@ -94,6 +95,12 @@ class ViewUtil {
         fun setText(view: TextView?, text: String?) {
             if (EmptyUtil.isNotNull(view)) {
                 view!!.text = text
+            }
+        }
+
+        fun setHint(view: TextInputLayout?, hint: String?) {
+            if (EmptyUtil.isNotNull(view)) {
+                view!!.hint = hint
             }
         }
     }

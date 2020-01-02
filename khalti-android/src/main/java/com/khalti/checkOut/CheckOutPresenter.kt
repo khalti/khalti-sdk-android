@@ -34,6 +34,7 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
             uniqueList.add(PaymentPreference.EBANKING)
             uniqueList.add(PaymentPreference.MOBILE_BANKING)
             uniqueList.add(PaymentPreference.SCT)
+            uniqueList.add(PaymentPreference.CONNECT_IPS)
             uniqueList.add(PaymentPreference.WALLET)
         } else {
             uniqueList.addAll(LinkedHashSet<PaymentPreference>(types))

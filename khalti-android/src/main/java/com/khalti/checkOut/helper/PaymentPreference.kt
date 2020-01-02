@@ -7,5 +7,5 @@ enum class PaymentPreference(val value: String) : Serializable {
     SCT("sct"),
     EBANKING("ebanking"),
     MOBILE_BANKING("mobile"),
-    CONNECT_IPS("connect_ips")
+    CONNECT_IPS("connectips")
 }

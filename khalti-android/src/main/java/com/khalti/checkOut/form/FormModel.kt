@@ -1,7 +1,7 @@
-package com.khalti.checkOut.wallet
+package com.khalti.checkOut.form
 
-import com.khalti.checkOut.wallet.helper.WalletConfirmPojo
-import com.khalti.checkOut.wallet.helper.WalletInitPojo
+import com.khalti.checkOut.form.helper.WalletConfirmPojo
+import com.khalti.checkOut.form.helper.WalletInitPojo
 import com.khalti.checkOut.api.ApiHelper
 import com.khalti.checkOut.api.KhaltiApi
 import com.khalti.checkOut.api.Result
@@ -11,7 +11,7 @@ import com.khalti.utils.EmptyUtil
 import com.khalti.utils.Store
 import java.util.*
 
-class WalletModel(mockedKhaltiApi: KhaltiApi? = null) : WalletContract.Model {
+class FormModel(mockedKhaltiApi: KhaltiApi? = null) : FormContract.Model {
 
     private var khaltiApi: KhaltiApi = if (EmptyUtil.isNotNull(mockedKhaltiApi)) {
         mockedKhaltiApi!!

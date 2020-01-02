@@ -1,16 +1,20 @@
-package com.khalti.checkOut.wallet
+package com.khalti.checkOut.form
 
 
 import com.khalti.base.LifeCycle
 
-import com.khalti.checkOut.wallet.helper.WalletConfirmPojo
-import com.khalti.checkOut.wallet.helper.WalletInitPojo
+import com.khalti.checkOut.form.helper.WalletConfirmPojo
+import com.khalti.checkOut.form.helper.WalletInitPojo
 import com.khalti.checkOut.api.Result
 import com.khalti.checkOut.helper.Config
 import com.khalti.signal.Signal
 
-interface WalletContract {
+interface FormContract {
     interface View {
+
+        val packageName: String
+
+        fun receiveData(): Map<String, Any>?
 
         val payButtonText: String
 
@@ -20,7 +24,11 @@ interface WalletContract {
 
         fun toggleConfirmationLayout(show: Boolean)
 
+        fun togglePinLayout(show: Boolean)
+
         fun togglePinMessage(show: Boolean)
+
+        fun toggleMobileLabel(paymentType: String)
 
         fun setPinMessage(message: String)
 
@@ -44,7 +52,7 @@ interface WalletContract {
 
         fun showSlogan()
 
-        fun showBranding()
+        fun showBranding(paymentType: String)
 
         fun openKhaltiSettings()
 
@@ -53,6 +61,8 @@ interface WalletContract {
         fun closeWidget()
 
         fun updateConfirmationHeight()
+
+        fun openBanking(url: String)
 
         fun getMessage(action: String): String
 
@@ -65,13 +75,15 @@ interface WalletContract {
 
     interface Presenter : LifeCycle {
 
-        fun isInitialFormValid(mobile: String, pin: String): Boolean
+        fun isInitialFormValid(mobile: String, pin: String?): Boolean
 
         fun isFinalFormValid(confirmationCode: String): Boolean
 
-        fun onInitiatePayment(isNetwork: Boolean, mobile: String, pin: String)
+        fun onInitiateWalletPayment(isNetwork: Boolean, mobile: String, pin: String)
 
-        fun onConfirmPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String)
+        fun onConfirmWalletPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String)
+
+        fun onConnectIpsPayment(isNetwork: Boolean, mobile:String)
     }
 
     interface Model {

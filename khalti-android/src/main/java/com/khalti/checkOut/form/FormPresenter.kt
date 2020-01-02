@@ -1,9 +1,10 @@
-package com.khalti.checkOut.wallet
+package com.khalti.checkOut.form
 
 import com.khalti.checkOut.api.ErrorAction
 import com.khalti.checkOut.api.Result
 import com.khalti.checkOut.helper.Config
-import com.khalti.checkOut.wallet.helper.WalletInitPojo
+import com.khalti.checkOut.form.helper.WalletInitPojo
+import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.*
 import com.khalti.utils.ErrorUtil.*
@@ -12,12 +13,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
+class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
-    private val view: WalletContract.View = GuavaUtil.checkNotNull<WalletContract.View>(view)
+    private val view: FormContract.View = GuavaUtil.checkNotNull<FormContract.View>(view)
     private lateinit var config: Config
     private val compositeSignal = CompositeSignal()
-    private val model = WalletModel()
+    private val model = FormModel()
 
     private val parentJob = Job()
     private val scope = CoroutineScope(Dispatchers.Main + parentJob)
@@ -29,6 +30,9 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
 
     private lateinit var walletInitPojo: WalletInitPojo
 
+    private var map: Map<String, Any>? = null
+    private var paymentType = "wallet"
+
     init {
         view.setPresenter(this)
     }
@@ -36,70 +40,97 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
     override fun onCreate() {
         config = Store.getConfig()
         val mobile = config.mobile
-        if (EmptyUtil.isNotNull(mobile) && EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
-            view.setMobile(mobile!!)
-        }
 
-        view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.amount)))
-        view.showBranding()
+        map = view.receiveData()
 
-        val clickMap = view.setClickListener()
-        if (EmptyUtil.isNotNull(clickMap["pay"])) {
-            compositeSignal.add(clickMap.getValue("pay").connect {
+        if (EmptyUtil.isNotNull(map)) {
 
-                val dataMap = view.formData
-                if (view.payButtonText.toLowerCase().contains("confirm")) {
-                    if (isFinalFormValid(dataMap.getValue("code"))) {
-                        onConfirmPayment(view.hasNetwork(), dataMap.getValue("code"), dataMap.getValue("pin"))
-                    } else {
-                        view.updateConfirmationHeight()
-                    }
-                } else {
-                    if (isInitialFormValid(dataMap.getValue("mobile"), dataMap.getValue("pin"))) {
-                        onInitiatePayment(view.hasNetwork(), dataMap.getValue("mobile"), dataMap.getValue("pin"))
-                    }
-                }
-            })
-        }
+            if (EmptyUtil.isNotNull(map!!["payment_type"])) {
+                val type = map!!["payment_type"]
+                paymentType = type!!.toString()
+            }
 
-        if (EmptyUtil.isNotNull(clickMap["khalti"])) {
-            compositeSignal.add(clickMap.getValue("khalti").connect {
-                clicks += 1
-                if (clicks > 2) {
-                    clicks = 0
-                    view.showSlogan()
-                }
-            })
-        }
+            /*Toggle pin layout and mobile label based on payment type*/
+            view.togglePinLayout(paymentType == PaymentPreference.WALLET.value)
+            view.toggleMobileLabel(paymentType)
 
-        val watcherMap = view.setEditTextListener()
-        if (EmptyUtil.isNotNull(watcherMap["mobile"])) {
-            compositeSignal.add(watcherMap.getValue("mobile")
-                    .connect {
-                        view.setEditTextError("mobile", null)
-                        if (view.payButtonText.toLowerCase().contains("confirm")) {
-                            view.toggleConfirmationLayout(false)
+            if (EmptyUtil.isNotNull(mobile) && EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
+                view.setMobile(mobile!!)
+            }
+
+            view.setButtonText("Pay Rs " + StringUtil.formatNumber(NumberUtil.convertToRupees(config.amount)))
+            view.showBranding(paymentType)
+
+            val clickMap = view.setClickListener()
+            if (EmptyUtil.isNotNull(clickMap["pay"])) {
+                compositeSignal.add(clickMap.getValue("pay").connect {
+
+                    val dataMap = view.formData
+
+                    when (paymentType) {
+                        PaymentPreference.WALLET.value -> {
+                            if (view.payButtonText.toLowerCase().contains("confirm")) {
+                                if (isFinalFormValid(dataMap.getValue("code"))) {
+                                    onConfirmWalletPayment(view.hasNetwork(), dataMap.getValue("code"), dataMap.getValue("pin"))
+                                } else {
+                                    view.updateConfirmationHeight()
+                                }
+                            } else {
+                                if (isInitialFormValid(dataMap.getValue("mobile"), dataMap.getValue("pin"))) {
+                                    onInitiateWalletPayment(view.hasNetwork(), dataMap.getValue("mobile"), dataMap.getValue("pin"))
+                                }
+                            }
                         }
-                    })
-        }
 
-        if (EmptyUtil.isNotNull(watcherMap["pin"])) {
-            compositeSignal.add(watcherMap.getValue("pin")
-                    .connect {
-                        view.setEditTextError("pin", null)
-                        if (view.payButtonText.toLowerCase().contains("confirm")) {
-                            view.toggleConfirmationLayout(false)
+                        PaymentPreference.CONNECT_IPS.value -> {
+                            if (isInitialFormValid(dataMap.getValue("mobile"), null)) {
+                                onConnectIpsPayment(view.hasNetwork(), dataMap.getValue("mobile"))
+                            }
                         }
-                    })
+                    }
+                })
+            }
+
+            if (EmptyUtil.isNotNull(clickMap["khalti"])) {
+                compositeSignal.add(clickMap.getValue("khalti").connect {
+                    clicks += 1
+                    if (clicks > 2) {
+                        clicks = 0
+                        view.showSlogan()
+                    }
+                })
+            }
+
+            val watcherMap = view.setEditTextListener()
+            if (EmptyUtil.isNotNull(watcherMap["mobile"])) {
+                compositeSignal.add(watcherMap.getValue("mobile")
+                        .connect {
+                            view.setEditTextError("mobile", null)
+                            if (view.payButtonText.toLowerCase().contains("confirm")) {
+                                view.toggleConfirmationLayout(false)
+                            }
+                        })
+            }
+
+            if (EmptyUtil.isNotNull(watcherMap["pin"])) {
+                compositeSignal.add(watcherMap.getValue("pin")
+                        .connect {
+                            view.setEditTextError("pin", null)
+                            if (view.payButtonText.toLowerCase().contains("confirm")) {
+                                view.toggleConfirmationLayout(false)
+                            }
+                        })
+            }
+
+            if (EmptyUtil.isNotNull(watcherMap["code"])) {
+                compositeSignal.add(watcherMap.getValue("code")
+                        .connect {
+                            view.setEditTextError("code", null)
+                            view.setConfirmationLayoutHeight()
+                        })
+            }
         }
 
-        if (EmptyUtil.isNotNull(watcherMap["code"])) {
-            compositeSignal.add(watcherMap.getValue("code")
-                    .connect {
-                        view.setEditTextError("code", null)
-                        view.setConfirmationLayoutHeight()
-                    })
-        }
     }
 
     override fun onDestroy() {
@@ -107,7 +138,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
         parentJob.cancel()
     }
 
-    override fun isInitialFormValid(mobile: String, pin: String): Boolean {
+    override fun isInitialFormValid(mobile: String, pin: String?): Boolean {
         var mobileError: String? = null
         var pinError: String? = null
 
@@ -119,12 +150,14 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
             mobileError = EMPTY_ERROR
         }
 
-        if (EmptyUtil.isNotEmpty(pin)) {
-            if (pin.length < 4) {
-                pinError = PIN_ERROR
+        if (EmptyUtil.isNotNull(pin)) {
+            if (EmptyUtil.isNotEmpty(pin!!)) {
+                if (pin.length < 4) {
+                    pinError = PIN_ERROR
+                }
+            } else {
+                pinError = EMPTY_ERROR
             }
-        } else {
-            pinError = EMPTY_ERROR
         }
 
         view.setEditTextError("mobile", mobileError)
@@ -149,7 +182,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
         return EmptyUtil.isNull(codeError)
     }
 
-    override fun onInitiatePayment(isNetwork: Boolean, mobile: String, pin: String) {
+    override fun onInitiateWalletPayment(isNetwork: Boolean, mobile: String, pin: String) {
         if (isNetwork) {
             this.mobile = mobile
             scope.launch {
@@ -199,7 +232,7 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
         }
     }
 
-    override fun onConfirmPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String) {
+    override fun onConfirmWalletPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String) {
         if (isNetwork) {
             scope.launch {
                 if (EmptyUtil.isNotNull(walletInitPojo) && EmptyUtil.isNotNull(walletInitPojo.token)) {
@@ -249,6 +282,14 @@ class WalletPresenter(view: WalletContract.View) : WalletContract.Presenter {
                     }
                 }
             }
+        } else {
+            view.showNetworkError()
+        }
+    }
+
+    override fun onConnectIpsPayment(isNetwork: Boolean, mobile: String) {
+        if (isNetwork) {
+            view.openBanking(PayloadUtil.buildPayload(mobile, paymentType, paymentType, paymentType, view.packageName, config))
         } else {
             view.showNetworkError()
         }

@@ -132,7 +132,7 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
 
     }
 
-    override fun openEBanking(url: String) {
+    override fun openBanking(url: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         dismiss()
         startActivity(browserIntent)
