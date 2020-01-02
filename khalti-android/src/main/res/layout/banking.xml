@@ -27,32 +27,6 @@
                 android:visibility="gone"
                 app:layout_scrollFlags="scroll|enterAlways">
 
-                <LinearLayout
-                    android:id="@+id/llCardBranding"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/singleBottomMargin"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/editTextPadding"
-                        android:text="@string/we_accept"
-                        android:textColor="@color/primaryText"
-                        android:textSize="@dimen/label2"
-                        app:fontFamily="@font/roboto" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@null"
-                        app:srcCompat="@mipmap/cards" />
-                </LinearLayout>
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
