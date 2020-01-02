@@ -32,10 +32,14 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
         val uniqueList = ArrayList<PaymentPreference>()
         if (EmptyUtil.isNull(types) || EmptyUtil.isEmpty(types)) {
             uniqueList.add(PaymentPreference.EBANKING)
+            uniqueList.add(PaymentPreference.MOBILE_BANKING)
+            uniqueList.add(PaymentPreference.SCT)
             uniqueList.add(PaymentPreference.WALLET)
         } else {
             uniqueList.addAll(LinkedHashSet<PaymentPreference>(types))
         }
+
+        LogUtil.log("preferences", uniqueList)
 
         view.setupViewPager(uniqueList)
 

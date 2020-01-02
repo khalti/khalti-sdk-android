@@ -40,9 +40,12 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
         if (EmptyUtil.isNotNull(map)) {
             if (EmptyUtil.isNotNull(map!!["payment_type"])) {
                 val type = map!!["payment_type"]
-                val typeInit = map!!["payment_type_init"]
                 paymentType = type!!.toString()
-                paymentTypeInit = typeInit!!.toString()
+                paymentTypeInit = if ("mobile" == paymentType) {
+                    "mobilecheckout"
+                } else {
+                    paymentType
+                }
             }
             val clickMap = view.setOnClickListener()
             if (EmptyUtil.isNotNull(clickMap["try_again"])) {

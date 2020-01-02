@@ -87,9 +87,15 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         val adapter = ViewPagerAdapter(supportFragmentManager)
 
         for (p in types) {
-            val map = MerchantUtil.getTab(p.value.toLowerCase())
+            val map = MerchantUtil.getTab(p.value)
             if (EmptyUtil.isNotNull(map)) {
-                adapter.addFrag(map["fragment"] as Fragment?, map["title"].toString())
+                val fragment = map["fragment"] as Fragment
+                val bundle = Bundle()
+                val dataMap = HashMap<String, Any>()
+                dataMap["payment_type"] = p.value
+                bundle.putSerializable("map", dataMap)
+                fragment.arguments = bundle
+                adapter.addFrag(fragment, map["title"].toString())
             }
         }
 
@@ -111,7 +117,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
             var color: Int
             var background: Int
             var icon: Int
-            val map = MerchantUtil.getTab(types[i].value.toLowerCase())
+            val map = MerchantUtil.getTab(types[i].value)
             if (EmptyUtil.isNotNull(map)) {
                 if (position == 0) {
                     color = ResourceUtil.getColor(this, R.color.white)

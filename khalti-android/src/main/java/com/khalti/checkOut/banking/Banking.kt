@@ -46,7 +46,7 @@ class Banking : Fragment(), BankingContract.View {
     override fun receiveData(): Map<String, Any>? {
         val bundle = arguments
         if (EmptyUtil.isNotNull(bundle)) {
-            return bundle!!.getSerializable("data") as Map<String, Any>
+            return bundle!!.getSerializable("map") as Map<String, Any>
         }
         return null
     }
