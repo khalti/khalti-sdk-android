@@ -10,7 +10,6 @@ import com.khalti.checkOut.helper.Config;
 import com.khalti.checkOut.helper.KhaltiCheckOut;
 import com.khalti.checkOut.helper.PaymentPreference;
 import com.khalti.utils.Constant;
-import com.khalti.utils.FileStorageUtil;
 import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
@@ -45,14 +44,13 @@ public class Sample extends AppCompatActivity {
         }};
 
         List<PaymentPreference> ls = new ArrayList<PaymentPreference>() {{
-            add(PaymentPreference.CONNECT_IPS);
-            add(PaymentPreference.WALLET);
+            add(PaymentPreference.EBANKING);
         }};
         Config config = new Config.Builder(Constant.pub, "Product ID", "Product Name", 1100L)
                 .onSuccess(data -> LogUtil.log("success", data))
                 .onError(LogUtil::log)
                 .productUrl("Product url")
-//                .paymentPreferences(ls)
+                .paymentPreferences(ls)
                 .additionalData(map)
                 .build();
 

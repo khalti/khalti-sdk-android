@@ -54,6 +54,8 @@ class Banking : Fragment(), BankingContract.View {
     override fun toggleIndented(show: Boolean) {
         ViewUtil.toggleView(mainView.llIndented, show)
         ViewUtil.toggleViewInvisible(mainView.flLoad, show)
+        ViewUtil.toggleView(mainView.tvMessage, false)
+        ViewUtil.toggleView(mainView.btnTryAgain, false)
     }
 
     override fun toggleSearch(show: Boolean) {

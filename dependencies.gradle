@@ -32,11 +32,11 @@ ext {
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineAndroidVersion"
     ]
 
-    retrofitVersion = '2.6.2'
-    retrofitConverterVersion = '2.6.2'
-    okhttpLoggingInterceptorVersion = '4.2.1'
-    okhttpUrlConnectionVersion = '4.2.1'
-    okhttpVersion = '4.2.1'
+    retrofitVersion = '2.7.1'
+    retrofitConverterVersion = '2.7.1'
+    okhttpLoggingInterceptorVersion = '4.3.0'
+    okhttpUrlConnectionVersion = '4.3.0'
+    okhttpVersion = '4.3.0'
     httpClientVersion = '4.1.2'
 
     network = [

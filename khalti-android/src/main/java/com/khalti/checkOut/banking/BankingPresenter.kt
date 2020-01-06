@@ -9,10 +9,7 @@ import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
 import com.khalti.utils.LogUtil
 import com.khalti.utils.Store
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
 
@@ -49,8 +46,10 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
             }
             val clickMap = view.setOnClickListener()
             if (EmptyUtil.isNotNull(clickMap["try_again"])) {
-                onFetch()
+                compositeSignal.add(clickMap.getValue("try_again")
+                        .connect { onFetch() })
             }
+            onFetch()
         }
     }
 

@@ -2,13 +2,15 @@ package com.khalti.checkOut.api
 
 import com.google.gson.GsonBuilder
 import com.khalti.BuildConfig
-import com.khalti.utils.*
+import com.khalti.utils.AppUtil
+import com.khalti.utils.Constant
+import com.khalti.utils.EmptyUtil
+import com.khalti.utils.ErrorUtil
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 public class ApiHelper {

@@ -61,7 +61,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <FrameLayout
             android:id="@+id/flLoad"
@@ -106,6 +106,7 @@
             android:visibility="gone"
             app:backgroundTint="@color/khaltiPrimary"
             app:cornerRadius="2dp"
+            android:textColor="@color/white"
             app:rippleColor="@color/defaultRipple" />
     </LinearLayout>
 </FrameLayout>

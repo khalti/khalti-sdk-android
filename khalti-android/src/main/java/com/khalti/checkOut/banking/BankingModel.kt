@@ -1,13 +1,12 @@
 package com.khalti.checkOut.banking
 
 
-import java.util.HashMap
-
-import com.khalti.checkOut.banking.helper.BaseListPojo
 import com.khalti.checkOut.api.ApiHelper
 import com.khalti.checkOut.api.KhaltiApi
 import com.khalti.checkOut.api.Result
+import com.khalti.checkOut.banking.helper.BaseListPojo
 import com.khalti.utils.EmptyUtil
+import java.util.*
 
 internal class BankingModel(mockedKhaltiApi: KhaltiApi? = null) : BankingContract.Model {
     private var khaltiApi: KhaltiApi = if (EmptyUtil.isNotNull(mockedKhaltiApi)) {
