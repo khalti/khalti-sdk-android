@@ -110,7 +110,7 @@
             <View
                 android:id="@+id/vToolbarShadow"
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="6dp"
                 android:background="@drawable/toolbar_shadow"
                 android:visibility="gone" />
         </FrameLayout>
@@ -122,17 +122,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        android:paddingLeft="@dimen/cardPadding"
-        android:paddingTop="@dimen/editTextPadding"
-        android:paddingRight="@dimen/cardPadding"
-        android:paddingBottom="@dimen/editTextPadding"
-        android:visibility="gone">
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#16000000" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/svBank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/cardPadding"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="@dimen/cardPadding"
+            android:layout_marginBottom="@dimen/editTextPadding"
             android:background="@drawable/search_bg"
             app:iconifiedByDefault="false"
             app:queryBackground="@android:color/transparent"

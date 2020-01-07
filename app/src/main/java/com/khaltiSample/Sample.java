@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.button.MaterialButton;
 import com.khalti.checkOut.helper.Config;
@@ -45,6 +46,7 @@ public class Sample extends AppCompatActivity {
 
         List<PaymentPreference> ls = new ArrayList<PaymentPreference>() {{
             add(PaymentPreference.EBANKING);
+            add(PaymentPreference.WALLET);
         }};
         Config config = new Config.Builder(Constant.pub, "Product ID", "Product Name", 1100L)
                 .onSuccess(data -> LogUtil.log("success", data))

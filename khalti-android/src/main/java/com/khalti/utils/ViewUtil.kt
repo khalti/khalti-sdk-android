@@ -81,14 +81,26 @@ class ViewUtil {
         }
 
         fun toggleView(view: View?, show: Boolean) {
+            val newVisibility = if (show) View.VISIBLE else View.GONE
+
             if (EmptyUtil.isNotNull(view)) {
-                view!!.visibility = if (show) View.VISIBLE else View.GONE
+                val currentVisibility = view!!.visibility
+
+                if (currentVisibility != newVisibility) {
+                    view.visibility = newVisibility
+                }
             }
         }
 
         fun toggleViewInvisible(view: View?, show: Boolean) {
+            val newVisibility = if (show) View.VISIBLE else View.INVISIBLE
+
             if (EmptyUtil.isNotNull(view)) {
-                view!!.visibility = if (show) View.VISIBLE else View.INVISIBLE
+                val currentVisibility = view!!.visibility
+
+                if (currentVisibility != newVisibility) {
+                    view.visibility = newVisibility
+                }
             }
         }
 

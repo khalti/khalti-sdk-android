@@ -12,8 +12,6 @@ import rx.Observable
 interface CheckOutContract {
     interface View {
 
-        val indicatorWidth: Int
-
         fun toggleTab(position: Int, selected: Boolean, id: String)
 
         fun toggleToolbarShadow(show: Boolean)
@@ -32,7 +30,7 @@ interface CheckOutContract {
 
         fun setUpTabLayout(types: List<PaymentPreference>): Signal<Map<String, Any>>
 
-        fun setOffsetListener(): Signal<Int>
+        fun setPageScrollListener(currentPage: Int): Signal<Int>
 
         fun setStatusBarColor()
 
@@ -40,7 +38,7 @@ interface CheckOutContract {
 
         fun closeCheckOut()
 
-        fun convertDpToPx(dp : Int) : Int
+        fun convertDpToPx(dp: Int): Int
 
         fun setPresenter(presenter: Presenter)
     }

@@ -71,7 +71,7 @@ class Banking : Fragment(), BankingContract.View {
 
     override fun setupList(bankList: MutableList<BankPojo>): Signal<Map<String, String>> {
         ViewUtil.toggleView(mainView.llTopBar, true)
-        ViewUtil.toggleView(mainView.nsvContainer, true)
+        ViewUtil.toggleView(mainView.llContainer, true)
         bankAdapter = BankAdapter(bankList)
         mainView.rvList.adapter = bankAdapter
         mainView.rvList.setHasFixedSize(false)

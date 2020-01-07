@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.card.MaterialCardView
@@ -27,6 +28,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
     var cdlMain: CoordinatorLayout? = null
     var flSearch: FrameLayout? = null
     var svSearch: SearchView? = null
+    private lateinit var adapter: ViewPagerAdapter
     private lateinit var presenter: CheckOutContract.Presenter
     private val tabs: MutableList<TabLayout.Tab?> = ArrayList()
 
@@ -42,17 +44,10 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         presenter.onCreate()
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDestroy()
     }
-
-    override val indicatorWidth: Int
-        get() {
-            Handler().postDelayed({ LogUtil.log("width", mvTabPositionIndicator.width) }, 10000)
-            return mvTabPositionIndicator.width
-        }
 
     override fun toggleTab(position: Int, selected: Boolean, id: String) {
         val mcTab = tabs[position]?.customView as MaterialCardView?
@@ -109,7 +104,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
     }
 
     override fun setupViewPager(types: List<PaymentPreference>) {
-        val adapter = ViewPagerAdapter(supportFragmentManager)
+        adapter = ViewPagerAdapter(supportFragmentManager)
 
         for (p in types) {
             val map = MerchantUtil.getTab(p.value)
@@ -201,12 +196,22 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         return signal
     }
 
-    override fun setOffsetListener(): Signal<Int> {
+    override fun setPageScrollListener(currentPage: Int): Signal<Int> {
         val signal = Signal<Int>()
-        appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            signal.emit(verticalOffset)
-        })
 
+        Handler().postDelayed({
+            if (EmptyUtil.isNotNull(adapter)) {
+                val currentFragment = adapter.getItem(currentPage)
+                if (EmptyUtil.isNotNull(currentFragment)) {
+                    val view = currentFragment.view
+                    if (EmptyUtil.isNotNull(view)) {
+                        (view as NestedScrollView).setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+                            signal.emit(scrollY)
+                        })
+                    }
+                }
+            }
+        }, 1000)
         return signal
     }
 

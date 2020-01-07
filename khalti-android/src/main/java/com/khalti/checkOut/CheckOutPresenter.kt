@@ -11,6 +11,7 @@ import com.khalti.utils.Store
 internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
     private val view: CheckOutContract.View = GuavaUtil.checkNotNull<CheckOutContract.View>(view)
     private val compositeSignal = CompositeSignal()
+    private var currentPage = 0
 
     private val searchList = listOf(PaymentPreference.EBANKING.value, PaymentPreference.MOBILE_BANKING.value)
 
@@ -40,8 +41,6 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
             uniqueList.addAll(LinkedHashSet<PaymentPreference>(types))
         }
 
-        LogUtil.log("preferences", uniqueList)
-
         view.setupViewPager(uniqueList)
 
         view.toggleAppBar(uniqueList.size > 1)
@@ -49,16 +48,18 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
         val barWidth = view.convertDpToPx(250) / uniqueList.size
         compositeSignal.add(view.setUpTabLayout(uniqueList)
                 .connect {
-                    view.toggleTab(it.getValue("position") as Int, it.getValue("selected") as Boolean, it.getValue("id") as String)
+                    currentPage = it.getValue("position") as Int
+                    view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
                     view.toggleSearch(searchList.contains(it.getValue("id") as String))
-                    view.setIndicatorBarPosition((it.getValue("position") as Int) * barWidth)
+                    view.setIndicatorBarPosition(currentPage * barWidth)
                 })
-
         view.toggleIndicator(uniqueList.size > 1)
         view.setIndicatorBarWidth(barWidth)
 
-        compositeSignal.add(view.setOffsetListener()
-                .connect { view.toggleToolbarShadow(it < 0) })
+        compositeSignal.add(view.setPageScrollListener(currentPage)
+                .connect {
+                    view.toggleToolbarShadow(it > 0)
+                })
     }
 
     override fun onDestroy() {

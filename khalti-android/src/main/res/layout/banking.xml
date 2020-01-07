@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fillViewport="true">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvContainer"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/llContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/llTopBar"
@@ -52,61 +53,62 @@
                 android:clipToPadding="false"
                 android:padding="@dimen/globalPadding" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/llIndented"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="visible">
+        <LinearLayout
+            android:id="@+id/llIndented"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <FrameLayout
-            android:id="@+id/flLoad"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:visibility="visible">
+            <FrameLayout
+                android:id="@+id/flLoad"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
 
-            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
+                <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                    style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    app:mpb_indeterminateTint="@color/khaltiAccent"
+                    app:mpb_progressStyle="horizontal" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:indeterminate="true"
-                app:mpb_indeterminateTint="@color/khaltiAccent"
-                app:mpb_progressStyle="horizontal" />
-        </FrameLayout>
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:text="@string/empty"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/body"
+                android:visibility="visible"
+                app:fontFamily="@font/roboto" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:text="@string/empty"
-            android:textColor="@color/primaryText"
-            android:textSize="@dimen/body"
-            android:visibility="gone"
-            app:fontFamily="@font/roboto" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTryAgain"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/toolbarHeight"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/globalPadding"
-            android:minWidth="@dimen/carbonX_buttonWidth1"
-            android:minHeight="@dimen/carbonX_buttonHeight"
-            android:text="@string/try_again"
-            android:textAllCaps="true"
-            android:theme="@style/Theme.MaterialComponents"
-            android:visibility="gone"
-            app:backgroundTint="@color/khaltiPrimary"
-            app:cornerRadius="2dp"
-            android:textColor="@color/white"
-            app:rippleColor="@color/defaultRipple" />
-    </LinearLayout>
-</FrameLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toolbarHeight"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/globalPadding"
+                android:minWidth="@dimen/carbonX_buttonWidth1"
+                android:minHeight="@dimen/carbonX_buttonHeight"
+                android:text="@string/try_again"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:theme="@style/Theme.MaterialComponents"
+                android:visibility="visible"
+                app:backgroundTint="@color/khaltiPrimary"
+                app:cornerRadius="2dp"
+                app:rippleColor="@color/defaultRipple" />
+        </LinearLayout>
+    </FrameLayout>
+</androidx.core.widget.NestedScrollView>
