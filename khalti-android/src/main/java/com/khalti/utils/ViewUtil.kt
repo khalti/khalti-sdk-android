@@ -4,6 +4,7 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import com.google.android.material.textfield.TextInputLayout
@@ -105,6 +106,12 @@ class ViewUtil {
         }
 
         fun setText(view: TextView?, text: String?) {
+            if (EmptyUtil.isNotNull(view)) {
+                view!!.text = text
+            }
+        }
+
+        fun setText(view: Button?, text: String?) {
             if (EmptyUtil.isNotNull(view)) {
                 view!!.text = text
             }

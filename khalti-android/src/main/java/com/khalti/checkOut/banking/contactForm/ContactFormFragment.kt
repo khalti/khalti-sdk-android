@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.khalti.R
 import com.khalti.checkOut.banking.helper.BankingData
@@ -105,7 +106,7 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
 
     override fun setButtonText(text: String) {
         if (EmptyUtil.isNotNull(mainView.btnPay)) {
-            ViewUtil.setText(mainView.btnPay.tvButton, text)
+            ViewUtil.setText(mainView.btnPay as MaterialButton, text)
         }
     }
 
