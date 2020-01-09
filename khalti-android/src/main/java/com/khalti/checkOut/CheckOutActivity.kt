@@ -15,33 +15,31 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.tabs.TabLayout
 import com.khalti.R
+import com.khalti.checkOut.helper.BaseComm
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.Signal
 import com.khalti.utils.*
 import kotlinx.android.synthetic.main.component_tab.view.*
 import kotlinx.android.synthetic.main.payment_activity.*
 
-class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
+class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
 
-    var cdlMain: CoordinatorLayout? = null
     var flSearch: FrameLayout? = null
-    var svSearch: SearchView? = null
-    val searchSignal = Signal<Pair<String, String>>()
     private lateinit var adapter: ViewPagerAdapter
     private lateinit var presenter: CheckOutContract.Presenter
 
     private val tabs: MutableList<TabLayout.Tab?> = ArrayList()
-    private val handler = Handler()
 
-    private var runnable: Runnable? = null
+    private val searchViewMap = HashMap<String, SearchView>()
+    private val searchViewMapInitSignal = Signal<Any>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_activity)
 
-        this.cdlMain = clMain
-        this.flSearch = flSearchBank
-        this.svSearch = svBank
+        this.flSearch = flSearchBankContainer
+
+        Store.setBaseComm(this)
 
         presenter = CheckOutPresenter(this)
         presenter.onCreate()
@@ -96,37 +94,6 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
                 mvTabPositionIndicatorBar?.layoutParams = lp
             }
         }
-    }
-
-    override fun setSearchListener(currentPageSignal: Signal<String>): Signal<Pair<String, String>> {
-        var currentPage = ""
-        currentPageSignal.connect {
-            currentPage = it
-        }
-        if (EmptyUtil.isNotNull(svSearch)) {
-            svSearch!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    if (EmptyUtil.isNotNull(runnable)) {
-                        handler.removeCallbacks(runnable!!)
-                    }
-
-                    runnable = Runnable {
-                        searchSignal.emit(Pair(currentPage, newText))
-                    }
-                    handler.postDelayed(runnable!!, 500)
-                    return true
-                }
-            })
-        }
-        return searchSignal
-    }
-
-    override fun toggleSearch(show: Boolean) {
-        ViewUtil.toggleView(flSearchBank, show)
     }
 
     override fun toggleTitle(show: Boolean) {
@@ -225,19 +192,17 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
     override fun setPageScrollListener(currentPage: Int): Signal<Int> {
         val signal = Signal<Int>()
 
-        Handler().postDelayed({
-            if (EmptyUtil.isNotNull(adapter)) {
-                val currentFragment = adapter.getItem(currentPage)
-                if (EmptyUtil.isNotNull(currentFragment)) {
-                    val view = currentFragment.view
-                    if (EmptyUtil.isNotNull(view)) {
-                        (view as NestedScrollView).setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-                            signal.emit(scrollY)
-                        })
-                    }
+        if (EmptyUtil.isNotNull(adapter)) {
+            val currentFragment = adapter.getItem(currentPage)
+            if (EmptyUtil.isNotNull(currentFragment)) {
+                val view = currentFragment.view
+                if (EmptyUtil.isNotNull(view)) {
+                    (view as NestedScrollView).setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+                        signal.emit(scrollY)
+                    })
                 }
             }
-        }, 1000)
+        }
         return signal
     }
 
@@ -267,7 +232,36 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), resources.displayMetrics).toInt()
     }
 
+    override fun getSearchViewMapInitSignal(): Signal<Any> {
+        return searchViewMapInitSignal
+    }
+
+    override fun toggleSearch(paymentType: String, show: Boolean) {
+        toggleSearchView(paymentType, show)
+    }
+
     override fun setPresenter(presenter: CheckOutContract.Presenter) {
         this.presenter = presenter
+    }
+
+    override fun getCoordinator(): CoordinatorLayout? {
+        return clMain
+    }
+
+    override fun addSearchView(paymentType: String, searchView: SearchView) {
+        searchViewMap[paymentType] = searchView
+        searchViewMapInitSignal.emit(true)
+    }
+
+    override fun toggleSearchView(paymentType: String, show: Boolean) {
+        if (show) {
+            ViewUtil.toggleView(flSearchBankContainer, true)
+            if (EmptyUtil.isNotNull(flSearchBank) && searchViewMap.containsKey(paymentType)) {
+                flSearchBank.removeAllViews()
+                flSearchBank.addView(searchViewMap[paymentType])
+            }
+        } else {
+            ViewUtil.toggleView(flSearchBankContainer, false)
+        }
     }
 }

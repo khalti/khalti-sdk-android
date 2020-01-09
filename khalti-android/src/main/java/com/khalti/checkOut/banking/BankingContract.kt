@@ -15,11 +15,11 @@ interface BankingContract {
 
         fun toggleIndented(show: Boolean)
 
-        fun toggleSearch(show: Boolean)
-
         fun toggleSearchError(show: Boolean)
 
         fun setupList(bankList: MutableList<BankPojo>): Signal<Map<String, String>>
+
+        fun setupSearch(paymentType: String): Signal<String>
 
         fun showIndentedNetworkError()
 
@@ -28,8 +28,6 @@ interface BankingContract {
         fun openMobileForm(bankingData: BankingData)
 
         fun setOnClickListener(): Map<String, Signal<Any>>
-
-        fun setSearchListener(): Signal<Pair<String, String>>
 
         fun filterList(text: String): Int?
 

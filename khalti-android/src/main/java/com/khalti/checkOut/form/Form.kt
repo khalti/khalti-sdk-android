@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.snackbar.Snackbar
 import com.khalti.R
+import com.khalti.checkOut.helper.BaseComm
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.Signal
 import com.khalti.utils.*
@@ -30,6 +31,7 @@ class Form : Fragment(), FormContract.View {
 
     private var height: Int = 0
     private lateinit var mainView: View
+    private lateinit var baseComm: BaseComm
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -37,6 +39,7 @@ class Form : Fragment(), FormContract.View {
         fragmentActivity = activity!!
         presenter = FormPresenter(this)
 
+        baseComm = Store.getBaseComm()
         presenter.onCreate()
 
         return mainView
@@ -193,7 +196,7 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun showNetworkError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, (this.fragmentActivity as com.khalti.checkOut.CheckOutActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.network_error_body), null, Snackbar.LENGTH_LONG)
+        UserInterfaceUtil.showSnackBar(fragmentActivity, baseComm.getCoordinator(), ResourceUtil.getString(fragmentActivity, R.string.network_error_body), null, Snackbar.LENGTH_LONG)
     }
 
     override fun showMessageDialog(title: String, message: String) {

@@ -16,6 +16,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.khalti.R
 import com.khalti.checkOut.banking.helper.BankingData
+import com.khalti.checkOut.helper.BaseComm
 import com.khalti.checkOut.helper.Config
 import com.khalti.signal.Signal
 import com.khalti.utils.*
@@ -30,10 +31,13 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
     private lateinit var presenter: ContactFormContract.Presenter
     private lateinit var mainView: View
 
+    private lateinit var baseComm: BaseComm
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainView = inflater.inflate(R.layout.banking_contact, container, false)
         fragmentActivity = activity!!
 
+        baseComm = Store.getBaseComm()
         presenter = ContactFormPresenter(this)
         presenter.onCreate()
 
@@ -125,12 +129,11 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
     }
 
     override fun showError(message: String) {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, (this.fragmentActivity as com.khalti.checkOut.CheckOutActivity).cdlMain, message, null, Snackbar.LENGTH_LONG)
+        UserInterfaceUtil.showSnackBar(fragmentActivity, baseComm.getCoordinator(), message, null, Snackbar.LENGTH_LONG)
     }
 
     override fun showNetworkError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, (this.fragmentActivity as com.khalti.checkOut.CheckOutActivity).cdlMain, ResourceUtil.getString(fragmentActivity, R.string.network_error_body), null, Snackbar.LENGTH_LONG)
-
+        UserInterfaceUtil.showSnackBar(fragmentActivity, baseComm.getCoordinator(), ResourceUtil.getString(fragmentActivity, R.string.network_error_body), null, Snackbar.LENGTH_LONG)
     }
 
     override fun openBanking(url: String) {

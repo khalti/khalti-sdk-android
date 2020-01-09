@@ -117,7 +117,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
-        android:id="@+id/flSearchBank"
+        android:id="@+id/flSearchBankContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -129,18 +129,9 @@
             android:layout_height="1dp"
             android:background="#16000000" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/svBank"
+        <FrameLayout
+            android:id="@+id/flSearchBank"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/cardPadding"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="@dimen/cardPadding"
-            android:layout_marginBottom="@dimen/editTextPadding"
-            android:background="@drawable/search_bg"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@android:color/transparent"
-            app:queryHint="@string/search_bank" />
+            android:layout_height="wrap_content" />
     </FrameLayout>
 </RelativeLayout>

@@ -40,5 +40,4 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return pendingTitles.get(position);
     }
 
-
 }

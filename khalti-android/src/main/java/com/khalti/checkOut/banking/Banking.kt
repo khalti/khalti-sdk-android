@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,12 +14,10 @@ import com.khalti.checkOut.banking.contactForm.ContactFormFragment
 import com.khalti.checkOut.banking.helper.BankAdapter
 import com.khalti.checkOut.banking.helper.BankPojo
 import com.khalti.checkOut.banking.helper.BankingData
+import com.khalti.checkOut.helper.BaseComm
 import com.khalti.signal.Signal
-import com.khalti.utils.EmptyUtil
-import com.khalti.utils.NetworkUtil
-import com.khalti.utils.Pair
-import com.khalti.utils.ResourceUtil
-import com.khalti.utils.ViewUtil
+import com.khalti.utils.*
+import kotlinx.android.synthetic.main.banking.*
 import kotlinx.android.synthetic.main.banking.view.*
 import java.util.*
 
@@ -30,10 +29,15 @@ class Banking : Fragment(), BankingContract.View {
 
     private lateinit var presenter: BankingContract.Presenter
 
+    private lateinit var baseComm: BaseComm
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainView = inflater.inflate(R.layout.banking, container, false)
         fragmentActivity = activity
         presenter = BankingPresenter(this)
+
+        baseComm = Store.getBaseComm()
 
         presenter.onCreate()
 
@@ -60,10 +64,6 @@ class Banking : Fragment(), BankingContract.View {
         ViewUtil.toggleView(mainView.btnTryAgain, false)
     }
 
-    override fun toggleSearch(show: Boolean) {
-        ViewUtil.toggleView((this.fragmentActivity as CheckOutActivity).flSearch, show)
-    }
-
     override fun toggleSearchError(show: Boolean) {
 //        ViewUtil.toggleView(mainView.rvList, !show)
         ViewUtil.toggleView(mainView.llIndented, show)
@@ -81,6 +81,14 @@ class Banking : Fragment(), BankingContract.View {
         mainView.rvList.layoutManager = layoutManager
 
         return bankAdapter.getClickedItem()
+    }
+
+    override fun setupSearch(paymentType: String): Signal<String> {
+        val view = LayoutInflater.from(fragmentActivity).inflate(R.layout.component_bank_search, llContainer, false)
+        val searchView = view.findViewById<SearchView>(R.id.svBank)
+
+        baseComm.addSearchView(paymentType, searchView)
+        return ViewUtil.setSearchListener(searchView)
     }
 
     override fun showIndentedNetworkError() {
@@ -113,10 +121,6 @@ class Banking : Fragment(), BankingContract.View {
         }
     }
 
-    override fun setSearchListener(): Signal<Pair<String, String>> {
-        return (this.fragmentActivity as CheckOutActivity).searchSignal
-    }
-
     override fun filterList(text: String): Int? {
         if (EmptyUtil.isNotNull(bankAdapter)) {
             return bankAdapter.filter(text)
@@ -131,4 +135,5 @@ class Banking : Fragment(), BankingContract.View {
     override fun setPresenter(presenter: BankingContract.Presenter) {
         this.presenter = presenter
     }
+
 }

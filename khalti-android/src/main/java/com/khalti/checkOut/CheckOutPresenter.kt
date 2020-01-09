@@ -4,10 +4,7 @@ import com.khalti.checkOut.helper.CheckoutEventListener
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
 import com.khalti.signal.Signal
-import com.khalti.utils.EmptyUtil
-import com.khalti.utils.GuavaUtil
-import com.khalti.utils.LogUtil
-import com.khalti.utils.Store
+import com.khalti.utils.*
 
 internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
     private val view: CheckOutContract.View = GuavaUtil.checkNotNull<CheckOutContract.View>(view)
@@ -46,26 +43,32 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
         view.toggleTitle(uniqueList.size > 1)
 
-        val signal = Signal<String>()
         val barWidth = view.convertDpToPx(250) / uniqueList.size
         compositeSignal.add(view.setUpTabLayout(uniqueList)
                 .connect {
                     currentPage = it.getValue("position") as Int
-                    signal.emit(uniqueList[currentPage].value)
                     view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
-                    view.toggleSearch(searchList.contains(it.getValue("id") as String))
                     view.setIndicatorBarPosition(currentPage * barWidth)
+                    if (searchList.contains(it.getValue("id") as String)) {
+                        view.toggleSearch(uniqueList[currentPage].value, true)
+                    } else {
+                        view.toggleSearch("", false)
+                    }
                 })
         view.toggleIndicator(uniqueList.size > 1)
         view.setIndicatorBarWidth(barWidth)
 
-        compositeSignal.add(view.setPageScrollListener(currentPage)
-                .connect {
-                    view.toggleToolbarShadow(it > 0)
-                })
+        HandlerUtil.delayedTask(1000) {
+            compositeSignal.add(view.setPageScrollListener(currentPage)
+                    .connect {
+                        view.toggleToolbarShadow(it > 0)
+                    })
+        }
 
-        view.setSearchListener(signal)
-        signal.emit(uniqueList[currentPage].value)
+        compositeSignal.add(view.getSearchViewMapInitSignal()
+                .connect {
+                    view.toggleSearch(uniqueList[currentPage].value, true)
+                })
     }
 
     override fun onDestroy() {

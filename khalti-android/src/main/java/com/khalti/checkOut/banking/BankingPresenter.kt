@@ -7,9 +7,11 @@ import com.khalti.checkOut.helper.Config
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
-import com.khalti.utils.LogUtil
 import com.khalti.utils.Store
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
 
@@ -64,14 +66,10 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
                                 .connect {
                                     view.openMobileForm(BankingData(it.getValue("idx"), it.getValue("name"), it.getValue("logo"), it.getValue("icon"), paymentTypeInit, config))
                                 })
-                        compositeSignal.add(view.setSearchListener()
-                                .connect { t ->
-                                    if (t.first == paymentType) {
-                                        val count = view.filterList(t.second)
-//                                    view.toggleSearchError(count == 0)
-                                    }
+                        compositeSignal.add(view.setupSearch(paymentType)
+                                .connect {
+                                    view.filterList(it)
                                 })
-                        view.toggleSearch(result.data.records.size > 3)
                     }
                     is Result.Error -> {
                         val message = result.throwable.message

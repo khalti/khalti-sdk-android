@@ -51,7 +51,7 @@ public class Sample extends AppCompatActivity {
                 .onSuccess(data -> LogUtil.log("success", data))
                 .onError(LogUtil::log)
                 .productUrl("Product url")
-                .paymentPreferences(ls)
+//                .paymentPreferences(ls)
                 .additionalData(map)
                 .build();
 
