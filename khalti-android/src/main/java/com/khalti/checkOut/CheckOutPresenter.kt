@@ -50,10 +50,8 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
                     view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
                     view.setIndicatorBarPosition(currentPage * barWidth)
                     if (searchList.contains(it.getValue("id") as String)) {
-                        LogUtil.checkpoint(2)
                         view.toggleSearch(uniqueList[currentPage].value, true)
                     } else {
-                        LogUtil.checkpoint(3)
                         view.toggleSearch("", false)
                     }
                 })
@@ -69,7 +67,6 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
         compositeSignal.add(view.getSearchViewMapInitSignal()
                 .connect {
-                    LogUtil.checkpoint(1)
                     view.toggleSearch(uniqueList[currentPage].value, true)
                 })
     }
