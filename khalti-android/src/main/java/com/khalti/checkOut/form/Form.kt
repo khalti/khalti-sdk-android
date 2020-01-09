@@ -33,6 +33,8 @@ class Form : Fragment(), FormContract.View {
     private lateinit var mainView: View
     private lateinit var baseComm: BaseComm
 
+    private var isKhalti = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         mainView = inflater.inflate(R.layout.form, container, false)
@@ -109,7 +111,7 @@ class Form : Fragment(), FormContract.View {
             PaymentPreference.WALLET.value -> {
                 ResourceUtil.getString(fragmentActivity, R.string.mobile_hint)
             }
-            PaymentPreference.CONNECT_IPS.value -> {
+            PaymentPreference.CONNECT_IPS.value, PaymentPreference.SCT.value -> {
                 ResourceUtil.getString(fragmentActivity, R.string.contact_hint)
             }
             else -> ResourceUtil.getString(fragmentActivity, R.string.mobile_hint)
@@ -191,7 +193,9 @@ class Form : Fragment(), FormContract.View {
     override fun setClickListener(): Map<String, Signal<Any>> = object : HashMap<String, Signal<Any>>() {
         init {
             put("pay", ViewUtil.setClickListener(mainView.btnPay))
-            put("khalti", ViewUtil.setClickListener(mainView.ivKhalti))
+            if (isKhalti) {
+                put("khalti", ViewUtil.setClickListener(mainView.ivBranding))
+            }
         }
     }
 
@@ -211,14 +215,23 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun showBranding(paymentType: String) {
-        ViewUtil.toggleView(mainView.llBranding, true)
+//        ViewUtil.toggleView(mainView.llBranding, true)
+        var drawable: Int? = null
         when (paymentType) {
             PaymentPreference.WALLET.value -> {
-                ViewUtil.toggleView(mainView.ivKhalti, true)
+                isKhalti = true
+                drawable = R.drawable.khalti_logo_full
             }
             PaymentPreference.CONNECT_IPS.value -> {
-                ViewUtil.toggleView(mainView.ivConnectIps, true)
+                drawable = R.mipmap.connect_ips
             }
+            PaymentPreference.SCT.value -> {
+                drawable = R.mipmap.connect_ips
+            }
+        }
+
+        if (EmptyUtil.isNotNull(mainView.ivBranding)) {
+            mainView.ivBranding.setImageResource(drawable!!)
         }
     }
 

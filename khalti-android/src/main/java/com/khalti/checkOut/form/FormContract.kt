@@ -83,7 +83,7 @@ interface FormContract {
 
         fun onConfirmWalletPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String)
 
-        fun onConnectIpsPayment(isNetwork: Boolean, mobile:String)
+        fun onBankingPayment(isNetwork: Boolean, mobile:String)
     }
 
     interface Model {

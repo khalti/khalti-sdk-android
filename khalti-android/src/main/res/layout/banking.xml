@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="50dp"
             android:visibility="gone">
 
             <LinearLayout
@@ -28,21 +29,15 @@
                 android:visibility="gone"
                 app:layout_scrollFlags="scroll|enterAlways">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvHeader"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvHeader"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="@string/select_bank"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/body"
-                        app:fontFamily="@font/roboto_medium" />
-                </FrameLayout>
+                    android:includeFontPadding="false"
+                    android:text="@string/select_bank"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/body"
+                    app:fontFamily="@font/roboto_medium" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

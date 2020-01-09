@@ -20,27 +20,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/globalPadding"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
-                    android:id="@+id/ivKhalti"
+                    android:id="@+id/ivBranding"
                     android:layout_width="165dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:contentDescription="@null"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/khalti_logo_full" />
-
-                <ImageView
-                    android:id="@+id/ivConnectIps"
-                    android:layout_width="165dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@null"
-                    android:visibility="gone"
-                    app:srcCompat="@mipmap/connect_ips" />
+                    android:visibility="visible" />
 
                 <FrameLayout
                     android:layout_width="match_parent"

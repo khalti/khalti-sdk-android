@@ -82,9 +82,9 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                             }
                         }
 
-                        PaymentPreference.CONNECT_IPS.value -> {
+                        PaymentPreference.CONNECT_IPS.value, PaymentPreference.SCT.value -> {
                             if (isInitialFormValid(dataMap.getValue("mobile"), null)) {
-                                onConnectIpsPayment(view.hasNetwork(), dataMap.getValue("mobile"))
+                                onBankingPayment(view.hasNetwork(), dataMap.getValue("mobile"))
                             }
                         }
                     }
@@ -287,7 +287,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
         }
     }
 
-    override fun onConnectIpsPayment(isNetwork: Boolean, mobile: String) {
+    override fun onBankingPayment(isNetwork: Boolean, mobile: String) {
         if (isNetwork) {
             view.openBanking(PayloadUtil.buildPayload(mobile, paymentType, paymentType, paymentType, view.packageName, config))
         } else {

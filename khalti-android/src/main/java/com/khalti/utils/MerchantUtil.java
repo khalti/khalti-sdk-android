@@ -14,7 +14,7 @@ public class MerchantUtil {
     private static final HashMap<String, Fragment> CHECKOUT_FRAGMENTS = new HashMap<String, Fragment>() {{
         put(PaymentPreference.EBANKING.getValue(), new Banking());
         put(PaymentPreference.MOBILE_BANKING.getValue(), new Banking());
-        put(PaymentPreference.SCT.getValue(), new Banking());
+        put(PaymentPreference.SCT.getValue(), new Form());
         put(PaymentPreference.WALLET.getValue(), new Form());
         put(PaymentPreference.CONNECT_IPS.getValue(), new Form());
     }};

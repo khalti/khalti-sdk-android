@@ -117,7 +117,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
         }
 
         vpContent.adapter = adapter
-        vpContent.offscreenPageLimit = adapter.count
+        vpContent.offscreenPageLimit = 2
         tlTitle.setupWithViewPager(vpContent)
         tlTitle.tabMode = TabLayout.MODE_SCROLLABLE
     }

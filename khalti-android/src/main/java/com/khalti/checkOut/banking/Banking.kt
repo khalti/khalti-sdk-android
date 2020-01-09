@@ -40,7 +40,6 @@ class Banking : Fragment(), BankingContract.View {
         baseComm = Store.getBaseComm()
 
         presenter.onCreate()
-
         return mainView
     }
 
