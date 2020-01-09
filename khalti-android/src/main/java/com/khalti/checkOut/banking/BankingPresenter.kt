@@ -66,8 +66,10 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
                                 })
                         compositeSignal.add(view.setSearchListener()
                                 .connect { t ->
-                                    val count = view.filterList(t)
-                                    view.toggleSearchError(count == 0)
+                                    if (t.first == paymentType) {
+                                        val count = view.filterList(t.second)
+//                                    view.toggleSearchError(count == 0)
+                                    }
                                 })
                         view.toggleSearch(result.data.records.size > 3)
                     }

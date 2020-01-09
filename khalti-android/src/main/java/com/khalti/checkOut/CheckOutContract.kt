@@ -3,6 +3,7 @@ package com.khalti.checkOut
 import com.khalti.base.LifeCycle
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.Signal
+import com.khalti.utils.Pair
 
 interface CheckOutContract {
     interface View {
@@ -16,6 +17,8 @@ interface CheckOutContract {
         fun setIndicatorBarWidth(width: Int)
 
         fun setIndicatorBarPosition(position: Int)
+
+        fun setSearchListener(currentPageSignal: Signal<String>): Signal<Pair<String, String>>
 
         fun toggleSearch(show: Boolean)
 

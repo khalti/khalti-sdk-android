@@ -3,6 +3,7 @@ package com.khalti.checkOut
 import com.khalti.checkOut.helper.CheckoutEventListener
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
+import com.khalti.signal.Signal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
 import com.khalti.utils.LogUtil
@@ -45,10 +46,12 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
         view.toggleTitle(uniqueList.size > 1)
 
+        val signal = Signal<String>()
         val barWidth = view.convertDpToPx(250) / uniqueList.size
         compositeSignal.add(view.setUpTabLayout(uniqueList)
                 .connect {
                     currentPage = it.getValue("position") as Int
+                    signal.emit(uniqueList[currentPage].value)
                     view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
                     view.toggleSearch(searchList.contains(it.getValue("id") as String))
                     view.setIndicatorBarPosition(currentPage * barWidth)
@@ -60,6 +63,9 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
                 .connect {
                     view.toggleToolbarShadow(it > 0)
                 })
+
+        view.setSearchListener(signal)
+        signal.emit(uniqueList[currentPage].value)
     }
 
     override fun onDestroy() {

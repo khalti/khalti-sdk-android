@@ -6,6 +6,7 @@ import com.khalti.checkOut.banking.helper.BankPojo
 import com.khalti.checkOut.banking.helper.BankingData
 import com.khalti.checkOut.banking.helper.BaseListPojo
 import com.khalti.signal.Signal
+import com.khalti.utils.Pair
 
 interface BankingContract {
     interface View {
@@ -28,7 +29,7 @@ interface BankingContract {
 
         fun setOnClickListener(): Map<String, Signal<Any>>
 
-        fun setSearchListener(): Signal<String>
+        fun setSearchListener(): Signal<Pair<String, String>>
 
         fun filterList(text: String): Int?
 

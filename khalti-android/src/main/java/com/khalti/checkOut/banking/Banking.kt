@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.khalti.R
 import com.khalti.checkOut.CheckOutActivity
 import com.khalti.checkOut.banking.contactForm.ContactFormFragment
@@ -15,10 +14,13 @@ import com.khalti.checkOut.banking.helper.BankAdapter
 import com.khalti.checkOut.banking.helper.BankPojo
 import com.khalti.checkOut.banking.helper.BankingData
 import com.khalti.signal.Signal
-import com.khalti.utils.*
+import com.khalti.utils.EmptyUtil
+import com.khalti.utils.NetworkUtil
+import com.khalti.utils.Pair
+import com.khalti.utils.ResourceUtil
+import com.khalti.utils.ViewUtil
 import kotlinx.android.synthetic.main.banking.view.*
-
-import java.util.HashMap
+import java.util.*
 
 class Banking : Fragment(), BankingContract.View {
 
@@ -111,8 +113,8 @@ class Banking : Fragment(), BankingContract.View {
         }
     }
 
-    override fun setSearchListener(): Signal<String> {
-        return ViewUtil.setSearchListener((this.fragmentActivity as CheckOutActivity).svSearch)
+    override fun setSearchListener(): Signal<Pair<String, String>> {
+        return (this.fragmentActivity as CheckOutActivity).searchSignal
     }
 
     override fun filterList(text: String): Int? {

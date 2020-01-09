@@ -12,7 +12,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.tabs.TabLayout
 import com.khalti.R
@@ -27,9 +26,14 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
     var cdlMain: CoordinatorLayout? = null
     var flSearch: FrameLayout? = null
     var svSearch: SearchView? = null
+    val searchSignal = Signal<Pair<String, String>>()
     private lateinit var adapter: ViewPagerAdapter
     private lateinit var presenter: CheckOutContract.Presenter
+
     private val tabs: MutableList<TabLayout.Tab?> = ArrayList()
+    private val handler = Handler()
+
+    private var runnable: Runnable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +96,33 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
                 mvTabPositionIndicatorBar?.layoutParams = lp
             }
         }
+    }
+
+    override fun setSearchListener(currentPageSignal: Signal<String>): Signal<Pair<String, String>> {
+        var currentPage = ""
+        currentPageSignal.connect {
+            currentPage = it
+        }
+        if (EmptyUtil.isNotNull(svSearch)) {
+            svSearch!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    if (EmptyUtil.isNotNull(runnable)) {
+                        handler.removeCallbacks(runnable!!)
+                    }
+
+                    runnable = Runnable {
+                        searchSignal.emit(Pair(currentPage, newText))
+                    }
+                    handler.postDelayed(runnable!!, 500)
+                    return true
+                }
+            })
+        }
+        return searchSignal
     }
 
     override fun toggleSearch(show: Boolean) {
