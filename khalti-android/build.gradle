@@ -77,7 +77,6 @@ dependencies {
 
     /*Retrofit*/
     implementation network.retrofit2
-    implementation network.retrofit_rxadapter
     implementation network.retrofit_gson_converter
 
     /*OkHTTP*/

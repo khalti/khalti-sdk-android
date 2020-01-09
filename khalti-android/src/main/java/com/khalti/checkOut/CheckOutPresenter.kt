@@ -43,7 +43,7 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
         view.setupViewPager(uniqueList)
 
-        view.toggleAppBar(uniqueList.size > 1)
+        view.toggleTitle(uniqueList.size > 1)
 
         val barWidth = view.convertDpToPx(250) / uniqueList.size
         compositeSignal.add(view.setUpTabLayout(uniqueList)

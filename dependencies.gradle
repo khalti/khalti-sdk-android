@@ -45,7 +45,6 @@ ext {
             okhttp3                   : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
             retrofit_gson_converter   : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
             retrofit2                 : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            retrofit_rxadapter        : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
             apache_http_client        : "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${httpClientVersion}"
     ]
 

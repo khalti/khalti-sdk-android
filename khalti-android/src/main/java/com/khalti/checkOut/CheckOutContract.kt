@@ -1,13 +1,8 @@
 package com.khalti.checkOut
 
 import com.khalti.base.LifeCycle
-import com.khalti.checkOut.helper.Config
-import com.khalti.checkOut.helper.MerchantPreferencePojo
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.Signal
-import kotlinx.coroutines.flow.Flow
-
-import rx.Observable
 
 interface CheckOutContract {
     interface View {
@@ -24,7 +19,7 @@ interface CheckOutContract {
 
         fun toggleSearch(show: Boolean)
 
-        fun toggleAppBar(show: Boolean)
+        fun toggleTitle(show: Boolean)
 
         fun setupViewPager(types: List<PaymentPreference>)
 

@@ -23,6 +23,7 @@
             app:elevation="0dp">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/clTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:elevation="0dp"
@@ -86,7 +87,6 @@
                     </com.google.android.material.card.MaterialCardView>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
-
 
             <View
                 android:layout_width="match_parent"

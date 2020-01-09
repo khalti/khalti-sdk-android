@@ -22,7 +22,6 @@ import com.khalti.utils.*
 import kotlinx.android.synthetic.main.component_tab.view.*
 import kotlinx.android.synthetic.main.payment_activity.*
 
-
 class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
 
     var cdlMain: CoordinatorLayout? = null
@@ -99,8 +98,8 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         ViewUtil.toggleView(flSearchBank, show)
     }
 
-    override fun toggleAppBar(show: Boolean) {
-        ViewUtil.toggleView(appBar, show)
+    override fun toggleTitle(show: Boolean) {
+        ViewUtil.toggleView(clTitle, show)
     }
 
     override fun setupViewPager(types: List<PaymentPreference>) {
@@ -122,11 +121,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View {
         vpContent.adapter = adapter
         vpContent.offscreenPageLimit = adapter.count
         tlTitle.setupWithViewPager(vpContent)
-        if (adapter.count > 2) {
-            tlTitle.tabMode = TabLayout.MODE_SCROLLABLE
-        } else {
-            tlTitle.tabMode = TabLayout.MODE_FIXED
-        }
+        tlTitle.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
     override fun setUpTabLayout(types: List<PaymentPreference>): Signal<Map<String, Any>> {
