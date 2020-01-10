@@ -16,7 +16,8 @@
             android:name=".checkOut.CheckOutActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.khalti">
+            android:theme="@style/AppTheme.khalti"
+            android:windowSoftInputMode="adjustResize">
 
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />

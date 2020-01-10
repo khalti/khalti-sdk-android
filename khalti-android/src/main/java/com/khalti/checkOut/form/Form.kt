@@ -195,6 +195,7 @@ class Form : Fragment(), FormContract.View {
             if (isKhalti) {
                 put("khalti", ViewUtil.setClickListener(mainView.ivBranding))
             }
+            put("pin", ViewUtil.setClickListener(mainView.btnSetPin))
         }
     }
 
@@ -253,10 +254,7 @@ class Form : Fragment(), FormContract.View {
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
 
-            /*presenter.showPINInBrowserDialog("Error", ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found) + "\n\n" +
-                    ResourceUtil.getString(fragmentActivity, R.string.set_pin_in_browser))*/
         }
-
     }
 
     override fun openLinkInBrowser(link: String) {

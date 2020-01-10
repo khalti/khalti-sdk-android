@@ -53,6 +53,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
             /*Toggle pin layout and mobile label based on payment type*/
             view.togglePinLayout(paymentType == PaymentPreference.KHALTI.value)
             view.toggleMobileLabel(paymentType)
+            view.togglePinMessage(paymentType == PaymentPreference.KHALTI.value)
 
             if (EmptyUtil.isNotNull(mobile) && EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
                 view.setMobile(mobile!!)
@@ -99,6 +100,18 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                         view.showSlogan()
                     }
                 })
+            }
+
+            if (EmptyUtil.isNotNull(clickMap["pin"])) {
+                compositeSignal.add(clickMap.getValue("pin")
+                        .connect {
+                            if (view.doesPackageExist()) {
+                                view.openKhaltiSettings()
+                            } else {
+                                pinWebLink = "/#/account/transaction_pin"
+                                view.openLinkInBrowser(Constant.url + pinWebLink!!.substring(1))
+                            }
+                        })
             }
 
             val watcherMap = view.setEditTextListener()

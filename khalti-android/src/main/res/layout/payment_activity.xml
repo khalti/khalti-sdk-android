@@ -49,12 +49,13 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tlTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/toolbarHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:animateLayoutChanges="true"
-                    android:paddingTop="@dimen/editTextPadding"
-                    android:paddingBottom="@dimen/editTextPadding"
+                    android:minHeight="@dimen/toolbarHeight"
+                    android:paddingTop="@dimen/cardPadding"
+                    android:paddingBottom="@dimen/cardPadding"
                     app:elevation="0dp"
                     app:tabGravity="center"
                     app:tabIndicator="@null"

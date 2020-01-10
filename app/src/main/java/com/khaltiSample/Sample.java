@@ -44,15 +44,13 @@ public class Sample extends AppCompatActivity {
         }};
 
         List<PaymentPreference> ls = new ArrayList<PaymentPreference>() {{
-            add(PaymentPreference.EBANKING);
             add(PaymentPreference.KHALTI);
-            add(PaymentPreference.SCT);
         }};
         Config config = new Config.Builder(Constant.pub, "Product ID", "Product Name", 1100L)
                 .onSuccess(data -> LogUtil.log("success", data))
                 .onError(LogUtil::log)
                 .productUrl("Product url")
-//                .paymentPreferences(ls)
+                .paymentPreferences(ls)
                 .additionalData(map)
                 .build();
 
