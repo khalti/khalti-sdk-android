@@ -51,7 +51,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
             }
 
             /*Toggle pin layout and mobile label based on payment type*/
-            view.togglePinLayout(paymentType == PaymentPreference.WALLET.value)
+            view.togglePinLayout(paymentType == PaymentPreference.KHALTI.value)
             view.toggleMobileLabel(paymentType)
 
             if (EmptyUtil.isNotNull(mobile) && EmptyUtil.isNotEmpty(mobile) && ValidationUtil.isMobileNumberValid(mobile)) {
@@ -68,7 +68,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                     val dataMap = view.formData
 
                     when (paymentType) {
-                        PaymentPreference.WALLET.value -> {
+                        PaymentPreference.KHALTI.value -> {
                             if (view.payButtonText.toLowerCase().contains("confirm")) {
                                 if (isFinalFormValid(dataMap.getValue("code"))) {
                                     onConfirmWalletPayment(view.hasNetwork(), dataMap.getValue("code"), dataMap.getValue("pin"))

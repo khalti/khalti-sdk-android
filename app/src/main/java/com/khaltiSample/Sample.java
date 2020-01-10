@@ -45,7 +45,7 @@ public class Sample extends AppCompatActivity {
 
         List<PaymentPreference> ls = new ArrayList<PaymentPreference>() {{
             add(PaymentPreference.EBANKING);
-            add(PaymentPreference.WALLET);
+            add(PaymentPreference.KHALTI);
             add(PaymentPreference.SCT);
         }};
         Config config = new Config.Builder(Constant.pub, "Product ID", "Product Name", 1100L)

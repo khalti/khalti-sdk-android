@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -33,6 +35,8 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
 
     private lateinit var baseComm: BaseComm
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainView = inflater.inflate(R.layout.banking_contact, container, false)
         fragmentActivity = activity!!
@@ -52,6 +56,7 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         dialog.setOnShowListener { dialog1 ->
             val d = dialog1 as BottomSheetDialog
 

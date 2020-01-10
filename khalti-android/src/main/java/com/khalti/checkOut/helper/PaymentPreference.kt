@@ -3,7 +3,7 @@ package com.khalti.checkOut.helper
 import java.io.Serializable
 
 enum class PaymentPreference(val value: String) : Serializable {
-    WALLET("wallet"),
+    KHALTI("khalti"),
     SCT("sct"),
     EBANKING("ebanking"),
     MOBILE_BANKING("mobile"),

@@ -77,8 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_gravity="bottom"
-                android:visibility="gone"
-                android:background="#15000000" />
+                android:background="#15000000"
+                android:visibility="gone" />
         </FrameLayout>
 
         <LinearLayout

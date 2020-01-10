@@ -18,7 +18,6 @@ import com.khalti.checkOut.helper.BaseComm
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.form.*
 import kotlinx.android.synthetic.main.form.view.*
 import java.util.*
 import kotlin.math.abs
@@ -108,7 +107,7 @@ class Form : Fragment(), FormContract.View {
 
     override fun toggleMobileLabel(paymentType: String) {
         val label = when (paymentType) {
-            PaymentPreference.WALLET.value -> {
+            PaymentPreference.KHALTI.value -> {
                 ResourceUtil.getString(fragmentActivity, R.string.mobile_hint)
             }
             PaymentPreference.CONNECT_IPS.value, PaymentPreference.SCT.value -> {
@@ -218,7 +217,7 @@ class Form : Fragment(), FormContract.View {
 //        ViewUtil.toggleView(mainView.llBranding, true)
         var drawable: Int? = null
         when (paymentType) {
-            PaymentPreference.WALLET.value -> {
+            PaymentPreference.KHALTI.value -> {
                 isKhalti = true
                 drawable = R.drawable.khalti_logo_full
             }

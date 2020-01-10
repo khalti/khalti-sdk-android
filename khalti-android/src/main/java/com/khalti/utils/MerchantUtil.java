@@ -15,7 +15,7 @@ public class MerchantUtil {
         put(PaymentPreference.EBANKING.getValue(), new Banking());
         put(PaymentPreference.MOBILE_BANKING.getValue(), new Banking());
         put(PaymentPreference.SCT.getValue(), new Form());
-        put(PaymentPreference.WALLET.getValue(), new Form());
+        put(PaymentPreference.KHALTI.getValue(), new Form());
         put(PaymentPreference.CONNECT_IPS.getValue(), new Form());
     }};
 
@@ -23,7 +23,7 @@ public class MerchantUtil {
         put(PaymentPreference.EBANKING.getValue(), "E-Banking");
         put(PaymentPreference.MOBILE_BANKING.getValue(), "Mobile Banking");
         put(PaymentPreference.SCT.getValue(), "SCT");
-        put(PaymentPreference.WALLET.getValue(), "Wallet");
+        put(PaymentPreference.KHALTI.getValue(), "Khalti");
         put(PaymentPreference.CONNECT_IPS.getValue(), "Connect IPS");
     }};
 
@@ -31,7 +31,7 @@ public class MerchantUtil {
         put(PaymentPreference.EBANKING.getValue(), R.drawable.ic_ebanking);
         put(PaymentPreference.MOBILE_BANKING.getValue(), R.drawable.ic_mobile_banking);
         put(PaymentPreference.SCT.getValue(), R.drawable.ic_sct_card);
-        put(PaymentPreference.WALLET.getValue(), R.drawable.ic_wallet);
+        put(PaymentPreference.KHALTI.getValue(), R.drawable.ic_wallet);
         put(PaymentPreference.CONNECT_IPS.getValue(), R.drawable.ic_connect_ips);
     }};
 
@@ -39,7 +39,7 @@ public class MerchantUtil {
         put(PaymentPreference.EBANKING.getValue(), R.drawable.ic_ebanking_active);
         put(PaymentPreference.MOBILE_BANKING.getValue(), R.drawable.ic_mobile_banking_active);
         put(PaymentPreference.SCT.getValue(), R.drawable.ic_sct_card_active);
-        put(PaymentPreference.WALLET.getValue(), R.drawable.ic_wallet_active);
+        put(PaymentPreference.KHALTI.getValue(), R.drawable.ic_wallet_active);
         put(PaymentPreference.CONNECT_IPS.getValue(), R.drawable.ic_connect_ips_active);
     }};
 

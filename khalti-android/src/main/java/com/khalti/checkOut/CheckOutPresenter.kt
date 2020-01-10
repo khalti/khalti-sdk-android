@@ -3,7 +3,6 @@ package com.khalti.checkOut
 import com.khalti.checkOut.helper.CheckoutEventListener
 import com.khalti.checkOut.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
-import com.khalti.signal.Signal
 import com.khalti.utils.*
 
 internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
@@ -30,11 +29,11 @@ internal class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract
 
         val uniqueList = ArrayList<PaymentPreference>()
         if (EmptyUtil.isNull(types) || EmptyUtil.isEmpty(types)) {
+            uniqueList.add(PaymentPreference.KHALTI)
             uniqueList.add(PaymentPreference.EBANKING)
             uniqueList.add(PaymentPreference.MOBILE_BANKING)
             uniqueList.add(PaymentPreference.SCT)
             uniqueList.add(PaymentPreference.CONNECT_IPS)
-            uniqueList.add(PaymentPreference.WALLET)
         } else {
             uniqueList.addAll(LinkedHashSet<PaymentPreference>(types))
         }
