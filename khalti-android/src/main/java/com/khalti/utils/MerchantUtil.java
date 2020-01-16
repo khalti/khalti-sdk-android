@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import java.util.HashMap;
 
 import com.khalti.R;
-import com.khalti.checkOut.banking.Banking;
-import com.khalti.checkOut.helper.PaymentPreference;
-import com.khalti.checkOut.form.Form;
+import com.khalti.checkout.banking.Banking;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.checkout.form.Form;
 
 public class MerchantUtil {
 

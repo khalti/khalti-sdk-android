@@ -6,9 +6,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
-import com.khalti.checkOut.helper.Config;
-import com.khalti.checkOut.helper.KhaltiCheckOut;
-import com.khalti.checkOut.helper.PaymentPreference;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.PaymentPreference;
 import com.khalti.utils.Constant;
 import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
@@ -45,6 +45,7 @@ public class Sample extends AppCompatActivity {
 
         List<PaymentPreference> ls = new ArrayList<PaymentPreference>() {{
             add(PaymentPreference.KHALTI);
+            add(PaymentPreference.SCT);
         }};
         Config config = new Config.Builder(Constant.pub, "Product ID", "Product Name", 1100L)
                 .onSuccess(data -> LogUtil.log("success", data))

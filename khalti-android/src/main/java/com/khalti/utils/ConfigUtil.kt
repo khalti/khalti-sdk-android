@@ -1,7 +1,7 @@
 package com.khalti.utils
 
 import android.content.Context
-import com.khalti.checkOut.helper.Config
+import com.khalti.checkout.helper.Config
 
 class ConfigUtil {
 

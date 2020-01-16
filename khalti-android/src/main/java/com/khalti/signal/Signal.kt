@@ -16,7 +16,9 @@ class Signal<T> {
 
     fun emit(value: T) {
         if (shouldEmit) {
-            callbacks.forEach { it(value) }
+            callbacks.forEach {
+                it(value)
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.khalti.widget
 
-import com.khalti.checkOut.helper.Config
+import com.khalti.checkout.helper.Config
 import com.khalti.utils.ConfigUtil
 
 class PayPresenter(private var view: PayContract.View) : PayContract.Presenter {

@@ -7,18 +7,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.khalti.checkOut.api.OnSuccessListener;
-import com.khalti.checkOut.helper.Config;
-import com.khalti.checkOut.api.OnCheckOutListener;
-import com.khalti.checkOut.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
 import com.khalti.widget.KhaltiButton;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

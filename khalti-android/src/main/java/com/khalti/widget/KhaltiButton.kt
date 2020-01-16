@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.Keep
 import com.khalti.R
-import com.khalti.checkOut.helper.Config
-import com.khalti.checkOut.helper.KhaltiCheckOut
+import com.khalti.checkout.helper.Config
+import com.khalti.checkout.helper.KhaltiCheckOut
 import com.khalti.utils.ConfigUtil
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.Store
@@ -121,6 +121,9 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
             when (id) {
                 0 -> imageId = R.mipmap.ebanking_dark
                 1 -> imageId = R.mipmap.ebanking_light
+                2 -> imageId = R.mipmap.ebanking_light
+                3 -> imageId = R.mipmap.ebanking_light
+                4 -> imageId = R.mipmap.ebanking_light
             }
 
             if (imageId != -1) {

@@ -2,9 +2,9 @@ package com.khalti.utils;
 
 import androidx.annotation.Keep;
 
-import com.khalti.checkOut.helper.BaseComm;
-import com.khalti.checkOut.helper.Config;
-import com.khalti.checkOut.helper.CheckoutEventListener;
+import com.khalti.checkout.helper.BaseComm;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.CheckoutEventListener;
 
 @Keep
 public class Store {

@@ -1,7 +1,7 @@
 package com.khalti.utils
 
 import com.khalti.BuildConfig
-import com.khalti.checkOut.helper.Config
+import com.khalti.checkout.helper.Config
 import java.util.HashMap
 
 class PayloadUtil {
