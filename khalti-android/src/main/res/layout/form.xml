@@ -220,7 +220,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="numberPassword"
-                        android:maxLength="4"
+                        android:maxLength="10"
                         android:textColor="@color/black" />
                 </com.khalti.widget.TextInputLayout>
             </LinearLayout>
