@@ -49,10 +49,10 @@ public class ApiHelper {
                 if (response.isSuccessful) {
                     Result.Success(response.body()!!)
                 } else {
-                    Result.Error(Throwable(ErrorUtil.parseError(if (EmptyUtil.isNotNull(response.errorBody())) String(response.errorBody()!!.bytes()) else "")))
+                    Result.Error(Throwable(ErrorUtil.parseError(if (EmptyUtil.isNotNull(response.errorBody())) String(response.errorBody()!!.bytes()) else "", response.code().toString())))
                 }
             } catch (e: Exception) {
-                Result.Error(if (EmptyUtil.isNotNull(e)) e else Throwable(ErrorUtil.parseError("")))
+                Result.Error(if (EmptyUtil.isNotNull(e)) Throwable(ErrorUtil.parseThrowableError(e.message, "600")) else Throwable(ErrorUtil.parseError("", "600")))
             }
         }
     }

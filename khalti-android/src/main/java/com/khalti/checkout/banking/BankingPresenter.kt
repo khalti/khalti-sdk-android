@@ -7,6 +7,7 @@ import com.khalti.checkout.helper.Config
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
+import com.khalti.utils.JsonUtil
 import com.khalti.utils.Store
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -74,8 +75,9 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
                     is Result.Error -> {
                         val message = result.throwable.message
                         if (EmptyUtil.isNotNull(message) && EmptyUtil.isNotNull(config.onErrorListener)) {
-                            view.showIndentedError(message!!)
-                            config.onErrorListener!!.onError(ErrorAction.FETCH_BANK_LIST.action, message)
+                            val errorMap = JsonUtil.convertJsonStringToMap(message!!)
+                            view.showIndentedError(errorMap.getValue("detail"))
+                            config.onErrorListener!!.onError(ErrorAction.FETCH_BANK_LIST.action, errorMap.getValue("detail"))
                         }
                     }
                 }

@@ -11,6 +11,7 @@ import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.PaymentPreference;
 import com.khalti.utils.Constant;
 import com.khalti.utils.LogUtil;
+import com.khalti.utils.Store;
 import com.khalti.widget.KhaltiButton;
 
 import java.util.ArrayList;
@@ -25,12 +26,18 @@ public class Sample extends AppCompatActivity {
 
     @BindView(R.id.kbPay)
     KhaltiButton khaltiButton;
-    @BindView(R.id.kbPay1)
-    KhaltiButton khaltiButton1;
-    @BindView(R.id.kbPay2)
-    KhaltiButton khaltiButton2;
     @BindView(R.id.btnMore)
     MaterialButton btnMore;
+    @BindView(R.id.kbKhalti)
+    KhaltiButton kbKhalti;
+    @BindView(R.id.kbEBanking)
+    KhaltiButton kbEBanking;
+    @BindView(R.id.kbMobileBanking)
+    KhaltiButton kbMobileBanking;
+    @BindView(R.id.kbSct)
+    KhaltiButton kbSct;
+    @BindView(R.id.kbConnectIps)
+    KhaltiButton kbConnectIps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +50,86 @@ public class Sample extends AppCompatActivity {
             put("merchant_extra_2", "This is extra data 2");
         }};
 
-        List<PaymentPreference> ls = new ArrayList<PaymentPreference>() {{
-            add(PaymentPreference.KHALTI);
-            add(PaymentPreference.SCT);
-        }};
-        Config config = new Config.Builder(Constant.pub, "Product ID", "Product Name", 1100L)
+        Config mainConfig = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L)
                 .onSuccess(data -> LogUtil.log("success", data))
                 .onError(LogUtil::log)
                 .productUrl("Product url")
-                .paymentPreferences(ls)
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.KHALTI);
+                    add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.MOBILE_BANKING);
+                    add(PaymentPreference.SCT);
+                    add(PaymentPreference.CONNECT_IPS);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config khaltiConfig = new Config.Builder(Constant.pub, "Product ID", "Khalti", 1100L)
+                .onSuccess(data -> LogUtil.log("success", data))
+                .onError(LogUtil::log)
+                .productUrl("Product url")
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.KHALTI);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config eBankingConfig = new Config.Builder(Constant.pub, "Product ID", "E Banking", 1100L)
+                .onSuccess(data -> LogUtil.log("success", data))
+                .onError(LogUtil::log)
+                .productUrl("Product url")
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.EBANKING);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config mBankingConfig = new Config.Builder(Constant.pub, "Product ID", "M Banking", 1100L)
+                .onSuccess(data -> LogUtil.log("success", data))
+                .onError(LogUtil::log)
+                .productUrl("Product url")
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.MOBILE_BANKING);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config sctConfig = new Config.Builder(Constant.pub, "Product ID", "SCT", 1100L)
+                .onSuccess(data -> LogUtil.log("success", data))
+                .onError(LogUtil::log)
+                .productUrl("Product url")
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.SCT);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config connectIpsConfig = new Config.Builder(Constant.pub, "Product ID", "Connect IPS", 1100L)
+                .onSuccess(data -> LogUtil.log("success", data))
+                .onError(LogUtil::log)
+                .productUrl("Product url")
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.CONNECT_IPS);
+                }})
                 .additionalData(map)
                 .build();
 
 
-        KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(this, config);
-        khaltiButton.setOnClickListener(view -> khaltiCheckOut.show());
-        khaltiButton1.setCheckOutConfig(config);
-        khaltiButton2.setCheckOutConfig(config);
+        KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(this, mainConfig);
+        khaltiButton.setOnClickListener(view -> {
+            khaltiCheckOut.show();
+        });
+
+        KhaltiCheckOut khaltiCheckOut1 = new KhaltiCheckOut(this, khaltiConfig);
+        kbKhalti.setOnClickListener(v -> khaltiCheckOut1.show());
+
+        kbEBanking.setCheckOutConfig(eBankingConfig);
+
+        kbMobileBanking.setCheckOutConfig(mBankingConfig);
+
+        kbSct.setCheckOutConfig(sctConfig);
+
+        kbConnectIps.setCheckOutConfig(connectIpsConfig);
     }
 
     @OnClick(R.id.btnMore)

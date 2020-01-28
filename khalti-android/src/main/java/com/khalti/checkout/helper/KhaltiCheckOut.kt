@@ -10,6 +10,7 @@ import com.khalti.utils.Store
 class KhaltiCheckOut : KhaltiCheckOutInterface {
 
     private var context: Context
+    private var config: Config? = null
 
     constructor(context: Context) {
         this.context = context
@@ -17,42 +18,46 @@ class KhaltiCheckOut : KhaltiCheckOutInterface {
 
     constructor(context: Context, config: Config?) {
         this.context = context
-        if (EmptyUtil.isNotNull(config)) {
-            Store.setConfig(config)
-        }
+        this.config = config
     }
 
     override fun show() {
-        require(EmptyUtil.isNotNull(Store.getConfig())) { "Config not set" }
-        val message = ConfigUtil.validateConfig(Store.getConfig())
+        require(EmptyUtil.isNotNull(config)) { "Config not set" }
 
-        if (EmptyUtil.isEmpty(message)) {
-            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, Store.getConfig())
+        if (EmptyUtil.isNotNull(config)) {
+            val message = ConfigUtil.validateConfig(config!!)
 
-            require(EmptyUtil.isEmpty(message2)) { message2 }
-        } else {
-            throw IllegalArgumentException(message)
+            if (EmptyUtil.isEmpty(message)) {
+                val message2 = ConfigUtil.validateIfConfigIsSerializable(context, config!!)
+
+                require(EmptyUtil.isEmpty(message2)) { message2 }
+            } else {
+                throw IllegalArgumentException(message)
+            }
+
+            Store.setConfig(config)
+            ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
         }
-
-        ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
     }
 
     override fun show(config: Config?) {
+        this.config = config
+        require(EmptyUtil.isNotNull(config)) { "Config not set" }
+
         if (EmptyUtil.isNotNull(config)) {
+            val message = ConfigUtil.validateConfig(config!!)
+
+            if (EmptyUtil.isEmpty(message)) {
+                val message2 = ConfigUtil.validateIfConfigIsSerializable(context, config)
+
+                require(EmptyUtil.isEmpty(message2)) { message2 }
+            } else {
+                throw IllegalArgumentException(message)
+            }
+
             Store.setConfig(config)
+            ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
         }
-        require(EmptyUtil.isNotNull(Store.getConfig())) { "Config not set" }
-        val message = ConfigUtil.validateConfig(Store.getConfig())
-
-        if (EmptyUtil.isEmpty(message)) {
-            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, Store.getConfig())
-
-            require(EmptyUtil.isEmpty(message2)) { message2 }
-        } else {
-            throw IllegalArgumentException(message)
-        }
-
-        ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
     }
 
     override fun destroy() {

@@ -208,33 +208,33 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                     is Result.Error -> {
                         view.toggleProgressDialog("init", false)
                         var message = result.throwable.message
-                        if (EmptyUtil.isNotNull(message) && message!!.contains("</a>")) {
-                            pinWebLink = HtmlUtil.getHrefLink(message)
+                        if (EmptyUtil.isNotNull(message)) {
+                            val errorMap = JsonUtil.convertJsonStringToMap(message!!)
+                            if (errorMap.getValue("detail").contains("</a>")) {
+                                pinWebLink = HtmlUtil.getHrefLink(errorMap.getValue("detail"))
 
-                            compositeSignal.add(view.showPINDialog("Error", view.getMessage("pin_not_set") + "\n\n" + view.getMessage("pin_not_set_continue"))
-                                    .connect { it ->
-                                        if (it) {
-                                            if (view.doesPackageExist()) {
-                                                view.openKhaltiSettings()
-                                            } else {
-                                                compositeSignal.add(view.showPINDialog("Error", view.getMessage("khalti_not_found") + "\n\n" + view.getMessage("set_pin_in_browser"))
-                                                        .connect {
-                                                            if (it && EmptyUtil.isNotNull(pinWebLink)) {
+                                compositeSignal.add(view.showPINDialog("Error", view.getMessage("pin_not_set") + "\n\n" + view.getMessage("pin_not_set_continue"))
+                                        .connect { it ->
+                                            if (it) {
+                                                if (view.doesPackageExist()) {
+                                                    view.openKhaltiSettings()
+                                                } else {
+                                                    compositeSignal.add(view.showPINDialog("Error", view.getMessage("khalti_not_found") + "\n\n" + view.getMessage("set_pin_in_browser"))
+                                                            .connect {
+                                                                if (it && EmptyUtil.isNotNull(pinWebLink)) {
 
-                                                                view.openLinkInBrowser(Constant.url + pinWebLink!!.substring(1))
-                                                            }
-                                                        })
+                                                                    view.openLinkInBrowser(Constant.url + pinWebLink!!.substring(1))
+                                                                }
+                                                            })
+                                                }
                                             }
-                                        }
-                                    })
-                            if (EmptyUtil.isNotNull(config.onErrorListener)) {
-                                config.onErrorListener!!.onError(ErrorAction.WALLET_INITIATE.action, message)
+                                        })
+                                if (EmptyUtil.isNotNull(config.onErrorListener)) {
+                                    config.onErrorListener!!.onError(ErrorAction.WALLET_INITIATE.action, errorMap.getValue("detail"))
+                                }
+                            } else {
+                                view.showMessageDialog("Error", errorMap.getValue("detail"))
                             }
-                        } else {
-                            if (EmptyUtil.isNull(message)) {
-                                message = ""
-                            }
-                            view.showMessageDialog("Error", message!!)
                         }
                     }
                 }
@@ -280,14 +280,16 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                         }
 
                         is Result.Error -> {
-                            var message = result.throwable.message
-                            if (EmptyUtil.isNull(message)) {
-                                message = ""
-                            }
-                            view.toggleProgressDialog("confirm", false)
-                            view.showMessageDialog("Error", message!!)
-                            if (EmptyUtil.isNotNull(config.onErrorListener)) {
-                                config.onErrorListener!!.onError(ErrorAction.WALLET_CONFIRM.action, message)
+                            val message = result.throwable.message
+                            if (EmptyUtil.isNotNull(message)) {
+                                val errorMap = JsonUtil.convertJsonStringToMap(message!!)
+
+
+                                view.toggleProgressDialog("confirm", false)
+                                view.showMessageDialog("Error", errorMap.getValue("detail"))
+                                if (EmptyUtil.isNotNull(config.onErrorListener)) {
+                                    config.onErrorListener!!.onError(ErrorAction.WALLET_CONFIRM.action, errorMap.getValue("detail"))
+                                }
                             }
                         }
 

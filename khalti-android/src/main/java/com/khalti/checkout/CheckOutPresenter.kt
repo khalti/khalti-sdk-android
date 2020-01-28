@@ -34,20 +34,20 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
                 .connect {
                     onTabSelected(uniqueList, it, barWidth)
                 })
-//        view.toggleIndicator(uniqueList.size > 1)
-//        view.setIndicatorBarWidth(barWidth)
-//
-//        HandlerUtil.delayedTask(1000) {
-//            compositeSignal.add(view.setPageScrollListener(currentPage)
-//                    .connect {
-//                        view.toggleToolbarShadow(it > 0)
-//                    })
-//        }
-//
-//        compositeSignal.add(view.getSearchViewMapInitSignal()
-//                .connect {
-//                    view.toggleSearch(uniqueList[currentPage].value, true)
-//                })
+        view.toggleIndicator(uniqueList.size > 1)
+        view.setIndicatorBarWidth(barWidth)
+
+        HandlerUtil.delayedTask(1000) {
+            compositeSignal.add(view.setPageScrollListener(currentPage)
+                    .connect {
+                        view.toggleToolbarShadow(it > 0)
+                    })
+        }
+
+        compositeSignal.add(view.getSearchViewMapInitSignal()
+                .connect {
+                    view.toggleSearch(uniqueList[currentPage].value, true)
+                })
     }
 
     override fun onDestroy() {

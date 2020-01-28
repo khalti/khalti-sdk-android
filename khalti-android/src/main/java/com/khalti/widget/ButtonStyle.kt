@@ -2,9 +2,10 @@ package com.khalti.widget
 
 
 import androidx.annotation.Keep
+import com.khalti.R
 
 @Keep
-enum class ButtonStyle(val id: Int) {
+enum class ButtonStyle(val value: Int) {
     BASIC(-1),
     KHALTI(0),
     EBANKING(1),

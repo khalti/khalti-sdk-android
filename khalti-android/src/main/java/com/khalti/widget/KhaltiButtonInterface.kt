@@ -15,10 +15,4 @@ interface KhaltiButtonInterface {
     fun setCustomView(view: View)
 
     fun setButtonStyle(style: ButtonStyle)
-
-    fun showCheckOut()
-
-    fun showCheckOut(config: Config)
-
-    fun destroyCheckOut()
 }

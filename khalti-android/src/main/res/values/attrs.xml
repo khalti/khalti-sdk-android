@@ -3,8 +3,12 @@
     <declare-styleable name="khalti">
         <attr name="text" format="string" />
         <attr name="button_style" format="enum">
-            <enum name="eBanking_dark" value="0" />
-            <enum name="eBanking_light" value="1" />
+            <enum name="basic" value="-1" />
+            <enum name="khalti" value="0" />
+            <enum name="e_banking" value="1" />
+            <enum name="m_banking" value="2" />
+            <enum name="sct" value="3" />
+            <enum name="connect_ips" value="4" />
         </attr>
     </declare-styleable>
 

@@ -4,6 +4,7 @@ import androidx.annotation.Keep
 import com.khalti.checkout.api.OnErrorListener
 import com.khalti.checkout.api.OnSuccessListener
 import com.khalti.utils.EmptyUtil
+import com.khalti.utils.LogUtil
 import java.io.Serializable
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -43,12 +44,14 @@ data class Config(
         fun mobile(mobile: String?) = apply { this.mobile = mobile }
         fun additionalData(additionalData: Map<String, Any>?) = apply {
             if (EmptyUtil.isNotNull(additionalData)) {
+                this.additionalData.clear()
                 this.additionalData.putAll(additionalData!!)
             }
         }
 
         fun paymentPreferences(paymentPreferences: List<PaymentPreference>?) = apply {
             if (EmptyUtil.isNotNull(paymentPreferences)) {
+                this.paymentPreferences.clear()
                 this.paymentPreferences.addAll(paymentPreferences!!)
             }
         }

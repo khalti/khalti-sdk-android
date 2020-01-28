@@ -1,17 +1,17 @@
 package com.khalti.widget
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.Keep
+import androidx.core.view.ViewCompat
 import com.khalti.R
 import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.KhaltiCheckOut
-import com.khalti.utils.ConfigUtil
-import com.khalti.utils.EmptyUtil
-import com.khalti.utils.Store
+import com.khalti.utils.*
 import kotlinx.android.synthetic.main.component_button.view.*
 
 @Keep
@@ -38,7 +38,7 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
         val message = presenter.onCheckConfig(config)
 
         if (EmptyUtil.isEmpty(message)) {
-            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, Store.getConfig())
+            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, config)
 
             require(EmptyUtil.isEmpty(message2)) { message2 }
         } else {
@@ -53,31 +53,9 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
     }
 
     override fun setButtonStyle(style: ButtonStyle) {
-        this.buttonStyle = style.id
+        this.buttonStyle = style.value
         presenter.onSetButtonStyle(buttonStyle)
         presenter.onSetButtonClick()
-    }
-
-    override fun showCheckOut() {
-        presenter.onOpenForm()
-    }
-
-    override fun showCheckOut(config: Config) {
-        this.config = config
-        val message = presenter.onCheckConfig(config)
-
-        if (EmptyUtil.isEmpty(message)) {
-            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, Store.getConfig())
-
-            require(EmptyUtil.isEmpty(message2)) { message2 }
-        } else {
-            throw IllegalArgumentException(message)
-        }
-        presenter.onOpenForm()
-    }
-
-    override fun destroyCheckOut() {
-        presenter.onDestroyCheckOut()
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
@@ -119,17 +97,17 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
         override fun setButtonStyle(id: Int) {
             var imageId = -1
             when (id) {
-                0 -> imageId = R.mipmap.ebanking_dark
-                1 -> imageId = R.mipmap.ebanking_light
-                2 -> imageId = R.mipmap.ebanking_light
-                3 -> imageId = R.mipmap.ebanking_light
-                4 -> imageId = R.mipmap.ebanking_light
+                0 -> imageId = R.drawable.bg_khalti
+                1 -> imageId = R.drawable.bg_ebanking
+                2 -> imageId = R.drawable.bg_mbanking
+                3 -> imageId = R.drawable.bg_sct
+                4 -> imageId = R.drawable.bg_connect_ips
             }
 
             if (imageId != -1) {
                 btnPay.visibility = View.GONE
                 flCustomView.visibility = View.GONE
-                flStyle.setBackgroundResource(imageId)
+                ViewCompat.setBackground(flStyle, ResourceUtil.getDrawable(context, imageId))
             }
         }
 
