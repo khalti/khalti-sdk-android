@@ -18,6 +18,7 @@ import com.khalti.checkout.helper.BaseComm
 import com.khalti.checkout.helper.PaymentPreference
 import com.khalti.signal.Signal
 import com.khalti.utils.*
+import kotlinx.android.synthetic.main.form.*
 import kotlinx.android.synthetic.main.form.view.*
 import java.util.*
 import kotlin.math.abs
@@ -118,8 +119,18 @@ class Form : Fragment(), FormContract.View {
         ViewUtil.setHint(mainView.tilMobile, label)
     }
 
+    override fun toggleAttemptRemaining(show: Boolean) {
+        if (EmptyUtil.isNotNull(mainView.elAttempts)) {
+            mainView.elAttempts.setExpanded(show, true)
+        }
+    }
+
     override fun setPinMessage(message: String) {
-        mainView.tvPinMessage?.text = message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info)
+        ViewUtil.setText(mainView.tvPinMessage, message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info))
+    }
+
+    override fun setAttemptsRemaining(attempts: String) {
+        ViewUtil.setText(mainView.tvAttemptsRemaining, attempts)
     }
 
     override fun setMobile(mobile: String) {

@@ -30,7 +30,11 @@ interface FormContract {
 
         fun toggleMobileLabel(paymentType: String)
 
+        fun toggleAttemptRemaining(show: Boolean)
+
         fun setPinMessage(message: String)
+
+        fun setAttemptsRemaining(attempts: String)
 
         fun setMobile(mobile: String)
 
@@ -83,7 +87,7 @@ interface FormContract {
 
         fun onConfirmWalletPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String)
 
-        fun onBankingPayment(isNetwork: Boolean, mobile:String)
+        fun onBankingPayment(isNetwork: Boolean, mobile: String)
     }
 
     interface Model {

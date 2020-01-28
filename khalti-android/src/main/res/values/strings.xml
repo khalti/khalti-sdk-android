@@ -43,6 +43,7 @@
     <string name="select_bank">Please select your bank</string>
     <string name="confirm_payment">Confirm Payment</string>
     <string name="set_pin">Set Khalti PIN</string>
+    <string name="attempts_remaining">Attempts Remaining</string>
 
     <!--Wallet-->
     <string name="init_payment">Initiating payment</string>
