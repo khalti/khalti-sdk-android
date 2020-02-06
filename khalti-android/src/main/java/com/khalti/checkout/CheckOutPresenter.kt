@@ -46,7 +46,7 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
 
         compositeSignal.add(view.getSearchViewMapInitSignal()
                 .connect {
-                    view.toggleSearch(uniqueList[currentPage].value, true)
+                    view.toggleSearch(uniqueList[currentPage].value, searchList.contains(uniqueList[currentPage].value))
                 })
     }
 
@@ -76,6 +76,6 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
         currentPage = it.getValue("position") as Int
         view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
         view.setIndicatorBarPosition(currentPage * barWidth)
-        view.toggleSearch(preferences[currentPage].value, true)
+        view.toggleSearch(preferences[currentPage].value, searchList.contains(preferences[currentPage].value))
     }
 }

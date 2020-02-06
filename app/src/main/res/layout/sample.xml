@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/globalPadding"
+        android:gravity="center"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
             android:text="Basic Button"
             android:textColor="@color/primaryText"
@@ -38,7 +38,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
             android:text="Khalti"
             android:textColor="@color/primaryText"
@@ -62,7 +61,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
             android:text="E-Banking"
             android:textColor="@color/primaryText"
@@ -86,7 +84,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
             android:text="Mobile Banking"
             android:textColor="@color/primaryText"
@@ -110,7 +107,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
             android:text="SCT"
             android:textColor="@color/primaryText"
@@ -134,7 +130,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
             android:text="Connect IPS"
             android:textColor="@color/primaryText"
@@ -171,8 +166,9 @@
             android:layout_margin="@dimen/globalPadding"
             android:minWidth="@dimen/carbonX_buttonWidth1"
             android:minHeight="@dimen/carbonX_buttonHeight"
-            android:text="More s"
+            android:text="More"
             android:textAllCaps="true"
+            android:textColor="@color/white"
             android:theme="@style/Theme.MaterialComponents"
             app:backgroundTint="@color/khaltiPrimary"
             app:cornerRadius="2dp"

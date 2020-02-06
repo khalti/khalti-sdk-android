@@ -49,7 +49,6 @@ public class MoreSamples extends AppCompatActivity {
         Long amount = 100L; // In Paisa
 
 
-
         /*
          * Very important
          */
@@ -144,12 +143,9 @@ public class MoreSamples extends AppCompatActivity {
             final KhaltiCheckOut khaltiCheckOut3 = new KhaltiCheckOut(MoreSamples.this, config);
 
             // Add Click Listener To Java Khalti Button
-            khaltiButton2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Show The khalti Checkout Activity on Button Click
-                    khaltiCheckOut3.show();
-                }
+            khaltiButton2.setOnClickListener(view1 -> {
+                // Show The khalti Checkout Activity on Button Click
+                khaltiCheckOut3.show();
             });
             // Loading the Khalti Checkout Activity without the user clicking the khalti Button
             khaltiButton2.performClick();
