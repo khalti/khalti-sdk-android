@@ -3,9 +3,11 @@ package com.khaltiSample;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.khalti.checkout.api.OnCheckOutListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.PaymentPreference;
@@ -17,6 +19,7 @@ import com.khalti.widget.KhaltiButton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,9 +53,17 @@ public class Sample extends AppCompatActivity {
             put("merchant_extra_2", "This is extra data 2");
         }};
 
-        Config mainConfig = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L)
-                .onSuccess(data -> LogUtil.log("success", data))
-                .onError(LogUtil::log)
+        Config mainConfig = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull String message) {
+                LogUtil.log(action, message);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, ?> data) {
+                LogUtil.log("success", data);
+            }
+        })
                 .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.KHALTI);
@@ -64,9 +75,17 @@ public class Sample extends AppCompatActivity {
                 .additionalData(map)
                 .build();
 
-        Config khaltiConfig = new Config.Builder(Constant.pub, "Product ID", "Khalti", 1100L)
-                .onSuccess(data -> LogUtil.log("success", data))
-                .onError(LogUtil::log)
+        Config khaltiConfig = new Config.Builder(Constant.pub, "Product ID", "Khalti", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull String message) {
+                LogUtil.log(action, message);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, ?> data) {
+                LogUtil.log("success", data);
+            }
+        })
                 .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.KHALTI);
@@ -74,9 +93,17 @@ public class Sample extends AppCompatActivity {
                 .additionalData(map)
                 .build();
 
-        Config eBankingConfig = new Config.Builder(Constant.pub, "Product ID", "E Banking", 1100L)
-                .onSuccess(data -> LogUtil.log("success", data))
-                .onError(LogUtil::log)
+        Config eBankingConfig = new Config.Builder(Constant.pub, "Product ID", "E Banking", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull String message) {
+                LogUtil.log(action, message);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, ?> data) {
+                LogUtil.log("success", data);
+            }
+        })
                 .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.EBANKING);
@@ -84,9 +111,17 @@ public class Sample extends AppCompatActivity {
                 .additionalData(map)
                 .build();
 
-        Config mBankingConfig = new Config.Builder(Constant.pub, "Product ID", "M Banking", 1100L)
-                .onSuccess(data -> LogUtil.log("success", data))
-                .onError(LogUtil::log)
+        Config mBankingConfig = new Config.Builder(Constant.pub, "Product ID", "M Banking", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull String message) {
+                LogUtil.log(action, message);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, ?> data) {
+                LogUtil.log("success", data);
+            }
+        })
                 .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.MOBILE_BANKING);
@@ -94,9 +129,17 @@ public class Sample extends AppCompatActivity {
                 .additionalData(map)
                 .build();
 
-        Config sctConfig = new Config.Builder(Constant.pub, "Product ID", "SCT", 1100L)
-                .onSuccess(data -> LogUtil.log("success", data))
-                .onError(LogUtil::log)
+        Config sctConfig = new Config.Builder(Constant.pub, "Product ID", "SCT", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull String message) {
+                LogUtil.log(action, message);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, ?> data) {
+                LogUtil.log("success", data);
+            }
+        })
                 .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.SCT);
@@ -104,9 +147,17 @@ public class Sample extends AppCompatActivity {
                 .additionalData(map)
                 .build();
 
-        Config connectIpsConfig = new Config.Builder(Constant.pub, "Product ID", "Connect IPS", 1100L)
-                .onSuccess(data -> LogUtil.log("success", data))
-                .onError(LogUtil::log)
+        Config connectIpsConfig = new Config.Builder(Constant.pub, "Product ID", "Connect IPS", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull String message) {
+                LogUtil.log(action, message);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, ?> data) {
+                LogUtil.log("success", data);
+            }
+        })
                 .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.CONNECT_IPS);

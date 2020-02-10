@@ -8,5 +8,5 @@ import java.io.Serializable
 interface OnCheckOutListener : Serializable{
     fun onSuccess(data: Map<String, Any>)
 
-//    fun onError(action: String, message: String)
+    fun onError(action: String, message: String)
 }

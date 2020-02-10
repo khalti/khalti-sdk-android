@@ -88,6 +88,8 @@ interface FormContract {
         fun onConfirmWalletPayment(isNetwork: Boolean, confirmationCode: String, transactionPin: String)
 
         fun onBankingPayment(isNetwork: Boolean, mobile: String)
+
+        fun onSetFormError(errorMap: Map<String, String>)
     }
 
     interface Model {

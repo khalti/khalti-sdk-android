@@ -36,14 +36,7 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
     override fun setCheckOutConfig(config: Config) {
         this.config = config
         val message = presenter.onCheckConfig(config)
-
-        if (EmptyUtil.isEmpty(message)) {
-            val message2 = ConfigUtil.validateIfConfigIsSerializable(context, config)
-
-            require(EmptyUtil.isEmpty(message2)) { message2 }
-        } else {
-            throw IllegalArgumentException(message)
-        }
+        require(EmptyUtil.isEmpty(message)) { message }
     }
 
     override fun setCustomView(view: View) {

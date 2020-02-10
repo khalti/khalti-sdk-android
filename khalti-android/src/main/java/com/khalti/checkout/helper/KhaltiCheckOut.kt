@@ -27,13 +27,7 @@ class KhaltiCheckOut : KhaltiCheckOutInterface {
         if (EmptyUtil.isNotNull(config)) {
             val message = ConfigUtil.validateConfig(config!!)
 
-            if (EmptyUtil.isEmpty(message)) {
-                val message2 = ConfigUtil.validateIfConfigIsSerializable(context, config!!)
-
-                require(EmptyUtil.isEmpty(message2)) { message2 }
-            } else {
-                throw IllegalArgumentException(message)
-            }
+            require(EmptyUtil.isEmpty(message)) { message }
 
             Store.setConfig(config)
             ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
@@ -46,14 +40,7 @@ class KhaltiCheckOut : KhaltiCheckOutInterface {
 
         if (EmptyUtil.isNotNull(config)) {
             val message = ConfigUtil.validateConfig(config!!)
-
-            if (EmptyUtil.isEmpty(message)) {
-                val message2 = ConfigUtil.validateIfConfigIsSerializable(context, config)
-
-                require(EmptyUtil.isEmpty(message2)) { message2 }
-            } else {
-                throw IllegalArgumentException(message)
-            }
+            require(EmptyUtil.isEmpty(message)) { message }
 
             Store.setConfig(config)
             ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)

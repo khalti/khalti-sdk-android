@@ -211,15 +211,26 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                         if (EmptyUtil.isNotNull(message)) {
                             val errorMap = JsonUtil.convertJsonStringToMap(message!!)
 
-                            view.showMessageDialog("Error", errorMap.getValue("detail"))
+                            onSetFormError(errorMap)
+
+                            if (errorMap.containsKey("detail")) {
+                                view.showMessageDialog("Error", errorMap.getValue("detail"))
+                            }
 
                             view.toggleAttemptRemaining(errorMap.containsKey("tries_remaining"))
                             if (errorMap.containsKey("tries_remaining")) {
                                 view.setAttemptsRemaining(errorMap.getValue("tries_remaining"))
                             }
 
-                            if (EmptyUtil.isNotNull(config.onErrorListener)) {
-                                config.onErrorListener!!.onError(ErrorAction.WALLET_INITIATE.action, errorMap.getValue("detail"))
+                            if (EmptyUtil.isNotNull(config.onCheckOutListener)) {
+                                var errorMessage = ""
+
+                                if (errorMap.containsKey("detail")) {
+                                    errorMessage = errorMap.getValue("detail")
+                                } else if (errorMap.containsKey("error_key")) {
+                                    errorMessage = errorMap.getValue("error_key")
+                                }
+                                config.onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.action, errorMessage)
                             }
                         }
                     }
@@ -259,7 +270,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                                     data["product_identity"] = walletConfirmPojo.productIdentity!!
                                 }
 
-                                config.onSuccessListener?.onSuccess(data)
+                                config.onCheckOutListener.onSuccess(data)
                                 view.closeWidget()
                             }
 
@@ -271,9 +282,21 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                                 val errorMap = JsonUtil.convertJsonStringToMap(message!!)
 
                                 view.toggleProgressDialog("confirm", false)
-                                view.showMessageDialog("Error", errorMap.getValue("detail"))
-                                if (EmptyUtil.isNotNull(config.onErrorListener)) {
-                                    config.onErrorListener!!.onError(ErrorAction.WALLET_CONFIRM.action, errorMap.getValue("detail"))
+
+                                onSetFormError(errorMap)
+
+                                if (errorMap.containsKey("detail")) {
+                                    view.showMessageDialog("Error", errorMap.getValue("detail"))
+                                }
+                                if (EmptyUtil.isNotNull(config.onCheckOutListener)) {
+                                    var errorMessage = ""
+
+                                    if (errorMap.containsKey("detail")) {
+                                        errorMessage = errorMap.getValue("detail")
+                                    } else if (errorMap.containsKey("error_key")) {
+                                        errorMessage = errorMap.getValue("error_key")
+                                    }
+                                    config.onCheckOutListener.onError(ErrorAction.WALLET_CONFIRM.action, errorMessage)
                                 }
                             }
                         }
@@ -291,6 +314,18 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
             view.openBanking(PayloadUtil.buildPayload(mobile, paymentType, paymentType, paymentType, view.packageName, config))
         } else {
             view.showNetworkError()
+        }
+    }
+
+    override fun onSetFormError(errorMap: Map<String, String>) {
+        if (errorMap.containsKey("mobile")) {
+            view.setEditTextError("mobile", errorMap.getValue("mobile"))
+        }
+        if (errorMap.containsKey("pin")) {
+            view.setEditTextError("pin", errorMap.getValue("pin"))
+        }
+        if (errorMap.containsKey("code")) {
+            view.setEditTextError("code", errorMap.getValue("code"))
         }
     }
 }

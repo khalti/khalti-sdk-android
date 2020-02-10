@@ -1,6 +1,5 @@
 package com.khalti.utils
 
-import android.content.Context
 import com.khalti.checkout.helper.Config
 
 class ConfigUtil {
@@ -32,20 +31,10 @@ class ConfigUtil {
             if (EmptyUtil.isEmpty(config.amount)) {
                 return "Amount cannot be 0"
             }
-            if (EmptyUtil.isNull(config.onSuccessListener)) {
-                return "Success listener should be set and cannot be null"
-            }
-            if (EmptyUtil.isNull(config.onErrorListener)) {
-                return "Error listener should be set and cannot be null"
+            if (EmptyUtil.isNull(config.onCheckOutListener)) {
+                return "CheckOut listener should be set and cannot be null"
             }
 
-            return ""
-        }
-
-        fun validateIfConfigIsSerializable(context: Context, config: Config): String {
-            if (!FileStorageUtil.writeIntoFile(context, "Config", config)) {
-                return "Success Listener, Error Listener and Additional data needs to be serializable. Please make sure the values you passed can be serialized"
-            }
             return ""
         }
     }

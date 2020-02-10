@@ -7,12 +7,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.khalti.checkout.api.OnCheckOutListener;
+import com.khalti.checkout.api.OnSuccessListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
+import com.khalti.utils.FileStorageUtil;
+import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,10 +60,21 @@ public class MoreSamples extends AppCompatActivity {
          * Very important
          */
         // Config must me initialize ahead
-        config = new Config.Builder(publicKey, productId, productName, amount)
-                .onSuccess(data -> Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show())
-                .onError((action, message) -> Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show())
+        config = new Config.Builder(publicKey, productId, productName, amount, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull String message) {
+                Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, ?> data) {
+                Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show();
+            }
+        })
                 .build();
+
+        FileStorageUtil.writeIntoFile(this, "test", (OnSuccessListener) data -> {
+        });
 
         // Init The Buttons
         initKhaltiButton();
@@ -65,6 +83,10 @@ public class MoreSamples extends AppCompatActivity {
         initCustomButtonWithCustomClickListener();
         initKhaltiButtonWithJava();
         initCustomButtonExecuteFromJava();
+    }
+
+    void showSuccesss() {
+        Toast.makeText(this, "Success ", Toast.LENGTH_SHORT).show();
     }
 
     /**

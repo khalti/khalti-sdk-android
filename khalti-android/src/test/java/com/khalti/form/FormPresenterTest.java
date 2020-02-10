@@ -24,8 +24,6 @@ public class FormPresenterTest {
     FormModel model;
     @Mock
     Config config;
-    @Mock
-    OnCheckOutListener onCheckOutListener;
 
 
     /*private WalletPresenter walletPresenter;

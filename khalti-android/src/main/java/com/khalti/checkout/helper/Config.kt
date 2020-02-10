@@ -1,6 +1,7 @@
 package com.khalti.checkout.helper
 
 import androidx.annotation.Keep
+import com.khalti.checkout.api.OnCheckOutListener
 import com.khalti.checkout.api.OnErrorListener
 import com.khalti.checkout.api.OnSuccessListener
 import com.khalti.utils.EmptyUtil
@@ -15,9 +16,8 @@ data class Config(
         val productId: String,
         val productName: String,
         val amount: Long,
+        val onCheckOutListener: OnCheckOutListener,
 
-        val onSuccessListener: OnSuccessListener?,
-        val onErrorListener: OnErrorListener?,
         val mobile: String?,
         val productUrl: String?,
         val additionalData: Map<String, Any>?,
@@ -28,18 +28,14 @@ data class Config(
             private val publicKey: String,
             private val productId: String,
             private val productName: String,
-            private val amount: Long
+            private val amount: Long,
+            private val onCheckOutListener: OnCheckOutListener
     ) {
         private var productUrl: String? = null
         private var mobile: String? = null
         private var additionalData: MutableMap<String, Any> = HashMap()
         private var paymentPreferences: MutableList<PaymentPreference> = ArrayList()
 
-        private var onSuccessListener: OnSuccessListener? = null
-        private var onErrorListener: OnErrorListener? = null
-
-        fun onSuccess(onSuccessListener: OnSuccessListener) = apply { this.onSuccessListener = onSuccessListener }
-        fun onError(onErrorListener: OnErrorListener) = apply { this.onErrorListener = onErrorListener }
         fun productUrl(productUrl: String?) = apply { this.productUrl = productUrl }
         fun mobile(mobile: String?) = apply { this.mobile = mobile }
         fun additionalData(additionalData: Map<String, Any>?) = apply {
@@ -61,8 +57,7 @@ data class Config(
                 productId,
                 productName,
                 amount,
-                onSuccessListener,
-                onErrorListener,
+                onCheckOutListener,
                 productUrl,
                 mobile,
                 additionalData,
