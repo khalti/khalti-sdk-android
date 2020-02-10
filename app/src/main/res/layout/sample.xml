@@ -10,9 +10,9 @@
         android:id="@+id/llContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/globalPadding"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/globalPadding">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -108,17 +108,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/editTextPadding"
-            android:text="SCT"
+            android:text="Connect IPS"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <com.khalti.widget.KhaltiButton
-            android:id="@+id/kbSct"
+            android:id="@+id/kbConnectIps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="sct"
+            khalti:button_style="connect_ips"
             khalti:text="Pay Rs 200" />
 
         <View
@@ -131,17 +131,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/editTextPadding"
-            android:text="Connect IPS"
+            android:text="SCT"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <com.khalti.widget.KhaltiButton
-            android:id="@+id/kbConnectIps"
+            android:id="@+id/kbSct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="connect_ips"
+            khalti:button_style="sct"
             khalti:text="Pay Rs 200" />
 
         <View
@@ -175,4 +175,3 @@
             app:rippleColor="@color/defaultRipple" />
     </LinearLayout>
 </ScrollView>
-

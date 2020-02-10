@@ -63,8 +63,8 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
             uniqueList.add(PaymentPreference.KHALTI)
             uniqueList.add(PaymentPreference.EBANKING)
             uniqueList.add(PaymentPreference.MOBILE_BANKING)
-            uniqueList.add(PaymentPreference.SCT)
             uniqueList.add(PaymentPreference.CONNECT_IPS)
+            uniqueList.add(PaymentPreference.SCT)
         } else {
             uniqueList.addAll(LinkedHashSet<PaymentPreference>(types))
         }
