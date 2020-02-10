@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.widget.AppCompatTextView
@@ -90,7 +92,8 @@ class UserInterfaceUtil {
             }
 
             tvTitle.text = title
-            tvBody.text = body
+            tvBody.text = Html.fromHtml(body)
+            tvBody.movementMethod = LinkMovementMethod.getInstance()
 
             flPositiveAction.setOnClickListener {
                 infoDialog?.dismiss()

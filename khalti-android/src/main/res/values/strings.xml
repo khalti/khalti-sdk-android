@@ -8,6 +8,7 @@
     <string name="generic_error">Something went wrong</string>
     <string name="code_sms_info">Khalti has sent a confirmation code in your Khalti registered number. Enter the confirmation code below</string>
     <string name="pin_sms_info">Enter Khalti Pin for user verification. In case you have not set your PIN goto \'Settings\' option in Khalti App</string>
+    <string name="pin_error">Your third party transactions has been locked indefinitely. Please reset your Khalti PIN to unlock third party transactions.&lt;br /&gt;&lt;br /&gt;Would you like to reset your Khalti PIN?</string>
     <string name="sms_info">Enter the PIN below</string>
     <string name="slogan">पैसा को नयाँ ठेगाना</string>
     <string name="title">Choose your payment method</string>

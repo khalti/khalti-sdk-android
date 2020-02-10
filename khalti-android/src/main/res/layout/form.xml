@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/globalPadding"
+                android:layout_marginBottom="@dimen/singleBottomMargin"
                 android:orientation="vertical"
                 android:visibility="visible">
 
@@ -54,7 +55,7 @@
                 android:layout_marginLeft="@dimen/globalPadding"
                 android:layout_marginTop="@dimen/cardPadding"
                 android:layout_marginRight="@dimen/globalPadding"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/grey"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">

@@ -33,6 +33,8 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
     private var map: Map<String, Any>? = null
     private var paymentType = "wallet"
 
+    private val transactionPINUrl = "#/account/transaction_pin"
+
     init {
         view.setPresenter(this)
     }
@@ -108,8 +110,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                             if (view.doesPackageExist()) {
                                 view.openKhaltiSettings()
                             } else {
-                                pinWebLink = "/#/account/transaction_pin"
-                                view.openLinkInBrowser(Constant.url + pinWebLink!!.substring(1))
+                                view.openLinkInBrowser(Constant.url + transactionPINUrl)
                             }
                         })
             }
@@ -213,7 +214,18 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
                             onSetFormError(errorMap)
 
-                            if (errorMap.containsKey("detail")) {
+                            if (errorMap.containsKey("error_key") && errorMap.getValue("error_key") == "third_party_transaction_locked") {
+                                compositeSignal.add(view.showMessageDialog("Error", view.getMessage("pin_error"))
+                                        .connect {
+                                            if (it) {
+                                                if (view.doesPackageExist()) {
+                                                    view.openKhaltiSettings()
+                                                } else {
+                                                    view.openLinkInBrowser(Constant.url + transactionPINUrl)
+                                                }
+                                            }
+                                        })
+                            } else if (errorMap.containsKey("detail")) {
                                 view.showMessageDialog("Error", errorMap.getValue("detail"))
                             }
 
@@ -321,11 +333,11 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
         if (errorMap.containsKey("mobile")) {
             view.setEditTextError("mobile", errorMap.getValue("mobile"))
         }
-        if (errorMap.containsKey("pin")) {
-            view.setEditTextError("pin", errorMap.getValue("pin"))
+        if (errorMap.containsKey("transaction_pin")) {
+            view.setEditTextError("pin", errorMap.getValue("transaction_pin"))
         }
-        if (errorMap.containsKey("code")) {
-            view.setEditTextError("code", errorMap.getValue("code"))
+        if (errorMap.containsKey("confirmation_code")) {
+            view.setEditTextError("code", errorMap.getValue("confirmation_code"))
         }
     }
 }

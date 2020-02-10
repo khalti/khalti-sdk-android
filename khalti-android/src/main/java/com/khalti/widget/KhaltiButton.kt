@@ -100,7 +100,7 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
             if (imageId != -1) {
                 btnPay.visibility = View.GONE
                 flCustomView.visibility = View.GONE
-                ViewCompat.setBackground(flStyle, ResourceUtil.getDrawable(context, imageId))
+                ViewCompat.setBackground(mrStyle, ResourceUtil.getDrawable(context, imageId))
             }
         }
 
@@ -116,7 +116,7 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
 
             when {
                 EmptyUtil.isNotNull(customView) -> flCustomView.getChildAt(0).setOnClickListener(clickListener)
-                buttonStyle != -1 -> flStyle.setOnClickListener(clickListener)
+                buttonStyle != -1 -> mrStyle.setOnClickListener(clickListener)
                 else -> btnPay.setOnClickListener(clickListener)
             }
         }

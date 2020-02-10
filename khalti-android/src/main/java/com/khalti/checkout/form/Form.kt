@@ -214,12 +214,9 @@ class Form : Fragment(), FormContract.View {
         UserInterfaceUtil.showSnackBar(fragmentActivity, baseComm.getCoordinator(), ResourceUtil.getString(fragmentActivity, R.string.network_error_body), null, Snackbar.LENGTH_LONG)
     }
 
-    override fun showMessageDialog(title: String, message: String) {
-        UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, autoDismiss = true, cancelable = true, positiveText = ResourceUtil.getString(fragmentActivity, R.string.got_it), negativeText = null)
+    override fun showMessageDialog(title: String, message: String): Signal<Boolean> {
+        return UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, autoDismiss = true, cancelable = true, positiveText = ResourceUtil.getString(fragmentActivity, R.string.ok), negativeText = ResourceUtil.getString(fragmentActivity, R.string.cancel))
     }
-
-    override fun showPINDialog(title: String, message: String): Signal<Boolean> =
-            UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, autoDismiss = true, cancelable = true, positiveText = ResourceUtil.getString(fragmentActivity, R.string.ok), negativeText = ResourceUtil.getString(fragmentActivity, R.string.cancel))
 
     override fun showSlogan() {
         Toast.makeText(fragmentActivity, ResourceUtil.getString(fragmentActivity, R.string.slogan), Toast.LENGTH_SHORT).show()
@@ -234,10 +231,10 @@ class Form : Fragment(), FormContract.View {
                 drawable = R.drawable.khalti_logo_full
             }
             PaymentPreference.CONNECT_IPS.value -> {
-                drawable = R.mipmap.connect_ips
+                drawable = R.drawable.connect_ips
             }
             PaymentPreference.SCT.value -> {
-                drawable = R.mipmap.connect_ips
+                drawable = R.drawable.sct
             }
         }
 
@@ -264,7 +261,6 @@ class Form : Fragment(), FormContract.View {
             startActivity(i)
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
-
         }
     }
 
@@ -296,6 +292,7 @@ class Form : Fragment(), FormContract.View {
             "pin_not_set_continue" -> ResourceUtil.getString(fragmentActivity, R.string.pin_not_set_continue)
             "khalti_not_found" -> ResourceUtil.getString(fragmentActivity, R.string.khalti_not_found)
             "set_pin_in_browser" -> ResourceUtil.getString(fragmentActivity, R.string.set_pin_in_browser)
+            "pin_error" -> ResourceUtil.getString(fragmentActivity, R.string.pin_error)
             else -> ""
         }
     }

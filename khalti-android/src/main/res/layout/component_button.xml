@@ -27,15 +27,22 @@
         android:id="@+id/flCustomView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:mrl_rippleColor="@color/defaultRipple" />
+        android:layout_gravity="center" />
 
-    <FrameLayout
-        android:id="@+id/flStyle"
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/mrStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:minWidth="210dp"
         android:minHeight="60dp"
-        app:mrl_rippleColor="@color/defaultRipple" />
+        app:mrl_rippleColor="@color/defaultRipple"
+        app:mrl_rippleDimension="60dp"
+        app:mrl_rippleOverlay="true"
+        app:mrl_rippleRoundedCorners="2dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+    </com.balysv.materialripple.MaterialRippleLayout>
 </FrameLayout>
