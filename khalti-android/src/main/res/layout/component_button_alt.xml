@@ -12,6 +12,6 @@
     android:textColor="@color/white"
     android:theme="@style/Theme.MaterialComponents"
     app:backgroundTint="@color/khaltiPrimary"
-    app:cornerRadius="10dp"
+    app:cornerRadius="2dp"
     app:elevation="2dp"
     app:rippleColor="@color/defaultRipple" />
