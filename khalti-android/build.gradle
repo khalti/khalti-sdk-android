@@ -95,7 +95,7 @@ dependencies {
     testImplementation test.hamcrest
     testImplementation test.powerMockJUnit
     testImplementation test.powerMockMockito
-    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "androidx.core:core-ktx:1.2.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
 }

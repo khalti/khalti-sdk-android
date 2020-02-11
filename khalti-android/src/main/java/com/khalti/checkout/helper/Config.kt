@@ -24,6 +24,7 @@ data class Config(
         val paymentPreferences: MutableList<PaymentPreference>?
 ) : Serializable {
 
+    @Keep
     class Builder(
             private val publicKey: String,
             private val productId: String,

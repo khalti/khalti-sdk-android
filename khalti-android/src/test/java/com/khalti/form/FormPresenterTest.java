@@ -12,18 +12,18 @@ import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({FormPresenter.class, Store.class})
+//@RunWith(PowerMockRunner.class)
+//@PrepareForTest({FormPresenter.class, Store.class})
 public class FormPresenterTest {
 
-    private FormPresenter formPresenter;
+    /*private FormPresenter formPresenter;
 
     @Mock
     private FormContract.View view;
     @Mock
     FormModel model;
     @Mock
-    Config config;
+    Config config;*/
 
 
     /*private WalletPresenter walletPresenter;

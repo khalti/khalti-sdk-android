@@ -1,12 +1,14 @@
 package com.khalti.checkout.helper
 
 import android.content.Context
+import androidx.annotation.Keep
 import com.khalti.checkout.CheckOutActivity
 import com.khalti.utils.ActivityUtil
 import com.khalti.utils.ConfigUtil
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.Store
 
+@Keep
 class KhaltiCheckOut : KhaltiCheckOutInterface {
 
     private var context: Context

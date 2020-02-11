@@ -26,7 +26,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class Sample extends AppCompatActivity {
-
     @BindView(R.id.kbPay)
     KhaltiButton khaltiButton;
     @BindView(R.id.btnMore)

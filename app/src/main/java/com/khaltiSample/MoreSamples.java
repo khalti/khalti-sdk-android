@@ -11,12 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.khalti.checkout.api.OnCheckOutListener;
-import com.khalti.checkout.api.OnSuccessListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
-import com.khalti.utils.FileStorageUtil;
-import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
 import java.util.Map;
@@ -72,9 +69,6 @@ public class MoreSamples extends AppCompatActivity {
             }
         })
                 .build();
-
-        FileStorageUtil.writeIntoFile(this, "test", (OnSuccessListener) data -> {
-        });
 
         // Init The Buttons
         initKhaltiButton();
