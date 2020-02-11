@@ -1,34 +1,6 @@
 package com.khalti.checkout;
 
-import com.khalti.checkout.api.OnCheckOutListener;
-import com.khalti.checkout.helper.CheckoutEventListener;
-import com.khalti.checkout.helper.Config;
-import com.khalti.checkout.helper.PaymentPreference;
-import com.khalti.signal.Signal;
-import com.khalti.utils.Constant;
-import com.khalti.utils.Store;
-
-import org.jetbrains.annotations.NotNull;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyBoolean;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 
 //@RunWith(PowerMockRunner.class)
 //@PrepareForTest({CheckOutPresenter.class, Store.class})

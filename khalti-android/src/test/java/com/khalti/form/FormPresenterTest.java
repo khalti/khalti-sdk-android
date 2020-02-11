@@ -1,17 +1,5 @@
 package com.khalti.form;
 
-import com.khalti.checkout.api.OnCheckOutListener;
-import com.khalti.checkout.form.FormContract;
-import com.khalti.checkout.form.FormModel;
-import com.khalti.checkout.form.FormPresenter;
-import com.khalti.checkout.helper.Config;
-import com.khalti.utils.Store;
-
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
 //@RunWith(PowerMockRunner.class)
 //@PrepareForTest({FormPresenter.class, Store.class})
 public class FormPresenterTest {

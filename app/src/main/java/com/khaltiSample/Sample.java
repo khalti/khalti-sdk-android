@@ -7,18 +7,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
-import com.khalti.checkout.api.OnCheckOutListener;
+import com.khalti.checkout.helper.OnCheckOutListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.PaymentPreference;
 import com.khalti.utils.Constant;
 import com.khalti.utils.LogUtil;
-import com.khalti.utils.Store;
 import com.khalti.widget.KhaltiButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -59,7 +57,7 @@ public class Sample extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 LogUtil.log("success", data);
             }
         })
@@ -81,7 +79,7 @@ public class Sample extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 LogUtil.log("success", data);
             }
         })
@@ -99,7 +97,7 @@ public class Sample extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 LogUtil.log("success", data);
             }
         })
@@ -117,7 +115,7 @@ public class Sample extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 LogUtil.log("success", data);
             }
         })
@@ -135,7 +133,7 @@ public class Sample extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 LogUtil.log("success", data);
             }
         })
@@ -153,7 +151,7 @@ public class Sample extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 LogUtil.log("success", data);
             }
         })

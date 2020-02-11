@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.khalti.checkout.api.OnCheckOutListener;
+import com.khalti.checkout.helper.OnCheckOutListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
@@ -64,7 +64,7 @@ public class MoreSamples extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(@NonNull Map<String, ?> data) {
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show();
             }
         })
