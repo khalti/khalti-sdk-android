@@ -14,16 +14,14 @@ import java.util.List;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private List<String> pendingTitles = new ArrayList<>();
     private List<Fragment> pendingFragments = new ArrayList<>();
 
     public ViewPagerAdapter(FragmentActivity fa) {
         super(fa);
     }
 
-    public void addFrag(Fragment fragment, String title) {
+    public void addFrag(Fragment fragment) {
         pendingFragments.add(fragment);
-        pendingTitles.add(title);
     }
 
     @NonNull

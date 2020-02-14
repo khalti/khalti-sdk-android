@@ -32,6 +32,10 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
     private val searchViewMap = HashMap<String, SearchView>()
     private val searchViewMapInitSignal = Signal<Any>()
 
+    companion object {
+        var isActive: Boolean = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_activity)
@@ -40,6 +44,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
 
         Store.setBaseComm(this)
 
+        isActive = true
         presenter = CheckOutPresenter(this)
         presenter.onCreate()
     }
@@ -47,6 +52,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDestroy()
+        isActive = false
     }
 
     override fun toggleTab(position: Int, selected: Boolean, id: String) {
@@ -84,7 +90,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
                 dataMap["payment_type"] = p.value
                 bundle.putSerializable("map", dataMap)
                 fragment.arguments = bundle
-                adapter.addFrag(fragment, map["title"].toString())
+                adapter.addFrag(fragment)
             }
         }
 

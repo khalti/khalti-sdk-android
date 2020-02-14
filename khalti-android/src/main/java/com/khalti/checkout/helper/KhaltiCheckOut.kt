@@ -3,10 +3,7 @@ package com.khalti.checkout.helper
 import android.content.Context
 import androidx.annotation.Keep
 import com.khalti.checkout.CheckOutActivity
-import com.khalti.utils.ActivityUtil
-import com.khalti.utils.ConfigUtil
-import com.khalti.utils.EmptyUtil
-import com.khalti.utils.Store
+import com.khalti.utils.*
 
 @Keep
 class KhaltiCheckOut : KhaltiCheckOutInterface {
@@ -24,28 +21,33 @@ class KhaltiCheckOut : KhaltiCheckOutInterface {
     }
 
     override fun show() {
-        require(EmptyUtil.isNotNull(config)) { "Config not set" }
+        if (!CheckOutActivity.isActive) {
+            require(EmptyUtil.isNotNull(config)) { "Config not set" }
 
-        if (EmptyUtil.isNotNull(config)) {
-            val message = ConfigUtil.validateConfig(config!!)
+            if (EmptyUtil.isNotNull(config)) {
+                val message = ConfigUtil.validateConfig(config!!)
 
-            require(EmptyUtil.isEmpty(message)) { message }
+                require(EmptyUtil.isEmpty(message)) { message }
 
-            Store.setConfig(config)
-            ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
+                Store.setConfig(config)
+                LogUtil.log("is active", CheckOutActivity.isActive)
+                ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
+            }
         }
     }
 
     override fun show(config: Config?) {
-        this.config = config
-        require(EmptyUtil.isNotNull(config)) { "Config not set" }
+        if (!CheckOutActivity.isActive) {
+            this.config = config
+            require(EmptyUtil.isNotNull(config)) { "Config not set" }
 
-        if (EmptyUtil.isNotNull(config)) {
-            val message = ConfigUtil.validateConfig(config!!)
-            require(EmptyUtil.isEmpty(message)) { message }
+            if (EmptyUtil.isNotNull(config)) {
+                val message = ConfigUtil.validateConfig(config!!)
+                require(EmptyUtil.isEmpty(message)) { message }
 
-            Store.setConfig(config)
-            ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
+                Store.setConfig(config)
+                ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
+            }
         }
     }
 
