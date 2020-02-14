@@ -15,7 +15,6 @@ public class Config {
     private String productName;
     private Long amount;
     private OnCheckOutListener onCheckOutListener;
-
     @Nullable
     private String mobile;
     @Nullable
@@ -101,7 +100,6 @@ public class Config {
         private String productName;
         private Long amount;
         private OnCheckOutListener onCheckOutListener;
-
         @Nullable
         private String mobile;
         @Nullable

@@ -12,15 +12,11 @@ interface CheckOutContract {
 
         fun toggleToolbarShadow(show: Boolean)
 
-        fun toggleIndicator(show: Boolean)
-
-        fun setIndicatorBarWidth(width: Int)
-
-        fun setIndicatorBarPosition(position: Int)
-
         fun toggleTitle(show: Boolean)
 
         fun toggleSearch(paymentType: String, show: Boolean)
+
+        fun toggleLoading(show: Boolean)
 
         fun setupViewPager(types: List<PaymentPreference>)
 
@@ -45,6 +41,6 @@ interface CheckOutContract {
 
         fun onGetPreferenceList(config: Config): List<PaymentPreference>
 
-        fun onTabSelected(preferences: List<PaymentPreference>, it: Map<String, Any>, barWidth: Int)
+        fun onTabSelected(preferences: List<PaymentPreference>, it: Map<String, Any>)
     }
 }

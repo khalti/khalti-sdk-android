@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nsvContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -18,8 +19,7 @@
                 android:id="@+id/llBranding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/globalPadding"
-                android:layout_marginBottom="@dimen/singleBottomMargin"
+                android:layout_marginTop="@dimen/globalPadding2"
                 android:orientation="vertical"
                 android:visibility="visible">
 
@@ -47,68 +47,6 @@
                         app:fontFamily="@font/roboto" />
                 </FrameLayout>
             </LinearLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvPinMessage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/globalPadding"
-                android:layout_marginTop="@dimen/cardPadding"
-                android:layout_marginRight="@dimen/globalPadding"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/grey"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginEnd="@dimen/globalPadding"
-                        android:layout_marginRight="@dimen/globalPadding"
-                        android:alpha="0.6"
-                        android:contentDescription="@null"
-                        app:srcCompat="@drawable/ic_info" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvPinMessage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:includeFontPadding="false"
-                            android:lineSpacingMultiplier="1.1"
-                            android:text="@string/pin_sms_info"
-                            android:textColor="@color/primaryText"
-                            android:textSize="13.3sp"
-                            app:fontFamily="@font/roboto" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnSetPin"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:minWidth="160dp"
-                            android:minHeight="@dimen/toolbarHeight"
-                            android:text="@string/set_pin"
-                            android:textAllCaps="true"
-                            app:cornerRadius="10dp"
-                            app:elevation="2dp"
-                            app:rippleColor="@color/defaultRipple" />
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
             <com.khalti.utils.ExpandableLayout
                 android:id="@+id/elAttempts"
@@ -339,6 +277,68 @@
                 app:cornerRadius="2dp"
                 app:elevation="2dp"
                 app:rippleColor="@color/defaultRipple" />
+
+            <LinearLayout
+                android:id="@+id/llPINMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/globalPadding"
+                    android:layout_marginTop="@dimen/globalPadding"
+                    android:layout_marginRight="@dimen/globalPadding"
+                    android:layout_marginBottom="@dimen/cardPadding">
+
+                    <View
+                        style="@style/DividerDark"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tvBorder"
+                        android:layout_toLeftOf="@+id/tvBorder" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBorder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="@dimen/cardPadding"
+                        android:layout_marginLeft="@dimen/cardPadding"
+                        android:layout_marginEnd="@dimen/cardPadding"
+                        android:layout_marginRight="@dimen/cardPadding"
+                        android:gravity="center"
+                        android:text="@string/forgot_pin_message"
+                        android:textColor="@color/primaryText"
+                        android:textSize="@dimen/label2"
+                        app:fontFamily="@font/roboto" />
+
+                    <View
+                        style="@style/DividerDark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/tvBorder"
+                        android:layout_toRightOf="@+id/tvBorder" />
+                </RelativeLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSetPin"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:minWidth="160dp"
+                    android:minHeight="@dimen/toolbarHeight"
+                    android:text="@string/set_pin"
+                    android:textAllCaps="true"
+                    app:cornerRadius="10dp"
+                    app:elevation="2dp"
+                    app:rippleColor="@color/defaultRipple" />
+            </LinearLayout>
         </LinearLayout>
 
         <FrameLayout

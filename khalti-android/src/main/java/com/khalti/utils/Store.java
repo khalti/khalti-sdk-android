@@ -17,7 +17,6 @@ public class Store {
     }
 
     public static void setConfig(Config config) {
-        LogUtil.log("product name", config.getProductName());
         Store.config = config;
     }
 

@@ -34,4 +34,10 @@
     <style name="EditTextTheme.HintAppearance" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">8sp</item>
     </style>
+
+    <style name="DividerDark">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
 </resources>

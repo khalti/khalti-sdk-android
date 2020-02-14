@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nsvContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -15,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="50dp"
             android:visibility="gone">
 
             <LinearLayout
@@ -26,13 +26,13 @@
                 android:paddingLeft="23dp"
                 android:paddingTop="@dimen/doubleBottomMargin"
                 android:paddingRight="23dp"
-                android:visibility="gone"
-                app:layout_scrollFlags="scroll|enterAlways">
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/select_bank"
                     android:textColor="@color/black"
@@ -107,3 +107,4 @@
         </LinearLayout>
     </FrameLayout>
 </androidx.core.widget.NestedScrollView>
+

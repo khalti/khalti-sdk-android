@@ -19,7 +19,6 @@ public class FileStorageUtil {
             fileOutputStream.close();
             return true;
         } catch (IOException e) {
-            LogUtil.log("file name", fileName);
             e.printStackTrace();
             return false;
         }

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="14dp"
-    app:cardElevation="4dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="0dp"
     android:layout_margin="@dimen/cardPadding"
     app:rippleColor="@color/khaltiPrimary">
 
@@ -19,8 +19,8 @@
 
         <FrameLayout
             android:id="@+id/flBankLogo"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_marginBottom="@dimen/cardPadding"
             android:gravity="center"
             android:padding="2dp"
@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/ivBankLogo"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter" />
@@ -65,7 +65,7 @@
             android:gravity="center"
             android:text="@string/empty"
             android:textColor="@color/black"
-            android:textSize="@dimen/body"
+            android:textSize="11sp"
             app:fontFamily="@font/roboto" />
 
         <androidx.appcompat.widget.AppCompatTextView

@@ -19,4 +19,6 @@
 
     <color name="carbonX_text_button_dark">#deffffff</color>
     <color name="carbonX_text_button_light">#de000000</color>
+
+    <color name="divider">#19000000</color>
 </resources>

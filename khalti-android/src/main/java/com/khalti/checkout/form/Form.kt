@@ -103,7 +103,7 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun togglePinMessage(show: Boolean) {
-        ViewUtil.toggleView(mainView.cvPinMessage, show)
+        ViewUtil.toggleView(mainView.llPINMessage, show)
     }
 
     override fun toggleMobileLabel(paymentType: String) {
@@ -126,7 +126,7 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun setPinMessage(message: String) {
-        ViewUtil.setText(mainView.tvPinMessage, message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info))
+//        ViewUtil.setText(mainView.tvPinMessage, message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info))
     }
 
     override fun setAttemptsRemaining(attempts: String) {

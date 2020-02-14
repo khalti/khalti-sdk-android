@@ -82,7 +82,7 @@ class Banking : Fragment(), BankingContract.View {
     }
 
     override fun setupSearch(paymentType: String): Signal<String> {
-        val view = LayoutInflater.from(fragmentActivity).inflate(R.layout.component_bank_search, llContainer, false)
+        val view = LayoutInflater.from(fragmentActivity).inflate(R.layout.component_bank_search, nsvContainer, false)
         val searchView = view.findViewById<SearchView>(R.id.svBank)
 
         baseComm.addSearchView(paymentType, searchView)

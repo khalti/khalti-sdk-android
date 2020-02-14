@@ -12,6 +12,7 @@
     <string name="sms_info">Enter the PIN below</string>
     <string name="slogan">पैसा को नयाँ ठेगाना</string>
     <string name="title">Choose your payment method</string>
+    <string name="forgot_pin_message">Forgot your Khalti PIN?</string>
 
     <!--Component Button-->
     <string name="pay">PAY</string>
@@ -41,7 +42,7 @@
     <string name="contact_hint">Mobile Number</string>
     <string name="code_hint">Confirmation Code</string>
     <string name="pin_hint">Khalti PIN</string>
-    <string name="select_bank">Please select your bank</string>
+    <string name="select_bank">Please select your Bank</string>
     <string name="confirm_payment">Confirm Payment</string>
     <string name="set_pin">Set Khalti PIN</string>
     <string name="attempts_remaining">Attempts Remaining</string>

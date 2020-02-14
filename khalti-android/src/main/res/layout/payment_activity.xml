@@ -10,7 +10,7 @@
         android:id="@+id/clMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/flSearchBank"
+        android:layout_above="@id/flSearchBankContainer"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:theme="@style/ThemeOverlay.AppCompat.Light"
-            android:visibility="visible"
             app:elevation="0dp">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -27,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:elevation="0dp"
+                android:visibility="gone"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:titleEnabled="false">
 
@@ -50,43 +50,14 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tlTitle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
-                    android:animateLayoutChanges="true"
-                    android:minHeight="@dimen/toolbarHeight"
-                    android:paddingTop="@dimen/cardPadding"
-                    android:paddingBottom="@dimen/cardPadding"
                     app:elevation="0dp"
                     app:tabGravity="center"
-                    app:tabIndicator="@null"
+                    app:tabIndicatorColor="@color/khaltiAccentAlt"
                     app:tabPaddingEnd="@dimen/editTextPadding"
                     app:tabPaddingStart="@dimen/editTextPadding"
                     app:tabRippleColor="@null" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mvTabPositionIndicator"
-                    android:layout_width="250dp"
-                    android:layout_height="6dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/cardPadding"
-                    android:layout_marginBottom="@dimen/cardPadding"
-                    app:cardBackgroundColor="#12000000"
-                    app:cardCornerRadius="3dp"
-                    app:cardElevation="0dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/mvTabPositionIndicatorBar"
-                        android:layout_width="50dp"
-                        android:layout_height="6dp"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginTop="@dimen/cardPadding"
-                        android:layout_marginBottom="@dimen/cardPadding"
-                        app:cardBackgroundColor="@color/disabled"
-                        app:cardCornerRadius="3dp"
-                        app:cardElevation="0dp">
-
-                    </com.google.android.material.card.MaterialCardView>
-                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
             <View
@@ -99,11 +70,10 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vpContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -114,6 +84,23 @@
                 android:layout_height="6dp"
                 android:background="@drawable/toolbar_shadow"
                 android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/flMainLoad"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone">
+
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                app:mpb_indeterminateTint="@color/khaltiAccent"
+                app:mpb_progressStyle="horizontal" />
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

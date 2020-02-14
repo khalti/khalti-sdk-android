@@ -89,7 +89,9 @@
  #utils
  -keep class com.khalti.utils.** { *; }
 
- #rxBus
- -keep class khalti.rxBus.** { *; }
+ #Config
+-keep class com.khalti.checkout.helper.Config {*;}
+-keep class com.khalti.checkout.helper.Config$* {*;}
+-keepclassmembers class com.khalti.checkout.helper.Config** {*;}
 
  -ignorewarnings
