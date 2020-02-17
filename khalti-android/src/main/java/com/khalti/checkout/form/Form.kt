@@ -214,8 +214,9 @@ class Form : Fragment(), FormContract.View {
         UserInterfaceUtil.showSnackBar(fragmentActivity, baseComm.getCoordinator(), ResourceUtil.getString(fragmentActivity, R.string.network_error_body), null, Snackbar.LENGTH_LONG)
     }
 
-    override fun showMessageDialog(title: String, message: String): Signal<Boolean> {
-        return UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, autoDismiss = true, cancelable = true, positiveText = ResourceUtil.getString(fragmentActivity, R.string.ok), negativeText = ResourceUtil.getString(fragmentActivity, R.string.cancel))
+    override fun showMessageDialog(title: String, message: String, actionListener: Boolean): Signal<Boolean> {
+        val cancelText = if (actionListener) ResourceUtil.getString(fragmentActivity, R.string.cancel) else null
+        return UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, autoDismiss = true, cancelable = true, positiveText = ResourceUtil.getString(fragmentActivity, R.string.ok), negativeText = cancelText)
     }
 
     override fun showSlogan() {

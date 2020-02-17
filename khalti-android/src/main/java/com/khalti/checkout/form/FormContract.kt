@@ -50,7 +50,7 @@ interface FormContract {
 
         fun showNetworkError()
 
-        fun showMessageDialog(title: String, message: String):Signal<Boolean>
+        fun showMessageDialog(title: String, message: String, actionListener: Boolean = false): Signal<Boolean>
 
         fun showSlogan()
 

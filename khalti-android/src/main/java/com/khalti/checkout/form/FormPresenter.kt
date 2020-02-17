@@ -216,7 +216,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
                             LogUtil.log("error map", errorMap)
                             if (errorMap.containsKey("error_key") && errorMap.getValue("error_key") == "third_party_transaction_locked") {
-                                compositeSignal.add(view.showMessageDialog("Error", view.getMessage("pin_error"))
+                                compositeSignal.add(view.showMessageDialog("Error", view.getMessage("pin_error"), true)
                                         .connect {
                                             if (it) {
                                                 if (view.doesPackageExist()) {

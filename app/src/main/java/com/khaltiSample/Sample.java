@@ -61,7 +61,6 @@ public class Sample extends AppCompatActivity {
                 LogUtil.log("success", data);
             }
         })
-                .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.KHALTI);
                     add(PaymentPreference.EBANKING);
@@ -83,7 +82,6 @@ public class Sample extends AppCompatActivity {
                 LogUtil.log("success", data);
             }
         })
-                .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.KHALTI);
                 }})
@@ -101,7 +99,6 @@ public class Sample extends AppCompatActivity {
                 LogUtil.log("success", data);
             }
         })
-                .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.EBANKING);
                 }})
@@ -119,7 +116,6 @@ public class Sample extends AppCompatActivity {
                 LogUtil.log("success", data);
             }
         })
-                .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.MOBILE_BANKING);
                 }})
@@ -137,7 +133,6 @@ public class Sample extends AppCompatActivity {
                 LogUtil.log("success", data);
             }
         })
-                .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.SCT);
                 }})
@@ -155,7 +150,6 @@ public class Sample extends AppCompatActivity {
                 LogUtil.log("success", data);
             }
         })
-                .productUrl("Product url")
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
                     add(PaymentPreference.CONNECT_IPS);
                 }})
