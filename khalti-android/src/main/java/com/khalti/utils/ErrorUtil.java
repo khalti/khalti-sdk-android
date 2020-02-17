@@ -21,7 +21,7 @@ public class ErrorUtil {
     public static String MOBILE_ERROR = "Enter a valid mobile number";
     public static String PIN_ERROR = "Enter valid 4 digit PIN";
     public static String CODE_ERROR = "Enter valid 6 digit confirmation code";
-    private static String GENERIC_ERROR = "An error occurred, please try again later";
+    public static String GENERIC_ERROR = "An error occurred, please try again later";
     private static String UNAVAILABLE_ERROR = "Service temporarily unavailable";
     private static String GENERIC_JSON_ERROR = "{\"detail\":\"An error occurred, please try again later\"}";
 
@@ -49,6 +49,9 @@ public class ErrorUtil {
                     if (root.has("non_field_error")) {
                         map.put("detail", JsonUtil.parseJsonArray(root.getString("non_field_error")));
                         root.remove("non_field_error");
+                    }
+                    if (root.has("error_key")) {
+                        map.put("error_key", root.getString("error_key"));
                     }
                     Iterator keys = root.keys();
                     while (keys.hasNext()) {

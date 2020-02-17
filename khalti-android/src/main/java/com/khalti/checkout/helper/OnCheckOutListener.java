@@ -10,5 +10,5 @@ public interface OnCheckOutListener {
 
     void onSuccess(@NonNull Map<String, Object> data);
 
-    void onError(@NonNull String action, @NonNull String message);
+    void onError(@NonNull String action, @NonNull Map<String, String> errorMap);
 }

@@ -52,8 +52,8 @@ public class Sample extends AppCompatActivity {
 
         Config mainConfig = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
             @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                LogUtil.log(action, message);
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
             }
 
             @Override
@@ -74,8 +74,8 @@ public class Sample extends AppCompatActivity {
 
         Config khaltiConfig = new Config.Builder(Constant.pub, "Product ID", "Khalti", 1100L, new OnCheckOutListener() {
             @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                LogUtil.log(action, message);
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
             }
 
             @Override
@@ -92,8 +92,8 @@ public class Sample extends AppCompatActivity {
 
         Config eBankingConfig = new Config.Builder(Constant.pub, "Product ID", "E Banking", 1100L, new OnCheckOutListener() {
             @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                LogUtil.log(action, message);
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
             }
 
             @Override
@@ -110,8 +110,8 @@ public class Sample extends AppCompatActivity {
 
         Config mBankingConfig = new Config.Builder(Constant.pub, "Product ID", "M Banking", 1100L, new OnCheckOutListener() {
             @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                LogUtil.log(action, message);
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
             }
 
             @Override
@@ -128,8 +128,8 @@ public class Sample extends AppCompatActivity {
 
         Config sctConfig = new Config.Builder(Constant.pub, "Product ID", "SCT", 1100L, new OnCheckOutListener() {
             @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                LogUtil.log(action, message);
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
             }
 
             @Override
@@ -146,8 +146,8 @@ public class Sample extends AppCompatActivity {
 
         Config connectIpsConfig = new Config.Builder(Constant.pub, "Product ID", "Connect IPS", 1100L, new OnCheckOutListener() {
             @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                LogUtil.log(action, message);
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
             }
 
             @Override

@@ -77,7 +77,7 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
                         if (EmptyUtil.isNotNull(message) && EmptyUtil.isNotNull(config.onCheckOutListener)) {
                             val errorMap = JsonUtil.convertJsonStringToMap(message!!)
                             view.showIndentedError(errorMap.getValue("detail"))
-                            config.onCheckOutListener.onError(ErrorAction.FETCH_BANK_LIST.action, errorMap.getValue("detail"))
+                            config.onCheckOutListener.onError(ErrorAction.FETCH_BANK_LIST.action, errorMap)
                         }
                     }
                 }

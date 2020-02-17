@@ -214,6 +214,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
                             onSetFormError(errorMap)
 
+                            LogUtil.log("error map", errorMap)
                             if (errorMap.containsKey("error_key") && errorMap.getValue("error_key") == "third_party_transaction_locked") {
                                 compositeSignal.add(view.showMessageDialog("Error", view.getMessage("pin_error"))
                                         .connect {
@@ -227,6 +228,8 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                                         })
                             } else if (errorMap.containsKey("detail")) {
                                 view.showMessageDialog("Error", errorMap.getValue("detail"))
+                            } else if (errorMap.containsKey("error_key") && errorMap.getValue("error_key") == "validation_error") {
+                                view.showMessageDialog("Error", GENERIC_ERROR)
                             }
 
                             view.toggleAttemptRemaining(errorMap.containsKey("tries_remaining"))
@@ -235,14 +238,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                             }
 
                             if (EmptyUtil.isNotNull(config.onCheckOutListener)) {
-                                var errorMessage = ""
-
-                                if (errorMap.containsKey("detail")) {
-                                    errorMessage = errorMap.getValue("detail")
-                                } else if (errorMap.containsKey("error_key")) {
-                                    errorMessage = errorMap.getValue("error_key")
-                                }
-                                config.onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.action, errorMessage)
+                                config.onCheckOutListener.onError(ErrorAction.WALLET_INITIATE.action, errorMap)
                             }
                         }
                     }
@@ -299,16 +295,11 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
                                 if (errorMap.containsKey("detail")) {
                                     view.showMessageDialog("Error", errorMap.getValue("detail"))
+                                } else if (errorMap.containsKey("error_key") && errorMap.getValue("error_key") == "validation_error") {
+                                    view.showMessageDialog("Error", GENERIC_ERROR)
                                 }
                                 if (EmptyUtil.isNotNull(config.onCheckOutListener)) {
-                                    var errorMessage = ""
-
-                                    if (errorMap.containsKey("detail")) {
-                                        errorMessage = errorMap.getValue("detail")
-                                    } else if (errorMap.containsKey("error_key")) {
-                                        errorMessage = errorMap.getValue("error_key")
-                                    }
-                                    config.onCheckOutListener.onError(ErrorAction.WALLET_CONFIRM.action, errorMessage)
+                                    config.onCheckOutListener.onError(ErrorAction.WALLET_CONFIRM.action, errorMap)
                                 }
                             }
                         }

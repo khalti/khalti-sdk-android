@@ -59,8 +59,8 @@ public class MoreSamples extends AppCompatActivity {
         // Config must me initialize ahead
         config = new Config.Builder(publicKey, productId, productName, amount, new OnCheckOutListener() {
             @Override
-            public void onError(@NonNull String action, @NonNull String message) {
-                Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show();
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                Toast.makeText(MoreSamples.this, "Error "+errorMap, Toast.LENGTH_SHORT).show();
             }
 
             @Override
