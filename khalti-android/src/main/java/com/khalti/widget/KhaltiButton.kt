@@ -83,6 +83,7 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
         override fun setCustomButtonView() {
             if (EmptyUtil.isNotNull(customView)) {
                 btnPay.visibility = View.GONE
+                mrStyle.visibility = View.GONE
                 flCustomView.addView(customView)
             }
         }
@@ -109,7 +110,6 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
         }
 
         override fun setButtonClick() {
-
             clickListener = if (EmptyUtil.isNull(clickListener)) OnClickListener {
                 presenter.onOpenForm()
             } else clickListener

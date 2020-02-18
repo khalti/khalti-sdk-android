@@ -14,6 +14,7 @@ import com.khalti.checkout.helper.OnCheckOutListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
+import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
 import java.util.Map;
@@ -60,7 +61,7 @@ public class MoreSamples extends AppCompatActivity {
         config = new Config.Builder(publicKey, productId, productName, amount, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                Toast.makeText(MoreSamples.this, "Error "+errorMap, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MoreSamples.this, "Error " + errorMap, Toast.LENGTH_SHORT).show();
             }
 
             @Override
