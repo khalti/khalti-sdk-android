@@ -65,8 +65,8 @@ public class Sample extends AppCompatActivity {
                     add(PaymentPreference.KHALTI);
                     add(PaymentPreference.EBANKING);
                     add(PaymentPreference.MOBILE_BANKING);
-                    add(PaymentPreference.SCT);
                     add(PaymentPreference.CONNECT_IPS);
+                    add(PaymentPreference.SCT);
                 }})
                 .additionalData(map)
                 .build();
