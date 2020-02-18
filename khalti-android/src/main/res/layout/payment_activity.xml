@@ -54,6 +54,7 @@
                     android:layout_gravity="center"
                     app:elevation="0dp"
                     app:tabGravity="center"
+                    android:background="@color/white"
                     app:tabIndicatorColor="@color/khaltiAccentAlt"
                     app:tabPaddingEnd="@dimen/editTextPadding"
                     app:tabPaddingStart="@dimen/editTextPadding"

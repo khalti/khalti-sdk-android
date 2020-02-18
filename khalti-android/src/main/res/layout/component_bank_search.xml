@@ -10,6 +10,7 @@
     android:layout_marginRight="@dimen/cardPadding"
     android:layout_marginBottom="@dimen/editTextPadding"
     android:background="@drawable/search_bg"
+    android:theme="@style/ThemeOverlay.AppCompat.Light"
     app:iconifiedByDefault="false"
     app:queryBackground="@android:color/transparent"
     app:queryHint="@string/search_bank" />

@@ -4,7 +4,7 @@
     <color name="khaltiPrimaryDark">#3D0E72</color>
     <color name="khaltiAccent">#673ab7</color>
     <color name="khaltiAccentAlt">#FAA61A</color>
-    <color name="bg">#07000000</color>
+    <color name="bg">#ECECEC</color>
     <color name="grey">#FFE9E8E8</color>
 
     <color name="white">#ffffff</color>
