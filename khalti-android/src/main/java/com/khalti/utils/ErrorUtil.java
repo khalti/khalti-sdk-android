@@ -23,7 +23,7 @@ public class ErrorUtil {
     public static String CODE_ERROR = "Enter valid 6 digit confirmation code";
     public static String GENERIC_ERROR = "An error occurred, please try again later";
     private static String UNAVAILABLE_ERROR = "Service temporarily unavailable";
-    private static String GENERIC_JSON_ERROR = "{\"detail\":\"An error occurred, please try again later\"}";
+    public static String GENERIC_JSON_ERROR = "{\"detail\":\"An error occurred, please try again later\"}";
 
     public static String parseError(String json, String statusCode) {
         if (EmptyUtil.isEmpty(json)) {

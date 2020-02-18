@@ -2,13 +2,11 @@ package com.khalti.checkout.banking
 
 import com.khalti.checkout.api.ErrorAction
 import com.khalti.checkout.api.Result
+import com.khalti.checkout.banking.helper.BankPojo
 import com.khalti.checkout.banking.helper.BankingData
 import com.khalti.checkout.helper.Config
 import com.khalti.signal.CompositeSignal
-import com.khalti.utils.EmptyUtil
-import com.khalti.utils.GuavaUtil
-import com.khalti.utils.JsonUtil
-import com.khalti.utils.Store
+import com.khalti.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -63,10 +61,12 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
                 when (val result = model.fetchBankList(paymentType)) {
                     is Result.Success -> {
                         view.toggleIndented(false)
-                        compositeSignal.add(view.setupList(result.data.records)
-                                .connect {
-                                    view.openMobileForm(BankingData(it.getValue("idx"), it.getValue("name"), it.getValue("logo"), it.getValue("icon"), paymentTypeInit, config))
-                                })
+                        val banks = result.data.records
+                        val distinctBanks = banks.distinctBy { it.name }
+
+                        compositeSignal.add(view.setupList(distinctBanks.toMutableList()).connect {
+                            view.openMobileForm(BankingData(it.getValue("idx"), it.getValue("name"), it.getValue("logo"), it.getValue("icon"), paymentTypeInit, config))
+                        })
                         compositeSignal.add(view.setupSearch(paymentType)
                                 .connect {
                                     view.filterList(it)
