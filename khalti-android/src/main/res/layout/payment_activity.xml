@@ -25,8 +25,8 @@
                 android:id="@+id/clTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:elevation="0dp"
                 android:visibility="gone"
+                app:elevation="0dp"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:titleEnabled="false">
 
@@ -52,9 +52,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
+                    android:background="@color/white"
                     app:elevation="0dp"
                     app:tabGravity="center"
-                    android:background="@color/white"
                     app:tabIndicatorColor="@color/khaltiAccentAlt"
                     app:tabPaddingEnd="@dimen/editTextPadding"
                     app:tabPaddingStart="@dimen/editTextPadding"
@@ -102,6 +102,31 @@
                 android:indeterminate="true"
                 app:mpb_indeterminateTint="@color/khaltiAccent"
                 app:mpb_progressStyle="horizontal" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/flTestBanner"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="-60dp"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/holo_red_dark"
+            android:paddingLeft="@dimen/globalPadding"
+            android:paddingRight="@dimen/globalPadding"
+            android:rotation="315"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:includeFontPadding="false"
+                android:text="TEST"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title"
+                app:fontFamily="@font/roboto_bold" />
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

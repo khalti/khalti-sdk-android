@@ -212,6 +212,10 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
         ViewUtil.toggleView(flMainLoad, show)
     }
 
+    override fun toggleTestBanner(show: Boolean) {
+        ViewUtil.toggleView(flTestBanner, show)
+    }
+
     override fun setPresenter(presenter: CheckOutContract.Presenter) {
         this.presenter = presenter
     }

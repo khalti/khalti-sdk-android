@@ -16,6 +16,7 @@
 - Added SCT and Connect IPS payment option
 - Khalti PIN field input length has been increased to 10
 - Khalti PIN attempts is shown if the user enters wrong PIN
+- A test banner is shown if test token is used
 
 ### 1.02.09
 
