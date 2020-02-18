@@ -24,7 +24,6 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
 
     private var map: Map<String, Any>? = null
     private var paymentType = "ebanking"
-    private var paymentTypeInit = "ebanking"
 
     init {
         view.setPresenter(this)
@@ -39,11 +38,6 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
             if (EmptyUtil.isNotNull(map!!["payment_type"])) {
                 val type = map!!["payment_type"]
                 paymentType = type!!.toString()
-                paymentTypeInit = if ("mobile" == paymentType) {
-                    "mobilecheckout"
-                } else {
-                    paymentType
-                }
             }
             val clickMap = view.setOnClickListener()
             if (EmptyUtil.isNotNull(clickMap["try_again"])) {
@@ -65,7 +59,7 @@ class BankingPresenter(view: BankingContract.View) : BankingContract.Presenter {
                         val distinctBanks = banks.distinctBy { it.name }
 
                         compositeSignal.add(view.setupList(distinctBanks.toMutableList()).connect {
-                            view.openMobileForm(BankingData(it.getValue("idx"), it.getValue("name"), it.getValue("logo"), it.getValue("icon"), paymentTypeInit, config))
+                            view.openMobileForm(BankingData(it.getValue("idx"), it.getValue("name"), it.getValue("logo"), it.getValue("icon"), paymentType, config))
                         })
                         compositeSignal.add(view.setupSearch(paymentType)
                                 .connect {
