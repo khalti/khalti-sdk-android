@@ -154,9 +154,9 @@ khaltiButton.setCheckOutConfig(config);
 
 #### Response Sample
 
-> ###### Success Message
+###### Success Message
 
->| Key              | Value        | Type   |
+| Key              | Value        | Type   |
 |:-----------------|:-------------|:-------|
 | mobile           | 98XXXXXXXX   | String |
 | product_name     | Product Name | String |
