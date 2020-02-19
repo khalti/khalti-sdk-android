@@ -16,7 +16,7 @@ Welcome to Khalti's checkout documentation
 Add `khalti-android` to your `build.gradle` dependencies
 
 ```
-implementation ('com.khalti:khalti-android:2.00.00') {
+implementation ('com.khalti:khalti-android:$latest_version') {
         transitive = true
     }
 ```
