@@ -5,9 +5,11 @@
 
 Welcome to Khalti's checkout documentation
 
+[<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/all.png"/>]
+
 ### Installation
 
-#### Requirements
+#### Requirementssd
 - Android 4.0 and above
 - AndroidX (as of v2.00.00)
 - Android Studio 3 and above
