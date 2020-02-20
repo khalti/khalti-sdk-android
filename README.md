@@ -5,7 +5,12 @@
 
 Welcome to Khalti's checkout documentation
 
-[<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/all.png"/>]
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/all.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/khalti.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/ebanking.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/mobile_banking.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/connect_ips.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/sct.png"/> &nbsp;
 
 ### Installation
 
@@ -67,12 +72,14 @@ Use the `button_style` attribute in your xml file to select a button style for y
 
 ###### Available button styles
 
-- basic
-- khalti
-- e_banking
-- m_banking
-- sct
-- connect_ips
+| Button style | image |
+|:-------------|:------|
+|     basic         |       |
+|     khalti         |       |
+|     e_banking         |       |
+|     m_banking         |       |
+|     sct         |       |
+|     connect_ips         |       |
 
 Alternatively you can also inflate KhaltiButton in your java class as follows
 
