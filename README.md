@@ -72,14 +72,14 @@ Use the `button_style` attribute in your xml file to select a button style for y
 
 ###### Available button styles
 
-| Button style | Image |
-|:-------------|:------|
-| basic        |       |
-| khalti       |       |
-| e_banking    |       |
-| m_banking    |       |
-| sct          |       |
-| connect_ips  |       |
+| Button style | Image                                                                                                                            |
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------|
+| basic        | <img width="150" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/button_basic.png"/>          |
+| khalti       | <img width="150" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/button_khalti.png"/>         |
+| e_banking    | <img width="150" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/button_ebanking.png"/>       |
+| m_banking    | <img width="150" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/button_mobile_banking.png"/> |
+| sct          | <img width="150" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/button_sct.png"/>            |
+| connect_ips  | <img width="150" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/button_connect_ips.png"/>    |
 
 Alternatively you can also inflate KhaltiButton in your java class as follows
 
