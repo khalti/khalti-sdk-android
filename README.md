@@ -72,14 +72,14 @@ Use the `button_style` attribute in your xml file to select a button style for y
 
 ###### Available button styles
 
-| Button style | image |
+| Button style | Image |
 |:-------------|:------|
-|     basic         |       |
-|     khalti         |       |
-|     e_banking         |       |
-|     m_banking         |       |
-|     sct         |       |
-|     connect_ips         |       |
+| basic        |       |
+| khalti       |       |
+| e_banking    |       |
+| m_banking    |       |
+| sct          |       |
+| connect_ips  |       |
 
 Alternatively you can also inflate KhaltiButton in your java class as follows
 
