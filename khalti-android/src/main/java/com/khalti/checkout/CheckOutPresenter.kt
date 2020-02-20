@@ -53,7 +53,7 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
                         view.toggleSearch(uniqueList[currentPage].value, searchList.contains(uniqueList[currentPage].value))
                     })
 
-            view.toggleTestBanner(Store.getConfig().publicKey.contains("test_public_key_"))
+//            view.toggleTestBanner(Store.getConfig().publicKey.contains("test_public_key_"))
         }
     }
 
