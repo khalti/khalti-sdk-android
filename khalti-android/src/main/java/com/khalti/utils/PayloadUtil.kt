@@ -10,7 +10,7 @@ class PayloadUtil {
 
         fun buildPayload(mobile: String, bankId: String, bankName: String, paymentType: String, packageName: String, config: Config): String {
 
-            val map = HashMap<String, String>()
+            val map = HashMap<String, Any>()
             map["mobile"] = mobile
             map["bankId"] = bankId
             map["bankName"] = bankName
@@ -30,9 +30,13 @@ class PayloadUtil {
                 map["product_url"] = config.productUrl!!
             }
 
+            if (EmptyUtil.isNotNull(config.additionalData)) {
+                map.putAll(config.additionalData!!)
+            }
+
             val data = EncodeUtil.urlEncode(map)
 
-            LogUtil.log("data", data)
+            LogUtil.log("request payload", data)
 
             return Constant.url + "ebanking/initiate/?" + data
         }
