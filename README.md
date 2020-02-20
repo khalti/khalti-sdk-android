@@ -5,16 +5,9 @@
 
 Welcome to Khalti's checkout documentation
 
-<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/all.png"/> &nbsp;
-<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/khalti.png"/> &nbsp;
-<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/ebanking.png"/> &nbsp;
-<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/mobile_banking.png"/> &nbsp;
-<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/connect_ips.png"/> &nbsp;
-<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/sct.png"/> &nbsp;
-
 ### Installation
 
-#### Requirementssd
+#### Requirements
 - Android 4.0 and above
 - AndroidX (as of v2.00.00)
 - Android Studio 3 and above
@@ -223,4 +216,13 @@ Check out the source for [Khalti checkout on Github](https://github.com/khalti/k
 
 Check out the [Verification](http://docs.khalti.com/api/verification/) process.
 
-### [Changelog](https://github.com/khalti/khalti-sdk-android/blob/master/CHANGELOG.md)
+#### [Changelog](https://github.com/khalti/khalti-sdk-android/blob/master/CHANGELOG.md)
+
+#### Screenshots
+
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/all.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/khalti.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/ebanking.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/mobile_banking.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/connect_ips.png"/> &nbsp;
+<img width="150" height="300" src="https://raw.githubusercontent.com/khalti/khalti-sdk-android/feature/v2/images/sct.png"/> &nbsp;
