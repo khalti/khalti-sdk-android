@@ -71,7 +71,6 @@
  -dontwarn com.squareup.okhttp.**
  -dontwarn okio.**
  -dontwarn retrofit.**
- -dontwarn rx.**
 
  -dontwarn okio.**
  -dontwarn javax.annotation.Nullable
@@ -84,35 +83,15 @@
  # If your rest service methods throw custom exceptions, because you've defined an ErrorHandler.
  -keepattributes Signature
 
- # Rxjava
- -keep class rx.schedulers.Schedulers {
-     public static <methods>;
- }
- -keep class rx.schedulers.ImmediateScheduler {
-     public <methods>;
- }
- -keep class rx.schedulers.TestScheduler {
-     public <methods>;
- }
- -keep class rx.schedulers.Schedulers {
-     public static ** test();
- }
- -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-     long producerIndex;
-     long consumerIndex;
- }
- -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-     long producerNode;
-     long consumerNode;
- }
-
  #Apache
  -dontwarn org.apache.**
 
  #utils
  -keep class com.khalti.utils.** { *; }
 
- #rxBus
- -keep class khalti.rxBus.** { *; }
+ #Config
+-keep class com.khalti.checkout.helper.Config {*;}
+-keep class com.khalti.checkout.helper.Config$* {*;}
+-keepclassmembers class com.khalti.checkout.helper.Config** {*;}
 
  -ignorewarnings

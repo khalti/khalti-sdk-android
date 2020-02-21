@@ -2,32 +2,42 @@ package com.khaltiSample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.button.MaterialButton;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.khalti.checkOut.api.Config;
-import com.khalti.checkOut.api.OnCheckOutListener;
+import com.google.android.material.button.MaterialButton;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.PaymentPreference;
 import com.khalti.utils.Constant;
+import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class Sample extends AppCompatActivity {
-
-    @BindView(R.id.kpPay)
+    @BindView(R.id.kbPay)
     KhaltiButton khaltiButton;
-    @BindView(R.id.kpPay1)
-    KhaltiButton khaltiButton1;
-    @BindView(R.id.kpPay2)
-    KhaltiButton khaltiButton2;
     @BindView(R.id.btnMore)
     MaterialButton btnMore;
+    @BindView(R.id.kbKhalti)
+    KhaltiButton kbKhalti;
+    @BindView(R.id.kbEBanking)
+    KhaltiButton kbEBanking;
+    @BindView(R.id.kbMobileBanking)
+    KhaltiButton kbMobileBanking;
+    @BindView(R.id.kbSct)
+    KhaltiButton kbSct;
+    @BindView(R.id.kbConnectIps)
+    KhaltiButton kbConnectIps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,40 +45,137 @@ public class Sample extends AppCompatActivity {
         setContentView(R.layout.sample);
         ButterKnife.bind(this);
 
-        HashMap<String, String> map = new HashMap<>();
-        map.put("merchant_extra", "This is extra data");
-        map.put("merchant_extra_2", "This is extra data 2");
+        HashMap<String, Object> map = new HashMap<String, Object>() {{
+            put("merchant_extra", "This is extra data");
+            put("merchant_extra_2", "This is extra data 2");
+        }};
 
-        Config config = new Config(Constant.pub, "Product ID", "Product Name", "Product Url", 1100L, map, new OnCheckOutListener() {
-
+        Config mainConfig = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
             @Override
-            public void onSuccess(HashMap<String, Object> data) {
-                Log.i("Payment confirmed", data + "");
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
             }
 
             @Override
-            public void onError(String action, String message) {
-                Log.i(action, message);
+            public void onSuccess(@NonNull Map<String, Object> data) {
+                LogUtil.log("success", data);
             }
+        })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.KHALTI);
+                    add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.MOBILE_BANKING);
+                    add(PaymentPreference.CONNECT_IPS);
+                    add(PaymentPreference.SCT);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config khaltiConfig = new Config.Builder(Constant.pub, "Product ID", "Khalti", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, Object> data) {
+                LogUtil.log("success", data);
+            }
+        })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.KHALTI);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config eBankingConfig = new Config.Builder(Constant.pub, "Product ID", "E Banking", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, Object> data) {
+                LogUtil.log("success", data);
+            }
+        })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.EBANKING);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config mBankingConfig = new Config.Builder(Constant.pub, "Product ID", "M Banking", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, Object> data) {
+                LogUtil.log("success", data);
+            }
+        })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.MOBILE_BANKING);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config sctConfig = new Config.Builder(Constant.pub, "Product ID", "SCT", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, Object> data) {
+                LogUtil.log("success", data);
+            }
+        })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.SCT);
+                }})
+                .additionalData(map)
+                .build();
+
+        Config connectIpsConfig = new Config.Builder(Constant.pub, "Product ID", "Connect IPS", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                LogUtil.log(action, errorMap);
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, Object> data) {
+                LogUtil.log("success", data);
+            }
+        })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.CONNECT_IPS);
+                }})
+                .additionalData(map)
+                .build();
+
+
+        KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(this, mainConfig);
+        khaltiButton.setOnClickListener(view -> {
+            khaltiCheckOut.show();
         });
 
-        khaltiButton.setOnClickListener(view -> khaltiButton.showCheckOut(config));
-        khaltiButton1.setCheckOutConfig(config);
-        khaltiButton2.setCheckOutConfig(config);
+        KhaltiCheckOut khaltiCheckOut1 = new KhaltiCheckOut(this, khaltiConfig);
+        kbKhalti.setOnClickListener(v -> khaltiCheckOut1.show());
+
+        kbEBanking.setCheckOutConfig(eBankingConfig);
+
+        kbMobileBanking.setCheckOutConfig(mBankingConfig);
+
+        kbSct.setCheckOutConfig(sctConfig);
+
+        kbConnectIps.setCheckOutConfig(connectIpsConfig);
     }
 
     @OnClick(R.id.btnMore)
     public void onBtnMoreLoadClick() {
         startActivity(new Intent(this, MoreSamples.class));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 }

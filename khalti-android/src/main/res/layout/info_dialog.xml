@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:textSize="@dimen/title"
             app:fontFamily="@font/roboto_medium" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,10 +34,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:gravity="end|center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/cardPadding">
+        android:paddingLeft="@dimen/globalPadding"
+        android:paddingRight="@dimen/globalPadding"
+        android:paddingBottom="@dimen/globalPadding">
 
         <com.balysv.materialripple.MaterialRippleLayout
             android:id="@+id/flNegativeAction"
@@ -51,7 +53,7 @@
             app:mrl_rippleOverlay="true"
             app:mrl_rippleRoundedCorners="2dp">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNegative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +79,7 @@
             app:mrl_rippleOverlay="true"
             app:mrl_rippleRoundedCorners="2dp">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPositive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

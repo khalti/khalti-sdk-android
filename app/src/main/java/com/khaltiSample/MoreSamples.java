@@ -1,20 +1,23 @@
 package com.khaltiSample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.khalti.checkOut.api.Config;
-import com.khalti.checkOut.api.OnCheckOutListener;
-import com.khalti.checkOut.helper.KhaltiCheckOut;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.utils.Constant;
+import com.khalti.utils.LogUtil;
 import com.khalti.widget.KhaltiButton;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,23 +53,23 @@ public class MoreSamples extends AppCompatActivity {
         String productName = "product_name";
         Long amount = 100L; // In Paisa
 
+
         /*
-        * Very important
-        */
+         * Very important
+         */
         // Config must me initialize ahead
-        config = new Config(publicKey, productId, productName, "", amount, new HashMap<>(
-        ), new OnCheckOutListener() {
+        config = new Config.Builder(publicKey, productId, productName, amount, new OnCheckOutListener() {
             @Override
-            public void onSuccess(HashMap<String, Object> data) {
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                Toast.makeText(MoreSamples.this, "Error " + errorMap, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, Object> data) {
                 Toast.makeText(MoreSamples.this, "Success ", Toast.LENGTH_SHORT).show();
-
             }
-
-            @Override
-            public void onError(String action, String message) {
-                Toast.makeText(MoreSamples.this, "Error ", Toast.LENGTH_SHORT).show();
-            }
-        });
+        })
+                .build();
 
         // Init The Buttons
         initKhaltiButton();
@@ -75,6 +78,10 @@ public class MoreSamples extends AppCompatActivity {
         initCustomButtonWithCustomClickListener();
         initKhaltiButtonWithJava();
         initCustomButtonExecuteFromJava();
+    }
+
+    void showSuccesss() {
+        Toast.makeText(this, "Success ", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -153,12 +160,9 @@ public class MoreSamples extends AppCompatActivity {
             final KhaltiCheckOut khaltiCheckOut3 = new KhaltiCheckOut(MoreSamples.this, config);
 
             // Add Click Listener To Java Khalti Button
-            khaltiButton2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Show The khalti Checkout Activity on Button Click
-                    khaltiCheckOut3.show();
-                }
+            khaltiButton2.setOnClickListener(view1 -> {
+                // Show The khalti Checkout Activity on Button Click
+                khaltiCheckOut3.show();
             });
             // Loading the Khalti Checkout Activity without the user clicking the khalti Button
             khaltiButton2.performClick();

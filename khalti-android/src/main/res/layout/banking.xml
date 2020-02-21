@@ -1,173 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cdlMain"
+    android:id="@+id/nsvContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fillViewport="true">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvList"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:clipToPadding="false"
-        android:paddingLeft="@dimen/cardPadding"
-        android:paddingTop="@dimen/cardPadding"
-        android:paddingRight="@dimen/cardPadding"
-        android:paddingBottom="76dp"
-        android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00000000"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:visibility="gone"
-        app:elevation="0dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/llContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/globalPadding"
-            android:paddingTop="@dimen/globalPadding"
-            android:paddingRight="@dimen/globalPadding"
-            android:paddingBottom="@dimen/cardPadding"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:visibility="gone">
 
             <LinearLayout
-                android:id="@+id/llCardBranding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/singleBottomMargin"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/editTextPadding"
-                    android:text="@string/we_accept"
-                    android:textColor="@color/primaryText"
-                    android:textSize="@dimen/label2"
-                    app:fontFamily="@font/roboto" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@null"
-                    app:srcCompat="@mipmap/cards" />
-            </LinearLayout>
-
-            <FrameLayout
+                android:id="@+id/llTopBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="23dp"
+                android:paddingTop="@dimen/doubleBottomMargin"
+                android:paddingRight="23dp"
+                android:visibility="gone">
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/select_bank"
-                    android:textColor="@color/primaryText"
-                    android:textSize="@dimen/title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/body"
                     app:fontFamily="@font/roboto_medium" />
-            </FrameLayout>
-        </LinearLayout>
-    </android.support.design.widget.AppBarLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llIndented"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <FrameLayout
-            android:id="@+id/flLoad"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:visibility="visible">
-
-            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:indeterminate="true"
-                app:mpb_indeterminateTint="@color/khaltiAccent"
-                app:mpb_progressStyle="horizontal" />
-        </FrameLayout>
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tvMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:text="@string/empty"
-            android:textColor="@color/primaryText"
-            android:textSize="@dimen/body"
-            android:visibility="gone"
-            app:fontFamily="@font/roboto" />
-
-        <android.support.design.button.MaterialButton
-            android:id="@+id/btnTryAgain"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/toolbarHeight"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/globalPadding"
-            android:minWidth="@dimen/carbonX_buttonWidth1"
-            android:minHeight="@dimen/carbonX_buttonHeight"
-            android:text="@string/try_again"
-            android:textAllCaps="true"
-            android:theme="@style/Theme.MaterialComponents"
-            android:visibility="gone"
-            app:backgroundTint="@color/khaltiPrimary"
-            app:cornerRadius="2dp"
-            app:rippleColor="@color/defaultRipple" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/flSearchBank"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#F3F3F3"
-        android:visibility="gone">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.8dp"
-            android:alpha="0.1"
-            android:background="@color/primaryText" />
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/cardPadding"
-            android:padding="@dimen/cardPadding"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="21dp">
-
-            <android.support.v7.widget.SearchView
-                android:id="@+id/svBank"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clipToPadding="false"
+                android:padding="@dimen/globalPadding" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llIndented"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:id="@+id/flLoad"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                    style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    app:mpb_indeterminateTint="@color/khaltiAccent"
+                    app:mpb_progressStyle="horizontal" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:queryHint="@string/search_bank" />
-        </android.support.v7.widget.CardView>
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:text="@string/empty"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/body"
+                android:visibility="visible"
+                app:fontFamily="@font/roboto" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toolbarHeight"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/globalPadding"
+                android:minWidth="@dimen/carbonX_buttonWidth1"
+                android:minHeight="@dimen/carbonX_buttonHeight"
+                android:text="@string/try_again"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:theme="@style/Theme.MaterialComponents"
+                android:visibility="visible"
+                app:backgroundTint="@color/khaltiPrimary"
+                app:cornerRadius="2dp"
+                app:rippleColor="@color/defaultRipple" />
+        </LinearLayout>
     </FrameLayout>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.core.widget.NestedScrollView>
+

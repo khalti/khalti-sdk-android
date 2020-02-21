@@ -14,6 +14,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -31,13 +32,13 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation supportLibrary.appCompat
-    implementation supportLibrary.design
+    implementation supportLibrary.material
     /*ButterKnife*/
     implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
-    implementation('com.khalti:khalti-android:1.02.09') {
-        transitive = true
-    }
-    implementation 'com.squareup.picasso:picasso:2.71828'
-//    implementation project(':khalti-android')
+//    implementation "com.khalti:khalti-android:1.02.18"
+//    implementation('com.khalti:khalti-android:1.02.10') {
+//        transitive = true
+//    }
+    implementation project(':khalti-android')
 }

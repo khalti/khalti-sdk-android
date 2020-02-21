@@ -4,26 +4,26 @@
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/llContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/globalPadding"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/globalPadding">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
             android:text="Basic Button"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <com.khalti.widget.KhaltiButton
-            android:id="@+id/kpPay"
+            android:id="@+id/kbPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,22 +35,21 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
-            android:text="EBanking Button Dark"
+            android:text="Khalti"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <com.khalti.widget.KhaltiButton
-            android:id="@+id/kpPay1"
+            android:id="@+id/kbKhalti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="eBanking_dark"
+            khalti:button_style="khalti"
             khalti:text="Pay Rs 200" />
 
         <View
@@ -59,22 +58,90 @@
             android:layout_marginBottom="@dimen/doubleBottomMargin"
             android:background="@color/disabled" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/editTextPadding"
-            android:text="EBanking Button Light"
+            android:text="E-Banking"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/body" />
 
         <com.khalti.widget.KhaltiButton
-            android:id="@+id/kpPay2"
+            android:id="@+id/kbEBanking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="eBanking_light"
+            khalti:button_style="e_banking"
+            khalti:text="Pay Rs 200" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:background="@color/disabled" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/editTextPadding"
+            android:text="Mobile Banking"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/body" />
+
+        <com.khalti.widget.KhaltiButton
+            android:id="@+id/kbMobileBanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            khalti:button_style="m_banking"
+            khalti:text="Pay Rs 200" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:background="@color/disabled" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/editTextPadding"
+            android:text="Connect IPS"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/body" />
+
+        <com.khalti.widget.KhaltiButton
+            android:id="@+id/kbConnectIps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            khalti:button_style="connect_ips"
+            khalti:text="Pay Rs 200" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            android:background="@color/disabled" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/editTextPadding"
+            android:text="SCT"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/body" />
+
+        <com.khalti.widget.KhaltiButton
+            android:id="@+id/kbSct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/doubleBottomMargin"
+            khalti:button_style="sct"
             khalti:text="Pay Rs 200" />
 
         <View
@@ -91,7 +158,7 @@
             android:text="Click below for more examples"
             android:textSize="@dimen/body" />
 
-        <android.support.design.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMore"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/toolbarHeight"
@@ -101,10 +168,10 @@
             android:minHeight="@dimen/carbonX_buttonHeight"
             android:text="More"
             android:textAllCaps="true"
+            android:textColor="@color/white"
             android:theme="@style/Theme.MaterialComponents"
             app:backgroundTint="@color/khaltiPrimary"
             app:cornerRadius="2dp"
             app:rippleColor="@color/defaultRipple" />
     </LinearLayout>
 </ScrollView>
-

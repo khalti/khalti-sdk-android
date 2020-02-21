@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.52.25</domain>
+        <domain includeSubdomains="true">192.168.52.20</domain>
+        <domain includeSubdomains="true">192.168.52.22</domain>
+        <domain includeSubdomains="true">192.168.52.127</domain>
+        <domain includeSubdomains="true">192.168.52.99</domain>
+        <domain includeSubdomains="true">192.168.1.195</domain>
+        <domain includeSubdomains="true">a.khalti.com</domain>
+        <domain includeSubdomains="true">192.168.52.28</domain>
+        <domain includeSubdomains="true">192.168.52.38</domain>
+        <domain includeSubdomains="true">192.168.12.106</domain>
+        <domain includeSubdomains="true">192.168.52.133</domain>
+        <domain includeSubdomains="true">192.168.52.126</domain>
+        <domain includeSubdomains="true">192.168.52.161</domain>
+    </domain-config>
+</network-security-config>

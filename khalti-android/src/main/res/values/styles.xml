@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AppTheme.khalti" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.khalti" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/khaltiPrimary</item>
         <item name="colorPrimaryDark">@color/khaltiPrimaryDark</item>
         <item name="colorAccent">@color/khaltiAccent</item>
@@ -33,5 +33,11 @@
 
     <style name="EditTextTheme.HintAppearance" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="DividerDark">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider</item>
     </style>
 </resources>

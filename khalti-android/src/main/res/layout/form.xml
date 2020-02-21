@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nsvContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llBranding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/globalPadding2"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/ivBranding"
+                    android:layout_width="165dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:visibility="visible" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/check_out_title"
+                        android:textColor="@color/primaryText"
+                        android:textSize="@dimen/body"
+                        app:fontFamily="@font/roboto" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <com.khalti.utils.ExpandableLayout
+                android:id="@+id/elAttempts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/globalPadding"
+                    app:canExpand="true">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAttemptsRemaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/empty"
+                        android:textColor="@color/primaryText"
+                        android:textSize="@dimen/display"
+                        app:fontFamily="@font/roboto_medium" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/attempts_remaining"
+                        android:textColor="@color/primaryText"
+                        android:textSize="@dimen/body"
+                        app:fontFamily="@font/roboto_medium" />
+                </LinearLayout>
+            </com.khalti.utils.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/llMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/globalPadding"
+                android:layout_marginBottom="@dimen/singleBottomMargin"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/globalPadding"
+                android:paddingRight="@dimen/globalPadding">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/globalPadding"
+                    android:layout_marginRight="@dimen/globalPadding"
+                    android:adjustViewBounds="true"
+                    android:alpha="0.58"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/ic_user_account_box" />
+
+                <com.khalti.widget.TextInputLayout
+                    android:id="@+id/tilMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/mobile_hint"
+                    android:theme="@style/EditTextTheme"
+                    app:mainHintTextSize="16sp">
+
+                    <EditText
+                        android:id="@+id/etMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textColor="@color/black" />
+                </com.khalti.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPIN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/singleBottomMargin"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/globalPadding"
+                android:paddingRight="@dimen/globalPadding">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginRight="13dp"
+                    android:adjustViewBounds="true"
+                    android:alpha="0.58"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/ic_lock_outline" />
+
+                <com.khalti.widget.TextInputLayout
+                    android:id="@+id/tilPIN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pin_hint"
+                    android:theme="@style/EditTextTheme"
+                    app:mainHintTextSize="16sp">
+
+                    <EditText
+                        android:id="@+id/etPIN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberPassword"
+                        android:maxLength="10"
+                        android:textColor="@color/black" />
+                </com.khalti.widget.TextInputLayout>
+            </LinearLayout>
+
+            <com.khalti.utils.ExpandableLayout
+                android:id="@+id/elConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/llConfirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:canExpand="true">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/globalPadding"
+                        android:layout_marginTop="@dimen/cardPadding"
+                        android:layout_marginRight="@dimen/globalPadding"
+                        android:layout_marginBottom="@dimen/globalPadding"
+                        app:cardBackgroundColor="@color/grey"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginEnd="@dimen/globalPadding"
+                                android:layout_marginRight="@dimen/globalPadding"
+                                android:alpha="0.6"
+                                android:contentDescription="@null"
+                                app:srcCompat="@drawable/ic_info" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:includeFontPadding="false"
+                                android:lineSpacingMultiplier="1.1"
+                                android:text="@string/code_sms_info"
+                                android:textColor="@color/primaryText"
+                                android:textSize="13.3sp"
+                                app:fontFamily="@font/roboto" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:id="@+id/llCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/globalPadding"
+                        android:paddingRight="@dimen/globalPadding"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="13dp"
+                            android:layout_marginRight="13dp"
+                            android:adjustViewBounds="true"
+                            android:alpha="0.58"
+                            android:contentDescription="@null"
+                            app:srcCompat="@drawable/ic_lock" />
+
+                        <com.khalti.widget.TextInputLayout
+                            android:id="@+id/tilCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/code_hint"
+                            android:theme="@style/EditTextTheme"
+                            app:mainHintTextSize="16sp">
+
+                            <EditText
+                                android:id="@+id/etCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="number"
+                                android:maxLength="6"
+                                android:textColor="@color/black" />
+                        </com.khalti.widget.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.khalti.utils.ExpandableLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPay"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toolbarHeight"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/globalPadding"
+                android:minWidth="@dimen/carbonX_buttonWidth1"
+                android:minHeight="@dimen/carbonX_buttonHeight"
+                android:text="@string/pay"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:theme="@style/Theme.MaterialComponents"
+                app:backgroundTint="@color/khaltiPrimary"
+                app:cornerRadius="2dp"
+                app:elevation="2dp"
+                app:rippleColor="@color/defaultRipple" />
+
+            <LinearLayout
+                android:id="@+id/llPINMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/globalPadding"
+                    android:layout_marginTop="@dimen/globalPadding"
+                    android:layout_marginRight="@dimen/globalPadding"
+                    android:layout_marginBottom="@dimen/cardPadding">
+
+                    <View
+                        style="@style/DividerDark"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tvBorder"
+                        android:layout_toLeftOf="@+id/tvBorder" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBorder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="@dimen/cardPadding"
+                        android:layout_marginLeft="@dimen/cardPadding"
+                        android:layout_marginEnd="@dimen/cardPadding"
+                        android:layout_marginRight="@dimen/cardPadding"
+                        android:gravity="center"
+                        android:text="@string/forgot_pin_message"
+                        android:textColor="@color/primaryText"
+                        android:textSize="@dimen/label2"
+                        app:fontFamily="@font/roboto" />
+
+                    <View
+                        style="@style/DividerDark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/tvBorder"
+                        android:layout_toRightOf="@+id/tvBorder" />
+                </RelativeLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSetPin"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:minWidth="160dp"
+                    android:minHeight="@dimen/toolbarHeight"
+                    android:text="@string/set_pin"
+                    android:textAllCaps="true"
+                    app:cornerRadius="10dp"
+                    app:elevation="2dp"
+                    app:rippleColor="@color/defaultRipple" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/flProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/disabled"
+            android:visibility="gone">
+
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                app:mpb_indeterminateTint="@color/khaltiAccent"
+                app:mpb_progressStyle="horizontal" />
+        </FrameLayout>
+    </FrameLayout>
+</androidx.core.widget.NestedScrollView>

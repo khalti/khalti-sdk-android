@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="khaltiPrimary">#4C276D</color>
-    <color name="khaltiPrimaryDark">#421D63</color>
+    <color name="khaltiPrimary">#5C2D91</color>
+    <color name="khaltiPrimaryDark">#3D0E72</color>
     <color name="khaltiAccent">#673ab7</color>
-    <color name="khaltiAccentAlt">#F79320</color>
-    <color name="bg">#07000000</color>
+    <color name="khaltiAccentAlt">#FAA61A</color>
+    <color name="bg">#ECECEC</color>
     <color name="grey">#FFE9E8E8</color>
 
     <color name="white">#ffffff</color>
@@ -19,4 +19,6 @@
 
     <color name="carbonX_text_button_dark">#deffffff</color>
     <color name="carbonX_text_button_light">#de000000</color>
+
+    <color name="divider">#19000000</color>
 </resources>

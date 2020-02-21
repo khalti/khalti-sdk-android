@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlinx-serialization'
 
 android {
     compileSdkVersion targetSdk
@@ -10,7 +13,7 @@ android {
         versionCode khaltiVersionCode
         versionName khaltiVersionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         consumerProguardFiles 'proguard-rules.pro'
     }
@@ -28,6 +31,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     lintOptions {
         abortOnError false
     }
@@ -37,19 +44,20 @@ android {
         options.addStringOption('encoding', 'UTF-8')
         options.addStringOption('charSet', 'UTF-8')
     }
+
+    /*androidExtensions {
+        features = ["parcelize"]
+    }*/
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     /*----Support Library----*/
     implementation supportLibrary.appCompat
-    implementation supportLibrary.cardView
     implementation supportLibrary.recyclerView
-    implementation supportLibrary.design
-
-    /*Android Animations*/
-    implementation ui.nineoldanimations
+    implementation supportLibrary.material
 
     /*Ripple*/
     implementation ui.ripple
@@ -63,9 +71,12 @@ dependencies {
     /*GSON*/
     implementation serialization.gson
 
+    /*Coroutine*/
+    implementation coroutine.core
+    implementation coroutine.android
+
     /*Retrofit*/
     implementation network.retrofit2
-    implementation network.retrofit_rxadapter
     implementation network.retrofit_gson_converter
 
     /*OkHTTP*/
@@ -76,26 +87,22 @@ dependencies {
     /*Http Client*/
     implementation network.apache_http_client
 
-    /*ReactiveX*/
-    implementation rx.rxjava
-    implementation rx.rxandroid
-
-    /*RxPermission*/
-    implementation rx.rxpermissions
-
-    /*RxBinding*/
-    implementation rx.rxBinding
-    implementation rx.rxAppCompatBinding
-
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/
     testImplementation test.junit
-    testImplementation test.mockito
+//    testImplementation test.mockito
     testImplementation test.hamcrest
     testImplementation test.powerMockJUnit
     testImplementation test.powerMockMockito
+    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
 }
 
 apply from: 'kInstall.gradle'
 apply from: 'kBintray.gradle'
+
+repositories {
+    mavenCentral()
+}

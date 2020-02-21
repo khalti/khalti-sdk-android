@@ -10,15 +10,17 @@ import java.io.ObjectOutputStream;
 
 public class FileStorageUtil {
 
-    public static void writeIntoFile(Context context, String fileName, Object data) {
+    public static boolean writeIntoFile(Context context, String fileName, Object data) {
         try {
             FileOutputStream fileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(data);
             objectOutputStream.close();
             fileOutputStream.close();
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
