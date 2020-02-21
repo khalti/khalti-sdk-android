@@ -48,6 +48,11 @@ Add KhaltiButton in your xml layout as follows
 
 ```
 
+Add the following line in your root layout in your xml file if you're going to use `khalti` attribute.
+```xml
+xmlns:khalti="http://schemas.android.com/apk/res-auto"
+```
+
 Then, Locate your xml Khalti Button in your Java
 
 ```java
@@ -93,12 +98,12 @@ Map<String, Object> map = new HashMap<>();
 Builder builder = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                Log.i(action, errorMap);
+                Log.i(action, errorMap.toString());
             }
 
             @Override
             public void onSuccess(@NonNull Map<String, Object> data) {
-                Log.i("success", data);
+                Log.i("success", data.toString());
             }
         })
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -109,8 +114,8 @@ Builder builder = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, 
                     add(PaymentPreference.SCT);
                 }})
                 .additionalData(map)
-                .productUrl("correct product url")
-                .mobile(9800000000);
+                .productUrl("http://example.com/product")
+                .mobile("9800000000");
 ```
 Here, the functions `paymentPreferences()`,`additionalData()`,`productUrl()` and `mobile()` are optional and are not required to build the config. When passing additionalData through `additionalData()` functions make sure you add a `merchant_` prefix in your map key.
 
