@@ -1,89 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cdlMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/alTab"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/clMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.Light"
-        android:visibility="gone"
-        app:elevation="0dp">
+        android:layout_height="match_parent"
+        android:layout_above="@id/flSearchBankContainer"
+        android:orientation="vertical">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:elevation="0dp"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            app:titleEnabled="false">
+            android:background="@color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            app:elevation="0dp">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/clTitle"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbarHeight"
-                android:background="@color/white"
-                android:minHeight="@dimen/toolbarHeight"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:elevation="0dp"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-        </android.support.design.widget.CollapsingToolbarLayout>
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:titleEnabled="false">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tlTitle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbarHeight"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            app:elevation="0dp"
-            app:tabGravity="center"
-            app:tabIndicatorColor="@color/khaltiAccentAlt" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/globalPadding"
+                    android:text="@string/title"
+                    android:textColor="@color/khaltiPrimary"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/roboto_medium" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/disabled" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    </android.support.design.widget.AppBarLayout>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tlTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    app:elevation="0dp"
+                    app:tabGravity="center"
+                    app:tabIndicatorColor="@color/khaltiAccentAlt"
+                    app:tabPaddingEnd="@dimen/editTextPadding"
+                    app:tabPaddingStart="@dimen/editTextPadding"
+                    app:tabRippleColor="@null" />
+            </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/flContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/disabled"
+                android:visibility="gone" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vpContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <!--<View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/toolbar_shadow" />-->
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/llIndented"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
-            android:id="@+id/flLoad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:id="@+id/vToolbarShadow"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@drawable/toolbar_shadow"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/flMainLoad"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:visibility="visible">
+            android:layout_gravity="center"
+            android:visibility="gone">
 
             <me.zhanghai.android.materialprogressbar.MaterialProgressBar
                 style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
@@ -95,33 +104,48 @@
                 app:mpb_progressStyle="horizontal" />
         </FrameLayout>
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tvMessage"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/flTestBanner"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:text="@string/empty"
-            android:textColor="@color/primaryText"
-            android:textSize="@dimen/body"
-            android:visibility="gone"
-            app:fontFamily="@font/roboto" />
+            android:layout_gravity="start|top"
+            android:layout_marginStart="-60dp"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/holo_red_dark"
+            android:paddingLeft="@dimen/globalPadding"
+            android:paddingRight="@dimen/globalPadding"
+            android:rotation="315"
+            android:visibility="gone">
 
-        <android.support.design.button.MaterialButton
-            android:id="@+id/btnTryAgain"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/toolbarHeight"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/globalPadding"
-            android:minWidth="@dimen/carbonX_buttonWidth1"
-            android:minHeight="@dimen/carbonX_buttonHeight"
-            android:text="@string/try_again"
-            android:textAllCaps="true"
-            android:visibility="gone"
-            android:theme="@style/Theme.MaterialComponents"
-            app:backgroundTint="@color/khaltiPrimary"
-            app:cornerRadius="2dp"
-            app:rippleColor="@color/defaultRipple" />
-    </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:includeFontPadding="false"
+                android:text="TEST"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title"
+                app:fontFamily="@font/roboto_bold" />
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:id="@+id/flSearchBankContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#16000000" />
+
+        <FrameLayout
+            android:id="@+id/flSearchBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</RelativeLayout>

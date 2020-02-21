@@ -1,6 +1,24 @@
 # Changelog
 
-## 1.02.09
+### 2.00.00
+
+- Migrated to AndroidX
+- Updated Api Urls to V2
+- Migrated to Kotlin
+- Migrated to Coroutine from RxJava
+- Removed RxBus in favor of a simple listener
+- Added preference option in config to control payment tabs locally
+- Cleaned up animation libraries
+- Updated Khalti logo and color
+- Implemented new design
+- Updated Khalti payment flow; Khalti PIN is now required to initiate payment
+- Updated config to give more granular control
+- Added SCT and Connect IPS payment option
+- Khalti PIN field input length has been increased to 10
+- Khalti PIN attempts is shown if the user enters wrong PIN
+- A test banner is shown if test token is used
+
+### 1.02.09
 
 - Updated picasso version
 - Fixed crashing due to picasso

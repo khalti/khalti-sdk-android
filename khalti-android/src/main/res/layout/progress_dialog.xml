@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="24dp">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,9 +26,18 @@
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp" />
+            android:layout_marginRight="24dp">
 
-        <android.support.v7.widget.AppCompatTextView
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:indeterminate="true"
+                app:mpb_indeterminateTint="@color/khaltiAccent"
+                app:mpb_progressStyle="circular" />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

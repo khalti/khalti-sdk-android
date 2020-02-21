@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/svBank"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="@dimen/cardPadding"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="@dimen/cardPadding"
+    android:layout_marginBottom="@dimen/editTextPadding"
+    android:background="@drawable/search_bg"
+    android:theme="@style/ThemeOverlay.AppCompat.Light"
+    app:iconifiedByDefault="false"
+    app:queryBackground="@android:color/transparent"
+    app:queryHint="@string/search_bank" />
