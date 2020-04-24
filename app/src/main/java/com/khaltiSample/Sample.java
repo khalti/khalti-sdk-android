@@ -68,7 +68,7 @@ public class Sample extends AppCompatActivity {
                     add(PaymentPreference.CONNECT_IPS);
                     add(PaymentPreference.SCT);
                 }})
-                .additionalData(map)
+//                .additionalData(map)
                 .build();
 
         Config khaltiConfig = new Config.Builder(Constant.pub, "Product ID", "Khalti", 1100L, new OnCheckOutListener() {

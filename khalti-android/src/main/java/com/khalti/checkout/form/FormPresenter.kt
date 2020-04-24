@@ -258,30 +258,32 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                         is Result.Success -> {
                             view.toggleProgressDialog("confirm", false)
                             val data = HashMap<String, Any>()
-                            if (EmptyUtil.isNotNull(config.additionalData) && EmptyUtil.isNotEmpty(config.additionalData)) {
-                                val walletConfirmPojo = result.data
-                                data.putAll(config.additionalData!!)
-                                data["mobile"] = mobile
-                                if (EmptyUtil.isNotNull(walletConfirmPojo.amount)) {
-                                    data["amount"] = walletConfirmPojo.amount!!
-                                }
-                                if (EmptyUtil.isNotNull(walletConfirmPojo.productUrl)) {
-                                    data["product_url"] = walletConfirmPojo.productUrl!!
-                                }
-                                if (EmptyUtil.isNotNull(walletConfirmPojo.token)) {
-                                    data["token"] = walletConfirmPojo.token!!
-                                }
-                                if (EmptyUtil.isNotNull(walletConfirmPojo.productName)) {
-                                    data["product_name"] = walletConfirmPojo.productName!!
-                                }
-                                if (EmptyUtil.isNotNull(walletConfirmPojo.productIdentity)) {
-                                    data["product_identity"] = walletConfirmPojo.productIdentity!!
-                                }
+                            val walletConfirmPojo = result.data
 
-                                config.onCheckOutListener.onSuccess(data)
-                                view.closeWidget()
+                            if (EmptyUtil.isNotNull(walletConfirmPojo.amount)) {
+                                data["amount"] = walletConfirmPojo.amount!!
+                            }
+                            if (EmptyUtil.isNotNull(walletConfirmPojo.productUrl)) {
+                                data["product_url"] = walletConfirmPojo.productUrl!!
+                            }
+                            if (EmptyUtil.isNotNull(walletConfirmPojo.token)) {
+                                data["token"] = walletConfirmPojo.token!!
+                            }
+                            if (EmptyUtil.isNotNull(walletConfirmPojo.productName)) {
+                                data["product_name"] = walletConfirmPojo.productName!!
+                            }
+                            if (EmptyUtil.isNotNull(walletConfirmPojo.productIdentity)) {
+                                data["product_identity"] = walletConfirmPojo.productIdentity!!
+                            }
+                            if (EmptyUtil.isNotNull(walletConfirmPojo.mobile)) {
+                                data["mobile"] = walletConfirmPojo.mobile!!
+                            }
+                            if (EmptyUtil.isNotNull(config.additionalData) && EmptyUtil.isNotEmpty(config.additionalData)) {
+                                data.putAll(config.additionalData!!)
                             }
 
+                            config.onCheckOutListener.onSuccess(data)
+                            view.closeWidget()
                         }
 
                         is Result.Error -> {
