@@ -1,5 +1,8 @@
 # Changelog
 
+### 2.00.01
+- Fixed `onCheckOutLister.onSucess()` not being called if additional data is not passed through config
+
 ### 2.00.00
 
 - Migrated to AndroidX
