@@ -2,14 +2,15 @@ package com.khaltiSample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
-import com.khalti.checkout.helper.OnCheckOutListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.OnCheckOutListener;
 import com.khalti.checkout.helper.PaymentPreference;
 import com.khalti.utils.Constant;
 import com.khalti.utils.LogUtil;
@@ -53,12 +54,12 @@ public class Sample extends AppCompatActivity {
         Config mainConfig = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                LogUtil.log(action, errorMap);
+                Log.i(action, errorMap.toString());
             }
 
             @Override
             public void onSuccess(@NonNull Map<String, Object> data) {
-                LogUtil.log("success", data);
+                Log.i("success", data.toString());
             }
         })
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -74,12 +75,12 @@ public class Sample extends AppCompatActivity {
         Config khaltiConfig = new Config.Builder(Constant.pub, "Product ID", "Khalti", 1100L, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                LogUtil.log(action, errorMap);
+                Log.i(action, errorMap.toString());
             }
 
             @Override
             public void onSuccess(@NonNull Map<String, Object> data) {
-                LogUtil.log("success", data);
+                Log.i("success", data.toString());
             }
         })
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -91,12 +92,12 @@ public class Sample extends AppCompatActivity {
         Config eBankingConfig = new Config.Builder(Constant.pub, "Product ID", "E Banking", 1100L, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                LogUtil.log(action, errorMap);
+                Log.i(action, errorMap.toString());
             }
 
             @Override
             public void onSuccess(@NonNull Map<String, Object> data) {
-                LogUtil.log("success", data);
+                Log.i("success", data.toString());
             }
         })
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -108,12 +109,12 @@ public class Sample extends AppCompatActivity {
         Config mBankingConfig = new Config.Builder(Constant.pub, "Product ID", "M Banking", 1100L, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                LogUtil.log(action, errorMap);
+                Log.i(action, errorMap.toString());
             }
 
             @Override
             public void onSuccess(@NonNull Map<String, Object> data) {
-                LogUtil.log("success", data);
+                Log.i("success", data.toString());
             }
         })
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -125,12 +126,12 @@ public class Sample extends AppCompatActivity {
         Config sctConfig = new Config.Builder(Constant.pub, "Product ID", "SCT", 1100L, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                LogUtil.log(action, errorMap);
+                Log.i(action, errorMap.toString());
             }
 
             @Override
             public void onSuccess(@NonNull Map<String, Object> data) {
-                LogUtil.log("success", data);
+                Log.i("success", data.toString());
             }
         })
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -142,12 +143,12 @@ public class Sample extends AppCompatActivity {
         Config connectIpsConfig = new Config.Builder(Constant.pub, "Product ID", "Connect IPS", 1100L, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-                LogUtil.log(action, errorMap);
+                Log.i(action, errorMap.toString());
             }
 
             @Override
             public void onSuccess(@NonNull Map<String, Object> data) {
-                LogUtil.log("success", data);
+                Log.i("success", data.toString());
             }
         })
                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
