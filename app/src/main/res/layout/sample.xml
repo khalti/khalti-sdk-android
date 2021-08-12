@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -49,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="khalti"
-            khalti:text="Pay Rs 200" />
+            app:khalti_button_style="khalti"
+            app:text="Pay Rs 200" />
 
         <View
             android:layout_width="match_parent"
@@ -72,8 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="e_banking"
-            khalti:text="Pay Rs 200" />
+            app:khalti_button_style="e_banking"
+            app:text="Pay Rs 200" />
 
         <View
             android:layout_width="match_parent"
@@ -95,8 +94,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="m_banking"
-            khalti:text="Pay Rs 200" />
+            app:khalti_button_style="m_banking"
+            app:text="Pay Rs 200" />
 
         <View
             android:layout_width="match_parent"
@@ -118,8 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="connect_ips"
-            khalti:text="Pay Rs 200" />
+            app:khalti_button_style="connect_ips"
+            app:text="Pay Rs 200" />
 
         <View
             android:layout_width="match_parent"
@@ -141,8 +140,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/doubleBottomMargin"
-            khalti:button_style="sct"
-            khalti:text="Pay Rs 200" />
+            app:khalti_button_style="sct"
+            app:text="Pay Rs 200" />
 
         <View
             android:layout_width="match_parent"

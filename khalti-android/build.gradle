@@ -6,7 +6,7 @@ android {
     compileSdkVersion targetSdk
 
     defaultConfig {
-        minSdkVersion minSdk
+        minSdkVersion 14
         targetSdkVersion targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
