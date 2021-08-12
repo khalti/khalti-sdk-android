@@ -1,17 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlinx-serialization'
 
 android {
     compileSdkVersion targetSdk
-    buildToolsVersion buildToolVersion
 
     defaultConfig {
         minSdkVersion minSdk
         targetSdkVersion targetSdk
-        versionCode khaltiVersionCode
-        versionName khaltiVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -21,7 +17,6 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -43,6 +38,10 @@ android {
         options.addStringOption('Xdoclint:none', '-quiet')
         options.addStringOption('encoding', 'UTF-8')
         options.addStringOption('charSet', 'UTF-8')
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     /*androidExtensions {
@@ -95,13 +94,13 @@ dependencies {
     testImplementation test.hamcrest
     testImplementation test.powerMockJUnit
     testImplementation test.powerMockMockito
-    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
 }
 
-apply from: 'kInstall.gradle'
-apply from: 'kBintray.gradle'
+//apply from: 'kInstall.gradle'
+//apply from: 'kBintray.gradle'
 
 repositories {
     mavenCentral()

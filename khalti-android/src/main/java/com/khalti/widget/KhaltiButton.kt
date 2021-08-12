@@ -12,7 +12,6 @@ import com.khalti.R
 import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.KhaltiCheckOut
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.component_button.view.*
 
 @Keep
 class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs: AttributeSet? = null, private var defStyleAttr: Int = 0)

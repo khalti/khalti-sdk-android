@@ -23,7 +23,6 @@ import com.khalti.signal.Signal
 import com.khalti.utils.*
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.banking_contact.view.*
 import java.util.*
 
 class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.View {

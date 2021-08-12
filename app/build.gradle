@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion targetSdk
-    buildToolsVersion buildToolVersion
     defaultConfig {
         applicationId "com.khaltiSample"
         minSdkVersion minSdk
