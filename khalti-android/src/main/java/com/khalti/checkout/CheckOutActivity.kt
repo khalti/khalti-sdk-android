@@ -244,4 +244,9 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
             ViewUtil.toggleView(binding.flSearchBankContainer, false)
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        LogUtil.log("back", "has been pressed")
+    }
 }

@@ -15,6 +15,7 @@ public class Config {
     private String productName;
     private Long amount;
     private OnCheckOutListener onCheckOutListener;
+    private OnCancelListener onCancelListener;
     @Nullable
     private String mobile;
     @Nullable
@@ -46,6 +47,10 @@ public class Config {
 
     public OnCheckOutListener getOnCheckOutListener() {
         return onCheckOutListener;
+    }
+
+    public OnCancelListener getOnCancelListener() {
+        return onCancelListener;
     }
 
     @Nullable
@@ -92,14 +97,21 @@ public class Config {
         this.additionalData = additionalData;
     }
 
+    public void setOnCancelListener(@Nullable OnCancelListener onCancelListener) {
+        this.onCancelListener = onCancelListener;
+    }
+
     @Keep
     public static class Builder {
 
-        private String publicKey;
-        private String productId;
-        private String productName;
-        private Long amount;
-        private OnCheckOutListener onCheckOutListener;
+        private final String publicKey;
+        private final String productId;
+        private final String productName;
+        private final Long amount;
+        private final OnCheckOutListener onCheckOutListener;
+
+        @Nullable
+        private OnCancelListener onCancelListener;
         @Nullable
         private String mobile;
         @Nullable
@@ -137,6 +149,11 @@ public class Config {
             return this;
         }
 
+        public Builder onCancel(@Nullable OnCancelListener onCancelListener) {
+            this.onCancelListener = onCancelListener;
+            return this;
+        }
+
         public Config build() {
             Config config = new Config();
             config.publicKey = publicKey;
@@ -148,6 +165,7 @@ public class Config {
             config.productUrl = productUrl;
             config.additionalData = additionalData;
             config.paymentPreferences = paymentPreferences;
+            config.onCancelListener = onCancelListener;
 
             return config;
         }
