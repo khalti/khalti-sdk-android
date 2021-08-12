@@ -169,7 +169,8 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
                 val view = currentFragment.view
                 if (EmptyUtil.isNotNull(view)) {
                     val nestedScrollView = view!!.findViewById<NestedScrollView>(R.id.nsvContainer)
-                    nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+                    nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _,
+                                                                                                         _ ->
                         signal.emit(scrollY)
                     })
                 }
