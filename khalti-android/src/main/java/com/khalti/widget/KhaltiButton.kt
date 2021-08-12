@@ -13,12 +13,11 @@ import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.KhaltiCheckOut
 import com.khalti.databinding.ComponentButtonBinding
 import com.khalti.utils.EmptyUtil
-import com.khalti.utils.LogUtil
 import com.khalti.utils.ResourceUtil
 
 @Keep
-class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs: AttributeSet? = null, defStyleAttr: Int = 0)
-    : FrameLayout(context, attrs, defStyleAttr), KhaltiButtonInterface {
+class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    FrameLayout(context, attrs, defStyleAttr), KhaltiButtonInterface {
 
     private lateinit var binding: ComponentButtonBinding
 
@@ -68,9 +67,7 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
         a.recycle()
 
         val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        LogUtil.log("inflater", inflater)
         if (EmptyUtil.isNotNull(inflater)) {
-
             binding = ComponentButtonBinding.inflate(inflater, this, true)
 
             if (EmptyUtil.isNotNull(buttonText)) {
@@ -78,8 +75,6 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
             }
             presenter.onSetButtonStyle(buttonStyle)
             presenter.onSetButtonClick()
-
-            LogUtil.log("binding",binding)
         }
     }
 
@@ -109,7 +104,6 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
             if (imageId != -1) {
                 binding.btnPay.visibility = View.GONE
                 binding.flCustomView.visibility = View.GONE
-                LogUtil.log("Mr style", imageId)
                 ViewCompat.setBackground(binding.mrStyle, ResourceUtil.getDrawable(context, imageId))
             }
         }
