@@ -22,7 +22,6 @@ import com.khalti.signal.Signal
 import com.khalti.utils.*
 
 class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
-
     private lateinit var binding: PaymentActivityBinding
 
     var flSearch: FrameLayout? = null

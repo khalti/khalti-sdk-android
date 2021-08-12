@@ -9,12 +9,12 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.khalti.R
+import com.khalti.databinding.BankItemBinding
 import com.khalti.signal.Signal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.StringUtil
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.bank_item.view.*
 import java.util.*
 
 class BankAdapter(private val banks: MutableList<BankPojo>) : RecyclerView.Adapter<BankAdapter.MyViewHolder>() {
@@ -86,24 +86,27 @@ class BankAdapter(private val banks: MutableList<BankPojo>) : RecyclerView.Adapt
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tvBankName: AppCompatTextView = itemView.tvBankName
-        var tvBankFullName: AppCompatTextView = itemView.tvBankFullName
-        var tvBankId: AppCompatTextView = itemView.tvBankId
-        var tvBankIcon: AppCompatTextView = itemView.tvBankIcon
-        var tvBankLogo: AppCompatTextView = itemView.tvBankLogo
-        var flContainer: FrameLayout = itemView.flContainer
-        var flBankTextIcon: FrameLayout = itemView.flBankTextIcon
-        var flBankLogo: FrameLayout = itemView.flBankLogo
-        var ivBankLogo: ImageView = itemView.ivBankLogo
+        private val binding = BankItemBinding.bind(itemView);
+        var tvBankName: AppCompatTextView = binding.tvBankName
+        var tvBankFullName: AppCompatTextView = binding.tvBankFullName
+        var tvBankId: AppCompatTextView = binding.tvBankId
+        var tvBankIcon: AppCompatTextView = binding.tvBankIcon
+        var tvBankLogo: AppCompatTextView = binding.tvBankLogo
+        var flContainer: FrameLayout = binding.flContainer
+        var flBankTextIcon: FrameLayout = binding.flBankTextIcon
+        var flBankLogo: FrameLayout = binding.flBankLogo
+        var ivBankLogo: ImageView = binding.ivBankLogo
     }
 
     fun filter(queryText: String): Int {
-        val count: Int
-        count = if (queryText.isNotEmpty()) {
+        val count: Int = if (queryText.isNotEmpty()) {
             val filteredBanks = banksBackUp
                     .asSequence()
                     .filter {
-                        it.name.toLowerCase().contains(queryText.toLowerCase()) || it.shortName.toLowerCase().contains(queryText.toLowerCase())
+                        it.name.lowercase(Locale.getDefault()).contains(queryText.lowercase(Locale.getDefault())) || it.shortName.lowercase(
+                            Locale.getDefault()
+                        )
+                            .contains(queryText.lowercase(Locale.getDefault()))
                     }
                     .toList()
 

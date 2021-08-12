@@ -16,35 +16,33 @@ import com.google.android.material.snackbar.Snackbar
 import com.khalti.R
 import com.khalti.checkout.helper.BaseComm
 import com.khalti.checkout.helper.PaymentPreference
+import com.khalti.databinding.FormBinding
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.form.*
-import kotlinx.android.synthetic.main.form.view.*
 import java.util.*
 import kotlin.math.abs
 
 class Form : Fragment(), FormContract.View {
+    private lateinit var binding: FormBinding
 
     private var progressDialog: AppCompatDialog? = null
     private lateinit var fragmentActivity: FragmentActivity
     private lateinit var presenter: FormContract.Presenter
 
     private var height: Int = 0
-    private lateinit var mainView: View
     private lateinit var baseComm: BaseComm
 
     private var isKhalti = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        mainView = inflater.inflate(R.layout.form, container, false)
+        binding = FormBinding.inflate(inflater, container, false)
         fragmentActivity = activity!!
         presenter = FormPresenter(this)
 
         baseComm = Store.getBaseComm()
         presenter.onCreate()
 
-        return mainView
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -62,14 +60,14 @@ class Form : Fragment(), FormContract.View {
         return null
     }
 
-    override val payButtonText: String get() = ViewUtil.getText(mainView.btnPay)
+    override val payButtonText: String get() = ViewUtil.getText(binding.btnPay)
 
     override val formData: Map<String, String>
         get() = object : HashMap<String, String>() {
             init {
-                put("mobile", ViewUtil.getText(mainView.etMobile))
-                put("code", ViewUtil.getText(mainView.etCode))
-                put("pin", ViewUtil.getText(mainView.etPIN))
+                put("mobile", ViewUtil.getText(binding.etMobile))
+                put("code", ViewUtil.getText(binding.etCode))
+                put("pin", ViewUtil.getText(binding.etPIN))
             }
         }
 
@@ -93,17 +91,17 @@ class Form : Fragment(), FormContract.View {
 
     override fun toggleConfirmationLayout(show: Boolean) {
         val buttonText = if (show) ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) else "Pay Rs ${NumberUtil.convertToRupees(Store.getConfig().amount)}"
-        mainView.btnPay?.text = buttonText
-        mainView.etCode?.setText("")
-        mainView.elConfirmation.toggleExpansion()
+        binding.btnPay.text = buttonText
+        binding.etCode.setText("")
+        binding.elConfirmation.toggleExpansion()
     }
 
     override fun togglePinLayout(show: Boolean) {
-        ViewUtil.toggleView(mainView.llPIN, show)
+        ViewUtil.toggleView(binding.llPIN, show)
     }
 
     override fun togglePinMessage(show: Boolean) {
-        ViewUtil.toggleView(mainView.llPINMessage, show)
+        ViewUtil.toggleView(binding.llPINMessage, show)
     }
 
     override fun toggleMobileLabel(paymentType: String) {
@@ -116,48 +114,48 @@ class Form : Fragment(), FormContract.View {
             }
             else -> ResourceUtil.getString(fragmentActivity, R.string.mobile_hint)
         }
-        ViewUtil.setHint(mainView.tilMobile, label)
+        ViewUtil.setHint(binding.tilMobile, label)
     }
 
     override fun toggleAttemptRemaining(show: Boolean) {
-        if (EmptyUtil.isNotNull(mainView.elAttempts)) {
-            mainView.elAttempts.setExpanded(show, true)
+        if (EmptyUtil.isNotNull(binding.elAttempts)) {
+            binding.elAttempts.setExpanded(show, true)
         }
     }
 
     override fun setPinMessage(message: String) {
-//        ViewUtil.setText(mainView.tvPinMessage, message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info))
+//        ViewUtil.setText(binding.tvPinMessage, message + " " + ResourceUtil.getString(fragmentActivity, R.string.sms_info))
     }
 
     override fun setAttemptsRemaining(attempts: String) {
-        ViewUtil.setText(mainView.tvAttemptsRemaining, attempts)
+        ViewUtil.setText(binding.tvAttemptsRemaining, attempts)
     }
 
     override fun setMobile(mobile: String) {
-        mainView.etMobile?.setText(mobile)
-        mainView.etMobile?.setSelection(mobile.length)
+        binding.etMobile.setText(mobile)
+        binding.etMobile.setSelection(mobile.length)
     }
 
     override fun setEditTextError(view: String, error: String?) {
         val isError = EmptyUtil.isNotNull(error)
         when (view) {
             "mobile" -> {
-                mainView.tilMobile?.isErrorEnabled = isError
-                mainView.tilMobile?.error = error
+                binding.tilMobile.isErrorEnabled = isError
+                binding.tilMobile.error = error
             }
             "pin" -> {
-                mainView.tilPIN?.isErrorEnabled = isError
-                mainView.tilPIN?.error = error
+                binding.tilPIN.isErrorEnabled = isError
+                binding.tilPIN.error = error
             }
             "code" -> {
-                mainView.llCode.measure(0, 0)
-                val beforeA = mainView.llCode.measuredHeight
+                binding.llCode.measure(0, 0)
+                val beforeA = binding.llCode.measuredHeight
 
-                mainView.tilCode.isErrorEnabled = isError
-                mainView.tilCode.error = error
+                binding.tilCode.isErrorEnabled = isError
+                binding.tilCode.error = error
 
-                mainView.llCode.measure(0, 0)
-                val afterA = mainView.llCode.measuredHeight
+                binding.llCode.measure(0, 0)
+                val afterA = binding.llCode.measuredHeight
 
                 height = abs(height + (afterA - beforeA))
             }
@@ -165,17 +163,17 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun setButtonText(text: String) {
-        mainView.btnPay?.text = text
+        binding.btnPay.text = text
     }
 
     override fun setConfirmationLayoutHeight() {
-        val til = mainView.tilCode
-        val ll: LinearLayout = mainView.llCode
-        if (EmptyUtil.isNotNull(til?.error)) {
+        val til = binding.tilCode
+        val ll: LinearLayout = binding.llCode
+        if (EmptyUtil.isNotNull(til.error)) {
             ll.measure(0, 0)
             val beforeA = ll.measuredHeight
 
-            til?.isErrorEnabled = false
+            til.isErrorEnabled = false
 
             ll.measure(0, 0)
             val afterA = ll.measuredHeight
@@ -183,9 +181,9 @@ class Form : Fragment(), FormContract.View {
             if (EmptyUtil.isNotNull(beforeA) && EmptyUtil.isNotNull(afterA)) {
                 height = abs(height + (beforeA - afterA))
 
-                val layoutParams = mainView.llConfirmation.layoutParams as ExpandableLayout.LayoutParams
-                layoutParams.height = mainView.llConfirmation.height - height
-                mainView.llConfirmation.layoutParams = layoutParams
+                val layoutParams = binding.llConfirmation.layoutParams as ExpandableLayout.LayoutParams
+                layoutParams.height = binding.llConfirmation.height - height
+                binding.llConfirmation.layoutParams = layoutParams
 
                 height = 0
             }
@@ -194,19 +192,19 @@ class Form : Fragment(), FormContract.View {
 
     override fun setEditTextListener(): Map<String, Signal<CharSequence>> = object : HashMap<String, Signal<CharSequence>>() {
         init {
-            put("mobile", ViewUtil.setTextChangeListener(mainView.etMobile))
-            put("code", ViewUtil.setTextChangeListener(mainView.etCode))
-            put("pin", ViewUtil.setTextChangeListener(mainView.etPIN))
+            put("mobile", ViewUtil.setTextChangeListener(binding.etMobile))
+            put("code", ViewUtil.setTextChangeListener(binding.etCode))
+            put("pin", ViewUtil.setTextChangeListener(binding.etPIN))
         }
     }
 
     override fun setClickListener(): Map<String, Signal<Any>> = object : HashMap<String, Signal<Any>>() {
         init {
-            put("pay", ViewUtil.setClickListener(mainView.btnPay))
+            put("pay", ViewUtil.setClickListener(binding.btnPay))
             if (isKhalti) {
-                put("khalti", ViewUtil.setClickListener(mainView.ivBranding))
+                put("khalti", ViewUtil.setClickListener(binding.ivBranding))
             }
-            put("pin", ViewUtil.setClickListener(mainView.btnSetPin))
+            put("pin", ViewUtil.setClickListener(binding.btnSetPin))
         }
     }
 
@@ -224,7 +222,7 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun showBranding(paymentType: String) {
-//        ViewUtil.toggleView(mainView.llBranding, true)
+//        ViewUtil.toggleView(binding.llBranding, true)
         var drawable: Int? = null
         when (paymentType) {
             PaymentPreference.KHALTI.value -> {
@@ -239,8 +237,8 @@ class Form : Fragment(), FormContract.View {
             }
         }
 
-        if (EmptyUtil.isNotNull(mainView.ivBranding)) {
-            mainView.ivBranding.setImageResource(drawable!!)
+        if (EmptyUtil.isNotNull(binding.ivBranding)) {
+            binding.ivBranding.setImageResource(drawable!!)
         }
     }
 
@@ -275,9 +273,9 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun updateConfirmationHeight() {
-        val layoutParams = mainView.llConfirmation.layoutParams as ExpandableLayout.LayoutParams
-        layoutParams.height = mainView.llConfirmation.height + height
-        mainView.llConfirmation.layoutParams = layoutParams
+        val layoutParams = binding.llConfirmation.layoutParams as ExpandableLayout.LayoutParams
+        layoutParams.height = binding.llConfirmation.height + height
+        binding.llConfirmation.layoutParams = layoutParams
 
         height = 0
     }

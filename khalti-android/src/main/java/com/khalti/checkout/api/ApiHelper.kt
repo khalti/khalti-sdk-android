@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 public class ApiHelper {
 
     companion object {
-        private val TIME_OUT = 30L
+        private const val TIME_OUT = 30L
 
         fun apiBuilder(): KhaltiApi {
             val interceptor = HttpLoggingInterceptor()

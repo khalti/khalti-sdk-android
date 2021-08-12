@@ -1,21 +1,25 @@
 package com.khalti.widget
 
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.FrameLayout
 import androidx.annotation.Keep
 import androidx.core.view.ViewCompat
 import com.khalti.R
 import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.KhaltiCheckOut
-import com.khalti.utils.*
+import com.khalti.databinding.ComponentButtonBinding
+import com.khalti.utils.EmptyUtil
+import com.khalti.utils.ResourceUtil
 
 @Keep
 class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs: AttributeSet? = null, private var defStyleAttr: Int = 0)
     : FrameLayout(context, attrs, defStyleAttr), KhaltiButtonInterface {
+
+    private lateinit var binding: ComponentButtonBinding
 
     private lateinit var config: Config
     private var presenter: PayContract.Presenter
@@ -64,7 +68,8 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
 
         val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         if (EmptyUtil.isNotNull(inflater)) {
-            inflater.inflate(R.layout.component_button, this, true)
+
+            binding = ComponentButtonBinding.inflate(inflater)
 
             if (EmptyUtil.isNotNull(buttonText)) {
                 presenter.onSetButtonText(buttonText!!)
@@ -81,9 +86,9 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
 
         override fun setCustomButtonView() {
             if (EmptyUtil.isNotNull(customView)) {
-                btnPay.visibility = View.GONE
-                mrStyle.visibility = View.GONE
-                flCustomView.addView(customView)
+                binding.btnPay.visibility = View.GONE
+                binding.mrStyle.visibility = View.GONE
+                binding.flCustomView.addView(customView)
             }
         }
 
@@ -98,14 +103,14 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
             }
 
             if (imageId != -1) {
-                btnPay.visibility = View.GONE
-                flCustomView.visibility = View.GONE
-                ViewCompat.setBackground(mrStyle, ResourceUtil.getDrawable(context, imageId))
+                binding.btnPay.visibility = View.GONE
+                binding.flCustomView.visibility = View.GONE
+                ViewCompat.setBackground(binding.mrStyle, ResourceUtil.getDrawable(context, imageId))
             }
         }
 
         override fun setButtonText(text: String) {
-            btnPay.text = text
+            binding.btnPay.text = text
         }
 
         override fun setButtonClick() {
@@ -114,9 +119,9 @@ class KhaltiButton @JvmOverloads constructor(context: Context, private var attrs
             } else clickListener
 
             when {
-                EmptyUtil.isNotNull(customView) -> flCustomView.getChildAt(0).setOnClickListener(clickListener)
-                buttonStyle != -1 -> mrStyle.setOnClickListener(clickListener)
-                else -> btnPay.setOnClickListener(clickListener)
+                EmptyUtil.isNotNull(customView) -> binding.flCustomView.getChildAt(0).setOnClickListener(clickListener)
+                buttonStyle != -1 -> binding.mrStyle.setOnClickListener(clickListener)
+                else -> binding.btnPay.setOnClickListener(clickListener)
             }
         }
 

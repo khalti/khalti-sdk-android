@@ -12,6 +12,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.HashMap
 
 class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
@@ -72,7 +74,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
                     when (paymentType) {
                         PaymentPreference.KHALTI.value -> {
-                            if (view.payButtonText.toLowerCase().contains("confirm")) {
+                            if (view.payButtonText.lowercase(Locale.getDefault()).contains("confirm")) {
                                 if (isFinalFormValid(dataMap.getValue("code"))) {
                                     onConfirmWalletPayment(view.hasNetwork(), dataMap.getValue("code"), dataMap.getValue("pin"))
                                 } else {
@@ -120,7 +122,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                 compositeSignal.add(watcherMap.getValue("mobile")
                         .connect {
                             view.setEditTextError("mobile", null)
-                            if (view.payButtonText.toLowerCase().contains("confirm")) {
+                            if (view.payButtonText.lowercase(Locale.getDefault()).contains("confirm")) {
                                 view.toggleConfirmationLayout(false)
                             }
                         })
@@ -130,7 +132,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                 compositeSignal.add(watcherMap.getValue("pin")
                         .connect {
                             view.setEditTextError("pin", null)
-                            if (view.payButtonText.toLowerCase().contains("confirm")) {
+                            if (view.payButtonText.lowercase(Locale.getDefault()).contains("confirm")) {
                                 view.toggleConfirmationLayout(false)
                             }
                         })
