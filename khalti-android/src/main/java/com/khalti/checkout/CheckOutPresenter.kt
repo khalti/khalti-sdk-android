@@ -84,4 +84,8 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
 //        view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
         view.toggleSearch(preferences[currentPage].value, searchList.contains(preferences[currentPage].value))
     }
+
+    override fun onBackPressed() {
+        Store.getConfig().onCancelListener?.onCancel()
+    }
 }

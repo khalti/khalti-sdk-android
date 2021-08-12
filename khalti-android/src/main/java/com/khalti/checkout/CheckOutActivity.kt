@@ -246,7 +246,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
     }
 
     override fun onBackPressed() {
+        presenter.onBackPressed()
         super.onBackPressed()
-        LogUtil.log("back", "has been pressed")
     }
 }

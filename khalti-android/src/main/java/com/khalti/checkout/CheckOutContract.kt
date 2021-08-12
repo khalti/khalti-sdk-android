@@ -44,5 +44,7 @@ interface CheckOutContract {
         fun onGetPreferenceList(config: Config): List<PaymentPreference>
 
         fun onTabSelected(preferences: List<PaymentPreference>, it: Map<String, Any>)
+
+        fun onBackPressed()
     }
 }

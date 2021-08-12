@@ -4,6 +4,8 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.khalti.utils.LogUtil;
+
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ public class Config {
     private String productName;
     private Long amount;
     private OnCheckOutListener onCheckOutListener;
+    @Nullable
     private OnCancelListener onCancelListener;
     @Nullable
     private String mobile;
@@ -49,6 +52,7 @@ public class Config {
         return onCheckOutListener;
     }
 
+    @Nullable
     public OnCancelListener getOnCancelListener() {
         return onCancelListener;
     }
@@ -71,34 +75,6 @@ public class Config {
     @Nullable
     public List<PaymentPreference> getPaymentPreferences() {
         return paymentPreferences;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public void setMobile(@Nullable String mobile) {
-        this.mobile = mobile;
-    }
-
-    public void setProductUrl(@Nullable String productUrl) {
-        this.productUrl = productUrl;
-    }
-
-    public void setAdditionalData(@Nullable Map<String, Object> additionalData) {
-        this.additionalData = additionalData;
-    }
-
-    public void setOnCancelListener(@Nullable OnCancelListener onCancelListener) {
-        this.onCancelListener = onCancelListener;
     }
 
     @Keep
