@@ -1,5 +1,6 @@
 package com.khalti.checkout
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -119,7 +120,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
                 color = ResourceUtil.getColor(this, R.color.black)
                 icon = map.getValue("icon") as Int
 
-                val tabBinding = ComponentTabBinding.inflate(LayoutInflater.from(applicationContext))
+                val tabBinding = ComponentTabBinding.inflate(getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
                 val mcTab = tabBinding.mcContainer
                 tabBinding.tvTitle.text = map["title"].toString()
                 tabBinding.tvTitle.setTextColor(color)
