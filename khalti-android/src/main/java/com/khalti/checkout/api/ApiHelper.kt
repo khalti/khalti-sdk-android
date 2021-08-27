@@ -11,9 +11,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.security.KeyManagementException
+import java.security.NoSuchAlgorithmException
 import java.util.concurrent.TimeUnit
 
-public class ApiHelper {
+class ApiHelper {
 
     companion object {
         private const val TIME_OUT = 30L

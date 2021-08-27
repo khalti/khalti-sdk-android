@@ -30,7 +30,6 @@ class KhaltiCheckOut : KhaltiCheckOutInterface {
                 require(EmptyUtil.isEmpty(message)) { message }
 
                 Store.setConfig(config)
-                LogUtil.log("is active", CheckOutActivity.isActive)
                 ActivityUtil.openActivity(CheckOutActivity::class.java, context, null, true)
             }
         }

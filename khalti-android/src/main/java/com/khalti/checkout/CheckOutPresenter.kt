@@ -5,7 +5,6 @@ import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.*
-import kotlin.math.log
 
 class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
     private val view: CheckOutContract.View = GuavaUtil.checkNotNull<CheckOutContract.View>(view)
@@ -26,32 +25,33 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
             }
         })
 
-        val uniqueList = onGetPreferenceList(Store.getConfig())
 
         view.toggleLoading(true)
+
+        val uniqueList = onGetPreferenceList(Store.getConfig())
         HandlerUtil.delayedTask(500) {
             view.toggleLoading(false)
             view.setupViewPager(uniqueList)
             view.toggleTitle(uniqueList.size > 1)
 
             compositeSignal.add(view.setUpTabLayout(uniqueList)
-                    .connect {
-                        onTabSelected(uniqueList, it)
-                    })
+                .connect {
+                    onTabSelected(uniqueList, it)
+                })
 
             HandlerUtil.delayedTask(1000) {
                 for (i in 0 until uniqueList.size - 1) {
                     compositeSignal.add(view.setPageScrollListener(i)
-                            .connect {
-                                view.toggleToolbarShadow(it > 0)
-                            })
+                        .connect {
+                            view.toggleToolbarShadow(it > 0)
+                        })
                 }
             }
 
             compositeSignal.add(view.getSearchViewMapInitSignal()
-                    .connect {
-                        view.toggleSearch(uniqueList[currentPage].value, searchList.contains(uniqueList[currentPage].value))
-                    })
+                .connect {
+                    view.toggleSearch(uniqueList[currentPage].value, searchList.contains(uniqueList[currentPage].value))
+                })
 
             view.toggleTestBanner(Store.getConfig().publicKey.contains("test_"))
         }

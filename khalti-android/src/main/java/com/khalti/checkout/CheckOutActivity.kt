@@ -1,6 +1,7 @@
 package com.khalti.checkout
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import com.google.android.gms.security.ProviderInstaller
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.khalti.R
@@ -21,6 +23,10 @@ import com.khalti.databinding.ComponentTabBinding
 import com.khalti.databinding.PaymentActivityBinding
 import com.khalti.signal.Signal
 import com.khalti.utils.*
+import java.security.KeyManagementException
+import java.security.NoSuchAlgorithmException
+import javax.net.ssl.SSLContext
+
 
 class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
     private lateinit var binding: PaymentActivityBinding
@@ -50,6 +56,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
 
         isActive = true
         presenter = CheckOutPresenter(this)
+
         presenter.onCreate()
     }
 
@@ -57,21 +64,6 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
         super.onDestroy()
         presenter.onDestroy()
         isActive = false
-    }
-
-    override fun toggleTab(position: Int, selected: Boolean, id: String) {
-        /*val flTab = tabs[position]?.customView
-        val mcTab = flTab?.mcContainer
-        if (EmptyUtil.isNotNull(mcTab)) {
-            val tabMap = MerchantUtil.getTab(id)
-            if (EmptyUtil.isNotNull(tabMap)) {
-                if (selected) {
-                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.black))
-                } else {
-                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.black))
-                }
-            }
-        }*/
     }
 
     override fun toggleToolbarShadow(show: Boolean) {
@@ -225,7 +217,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
         this.presenter = presenter
     }
 
-    override fun getCoordinator(): CoordinatorLayout? {
+    override fun getCoordinator(): CoordinatorLayout {
         return binding.clMain
     }
 

@@ -10,7 +10,7 @@ ext {
     ]
 
     butterKnifeVersion = '10.1.0'
-    gsonVersion = '2.8.2'
+    gsonVersion = '2.8.8'
     picassoVersion = '2.71828'
     rippleVersion = '1.0.2'
     progressBarVersion = '1.4.0'
@@ -33,12 +33,12 @@ ext {
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineAndroidVersion"
     ]
 
-    retrofitVersion = '2.7.1'
-    retrofitConverterVersion = '2.7.1'
-    okhttpLoggingInterceptorVersion = '4.3.0'
-    okhttpUrlConnectionVersion = '4.3.0'
-    okhttpVersion = '4.3.0'
-    httpClientVersion = '4.1.2'
+    retrofitVersion = '2.9.0'
+    retrofitConverterVersion = '2.9.0'
+    okhttpLoggingInterceptorVersion = '4.9.1'
+    okhttpUrlConnectionVersion = '4.9.1'
+    okhttpVersion = '4.9.1'
+//    httpClientVersion = '4.1.2'
 
     network = [
             okhttp_logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLoggingInterceptorVersion}",
@@ -46,7 +46,7 @@ ext {
             okhttp3                   : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
             retrofit_gson_converter   : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
             retrofit2                 : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            apache_http_client        : "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${httpClientVersion}"
+//            apache_http_client        : "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${httpClientVersion}"
     ]
 
     junitVersion = '4.12'

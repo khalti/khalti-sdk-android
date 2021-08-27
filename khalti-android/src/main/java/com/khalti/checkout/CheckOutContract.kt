@@ -8,8 +8,6 @@ import com.khalti.signal.Signal
 interface CheckOutContract {
     interface View {
 
-        fun toggleTab(position: Int, selected: Boolean, id: String)
-
         fun toggleToolbarShadow(show: Boolean)
 
         fun toggleTitle(show: Boolean)
