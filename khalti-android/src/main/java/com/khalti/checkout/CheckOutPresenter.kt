@@ -4,7 +4,10 @@ import com.khalti.checkout.helper.CheckoutEventListener
 import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
-import com.khalti.utils.*
+import com.khalti.utils.EmptyUtil
+import com.khalti.utils.GuavaUtil
+import com.khalti.utils.HandlerUtil
+import com.khalti.utils.Store
 
 class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
     private val view: CheckOutContract.View = GuavaUtil.checkNotNull<CheckOutContract.View>(view)
@@ -19,12 +22,12 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
 
     override fun onCreate() {
         view.setStatusBarColor()
+        Store.setAppPackageName(view.getAppPackageName())
         Store.setCheckoutEventListener(object : CheckoutEventListener {
             override fun closeCheckout() {
                 view.closeCheckOut()
             }
         })
-
 
         view.toggleLoading(true)
 

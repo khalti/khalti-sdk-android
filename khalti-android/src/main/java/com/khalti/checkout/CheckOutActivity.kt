@@ -1,7 +1,6 @@
 package com.khalti.checkout
 
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -13,7 +12,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import com.google.android.gms.security.ProviderInstaller
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.khalti.R
@@ -23,9 +21,6 @@ import com.khalti.databinding.ComponentTabBinding
 import com.khalti.databinding.PaymentActivityBinding
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import java.security.KeyManagementException
-import java.security.NoSuchAlgorithmException
-import javax.net.ssl.SSLContext
 
 
 class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
@@ -199,6 +194,10 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
 
     override fun getSearchViewMapInitSignal(): Signal<Any> {
         return searchViewMapInitSignal
+    }
+
+    override fun getAppPackageName(): String {
+        return applicationContext.packageName
     }
 
     override fun toggleSearch(paymentType: String, show: Boolean) {

@@ -34,6 +34,8 @@ interface CheckOutContract {
 
         fun getSearchViewMapInitSignal(): Signal<Any>
 
+        fun getAppPackageName() : String
+
         fun setPresenter(presenter: Presenter)
     }
 
