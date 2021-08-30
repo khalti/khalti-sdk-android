@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class ActivityUtil {
 
+    @SuppressWarnings("rawtypes")
     public static void openActivity(Class className, Context context, HashMap<String, ?> data, boolean animate) {
         Intent intent = new Intent(context, className);
         if (!animate) {
