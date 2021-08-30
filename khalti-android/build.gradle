@@ -6,7 +6,7 @@ android {
     compileSdkVersion targetSdk
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -16,6 +16,7 @@ android {
 
     buildTypes {
         debug {
+            print(defaultConfig.versionName)
             buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
         }
 
