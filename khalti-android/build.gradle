@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlinx-serialization'
-apply plugin: 'io.github.gradle-nexus.publish-plugin'
 
 android {
     compileSdkVersion targetSdk
@@ -105,12 +104,31 @@ dependencies {
     testImplementation test.powerMockMockito
     implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:1.0-M1-1.4.0-rc"
 }
-
-//apply from: 'kInstall.gradle'
-//apply from: 'kBintray.gradle'
 
 repositories {
     mavenCentral()
 }
+
+ext {
+    PUBLISH_GROUP_ID = 'com.khalti'
+    PUBLISH_VERSION = khaltiVersionName
+    PUBLISH_ARTIFACT_ID = 'loaderviewlibrary'
+    PUBLISH_DESCRIPTION = 'LoaderView Android SDK'
+    PUBLISH_URL = 'https://github.com/elye/loaderviewlibrary'
+    PUBLISH_LICENSE_NAME = 'Apache License'
+    PUBLISH_LICENSE_URL =
+            'https://github.com/elye/loaderviewlibrary/blob/master/LICENSE'
+    PUBLISH_DEVELOPER_ID = 'elye'
+    PUBLISH_DEVELOPER_NAME = 'My Name'
+    PUBLISH_DEVELOPER_EMAIL = 'myemail@mail.com'
+    PUBLISH_SCM_CONNECTION =
+            'scm:git:github.com/elye/loaderviewlibrary.git'
+    PUBLISH_SCM_DEVELOPER_CONNECTION =
+            'scm:git:ssh://github.com/elye/loaderviewlibrary.git'
+    PUBLISH_SCM_URL =
+            'https://github.com/elye/loaderviewlibrary/tree/master'
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"

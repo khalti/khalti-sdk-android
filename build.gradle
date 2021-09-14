@@ -20,6 +20,8 @@ buildscript {
     }
 }
 
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+
 allprojects {
     repositories {
         google()
