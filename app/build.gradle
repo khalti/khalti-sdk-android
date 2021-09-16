@@ -35,9 +35,9 @@ dependencies {
     /*ButterKnife*/
     implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
-//    implementation "com.khalti:khalti-android:2.00.01"
+    implementation "com.khalti:khalti-android:2.00.02"
 //    implementation('com.khalti:khalti-android:1.02.10') {
 //        transitive = true
 //    }
-    implementation project(':khalti-android')
+//    implementation project(':khalti-android')
 }

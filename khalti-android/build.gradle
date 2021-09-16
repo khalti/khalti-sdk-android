@@ -114,21 +114,17 @@ repositories {
 ext {
     PUBLISH_GROUP_ID = 'com.khalti'
     PUBLISH_VERSION = khaltiVersionName
-    PUBLISH_ARTIFACT_ID = 'loaderviewlibrary'
-    PUBLISH_DESCRIPTION = 'LoaderView Android SDK'
-    PUBLISH_URL = 'https://github.com/elye/loaderviewlibrary'
-    PUBLISH_LICENSE_NAME = 'Apache License'
-    PUBLISH_LICENSE_URL =
-            'https://github.com/elye/loaderviewlibrary/blob/master/LICENSE'
-    PUBLISH_DEVELOPER_ID = 'elye'
-    PUBLISH_DEVELOPER_NAME = 'My Name'
-    PUBLISH_DEVELOPER_EMAIL = 'myemail@mail.com'
-    PUBLISH_SCM_CONNECTION =
-            'scm:git:github.com/elye/loaderviewlibrary.git'
-    PUBLISH_SCM_DEVELOPER_CONNECTION =
-            'scm:git:ssh://github.com/elye/loaderviewlibrary.git'
-    PUBLISH_SCM_URL =
-            'https://github.com/elye/loaderviewlibrary/tree/master'
+    PUBLISH_ARTIFACT_ID = 'khalti-android'
+    PUBLISH_DESCRIPTION = 'A Khalti payment widget for android'
+    PUBLISH_URL = 'https://github.com/janakitech/khalti-android'
+    PUBLISH_LICENSE_NAME = 'The MIT License'
+    PUBLISH_LICENSE_URL = 'https://opensource.org/licenses/mit-license.ph'
+    PUBLISH_DEVELOPER_ID = 'khalti'
+    PUBLISH_DEVELOPER_NAME = 'Khalti Official'
+    PUBLISH_DEVELOPER_EMAIL = 'info@khalti.com'
+    PUBLISH_SCM_CONNECTION = 'https://github.com/janakitech/khalti-android.git'
+    PUBLISH_SCM_DEVELOPER_CONNECTION = 'scm:git:ssh://github.com/janakitech/khalti-android.git'
+    PUBLISH_SCM_URL = 'https://github.com/janakitech/khalti-android/tree/master'
 }
 
 apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
