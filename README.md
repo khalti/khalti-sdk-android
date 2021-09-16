@@ -10,9 +10,12 @@ Welcome to Khalti's checkout documentation
 
 #### Requirements
 
-- Android 4.0 and above
+- Android 5.0 and above
 - AndroidX (as of v2.00.00)
 - Android Studio 3 and above
+
+#### Quick Note
+- We've dropped support of Android 4 since version `2.01.00`
 
 #### Configuration
 
