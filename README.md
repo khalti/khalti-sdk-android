@@ -1,4 +1,4 @@
-[<img width="302.6" height="115" src="https://khalti.com/logo/khalti-logo-color.png"/>](https://khalti.com/)
+[<img width="302.6" height="115" src="https://d7vw40z4bofef.cloudfront.net/static/2.69.07-web19/images/khalti-logo.svg"/>](https://khalti.com/)
 
 # Khalti Android SDK
 
@@ -48,14 +48,14 @@ Add KhaltiButton in your xml layout as follows
             android:id="@+id/khalti_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            khalti:button_style="khalti"/>
+            app:khalti_button_style="khalti"/>
 
 ```
 
 Add the following line in your root layout in your xml file if you're going to use `khalti` attribute.
 
 ```xml
-xmlns:khalti="http://schemas.android.com/apk/res-auto"
+xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 
 Then, Locate your xml Khalti Button in your Java
@@ -68,10 +68,11 @@ KhaltiButton khaltiButton = (KhaltiButton) findViewById(R.id.khalti_button);
 
 | Attribute             | Description                                              |
 |:----------------------|:---------------------------------------------------------|
-| `khalti:text`         | Text to display                                          |
-| `khalti:button_style` | Set the style of KhaltiButton from the available options |
+| `app:text`         | Text to display                                          |
+| `app:khalti_button_style` | Set the style of KhaltiButton from the available options |
 
-Use the `button_style` attribute in your xml file to select a button style for your Khalti button. Or you can use the `setButtonStyle()` function in khalti button to set the style programmatically.
+Use the `khalti_button_style` attribute in your xml file to select a button style for your Khalti button. Or you can use the 
+`setButtonStyle()` function in khalti button to set the style programmatically.
 
 ###### Available button styles
 
@@ -174,6 +175,7 @@ khaltiButton.setCheckOutConfig(config);
 |:---------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `onSuccess(Map data)`                  | This method is called when a transaction has been completed and confirmed by the user. A map containing an access token, required to verify the transaction and data passed to the Config through the Config bulder is returned. Once this method is called, use the access token to verify the transaction. Please follow the [verification](./../api/verification.md) process for further instructions. |
 | `onError(String action, Map errorMap)` | This method is called when an error occurs during payment initiation or confirmation. Action and errorMap value is passed where action defines the current action being performed and errorMap has the necessary information on the error.                                                                                                                                                                |
+| `onCancel()` | This method is called when the user dismisses or cancels the checkout process. (When the user presses back button).                                                                                                                                                                |
 
 #### Response Sample
 
