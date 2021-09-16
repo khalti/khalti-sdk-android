@@ -86,7 +86,7 @@ class BankAdapter(private val banks: MutableList<BankPojo>) : RecyclerView.Adapt
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = BankItemBinding.bind(itemView);
+        private val binding = BankItemBinding.bind(itemView)
         var tvBankName: AppCompatTextView = binding.tvBankName
         var tvBankFullName: AppCompatTextView = binding.tvBankFullName
         var tvBankId: AppCompatTextView = binding.tvBankId

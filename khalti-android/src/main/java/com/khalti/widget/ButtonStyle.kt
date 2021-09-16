@@ -2,7 +2,6 @@ package com.khalti.widget
 
 
 import androidx.annotation.Keep
-import com.khalti.R
 
 @Keep
 enum class ButtonStyle(val value: Int) {

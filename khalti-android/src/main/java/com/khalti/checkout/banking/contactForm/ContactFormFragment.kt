@@ -32,9 +32,9 @@ class ContactFormFragment : BottomSheetDialogFragment(), ContactFormContract.Vie
     private lateinit var presenter: ContactFormContract.Presenter
     private lateinit var baseComm: BaseComm
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = BankingContactBinding.inflate(inflater, container, false)
-        fragmentActivity = activity!!
+        fragmentActivity = requireActivity()
 
         baseComm = Store.getBaseComm()
         presenter = ContactFormPresenter(this)

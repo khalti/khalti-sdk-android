@@ -25,7 +25,7 @@ public class BaseListPojo implements Parcelable {
     private String previous;
     @SerializedName("record_range")
     @Expose
-    private List<Integer> recordRange = new ArrayList<Integer>();
+    private List<Integer> recordRange = new ArrayList<>();
     @SerializedName("current_page")
     @Expose
     private Integer currentPage;
@@ -85,7 +85,7 @@ public class BaseListPojo implements Parcelable {
         this.totalRecords = (Integer) in.readValue(Integer.class.getClassLoader());
         this.next = in.readString();
         this.previous = in.readString();
-        this.recordRange = new ArrayList<Integer>();
+        this.recordRange = new ArrayList<>();
         in.readList(this.recordRange, Integer.class.getClassLoader());
         this.currentPage = (Integer) in.readValue(Integer.class.getClassLoader());
         this.records = in.createTypedArrayList(BankPojo.CREATOR);

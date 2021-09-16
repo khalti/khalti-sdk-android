@@ -10,7 +10,7 @@ import com.khalti.utils.HandlerUtil
 import com.khalti.utils.Store
 
 class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
-    private val view: CheckOutContract.View = GuavaUtil.checkNotNull<CheckOutContract.View>(view)
+    private val view: CheckOutContract.View = GuavaUtil.checkNotNull(view)
     private val compositeSignal = CompositeSignal()
     private var currentPage = 0
 

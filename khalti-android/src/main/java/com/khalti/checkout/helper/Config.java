@@ -4,8 +4,6 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.khalti.utils.LogUtil;
-
 import java.util.List;
 import java.util.Map;
 

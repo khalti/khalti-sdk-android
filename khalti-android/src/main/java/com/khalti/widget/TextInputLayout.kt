@@ -2,13 +2,11 @@ package com.khalti.widget
 
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-
 import com.khalti.R
 
 class TextInputLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : com.google.android.material.textfield.TextInputLayout(context, attrs, defStyleAttr) {

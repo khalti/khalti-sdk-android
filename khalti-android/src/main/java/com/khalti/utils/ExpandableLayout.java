@@ -145,9 +145,7 @@ public class ExpandableLayout extends LinearLayout {
         View child = findExpandableView();
         if (child != null) {
             LayoutParams p = (LayoutParams) child.getLayoutParams();
-            if (p.isExpanded) {
-                return true;
-            }
+            return p.isExpanded;
         }
         return false;
     }
@@ -428,7 +426,7 @@ public class ExpandableLayout extends LinearLayout {
 
     public static class LayoutParams extends LinearLayout.LayoutParams {
         private static final int NO_MEASURED_HEIGHT = -10;
-        int originalHeight = NO_MEASURED_HEIGHT;
+        int originalHeight;
         boolean isExpanded;
         boolean canExpand;
         boolean isExpanding;

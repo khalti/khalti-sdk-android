@@ -10,16 +10,16 @@ public class BankPojo implements Parcelable {
 
     @SerializedName("idx")
     @Expose
-    private String idx;
+    private final String idx;
     @SerializedName("name")
     @Expose
-    private String name;
+    private final String name;
     @SerializedName("short_name")
     @Expose
-    private String shortName;
+    private final String shortName;
     @SerializedName("logo")
     @Expose
-    private String logo;
+    private final String logo;
 
     protected BankPojo(Parcel in) {
         idx = in.readString();

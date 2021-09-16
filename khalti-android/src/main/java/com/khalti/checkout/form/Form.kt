@@ -34,9 +34,9 @@ class Form : Fragment(), FormContract.View {
 
     private var isKhalti = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FormBinding.inflate(inflater, container, false)
-        fragmentActivity = activity!!
+        fragmentActivity = requireActivity()
         presenter = FormPresenter(this)
 
         baseComm = Store.getBaseComm()

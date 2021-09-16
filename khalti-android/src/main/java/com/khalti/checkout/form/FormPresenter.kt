@@ -17,7 +17,7 @@ import kotlin.collections.HashMap
 
 class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
-    private val view: FormContract.View = GuavaUtil.checkNotNull<FormContract.View>(view)
+    private val view: FormContract.View = GuavaUtil.checkNotNull(view)
     private lateinit var config: Config
     private val compositeSignal = CompositeSignal()
     private val model = FormModel()
