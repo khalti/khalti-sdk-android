@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="khalti">
+    <declare-styleable name="KhaltiButton">
         <attr name="text" format="string" />
-        <attr name="button_style" format="enum">
+        <attr name="khalti_button_style" format="enum">
             <enum name="basic" value="-1" />
             <enum name="khalti" value="0" />
             <enum name="e_banking" value="1" />

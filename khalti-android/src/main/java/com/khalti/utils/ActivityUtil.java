@@ -8,12 +8,13 @@ import java.util.HashMap;
 
 public class ActivityUtil {
 
+    @SuppressWarnings("rawtypes")
     public static void openActivity(Class className, Context context, HashMap<String, ?> data, boolean animate) {
         Intent intent = new Intent(context, className);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (animate) {
+        if (!animate) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         if (EmptyUtil.isNotNull(data) && EmptyUtil.isNotEmpty(data)) {
             Bundle bundle = new Bundle();

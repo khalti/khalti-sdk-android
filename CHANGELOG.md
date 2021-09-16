@@ -1,5 +1,14 @@
 # Changelog
 
+### 2.01.00
+- Dropped android sdk support below 21
+- Migrated to maven from jcenter for deployment
+- Added package name in api header
+- Added a cancel listener in config to detect when checkout is dismissed
+- Fixed crashing due to material card view in checkout layout
+- Migrated to jetpack's view binding
+- Renamed `button_style` attribute to `khalti_button_style`
+
 ### 2.00.01
 - Fixed `onCheckOutLister.onSucess()` not being called if additional data is not passed through config
 

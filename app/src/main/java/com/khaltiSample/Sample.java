@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.OnCancelListener;
 import com.khalti.checkout.helper.OnCheckOutListener;
 import com.khalti.checkout.helper.PaymentPreference;
 import com.khalti.utils.Constant;
@@ -87,6 +88,7 @@ public class Sample extends AppCompatActivity {
                     add(PaymentPreference.KHALTI);
                 }})
                 .additionalData(map)
+                .onCancel(() -> Log.i("Cancelled", "This"))
                 .build();
 
         Config eBankingConfig = new Config.Builder(Constant.pub, "Product ID", "E Banking", 1100L, new OnCheckOutListener() {
