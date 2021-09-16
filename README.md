@@ -2,7 +2,7 @@
 
 # Khalti Android SDK
 
-[![Download](https://api.bintray.com/packages/khalti-official/khalti/khalti-android/images/download.svg)](https://bintray.com/khalti-official/khalti/khalti-android/_latestVersion)
+![Maven Central](https://img.shields.io/maven-central/v/com.khalti/khalti-android)
 
 Welcome to Khalti's checkout documentation
 
