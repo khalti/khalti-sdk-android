@@ -4,11 +4,13 @@ import com.khalti.checkout.helper.CheckoutEventListener
 import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
-import com.khalti.utils.*
-import kotlin.math.log
+import com.khalti.utils.EmptyUtil
+import com.khalti.utils.GuavaUtil
+import com.khalti.utils.HandlerUtil
+import com.khalti.utils.Store
 
 class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presenter {
-    private val view: CheckOutContract.View = GuavaUtil.checkNotNull<CheckOutContract.View>(view)
+    private val view: CheckOutContract.View = GuavaUtil.checkNotNull(view)
     private val compositeSignal = CompositeSignal()
     private var currentPage = 0
 
@@ -20,38 +22,39 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
 
     override fun onCreate() {
         view.setStatusBarColor()
+        Store.setAppPackageName(view.getAppPackageName())
         Store.setCheckoutEventListener(object : CheckoutEventListener {
             override fun closeCheckout() {
                 view.closeCheckOut()
             }
         })
 
-        val uniqueList = onGetPreferenceList(Store.getConfig())
-
         view.toggleLoading(true)
+
+        val uniqueList = onGetPreferenceList(Store.getConfig())
         HandlerUtil.delayedTask(500) {
             view.toggleLoading(false)
             view.setupViewPager(uniqueList)
             view.toggleTitle(uniqueList.size > 1)
 
             compositeSignal.add(view.setUpTabLayout(uniqueList)
-                    .connect {
-                        onTabSelected(uniqueList, it)
-                    })
+                .connect {
+                    onTabSelected(uniqueList, it)
+                })
 
             HandlerUtil.delayedTask(1000) {
                 for (i in 0 until uniqueList.size - 1) {
                     compositeSignal.add(view.setPageScrollListener(i)
-                            .connect {
-                                view.toggleToolbarShadow(it > 0)
-                            })
+                        .connect {
+                            view.toggleToolbarShadow(it > 0)
+                        })
                 }
             }
 
             compositeSignal.add(view.getSearchViewMapInitSignal()
-                    .connect {
-                        view.toggleSearch(uniqueList[currentPage].value, searchList.contains(uniqueList[currentPage].value))
-                    })
+                .connect {
+                    view.toggleSearch(uniqueList[currentPage].value, searchList.contains(uniqueList[currentPage].value))
+                })
 
             view.toggleTestBanner(Store.getConfig().publicKey.contains("test_"))
         }
@@ -83,5 +86,9 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
         currentPage = it.getValue("position") as Int
 //        view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
         view.toggleSearch(preferences[currentPage].value, searchList.contains(preferences[currentPage].value))
+    }
+
+    override fun onBackPressed() {
+        Store.getConfig().onCancelListener?.onCancel()
     }
 }

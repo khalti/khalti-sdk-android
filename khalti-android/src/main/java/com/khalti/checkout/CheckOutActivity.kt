@@ -1,5 +1,6 @@
 package com.khalti.checkout
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -16,12 +17,14 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.khalti.R
 import com.khalti.checkout.helper.BaseComm
 import com.khalti.checkout.helper.PaymentPreference
+import com.khalti.databinding.ComponentTabBinding
+import com.khalti.databinding.PaymentActivityBinding
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.component_tab.view.*
-import kotlinx.android.synthetic.main.payment_activity.*
+
 
 class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
+    private lateinit var binding: PaymentActivityBinding
 
     var flSearch: FrameLayout? = null
     private lateinit var adapter: ViewPagerAdapter
@@ -38,14 +41,17 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.payment_activity)
+        binding = PaymentActivityBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        this.flSearch = flSearchBankContainer
+        this.flSearch = binding.flSearchBankContainer
 
         Store.setBaseComm(this)
 
         isActive = true
         presenter = CheckOutPresenter(this)
+
         presenter.onCreate()
     }
 
@@ -55,27 +61,12 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
         isActive = false
     }
 
-    override fun toggleTab(position: Int, selected: Boolean, id: String) {
-        /*val flTab = tabs[position]?.customView
-        val mcTab = flTab?.mcContainer
-        if (EmptyUtil.isNotNull(mcTab)) {
-            val tabMap = MerchantUtil.getTab(id)
-            if (EmptyUtil.isNotNull(tabMap)) {
-                if (selected) {
-                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.black))
-                } else {
-                    mcTab!!.tvTitle?.setTextColor(ResourceUtil.getColor(this, R.color.black))
-                }
-            }
-        }*/
-    }
-
     override fun toggleToolbarShadow(show: Boolean) {
-        ViewUtil.toggleView(vToolbarShadow, show)
+        ViewUtil.toggleView(binding.vToolbarShadow, show)
     }
 
     override fun toggleTitle(show: Boolean) {
-        ViewUtil.toggleView(clTitle, show)
+        ViewUtil.toggleView(binding.clTitle, show)
     }
 
     override fun setupViewPager(types: List<PaymentPreference>) {
@@ -94,13 +85,13 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
             }
         }
 
-        vpContent.adapter = adapter
-        vpContent.offscreenPageLimit = adapter.itemCount
+        binding.vpContent.adapter = adapter
+        binding.vpContent.offscreenPageLimit = adapter.itemCount
 
-        TabLayoutMediator(tlTitle, vpContent) { tab, position ->
+        TabLayoutMediator(binding.tlTitle, binding.vpContent) { tab, position ->
             tab.text = MerchantUtil.getTab(types[position].value)["title"].toString()
         }.attach()
-        tlTitle.tabMode = TabLayout.MODE_SCROLLABLE
+        binding.tlTitle.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
     override fun setUpTabLayout(types: List<PaymentPreference>): Signal<Map<String, Any>> {
@@ -116,24 +107,24 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
                 color = ResourceUtil.getColor(this, R.color.black)
                 icon = map.getValue("icon") as Int
 
-                val flTab = LayoutInflater.from(this).inflate(R.layout.component_tab, tlTitle, false)
-                val mcTab = flTab.mcContainer
-                mcTab.tvTitle.text = map["title"].toString()
-                mcTab.tvTitle.setTextColor(color)
-                mcTab.ivIcon.setImageResource(icon)
-                val tab: TabLayout.Tab? = tlTitle.getTabAt(position)
+                val tabBinding = ComponentTabBinding.inflate(getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+                val mcTab = tabBinding.mcContainer
+                tabBinding.tvTitle.text = map["title"].toString()
+                tabBinding.tvTitle.setTextColor(color)
+                tabBinding.ivIcon.setImageResource(icon)
+                val tab: TabLayout.Tab? = binding.tlTitle.getTabAt(position)
                 if (EmptyUtil.isNotNull(tab)) {
                     tab!!.customView = mcTab
                 }
                 mcTab.setOnClickListener {
-                    vpContent.currentItem = i
+                    binding.vpContent.currentItem = i
                 }
                 tabs.add(tab)
                 position++
             }
         }
 
-        tlTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding.tlTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 signal.emit(object : HashMap<String, Any>() {
                     init {
@@ -165,7 +156,8 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
                 val view = currentFragment.view
                 if (EmptyUtil.isNotNull(view)) {
                     val nestedScrollView = view!!.findViewById<NestedScrollView>(R.id.nsvContainer)
-                    nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+                    nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _,
+                                                                                                         _ ->
                         signal.emit(scrollY)
                     })
                 }
@@ -204,24 +196,28 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
         return searchViewMapInitSignal
     }
 
+    override fun getAppPackageName(): String {
+        return applicationContext.packageName
+    }
+
     override fun toggleSearch(paymentType: String, show: Boolean) {
         toggleSearchView(paymentType, show)
     }
 
     override fun toggleLoading(show: Boolean) {
-        ViewUtil.toggleView(flMainLoad, show)
+        ViewUtil.toggleView(binding.flMainLoad, show)
     }
 
     override fun toggleTestBanner(show: Boolean) {
-        ViewUtil.toggleView(flTestBanner, show)
+        ViewUtil.toggleView(binding.flTestBanner, show)
     }
 
     override fun setPresenter(presenter: CheckOutContract.Presenter) {
         this.presenter = presenter
     }
 
-    override fun getCoordinator(): CoordinatorLayout? {
-        return clMain
+    override fun getCoordinator(): CoordinatorLayout {
+        return binding.clMain
     }
 
     override fun addSearchView(paymentType: String, searchView: SearchView) {
@@ -231,13 +227,18 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
 
     override fun toggleSearchView(paymentType: String, show: Boolean) {
         if (show) {
-            ViewUtil.toggleView(flSearchBankContainer, true)
-            if (EmptyUtil.isNotNull(flSearchBank) && searchViewMap.containsKey(paymentType)) {
-                flSearchBank.removeAllViews()
-                flSearchBank.addView(searchViewMap[paymentType])
+            ViewUtil.toggleView(binding.flSearchBankContainer, true)
+            if (EmptyUtil.isNotNull(binding.flSearchBank) && searchViewMap.containsKey(paymentType)) {
+                binding.flSearchBank.removeAllViews()
+                binding.flSearchBank.addView(searchViewMap[paymentType])
             }
         } else {
-            ViewUtil.toggleView(flSearchBankContainer, false)
+            ViewUtil.toggleView(binding.flSearchBankContainer, false)
         }
+    }
+
+    override fun onBackPressed() {
+        presenter.onBackPressed()
+        super.onBackPressed()
     }
 }

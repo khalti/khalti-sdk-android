@@ -7,7 +7,7 @@ import com.khalti.utils.ErrorUtil.EMPTY_ERROR
 import com.khalti.utils.ErrorUtil.MOBILE_ERROR
 
 internal class ContactFormPresenter(view: ContactFormContract.View) : ContactFormContract.Presenter {
-    private val view: ContactFormContract.View = GuavaUtil.checkNotNull<ContactFormContract.View>(view)
+    private val view: ContactFormContract.View = GuavaUtil.checkNotNull(view)
     private val compositeSignal = CompositeSignal()
 
     init {

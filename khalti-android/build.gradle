@@ -1,17 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlinx-serialization'
 
 android {
     compileSdkVersion targetSdk
-    buildToolsVersion buildToolVersion
 
     defaultConfig {
-        minSdkVersion minSdk
+        minSdkVersion 21
         targetSdkVersion targetSdk
-        versionCode khaltiVersionCode
-        versionName khaltiVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -19,9 +15,15 @@ android {
     }
 
     buildTypes {
+        debug {
+            print(defaultConfig.versionName)
+            buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
+        }
+
         release {
+            buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
+
             minifyEnabled true
-            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -43,6 +45,10 @@ android {
         options.addStringOption('Xdoclint:none', '-quiet')
         options.addStringOption('encoding', 'UTF-8')
         options.addStringOption('charSet', 'UTF-8')
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     /*androidExtensions {
@@ -85,7 +91,8 @@ dependencies {
     implementation network.okhttp_urlconnection
 
     /*Http Client*/
-    implementation network.apache_http_client
+//    implementation network.apache_http_client
+    implementation 'com.google.android.gms:play-services-basement:17.6.0'
 
     /*---------------------------------------------------------------------------------------------------------------------*/
 
@@ -95,14 +102,29 @@ dependencies {
     testImplementation test.hamcrest
     testImplementation test.powerMockJUnit
     testImplementation test.powerMockMockito
-    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:1.0-M1-1.4.0-rc"
 }
-
-apply from: 'kInstall.gradle'
-apply from: 'kBintray.gradle'
 
 repositories {
     mavenCentral()
 }
+
+ext {
+    PUBLISH_GROUP_ID = 'com.khalti'
+    PUBLISH_VERSION = khaltiVersionName
+    PUBLISH_ARTIFACT_ID = 'khalti-android'
+    PUBLISH_DESCRIPTION = 'A Khalti payment widget for android'
+    PUBLISH_URL = 'https://github.com/janakitech/khalti-android'
+    PUBLISH_LICENSE_NAME = 'The MIT License'
+    PUBLISH_LICENSE_URL = 'https://opensource.org/licenses/mit-license.ph'
+    PUBLISH_DEVELOPER_ID = 'khalti'
+    PUBLISH_DEVELOPER_NAME = 'Khalti Official'
+    PUBLISH_DEVELOPER_EMAIL = 'info@khalti.com'
+    PUBLISH_SCM_CONNECTION = 'https://github.com/janakitech/khalti-android.git'
+    PUBLISH_SCM_DEVELOPER_CONNECTION = 'scm:git:ssh://github.com/janakitech/khalti-android.git'
+    PUBLISH_SCM_URL = 'https://github.com/janakitech/khalti-android/tree/master'
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"

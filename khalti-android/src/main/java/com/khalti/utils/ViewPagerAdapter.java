@@ -3,18 +3,14 @@ package com.khalti.utils;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private List<Fragment> pendingFragments = new ArrayList<>();
+    private final List<Fragment> pendingFragments = new ArrayList<>();
 
     public ViewPagerAdapter(FragmentActivity fa) {
         super(fa);

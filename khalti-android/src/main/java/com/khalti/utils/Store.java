@@ -11,6 +11,7 @@ public class Store {
     private static Config config;
     private static CheckoutEventListener checkoutEventListener;
     private static BaseComm baseComm;
+    private static String appPackageName;
 
     public static Config getConfig() {
         return config;
@@ -34,5 +35,13 @@ public class Store {
 
     public static void setBaseComm(BaseComm baseComm) {
         Store.baseComm = baseComm;
+    }
+
+    public static String getAppPackageName() {
+        return appPackageName;
+    }
+
+    public static void setAppPackageName(String appPackageName) {
+        Store.appPackageName = appPackageName;
     }
 }

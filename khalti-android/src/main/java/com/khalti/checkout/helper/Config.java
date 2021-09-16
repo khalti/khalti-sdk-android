@@ -16,6 +16,8 @@ public class Config {
     private Long amount;
     private OnCheckOutListener onCheckOutListener;
     @Nullable
+    private OnCancelListener onCancelListener;
+    @Nullable
     private String mobile;
     @Nullable
     private String productUrl;
@@ -49,6 +51,11 @@ public class Config {
     }
 
     @Nullable
+    public OnCancelListener getOnCancelListener() {
+        return onCancelListener;
+    }
+
+    @Nullable
     public String getMobile() {
         return mobile;
     }
@@ -68,38 +75,17 @@ public class Config {
         return paymentPreferences;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public void setMobile(@Nullable String mobile) {
-        this.mobile = mobile;
-    }
-
-    public void setProductUrl(@Nullable String productUrl) {
-        this.productUrl = productUrl;
-    }
-
-    public void setAdditionalData(@Nullable Map<String, Object> additionalData) {
-        this.additionalData = additionalData;
-    }
-
     @Keep
     public static class Builder {
 
-        private String publicKey;
-        private String productId;
-        private String productName;
-        private Long amount;
-        private OnCheckOutListener onCheckOutListener;
+        private final String publicKey;
+        private final String productId;
+        private final String productName;
+        private final Long amount;
+        private final OnCheckOutListener onCheckOutListener;
+
+        @Nullable
+        private OnCancelListener onCancelListener;
         @Nullable
         private String mobile;
         @Nullable
@@ -137,6 +123,11 @@ public class Config {
             return this;
         }
 
+        public Builder onCancel(@Nullable OnCancelListener onCancelListener) {
+            this.onCancelListener = onCancelListener;
+            return this;
+        }
+
         public Config build() {
             Config config = new Config();
             config.publicKey = publicKey;
@@ -148,6 +139,7 @@ public class Config {
             config.productUrl = productUrl;
             config.additionalData = additionalData;
             config.paymentPreferences = paymentPreferences;
+            config.onCancelListener = onCancelListener;
 
             return config;
         }

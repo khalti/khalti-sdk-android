@@ -4,7 +4,6 @@ import com.khalti.checkout.helper.Config
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
 import com.khalti.utils.Store
-import java.util.*
 
 internal class DeepLinkPresenter(view: DeepLinkContract.View) : DeepLinkContract.Presenter {
 

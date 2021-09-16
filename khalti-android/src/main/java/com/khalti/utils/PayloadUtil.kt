@@ -36,8 +36,6 @@ class PayloadUtil {
 
             val data = EncodeUtil.urlEncode(map)
 
-            LogUtil.log("request payload", data)
-
             return Constant.url + "ebanking/initiate/?" + data
         }
     }

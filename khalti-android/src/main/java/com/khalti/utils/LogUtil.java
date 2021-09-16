@@ -3,7 +3,7 @@ package com.khalti.utils;
 import android.util.Log;
 
 public class LogUtil {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static void log(String tag, Object message) {
         if (DEBUG) {

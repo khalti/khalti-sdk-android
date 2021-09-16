@@ -8,8 +8,6 @@ import com.khalti.signal.Signal
 interface CheckOutContract {
     interface View {
 
-        fun toggleTab(position: Int, selected: Boolean, id: String)
-
         fun toggleToolbarShadow(show: Boolean)
 
         fun toggleTitle(show: Boolean)
@@ -36,6 +34,8 @@ interface CheckOutContract {
 
         fun getSearchViewMapInitSignal(): Signal<Any>
 
+        fun getAppPackageName() : String
+
         fun setPresenter(presenter: Presenter)
     }
 
@@ -44,5 +44,7 @@ interface CheckOutContract {
         fun onGetPreferenceList(config: Config): List<PaymentPreference>
 
         fun onTabSelected(preferences: List<PaymentPreference>, it: Map<String, Any>)
+
+        fun onBackPressed()
     }
 }

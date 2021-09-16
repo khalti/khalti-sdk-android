@@ -12,7 +12,7 @@ public class NumberUtil {
     }
 
     public static Double convertToRupees(Long amount) {
-        Double paisa = Double.parseDouble(amount.toString());
+        double paisa = Double.parseDouble(amount.toString());
         return round((paisa / 100), 3);
     }
 }

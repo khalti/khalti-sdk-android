@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,15 +13,16 @@ import com.khalti.checkout.banking.helper.BankAdapter
 import com.khalti.checkout.banking.helper.BankPojo
 import com.khalti.checkout.banking.helper.BankingData
 import com.khalti.checkout.helper.BaseComm
+import com.khalti.databinding.BankingBinding
+import com.khalti.databinding.ComponentBankSearchBinding
 import com.khalti.signal.Signal
 import com.khalti.utils.*
-import kotlinx.android.synthetic.main.banking.*
-import kotlinx.android.synthetic.main.banking.view.*
 import java.util.*
 
 class Banking : Fragment(), BankingContract.View {
 
-    private lateinit var mainView: View
+    private lateinit var binding: BankingBinding
+
     private var fragmentActivity: FragmentActivity? = null
     private lateinit var bankAdapter: BankAdapter
 
@@ -31,15 +31,15 @@ class Banking : Fragment(), BankingContract.View {
     private lateinit var baseComm: BaseComm
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mainView = inflater.inflate(R.layout.banking, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = BankingBinding.inflate(inflater, container, false)
         fragmentActivity = activity
         presenter = BankingPresenter(this)
 
         baseComm = Store.getBaseComm()
 
         presenter.onCreate()
-        return mainView
+        return binding.root
     }
 
     override fun onDestroy() {
@@ -56,51 +56,51 @@ class Banking : Fragment(), BankingContract.View {
     }
 
     override fun toggleIndented(show: Boolean) {
-        ViewUtil.toggleView(mainView.llIndented, show)
-        ViewUtil.toggleViewInvisible(mainView.flLoad, show)
-        ViewUtil.toggleView(mainView.tvMessage, false)
-        ViewUtil.toggleView(mainView.btnTryAgain, false)
+        ViewUtil.toggleView(binding.llIndented, show)
+        ViewUtil.toggleViewInvisible(binding.flLoad, show)
+        ViewUtil.toggleView(binding.tvMessage, false)
+        ViewUtil.toggleView(binding.btnTryAgain, false)
     }
 
     override fun toggleSearchError(show: Boolean) {
-//        ViewUtil.toggleView(mainView.rvList, !show)
-        ViewUtil.toggleView(mainView.llIndented, show)
-        ViewUtil.toggleView(mainView.tvMessage, true)
-        ViewUtil.setText(mainView.tvMessage, ResourceUtil.getString(fragmentActivity, R.string.no_banks))
+//        ViewUtil.toggleView(binding.rvList, !show)
+        ViewUtil.toggleView(binding.llIndented, show)
+        ViewUtil.toggleView(binding.tvMessage, true)
+        ViewUtil.setText(binding.tvMessage, ResourceUtil.getString(fragmentActivity, R.string.no_banks))
     }
 
     override fun setupList(bankList: MutableList<BankPojo>): Signal<Map<String, String>> {
-        ViewUtil.toggleView(mainView.llTopBar, true)
-        ViewUtil.toggleView(mainView.llContainer, true)
+        ViewUtil.toggleView(binding.llTopBar, true)
+        ViewUtil.toggleView(binding.llContainer, true)
         bankAdapter = BankAdapter(bankList)
-        mainView.rvList.adapter = bankAdapter
-        mainView.rvList.setHasFixedSize(false)
+        binding.rvList.adapter = bankAdapter
+        binding.rvList.setHasFixedSize(false)
         val layoutManager = GridLayoutManager(fragmentActivity, 3)
-        mainView.rvList.layoutManager = layoutManager
+        binding.rvList.layoutManager = layoutManager
 
         return bankAdapter.getClickedItem()
     }
 
     override fun setupSearch(paymentType: String): Signal<String> {
-        val view = LayoutInflater.from(fragmentActivity).inflate(R.layout.component_bank_search, nsvContainer, false)
-        val searchView = view.findViewById<SearchView>(R.id.svBank)
+        val view = ComponentBankSearchBinding.inflate(LayoutInflater.from(context), binding.nsvContainer, false)
+        val searchView = view.svBank
 
         baseComm.addSearchView(paymentType, searchView)
         return ViewUtil.setSearchListener(searchView)
     }
 
     override fun showIndentedNetworkError() {
-        ViewUtil.toggleViewInvisible(mainView.flLoad, false)
-        ViewUtil.toggleViewInvisible(mainView.btnTryAgain, false)
-        ViewUtil.toggleView(mainView.tvMessage, true)
-        ViewUtil.setText(mainView.tvMessage, ResourceUtil.getString(fragmentActivity, R.string.network_error_body))
+        ViewUtil.toggleViewInvisible(binding.flLoad, false)
+        ViewUtil.toggleViewInvisible(binding.btnTryAgain, false)
+        ViewUtil.toggleView(binding.tvMessage, true)
+        ViewUtil.setText(binding.tvMessage, ResourceUtil.getString(fragmentActivity, R.string.network_error_body))
     }
 
     override fun showIndentedError(error: String) {
-        ViewUtil.toggleViewInvisible(mainView.flLoad, false)
-        ViewUtil.toggleView(mainView.btnTryAgain, true)
-        ViewUtil.toggleView(mainView.tvMessage, true)
-        ViewUtil.setText(mainView.tvMessage, error)
+        ViewUtil.toggleViewInvisible(binding.flLoad, false)
+        ViewUtil.toggleView(binding.btnTryAgain, true)
+        ViewUtil.toggleView(binding.tvMessage, true)
+        ViewUtil.setText(binding.tvMessage, error)
     }
 
     override fun openMobileForm(bankingData: BankingData) {
@@ -115,7 +115,7 @@ class Banking : Fragment(), BankingContract.View {
 
     override fun setOnClickListener(): Map<String, Signal<Any>> = object : HashMap<String, Signal<Any>>() {
         init {
-            put("try_again", ViewUtil.setClickListener(mainView.btnTryAgain))
+            put("try_again", ViewUtil.setClickListener(binding.btnTryAgain))
         }
     }
 
