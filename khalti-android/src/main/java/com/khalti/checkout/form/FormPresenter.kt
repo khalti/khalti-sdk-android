@@ -291,6 +291,7 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                             }
 
                             config.onCheckOutListener.onSuccess(data)
+                            view.clearForm()
                             view.closeWidget()
                         }
 
