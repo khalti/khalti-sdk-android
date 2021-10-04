@@ -85,7 +85,6 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
 
     override fun onTabSelected(preferences: List<PaymentPreference>, it: Map<String, Any>) {
         currentPage = it.getValue("position") as Int
-//        view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
         view.toggleSearch(preferences[currentPage].value, searchList.contains(preferences[currentPage].value))
     }
 
