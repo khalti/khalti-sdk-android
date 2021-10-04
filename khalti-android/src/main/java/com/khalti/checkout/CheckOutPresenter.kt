@@ -4,6 +4,7 @@ import com.khalti.checkout.helper.CheckoutEventListener
 import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
+import com.khalti.signal.Signal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
 import com.khalti.utils.HandlerUtil
