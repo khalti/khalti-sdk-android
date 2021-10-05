@@ -2,8 +2,8 @@ package com.khalti.checkout.form
 
 import com.khalti.checkout.api.ErrorAction
 import com.khalti.checkout.api.Result
-import com.khalti.checkout.helper.Config
 import com.khalti.checkout.form.helper.WalletInitPojo
+import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
 import com.khalti.utils.*
@@ -108,44 +108,48 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
             if (EmptyUtil.isNotNull(clickMap["pin"])) {
                 compositeSignal.add(clickMap.getValue("pin")
-                        .connect {
-                            if (view.doesPackageExist()) {
-                                view.openKhaltiSettings()
-                            } else {
-                                view.openLinkInBrowser(Constant.url + transactionPINUrl)
-                            }
-                        })
+                    .connect {
+                        if (view.doesPackageExist()) {
+                            view.openKhaltiSettings()
+                        } else {
+                            view.openLinkInBrowser(Constant.url + transactionPINUrl)
+                        }
+                    })
             }
 
             val watcherMap = view.setEditTextListener()
             if (EmptyUtil.isNotNull(watcherMap["mobile"])) {
                 compositeSignal.add(watcherMap.getValue("mobile")
-                        .connect {
-                            view.setEditTextError("mobile", null)
-                            if (view.payButtonText.lowercase(Locale.getDefault()).contains("confirm")) {
-                                view.toggleConfirmationLayout(false)
-                            }
-                        })
+                    .connect {
+                        view.setEditTextError("mobile", null)
+                        if (view.payButtonText.lowercase(Locale.getDefault()).contains("confirm")) {
+                            view.toggleConfirmationLayout(false)
+                        }
+                    })
             }
 
             if (EmptyUtil.isNotNull(watcherMap["pin"])) {
                 compositeSignal.add(watcherMap.getValue("pin")
-                        .connect {
-                            view.setEditTextError("pin", null)
-                            if (view.payButtonText.lowercase(Locale.getDefault()).contains("confirm")) {
-                                view.toggleConfirmationLayout(false)
-                            }
-                        })
+                    .connect {
+                        view.setEditTextError("pin", null)
+                        if (view.payButtonText.lowercase(Locale.getDefault()).contains("confirm")) {
+                            view.toggleConfirmationLayout(false)
+                        }
+                    })
             }
 
             if (EmptyUtil.isNotNull(watcherMap["code"])) {
                 compositeSignal.add(watcherMap.getValue("code")
-                        .connect {
-                            view.setEditTextError("code", null)
-                            view.setConfirmationLayoutHeight()
-                        })
+                    .connect {
+                        view.setEditTextError("code", null)
+                        view.setConfirmationLayoutHeight()
+                    })
             }
         }
+
+        compositeSignal.add(view.getBackPressedSignal().connect {
+            view.clearForm()
+        })
     }
 
     override fun onDestroy() {
@@ -218,15 +222,15 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
 
                             if (errorMap.containsKey("error_key") && errorMap.getValue("error_key") == "third_party_transaction_locked") {
                                 compositeSignal.add(view.showMessageDialog("Error", view.getMessage("pin_error"), true)
-                                        .connect {
-                                            if (it) {
-                                                if (view.doesPackageExist()) {
-                                                    view.openKhaltiSettings()
-                                                } else {
-                                                    view.openLinkInBrowser(Constant.url + transactionPINUrl)
-                                                }
+                                    .connect {
+                                        if (it) {
+                                            if (view.doesPackageExist()) {
+                                                view.openKhaltiSettings()
+                                            } else {
+                                                view.openLinkInBrowser(Constant.url + transactionPINUrl)
                                             }
-                                        })
+                                        }
+                                    })
                             } else if (errorMap.containsKey("detail")) {
                                 view.showMessageDialog("Error", errorMap.getValue("detail"))
                             } else if (errorMap.containsKey("error_key") && errorMap.getValue("error_key") == "validation_error") {
@@ -279,11 +283,15 @@ class FormPresenter(view: FormContract.View) : FormContract.Presenter {
                             if (EmptyUtil.isNotNull(walletConfirmPojo.mobile)) {
                                 data["mobile"] = walletConfirmPojo.mobile!!
                             }
+                            if (EmptyUtil.isNotNull(walletConfirmPojo.idx)) {
+                                data["idx"] = walletConfirmPojo.idx!!
+                            }
                             if (EmptyUtil.isNotNull(config.additionalData) && EmptyUtil.isNotEmpty(config.additionalData)) {
                                 data.putAll(config.additionalData!!)
                             }
 
                             config.onCheckOutListener.onSuccess(data)
+                            view.clearForm()
                             view.closeWidget()
                         }
 

@@ -34,6 +34,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
 
     private val searchViewMap = HashMap<String, SearchView>()
     private val searchViewMapInitSignal = Signal<Any>()
+    private val backPressSignal:Signal<Any> = Signal<Any>()
 
     companion object {
         var isActive: Boolean = false
@@ -174,9 +175,7 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
             window.decorView.systemUiVisibility = flags
             window.statusBarColor = ResourceUtil.getColor(this, R.color.bg)
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && Build.VERSION.SDK_INT < 23) {
-                window.statusBarColor = ResourceUtil.getColor(this, R.color.khaltiPrimaryDark)
-            }
+            window.statusBarColor = ResourceUtil.getColor(this, R.color.khaltiPrimaryDark)
         }
     }
 
@@ -237,8 +236,13 @@ class CheckOutActivity : AppCompatActivity(), CheckOutContract.View, BaseComm {
         }
     }
 
+    override fun getBackPressedSignal(): Signal<Any> {
+        return backPressSignal;
+    }
+
     override fun onBackPressed() {
         presenter.onBackPressed()
+        backPressSignal.emit(true);
         super.onBackPressed()
     }
 }

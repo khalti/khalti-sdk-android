@@ -1,5 +1,9 @@
 # Changelog
 
+### 2.01.01
+- Cleared form data on back pressed
+- Cleared form data on successful payment
+
 ### 2.01.00
 - Dropped android sdk support below 21
 - Migrated to maven from jcenter for deployment

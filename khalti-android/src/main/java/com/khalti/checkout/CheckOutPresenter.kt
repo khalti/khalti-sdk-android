@@ -4,6 +4,7 @@ import com.khalti.checkout.helper.CheckoutEventListener
 import com.khalti.checkout.helper.Config
 import com.khalti.checkout.helper.PaymentPreference
 import com.khalti.signal.CompositeSignal
+import com.khalti.signal.Signal
 import com.khalti.utils.EmptyUtil
 import com.khalti.utils.GuavaUtil
 import com.khalti.utils.HandlerUtil
@@ -84,7 +85,6 @@ class CheckOutPresenter(view: CheckOutContract.View) : CheckOutContract.Presente
 
     override fun onTabSelected(preferences: List<PaymentPreference>, it: Map<String, Any>) {
         currentPage = it.getValue("position") as Int
-//        view.toggleTab(currentPage, it.getValue("selected") as Boolean, it.getValue("id") as String)
         view.toggleSearch(preferences[currentPage].value, searchList.contains(preferences[currentPage].value))
     }
 

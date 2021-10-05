@@ -2,10 +2,9 @@ package com.khalti.checkout.form
 
 
 import com.khalti.base.LifeCycle
-
+import com.khalti.checkout.api.Result
 import com.khalti.checkout.form.helper.WalletConfirmPojo
 import com.khalti.checkout.form.helper.WalletInitPojo
-import com.khalti.checkout.api.Result
 import com.khalti.checkout.helper.Config
 import com.khalti.signal.Signal
 
@@ -71,6 +70,10 @@ interface FormContract {
         fun hasNetwork(): Boolean
 
         fun doesPackageExist(): Boolean
+
+        fun clearForm()
+
+        fun getBackPressedSignal(): Signal<Any>
 
         fun setPresenter(presenter: Presenter)
     }

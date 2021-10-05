@@ -5,6 +5,9 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class WalletConfirmPojo {
+    @SerializedName("idx")
+    @Expose
+    val idx: String? = null
     @SerializedName("product_identity")
     @Expose
     val productIdentity: String? = null

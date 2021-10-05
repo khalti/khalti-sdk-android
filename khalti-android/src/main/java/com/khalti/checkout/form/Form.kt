@@ -80,7 +80,11 @@ class Form : Fragment(), FormContract.View {
         }
 
         if (show) {
-            val pair = UserInterfaceUtil.runProgressDialog(fragmentActivity, message, ResourceUtil.getString(fragmentActivity, R.string.please_wait))
+            val pair = UserInterfaceUtil.runProgressDialog(
+                fragmentActivity,
+                message,
+                ResourceUtil.getString(fragmentActivity, R.string.please_wait)
+            )
             progressDialog = pair.first
             signal = pair.second
         } else {
@@ -90,7 +94,10 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun toggleConfirmationLayout(show: Boolean) {
-        val buttonText = if (show) ResourceUtil.getString(fragmentActivity, R.string.confirm_payment) else "Pay Rs ${NumberUtil.convertToRupees(Store.getConfig().amount)}"
+        val buttonText = if (show) ResourceUtil.getString(
+            fragmentActivity,
+            R.string.confirm_payment
+        ) else "Pay Rs ${NumberUtil.convertToRupees(Store.getConfig().amount)}"
         binding.btnPay.text = buttonText
         binding.etCode.setText("")
         binding.elConfirmation.toggleExpansion()
@@ -209,12 +216,26 @@ class Form : Fragment(), FormContract.View {
     }
 
     override fun showNetworkError() {
-        UserInterfaceUtil.showSnackBar(fragmentActivity, baseComm.getCoordinator(), ResourceUtil.getString(fragmentActivity, R.string.network_error_body), null, Snackbar.LENGTH_LONG)
+        UserInterfaceUtil.showSnackBar(
+            fragmentActivity,
+            baseComm.getCoordinator(),
+            ResourceUtil.getString(fragmentActivity, R.string.network_error_body),
+            null,
+            Snackbar.LENGTH_LONG
+        )
     }
 
     override fun showMessageDialog(title: String, message: String, actionListener: Boolean): Signal<Boolean> {
         val cancelText = if (actionListener) ResourceUtil.getString(fragmentActivity, R.string.cancel) else null
-        return UserInterfaceUtil.showInfoDialog(fragmentActivity, title, message, autoDismiss = true, cancelable = true, positiveText = ResourceUtil.getString(fragmentActivity, R.string.ok), negativeText = cancelText)
+        return UserInterfaceUtil.showInfoDialog(
+            fragmentActivity,
+            title,
+            message,
+            autoDismiss = true,
+            cancelable = true,
+            positiveText = ResourceUtil.getString(fragmentActivity, R.string.ok),
+            negativeText = cancelText
+        )
     }
 
     override fun showSlogan() {
@@ -314,6 +335,16 @@ class Form : Fragment(), FormContract.View {
             e.printStackTrace()
             false
         }
+    }
+
+    override fun clearForm() {
+        binding.etMobile.setText("")
+        binding.etCode.setText("")
+        binding.etPIN.setText("")
+    }
+
+    override fun getBackPressedSignal(): Signal<Any> {
+        return baseComm.getBackPressedSignal()
     }
 
     override fun setPresenter(presenter: FormContract.Presenter) {
