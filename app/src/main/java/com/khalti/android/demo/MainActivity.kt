@@ -6,11 +6,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.*
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.khalti.android.KhaltiPayConfiguration
-import com.khalti.android.demo.theme.KhaltiTheme
 import com.khalti.android.demo.composable.DemoScreen
+import com.khalti.android.demo.theme.KhaltiTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,12 +20,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     Modifier.fillMaxSize(),
                 ) {
-                    DemoScreen(
-                        KhaltiPayConfiguration(
-                            "https://test-pay.khalti.com/?pidx=pHATsrgqEk6radAcUZpjZM",
-                            "https://pay.khalti.com"
-                        )
-                    )
+                    DemoScreen()
                 }
             }
         }

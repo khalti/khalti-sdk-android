@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Build
 import android.view.KeyEvent
 import android.webkit.*
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 
 internal class EPaymentWebClient(
@@ -31,19 +32,20 @@ internal class EPaymentWebClient(
     private fun handleUri(uri: Uri): Boolean {
         val url = uri.toString()
 
-        if (!url.startsWith(returnUrl)) {
-            return false
+        if (url.startsWith(returnUrl)) {
+            val isSuccess = uri.getQueryParameter("pidx") != null
+            val intent = Intent()
+            intent.putExtra(OpenKhaltiPay.RESULT, url)
+
+            activity.setResult(
+                if (isSuccess) Activity.RESULT_OK else OpenKhaltiPay.ERROR,
+                intent
+            )
+            activity.finish()
+        } else {
+            Toast.makeText(activity, "Action not permitted", Toast.LENGTH_SHORT).show()
         }
 
-        val isSuccess = uri.getQueryParameter("pidx") != null
-        val intent = Intent()
-        intent.putExtra(OpenKhaltiPay.RESULT, url)
-
-        activity.setResult(
-            if (isSuccess) Activity.RESULT_OK else OpenKhaltiPay.ERROR,
-            intent
-        )
-        activity.finish()
         return true
     }
 }
