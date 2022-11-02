@@ -11,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.*
 import com.khalti.android.*
-import com.khalti.demo.ResultDialog
 
 const val RESULT_TAG = "KHALTI_PAY_RESULT"
 

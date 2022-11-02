@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     DemoScreen(
                         KhaltiPayConfiguration(
-                            "https://test-pay.khalti.com/?pidx=Y4riCK7kc2qpoShBPaq7XZ",
+                            "https://test-pay.khalti.com/?pidx=pHATsrgqEk6radAcUZpjZM",
                             "https://pay.khalti.com"
                         )
                     )
