@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Khalti Android SDK"
+rootProject.name = "Khalti Android SDK Demo"
 include ':app'
 include ':khalti-android'

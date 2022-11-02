@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.khalti.android.demo'
+    namespace 'com.khalti.androidsdk'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.khalti.android.demo"
+        applicationId "com.khalti.androidsdk"
         minSdk 21
         targetSdk 33
         versionCode 1

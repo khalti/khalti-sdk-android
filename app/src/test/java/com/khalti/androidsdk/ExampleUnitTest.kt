@@ -1,4 +1,4 @@
-package com.khalti.android
+package com.khalti.androidsdk
 
 import org.junit.Test
 
