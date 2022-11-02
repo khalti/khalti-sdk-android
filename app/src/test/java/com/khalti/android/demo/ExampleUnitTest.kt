@@ -1,4 +1,6 @@
-package com.khalti.androidsdk
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
+package com.khalti.android.demo
 
 import org.junit.Test
 

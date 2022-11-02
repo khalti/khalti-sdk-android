@@ -1,4 +1,6 @@
-package com.khalti.androidsdk.ui.theme
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
+package com.khalti.android.demo.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

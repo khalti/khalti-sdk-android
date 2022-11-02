@@ -1,3 +1,5 @@
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
 package com.khalti.android
 
 import android.app.Activity
@@ -6,7 +8,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
 
 class OpenKhaltiPay : ActivityResultContract<KhaltiPayConfiguration, PaymentResult>() {

@@ -1,4 +1,6 @@
-package com.khalti.androidsdk
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
+package com.khalti.android.demo.composable
 
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -9,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.*
 import com.khalti.android.*
+import com.khalti.demo.ResultDialog
 
 const val RESULT_TAG = "KHALTI_PAY_RESULT"
 

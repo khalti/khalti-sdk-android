@@ -1,4 +1,6 @@
-package com.khalti.androidsdk
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
+package com.khalti.android.demo
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +21,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.khalti.androidsdk", appContext.packageName)
+        assertEquals("com.khalti.android.demo", appContext.packageName)
     }
 }

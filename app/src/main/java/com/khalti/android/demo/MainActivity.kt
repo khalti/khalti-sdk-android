@@ -1,4 +1,6 @@
-package com.khalti.androidsdk
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
+package com.khalti.android.demo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import com.khalti.android.KhaltiPayConfiguration
-import com.khalti.androidsdk.ui.theme.KhaltiTheme
+import com.khalti.android.demo.theme.KhaltiTheme
+import com.khalti.android.demo.composable.DemoScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

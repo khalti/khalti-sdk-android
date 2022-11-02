@@ -1,4 +1,6 @@
-package com.khalti.androidsdk.ui.theme
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
+package com.khalti.android.demo.theme
 
 import android.app.Activity
 import android.os.Build
