@@ -1,3 +1,5 @@
+// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+
 package com.khalti.android
 
 import org.junit.Test

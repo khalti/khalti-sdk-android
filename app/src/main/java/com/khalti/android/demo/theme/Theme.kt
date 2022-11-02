@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.*
 import androidx.core.view.ViewCompat
 
-private val DarkColorScheme = darkColorScheme(khaltiPurple)
+private val DarkColorScheme = darkColorScheme(khaltiPurple,)
 
 private val LightColorScheme = lightColorScheme(khaltiPurple)
 
