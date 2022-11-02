@@ -33,7 +33,7 @@ fun ResultDialog(result: PaymentResult, setResult: (PaymentResult?) -> Unit) {
             }
         },
         confirmButton = {
-            Button(
+            FilledTonalButton(
                 onClick = {
                     setResult(null)
                 }

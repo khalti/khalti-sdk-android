@@ -54,7 +54,7 @@ fun DemoScreen(configuration: KhaltiPayConfiguration) {
                 Arrangement.Center,
                 Alignment.CenterHorizontally
             ) {
-                ElevatedButton(
+                FilledTonalButton(
                     {
                         khaltiPay.launch(configuration)
                     }

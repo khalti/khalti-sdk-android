@@ -17,7 +17,6 @@ class MainActivity : ComponentActivity() {
             KhaltiTheme {
                 Surface(
                     Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
                 ) {
                     DemoScreen(
                         KhaltiPayConfiguration(
