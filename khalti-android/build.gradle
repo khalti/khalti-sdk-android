@@ -1,130 +1,40 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlinx-serialization'
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
 
 android {
-    compileSdkVersion targetSdk
+    namespace 'com.khalti.android'
+    compileSdk 33
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion targetSdk
+        minSdk 16
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
-        consumerProguardFiles 'proguard-rules.pro'
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
-        debug {
-            print(defaultConfig.versionName)
-            buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
-        }
-
         release {
-            buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
-
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = '1.8'
     }
-
-    lintOptions {
-        abortOnError false
-    }
-
-    tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:none', '-quiet')
-        options.addStringOption('encoding', 'UTF-8')
-        options.addStringOption('charSet', 'UTF-8')
-    }
-
-    buildFeatures {
-        viewBinding true
-    }
-
-    /*androidExtensions {
-        features = ["parcelize"]
-    }*/
 }
 
 dependencies {
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    /*----Support Library----*/
-    implementation supportLibrary.appCompat
-    implementation supportLibrary.recyclerView
-    implementation supportLibrary.material
-
-    /*Ripple*/
-    implementation ui.ripple
-
-    /*Progress bar*/
-    implementation ui.progressBar
-
-    /*Image Loader*/
-    implementation ui.picasso
-
-    /*GSON*/
-    implementation serialization.gson
-
-    /*Coroutine*/
-    implementation coroutine.core
-    implementation coroutine.android
-
-    /*Retrofit*/
-    implementation network.retrofit2
-    implementation network.retrofit_gson_converter
-
-    /*OkHTTP*/
-    implementation network.okhttp3
-    implementation network.okhttp_logging_interceptor
-    implementation network.okhttp_urlconnection
-
-    /*Http Client*/
-//    implementation network.apache_http_client
-    implementation 'com.google.android.gms:play-services-basement:17.6.0'
-
-    /*---------------------------------------------------------------------------------------------------------------------*/
-
-    /*Unit Testing*/
-    testImplementation test.junit
-//    testImplementation test.mockito
-    testImplementation test.hamcrest
-    testImplementation test.powerMockJUnit
-    testImplementation test.powerMockMockito
-    implementation "androidx.core:core-ktx:1.6.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:1.0-M1-1.4.0-rc"
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
-
-repositories {
-    mavenCentral()
-}
-
-ext {
-    PUBLISH_GROUP_ID = 'com.khalti'
-    PUBLISH_VERSION = khaltiVersionName
-    PUBLISH_ARTIFACT_ID = 'khalti-android'
-    PUBLISH_DESCRIPTION = 'A Khalti payment widget for android'
-    PUBLISH_URL = 'https://github.com/janakitech/khalti-android'
-    PUBLISH_LICENSE_NAME = 'The MIT License'
-    PUBLISH_LICENSE_URL = 'https://opensource.org/licenses/mit-license.ph'
-    PUBLISH_DEVELOPER_ID = 'khalti'
-    PUBLISH_DEVELOPER_NAME = 'Khalti Official'
-    PUBLISH_DEVELOPER_EMAIL = 'info@khalti.com'
-    PUBLISH_SCM_CONNECTION = 'https://github.com/janakitech/khalti-android.git'
-    PUBLISH_SCM_DEVELOPER_CONNECTION = 'scm:git:ssh://github.com/janakitech/khalti-android.git'
-    PUBLISH_SCM_URL = 'https://github.com/janakitech/khalti-android/tree/master'
-}
-
-apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
