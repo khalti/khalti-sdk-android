@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.view.KeyEvent
 import android.webkit.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -14,20 +13,30 @@ internal class EPaymentWebClient(
     private val returnUrl: String
 ) : WebViewClient() {
 
-    override fun onUnhandledKeyEvent(view: WebView?, event: KeyEvent?) {
-        super.onUnhandledKeyEvent(view, event)
-    }
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-        return handleUri(request!!.url)
-    }
+    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?):
+            Boolean = handleUri(request!!.url)
 
     @SuppressWarnings("deprecation")
     @Deprecated("")
-    override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-        return handleUri(Uri.parse(url))
-    }
+    override fun shouldOverrideUrlLoading(view: WebView?, url: String?):
+            Boolean = handleUri(Uri.parse(url))
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onReceivedError(
+        view: WebView?,
+        request: WebResourceRequest?,
+        error: WebResourceError?
+    ) = handleError(error?.description.toString())
+
+    @SuppressWarnings("deprecation")
+    @Deprecated("")
+    override fun onReceivedError(
+        view: WebView?,
+        errorCode: Int,
+        description: String?,
+        failingUrl: String?
+    ) = handleError(description)
 
     private fun handleUri(uri: Uri): Boolean {
         val url = uri.toString()
@@ -47,5 +56,13 @@ internal class EPaymentWebClient(
         }
 
         return true
+    }
+
+    private fun handleError(description: String?) {
+        val intent = Intent()
+        intent.putExtra(OpenKhaltiPay.PAYMENT_URL_LOAD_ERROR_RESULT, description ?: "")
+
+        activity.setResult(OpenKhaltiPay.PAYMENT_URL_LOAD_ERROR, intent)
+        activity.finish()
     }
 }

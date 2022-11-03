@@ -16,6 +16,12 @@ class OpenKhaltiPay : ActivityResultContract<KhaltiPayConfiguration, PaymentResu
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): PaymentResult {
+        if(resultCode == PAYMENT_URL_LOAD_ERROR){
+            return PaymentError(
+                "Payment URL load error: ${intent?.getStringExtra(PAYMENT_URL_LOAD_ERROR_RESULT)}"
+            )
+        }
+
         val url = intent?.getStringExtra(RESULT)
             ?: return PaymentCancelled()
 
@@ -40,7 +46,9 @@ class OpenKhaltiPay : ActivityResultContract<KhaltiPayConfiguration, PaymentResu
     companion object {
         const val CONFIG = "config"
         const val RESULT = "payment-result"
-        const val ERROR = -2
+        const val ERROR = -2874
+        const val PAYMENT_URL_LOAD_ERROR = -2875
+        const val PAYMENT_URL_LOAD_ERROR_RESULT = "payment-url-error"
     }
 }
 
