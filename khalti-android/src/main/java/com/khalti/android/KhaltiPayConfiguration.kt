@@ -4,6 +4,14 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class KhaltiPayConfiguration(val paymentUrl: String, val returnUrl: String) : Parcelable {
+    init {
+        require(paymentUrl.isNotBlank()) { "Payment URL cannot be blank" }
+        require(returnUrl.isNotBlank()) { "Return URL cannot be blank" }
+
+        val validPaymentUrlRegex = Regex("^https://.*pay.khalti.com/?\\?pidx=.+")
+        require(validPaymentUrlRegex.matches(paymentUrl)) { "Invalid Payment URL" }
+    }
+
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
         parcel.readString() ?: ""

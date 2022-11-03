@@ -23,6 +23,8 @@ fun DemoScreen() {
     var paymentUrl by remember { mutableStateOf(TextFieldValue("")) }
     var returnUrl by remember { mutableStateOf(TextFieldValue("https://pay.khalti.com")) }
 
+    var urlErrorMessage by remember { mutableStateOf("") }
+
     val (result, setResult) = remember { mutableStateOf<PaymentResult?>(null) }
 
     val khaltiPay = rememberLauncherForActivityResult(OpenKhaltiPay()) {
@@ -72,10 +74,13 @@ fun DemoScreen() {
                     placeholder = { Text("Enter payment URL") },
                     onValueChange = {
                         paymentUrl = it
+                        urlErrorMessage = ""
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
+                        .padding(horizontal = 24.dp),
+                    isError = urlErrorMessage.isNotEmpty(),
+                    supportingText = { Text(urlErrorMessage) }
                 )
                 Spacer(Modifier.height(24.dp))
                 OutlinedTextField(
@@ -91,11 +96,15 @@ fun DemoScreen() {
                 Spacer(Modifier.height(40.dp))
                 FilledTonalButton(
                     {
-                        val config = KhaltiPayConfiguration(
-                            paymentUrl.text,
-                            returnUrl.text
-                        )
-                        khaltiPay.launch(config)
+                       try{
+                           val config = KhaltiPayConfiguration(
+                               paymentUrl.text,
+                               returnUrl.text
+                           )
+                           khaltiPay.launch(config)
+                       } catch (e: IllegalArgumentException){
+                           urlErrorMessage = e.message.toString()
+                       }
                     }
                 ) {
                     Text("Pay with Khalti")
