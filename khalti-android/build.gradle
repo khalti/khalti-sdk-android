@@ -38,3 +38,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+
+ext {
+    PUBLISH_GROUP_ID = 'com.khalti'
+    PUBLISH_VERSION = khaltiVersionName
+    PUBLISH_ARTIFACT_ID = 'khalti-android'
+    PUBLISH_DESCRIPTION = 'A Khalti payment widget for android'
+    PUBLISH_URL = 'https://github.com/khalti/khalti-sdk-android'
+    PUBLISH_LICENSE_NAME = 'The 3-Clause BSD License'
+    PUBLISH_LICENSE_URL = 'https://github.com/khalti/khalti-sdk-android/blob/master/LICENSE'
+    PUBLISH_DEVELOPER_ID = 'khalti'
+    PUBLISH_DEVELOPER_NAME = 'Khalti Official'
+    PUBLISH_DEVELOPER_EMAIL = 'info@khalti.com'
+    PUBLISH_SCM_CONNECTION = 'https://github.com/khalti/khalti-sdk-android.git'
+    PUBLISH_SCM_DEVELOPER_CONNECTION = 'scm:git:ssh://github.com/khalti/khalti-sdk-android.git'
+    PUBLISH_SCM_URL = 'https://github.com/khalti/khalti-sdk-android/tree/master'
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
