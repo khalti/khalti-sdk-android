@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.khalti.android'
-    compileSdk 33
+    compileSdk libraryCompileSdk
 
     defaultConfig {
-        minSdk 16
-        targetSdk 33
+        minSdk libraryMinSdk
+        targetSdk libraryTargetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -43,7 +43,7 @@ ext {
     PUBLISH_GROUP_ID = 'com.khalti'
     PUBLISH_VERSION = khaltiVersionName
     PUBLISH_ARTIFACT_ID = 'khalti-android'
-    PUBLISH_DESCRIPTION = 'A Khalti payment widget for android'
+    PUBLISH_DESCRIPTION = 'A Khalti Payment Gateway library for Android'
     PUBLISH_URL = 'https://github.com/khalti/khalti-sdk-android'
     PUBLISH_LICENSE_NAME = 'The 3-Clause BSD License'
     PUBLISH_LICENSE_URL = 'https://github.com/khalti/khalti-sdk-android/blob/master/LICENSE'

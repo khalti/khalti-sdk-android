@@ -11,3 +11,4 @@ plugins {
 }
 
 apply from: "${rootDir}/scripts/publish-root.gradle"
+apply from: 'metadata.gradle'
