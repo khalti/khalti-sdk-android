@@ -22,6 +22,7 @@
 
 ---
 
+### About
 Khalti is a payment gateway, digital wallet and API provider system for various online services for Nepal.
 
 With this package, you can accepts payments from:
@@ -33,4 +34,16 @@ With this package, you can accepts payments from:
 
 Using Khalti Payment Gateway, you do not need to integrate with individual banks.
 
-### [Go to the documentation >](https://docs.khalti.com/checkout/android/)
+### Features
+- Multiple Payment Options for Customers
+- Highly secure and Easy Integrations
+- Customers can make wallet payments without leaving your platform.
+- Secured Transaction uses 2 step authentication i.e Khalti Pin and Khalti Password. Transaction Processing is disabled on multiple request for wrong Khalti Pin.
+- Merchant Dashboard to view transactions, issue refunds, filter and download reports etc.
+- Multi User System
+- Realtime Balance updates in Merchant Dashboard on every successful payments made by customers
+- Amount collected in Merchant Dashboard can we deposited/transferred to bank accounts anytime
+
+
+### How to use?
+Go to the [documentation to install khalti-android](https://docs.khalti.com/checkout/android/).
