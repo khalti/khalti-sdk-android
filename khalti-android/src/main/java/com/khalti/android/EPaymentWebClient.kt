@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.webkit.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -17,12 +18,12 @@ internal class EPaymentWebClient(
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?):
-            Boolean = handleUri(request!!.url)
+            Boolean = handleUri(view, request!!.url)
 
     @SuppressWarnings("deprecation")
     @Deprecated("")
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?):
-            Boolean = handleUri(Uri.parse(url))
+            Boolean = handleUri(view, Uri.parse(url))
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onReceivedError(
@@ -40,8 +41,10 @@ internal class EPaymentWebClient(
         failingUrl: String?
     ) = handleError(description)
 
-    private fun handleUri(uri: Uri): Boolean {
+    private fun handleUri(view: WebView?, uri: Uri): Boolean {
         val url = uri.toString()
+
+        Log.d("EPaymentWebClient", url)
 
         if (url.startsWith(returnUrl)) {
             val isSuccess = uri.getQueryParameter("pidx") != null
@@ -53,7 +56,9 @@ internal class EPaymentWebClient(
                 intent
             )
             activity.finish()
-        } else {
+        } else if(uri.path.equals("/ebanking/initiate/")){
+            view?.loadUrl(url)
+        }else {
             Toast.makeText(activity, "Action not permitted", Toast.LENGTH_SHORT).show()
         }
 

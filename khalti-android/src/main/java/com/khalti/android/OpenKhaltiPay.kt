@@ -16,7 +16,7 @@ class OpenKhaltiPay : ActivityResultContract<KhaltiPayConfiguration, PaymentResu
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): PaymentResult {
-        if(resultCode == PAYMENT_URL_LOAD_ERROR){
+        if (resultCode == PAYMENT_URL_LOAD_ERROR) {
             return PaymentError(
                 "Payment URL load error: ${intent?.getStringExtra(PAYMENT_URL_LOAD_ERROR_RESULT)}"
             )
@@ -33,7 +33,9 @@ class OpenKhaltiPay : ActivityResultContract<KhaltiPayConfiguration, PaymentResu
                     getQueryParameter("mobile") ?: "",
                     getQueryParameter("purchase_order_id") ?: "",
                     getQueryParameter("purchase_order_name") ?: "",
-                    getQueryParameter("transaction_id") ?: "",
+                    getQueryParameter("transaction_id")
+                        ?: getQueryParameter("idx")
+                        ?: "",
                 )
                 ERROR -> PaymentError(
                     getQueryParameter("message") ?: "Payment Failed",
