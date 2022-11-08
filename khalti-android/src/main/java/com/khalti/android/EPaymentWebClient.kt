@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.webkit.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -43,8 +42,11 @@ internal class EPaymentWebClient(
 
     private fun handleUri(view: WebView?, uri: Uri): Boolean {
         val url = uri.toString()
+        val path = uri.path
+        val fragment = uri.fragment
 
-        Log.d("EPaymentWebClient", url)
+        val eBankingPath = "/ebanking/initiate/"
+        val mPinPath = "/account/transaction_pin"
 
         if (url.startsWith(returnUrl)) {
             val isSuccess = uri.getQueryParameter("pidx") != null
@@ -56,9 +58,14 @@ internal class EPaymentWebClient(
                 intent
             )
             activity.finish()
-        } else if(uri.path.equals("/ebanking/initiate/")){
+        } else if (path.equals(eBankingPath)) {
             view?.loadUrl(url)
-        }else {
+        } else if (path.equals(mPinPath) || fragment.equals(mPinPath)) {
+            val deeplink = "https://khalti.com/go/?t=mpin"
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(deeplink))
+
+            activity.startActivity(browserIntent)
+        } else {
             Toast.makeText(activity, "Action not permitted", Toast.LENGTH_SHORT).show()
         }
 
