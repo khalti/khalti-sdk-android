@@ -51,6 +51,7 @@ class OpenKhaltiPay : ActivityResultContract<KhaltiPayConfiguration, PaymentResu
         const val ERROR = -2874
         const val PAYMENT_URL_LOAD_ERROR = -2875
         const val PAYMENT_URL_LOAD_ERROR_RESULT = "payment-url-error"
+        const val DEFAULT_HOME = "kpg://home"
     }
 }
 

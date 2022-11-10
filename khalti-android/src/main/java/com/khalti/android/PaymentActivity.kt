@@ -4,6 +4,7 @@ package com.khalti.android
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
@@ -56,7 +57,10 @@ internal class PaymentActivity : Activity() {
                 }
             }
 
-            webView.loadUrl(it.paymentUrl)
+            val paymentUri = Uri.parse(it.paymentUrl).buildUpon()
+                .appendQueryParameter("home", OpenKhaltiPay.DEFAULT_HOME)
+                .build()
+            webView.loadUrl(paymentUri.toString())
         }
 
         appBar.addView(toolbar)

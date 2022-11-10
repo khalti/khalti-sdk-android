@@ -48,7 +48,9 @@ internal class EPaymentWebClient(
         val eBankingPath = "/ebanking/initiate/"
         val mPinPath = "/account/transaction_pin"
 
-        if (url.startsWith(returnUrl)) {
+        if (url == OpenKhaltiPay.DEFAULT_HOME) {
+            activity.finish()
+        } else if (url.startsWith(returnUrl)) {
             val isSuccess = uri.getQueryParameter("pidx") != null
             val intent = Intent()
             intent.putExtra(OpenKhaltiPay.RESULT, url)
