@@ -9,6 +9,7 @@ class KhaltiPayConfiguration(val paymentUrl: String, val returnUrl: String) : Pa
     init {
         require(paymentUrl.isNotBlank()) { "Payment URL cannot be blank" }
         require(returnUrl.isNotBlank()) { "Return URL cannot be blank" }
+        check(paymentUrl != returnUrl) { "Payment URL and Return URL cannot be same" }
 
         val validPaymentUrlRegex = Regex("^https://.*pay.khalti.com/?\\?pidx=.+")
         require(validPaymentUrlRegex.matches(paymentUrl)) { "Invalid Payment URL" }

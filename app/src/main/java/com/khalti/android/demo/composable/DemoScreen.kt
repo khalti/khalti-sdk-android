@@ -21,7 +21,7 @@ const val RESULT_TAG = "KHALTI_PAY_RESULT"
 @Composable
 fun DemoScreen() {
     var paymentUrl by remember { mutableStateOf(TextFieldValue("")) }
-    var returnUrl by remember { mutableStateOf(TextFieldValue("https://pay.khalti.com")) }
+    var returnUrl by remember { mutableStateOf(TextFieldValue("https://redirect.khalti.com")) }
 
     var urlErrorMessage by remember { mutableStateOf("") }
 
@@ -96,15 +96,22 @@ fun DemoScreen() {
                 Spacer(Modifier.height(40.dp))
                 FilledTonalButton(
                     {
-                       try{
-                           val config = KhaltiPayConfiguration(
-                               paymentUrl.text,
-                               returnUrl.text
-                           )
-                           khaltiPay.launch(config)
-                       } catch (e: IllegalArgumentException){
-                           urlErrorMessage = e.message.toString()
-                       }
+                        try {
+                            val config = KhaltiPayConfiguration(
+                                paymentUrl.text,
+                                returnUrl.text
+                            )
+                            khaltiPay.launch(config)
+                        } catch (e: Exception) {
+                            val message = e.message ?: ""
+
+                            when (e) {
+                                is IllegalArgumentException, is IllegalStateException -> {
+                                    urlErrorMessage = message
+                                }
+                                else -> Log.e(RESULT_TAG, message)
+                            }
+                        }
                     }
                 ) {
                     Text("Pay with Khalti")
