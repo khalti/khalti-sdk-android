@@ -27,7 +27,7 @@ internal class PaymentActivity : Activity() {
 
         val appBar = AppBarLayout(this)
         val toolbar = MaterialToolbar(this)
-        
+
         val progressBar = ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal)
         progressBar.isIndeterminate = true
 
@@ -53,7 +53,8 @@ internal class PaymentActivity : Activity() {
             webView.webViewClient = EPaymentWebClient(this, it.returnUrl)
             webView.webChromeClient = object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                    progressBar.visibility = if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
+                    progressBar.visibility =
+                        if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
                 }
             }
 
