@@ -4,14 +4,16 @@
 
 package com.khalti.android
 
+import android.util.Log
+
 class Khalti private constructor(
     val paymentUrl: String,
     val returnUrl: String,
     val openInKhalti: Boolean,
     val autoVerify: Boolean,
-    val publicKey: String?,
-    val merchantAppDeeplink: String?,
-    val onComplete: OnComplete?,
+    val publicKey: String,
+    val merchantAppDeeplink: String,
+    val onComplete: OnComplete,
 ) {
     class Builder {
         private var publicKey: String? = null
@@ -58,19 +60,29 @@ class Khalti private constructor(
         }
 
         fun build(): Khalti {
-            assert(paymentUrl != null) { "Payment url is required" }
-            assert(returnUrl != null) { "Return url is required" }
+            val assertionConditions: Map<String, Boolean> = mapOf(
+                "onComplete" to (onComplete != null),
+                "paymentUrl" to (paymentUrl != null),
+                "returnUrl" to (returnUrl != null),
+                "publicKey" to (publicKey != null),
+                "merchantAppDeeplink" to (merchantAppDeeplink != null),
+            ).filter { !it.value }
 
-            assert(openInKhalti || merchantAppDeeplink != null) { "Merchant app's deeplink is required when [openInKhalti] is true" }
+            assert(assertionConditions.isEmpty())
+            {
+                val requiredParams = assertionConditions.keys.joinToString(separator = ", ")
+                val requiredParamsSize = assertionConditions.size
+                "$requiredParams ${if (requiredParamsSize > 1) "are" else "is"} required"
+            }
 
             return Khalti(
-                paymentUrl = this.paymentUrl!!,
+                paymentUrl = paymentUrl!!,
                 returnUrl = returnUrl!!,
                 openInKhalti = openInKhalti,
-                autoVerify = true,
-                merchantAppDeeplink = this.merchantAppDeeplink,
-                publicKey = this.publicKey,
-                onComplete = this.onComplete
+                autoVerify = autoVerify,
+                merchantAppDeeplink = merchantAppDeeplink!!,
+                publicKey = publicKey!!,
+                onComplete = onComplete!!
             )
         }
     }
