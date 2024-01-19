@@ -4,7 +4,7 @@
 
 package com.khalti.android
 
-class KhaltiPayConfig private constructor(
+class Khalti private constructor(
     val paymentUrl: String,
     val returnUrl: String,
     val openInKhalti: Boolean,
@@ -57,13 +57,13 @@ class KhaltiPayConfig private constructor(
             return this
         }
 
-        fun build(): KhaltiPayConfig {
+        fun build(): Khalti {
             assert(paymentUrl != null) { "Payment url is required" }
             assert(returnUrl != null) { "Return url is required" }
 
             assert(openInKhalti || merchantAppDeeplink != null) { "Merchant app's deeplink is required when [openInKhalti] is true" }
 
-            return KhaltiPayConfig(
+            return Khalti(
                 paymentUrl = this.paymentUrl!!,
                 returnUrl = returnUrl!!,
                 openInKhalti = openInKhalti,
@@ -73,5 +73,13 @@ class KhaltiPayConfig private constructor(
                 onComplete = this.onComplete
             )
         }
+    }
+
+    fun makePayment() {
+
+    }
+
+    fun verifyPayment() {
+
     }
 }
