@@ -27,6 +27,14 @@ fun DemoScreen() {
 
     val (result, setResult) = remember { mutableStateOf<PaymentResult?>(null) }
 
+    val khalti = Khalti.Builder()
+        .publicKey("123")
+        .paymentUrl("yo")
+        .returnUrl("hello")
+        .merchantAppDeeplink("deeplink")
+        .onPaymentComplete {}
+        .build()
+
     val khaltiPay = rememberLauncherForActivityResult(OpenKhaltiPay()) {
         setResult(it)
 
@@ -34,9 +42,11 @@ fun DemoScreen() {
             is PaymentSuccess -> {
                 Log.i(RESULT_TAG, "Payment Success")
             }
+
             is PaymentError -> {
                 Log.i(RESULT_TAG, "Payment Error")
             }
+
             is PaymentCancelled -> {
                 Log.i(RESULT_TAG, "Payment Cancelled")
             }
@@ -109,6 +119,7 @@ fun DemoScreen() {
                                 is IllegalArgumentException, is IllegalStateException -> {
                                     urlErrorMessage = message
                                 }
+
                                 else -> Log.e(RESULT_TAG, message)
                             }
                         }
