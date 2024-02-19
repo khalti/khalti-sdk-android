@@ -4,6 +4,6 @@
 
 package com.khalti.android.v3
 
-fun interface OnPayment {
+fun interface OnPaymentResult {
     fun invoke(result: PaymentResult)
 }
