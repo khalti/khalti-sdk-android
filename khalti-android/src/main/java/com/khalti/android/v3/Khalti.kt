@@ -4,8 +4,8 @@
 
 package com.khalti.android
 
-import android.util.Log
-
+// Though kotlin provides named and optional parameters
+// builder pattern was required for Java developers
 class Khalti private constructor(
     val paymentUrl: String,
     val returnUrl: String,
