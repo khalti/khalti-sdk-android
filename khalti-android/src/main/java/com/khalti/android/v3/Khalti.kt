@@ -10,7 +10,7 @@ import android.net.Uri
 // method overloading was required for Java developers
 class Khalti private constructor(
     val publicKey: String,
-    val paymentUrl: Uri,
+    val pidx: String,
     val returnUrl: Uri,
     val openInKhalti: Boolean,
     val environment: Environment,
@@ -21,7 +21,7 @@ class Khalti private constructor(
     companion object {
         fun init(
             publicKey: String,
-            paymentUrl: Uri,
+            pidx: String,
             returnUrl: Uri,
             openInKhalti: Boolean = true,
             environment: Environment = Environment.PROD,
@@ -31,7 +31,7 @@ class Khalti private constructor(
         ): Khalti {
             return Khalti(
                 publicKey,
-                paymentUrl,
+                pidx,
                 returnUrl,
                 openInKhalti,
                 environment,
@@ -43,7 +43,7 @@ class Khalti private constructor(
 
         fun init(
             publicKey: String,
-            paymentUrl: Uri,
+            pidx: String,
             returnUrl: Uri,
             openInKhalti: Boolean = true,
             environment: Environment = Environment.PROD,
@@ -52,7 +52,7 @@ class Khalti private constructor(
         ): Khalti {
             return Khalti(
                 publicKey,
-                paymentUrl,
+                pidx,
                 returnUrl,
                 openInKhalti,
                 environment,
