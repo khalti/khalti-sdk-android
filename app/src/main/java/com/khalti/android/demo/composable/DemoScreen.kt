@@ -2,6 +2,7 @@
 
 package com.khalti.android.demo.composable
 
+import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.Image
@@ -14,6 +15,11 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.khalti.android.*
 import com.khalti.android.demo.R
+import com.khalti.android.v3.Khalti
+import com.khalti.android.v3.OnMessage
+import com.khalti.android.v3.OnPaymentResult
+import com.khalti.android.v3.OnReturn
+import java.net.URI
 
 const val RESULT_TAG = "KHALTI_PAY_RESULT"
 
@@ -26,14 +32,6 @@ fun DemoScreen() {
     var urlErrorMessage by remember { mutableStateOf("") }
 
     val (result, setResult) = remember { mutableStateOf<PaymentResult?>(null) }
-
-    val khalti = Khalti.Builder()
-        .publicKey("123")
-        .paymentUrl("yo")
-        .returnUrl("hello")
-        .merchantAppDeeplink("deeplink")
-        .onPaymentComplete {}
-        .build()
 
     val khaltiPay = rememberLauncherForActivityResult(OpenKhaltiPay()) {
         setResult(it)
@@ -123,6 +121,52 @@ fun DemoScreen() {
                                 else -> Log.e(RESULT_TAG, message)
                             }
                         }
+                    }
+                ) {
+                    Text("Pay with Khalti")
+                }
+            }
+        },
+    )
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DemoScreenV3() {
+
+    val khalti = Khalti.init(
+        "",
+        Uri.parse(""),
+        Uri.parse(""),
+        onPaymentResult = {},
+        onMessage = {})
+
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text("Khalti Android SDK Demo V3")
+                }
+
+            )
+        },
+        content = { padding ->
+            Column(
+                Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Spacer(Modifier.padding(padding))
+                Image(
+                    painterResource(R.drawable.khalti_logo_color),
+                    contentDescription = "Khalti Logo",
+                    modifier = Modifier.height(200.dp)
+                )
+                FilledTonalButton(
+                    {
+                        khalti.open()
+                        khalti.verify()
+                        khalti.close()
                     }
                 ) {
                     Text("Pay with Khalti")

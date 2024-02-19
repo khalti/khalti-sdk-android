@@ -8,7 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.khalti.android.demo.composable.DemoScreen
+import com.khalti.android.demo.composable.DemoScreenV3
 import com.khalti.android.demo.theme.KhaltiTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     Modifier.fillMaxSize(),
                 ) {
-                    DemoScreen()
+                    DemoScreenV3()
                 }
             }
         }

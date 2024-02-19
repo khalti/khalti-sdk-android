@@ -13,6 +13,7 @@ class Khalti private constructor(
     val paymentUrl: Uri,
     val returnUrl: Uri,
     val openInKhalti: Boolean,
+    val environment: Environment,
     val onPaymentResult: OnPaymentResult,
     val onMessage: OnMessage,
     val onReturn: OnReturn?,
@@ -22,7 +23,8 @@ class Khalti private constructor(
             publicKey: String,
             paymentUrl: Uri,
             returnUrl: Uri,
-            openInKhalti: Boolean,
+            openInKhalti: Boolean = true,
+            environment: Environment = Environment.PROD,
             onPaymentResult: OnPaymentResult,
             onMessage: OnMessage,
             onReturn: OnReturn,
@@ -32,6 +34,7 @@ class Khalti private constructor(
                 paymentUrl,
                 returnUrl,
                 openInKhalti,
+                environment,
                 onPaymentResult,
                 onMessage,
                 onReturn,
@@ -42,26 +45,8 @@ class Khalti private constructor(
             publicKey: String,
             paymentUrl: Uri,
             returnUrl: Uri,
-            onPaymentResult: OnPaymentResult,
-            onMessage: OnMessage,
-            onReturn: OnReturn,
-        ): Khalti {
-            return Khalti(
-                publicKey,
-                paymentUrl,
-                returnUrl,
-                true,
-                onPaymentResult,
-                onMessage,
-                onReturn,
-            )
-        }
-
-        fun init(
-            publicKey: String,
-            paymentUrl: Uri,
-            returnUrl: Uri,
-            openInKhalti: Boolean,
+            openInKhalti: Boolean = true,
+            environment: Environment = Environment.PROD,
             onPaymentResult: OnPaymentResult,
             onMessage: OnMessage,
         ): Khalti {
@@ -70,24 +55,7 @@ class Khalti private constructor(
                 paymentUrl,
                 returnUrl,
                 openInKhalti,
-                onPaymentResult,
-                onMessage,
-                null,
-            )
-        }
-
-        fun init(
-            publicKey: String,
-            paymentUrl: Uri,
-            returnUrl: Uri,
-            onPaymentResult: OnPaymentResult,
-            onMessage: OnMessage,
-        ): Khalti {
-            return Khalti(
-                publicKey,
-                paymentUrl,
-                returnUrl,
-                true,
+                environment,
                 onPaymentResult,
                 onMessage,
                 null,
