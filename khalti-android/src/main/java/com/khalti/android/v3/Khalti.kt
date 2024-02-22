@@ -4,9 +4,15 @@
 
 package com.khalti.android.v3
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.khalti.android.PaymentActivity
+import com.khalti.android.api.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // Though kotlin provides named and optional parameters
 // method overloading was required for Java developers
@@ -17,6 +23,8 @@ class Khalti private constructor(
     val onMessage: OnMessage,
     val onReturn: OnReturn?,
 ) {
+    var activity: Activity? = null
+
     companion object {
         fun init(
             context: Context,
@@ -63,7 +71,29 @@ class Khalti private constructor(
     }
 
     fun verify() {
+        val apiClient = ApiClient()
+        val baseUrl = if (config.environment == Environment.PROD) {
+            "https://khalti.com/api/v2/"
+        } else {
+            "https://dev.khalti.com/api/v2/"
+        }
 
+        val call = apiClient.build(baseUrl, config.publicKey).verify(mapOf("pidx" to config.pidx))
+
+        call.enqueue(object : Callback<Any> {
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if (response.isSuccessful) {
+                    Log.i("Response", response.body().toString())
+                } else {
+                    // TODO (Ishwor) Handle error
+                }
+            }
+
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                Log.e("Error", t.printStackTrace().toString())
+                // TODO (Ishwor) Handle error
+            }
+        })
     }
 
     fun close() {
