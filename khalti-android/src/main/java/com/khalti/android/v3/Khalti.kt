@@ -4,11 +4,13 @@
 
 package com.khalti.android.v3
 
+import android.content.Context
 import android.net.Uri
 
 // Though kotlin provides named and optional parameters
 // method overloading was required for Java developers
 class Khalti private constructor(
+    private val context: Context,
     val publicKey: String,
     val pidx: String,
     val returnUrl: Uri,
