@@ -7,6 +7,7 @@ import android.app.Activity
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.webkit.*
 import android.widget.LinearLayout
@@ -14,6 +15,9 @@ import android.widget.LinearLayout.LayoutParams
 import android.widget.ProgressBar
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.khalti.android.v3.CacheManager
+import com.khalti.android.v3.Environment
+import com.khalti.android.v3.Khalti
 
 internal class PaymentActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,32 +48,37 @@ internal class PaymentActivity : Activity() {
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(OpenKhaltiPay.CONFIG, KhaltiPayConfiguration::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(OpenKhaltiPay.CONFIG)
-        }?.let { it ->
-            webView.webViewClient = EPaymentWebClient(this, it.returnUrl)
-            webView.webChromeClient = object : WebChromeClient() {
-                override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                    progressBar.visibility =
-                        if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
-                }
+        webView.webViewClient = EPaymentWebClient()
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                progressBar.visibility =
+                    if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
             }
-
-            val paymentUri = Uri.parse(it.paymentUrl).buildUpon()
-                .appendQueryParameter("home", OpenKhaltiPay.DEFAULT_HOME)
-                .build()
-            webView.loadUrl(paymentUri.toString())
         }
 
-        appBar.addView(toolbar)
+        val khalti = CacheManager.instance().get<Khalti>("khalti")
+        if (khalti != null) {
+            val config = khalti.config
+            val baseUrl = if (config.environment == Environment.PROD) {
+                "https://pay.khalti.com/"
+            } else {
+                "https://test-pay.khalti.com/"
+            }
 
-        layout.addView(appBar)
-        layout.addView(progressBar)
-        layout.addView(webView, params)
+            val paymentUri =
+                Uri.parse(baseUrl).buildUpon().appendQueryParameter("pidx", config.pidx)
 
-        setContentView(layout, params)
+            Log.i("Payment Uri", paymentUri.toString())
+
+            webView.loadUrl(paymentUri.toString())
+
+            appBar.addView(toolbar)
+
+            layout.addView(appBar)
+            layout.addView(progressBar)
+            layout.addView(webView, params)
+
+            setContentView(layout, params)
+        }
     }
 }
