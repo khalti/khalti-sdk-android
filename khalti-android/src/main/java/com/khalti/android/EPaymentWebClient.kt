@@ -10,10 +10,7 @@ import android.webkit.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 
-internal class EPaymentWebClient(
-    private val activity: Activity,
-    private val returnUrl: String
-) : WebViewClient() {
+internal class EPaymentWebClient : WebViewClient() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?):
