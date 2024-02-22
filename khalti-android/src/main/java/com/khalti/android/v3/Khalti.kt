@@ -24,13 +24,16 @@ class Khalti private constructor(
             onMessage: OnMessage,
             onReturn: OnReturn,
         ): Khalti {
-            return Khalti(
+            val khalti = Khalti(
                 context,
                 config,
                 onPaymentResult,
                 onMessage,
                 onReturn,
             )
+
+            CacheManager.instance().put("khalti", khalti)
+            return khalti
         }
 
         fun init(
@@ -39,13 +42,17 @@ class Khalti private constructor(
             onPaymentResult: OnPaymentResult,
             onMessage: OnMessage,
         ): Khalti {
-            return Khalti(
+            val khalti = Khalti(
                 context,
                 config,
                 onPaymentResult,
                 onMessage,
                 null,
             )
+
+            CacheManager.instance().put("khalti", khalti)
+
+            return khalti
         }
     }
 
