@@ -9,7 +9,6 @@ package com.khalti.android.v3
 /// statusCode [36] -> status [Cancelled] (Cancelled by user)
 
 data class PaymentResult(
-    val statusCode: Int,
     val status: String,
     val payload: PaymentPayload?,
     val message: String?
@@ -18,8 +17,5 @@ data class PaymentResult(
 data class PaymentPayload(
     val pidx: String,
     val amount: Long,
-    val mobile: String,
-    val purchaseOrderId: String,
-    val purchaseOrderName: String,
     val transactionId: String
 )
