@@ -5,8 +5,11 @@ package com.khalti.android
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.webkit.*
 import androidx.annotation.RequiresApi
+import com.khalti.android.v3.CacheManager
+import com.khalti.android.v3.Khalti
 
 internal class EPaymentWebClient : WebViewClient() {
 
@@ -37,28 +40,28 @@ internal class EPaymentWebClient : WebViewClient() {
 
     private fun handleUri(view: WebView?, uri: Uri) : Boolean {
         val url = uri.toString()
-        val path = uri.path
-        val fragment = uri.fragment
+        val khalti = CacheManager.instance().get<Khalti>("khalti")
+        val returnUrl = khalti?.config?.returnUrl?.toString() ?: ""
 
-        val mPinPath = "/account/transaction_pin"
+        Log.i("Url", url)
 
+        // TODO (Ishwor) Handle redirection to Khalti app for setting MPIN
+        // MPIN url : /account/transaction_pin
+
+        // TODO (Ishwor) Invoke this callback after the page has successfully loaded
         if (url.startsWith(returnUrl)) {
-            // callback
-        } else if (path.equals(mPinPath) || fragment.equals(mPinPath)) {
-            val deeplink = "https://khalti.com/go/?t=mpin"
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(deeplink))
-
-            activity.startActivity(browserIntent)
+            khalti?.onReturn?.invoke()
         }
+
+        khalti?.verify()
 
         return false
     }
 
     private fun handleError(description: String?) {
-        val intent = Intent()
-        intent.putExtra(OpenKhaltiPay.PAYMENT_URL_LOAD_ERROR_RESULT, description ?: "")
-
-        activity.setResult(OpenKhaltiPay.PAYMENT_URL_LOAD_ERROR, intent)
-        activity.finish()
+        val khalti = CacheManager.instance().get<Khalti>("khalti")
+        if (description != null) {
+            khalti?.onMessage?.invoke(description)
+        }
     }
 }
