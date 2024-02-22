@@ -67,6 +67,7 @@ class Khalti private constructor(
     }
 
     fun close() {
-
+        val intent = Intent("close_khalti_payment_portal")
+        context.sendBroadcast(intent)
     }
 }
