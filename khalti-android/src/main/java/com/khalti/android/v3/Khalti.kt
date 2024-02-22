@@ -5,7 +5,8 @@
 package com.khalti.android.v3
 
 import android.content.Context
-import android.net.Uri
+import android.content.Intent
+import com.khalti.android.PaymentActivity
 
 // Though kotlin provides named and optional parameters
 // method overloading was required for Java developers
@@ -57,7 +58,8 @@ class Khalti private constructor(
     }
 
     fun open() {
-
+        val intent = Intent(context, PaymentActivity::class.java)
+        context.startActivity(intent)
     }
 
     fun verify() {
