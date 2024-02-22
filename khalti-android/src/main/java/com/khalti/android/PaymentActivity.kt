@@ -4,6 +4,10 @@ package com.khalti.android
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +24,7 @@ import com.khalti.android.v3.Environment
 import com.khalti.android.v3.Khalti
 
 internal class PaymentActivity : Activity() {
+    private var receiver: BroadcastReceiver? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -79,6 +84,42 @@ internal class PaymentActivity : Activity() {
             layout.addView(webView, params)
 
             setContentView(layout, params)
+            registerBroadcast()
         }
     }
+
+    override fun onDestroy() {
+        unregisterBroadcast()
+        super.onDestroy()
+    }
+
+    // TODO (Ishwor) unregister broadcast
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private fun registerBroadcast() {
+        // TODO (Ishwor) Remove hardcoded
+        receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent != null && intent.action.equals("close_khalti_payment_portal")) {
+                    finish()
+                }
+            }
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                registerReceiver(
+                    receiver, IntentFilter("close_khalti_payment_portal"),
+                    RECEIVER_NOT_EXPORTED
+                )
+            } else {
+                registerReceiver(
+                    receiver, IntentFilter("close_khalti_payment_portal"),
+                )
+            }
+        }
+    }
+
+    private fun unregisterBroadcast() {
+        unregisterReceiver(receiver)
+    }
 }
+
