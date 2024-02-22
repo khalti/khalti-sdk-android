@@ -11,32 +11,22 @@ import android.net.Uri
 // method overloading was required for Java developers
 class Khalti private constructor(
     private val context: Context,
-    val publicKey: String,
-    val pidx: String,
-    val returnUrl: Uri,
-    val openInKhalti: Boolean,
-    val environment: Environment,
+    val config: KhaltiPayConfig,
     val onPaymentResult: OnPaymentResult,
     val onMessage: OnMessage,
     val onReturn: OnReturn?,
 ) {
     companion object {
         fun init(
-            publicKey: String,
-            pidx: String,
-            returnUrl: Uri,
-            openInKhalti: Boolean = true,
-            environment: Environment = Environment.PROD,
+            context: Context,
+            config: KhaltiPayConfig,
             onPaymentResult: OnPaymentResult,
             onMessage: OnMessage,
             onReturn: OnReturn,
         ): Khalti {
             return Khalti(
-                publicKey,
-                pidx,
-                returnUrl,
-                openInKhalti,
-                environment,
+                context,
+                config,
                 onPaymentResult,
                 onMessage,
                 onReturn,
@@ -44,20 +34,14 @@ class Khalti private constructor(
         }
 
         fun init(
-            publicKey: String,
-            pidx: String,
-            returnUrl: Uri,
-            openInKhalti: Boolean = true,
-            environment: Environment = Environment.PROD,
+            context: Context,
+            config: KhaltiPayConfig,
             onPaymentResult: OnPaymentResult,
             onMessage: OnMessage,
         ): Khalti {
             return Khalti(
-                publicKey,
-                pidx,
-                returnUrl,
-                openInKhalti,
-                environment,
+                context,
+                config,
                 onPaymentResult,
                 onMessage,
                 null,
