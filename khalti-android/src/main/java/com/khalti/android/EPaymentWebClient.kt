@@ -14,12 +14,12 @@ internal class EPaymentWebClient : WebViewClient() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?):
-            Boolean = handleUri(view, request!!.url)
+            Boolean = handleUri(request!!.url)
 
     @SuppressWarnings("deprecation")
     @Deprecated("")
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?):
-            Boolean = handleUri(view, Uri.parse(url))
+            Boolean = handleUri(Uri.parse(url))
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onReceivedError(
@@ -37,23 +37,28 @@ internal class EPaymentWebClient : WebViewClient() {
         failingUrl: String?
     ) = handleError(description)
 
-    private fun handleUri(view: WebView?, uri: Uri) : Boolean {
-        val url = uri.toString()
+    override fun onPageFinished(view: WebView?, url: String?) {
+        super.onPageFinished(view, url)
+
         val khalti = CacheManager.instance().get<Khalti>("khalti")
         val returnUrl = khalti?.config?.returnUrl?.toString() ?: ""
+
+        Log.i("Url", url ?: "")
+
+        if (url?.startsWith(returnUrl) != false) {
+            khalti?.onReturn?.invoke()
+        }
+
+        khalti?.verify()
+    }
+
+    private fun handleUri(uri: Uri): Boolean {
+        val url = uri.toString()
 
         Log.i("Url", url)
 
         // TODO (Ishwor) Handle redirection to Khalti app for setting MPIN
         // MPIN url : /account/transaction_pin
-
-        // TODO (Ishwor) Invoke this callback after the page has successfully loaded
-        if (url.startsWith(returnUrl)) {
-            khalti?.onReturn?.invoke()
-        }
-
-        khalti?.verify()
-
         return false
     }
 
