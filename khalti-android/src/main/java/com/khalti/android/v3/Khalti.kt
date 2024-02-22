@@ -10,6 +10,7 @@ import android.content.Intent
 import android.util.Log
 import com.khalti.android.PaymentActivity
 import com.khalti.android.api.ApiClient
+import com.khalti.android.resource.Url
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,13 +73,13 @@ class Khalti private constructor(
 
     fun verify() {
         val apiClient = ApiClient()
-        val baseUrl = if (config.environment == Environment.PROD) {
-            "https://khalti.com/api/v2/"
+        val baseUrl = if (config.isProd()) {
+            Url.BASE_KHALTI_URL_PROD
         } else {
-            "https://dev.khalti.com/api/v2/"
+            Url.BASE_KHALTI_URL_STAGING
         }
-
-        val call = apiClient.build(baseUrl, config.publicKey).verify(mapOf("pidx" to config.pidx))
+        val call =
+            apiClient.build(baseUrl.value, config.publicKey).verify(mapOf("pidx" to config.pidx))
 
         call.enqueue(object : Callback<Any> {
             override fun onResponse(call: Call<Any>, response: Response<Any>) {

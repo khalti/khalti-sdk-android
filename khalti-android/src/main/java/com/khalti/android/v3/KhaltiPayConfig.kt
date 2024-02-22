@@ -15,4 +15,7 @@ data class KhaltiPayConfig(
     val returnUrl: Uri,
     val openInKhalti: Boolean = true,
     val environment: Environment = Environment.PROD,
-) : Parcelable
+) : Parcelable {
+
+    fun isProd(): Boolean = environment == Environment.PROD
+}

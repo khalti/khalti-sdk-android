@@ -19,6 +19,7 @@ import android.widget.LinearLayout.LayoutParams
 import android.widget.ProgressBar
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.khalti.android.resource.Url
 import com.khalti.android.v3.CacheManager
 import com.khalti.android.v3.Environment
 import com.khalti.android.v3.Khalti
@@ -64,14 +65,16 @@ internal class PaymentActivity : Activity() {
         val khalti = CacheManager.instance().get<Khalti>("khalti")
         if (khalti != null) {
             val config = khalti.config
-            val baseUrl = if (config.environment == Environment.PROD) {
-                "https://pay.khalti.com/"
+            val baseUrl = if (config.isProd()) {
+                Url.BASE_PAYMENT_URL_PROD
             } else {
-                "https://test-pay.khalti.com/"
+                Url.BASE_PAYMENT_URL_STAGING
             }
 
-            val paymentUri =
-                Uri.parse(baseUrl).buildUpon().appendQueryParameter("pidx", config.pidx)
+            val paymentUri = Uri
+                .parse(baseUrl.value)
+                .buildUpon()
+                .appendQueryParameter("pidx", config.pidx)
 
             Log.i("Payment Uri", paymentUri.toString())
 
@@ -93,7 +96,6 @@ internal class PaymentActivity : Activity() {
         super.onDestroy()
     }
 
-    // TODO (Ishwor) unregister broadcast
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun registerBroadcast() {
         // TODO (Ishwor) Remove hardcoded

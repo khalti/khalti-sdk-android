@@ -43,8 +43,6 @@ internal class EPaymentWebClient : WebViewClient() {
         val khalti = CacheManager.instance().get<Khalti>("khalti")
         val returnUrl = khalti?.config?.returnUrl?.toString() ?: ""
 
-        Log.i("Url", url ?: "")
-
         if (url?.startsWith(returnUrl) != false) {
             khalti?.onReturn?.invoke()
         }
