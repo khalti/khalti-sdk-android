@@ -4,13 +4,12 @@
 
 package com.khalti.android.api
 
-import android.os.Build
+import com.khalti.android.resource.Url
+import com.khalti.android.v3.Environment
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.security.PublicKey
 
 internal class RetrofitClient(
     private val baseUrl: String,
@@ -50,13 +49,19 @@ internal class RetrofitClient(
     }
 }
 
-class ApiClient() {
+class ApiClient(private val environment: Environment = Environment.PROD) {
     private var apiService: ApiService? = null
 
-    fun build(baseUrl: String, publicKey: String): ApiService {
+    fun build(publicKey: String): ApiService {
+        val baseUrl = if (environment == Environment.PROD) {
+            Url.BASE_KHALTI_URL_PROD
+        } else {
+            Url.BASE_KHALTI_URL_STAGING
+        }
+
         apiService =
             apiService ?: RetrofitClient(
-                baseUrl,
+                baseUrl.value,
                 publicKey,
                 "com.apple",
                 "1.0",

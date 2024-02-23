@@ -152,12 +152,11 @@ fun DemoScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DemoScreenV3() {
-
     val khalti = Khalti.init(
         LocalContext.current,
         KhaltiPayConfig(
             "b476aa4b21864b54ab96e430c9192be1",
-            "2fpAfWxK3S6coXpQkeXVRb",
+            "guuVD2quUhbreFfzfwrhw6",
             Uri.parse("https://khalti.com"),
             environment = Environment.TEST
         ),
@@ -190,7 +189,8 @@ fun DemoScreenV3() {
                 )
                 FilledTonalButton(
                     {
-                        khalti.open()
+//                        khalti.open()
+                        khalti.verify()
                     }
                 ) {
                     Text("Pay with Khalti")

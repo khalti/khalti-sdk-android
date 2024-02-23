@@ -11,6 +11,11 @@ import android.util.Log
 import com.khalti.android.PaymentActivity
 import com.khalti.android.api.ApiClient
 import com.khalti.android.resource.Url
+import com.khalti.android.servicce.VerificationService
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,8 +29,6 @@ class Khalti private constructor(
     val onMessage: OnMessage,
     val onReturn: OnReturn?,
 ) {
-    var activity: Activity? = null
-
     companion object {
         fun init(
             context: Context,
@@ -71,30 +74,18 @@ class Khalti private constructor(
         context.startActivity(intent)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun verify() {
-        val apiClient = ApiClient()
-        val baseUrl = if (config.isProd()) {
-            Url.BASE_KHALTI_URL_PROD
-        } else {
-            Url.BASE_KHALTI_URL_STAGING
+        val verificationService = VerificationService(config)
+
+        GlobalScope.launch {
+            try {
+                val result = verificationService.verify(config.pidx)
+                Log.i("Payment Result", result?.toString() ?: "")
+            } catch (e: Exception) {
+                Log.e("Payment Result Error", e.toString())
+            }
         }
-        val call =
-            apiClient.build(baseUrl.value, config.publicKey).verify(mapOf("pidx" to config.pidx))
-
-        call.enqueue(object : Callback<Any> {
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
-                if (response.isSuccessful) {
-                    Log.i("Response", response.body().toString())
-                } else {
-                    // TODO (Ishwor) Handle error
-                }
-            }
-
-            override fun onFailure(call: Call<Any>, t: Throwable) {
-                Log.e("Error", t.printStackTrace().toString())
-                // TODO (Ishwor) Handle error
-            }
-        })
     }
 
     fun close() {
