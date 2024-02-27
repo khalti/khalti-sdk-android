@@ -10,7 +10,7 @@ ext {
     ]
 
     butterKnifeVersion = '10.2.3'
-    gsonVersion = '2.8.8'
+    gsonVersion = '2.10.1'
     picassoVersion = '2.71828'
     rippleVersion = '1.0.2'
     progressBarVersion = '1.6.1'
