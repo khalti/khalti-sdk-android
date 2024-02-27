@@ -50,6 +50,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.khalti'
 
     /*androidExtensions {
         features = ["parcelize"]
