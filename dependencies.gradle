@@ -13,7 +13,7 @@ ext {
     gsonVersion = '2.8.8'
     picassoVersion = '2.71828'
     rippleVersion = '1.0.2'
-    progressBarVersion = '1.4.0'
+    progressBarVersion = '1.6.1'
 
     ui = [
             picasso          : "com.squareup.picasso:picasso:${picassoVersion}",
