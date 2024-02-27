@@ -23,7 +23,7 @@ android {
         release {
             buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
 
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -127,4 +127,4 @@ ext {
     PUBLISH_SCM_URL = 'https://github.com/janakitech/khalti-android/tree/master'
 }
 
-apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
+//apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
