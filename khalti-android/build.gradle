@@ -127,4 +127,4 @@ ext {
     PUBLISH_SCM_URL = 'https://github.com/janakitech/khalti-android/tree/master'
 }
 
-//apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
