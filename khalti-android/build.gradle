@@ -104,8 +104,7 @@ dependencies {
     testImplementation test.powerMockJUnit
     testImplementation test.powerMockMockito
     implementation "androidx.core:core-ktx:1.6.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:1.0-M1-1.4.0-rc"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3"
 }
 
 repositories {

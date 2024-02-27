@@ -2,7 +2,7 @@ apply from: 'dependencies.gradle'
 apply from: 'metadata.gradle'
 
 buildscript {
-    ext.kotlin_version = '1.6.21'
+    ext.kotlin_version = '1.9.22'
     repositories {
         google()
         mavenCentral()
