@@ -5,15 +5,15 @@
 package com.khalti.android.v3
 
 @Suppress("UNCHECKED_CAST")
-class CacheManager private constructor() {
+class Store private constructor() {
 
     companion object {
         @Volatile
-        private var instance: CacheManager? = null
+        private var instance: Store? = null
 
-        fun instance(): CacheManager {
+        fun instance(): Store {
             return instance ?: synchronized(this) {
-                instance ?: CacheManager().also { instance = it }
+                instance ?: Store().also { instance = it }
             }
         }
     }
