@@ -10,15 +10,16 @@ import com.khalti.android.api.safeApiCall
 import com.khalti.android.resource.KFailure
 import com.khalti.android.resource.Result
 import com.khalti.android.v3.KhaltiPayConfig
+import com.khalti.android.v3.PaymentPayload
 import kotlinx.coroutines.Dispatchers
 
-class VerificationService(config: KhaltiPayConfig) {
+class VerificationService {
     private val apiService: ApiService by lazy {
-        ApiClient(config.environment).build(config.publicKey)
+        ApiClient.build()
     }
 
-    suspend fun verify(pidx: String): Result<Any, KFailure> {
-        return safeApiCall<Any>(Dispatchers.IO) {
+    suspend fun verify(pidx: String): Result<PaymentPayload, KFailure> {
+        return safeApiCall(Dispatchers.IO) {
             apiService.verify(mapOf("pidx" to pidx))
         }
     }

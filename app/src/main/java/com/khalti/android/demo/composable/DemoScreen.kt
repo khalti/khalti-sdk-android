@@ -155,7 +155,7 @@ fun DemoScreenV3() {
     val khalti = Khalti.init(
         LocalContext.current,
         KhaltiPayConfig(
-            "b476aa4b21864b54ab96e430c9192be1",
+            "live_secret_key_68791341fdd94846a146f0457ff7b455",
             "guuVD2quUhbreFfzfwrhw6",
             Uri.parse("https://khalti.com"),
             environment = Environment.TEST
