@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import com.khalti.android.PaymentActivity
+import com.khalti.android.resource.KFailure
 import com.khalti.android.service.VerificationService
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -75,10 +76,31 @@ class Khalti private constructor(
             val result = verificationService.verify(config.pidx)
             result.match(
                 ok = {
-                    Log.i("Payment Result", it.toString())
+                    onPaymentResult.invoke(
+                        PaymentResult(
+                            status = it.status ?: "Payment successful",
+                            payload = it
+                        )
+                    )
                 },
                 err = {
-                    Log.e("Payment Result Error", it.toString())
+                    when (it) {
+                        is KFailure.NoNetwork, is KFailure.ServerUnreachable, is KFailure.Generic ->
+                            onMessage.invoke(
+                                it.message ?: "", it.cause, null
+                            )
+
+                        is KFailure.HttpCall -> onMessage.invoke(
+                            it.message ?: "", it.cause, it.code
+                        )
+
+                        is KFailure.Payment -> onPaymentResult.invoke(
+                            PaymentResult(
+                                status = "Payment failed",
+                                message = it.message ?: "",
+                            )
+                        )
+                    }
                 }
             )
         }
