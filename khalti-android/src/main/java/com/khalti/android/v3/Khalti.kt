@@ -6,13 +6,8 @@ package com.khalti.android.v3
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.khalti.android.PaymentActivity
-import com.khalti.android.resource.KFailure
-import com.khalti.android.service.VerificationService
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.khalti.android.service.VerificationRepository
 
 // Though kotlin provides named and optional parameters
 // method overloading was required for Java developers
@@ -39,7 +34,7 @@ class Khalti private constructor(
                 onReturn,
             )
 
-            CacheManager.instance().put("khalti", khalti)
+            Store.instance().put("khalti", khalti)
             return khalti
         }
 
@@ -57,7 +52,7 @@ class Khalti private constructor(
                 null,
             )
 
-            CacheManager.instance().put("khalti", khalti)
+            Store.instance().put("khalti", khalti)
 
             return khalti
         }
@@ -68,42 +63,9 @@ class Khalti private constructor(
         context.startActivity(intent)
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     fun verify() {
-        val verificationService = VerificationService()
-
-        GlobalScope.launch {
-            val result = verificationService.verify(config.pidx)
-            result.match(
-                ok = {
-                    onPaymentResult.invoke(
-                        PaymentResult(
-                            status = it.status ?: "Payment successful",
-                            payload = it
-                        )
-                    )
-                },
-                err = {
-                    when (it) {
-                        is KFailure.NoNetwork, is KFailure.ServerUnreachable, is KFailure.Generic ->
-                            onMessage.invoke(
-                                it.message ?: "", it.cause, null
-                            )
-
-                        is KFailure.HttpCall -> onMessage.invoke(
-                            it.message ?: "", it.cause, it.code
-                        )
-
-                        is KFailure.Payment -> onPaymentResult.invoke(
-                            PaymentResult(
-                                status = "Payment failed",
-                                message = it.message ?: "",
-                            )
-                        )
-                    }
-                }
-            )
-        }
+        val verificationRepo = VerificationRepository()
+        verificationRepo.verify(config.pidx, this)
     }
 
     fun close() {
