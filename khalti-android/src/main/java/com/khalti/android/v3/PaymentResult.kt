@@ -8,8 +8,8 @@ import com.google.gson.annotations.SerializedName
 
 data class PaymentResult(
     val status: String,
-    val payload: PaymentPayload?,
-    val message: String?
+    val payload: PaymentPayload? = null,
+    val message: String? = null
 )
 
 data class PaymentPayload(
