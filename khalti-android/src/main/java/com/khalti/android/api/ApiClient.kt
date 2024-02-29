@@ -96,16 +96,20 @@ suspend fun <T : Any> safeApiCall(
                 ErrorUtil.parseThrowableError(t.message, "600")
             )
             val failure: KFailure = when (t) {
-                is UnknownHostException -> KFailure.ServerUnreachable(t.message, processedThrowable)
-                is SocketTimeoutException -> KFailure.NoNetwork(t.message, processedThrowable)
-                is IOException -> KFailure.NoNetwork(t.message, processedThrowable)
+                is UnknownHostException -> KFailure.ServerUnreachable(
+                    t.message ?: "",
+                    processedThrowable
+                )
+
+                is SocketTimeoutException -> KFailure.NoNetwork(t.message ?: "", processedThrowable)
+                is IOException -> KFailure.NoNetwork(t.message ?: "", processedThrowable)
                 is HttpException -> {
                     val code = t.code()
 
-                    KFailure.HttpCall(t.message, processedThrowable, code)
+                    KFailure.HttpCall(t.message ?: "", processedThrowable, code)
                 }
 
-                else -> KFailure.Generic(t.message, processedThrowable)
+                else -> KFailure.Generic(t.message ?: "", processedThrowable)
             }
             return@withContext Err(failure)
         }
