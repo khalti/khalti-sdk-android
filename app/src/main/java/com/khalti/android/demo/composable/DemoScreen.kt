@@ -38,6 +38,7 @@ import com.khalti.android.demo.R
 import com.khalti.android.v3.Environment
 import com.khalti.android.v3.Khalti
 import com.khalti.android.v3.KhaltiPayConfig
+import com.khalti.android.v3.OnMessage
 
 const val RESULT_TAG = "KHALTI_PAY_RESULT"
 
@@ -160,10 +161,14 @@ fun DemoScreenV3() {
             Uri.parse("https://khalti.com"),
             environment = Environment.TEST
         ),
-        {},
-        {},
+        {
+            Log.i("Demo | onPaymentResult", it.toString())
+        },
+        OnMessage { message: String, _, _ ->
+            Log.i("Demo | onMessage", message)
+        },
         onReturn = {
-            Log.i("Demo", "OnReturn")
+            Log.i("Demo | onReturn", "OnReturn")
         }
     )
 
