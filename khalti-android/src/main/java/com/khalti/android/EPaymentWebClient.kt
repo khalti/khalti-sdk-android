@@ -51,11 +51,8 @@ internal class EPaymentWebClient : WebViewClient() {
     }
 
     private fun handleUri(uri: Uri): Boolean {
-        val url = uri.toString()
-
-        Log.i("Url", url)
-
         // TODO (Ishwor) Handle redirection to Khalti app for setting MPIN
+        val url = uri.toString()
         // MPIN url : /account/transaction_pin
         return false
     }
@@ -63,7 +60,7 @@ internal class EPaymentWebClient : WebViewClient() {
     private fun handleError(description: String?) {
         val khalti = CacheManager.instance().get<Khalti>("khalti")
         if (description != null) {
-            khalti?.onMessage?.invoke(description)
+            khalti?.onMessage?.invoke(description, null, null)
         }
     }
 }
