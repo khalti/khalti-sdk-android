@@ -4,12 +4,24 @@
 
 package com.khalti.android.api
 
+import com.khalti.android.resource.Err
+import com.khalti.android.resource.KFailure
+import com.khalti.android.resource.Ok
+import com.khalti.android.resource.Result
 import com.khalti.android.resource.Url
+import com.khalti.android.utils.ErrorUtil
 import com.khalti.android.v3.Environment
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import okio.IOException
+import retrofit2.HttpException
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 internal class RetrofitClient(
     private val baseUrl: String,
@@ -70,5 +82,46 @@ class ApiClient(private val environment: Environment = Environment.PROD) {
                 ApiService::class.java
             )
         return apiService!!
+    }
+}
+
+suspend fun <T : Any> safeApiCall(
+    dispatcher: CoroutineDispatcher, apiCall: suspend () -> Response<T>
+): Result<T, KFailure> {
+    return withContext(dispatcher) {
+        try {
+            val response = apiCall.invoke()
+            if (response.isSuccessful && response.body() != null) {
+                return@withContext Ok(response.body()!!)
+            }
+            return@withContext Err(
+                KFailure.Payment(
+                    "Error", Throwable(
+                        ErrorUtil.parseError(
+                            if (response.errorBody() != null) String(
+                                response.errorBody()!!.bytes()
+                            ) else "", response.code().toString()
+                        )
+                    )
+                )
+            )
+        } catch (t: Throwable) {
+            val processedThrowable = Throwable(
+                ErrorUtil.parseThrowableError(t.message, "600")
+            )
+            val failure: KFailure = when (t) {
+                is UnknownHostException -> KFailure.ServerUnreachable(t.message, processedThrowable)
+                is SocketTimeoutException -> KFailure.NoNetwork(t.message, processedThrowable)
+                is IOException -> KFailure.NoNetwork(t.message, processedThrowable)
+                is HttpException -> {
+                    val code = t.code()
+
+                    KFailure.HttpCall(t.message, processedThrowable, code)
+                }
+
+                else -> KFailure.Generic(t.message, processedThrowable)
+            }
+            return@withContext Err(failure)
+        }
     }
 }
