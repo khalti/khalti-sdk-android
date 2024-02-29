@@ -11,7 +11,7 @@ import com.khalti.android.resource.Ok
 import com.khalti.android.resource.Result
 import com.khalti.android.resource.Url
 import com.khalti.android.utils.ErrorUtil
-import com.khalti.android.v3.CacheManager
+import com.khalti.android.v3.Store
 import com.khalti.android.v3.Environment
 import com.khalti.android.v3.Khalti
 import kotlinx.coroutines.CoroutineDispatcher
@@ -32,7 +32,7 @@ class ApiClient {
         private const val TIME_OUT = 30L
 
         fun build(): ApiService {
-            val khalti = CacheManager.instance().get<Khalti>("khalti")
+            val khalti = Store.instance().get<Khalti>("khalti")
             assert(khalti != null) {
                 "Khalti object has not been cached. There probably an issue in internal logic in the sdk. Please contact the developer"
             }
