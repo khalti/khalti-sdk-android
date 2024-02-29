@@ -69,7 +69,7 @@ class Khalti private constructor(
 
     @OptIn(DelicateCoroutinesApi::class)
     fun verify() {
-        val verificationService = VerificationService(config)
+        val verificationService = VerificationService()
 
         GlobalScope.launch {
             val result = verificationService.verify(config.pidx)
