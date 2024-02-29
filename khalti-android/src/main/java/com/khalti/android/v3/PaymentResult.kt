@@ -4,9 +4,7 @@
 
 package com.khalti.android.v3
 
-/// Status
-/// statusCode [1] -> status [Payment Submitted]
-/// statusCode [36] -> status [Cancelled] (Cancelled by user)
+import com.google.gson.annotations.SerializedName
 
 data class PaymentResult(
     val status: String,
@@ -15,7 +13,21 @@ data class PaymentResult(
 )
 
 data class PaymentPayload(
-    val pidx: String,
-    val amount: Long,
-    val transactionId: String
-)
+    @SerializedName("pidx") val pidx: String?,
+    @SerializedName("total_amount") val totalAmount: Long = 0,
+    @SerializedName("status") val status: String?,
+    @SerializedName("transaction_id") val transactionId: String?,
+    @SerializedName("fee") val fee: Long = 0,
+    @SerializedName("refunded") val refunded: Boolean = false
+) {
+    override fun toString(): String {
+        return StringBuilder()
+            .append("pidx: $pidx\n")
+            .append("totalAmount: $totalAmount\n")
+            .append("status: $status\n")
+            .append("transactionId: $transactionId\n")
+            .append("fee: $fee\n")
+            .append("refunded: $refunded\n")
+            .toString()
+    }
+}
