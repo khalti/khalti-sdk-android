@@ -4,13 +4,16 @@
 
 package com.khalti.android.api
 
+import android.os.Build
 import com.khalti.android.resource.Err
 import com.khalti.android.resource.KFailure
 import com.khalti.android.resource.Ok
 import com.khalti.android.resource.Result
 import com.khalti.android.resource.Url
 import com.khalti.android.utils.ErrorUtil
+import com.khalti.android.v3.CacheManager
 import com.khalti.android.v3.Environment
+import com.khalti.android.v3.Khalti
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -22,66 +25,49 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import java.util.concurrent.TimeUnit
 
-internal class RetrofitClient(
-    private val baseUrl: String,
-    private val publicKey: String,
-    private val packageName: String,
-    private val packageVersion: String,
-    private val moduleVersion: String
-) {
+class ApiClient {
+    companion object {
+        private const val TIME_OUT = 30L
 
-    val retrofit: Retrofit by lazy {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        fun build(): ApiService {
+            val khalti = CacheManager.instance().get<Khalti>("khalti")
+            assert(khalti != null) {
+                "Khalti object has not been cached. There probably an issue in internal logic in the sdk. Please contact the developer"
+            }
+            val url = if (khalti!!.config.environment == Environment.PROD) {
+                Url.BASE_KHALTI_URL_PROD
+            } else {
+                Url.BASE_KHALTI_URL_STAGING
+            }.value
 
-        val client: OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            /*.addInterceptor {
-                val requestBuilder: Request.Builder = it.request().newBuilder()
-                requestBuilder.header("Authorization", "Key $publicKey")
-                requestBuilder.header("checkout-version", moduleVersion)
-                requestBuilder.header("checkout-platform", "android")
-                requestBuilder.header("checkout-os-version", Build.VERSION.RELEASE)
-                requestBuilder.header("checkout-device-model", Build.MODEL)
-                requestBuilder.header("checkout-device-manufacturer", Build.MANUFACTURER)
-                requestBuilder.header("merchant-package-name", packageName)
-                requestBuilder.header("merchant-package-version", packageVersion)
-                requestBuilder.method(it.request().method, it.request().body)
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-                it.proceed(requestBuilder.build())
-            }*/
-            .build()
+            val okHttpClient = OkHttpClient.Builder().readTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS).addInterceptor {
+                    // TODO (Ishwor) Remove temp variables
+                    val moduleVersion = ""
+                    val packageName = ""
+                    val packageVersion = ""
+                    val request = it.request().newBuilder()
+                        .addHeader("Authorization", "Key ${khalti.config.publicKey}")
+                        .addHeader("checkout-version", moduleVersion)
+                        .addHeader("checkout-platform", "android")
+                        .addHeader("checkout-os-version", Build.VERSION.RELEASE)
+                        .addHeader("checkout-device-model", Build.MODEL)
+                        .addHeader("checkout-device-manufacturer", Build.MANUFACTURER)
+                        .addHeader("merchant-package-name", packageName)
+                        .addHeader("merchant-package-version", packageVersion).build()
 
-        Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-    }
-}
+                    it.proceed(request)
+                }.addInterceptor(loggingInterceptor).build()
 
-class ApiClient(private val environment: Environment = Environment.PROD) {
-    private var apiService: ApiService? = null
-
-    fun build(publicKey: String): ApiService {
-        val baseUrl = if (environment == Environment.PROD) {
-            Url.BASE_KHALTI_URL_PROD
-        } else {
-            Url.BASE_KHALTI_URL_STAGING
+            return Retrofit.Builder().baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build()
+                .create(ApiService::class.java)
         }
-
-        apiService =
-            apiService ?: RetrofitClient(
-                baseUrl.value,
-                publicKey,
-                "com.apple",
-                "1.0",
-                "3.00.00"
-            ).retrofit.create(
-                ApiService::class.java
-            )
-        return apiService!!
     }
 }
 
