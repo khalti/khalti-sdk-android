@@ -157,7 +157,7 @@ fun DemoScreenV3() {
         LocalContext.current,
         KhaltiPayConfig(
             "live_secret_key_68791341fdd94846a146f0457ff7b455",
-            "guuVD2quUhbreFfzfwrhw6",
+            "nnw9DsPP5beopJxvW7ALRn",
             Uri.parse("https://khalti.com"),
             environment = Environment.TEST
         ),
@@ -194,8 +194,8 @@ fun DemoScreenV3() {
                 )
                 FilledTonalButton(
                     {
-//                        khalti.open()
-                        khalti.verify()
+                        khalti.open()
+//                        khalti.verify()
                     }
                 ) {
                     Text("Pay with Khalti")

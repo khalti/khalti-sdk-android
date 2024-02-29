@@ -20,8 +20,8 @@ import android.widget.ProgressBar
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.khalti.android.resource.Url
-import com.khalti.android.v3.CacheManager
-import com.khalti.android.v3.Environment
+import com.khalti.android.service.VerificationRepository
+import com.khalti.android.v3.Store
 import com.khalti.android.v3.Khalti
 
 internal class PaymentActivity : Activity() {
@@ -54,17 +54,24 @@ internal class PaymentActivity : Activity() {
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
 
-        webView.webViewClient = EPaymentWebClient()
-        webView.webChromeClient = object : WebChromeClient() {
-            override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                progressBar.visibility =
-                    if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
-            }
-        }
-
-        val khalti = CacheManager.instance().get<Khalti>("khalti")
+        val khalti = Store.instance().get<Khalti>("khalti")
         if (khalti != null) {
             val config = khalti.config
+
+            webView.webViewClient = EPaymentWebClient {
+                val verificationRepo = VerificationRepository()
+                progressBar.visibility = ProgressBar.VISIBLE
+                verificationRepo.verify(config.pidx, khalti) {
+                    progressBar.visibility = ProgressBar.GONE
+                }
+            }
+            webView.webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                    progressBar.visibility =
+                        if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
+                }
+            }
+
             val baseUrl = if (config.isProd()) {
                 Url.BASE_PAYMENT_URL_PROD
             } else {

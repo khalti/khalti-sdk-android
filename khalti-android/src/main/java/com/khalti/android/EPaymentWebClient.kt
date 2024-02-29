@@ -4,13 +4,13 @@ package com.khalti.android
 
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.webkit.*
 import androidx.annotation.RequiresApi
-import com.khalti.android.v3.CacheManager
+import com.khalti.android.service.VerificationRepository
+import com.khalti.android.v3.Store
 import com.khalti.android.v3.Khalti
 
-internal class EPaymentWebClient : WebViewClient() {
+internal class EPaymentWebClient(val onReturn: () -> Unit) : WebViewClient() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?):
@@ -40,14 +40,13 @@ internal class EPaymentWebClient : WebViewClient() {
     override fun onPageFinished(view: WebView?, url: String?) {
         super.onPageFinished(view, url)
 
-        val khalti = CacheManager.instance().get<Khalti>("khalti")
+        val khalti = Store.instance().get<Khalti>("khalti")
         val returnUrl = khalti?.config?.returnUrl?.toString() ?: ""
 
         if (url?.startsWith(returnUrl) != false) {
             khalti?.onReturn?.invoke()
+            onReturn()
         }
-
-        khalti?.verify()
     }
 
     private fun handleUri(uri: Uri): Boolean {
@@ -58,7 +57,7 @@ internal class EPaymentWebClient : WebViewClient() {
     }
 
     private fun handleError(description: String?) {
-        val khalti = CacheManager.instance().get<Khalti>("khalti")
+        val khalti = Store.instance().get<Khalti>("khalti")
         if (description != null) {
             khalti?.onMessage?.invoke(description, null, null)
         }
