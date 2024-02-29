@@ -13,7 +13,9 @@ import org.json.JSONObject
 class JsonUtil {
     companion object {
         fun convertToJsonString(o: Any): String {
-            val gson = GsonBuilder().serializeNulls().create()
+            val gson = GsonBuilder()
+                .serializeNulls()
+                .create()
             return gson.toJson(o)
         }
 
