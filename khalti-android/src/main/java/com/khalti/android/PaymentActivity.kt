@@ -21,8 +21,8 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.khalti.android.resource.Url
 import com.khalti.android.service.VerificationRepository
-import com.khalti.android.v3.Store
 import com.khalti.android.v3.Khalti
+import com.khalti.android.v3.Store
 
 internal class PaymentActivity : Activity() {
     private var receiver: BroadcastReceiver? = null
@@ -85,8 +85,6 @@ internal class PaymentActivity : Activity() {
                 .buildUpon()
                 .appendQueryParameter("pidx", config.pidx)
 
-            Log.i("Payment Uri", paymentUri.toString())
-
             webView.clearCache(true)
             webView.loadUrl(paymentUri.toString())
 
@@ -108,7 +106,6 @@ internal class PaymentActivity : Activity() {
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun registerBroadcast() {
-        // TODO (Ishwor) Remove hardcoded
         receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 if (intent != null && intent.action.equals("close_khalti_payment_portal")) {
