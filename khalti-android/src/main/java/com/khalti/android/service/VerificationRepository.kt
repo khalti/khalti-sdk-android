@@ -4,12 +4,10 @@
 
 package com.khalti.android.service
 
-import com.khalti.android.resource.KFailure
 import com.khalti.android.v3.Khalti
 import com.khalti.android.v3.PaymentResult
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class VerificationRepository {
@@ -22,30 +20,20 @@ class VerificationRepository {
         GlobalScope.launch {
             val result = verificationService.verify(pidx)
             onComplete?.invoke()
-            result.match(ok = {
-                khalti.onPaymentResult.invoke(
-                    PaymentResult(
-                        status = it.status ?: "Payment successful", payload = it
-                    ), khalti
-                )
-            }, err = {
-                when (it) {
-                    is KFailure.NoNetwork, is KFailure.ServerUnreachable, is KFailure.Generic -> khalti.onMessage.invoke(
-                        it.message ?: "", khalti, it.cause, null
-                    )
-
-                    is KFailure.HttpCall -> khalti.onMessage.invoke(
-                        it.message ?: "", khalti, it.cause, it.code
-                    )
-
-                    is KFailure.Payment -> khalti.onPaymentResult.invoke(
+            result.match(
+                ok = {
+                    khalti.onPaymentResult.invoke(
                         PaymentResult(
-                            status = "Payment failed",
-                            message = it.message ?: "",
+                            status = it.status ?: "Payment successful", payload = it
                         ), khalti
                     )
-                }
-            })
+                },
+                err = {
+                    khalti.onMessage.invoke(
+                        it.message ?: "", khalti, it.cause, it.code
+                    )
+                },
+            )
         }
     }
 }
