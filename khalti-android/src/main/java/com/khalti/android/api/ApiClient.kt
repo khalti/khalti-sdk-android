@@ -82,7 +82,7 @@ suspend fun <T : Any> safeApiCall(
             }
             return@withContext Err(
                 KFailure.Payment(
-                    "Error", Throwable(
+                    message = "Error", cause = Throwable(
                         ErrorUtil.parseError(
                             if (response.errorBody() != null) String(
                                 response.errorBody()!!.bytes()
