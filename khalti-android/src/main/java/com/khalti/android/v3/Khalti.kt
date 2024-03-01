@@ -6,6 +6,8 @@ package com.khalti.android.v3
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager.NameNotFoundException
+import android.util.Log
 import com.khalti.android.PaymentActivity
 import com.khalti.android.service.VerificationRepository
 
@@ -59,6 +61,17 @@ class Khalti private constructor(
     }
 
     fun open() {
+        val packageName = context.packageName
+        val store = Store.instance()
+        store.put("merchant_package_name", packageName)
+
+        try {
+            val packageInfo = context.packageManager.getPackageInfo(packageName, 0)
+            store.put("merchant_package_version", packageInfo.versionName)
+        } catch (e: NameNotFoundException) {
+            //no-op
+        }
+
         val intent = Intent(context, PaymentActivity::class.java)
         context.startActivity(intent)
     }
