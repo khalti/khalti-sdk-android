@@ -62,7 +62,9 @@ internal class PaymentActivity : Activity() {
                 val verificationRepo = VerificationRepository()
                 progressBar.visibility = ProgressBar.VISIBLE
                 verificationRepo.verify(config.pidx, khalti) {
-                    progressBar.visibility = ProgressBar.GONE
+                    runOnUiThread {
+                        progressBar.visibility = ProgressBar.GONE
+                    }
                 }
             }
             webView.webChromeClient = object : WebChromeClient() {
@@ -85,6 +87,7 @@ internal class PaymentActivity : Activity() {
 
             Log.i("Payment Uri", paymentUri.toString())
 
+            webView.clearCache(true)
             webView.loadUrl(paymentUri.toString())
 
             appBar.addView(toolbar)
