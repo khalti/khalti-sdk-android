@@ -12,9 +12,9 @@ import com.khalti.android.resource.Ok
 import com.khalti.android.resource.Result
 import com.khalti.android.resource.Url
 import com.khalti.android.utils.ErrorUtil
-import com.khalti.android.v3.Store
-import com.khalti.android.v3.Environment
-import com.khalti.android.v3.Khalti
+import com.khalti.android.cache.Store
+import com.khalti.android.data.Environment
+import com.khalti.android.Khalti
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient

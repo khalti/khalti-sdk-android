@@ -9,7 +9,7 @@ import com.khalti.android.api.ApiService
 import com.khalti.android.api.safeApiCall
 import com.khalti.android.resource.KFailure
 import com.khalti.android.resource.Result
-import com.khalti.android.v3.PaymentPayload
+import com.khalti.android.data.PaymentPayload
 import kotlinx.coroutines.Dispatchers
 
 class VerificationService {

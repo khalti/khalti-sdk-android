@@ -22,9 +22,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.khalti.android.demo.R
-import com.khalti.android.v3.Environment
-import com.khalti.android.v3.Khalti
-import com.khalti.android.v3.KhaltiPayConfig
+import com.khalti.android.data.Environment
+import com.khalti.android.Khalti
+import com.khalti.android.data.KhaltiPayConfig
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

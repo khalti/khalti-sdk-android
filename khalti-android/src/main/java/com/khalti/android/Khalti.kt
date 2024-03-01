@@ -2,14 +2,17 @@
  * Copyright (c) 2024. The Khalti Authors. All rights reserved.
  */
 
-package com.khalti.android.v3
+package com.khalti.android
 
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager.NameNotFoundException
-import android.util.Log
-import com.khalti.android.PaymentActivity
 import com.khalti.android.service.VerificationRepository
+import com.khalti.android.data.KhaltiPayConfig
+import com.khalti.android.callbacks.OnMessage
+import com.khalti.android.callbacks.OnPaymentResult
+import com.khalti.android.callbacks.OnReturn
+import com.khalti.android.cache.Store
 
 // Though kotlin provides named and optional parameters
 // method overloading was required for Java developers

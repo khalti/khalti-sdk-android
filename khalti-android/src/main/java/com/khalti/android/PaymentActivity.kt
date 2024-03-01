@@ -11,7 +11,6 @@ import android.content.IntentFilter
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.webkit.*
 import android.widget.LinearLayout
@@ -21,8 +20,8 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.khalti.android.resource.Url
 import com.khalti.android.service.VerificationRepository
-import com.khalti.android.v3.Khalti
-import com.khalti.android.v3.Store
+import com.khalti.android.cache.Store
+import com.khalti.android.view.EPaymentWebClient
 
 internal class PaymentActivity : Activity() {
     private var receiver: BroadcastReceiver? = null

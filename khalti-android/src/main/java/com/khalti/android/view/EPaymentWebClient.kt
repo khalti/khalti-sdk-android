@@ -1,14 +1,15 @@
-// Copyright (c) 2022. The Khalti Authors. All rights reserved.
+/*
+ * Copyright (c) 2024. The Khalti Authors. All rights reserved.
+ */
 
-package com.khalti.android
+package com.khalti.android.view
 
 import android.net.Uri
 import android.os.Build
 import android.webkit.*
 import androidx.annotation.RequiresApi
-import com.khalti.android.service.VerificationRepository
-import com.khalti.android.v3.Store
-import com.khalti.android.v3.Khalti
+import com.khalti.android.cache.Store
+import com.khalti.android.Khalti
 
 internal class EPaymentWebClient(val onReturn: () -> Unit) : WebViewClient() {
 

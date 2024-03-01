@@ -4,8 +4,8 @@
 
 package com.khalti.android.service
 
-import com.khalti.android.v3.Khalti
-import com.khalti.android.v3.PaymentResult
+import com.khalti.android.Khalti
+import com.khalti.android.data.PaymentResult
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
