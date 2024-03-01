@@ -22,35 +22,30 @@ class VerificationRepository {
         GlobalScope.launch {
             val result = verificationService.verify(pidx)
             onComplete?.invoke()
-            result.match(
-                ok = {
-                    khalti.onPaymentResult.invoke(
-                        PaymentResult(
-                            status = it.status ?: "Payment successful",
-                            payload = it
-                        )
+            result.match(ok = {
+                khalti.onPaymentResult.invoke(
+                    PaymentResult(
+                        status = it.status ?: "Payment successful", payload = it
+                    ), khalti
+                )
+            }, err = {
+                when (it) {
+                    is KFailure.NoNetwork, is KFailure.ServerUnreachable, is KFailure.Generic -> khalti.onMessage.invoke(
+                        it.message ?: "", khalti, it.cause, null
                     )
-                },
-                err = {
-                    when (it) {
-                        is KFailure.NoNetwork, is KFailure.ServerUnreachable, is KFailure.Generic ->
-                            khalti.onMessage.invoke(
-                                it.message ?: "", it.cause, null
-                            )
 
-                        is KFailure.HttpCall -> khalti.onMessage.invoke(
-                            it.message ?: "", it.cause, it.code
-                        )
+                    is KFailure.HttpCall -> khalti.onMessage.invoke(
+                        it.message ?: "", khalti, it.cause, it.code
+                    )
 
-                        is KFailure.Payment -> khalti.onPaymentResult.invoke(
-                            PaymentResult(
-                                status = "Payment failed",
-                                message = it.message ?: "",
-                            )
-                        )
-                    }
+                    is KFailure.Payment -> khalti.onPaymentResult.invoke(
+                        PaymentResult(
+                            status = "Payment failed",
+                            message = it.message ?: "",
+                        ), khalti
+                    )
                 }
-            )
+            })
         }
     }
 }
