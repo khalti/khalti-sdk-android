@@ -38,7 +38,6 @@ import com.khalti.android.demo.R
 import com.khalti.android.v3.Environment
 import com.khalti.android.v3.Khalti
 import com.khalti.android.v3.KhaltiPayConfig
-import com.khalti.android.v3.OnMessage
 
 const val RESULT_TAG = "KHALTI_PAY_RESULT"
 
@@ -157,17 +156,20 @@ fun DemoScreenV3() {
         LocalContext.current,
         KhaltiPayConfig(
             "live_secret_key_68791341fdd94846a146f0457ff7b455",
-            "nnw9DsPP5beopJxvW7ALRn",
-            Uri.parse("https://khalti.com"),
+            "4MNRZPhuY8ZvvyRyXqG2fF",
+            Uri.parse("https://webhook.site/ed508278-3ce3-4f6d-98f1-0b6084c5c5cd"),
             environment = Environment.TEST
         ),
-        {
-            Log.i("Demo | onPaymentResult", it.toString())
+        onPaymentResult = { paymentResult, khalti ->
+            Log.i("Demo | onPaymentResult", paymentResult.toString())
+            khalti.close()
         },
-        OnMessage { message: String, _, _ ->
-            Log.i("Demo | onMessage", message)
+        onMessage = { message, khalti, throwable, code ->
+            Log.i("Demo | onMessage ${if (code != null) "($code)" else ""}", message)
+            khalti.close()
+            throwable?.printStackTrace()
         },
-        onReturn = {
+        onReturn = { _ ->
             Log.i("Demo | onReturn", "OnReturn")
         }
     )
