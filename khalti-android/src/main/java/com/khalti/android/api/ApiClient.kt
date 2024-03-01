@@ -5,6 +5,7 @@
 package com.khalti.android.api
 
 import android.os.Build
+import com.khalti.android.BuildConfig
 import com.khalti.android.resource.Err
 import com.khalti.android.resource.KFailure
 import com.khalti.android.resource.Ok
@@ -47,13 +48,12 @@ class ApiClient {
 
             val okHttpClient = OkHttpClient.Builder().readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS).addInterceptor {
-                    // TODO (Ishwor) Remove temp variables
-                    val moduleVersion = ""
-                    val packageName = ""
-                    val packageVersion = ""
+                    val store = Store.instance()
+                    val packageName = store.get<String>("merchant_package_name") ?: ""
+                    val packageVersion = store.get<String>("merchant_package_version") ?: ""
                     val request = it.request().newBuilder()
                         .addHeader("Authorization", "Key ${khalti.config.publicKey}")
-                        .addHeader("checkout-version", moduleVersion)
+                        .addHeader("checkout-version", BuildConfig.VERSION_NAME)
                         .addHeader("checkout-platform", "android")
                         .addHeader("checkout-os-version", Build.VERSION.RELEASE)
                         .addHeader("checkout-device-model", Build.MODEL)
