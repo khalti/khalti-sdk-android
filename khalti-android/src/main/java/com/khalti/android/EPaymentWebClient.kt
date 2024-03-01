@@ -44,7 +44,7 @@ internal class EPaymentWebClient(val onReturn: () -> Unit) : WebViewClient() {
         val returnUrl = khalti?.config?.returnUrl?.toString() ?: ""
 
         if (url?.startsWith(returnUrl) != false) {
-            khalti?.onReturn?.invoke()
+            khalti?.onReturn?.invoke(khalti)
             onReturn()
         }
     }
@@ -59,7 +59,7 @@ internal class EPaymentWebClient(val onReturn: () -> Unit) : WebViewClient() {
     private fun handleError(description: String?) {
         val khalti = Store.instance().get<Khalti>("khalti")
         if (description != null) {
-            khalti?.onMessage?.invoke(description, null, null)
+            khalti?.onMessage?.invoke(description, khalti, null, null)
         }
     }
 }
