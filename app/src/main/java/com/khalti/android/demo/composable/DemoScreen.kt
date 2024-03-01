@@ -74,7 +74,6 @@ fun DemoScreen() {
                 FilledTonalButton(
                     {
                         khalti.open()
-//                        khalti.verify()
                     }
                 ) {
                     Text("Pay with Khalti")
