@@ -5,5 +5,5 @@
 package com.khalti.android.v3
 
 fun interface OnPaymentResult {
-    fun invoke(result: PaymentResult)
+    fun invoke(result: PaymentResult, khalti: Khalti)
 }

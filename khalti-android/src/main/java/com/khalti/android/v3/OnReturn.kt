@@ -5,5 +5,5 @@
 package com.khalti.android.v3
 
 fun interface OnReturn {
-    fun invoke()
+    fun invoke(khalti: Khalti)
 }
