@@ -15,7 +15,7 @@ abstract class KFailure(failureMessage: String, throwable: Throwable? = null, va
     class HttpCall(message: String, cause: Throwable? = null, code: Number?) :
         KFailure(message, cause, code)
 
-    class Payment(message: String, cause: Throwable? = null) : KFailure(message, cause)
+    class Payment(message: String, cause: Throwable? = null, code: Number?) : KFailure(message, cause, code)
 
     class Generic(message: String, cause: Throwable? = null) : KFailure(message, cause)
 }

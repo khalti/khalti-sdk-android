@@ -88,7 +88,7 @@ suspend fun <T : Any> safeApiCall(
                                 response.errorBody()!!.bytes()
                             ) else "", response.code().toString()
                         )
-                    )
+                    ), code = response.code()
                 )
             )
         } catch (t: Throwable) {
