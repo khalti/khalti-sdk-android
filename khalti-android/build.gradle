@@ -8,18 +8,27 @@ android {
     namespace 'com.khalti.android'
     compileSdk libraryCompileSdk
 
+    buildFeatures {
+        buildConfig true
+    }
+
     defaultConfig {
         minSdk libraryMinSdk
         targetSdk libraryTargetSdk
+        versionName khaltiVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "VERSION_NAME", "\"${defaultConfig.versionName}\"")
         }
     }
     compileOptions {
@@ -41,7 +50,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
-    
+
     testImplementation "junit:junit:$junit_version"
 
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
