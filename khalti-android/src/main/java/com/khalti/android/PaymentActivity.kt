@@ -16,6 +16,9 @@ import android.webkit.*
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
 import android.widget.ProgressBar
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedDispatcher
+import androidx.core.os.BuildCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.khalti.android.resource.Url
@@ -52,6 +55,8 @@ internal class PaymentActivity : Activity() {
         @SuppressLint("SetJavaScriptEnabled")
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
+
+        setupBackPressListener()
 
         val khalti = Store.instance().get<Khalti>("khalti")
         if (khalti != null) {
@@ -103,6 +108,20 @@ internal class PaymentActivity : Activity() {
         super.onDestroy()
     }
 
+    @Deprecated(
+        "Deprecated in Java", ReplaceWith(
+            "@Suppress(\"DEPRECATION\") super.onBackPressed()",
+            "android.app.Activity"
+        )
+    )
+    override fun onBackPressed() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            onBackAction()
+        }
+        @Suppress("DEPRECATION")
+        super.onBackPressed()
+    }
+
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun registerBroadcast() {
         receiver = object : BroadcastReceiver() {
@@ -128,6 +147,20 @@ internal class PaymentActivity : Activity() {
 
     private fun unregisterBroadcast() {
         unregisterReceiver(receiver)
+    }
+
+    private fun setupBackPressListener() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            val priority = OnBackInvokedDispatcher.PRIORITY_DEFAULT
+            onBackInvokedDispatcher.registerOnBackInvokedCallback(priority) {
+                onBackAction()
+            }
+        }
+    }
+
+    private fun onBackAction() {
+        val khalti = Store.instance().get<Khalti>("khalti")
+        khalti?.onMessage?.invoke("User Cancelled", khalti, null, null)
     }
 }
 
