@@ -4,5 +4,6 @@
 
     <application>
         <activity android:name=".PaymentActivity" />
+        <activity android:name=".PaymentV3Activity" />
     </application>
 </manifest>
