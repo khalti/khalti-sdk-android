@@ -12,18 +12,18 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import android.webkit.*
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
 import android.widget.ProgressBar
 import android.window.OnBackInvokedDispatcher
-import androidx.activity.OnBackPressedDispatcher
-import androidx.core.os.BuildCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.khalti.android.resource.Url
 import com.khalti.android.service.VerificationRepository
 import com.khalti.android.cache.Store
+import com.khalti.android.data.KhaltiPayConfig
 import com.khalti.android.view.EPaymentWebClient
 
 internal class PaymentActivity : Activity() {
@@ -31,30 +31,15 @@ internal class PaymentActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val layout = LinearLayout(this)
-        layout.orientation = LinearLayout.VERTICAL
-        layout.gravity = Gravity.CENTER
+        val rootLayout = LinearLayout(this)
+        rootLayout.orientation = LinearLayout.VERTICAL
+        rootLayout.gravity = Gravity.CENTER
 
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-
         val appBar = AppBarLayout(this)
-        val toolbar = MaterialToolbar(this)
 
         val progressBar = ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal)
         progressBar.isIndeterminate = true
-
-        toolbar.title = "Pay with Khalti"
-        toolbar.setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
-        toolbar.setNavigationOnClickListener {
-            finish()
-        }
-
-        val webView = WebView(this)
-        val webSettings = webView.settings
-
-        @SuppressLint("SetJavaScriptEnabled")
-        webSettings.javaScriptEnabled = true
-        webSettings.domStorageEnabled = true
 
         setupBackPressListener()
 
@@ -62,43 +47,31 @@ internal class PaymentActivity : Activity() {
         if (khalti != null) {
             val config = khalti.config
 
-            webView.webViewClient = EPaymentWebClient {
-                val verificationRepo = VerificationRepository()
-                progressBar.visibility = ProgressBar.VISIBLE
-                verificationRepo.verify(config.pidx, khalti) {
-                    runOnUiThread {
-                        progressBar.visibility = ProgressBar.GONE
-                    }
-                }
-            }
-            webView.webChromeClient = object : WebChromeClient() {
-                override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                    progressBar.visibility =
-                        if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
-                }
-            }
+            appBar.addView(toolbar())
 
-            val baseUrl = if (config.isProd()) {
-                Url.BASE_PAYMENT_URL_PROD
-            } else {
-                Url.BASE_PAYMENT_URL_STAGING
-            }
+            rootLayout.addView(appBar)
+            rootLayout.addView(progressBar)
+            rootLayout.addView(
+                webView(
+                    config,
+                    onLoadComplete = {
+                        progressBar.visibility =
+                            if (it == 100) ProgressBar.GONE else ProgressBar.VISIBLE
+                    },
+                    onReturn = {
+                        val verificationRepo = VerificationRepository()
+                        progressBar.visibility = ProgressBar.VISIBLE
+                        verificationRepo.verify(config.pidx, khalti) {
+                            runOnUiThread {
+                                progressBar.visibility = ProgressBar.GONE
+                            }
+                        }
 
-            val paymentUri = Uri
-                .parse(baseUrl.value)
-                .buildUpon()
-                .appendQueryParameter("pidx", config.pidx)
+                    },
+                ), params
+            )
 
-            webView.clearCache(true)
-            webView.loadUrl(paymentUri.toString())
-
-            appBar.addView(toolbar)
-
-            layout.addView(appBar)
-            layout.addView(progressBar)
-            layout.addView(webView, params)
-
-            setContentView(layout, params)
+            setContentView(rootLayout, params)
             registerBroadcast()
         }
     }
@@ -161,6 +134,55 @@ internal class PaymentActivity : Activity() {
     private fun onBackAction() {
         val khalti = Store.instance().get<Khalti>("khalti")
         khalti?.onMessage?.invoke("User Cancelled", khalti, null, null)
+    }
+
+    // ---------------------------- UI ---------------------------------- //
+
+    private fun toolbar(): View {
+        val toolbar = MaterialToolbar(this)
+        toolbar.title = "Pay with Khalti"
+        toolbar.setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
+        return toolbar
+    }
+
+    private fun webView(
+        config: KhaltiPayConfig,
+        onLoadComplete: (progress: Int) -> Unit,
+        onReturn: () -> Unit
+    ): View {
+        val webView = WebView(this)
+        val webSettings = webView.settings
+
+        @SuppressLint("SetJavaScriptEnabled")
+        webSettings.javaScriptEnabled = true
+        webSettings.domStorageEnabled = true
+
+        webView.webViewClient = EPaymentWebClient(onReturn)
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                onLoadComplete(newProgress)
+            }
+        }
+
+        val baseUrl = if (config.isProd()) {
+            Url.BASE_PAYMENT_URL_PROD
+        } else {
+            Url.BASE_PAYMENT_URL_STAGING
+        }
+
+        val paymentUri = Uri
+            .parse(baseUrl.value)
+            .buildUpon()
+            .appendQueryParameter("pidx", config.pidx)
+
+        webView.clearCache(true)
+        webView.loadUrl(paymentUri.toString())
+
+        return webView
     }
 }
 
