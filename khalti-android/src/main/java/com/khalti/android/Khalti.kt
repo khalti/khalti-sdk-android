@@ -75,7 +75,7 @@ class Khalti private constructor(
             //no-op
         }
 
-        val intent = Intent(context, PaymentActivity::class.java)
+        val intent = Intent(context, PaymentV3Activity::class.java)
         context.startActivity(intent)
     }
 
