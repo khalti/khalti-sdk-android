@@ -22,21 +22,6 @@ internal class EPaymentWebClient(val onReturn: () -> Unit) : WebViewClient() {
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?):
             Boolean = handleUri(Uri.parse(url))
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onReceivedError(
-        view: WebView?,
-        request: WebResourceRequest?,
-        error: WebResourceError?
-    ) = handleError(error?.description.toString())
-
-    @SuppressWarnings("deprecation")
-    @Deprecated("")
-    override fun onReceivedError(
-        view: WebView?,
-        errorCode: Int,
-        description: String?,
-        failingUrl: String?
-    ) = handleError(description)
 
     override fun onPageFinished(view: WebView?, url: String?) {
         super.onPageFinished(view, url)
@@ -55,12 +40,5 @@ internal class EPaymentWebClient(val onReturn: () -> Unit) : WebViewClient() {
         val url = uri.toString()
         // MPIN url : /account/transaction_pin
         return false
-    }
-
-    private fun handleError(description: String?) {
-        val khalti = Store.instance().get<Khalti>("khalti")
-        if (description != null) {
-            khalti?.onMessage?.invoke(description, khalti, null, null)
-        }
     }
 }
