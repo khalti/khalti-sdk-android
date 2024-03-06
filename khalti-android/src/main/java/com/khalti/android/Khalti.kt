@@ -13,6 +13,7 @@ import com.khalti.android.callbacks.OnMessage
 import com.khalti.android.callbacks.OnPaymentResult
 import com.khalti.android.callbacks.OnReturn
 import com.khalti.android.cache.Store
+import com.khalti.android.utils.PackageUtil
 
 // Though kotlin provides named and optional parameters
 // method overloading was required for Java developers
@@ -66,14 +67,10 @@ class Khalti private constructor(
     fun open() {
         val packageName = context.packageName
         val store = Store.instance()
-        store.put("merchant_package_name", packageName)
+        val packageInfo = PackageUtil.getPackageInfo(context, packageName)
 
-        try {
-            val packageInfo = context.packageManager.getPackageInfo(packageName, 0)
-            store.put("merchant_package_version", packageInfo.versionName)
-        } catch (e: NameNotFoundException) {
-            //no-op
-        }
+        store.put("merchant_package_name", packageName)
+        store.put("merchant_package_version", packageInfo?.versionName ?: "")
 
         val intent = Intent(context, PaymentV3Activity::class.java)
         context.startActivity(intent)
