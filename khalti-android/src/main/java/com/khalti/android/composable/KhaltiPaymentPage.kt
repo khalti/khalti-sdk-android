@@ -25,6 +25,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,20 +42,12 @@ import com.khalti.android.utils.NetworkUtil
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KhaltiPaymentPage(activity: Activity) {
-    val showProgress = remember {
+    val isLoading = remember {
         mutableStateOf(true)
     }
     val networkAvailable = remember {
         mutableStateOf(NetworkUtil.isNetworkAvailable(activity))
     }
-
-    val pageLoaded = remember {
-        mutableStateOf(false)
-    }
-    val reloadPage = remember {
-        mutableStateOf(NetworkUtil.isNetworkAvailable(activity))
-    }
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         NetworkUtil.registerListener(activity) {
             networkAvailable.value = it
@@ -88,23 +81,24 @@ fun KhaltiPaymentPage(activity: Activity) {
                     KhaltiWebView(
                         config = config,
                         onReturnPageLoaded = {
-                            showProgress.value = true
+                            isLoading.value = true
                             val verificationRepo = VerificationRepository()
                             verificationRepo.verify(config.pidx, khalti) {
                                 activity.runOnUiThread {
-                                    showProgress.value = false
+                                    isLoading.value = false
                                 }
                             }
 
                         },
                         onPageLoaded = {
-                            showProgress.value = false
+                            isLoading.value = false
                         },
                     )
 
                 }
+
                 if (networkAvailable.value) {
-                    if (showProgress.value) {
+                    if (isLoading.value) {
                         Box(
                             Modifier
                                 .fillMaxSize()
@@ -114,7 +108,7 @@ fun KhaltiPaymentPage(activity: Activity) {
                             LinearProgressIndicator(
                                 Modifier
                                     .fillMaxWidth()
-                                    .height(68.dp)
+                                    .height(4.dp)
                                     .align(Alignment.TopCenter),
                                 color = Color.Gray
                             )
@@ -124,13 +118,15 @@ fun KhaltiPaymentPage(activity: Activity) {
                     }
                 } else {
                     KhaltiError(errorType = ErrorType.network) {
-
+                        networkAvailable.value = NetworkUtil.isNetworkAvailable(activity)
                     }
                 }
             }
         }
 
     }
+
+    LaunchedEffect(networkAvailable.value) {}
 }
 
 private fun onBackAction() {
