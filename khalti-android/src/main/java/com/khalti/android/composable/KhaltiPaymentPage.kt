@@ -38,6 +38,8 @@ import com.khalti.android.cache.Store
 import com.khalti.android.resource.ErrorType
 import com.khalti.android.service.VerificationRepository
 import com.khalti.android.utils.NetworkUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,40 +51,37 @@ fun KhaltiPaymentPage(activity: Activity) {
     val networkAvailable = remember {
         mutableStateOf(NetworkUtil.isNetworkAvailable(activity))
     }
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        NetworkUtil.registerListener(activity) {
-//            networkAvailable.value = it
-        }
-    }
     val recomposeState = mutableStateOf(false)
     Scaffold(
         topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = {
-                        onBackAction()
-                        activity.finish()
-                    }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
-                        )
-                    }
-                },
-                title = {
-                    Text(text = "Pay With Khalti")
-                },
-                actions = {
-                    IconButton(onClick = {
-                        recomposeState.value = !recomposeState.value
-                    }) {
-                        Icon(
-                            imageVector = Icons.Filled.Refresh,
-                            contentDescription = "Refresh"
-                        )
-                    }
-                }
-            )
+            Surface(shadowElevation = 4.dp) {
+                TopAppBar(
+                    navigationIcon = {
+                        IconButton(onClick = {
+                            onBackAction()
+                            activity.finish()
+                        }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Back"
+                            )
+                        }
+                    },
+                    title = {
+                        Text(text = "Pay With Khalti")
+                    },
+                    actions = {
+                        IconButton(onClick = {
+                            recomposeState.value = !recomposeState.value
+                        }) {
+                            Icon(
+                                imageVector = Icons.Filled.Refresh,
+                                contentDescription = "Refresh"
+                            )
+                        }
+                    },
+                )
+            }
         },
     ) {
         Surface(modifier = Modifier.padding(top = it.calculateTopPadding())) {
@@ -138,7 +137,13 @@ fun KhaltiPaymentPage(activity: Activity) {
 
     }
 
-    LaunchedEffect(networkAvailable.value && recomposeState.value) {}
+    LaunchedEffect(networkAvailable.value && recomposeState.value) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            NetworkUtil.registerListener(activity) {
+                networkAvailable.value = it
+            }
+        }
+    }
 }
 
 private fun onBackAction() {
