@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -50,9 +51,10 @@ fun KhaltiPaymentPage(activity: Activity) {
     }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         NetworkUtil.registerListener(activity) {
-            networkAvailable.value = it
+//            networkAvailable.value = it
         }
     }
+    val recomposeState = mutableStateOf(false)
     Scaffold(
         topBar = {
             TopAppBar(
@@ -70,6 +72,16 @@ fun KhaltiPaymentPage(activity: Activity) {
                 title = {
                     Text(text = "Pay With Khalti")
                 },
+                actions = {
+                    IconButton(onClick = {
+                        recomposeState.value = !recomposeState.value
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Refresh,
+                            contentDescription = "Refresh"
+                        )
+                    }
+                }
             )
         },
     ) {
@@ -126,7 +138,7 @@ fun KhaltiPaymentPage(activity: Activity) {
 
     }
 
-    LaunchedEffect(networkAvailable.value) {}
+    LaunchedEffect(networkAvailable.value && recomposeState.value) {}
 }
 
 private fun onBackAction() {
