@@ -2,17 +2,20 @@
 
 package com.khalti.android.demo.composable
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,14 +23,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.khalti.android.demo.R
-import com.khalti.android.data.Environment
 import com.khalti.android.Khalti
+import com.khalti.android.data.Environment
 import com.khalti.android.data.KhaltiPayConfig
+import com.khalti.android.demo.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
+@Preview
 fun DemoScreen() {
     val khalti = Khalti.init(
         LocalContext.current,
@@ -41,10 +46,13 @@ fun DemoScreen() {
             Log.i("Demo | onPaymentResult", paymentResult.toString())
             khalti.close()
         },
-        onMessage = { message, khalti, throwable, code ->
-            Log.i("Demo | onMessage ${if (code != null) "($code)" else ""}", message)
-            khalti.close()
-            throwable?.printStackTrace()
+        onMessage = { payload ->
+            Log.i(
+                "Demo | onMessage | ${payload.event} ${if (payload.code != null) "(${payload.code})" else ""}",
+                payload.message
+            )
+            payload.khalti.close()
+            payload.throwable?.printStackTrace()
         },
         onReturn = { _ ->
             Log.i("Demo | onReturn", "OnReturn")
@@ -52,32 +60,44 @@ fun DemoScreen() {
     )
 
     Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text("Khalti Android SDK Demo V3")
-                }
-
-            )
-        },
-        content = { padding ->
+        content = {
             Column(
-                Modifier.fillMaxWidth(),
+                Modifier.fillMaxWidth().fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
             ) {
-                Spacer(Modifier.padding(padding))
+                Spacer(Modifier.padding(16.dp))
                 Image(
-                    painterResource(R.drawable.khalti_logo_color),
+                    painterResource(R.mipmap.seru),
                     contentDescription = "Khalti Logo",
                     modifier = Modifier.height(200.dp)
                 )
-                FilledTonalButton(
-                    {
-                        khalti.open()
-                    }
+                Spacer(Modifier.height(50.dp))
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Text("Pay with Khalti")
+                    Text(text = "Rs. 22", style = MaterialTheme.typography.titleLarge)
+                    Spacer(Modifier.height(8.dp))
+                    Text(text = "1 day fee", style = MaterialTheme.typography.bodySmall)
+                    Spacer(Modifier.height(8.dp))
+                    OutlinedButton(
+                        {
+                            khalti.open()
+                        }
+                    ) {
+                        Text("Pay with Khalti")
+                    }
                 }
+                Spacer(Modifier.height(50.dp))
+                Text(
+                    text = "pidx: ${khalti.config.pidx}",
+                    style = MaterialTheme.typography.bodySmall
+                )
+                Spacer(Modifier.height(50.dp))
+                Text(
+                    text = "This is a demo application developed by some merchant.",
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
         },
     )
