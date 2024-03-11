@@ -7,7 +7,6 @@ package com.khalti.android.composable
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,10 +35,10 @@ import androidx.compose.ui.unit.dp
 import com.khalti.android.Khalti
 import com.khalti.android.cache.Store
 import com.khalti.android.resource.ErrorType
+import com.khalti.android.resource.OnMessageEvent
+import com.khalti.android.resource.OnMessagePayload
 import com.khalti.android.service.VerificationRepository
 import com.khalti.android.utils.NetworkUtil
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,7 +57,7 @@ fun KhaltiPaymentPage(activity: Activity) {
                 TopAppBar(
                     navigationIcon = {
                         IconButton(onClick = {
-                            onBackAction()
+                            onBack()
                             activity.finish()
                         }) {
                             Icon(
@@ -146,7 +145,14 @@ fun KhaltiPaymentPage(activity: Activity) {
     }
 }
 
-private fun onBackAction() {
+fun onBack() {
     val khalti = Store.instance().get<Khalti>("khalti")
-    khalti?.onMessage?.invoke("User Cancelled", khalti, null, null)
+    khalti?.onMessage?.invoke(
+        OnMessagePayload(
+            OnMessageEvent.BackPressed,
+            "User pressed back",
+            khalti,
+            needsPaymentConfirmation = true
+        )
+    )
 }
