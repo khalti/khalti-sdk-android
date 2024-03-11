@@ -5,6 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application>
-        <activity android:name=".PaymentV3Activity" />
+        <activity android:name=".PaymentActivity" />
     </application>
 </manifest>

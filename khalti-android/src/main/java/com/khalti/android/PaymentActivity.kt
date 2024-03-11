@@ -10,10 +10,12 @@ import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.webkit.*
+import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import com.khalti.android.composable.KhaltiPaymentPage
+import com.khalti.android.composable.onBack
 
 internal class PaymentV3Activity : ComponentActivity() {
     private var receiver: BroadcastReceiver? = null
@@ -26,11 +28,24 @@ internal class PaymentV3Activity : ComponentActivity() {
             KhaltiPaymentPage(this)
         }
         registerBroadcast()
+        setupBackPressListener()
     }
 
     override fun onDestroy() {
         unregisterBroadcast()
         super.onDestroy()
+    }
+
+    @Deprecated(
+        "Deprecated in Java", ReplaceWith(
+            "@Suppress(\"DEPRECATION\") super.onBackPressed()", "android.app.Activity"
+        )
+    )
+    override fun onBackPressed() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            onBack()
+        }
+        @Suppress("DEPRECATION") super.onBackPressed()
     }
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
@@ -57,6 +72,15 @@ internal class PaymentV3Activity : ComponentActivity() {
 
     private fun unregisterBroadcast() {
         unregisterReceiver(receiver)
+    }
+
+    private fun setupBackPressListener() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            val priority = OnBackInvokedDispatcher.PRIORITY_DEFAULT
+            onBackInvokedDispatcher.registerOnBackInvokedCallback(priority) {
+                onBack()
+            }
+        }
     }
 }
 
