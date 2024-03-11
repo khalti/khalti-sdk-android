@@ -6,6 +6,9 @@ package com.khalti.android.service
 
 import com.khalti.android.Khalti
 import com.khalti.android.data.PaymentResult
+import com.khalti.android.resource.KFailure
+import com.khalti.android.resource.OnMessageEvent
+import com.khalti.android.resource.OnMessagePayload
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -29,8 +32,25 @@ class VerificationRepository {
                     )
                 },
                 err = {
+                    val messageEvent = when (it) {
+                        is KFailure.NoNetwork, is KFailure.ServerUnreachable -> OnMessageEvent.NetworkFailure
+                        is KFailure.HttpCall, is KFailure.Payment -> OnMessageEvent.PaymentLookUpFailure
+                        else -> OnMessageEvent.Unknown
+
+                    }
+                    val needsConfirmations = when (it) {
+                        is KFailure.NoNetwork, is KFailure.ServerUnreachable, is KFailure.Generic -> true
+                        else -> false
+                    }
                     khalti.onMessage.invoke(
-                        it.message ?: "", khalti, it.cause, it.code
+                        OnMessagePayload(
+                            messageEvent,
+                            it.message ?: "",
+                            khalti,
+                            it.cause,
+                            it.code,
+                            needsPaymentConfirmation = needsConfirmations
+                        )
                     )
                 },
             )
