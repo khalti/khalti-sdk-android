@@ -17,7 +17,7 @@ import androidx.annotation.RequiresApi
 import com.khalti.android.composable.KhaltiPaymentPage
 import com.khalti.android.composable.onBack
 
-internal class PaymentV3Activity : ComponentActivity() {
+internal class PaymentActivity : ComponentActivity() {
     private var receiver: BroadcastReceiver? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
