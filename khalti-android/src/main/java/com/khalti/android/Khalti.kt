@@ -6,7 +6,6 @@ package com.khalti.android
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager.NameNotFoundException
 import com.khalti.android.service.VerificationRepository
 import com.khalti.android.data.KhaltiPayConfig
 import com.khalti.android.callbacks.OnMessage
@@ -72,7 +71,7 @@ class Khalti private constructor(
         store.put("merchant_package_name", packageName)
         store.put("merchant_package_version", packageInfo?.versionName ?: "")
 
-        val intent = Intent(context, PaymentV3Activity::class.java)
+        val intent = Intent(context, PaymentActivity::class.java)
         context.startActivity(intent)
     }
 
