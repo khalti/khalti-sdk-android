@@ -13,12 +13,15 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -29,30 +32,42 @@ import com.khalti.android.Khalti
 import com.khalti.android.data.Environment
 import com.khalti.android.data.KhaltiPayConfig
 import com.khalti.android.demo.R
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 @Preview
 fun DemoScreen() {
+    val scope = rememberCoroutineScope()
+    val snackBarHostState = remember {
+        SnackbarHostState()
+    }
+
     val khalti = Khalti.init(
         LocalContext.current,
         KhaltiPayConfig(
-            "live_secret_key_68791341fdd94846a146f0457ff7b455",
-            "4MNRZPhuY8ZvvyRyXqG2fF",
-            Uri.parse("https://webhook.site/ed508278-3ce3-4f6d-98f1-0b6084c5c5cd"),
+            publicKey = "live_public_key_979320ffda734d8e9f7758ac39ec775f",
+            pidx = "MoiGc4CvewG9RZmDgUtNTk",
+            returnUrl = Uri.parse("https://webhook.site/ed508278-3ce3-4f6d-98f1-0b6084c5c5cd"),
             environment = Environment.TEST
         ),
         onPaymentResult = { paymentResult, khalti ->
             Log.i("Demo | onPaymentResult", paymentResult.toString())
             khalti.close()
+            scope.launch {
+                snackBarHostState.showSnackbar("Payment successful for pidx: ${khalti.config.pidx}")
+            }
         },
         onMessage = { payload ->
             Log.i(
-                "Demo | onMessage | ${payload.event} ${if (payload.code != null) "(${payload.code})" else ""}",
-                payload.message
+                "Demo | onMessage",
+                "${payload.event} ${if (payload.code != null) "(${payload.code})" else ""} | ${payload.message}"
             )
             payload.khalti.close()
             payload.throwable?.printStackTrace()
+            scope.launch {
+                snackBarHostState.showSnackbar("OnMessage: ${payload.message}")
+            }
         },
         onReturn = { _ ->
             Log.i("Demo | onReturn", "OnReturn")
@@ -60,9 +75,14 @@ fun DemoScreen() {
     )
 
     Scaffold(
+        snackbarHost = {
+            SnackbarHost(hostState = snackBarHostState)
+        },
         content = {
             Column(
-                Modifier.fillMaxWidth().fillMaxHeight(),
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
