@@ -14,8 +14,9 @@ import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
-import com.khalti.android.composable.KhaltiPaymentPage
-import com.khalti.android.composable.onBack
+import com.khalti.android.payment.KhaltiPaymentPage
+import com.khalti.android.payment.KhaltiPaymentViewModel
+import com.khalti.android.payment.onBack
 
 internal class PaymentActivity : ComponentActivity() {
     private var receiver: BroadcastReceiver? = null
@@ -25,7 +26,7 @@ internal class PaymentActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            KhaltiPaymentPage(this)
+            KhaltiPaymentPage(this, KhaltiPaymentViewModel())
         }
         registerBroadcast()
         setupBackPressListener()

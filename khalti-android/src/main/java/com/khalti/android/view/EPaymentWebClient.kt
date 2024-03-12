@@ -6,11 +6,10 @@ package com.khalti.android.view
 
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.webkit.*
 import androidx.annotation.RequiresApi
-import com.khalti.android.cache.Store
 import com.khalti.android.Khalti
+import com.khalti.android.cache.Store
 import com.khalti.android.resource.OnMessageEvent
 import com.khalti.android.resource.OnMessagePayload
 

@@ -47,13 +47,13 @@ fun DemoScreen() {
         LocalContext.current,
         KhaltiPayConfig(
             publicKey = "live_public_key_979320ffda734d8e9f7758ac39ec775f",
-            pidx = "MoiGc4CvewG9RZmDgUtNTk",
+            pidx = "tF999DgVNFG26uHHJJCqZb",
             returnUrl = Uri.parse("https://webhook.site/ed508278-3ce3-4f6d-98f1-0b6084c5c5cd"),
             environment = Environment.TEST
         ),
         onPaymentResult = { paymentResult, khalti ->
             Log.i("Demo | onPaymentResult", paymentResult.toString())
-            khalti.close()
+//            khalti.close()
             scope.launch {
                 snackBarHostState.showSnackbar("Payment successful for pidx: ${khalti.config.pidx}")
             }
@@ -61,7 +61,7 @@ fun DemoScreen() {
         onMessage = { payload ->
             Log.i(
                 "Demo | onMessage",
-                "${payload.event} ${if (payload.code != null) "(${payload.code})" else ""} | ${payload.message}"
+                "${payload.event} ${if (payload.code != null) "(${payload.code})" else ""} | ${payload.message} | ${payload.needsPaymentConfirmation}"
             )
             payload.khalti.close()
             payload.throwable?.printStackTrace()
@@ -105,7 +105,7 @@ fun DemoScreen() {
                             khalti.open()
                         }
                     ) {
-                        Text("Pay with Khalti")
+                        Text("Pay Rs. 22")
                     }
                 }
                 Spacer(Modifier.height(50.dp))
