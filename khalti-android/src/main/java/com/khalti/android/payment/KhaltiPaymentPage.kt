@@ -9,10 +9,12 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
@@ -39,6 +41,7 @@ import com.khalti.android.resource.OnMessageEvent
 import com.khalti.android.resource.OnMessagePayload
 import com.khalti.android.service.VerificationRepository
 import com.khalti.android.utils.NetworkUtil
+import kotlinx.coroutines.delay
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,6 +54,9 @@ fun KhaltiPaymentPage(activity: Activity) {
         mutableStateOf(NetworkUtil.isNetworkAvailable(activity))
     }
     val recomposeState = mutableStateOf(false)
+    val showProgressDialog = remember {
+        mutableStateOf(false)
+    }
     Scaffold(
         topBar = {
             Surface(shadowElevation = 4.dp) {
@@ -67,7 +73,7 @@ fun KhaltiPaymentPage(activity: Activity) {
                         }
                     },
                     title = {
-                        Text(text = "Pay With Khalti")
+                        Text(text = "Payment Gateway")
                     },
                     actions = {
                         IconButton(onClick = {
@@ -84,48 +90,43 @@ fun KhaltiPaymentPage(activity: Activity) {
         },
     ) {
         Surface(modifier = Modifier.padding(top = it.calculateTopPadding())) {
+            if (showProgressDialog.value) {
+                KProgressDialog()
+            }
+
             val khalti = Store.instance().get<Khalti>("khalti")
             if (khalti != null) {
                 val config = khalti.config
-                val webView: @Composable () -> Unit = {
-                    KhaltiWebView(
-                        config = config,
-                        onReturnPageLoaded = {
-                            isLoading.value = true
-                            val verificationRepo = VerificationRepository()
-                            verificationRepo.verify(config.pidx, khalti) {
-                                activity.runOnUiThread {
-                                    isLoading.value = false
-                                }
-                            }
-
-                        },
-                        onPageLoaded = {
-                            isLoading.value = false
-                        },
-                    )
-
-                }
 
                 if (networkAvailable.value) {
-                    if (isLoading.value) {
-                        Box(
-                            Modifier
-                                .fillMaxSize()
-                                .background(Color.LightGray)
-                        ) {
-                            webView()
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        KhaltiWebView(
+                            config = config,
+                            onReturnPageLoaded = {
+                                showProgressDialog.value = true
+                                val verificationRepo = VerificationRepository()
+                                verificationRepo.verify(config.pidx, khalti) {
+                                    showProgressDialog.value = false
+                                }
+
+                            },
+                            onPageLoaded = {
+                                isLoading.value = false
+                            },
+                        )
+                        if (isLoading.value) {
                             LinearProgressIndicator(
                                 Modifier
-                                    .fillMaxWidth()
-                                    .height(4.dp)
-                                    .align(Alignment.TopCenter),
+                                    .height(6.dp)
+                                    .width(200.dp)
+                                    .align(Alignment.Center),
                                 color = Color.Gray
                             )
                         }
-                    } else {
-                        webView()
                     }
+
                 } else {
                     KhaltiError(errorType = ErrorType.network) {
                         networkAvailable.value = NetworkUtil.isNetworkAvailable(activity)
