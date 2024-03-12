@@ -2,16 +2,13 @@
  * Copyright (c) 2024. The Khalti Authors. All rights reserved.
  */
 
-package com.khalti.android.composable
+package com.khalti.android.payment
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -28,35 +25,28 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.khalti.android.Khalti
 import com.khalti.android.cache.Store
+import com.khalti.android.composable.KhaltiError
+import com.khalti.android.composable.KhaltiWebView
 import com.khalti.android.resource.ErrorType
 import com.khalti.android.resource.OnMessageEvent
 import com.khalti.android.resource.OnMessagePayload
-import com.khalti.android.service.VerificationRepository
 import com.khalti.android.utils.NetworkUtil
-import kotlinx.coroutines.delay
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KhaltiPaymentPage(activity: Activity) {
-    val isLoading = remember {
-        mutableStateOf(true)
-    }
-    val networkAvailable = remember {
-        mutableStateOf(NetworkUtil.isNetworkAvailable(activity))
-    }
+fun KhaltiPaymentPage(activity: Activity, viewModel: KhaltiPaymentViewModel) {
+    val state by viewModel.state.collectAsState()
     val recomposeState = mutableStateOf(false)
-    val showProgressDialog = remember {
-        mutableStateOf(false)
-    }
     Scaffold(
         topBar = {
             Surface(shadowElevation = 4.dp) {
@@ -90,33 +80,25 @@ fun KhaltiPaymentPage(activity: Activity) {
         },
     ) {
         Surface(modifier = Modifier.padding(top = it.calculateTopPadding())) {
-            if (showProgressDialog.value) {
-                KProgressDialog()
-            }
-
             val khalti = Store.instance().get<Khalti>("khalti")
             if (khalti != null) {
                 val config = khalti.config
-
-                if (networkAvailable.value) {
+                if (state.hasNetwork) {
                     Box(
-                        modifier = Modifier.fillMaxSize()
+                        Modifier
+                            .fillMaxSize()
                     ) {
                         KhaltiWebView(
                             config = config,
                             onReturnPageLoaded = {
-                                showProgressDialog.value = true
-                                val verificationRepo = VerificationRepository()
-                                verificationRepo.verify(config.pidx, khalti) {
-                                    showProgressDialog.value = false
-                                }
+                                viewModel.verifyPaymentStatus(khalti)
 
                             },
                             onPageLoaded = {
-                                isLoading.value = false
+                                viewModel.hideLoading()
                             },
                         )
-                        if (isLoading.value) {
+                        if (state.isLoading) {
                             LinearProgressIndicator(
                                 Modifier
                                     .height(6.dp)
@@ -129,7 +111,7 @@ fun KhaltiPaymentPage(activity: Activity) {
 
                 } else {
                     KhaltiError(errorType = ErrorType.network) {
-                        networkAvailable.value = NetworkUtil.isNetworkAvailable(activity)
+                        viewModel.toggleNetwork(NetworkUtil.isNetworkAvailable(activity))
                     }
                 }
             }
@@ -137,10 +119,10 @@ fun KhaltiPaymentPage(activity: Activity) {
 
     }
 
-    LaunchedEffect(networkAvailable.value && recomposeState.value) {
+    LaunchedEffect(state.hasNetwork && recomposeState.value) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             NetworkUtil.registerListener(activity) {
-                networkAvailable.value = it
+                viewModel.toggleNetwork(it)
             }
         }
     }
