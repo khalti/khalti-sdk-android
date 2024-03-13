@@ -6,6 +6,7 @@ package com.khalti.android.composable
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.util.Log
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,19 +41,21 @@ fun KhaltiWebView(
                     }
                 }
                 this.clearCache(true)
+
+                val baseUrl = if (config.isProd()) {
+                    Url.BASE_PAYMENT_URL_PROD
+                } else {
+                    Url.BASE_PAYMENT_URL_STAGING
+                }
+
+                val paymentUri =
+                    Uri.parse(baseUrl.value).buildUpon().appendQueryParameter("pidx", config.pidx)
+
+                this.loadUrl(paymentUri.toString())
             }
         },
         update = {
-            val baseUrl = if (config.isProd()) {
-                Url.BASE_PAYMENT_URL_PROD
-            } else {
-                Url.BASE_PAYMENT_URL_STAGING
-            }
-
-            val paymentUri =
-                Uri.parse(baseUrl.value).buildUpon().appendQueryParameter("pidx", config.pidx)
-
-            it.loadUrl(paymentUri.toString())
-        },
+            it.loadUrl("javascript:window.location.reload(true)")
+        }
     )
 }
