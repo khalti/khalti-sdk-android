@@ -47,7 +47,7 @@ fun DemoScreen() {
         LocalContext.current,
         KhaltiPayConfig(
             publicKey = "live_public_key_979320ffda734d8e9f7758ac39ec775f",
-            pidx = "tF999DgVNFG26uHHJJCqZb",
+            pidx = "ioeYNt2ReVsUqodQgrZsxi",
             returnUrl = Uri.parse("https://webhook.site/ed508278-3ce3-4f6d-98f1-0b6084c5c5cd"),
             environment = Environment.TEST
         ),

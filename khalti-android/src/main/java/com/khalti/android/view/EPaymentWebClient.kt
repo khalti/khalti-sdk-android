@@ -14,7 +14,6 @@ import com.khalti.android.resource.OnMessageEvent
 import com.khalti.android.resource.OnMessagePayload
 
 internal class EPaymentWebClient(val onReturn: () -> Unit) : WebViewClient() {
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?):
             Boolean = handleUri(request!!.url)

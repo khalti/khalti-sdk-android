@@ -7,6 +7,7 @@ package com.khalti.android.payment
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
+import android.webkit.WebView
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -34,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.khalti.android.Khalti
 import com.khalti.android.cache.Store
+import com.khalti.android.composable.KProgressDialog
 import com.khalti.android.composable.KhaltiError
 import com.khalti.android.composable.KhaltiWebView
 import com.khalti.android.resource.ErrorType
@@ -47,6 +49,7 @@ import com.khalti.android.utils.NetworkUtil
 fun KhaltiPaymentPage(activity: Activity, viewModel: KhaltiPaymentViewModel) {
     val state by viewModel.state.collectAsState()
     val recomposeState = mutableStateOf(false)
+
     Scaffold(
         topBar = {
             Surface(shadowElevation = 4.dp) {
@@ -82,6 +85,11 @@ fun KhaltiPaymentPage(activity: Activity, viewModel: KhaltiPaymentViewModel) {
         Surface(modifier = Modifier.padding(top = it.calculateTopPadding())) {
             val khalti = Store.instance().get<Khalti>("khalti")
             if (khalti != null) {
+
+                if (state.progressDialog) {
+                    KProgressDialog()
+                }
+
                 val config = khalti.config
                 if (state.hasNetwork) {
                     Box(
@@ -92,10 +100,9 @@ fun KhaltiPaymentPage(activity: Activity, viewModel: KhaltiPaymentViewModel) {
                             config = config,
                             onReturnPageLoaded = {
                                 viewModel.verifyPaymentStatus(khalti)
-
                             },
                             onPageLoaded = {
-                                viewModel.hideLoading()
+                                viewModel.toggleLoading(false)
                             },
                         )
                         if (state.isLoading) {

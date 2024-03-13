@@ -4,45 +4,41 @@
 
 package com.khalti.android.payment
 
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.khalti.android.Khalti
-import com.khalti.android.resource.Url
 import com.khalti.android.service.VerificationRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 data class KhaltiPaymentState(
     val isLoading: Boolean = true,
     val hasNetwork: Boolean = true,
+    val progressDialog: Boolean = false,
 )
 
-class KhaltiPaymentViewModel() : ViewModel() {
+class KhaltiPaymentViewModel : ViewModel() {
     private val _state = MutableStateFlow((KhaltiPaymentState()))
     val state: StateFlow<KhaltiPaymentState> = _state
 
-    fun showLoading() {
-        _state.update { it.copy(isLoading = true) }
-    }
-
-    fun hideLoading() {
-        _state.update { it.copy(isLoading = false) }
-    }
-
     fun verifyPaymentStatus(khalti: Khalti) {
-        // TODO (Ishwor) Show progress
+        toggleProgressDialog()
         val verificationRepo = VerificationRepository()
         verificationRepo.verify(khalti.config.pidx, khalti) {
-            /*no-op*/
+            toggleProgressDialog(false)
         }
     }
 
     fun toggleNetwork(hasNetwork: Boolean) {
         _state.update { it.copy(hasNetwork = hasNetwork) }
+    }
+
+
+    fun toggleLoading(show: Boolean = true) {
+        _state.update { it.copy(isLoading = show) }
+    }
+
+    private fun toggleProgressDialog(show: Boolean = true) {
+        _state.update { it.copy(progressDialog = show) }
     }
 }
