@@ -53,7 +53,7 @@ fun DemoScreen() {
         ),
         onPaymentResult = { paymentResult, khalti ->
             Log.i("Demo | onPaymentResult", paymentResult.toString())
-//            khalti.close()
+            khalti.close()
             scope.launch {
                 snackBarHostState.showSnackbar("Payment successful for pidx: ${khalti.config.pidx}")
             }
