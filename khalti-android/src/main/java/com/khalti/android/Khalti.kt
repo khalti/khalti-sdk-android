@@ -18,7 +18,7 @@ import com.khalti.android.utils.PackageUtil
 // method overloading was required for Java developers
 class Khalti private constructor(
     private val context: Context,
-    val config: KhaltiPayConfig,
+    var config: KhaltiPayConfig,
     val onPaymentResult: OnPaymentResult,
     val onMessage: OnMessage,
     val onReturn: OnReturn?,

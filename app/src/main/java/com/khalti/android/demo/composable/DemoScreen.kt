@@ -6,24 +6,34 @@ import android.annotation.SuppressLint
 import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,6 +48,7 @@ import kotlinx.coroutines.launch
 @Composable
 @Preview
 fun DemoScreen() {
+    val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
     val snackBarHostState = remember {
         SnackbarHostState()
@@ -47,7 +58,7 @@ fun DemoScreen() {
         LocalContext.current,
         KhaltiPayConfig(
             publicKey = "live_public_key_979320ffda734d8e9f7758ac39ec775f",
-            pidx = "ioeYNt2ReVsUqodQgrZsxi",
+            pidx = "Prd42EcFeqvVKpHRGN3ZUZ",
             returnUrl = Uri.parse("https://webhook.site/ed508278-3ce3-4f6d-98f1-0b6084c5c5cd"),
             environment = Environment.TEST
         ),
@@ -74,6 +85,14 @@ fun DemoScreen() {
         }
     )
 
+    val pidx = remember {
+        mutableStateOf(khalti.config.pidx)
+    }
+    val environments = enumValues<Environment>()
+    val selectedEnvironment = remember {
+        mutableStateOf(khalti.config.environment)
+    }
+
     Scaffold(
         snackbarHost = {
             SnackbarHost(hostState = snackBarHostState)
@@ -82,17 +101,20 @@ fun DemoScreen() {
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(),
+                    .fillMaxHeight()
+                    .scrollable(
+                        state = scrollState,
+                        orientation = Orientation.Vertical
+                    ),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Spacer(Modifier.padding(16.dp))
                 Image(
                     painterResource(R.mipmap.seru),
                     contentDescription = "Khalti Logo",
-                    modifier = Modifier.height(200.dp)
+                    modifier = Modifier.height(180.dp)
                 )
-                Spacer(Modifier.height(50.dp))
+                Spacer(Modifier.height(30.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
@@ -102,18 +124,54 @@ fun DemoScreen() {
                     Spacer(Modifier.height(8.dp))
                     OutlinedButton(
                         {
+                            if (pidx.value != khalti.config.pidx) {
+                                khalti.config = khalti.config.copy(pidx = pidx.value)
+                            }
+
+                            if (selectedEnvironment.value != khalti.config.environment) {
+                                khalti.config =
+                                    khalti.config.copy(environment = selectedEnvironment.value)
+                            }
+
                             khalti.open()
                         }
                     ) {
                         Text("Pay Rs. 22")
                     }
                 }
-                Spacer(Modifier.height(50.dp))
-                Text(
-                    text = "pidx: ${khalti.config.pidx}",
-                    style = MaterialTheme.typography.bodySmall
+                Spacer(Modifier.height(30.dp))
+                TextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    value = pidx.value,
+                    onValueChange = {
+                        pidx.value = it
+                    },
+                    label = { Text(text = "PIDX") },
                 )
-                Spacer(Modifier.height(50.dp))
+                Spacer(Modifier.height(20.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                ) {
+                    Text(text = "Environment")
+                    environments.forEach {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            RadioButton(
+                                selected = (it == selectedEnvironment.value),
+                                onClick = { selectedEnvironment.value = it }
+                            )
+                            Text(
+                                text = it.name,
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier.padding(start = 8.dp)
+                            )
+                        }
+                    }
+                }
+                Spacer(Modifier.height(30.dp))
                 Text(
                     text = "This is a demo application developed by some merchant.",
                     style = MaterialTheme.typography.bodySmall
