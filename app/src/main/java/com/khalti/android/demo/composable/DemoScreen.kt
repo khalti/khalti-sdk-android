@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
@@ -85,8 +86,14 @@ fun DemoScreen() {
         }
     )
 
+    val publicKey = remember {
+        mutableStateOf(khalti.config.publicKey)
+    }
     val pidx = remember {
         mutableStateOf(khalti.config.pidx)
+    }
+    val returnUrl = remember {
+        mutableStateOf(khalti.config.returnUrl)
     }
     val environments = enumValues<Environment>()
     val selectedEnvironment = remember {
@@ -100,12 +107,7 @@ fun DemoScreen() {
         content = {
             Column(
                 Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .scrollable(
-                        state = scrollState,
-                        orientation = Orientation.Vertical
-                    ),
+                    .verticalScroll(state = scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Spacer(Modifier.padding(16.dp))
@@ -115,31 +117,28 @@ fun DemoScreen() {
                     modifier = Modifier.height(180.dp)
                 )
                 Spacer(Modifier.height(30.dp))
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Text(text = "Rs. 22", style = MaterialTheme.typography.titleLarge)
-                    Spacer(Modifier.height(8.dp))
-                    Text(text = "1 day fee", style = MaterialTheme.typography.bodySmall)
-                    Spacer(Modifier.height(8.dp))
-                    OutlinedButton(
-                        {
-                            if (pidx.value != khalti.config.pidx) {
-                                khalti.config = khalti.config.copy(pidx = pidx.value)
-                            }
-
-                            if (selectedEnvironment.value != khalti.config.environment) {
-                                khalti.config =
-                                    khalti.config.copy(environment = selectedEnvironment.value)
-                            }
-
-                            khalti.open()
-                        }
-                    ) {
-                        Text("Pay Rs. 22")
-                    }
-                }
-                Spacer(Modifier.height(30.dp))
+                TextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    value = publicKey.value,
+                    onValueChange = {
+                        publicKey.value = it
+                    },
+                    label = { Text(text = "Public Key") },
+                )
+                Spacer(Modifier.height(20.dp))
+                TextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    value = returnUrl.value.toString(),
+                    onValueChange = {
+                        returnUrl.value = Uri.parse(it)
+                    },
+                    label = { Text(text = "Return Url") },
+                )
+                Spacer(Modifier.height(20.dp))
                 TextField(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -169,6 +168,35 @@ fun DemoScreen() {
                                 modifier = Modifier.padding(start = 8.dp)
                             )
                         }
+                    }
+                }
+                Spacer(Modifier.height(30.dp))
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Text(text = "Rs. 22", style = MaterialTheme.typography.titleLarge)
+                    Spacer(Modifier.height(8.dp))
+                    Text(text = "1 day fee", style = MaterialTheme.typography.bodySmall)
+                    Spacer(Modifier.height(8.dp))
+                    OutlinedButton(
+                        {
+                            if (publicKey.value != khalti.config.publicKey
+                                || returnUrl.value != khalti.config.returnUrl
+                                || pidx.value != khalti.config.pidx
+                                || selectedEnvironment.value != khalti.config.environment
+                            ) {
+                                khalti.config = khalti.config.copy(
+                                    publicKey = publicKey.value,
+                                    returnUrl = returnUrl.value,
+                                    pidx = pidx.value,
+                                    environment = selectedEnvironment.value,
+                                )
+                            }
+
+                            khalti.open()
+                        }
+                    ) {
+                        Text("Pay Rs. 22")
                     }
                 }
                 Spacer(Modifier.height(30.dp))
