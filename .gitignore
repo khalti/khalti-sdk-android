@@ -16,3 +16,4 @@
 local.properties
 /app/release/
 /khalti-android/build/
+/.idea

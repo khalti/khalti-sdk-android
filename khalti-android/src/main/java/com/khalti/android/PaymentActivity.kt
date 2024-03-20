@@ -3,72 +3,85 @@
 package com.khalti.android
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.net.Uri
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
-import android.view.Gravity
 import android.webkit.*
-import android.widget.LinearLayout
-import android.widget.LinearLayout.LayoutParams
-import android.widget.ProgressBar
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.MaterialToolbar
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
+import com.khalti.android.payment.KhaltiPaymentPage
+import com.khalti.android.payment.KhaltiPaymentViewModel
+import com.khalti.android.payment.onBack
 
-internal class PaymentActivity : Activity() {
+internal class PaymentActivity : ComponentActivity() {
+    private var receiver: BroadcastReceiver? = null
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val layout = LinearLayout(this)
-        layout.orientation = LinearLayout.VERTICAL
-        layout.gravity = Gravity.CENTER
-
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-
-        val appBar = AppBarLayout(this)
-        val toolbar = MaterialToolbar(this)
-        
-        val progressBar = ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal)
-        progressBar.isIndeterminate = true
-
-        toolbar.title = "Pay with Khalti"
-        toolbar.setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
-        toolbar.setNavigationOnClickListener {
-            finish()
+        setContent {
+            KhaltiPaymentPage(this, KhaltiPaymentViewModel())
         }
+        registerBroadcast()
+        setupBackPressListener()
+    }
 
-        val webView = WebView(this)
-        val webSettings = webView.settings
+    override fun onDestroy() {
+        unregisterBroadcast()
+        super.onDestroy()
+    }
 
-        @SuppressLint("SetJavaScriptEnabled")
-        webSettings.javaScriptEnabled = true
-        webSettings.domStorageEnabled = true
+    @Deprecated(
+        "Deprecated in Java", ReplaceWith(
+            "@Suppress(\"DEPRECATION\") super.onBackPressed()", "android.app.Activity"
+        )
+    )
+    override fun onBackPressed() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            onBack()
+        }
+        @Suppress("DEPRECATION") super.onBackPressed()
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(OpenKhaltiPay.CONFIG, KhaltiPayConfiguration::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(OpenKhaltiPay.CONFIG)
-        }?.let { it ->
-            webView.webViewClient = EPaymentWebClient(this, it.returnUrl)
-            webView.webChromeClient = object : WebChromeClient() {
-                override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                    progressBar.visibility = if (newProgress == 100) ProgressBar.GONE else ProgressBar.VISIBLE
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private fun registerBroadcast() {
+        receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent != null && intent.action.equals("close_khalti_payment_portal")) {
+                    finish()
                 }
             }
-
-            val paymentUri = Uri.parse(it.paymentUrl).buildUpon()
-                .appendQueryParameter("home", OpenKhaltiPay.DEFAULT_HOME)
-                .build()
-            webView.loadUrl(paymentUri.toString())
         }
+        if (Build.VERSION.SDK_INT >= 26) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                registerReceiver(
+                    receiver, IntentFilter("close_khalti_payment_portal"), RECEIVER_NOT_EXPORTED
+                )
+            } else {
+                registerReceiver(
+                    receiver, IntentFilter("close_khalti_payment_portal"),
+                )
+            }
+        }
+    }
 
-        appBar.addView(toolbar)
+    private fun unregisterBroadcast() {
+        unregisterReceiver(receiver)
+    }
 
-        layout.addView(appBar)
-        layout.addView(progressBar)
-        layout.addView(webView, params)
-
-        setContentView(layout, params)
+    private fun setupBackPressListener() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            val priority = OnBackInvokedDispatcher.PRIORITY_DEFAULT
+            onBackInvokedDispatcher.registerOnBackInvokedCallback(priority) {
+                onBack()
+            }
+        }
     }
 }
+
